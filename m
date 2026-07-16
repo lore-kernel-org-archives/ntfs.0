@@ -1,90 +1,102 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F80B33121C
-	for <ntfs@lists.linux.dev>; Thu, 16 Jul 2026 01:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD31481B1;
+	Thu, 16 Jul 2026 02:47:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784165688; cv=none; b=JrGBL8nPUh1JZcesjfDGxN98PDwAAjFYLF5mU1BdtPNeiqRuvu7LEgrwtyLvh/ryxqmWDOYDZi8ZFb7zBO2dMTnG1E84ilcbhph87Ld2EnJ9jC9M8OcOjivsxgaSW5BK85H3+OYNGKu5FTPfz9JM+zSLYdB7kyZ3kL5vd9NKVEI=
+	t=1784170042; cv=none; b=HLVLTueTWrZvANdvdC/ilVYExycCLbzyion6z6xnlezPx2NSC36sn26K8j85RnJhTeCQLXaSs8QVtPt5I8TNQlYbh9VBUEMihpbpivYkuenpqNFUr5LMXC+t9QBO6MxQR94QkVn85WJRB5IdisGq2/6wafHD0aaZgMTmhcQbnlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784165688; c=relaxed/simple;
-	bh=DHX+4Wg1e4Qw7ccksMIpKrJjz1QqiF673121nPa7ct4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fHuRuMPj0jQ0L3bEdEBDNXlYV4g4GQ9f5sgq4q0N1hy+rFIyOLhpN2xahznXfiVFO+ve9sHC8+YA4jl7UdX7dgAsIGnsm/HZC4bnS246gTP/Fg/2HWNYa8VdZnFBCn/tUiCGw+6PAbO+xmrXNiak3cr6zjoMQtYYFB6DqSrHhU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MRMxTDuu; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1784170042; c=relaxed/simple;
+	bh=Hk7o/2MNF+SPViAou6tMu+gTJBMkqUPIlEz0oVdqO/o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=A1iCCEbZbjQfGN/Q878NuwW8XZxnDBHms8JS0LH/PDt4rgpqKlD0Nk6i0L6A1cqaNRl7I6/i88bAXx8XtqAt10bjWjC+joAtBUdMiEH5Kc98i8Q58aVP2S4PmFbC1c/0XyyYZjgKLFXUNqLhAyOwvnTTr1Q/x+Zu4hZOKw9PIho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igsETIRx; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MRMxTDuu"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F9DC1F00ACF
-	for <ntfs@lists.linux.dev>; Thu, 16 Jul 2026 01:34:47 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="igsETIRx"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E8C31F000E9;
+	Thu, 16 Jul 2026 02:47:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784165687;
-	bh=w6KwiVdJzjeyC88Ywg1fGCHhkNezDjXA+HpFPr5TVXk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=MRMxTDuuQvT49x4fRiEF6gfbhIhI68ho0oMllwyMc5JGJCpyX5/QvzMSX2jCxD64W
-	 3GYNBKOyMW6QjnpDOXkKKG/vQ58kiKTb9lL7sFiZseGMQLtQw4EHYVr8KpDvCbIetx
-	 VTPkTvUZL7jwzk6uHcN5KTyazA3yVZqSMcUaeh/w+pR4Aq6CURMu47Alh6wOxgc8Gs
-	 p7hwwjLAcMvh81+X4FuGSrdHlDi1FI2dc2sw3HJ/OT6adJ17NZa8HVISnNLuCaCybl
-	 pYd2wxnE6svPu+sNGXFn5TdlP3b1vTsfe053MDbhbxnxc64RLt0XC8rcWZjbUl4SAw
-	 3m9Fdv9vSQ/wg==
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-c15e2dab83eso431587066b.1
-        for <ntfs@lists.linux.dev>; Wed, 15 Jul 2026 18:34:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RrVKM6huoQDCTy57dVgfUciUGUQE1lZP67DFIQyhBQ0MTL4trKCEYMBmezO7F8CIX6xshX8@lists.linux.dev
-X-Gm-Message-State: AOJu0YyVi2Ke2JBUY8XXUV6MCnAmk8DaB4g4jB2XCxN3HsbXVlZXq9EV
-	VUZ/zvUVgVw//o47DHZWteK+IMt///HKnUhj2ZiOex0bzGHAnkmEcZT+snzH0R1+oGbqdR3ez1R
-	JZQq/8FiWLTAJ1J1FuBzcDbKHelbZ8ZY=
-X-Received: by 2002:a17:907:268c:b0:c15:f029:63a5 with SMTP id
- a640c23a62f3a-c161f393b9emr1059018766b.50.1784165685877; Wed, 15 Jul 2026
- 18:34:45 -0700 (PDT)
+	s=k20260515; t=1784170041;
+	bh=D/kbmWc7zIzQ2+9O5iD3CjUNwk8KKKNcCz2U2Aa4fjU=;
+	h=From:To:Cc:Subject:Date;
+	b=igsETIRxLNBj8bBkO1mCq3DEYGB+9/24ajQgycrxkihXkyX/jv8wON3s5oMQxSwqC
+	 5Ti62Sck7h7qrvO1I7Z1CdH5zMMApgfkXmbpYpZYHjHmE/5FbdFu6Ih7w9/vkQtrLb
+	 rTRDmBmrJ0QbYxLfwCzJAUND5GOmA8Rgd+pXuyYkKpVE80geAh30jXLGSkE24uh2gT
+	 mAVBvhFo5ypMn1ttGn6jTDfJONy/RjhC8BrRVMhbqPrKijVOCnWwxPgBDB7D/58NCi
+	 sTG3g0TtTfhTzr9FUxuS1syqjgFhIGSLsHUA4Bue3kMHMUFw9ba0vMAfBrEhJErhq9
+	 dfy9YYsdCztiQ==
+From: Namjae Jeon <linkinjeon@kernel.org>
+To: hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-fsdevel@vger.kernel.org,
+	Namjae Jeon <linkinjeon@kernel.org>
+Subject: [PATCH] ntfs: validate final EA attribute size
+Date: Thu, 16 Jul 2026 11:46:35 +0900
+Message-Id: <20260716024640.13396-1-linkinjeon@kernel.org>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260715-review-matthew-v2-v3-0-3c996b687a5e@gmail.com>
-In-Reply-To: <20260715-review-matthew-v2-v3-0-3c996b687a5e@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 16 Jul 2026 10:34:33 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd9UkYhny_p-_Yv33_mhSC_Kd=bMjRRAOX9God-=LVa3Gg@mail.gmail.com>
-X-Gm-Features: AUfX_mwzw_Si_FVj7HebA9MQongunmyY-btp_8dvG7r3mwmmbFKnkIcrYaFZg4g
-Message-ID: <CAKYAXd9UkYhny_p-_Yv33_mhSC_Kd=bMjRRAOX9God-=LVa3Gg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] ntfs: Remove __folio_index from ntfs
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: linux-fsdevel@vger.kernel.org, ntfs@lists.linux.dev, 
-	"Matthew Wilcox (Oracle)" <willy@infradead.org>, usama.arif@linux.dev, lance.yang@linux.dev, 
-	Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jul 15, 2026 at 10:38=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> w=
-rote:
->
-> This is a continuation of the NTFS part of Matthew's
-> "Remove __folio_index" patch set [1].
->
-> [1]: https://lore.kernel.org/all/20260608210618.3437216-1-willy@infradead=
-.org/
->
-> To: Namjae Jeon <linkinjeon@kernel.org>
-> Cc: Matthew Wilcox (Oracle) <willy@infradead.org>
-> Cc: linux-fsdevel@vger.kernel.org
-> Cc: ntfs@lists.linux.dev
-> Cc: usama.arif@linux.dev
-> Cc: lance.yang@linux.dev
->
-> --
-> Changes in v3:
-> - Patch 2: Fixed the boundary check so pages straddling initialized_size
->   are zeroed(Suggested by Usama).
-> - Patch 3: Rebased on the top of patch 2.
->
-> Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
-> ---
-> Matthew Wilcox (Oracle) (4):
->       ntfs: Inline zero_partial_compressed_page()
->       ntfs: Remove use of __folio_index in handle_bounds_compressed_page(=
-)
->       ntfs: Use zero_user_segment() in handle_bounds_compressed_page()
->       ntfs: Remove references to page->__folio_index
-Applied them to #ntfs-next.
-Thanks!
+A replacement first removes the existing EA record, then adds the
+replacement. Check the size of that final $EA stream before mutating
+the current stream.
+
+This avoids committing the shortened $EA stream or $EA_INFORMATION before
+discovering that the replacement exceeds the AttrDef size limit.
+
+Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
+---
+ fs/ntfs/ea.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index 0cd192752b7c..0eba3f41c7bb 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -250,6 +250,14 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 			goto out;
+ 		}
+ 
++		/* Check the final $EA size before removing the old entry. */
++		if (val_size &&
++		    ntfs_attr_size_bounds_check(ni->vol, AT_EA,
++					ea_info_qsize - ea_size + new_ea_size)) {
++			err = -EFBIG;
++			goto out;
++		}
++
+ 		p_ea = (struct ea_attr *)(ea_buf + ea_off);
+ 
+ 		if (val_size &&
+@@ -285,6 +293,12 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 			err = -ENODATA;
+ 			goto out;
+ 		}
++
++		if (ntfs_attr_size_bounds_check(ni->vol, AT_EA,
++					ea_info_qsize + new_ea_size)) {
++			err = -EFBIG;
++			goto out;
++		}
+ 	}
+ 	kvfree(ea_buf);
+ 
+@@ -312,8 +326,7 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 	p_ea_info->ea_length = cpu_to_le16(ea_packed);
+ 	p_ea_info->ea_query_length = cpu_to_le32(ea_info_qsize + new_ea_size);
+ 
+-	if (ea_packed > 0xffff ||
+-	    ntfs_attr_size_bounds_check(ni->vol, AT_EA, new_ea_size)) {
++	if (ea_packed > 0xffff) {
+ 		err = -EFBIG;
+ 		goto out;
+ 	}
+-- 
+2.25.1
+
