@@ -1,38 +1,38 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD6F4499A7
-	for <ntfs@lists.linux.dev>; Tue, 21 Jul 2026 09:54:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2BF44BCB8
+	for <ntfs@lists.linux.dev>; Tue, 21 Jul 2026 09:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784627693; cv=none; b=s2Ve5eMN2mML2AyVsPtiXACc5gIh+Un8jXxUSjaAf7upVzM9YChm47vUdaYr6Zl/nzsosnfeIqi8+Akn8F3S3xyhesUBpVGwXNTKt7gVRDtUqi/7KEZYt/6l86qvVl3rZGyOBlVPHzoT4SMsqT+ZIHEu6hqoLfu4Jv87ViDZMj4=
+	t=1784627695; cv=none; b=BSBQvClWbroHn93dD6ThzBQmfTIi49rRXh28nPHbtMS4pfxHDeLLDjdTmCqQqe3TZjUDboRDqL3eaj9YBmOGK4L1pgH7fYlqh52+gYdeUuuDXm/3+coQHE7rB5L44+XGIjaoTSdOxc9jq5V0ckfr4Epe5VDttnpwkR0vPbsO5aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784627693; c=relaxed/simple;
-	bh=OKvT+/1gFNpbxl6yI1IPAgn9eHGvkXJMQRxOxrduyrw=;
+	s=arc-20240116; t=1784627695; c=relaxed/simple;
+	bh=K5ONLth5awWS8lMFnkDgh4UPPZMdCOPdKdzyZwZEoqc=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JfL5Y6F+ig8c+5DsBXgxUpycXF4LrSBTaCn/P1RGHr0nZIIcOo2Z7L7dhYai073bNfVcCqxUd+zquJsBRQoGwuN/xpLOWdHPn+e88pVAVqAAzOhVvyAvOIZvXBpz9GtnmRhHXKdqNGfSpWS1VOqE5VbOAB5WfbRws/PF0c1kqUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jiEiifCy; arc=none smtp.client-ip=100.103.45.18
+	 MIME-Version; b=RmeE8lSNKULN98eDxr8NHmWKdskFFd8F1oK/b27fK81WedNulPmWLAb15C+xg7xNnZdNykMX8KaRMUXk/JITEwFqhG3M03TYJAW8faZKhQf/VhCGOuznCD4eQcsDXQMWebzKFEIyOJAwFSZef7kEpdida/GBMEI0cdDTj4EqZ4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DYOQmbrH; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jiEiifCy"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59B921F00A3F;
-	Tue, 21 Jul 2026 09:54:51 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DYOQmbrH"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 927B01F00A3A;
+	Tue, 21 Jul 2026 09:54:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784627691;
-	bh=Y2zr811VEWJiDotvJE2NqsX0z78NB/SQddZGTJC8eOw=;
+	s=k20260515; t=1784627694;
+	bh=+fyKSZUtK6AtfZ62lEM/T20qc02IAjOxEv6rANqwLG0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=jiEiifCy4ISphfDlt7rTxmZF5A6+R/LHiWtBRUe7AuOXzqmr5N8WwCHyN0tP05OP8
-	 gKhc5Ok4Rv0W/QBlY/CwfawFg4tzDy1a3MugN+OOjcpfdmkeWSzAHDXb7yaLuXJrlm
-	 T8st0WWMNkdf9zbhwnzChabFMuT4TmoY2H8eo1PR7jUmeBfs/hG/f0prW+/SJfb020
-	 dfcDR+4by88y4fIUvyCfLJQa1hr4lmZMLWeVZhnEBwzpeDakgP8d+39xMc/oQ3uj60
-	 8OKISBJa5YzOppUv8F3QnQmAnoe6XkN3snq6+AaI/H3nPzAgkkgsi7HQD7G0IPxo8Y
-	 9FHIntjDRThJg==
+	b=DYOQmbrHDY4Pz0P0hScz00OfXrhQ/URJ08Yx6Yc9R1sDwUaxmTJvmZGNnBL8UTPnO
+	 KhL4ucQns1ts/LK04icPmK35vMq+PO0toZT2CCbb4kPgrB79Wh+OO3Lhvpm0/MB4tD
+	 FnyQk6WfQsa1qtZPIgcdVG/v0g0A59kz+VA/xtEZ2Ej2JauFESb7hR4fI+akoqhmyV
+	 RopGeEzc2Ye/RvoL2JhfM2KKItv7d/S3s3wD0B4Z1ayqRwBqSyIX6MqJXszAivh/XH
+	 u4EanRUStKzmrnMiMp1uhXiI/qPbO5Q4uyH9K64+NATBkCR80ohB7LrRLI9njMtcHJ
+	 3BaITSe11SO0Q==
 From: Namjae Jeon <linkinjeon@kernel.org>
 To: hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	Namjae Jeon <linkinjeon@kernel.org>
-Subject: [PATCH 02/11] ntfs: support large pages in compressed writes
-Date: Tue, 21 Jul 2026 18:54:22 +0900
-Message-Id: <20260721095431.6619-2-linkinjeon@kernel.org>
+Subject: [PATCH 03/11] ntfs: punch all-zero compressed blocks
+Date: Tue, 21 Jul 2026 18:54:23 +0900
+Message-Id: <20260721095431.6619-3-linkinjeon@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260721095431.6619-1-linkinjeon@kernel.org>
 References: <20260721095431.6619-1-linkinjeon@kernel.org>
@@ -44,139 +44,62 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-ntfs_compress_write() derives its page count by shifting the compression
-block size and assumes that every compression block begins at a page
-boundary. This produces a zero page count for small compression blocks on
-large-page systems and ignores an in-page compression block offset.
+When a rewritten compression block consists entirely of zeroes,
+ntfs_write_cb() returns without replacing its existing runlist mapping.
+The old on-disk contents therefore remain visible after cache eviction.
 
-Map every page covering the compression block, pass the in-page offset to
-ntfs_write_cb(), and stage uncompressed output in page-aligned pages.
+Punch the compression unit so that reads resolve it as a sparse block and
+release any clusters that held the previous contents.
 
 Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
 ---
- fs/ntfs/compress.c | 33 ++++++++++++++++++++++-----------
- 1 file changed, 22 insertions(+), 11 deletions(-)
+ fs/ntfs/compress.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/fs/ntfs/compress.c b/fs/ntfs/compress.c
-index 6b78a8efe3ac..006b8831836c 100644
+index 006b8831836c..33ed0456bf7e 100644
 --- a/fs/ntfs/compress.c
 +++ b/fs/ntfs/compress.c
-@@ -1258,11 +1258,11 @@ static int ntfs_compress_block(const char *inbuf, const int bufsize,
- }
- 
- static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
--		int pages_per_cb)
-+		int pages_per_cb, unsigned int page_offset)
- {
- 	struct ntfs_volume *vol = ni->vol;
--	char *outbuf = NULL, *pbuf, *inbuf;
--	u32 compsz, p, insz = pages_per_cb << PAGE_SHIFT;
-+	char *outbuf = NULL, *pbuf, *inbuf, *in_mapping;
-+	u32 compsz, p, insz = ni->itype.compressed.block_size;
- 	s32 rounded, bio_size;
- 	int sz;
- 	unsigned int bsz;
-@@ -1284,14 +1284,15 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
- 	loff_t new_length;
+@@ -1279,9 +1279,10 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
+ 	int i, err;
+ 	int pages_count = (round_up(ni->itype.compressed.block_size + 2 *
+ 		(ni->itype.compressed.block_size / NTFS_SB_SIZE) + 2, PAGE_SIZE)) / PAGE_SIZE;
++	u32 cb_clusters = ni->itype.compressed.block_clusters;
+ 	size_t new_rl_count;
+ 	struct bio *bio = NULL;
+-	loff_t new_length;
++	loff_t cb_pos, new_length;
  	s64 new_vcn;
  
--	inbuf = vmap(pages, pages_per_cb, VM_MAP, PAGE_KERNEL_RO);
--	if (!inbuf)
-+	in_mapping = vmap(pages, pages_per_cb, VM_MAP, PAGE_KERNEL_RO);
-+	if (!in_mapping)
- 		return -ENOMEM;
-+	inbuf = in_mapping + page_offset;
- 
- 	/* may need 2 extra bytes per block and 2 more bytes */
- 	pages_disk = kcalloc(pages_count, sizeof(struct page *), GFP_NOFS);
- 	if (!pages_disk) {
--		vunmap(inbuf);
-+		vunmap(in_mapping);
- 		return -ENOMEM;
+ 	in_mapping = vmap(pages, pages_per_cb, VM_MAP, PAGE_KERNEL_RO);
+@@ -1351,6 +1352,9 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
+ 		}
  	}
  
-@@ -1361,7 +1362,9 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
- 		err = 0;
++	cb_pos = pos & ~((loff_t)ni->itype.compressed.block_size - 1);
++	new_vcn = ntfs_bytes_to_cluster(vol, cb_pos);
++
+ 	if (!fail && !allzeroes) {
+ 		outbuf[compsz++] = 0;
+ 		outbuf[compsz++] = 0;
+@@ -1359,7 +1363,7 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
+ 		bio_size = rounded;
+ 		pages = pages_disk;
+ 	} else if (allzeroes) {
+-		err = 0;
++		err = ntfs_non_resident_attr_punch_hole(ni, new_vcn, cb_clusters);
  		goto out;
  	} else {
-+		memcpy(outbuf, inbuf, insz);
- 		bio_size = insz;
-+		pages = pages_disk;
+ 		memcpy(outbuf, inbuf, insz);
+@@ -1367,8 +1371,6 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
+ 		pages = pages_disk;
  	}
  
- 	new_vcn = ntfs_bytes_to_cluster(vol,
-@@ -1420,7 +1423,8 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
- 					GFP_NOIO);
- 			bio->bi_iter.bi_sector =
- 				ntfs_bytes_to_sector(vol,
--						ntfs_cluster_to_bytes(vol, bio_lcn + i));
-+						ntfs_cluster_to_bytes(vol, bio_lcn) +
-+						((s64)i << PAGE_SHIFT));
- 		}
+-	new_vcn = ntfs_bytes_to_cluster(vol,
+-			pos & ~((loff_t)ni->itype.compressed.block_size - 1));
+ 	new_length = ntfs_bytes_to_cluster(vol, round_up(bio_size, vol->cluster_size));
  
- 		if (!bio_add_page(bio, pages[i], page_size, 0)) {
-@@ -1437,7 +1441,8 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
- 	err = submit_bio_wait(bio);
- 	bio_put(bio);
- out:
--	vunmap(outbuf);
-+	if (outbuf)
-+		vunmap(outbuf);
- 	for (i = 0; i < pages_count; i++) {
- 		pg = pages_disk[i];
- 		if (pg) {
-@@ -1446,7 +1451,7 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
- 		}
- 	}
- 	kfree(pages_disk);
--	vunmap(inbuf);
-+	vunmap(in_mapping);
- 	NInoSetFileNameDirty(ni);
- 	mark_mft_record_dirty(ni);
- 
-@@ -1458,12 +1463,15 @@ int ntfs_compress_write(struct ntfs_inode *ni, loff_t pos, size_t count,
- {
- 	struct folio *folio;
- 	struct page **pages = NULL, *page;
--	int pages_per_cb = ni->itype.compressed.block_size >> PAGE_SHIFT;
-+	int pages_per_cb;
- 	int cb_size = ni->itype.compressed.block_size, cb_off, err = 0;
- 	int i, ip;
- 	size_t written = 0;
- 	struct address_space *mapping = VFS_I(ni)->i_mapping;
- 
-+	pages_per_cb = DIV_ROUND_UP(offset_in_page(pos & ~(cb_size - 1)) +
-+			cb_size, PAGE_SIZE);
-+
- 	pages = kmalloc_array(pages_per_cb, sizeof(struct page *), GFP_NOFS);
- 	if (!pages)
- 		return -ENOMEM;
-@@ -1471,6 +1479,7 @@ int ntfs_compress_write(struct ntfs_inode *ni, loff_t pos, size_t count,
- 	while (count) {
- 		pgoff_t index;
- 		size_t copied, bytes;
-+		unsigned int page_offset;
- 		int off;
- 
- 		off = pos & (cb_size - 1);
-@@ -1479,6 +1488,8 @@ int ntfs_compress_write(struct ntfs_inode *ni, loff_t pos, size_t count,
- 			bytes = count;
- 
- 		cb_off = pos & ~(cb_size - 1);
-+		page_offset = offset_in_page(cb_off);
-+		pages_per_cb = DIV_ROUND_UP(page_offset + cb_size, PAGE_SIZE);
- 		index = cb_off >> PAGE_SHIFT;
- 
- 		if (unlikely(fault_in_iov_iter_readable(from, bytes))) {
-@@ -1527,7 +1538,7 @@ int ntfs_compress_write(struct ntfs_inode *ni, loff_t pos, size_t count,
- 			}
- 		}
- 
--		err = ntfs_write_cb(ni, pos, pages, pages_per_cb);
-+		err = ntfs_write_cb(ni, pos, pages, pages_per_cb, page_offset);
- 
- 		for (i = 0; i < pages_per_cb; i++) {
- 			folio = page_folio(pages[i]);
+ 	err = ntfs_non_resident_attr_punch_hole(ni, new_vcn, ni->itype.compressed.block_clusters);
 -- 
 2.34.1
 
