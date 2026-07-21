@@ -1,38 +1,38 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D0E44C67F
-	for <ntfs@lists.linux.dev>; Tue, 21 Jul 2026 09:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0EA44C67F
+	for <ntfs@lists.linux.dev>; Tue, 21 Jul 2026 09:55:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784627707; cv=none; b=KpI5KcDa1RItUjfA3EYQ8SQb65eFs1W55JC0xopbL44S1t1RwKE3VHFpF9cvKsxMoQh0RvAUgAxseo2IJi3x6kZPVyVhhJ/Epp7WLdMIxHYDYTnzJ2NMfJHjnZkwmZJnMJpsY1FEvbkodMq+KglxeQCIk7Nl8EF7cYrnlEgnr04=
+	t=1784627711; cv=none; b=GOI8vV4n+Av+F83gcWY3YQPjnfYIuITEVzWFhOJ1y/EWpUmTASSgh0OU55dWYNoYKumFx4Saplp/fV6FnU4Xrx4VDs2HzHWJ8HoCaoHWdFD+hwKCviPGKAJYhpER73bInjlLxJNr18y873CkvaAAPBV4geVh1ELD7e2nW9J+80Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784627707; c=relaxed/simple;
-	bh=B55RzaZnyXo+ROzP5ZehgWkNGvwLw6zIpr8N645cu9g=;
+	s=arc-20240116; t=1784627711; c=relaxed/simple;
+	bh=4dKhfif08s32B8xphCubF92djmOb1U48YaI6DUFoz8w=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=a8aJ6NutSNce8ypsAe+kJMrgXrA7j71iEedARBs48FECN9nEGEvyMUPIWpISkIImZmXP2RUchwql1LWgNlMmTIB0FntA6YSYe6K0qlsnRcoH+U8G4ZYMQY/nHgi+D0tRBDJjWJE+KfVQBMZvhDJHFr+9B7ntCiCvwHVApgNTZv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lt8lpvRn; arc=none smtp.client-ip=100.103.45.18
+	 MIME-Version; b=aZEmlPwvARv7FfRlUL4kWpBhKR3ecjAAP8n7tYYq7CB9dxJVW4UZbJn7j7Mva4uRvAklypyi42KG98eEPeeCTY1SFO43/MwL87uEQDbPFhUjhe+5b8jqryCBkDgmtagTJ1h5kOLWLfAtDwHptOOLJZMh96DI9TycQXZnmJDoErc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lSV34CDn; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lt8lpvRn"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6782E1F00A3F;
-	Tue, 21 Jul 2026 09:55:05 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lSV34CDn"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03F0F1F000E9;
+	Tue, 21 Jul 2026 09:55:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784627706;
-	bh=jRQyo+gmMtoGO0RqwhReC7Jd0fejMXkePblvISTRELU=;
+	s=k20260515; t=1784627707;
+	bh=FexciWDreyYDm+GAgUVBnYX3cZTEj1b4huNpSwvGtXE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Lt8lpvRn3/IV0CUK9LkzENpKhWBJfq4lw9SJpp15dpxLGLH55XQDZjFTp87X7FIGb
-	 7FOaeuVy0IyVgTT/SjnMxX+KuMJ1BA/PTMxvLjmDasdFW1l1Trzk/PXJvOZbl3sZVs
-	 ZZuxWJ1qHDijMMoJQj+l/g7jDDavd7FK5p+hMyyAcSjcpuz8sPg8LURrJXDL1uMwQP
-	 7+Gdi55x1Jh3nN5dym4926UDStxElBsvxj75ibttkoJAhjIGgRVvvEH8NBUx6sJCr2
-	 Em2OLzzb5ec2RQxMHWY8UXGzKB8PSs+joGIyZnEl30H5GypM4KQYfOjcky6ZP5tZjk
-	 TCFoOeHVNmC5Q==
+	b=lSV34CDnCi0AwHISoDyHw5wMago5qUrfGGZ8TXuFJyIef4kjshFBY9T1pSM5wSgo4
+	 oBsVrbf5gTA3bAyFteV1NQtdbWa0sRhsGmRqpTraZKV6X7pz6f3kt1LeRGvLm5jxCI
+	 G6kOYW0SvGulBKyaE0I8+ADc+A3Pev2fzSW2joDtbUQmES868/EdGYWr9upbGnqYXa
+	 ubPm9TkaCXtXoGVJfqsusd3VN/13ZX3m0Tue0+SB8M/PE3YUiddjGvC/ZaZ3Fj8ZhR
+	 xP/AXf2tas7Hav0Q1H+p3nvlUyyl7n04JKollA6+02267ztG/gMBKFDmLPVzfjb1uA
+	 06kM9c0XYKfeg==
 From: Namjae Jeon <linkinjeon@kernel.org>
 To: hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	Namjae Jeon <linkinjeon@kernel.org>
-Subject: [PATCH 10/11] ntfs: fix resident conversion in ntfs_new_attr_flags
-Date: Tue, 21 Jul 2026 18:54:30 +0900
-Message-Id: <20260721095431.6619-10-linkinjeon@kernel.org>
+Subject: [PATCH 11/11] ntfs: move attribute payload before shrinking its record
+Date: Tue, 21 Jul 2026 18:54:31 +0900
+Message-Id: <20260721095431.6619-11-linkinjeon@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260721095431.6619-1-linkinjeon@kernel.org>
 References: <20260721095431.6619-1-linkinjeon@kernel.org>
@@ -44,162 +44,77 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Hyunchul Lee <hyc.lee@gmail.com>
+ntfs_new_attr_flags() resizes the non-resident attribute record before
+moving its name and mapping pairs to their shorter-header offsets when
+compression or sparse state is cleared.
 
-When setting sparse/compressed flags on a resident attribute, the
-function skipped the resident-to-non-resident conversion and
-terminated.
+Shrinking the record first moves the following attribute over the tail of
+the old record. The subsequent memmove() therefore copies bytes from that
+following attribute instead of the old mapping pairs. Re-enabling
+compression on an empty file persists those bytes as a malformed mapping
+pairs array, which ntfsck reports as a missing or invalid run length.
 
-Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
+Move the payload before shrinking the record, while retaining the existing
+resize-before-move ordering when growing it.
+
 Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
 ---
- fs/ntfs/ea.c | 94 ++++++++++++++++++++++++++++++++++++++++------------
- 1 file changed, 72 insertions(+), 22 deletions(-)
+ fs/ntfs/ea.c | 23 +++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
 
 diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index d0044c61152a..95587b9a7129 100644
+index 95587b9a7129..4fb10d51211c 100644
 --- a/fs/ntfs/ea.c
 +++ b/fs/ntfs/ea.c
-@@ -630,6 +630,7 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
- 	struct mft_record *m;
+@@ -631,7 +631,7 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
  	struct attr_record *a;
  	__le16 new_aflags;
-+	u16 old_name_ofs, old_mp_ofs;
- 	int mp_size, mp_ofs, name_ofs, arec_size, err;
+ 	u16 old_name_ofs, old_mp_ofs;
+-	int mp_size, mp_ofs, name_ofs, arec_size, err;
++	int mp_size, mp_ofs, name_ofs, old_arec_size, arec_size, err;
  
  	m = map_mft_record(ni);
-@@ -662,8 +663,10 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
- 	else
- 		new_aflags &= ~ATTR_IS_COMPRESSED;
+ 	if (IS_ERR(m))
+@@ -726,6 +726,19 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
  
--	if (new_aflags == a->flags)
--		return 0;
-+	if (new_aflags == a->flags) {
-+		err = 0;
-+		goto err_out;
-+	}
- 
- 	if ((new_aflags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED)) ==
- 			  (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED)) {
-@@ -672,15 +675,40 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
- 		goto err_out;
- 	}
- 
--	if (!a->non_resident)
--		goto out;
-+	if (!a->non_resident) {
-+		if (!(new_aflags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED)))
-+			return 0;
- 
--	if (a->data.non_resident.data_size) {
--		pr_err("Can't change sparsed/compressed for non-empty file\n");
--		err = -EOPNOTSUPP;
--		goto err_out;
-+		if (le32_to_cpu(a->data.resident.value_length)) {
-+			pr_err("Can't change sparse/compressed for non-empty file");
-+			err = -EOPNOTSUPP;
-+			goto err_out;
-+		}
+ 	mp_ofs = (name_ofs + a->name_length * sizeof(__le16) + 7) & ~7;
+ 	arec_size = (mp_ofs + mp_size + 7) & ~7;
++	old_arec_size = le32_to_cpu(a->length);
 +
-+		err = ntfs_attr_make_non_resident(ni, 0);
-+		if (err)
-+			goto err_out;
-+
-+		ntfs_attr_reinit_search_ctx(ctx);
-+		err = ntfs_attr_lookup(ni->type, ni->name,
-+				ni->name_len, CASE_SENSITIVE,
-+				0, NULL, 0, ctx);
-+		if (err) {
-+			err = -EINVAL;
-+			goto err_out;
-+		}
-+		a = ctx->attr;
-+	} else {
-+		if (a->data.non_resident.data_size) {
-+			pr_err("Can't change sparsed/compressed for non-empty file");
-+			err = -EOPNOTSUPP;
-+			goto err_out;
-+		}
- 	}
- 
-+	old_name_ofs = le16_to_cpu(a->name_offset);
-+	old_mp_ofs = le16_to_cpu(a->data.non_resident.mapping_pairs_offset);
-+
- 	if (new_aflags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED))
- 		name_ofs = (offsetof(struct attr_record,
- 				     data.non_resident.compressed_size) +
-@@ -703,6 +731,25 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
- 	if (unlikely(err))
- 		goto err_out;
- 
 +	/*
-+	 * When compressed/sparse state changes, the non-resident header grows or
-+	 * shrinks by the compressed_size field. Update the in-record payload layout
-+	 * to match the new offsets before exposing the new mapping_pairs_offset.
++	 * Move payloads before shrinking the record.  Otherwise resizing moves
++	 * the following attribute over the old payload before it can be copied.
 +	 */
-+	if (name_ofs > old_name_ofs) {
-+		if (mp_ofs != old_mp_ofs)
-+			memmove((u8 *)a + mp_ofs, (u8 *)a + old_mp_ofs, mp_size);
-+		if (a->name_length)
-+			memmove((u8 *)a + name_ofs, (u8 *)a + old_name_ofs,
-+				a->name_length * sizeof(__le16));
-+	} else {
++	if (arec_size < old_arec_size) {
 +		if (a->name_length && name_ofs != old_name_ofs)
 +			memmove((u8 *)a + name_ofs, (u8 *)a + old_name_ofs,
 +				a->name_length * sizeof(__le16));
 +		if (mp_ofs != old_mp_ofs)
 +			memmove((u8 *)a + mp_ofs, (u8 *)a + old_mp_ofs, mp_size);
 +	}
-+
- 	if (new_aflags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED)) {
- 		a->data.non_resident.compression_unit = 0;
- 		if (new_aflags & ATTR_IS_COMPRESSED || ni->vol->major_ver < 3)
-@@ -723,28 +770,31 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
- 			ni->itype.compressed.block_size_bits = 0;
- 			ni->itype.compressed.block_clusters = 0;
- 		}
--
--		if (new_aflags & ATTR_IS_SPARSE) {
--			NInoSetSparse(ni);
--			ni->flags |= FILE_ATTR_SPARSE_FILE;
--		}
--
--		if (new_aflags & ATTR_IS_COMPRESSED) {
--			NInoSetCompressed(ni);
--			ni->flags |= FILE_ATTR_COMPRESSED;
--		}
- 	} else {
--		ni->flags &= ~(FILE_ATTR_SPARSE_FILE | FILE_ATTR_COMPRESSED);
- 		a->data.non_resident.compression_unit = 0;
--		NInoClearSparse(ni);
--		NInoClearCompressed(ni);
+ 
+ 	err = ntfs_attr_record_resize(m, a, arec_size);
+ 	if (unlikely(err))
+@@ -736,18 +749,12 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
+ 	 * shrinks by the compressed_size field. Update the in-record payload layout
+ 	 * to match the new offsets before exposing the new mapping_pairs_offset.
+ 	 */
+-	if (name_ofs > old_name_ofs) {
++	if (arec_size > old_arec_size) {
+ 		if (mp_ofs != old_mp_ofs)
+ 			memmove((u8 *)a + mp_ofs, (u8 *)a + old_mp_ofs, mp_size);
+ 		if (a->name_length)
+ 			memmove((u8 *)a + name_ofs, (u8 *)a + old_name_ofs,
+ 				a->name_length * sizeof(__le16));
+-	} else {
+-		if (a->name_length && name_ofs != old_name_ofs)
+-			memmove((u8 *)a + name_ofs, (u8 *)a + old_name_ofs,
+-				a->name_length * sizeof(__le16));
+-		if (mp_ofs != old_mp_ofs)
+-			memmove((u8 *)a + mp_ofs, (u8 *)a + old_mp_ofs, mp_size);
  	}
  
- 	a->name_offset = cpu_to_le16(name_ofs);
- 	a->data.non_resident.mapping_pairs_offset = cpu_to_le16(mp_ofs);
- 
--out:
- 	a->flags = new_aflags;
-+
-+	if (new_aflags & ATTR_IS_SPARSE) {
-+		NInoSetSparse(ni);
-+		ni->flags |= FILE_ATTR_SPARSE_FILE;
-+	} else {
-+		NInoClearSparse(ni);
-+		ni->flags &= ~FILE_ATTR_SPARSE_FILE;
-+	}
-+
-+	if (new_aflags & ATTR_IS_COMPRESSED) {
-+		NInoSetCompressed(ni);
-+		ni->flags |= FILE_ATTR_COMPRESSED;
-+	} else {
-+		NInoClearCompressed(ni);
-+		ni->flags &= ~FILE_ATTR_COMPRESSED;
-+	}
-+
- 	mark_mft_record_dirty(ctx->ntfs_ino);
- err_out:
- 	if (ctx)
+ 	if (new_aflags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED)) {
 -- 
 2.34.1
 
