@@ -1,92 +1,92 @@
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E7612D2486
-	for <ntfs@lists.linux.dev>; Thu, 23 Jul 2026 02:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97ED31F3BA4
+	for <ntfs@lists.linux.dev>; Thu, 23 Jul 2026 02:16:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.52
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1784772987; cv=pass; b=kuS0v01BeuLNkjZ8JFvW9VVFL4k9Oy+xEsGJDdfsY2/jq08A4yNDj/QyoR+ltx4pylET1NSHhKyPS/ds81Z89lFezH/4vIgKrlFwlkt26FYDDwYg+Vu30VL5UftvHrhgLlPHs4qOd+EuLiM6PV8CtF+ptdiYcQSqRFrl9vaORPc=
+	t=1784773016; cv=pass; b=o65z468WlMg9FdVI5lPJ/5V9vkfp9nBp3ZKFcwTIzTP6kIPn7FFdT/vfgMyiht6HdW36JscLkqOnIAtqUkj6YMzLB/l9QInqNRVa38yUPw8RqufQFi+kOVj8jDfEKvzUGgH6dmlkjYGu4JquU8sIzxshevgcFSjl+dJDBO/UZ20=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1784772987; c=relaxed/simple;
-	bh=4gTMphBMHuSj6SSjWTC/kwDGjt5gki1YXFz7gGBarnk=;
+	s=arc-20240116; t=1784773016; c=relaxed/simple;
+	bh=UNNxx796VPOv2ZJCq+aGtXw17tQppj8pEA7zU0iAZJ4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qT1c1hGPLie8YHhFyCiI0QtVCzmuP+yrp90DaPMiiMFChWB7QQUFytqJaGBGKH28FX36d4/EEZJX4h+d/QaG12mNjAIh+DMRo4oCJfcKlNRWXfpnJklR22TEqR1tPledlLQjMvIhK2g4Qd2nLLSVkeiUXZM3h/7tIxia/XJhH50=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KMEjGbGv; arc=pass smtp.client-ip=209.85.167.43
+	 To:Cc:Content-Type; b=kDzoitvBuXB8SRV3lJ4xdg8W29HOOfnDEqnw90sHQa0zsRoADtNcAVVhPwiJ4Ud05ev9BacR4g2qevO4DYJZa4dD1Ht6UyZo3bVnMBZCuf8pQNbnuw3qzCP//nhh8xazAtLqXumKr5gFd2cOoqomxZmIS7rCgx3GvFQyQfinffo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fvi7cQbg; arc=pass smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KMEjGbGv"
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5b011edaf7dso96419e87.2
-        for <ntfs@lists.linux.dev>; Wed, 22 Jul 2026 19:16:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1784772984; cv=none;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fvi7cQbg"
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5b2a8e4c77eso104943e87.1
+        for <ntfs@lists.linux.dev>; Wed, 22 Jul 2026 19:16:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784773013; cv=none;
         d=google.com; s=arc-20260327;
-        b=kxKnJZ9rZWUTbblPCBCadBXOGR4UWdxEdAEMh62JgK7wi+Lc/JNxoh6PU9Gag6gcIT
-         CV7OT9T3ump5TX178sm2jpPn+s/EWCTLrgdHWQs3JB6NUPg8hWrPrS7U1TF7YCPyrS6Z
-         fY1dply3KuzqE1JWqopuG54UYgb/CKgUziq7Ewo28TGumeknAcJC+3PX0x86GCBBoiZu
-         O9pGFkXoGUquakc0QPZ3s4SxxZOE++k7KAlzSqGFUDRmT7cpD9hafMpvPzK1wriOHpuy
-         /i+s0AMeHrfGfQqTDKNaykDr6XsF4L2yQk+Pe8IAjl8dNmtXCNuC9+INq8VG7HFhOaQN
-         //mQ==
+        b=klLEfL1qAw70N5uWj4p/q9Ku8KwWe77Prd6lZp5IM2lqNPvJ19PWquCcnn/gSEoMZp
+         KZa5LPelZw3SSnFaSSkcozgsUvWrea88sJvEvZAyy2rZem07J3SAsZ8vFLktjZmmkN+S
+         O0yerx+BmNorHOJuxYAW0obIS3k4/Wg7d8PHnzLzcJclLZC8X5AHtpFSw55W4ksMaX6z
+         QpAu3WD5zCguOA9qMqBIpEvXMCBBao59lGE5APVJjOIB7VIdOBCtFFlBBbYeU3q5XrS3
+         KvODX4Am1qCRS7b8tZbnKJ9WC8sevXJ6k+Nnek2BSYxSemg3C8O/1hH8CYwacDcFnbne
+         +uTQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=qGPxkC2NWkRRVrF5Lurqj4j0X7LJDmsBgHuozb7bcT0=;
+        bh=pAkKeg+iY/QpltEhjuWRL72utPlW6c5K9Ktw1th0uuo=;
         fh=x9ZoGpJXLWmno5K7GTfKOBTflCvHItF40uzc9RX1dYg=;
-        b=I9E/6WzreKuRujVtu1fo42dcXy04Xgb8FwgJ8duO9ShONjfXdiJnvaJKFGfbDng0de
-         /OVo1QWEcLJNm2D8Wr+70hn+BHiKPCrJ1bc51b2tEC+3OFBNtsCOl5PDCbZZlkc7Htz2
-         lOG7osUW1t9Ywfu1beT1jaUuxCCWNZMgV5lEMVozQSQqm5av9CHVzBS7xlRv4ltY9lWE
-         IEyPTQaDlUEvI7LLO08rpY8XTdNEyF3JGa93bz0P6ip/D1lmhEM9uWpQH5N8gmU7VAPq
-         mMfELy3Sn3CY1eg6EIvCLKWTZeT8upLcDWqhKkn/Q1Z5Dpn9z1wpo2rg6bu7x7kyHfTP
-         NCNA==;
+        b=lkvS8HRMQyJRZXmZFqnkc9RxW3IzLt0B7Z6Pv9PDbocwpzq69i6+lZ2D+oG+4MhUBy
+         1XydCU5ATQFyYk5MMlr999EjsNHaWIM8XfG6dVpnyDeyZPki1ShBvLmxhltPuxUmzowp
+         +ChPE4sYmWxdzjVKUj3CyaraU5bUu4g1iLhPtR7fF0ry2jqJRYTQfDwTyekEY9g9tAI0
+         PiVt+x+t/QMsEiXQuVNqe9U8QgdIuGYDXg0UjmUO3y8S3S2ewqHjil+W/Fr9TJmul93F
+         xTtgwVsDNjuDCkkH2mI/234xjCvmiu86jgkFIc10n8kgzil2ucPhXEL5jvn29WWMouiX
+         5OUQ==;
         darn=lists.linux.dev
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784772984; x=1785377784; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1784773013; x=1785377813; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=qGPxkC2NWkRRVrF5Lurqj4j0X7LJDmsBgHuozb7bcT0=;
-        b=KMEjGbGvHZu38YvJ3VqM6rlIxERxpQPmQdxF5HN0UeqF2Lm48bmODWLSF/RJfl5M/k
-         xnhn/9GvLe0e41PJzAcS/ION4X5IumyU0omCeLtjJKbuIpKaJnazQKJniyF+CaA4kO8e
-         gtOxZnZBLLviHStKvfjsF/rRSUfxolvam/7WTtaXfMbciIiRX0cfZ9/5I1ZKFGjUteci
-         Yx6//5Ow8AKf4rKxQLaCaP/fOtr9NlsKlaeD7f5BsgS6Ol9wuOIHeDsQUiAgCSHVQOHS
-         X+arnOTqMOEq+fgLZSPhXTEZrjmyAxn06YfokmGneZyCqcWLHWIBbVP8fKme6QP/lSM1
-         3wlg==
+        bh=pAkKeg+iY/QpltEhjuWRL72utPlW6c5K9Ktw1th0uuo=;
+        b=Fvi7cQbgkp0uGlfocUSMEqu084U0U0xWbuEY/qB4lFeLT62wAxDPkQkIOkdFRcI9Lx
+         uxMqPP1V++CQlBz5F7SYZJw/7JgcYSZ1FV7/1DFqQLy4Akcg0J2D1WiUij8Tqc9cvn+k
+         Fal1pFTiQiI1b6i100vL0LeIXgMJjGsZOBrwbPPslBK987GL9uhxXX14eGKUS8YbyoOf
+         fm+KunroPVgSTEV8cn1hpGgQBYgM+L6gsqwTbF+A15SmX71RCvBzkbR69QOLDtevzmz5
+         TPHYGsvxxuE/2zuXuJ7L5yLuOgQhtHjWqRAmeM/LmAYM+p/AZn6zgxI4K5CGyh4ZspJP
+         wp+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784772984; x=1785377784;
+        d=1e100.net; s=20251104; t=1784773013; x=1785377813;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=qGPxkC2NWkRRVrF5Lurqj4j0X7LJDmsBgHuozb7bcT0=;
-        b=XukqwgztVRNufH5bdsQYTPV7RMixVxOTYObu/2IRezZbv9VGVb5KN2cSEL3eni4CyO
-         GE0m6/DULhnBSTWbcu5qApftQO+U7ULWER0MBP9R4FNu9swAlTvhk1yTJIIrhOuZr510
-         vJhB1l+n5153fgNsrZjvh985qnlPQ0oUVrb64rA1USPUmQ9V//iS0z+qBlU4gntKmm1z
-         Pdu6ORdWGUZk/dLjMqfCyxiJ16aEhAkE4ti33J7XOSCAszh0WZmZ3hUu5o67a7j20B05
-         +ToLDRVCw59cOjcJEGRiY3E0ibKylSQWbnLGrXDbOmrtTdX56pTx3wN0pSPf0VzvtGOB
-         2zvQ==
-X-Gm-Message-State: AOJu0Yxq8mqZGUa+P9J/Ts4YtbxvfOrmgEHE/oE8ksyZoeIjAj5kuRw+
-	H7/N7Xs/e1pEv9E0K4yIlC/RkAWOYXWW/F3oSzw21/fqhZ8zQEpVxFLsi7nmyhV6ObGCLDz7SSD
-	yuM50rtjHEscKgDGeL+PemGfcRpJAe/a+gDt/
-X-Gm-Gg: AR+sD10CzT2vf3kIE0jA9cyYuwTu2c/jFL+4+EON+7fDiLpHGqKoAi0xWP4cf4awlmz
-	fA2UwSnk1Qslt7l1rXp6SkOj6o54VVaJCHf2esveWV3Zqrk1G8tGq5icOYIVE8THkq9Dl+kNsRM
-	DWbLDoxm5nUSeg+THHTBGkeFyLAAdRa9YmyCFyQbPGX5w0DDh4PXDsO5kngn42wWL9jGKEUPxvi
-	EQPhTjd3PsecN43wsXfGpjlrG9W35NBh1M1DJHZ19MBuA95GL3DXX6mS55lVvSoyUjPebS7
-X-Received: by 2002:ac2:5464:0:b0:5b0:12cf:ae28 with SMTP id
- 2adb3069b0e04-5b2b2f71216mr101150e87.34.1784772983489; Wed, 22 Jul 2026
- 19:16:23 -0700 (PDT)
+        bh=pAkKeg+iY/QpltEhjuWRL72utPlW6c5K9Ktw1th0uuo=;
+        b=ZyDzAbSX4jVxXJGPkRrKHwVr33RkBfbmWRsjoaVP46KjReHu8JIJnyHPqI6yHoZanF
+         vUP+uCl+p4bYdxTCAU8t/jLaZH5wNbwj4Wxl3zCbCTyA7BKEKIejSRApeYjbAVQD49DE
+         ciYiY9uOQSmeHC2PjDvuBbB8BPkV6AItAn23CRIZ4nP4fgXTV4m8oy1w6YcIoxirAHxi
+         luCAMw1FROt5aSqBWblzJ77xaepONTxT44VRDyaO19z7xdasec04jZgDw5vpFj7d8MSE
+         nTTL9UaSTt8NGA39pdhLbXDbHQNYkTPqkk9MGZlRE1fS4sTimip01dOt2UgYeWXdyvjd
+         5UDA==
+X-Gm-Message-State: AOJu0Yz2fzuO38wiW+B5YbULC2Nvnx6+CrdHvkpkeU8j2p8WcmynhMDI
+	74WOqFpsb0XY4RmImrvS7moVg9T5MHM5COIVlz1oTIfedIhi9ud3KlBUEe4mHALB9W3HPtOJZOt
+	fav+y6FUg+ViWEy3/nPwaHox6Nbhxefc=
+X-Gm-Gg: AR+sD13Aka2A96SezbuinSlhba8nuzW3B4uJqTtfdba8nVRxgBwrF7FCL0g5UTBR5LT
+	V1CenAdwFwdkXkYh7kLql7VV7OcITZssmRLjZD0zXV4x+qKnnRy4YskhUzO5O79/VPG7RZYgZlH
+	M0msYsAkMvV0QUZN1e13/3K6VNZ+vUJne35PbBkDhg3oFk/1Doj2S6SAq/XroIiKSA8EdZHjIR/
+	/nSUWwQfIMnxrW0Zdh8piqzxj6wjc/QdSawO4y+r2u1iLQyqB0DNPk445FFzA==
+X-Received: by 2002:a05:6512:638c:10b0:5b0:1101:78f1 with SMTP id
+ 2adb3069b0e04-5b2b2f52472mr120977e87.28.1784773012467; Wed, 22 Jul 2026
+ 19:16:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260721095431.6619-1-linkinjeon@kernel.org> <20260721095431.6619-8-linkinjeon@kernel.org>
-In-Reply-To: <20260721095431.6619-8-linkinjeon@kernel.org>
+References: <20260721095431.6619-1-linkinjeon@kernel.org> <20260721095431.6619-9-linkinjeon@kernel.org>
+In-Reply-To: <20260721095431.6619-9-linkinjeon@kernel.org>
 From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Thu, 23 Jul 2026 11:16:11 +0900
-X-Gm-Features: AUfX_myZNyCkan_rFuU8flMqfmu8152z_0g4njt_humIjHhgDVrWABUMHZQkxg0
-Message-ID: <CANFS6ba7DAGHvH0uanfq1+X-qZNCSQOry+5kRm_nRdFjjAbq=Q@mail.gmail.com>
-Subject: Re: [PATCH 08/11] ntfs: submit one bio per compressed write unit
+Date: Thu, 23 Jul 2026 11:16:41 +0900
+X-Gm-Features: AUfX_myLLbV_bwQ4dH8ndN63EqmOYdh4wD7M2JOlMN7zpPvUQSuaWkI6svthTec
+Message-ID: <CANFS6bbOBBVvmY-KfqBVJDVfk3oi7Qb2zW0MSHtBVL_jt_sPdg@mail.gmail.com>
+Subject: Re: [PATCH 09/11] ntfs: skip reads for full compression unit overwrites
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: ntfs@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
@@ -95,13 +95,15 @@ Content-Transfer-Encoding: quoted-printable
 2026=EB=85=84 7=EC=9B=94 21=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=84 6:55, N=
 amjae Jeon <linkinjeon@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
 >
-> ntfs_write_cb() allocates a single-vector bio and synchronously submits i=
-t
-> whenever another output page cannot be added. A 64 KiB uncompressed unit
-> therefore requires up to sixteen separate bio submissions.
+> ntfs_compress_write() reads every page in a compression unit before copyi=
+ng
+> new data into it. The read is unnecessary when an aligned write replaces
+> every byte covered by the page-cache folios.
 >
-> Allocate enough vectors for the complete unit, add all output pages, and
-> perform one synchronous submission.
+> Detect full page-aligned compression unit overwrites and grab locked cach=
+e
+> folios without reading them. Keep the read-modify-write path for partial
+> units and units that cover only part of a large page.
 >
 > Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
 
@@ -109,82 +111,63 @@ Looks good to me.
 
 Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
-
 > ---
->  fs/ntfs/compress.c | 43 +++++++++++--------------------------------
->  1 file changed, 11 insertions(+), 32 deletions(-)
+>  fs/ntfs/compress.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
 >
 > diff --git a/fs/ntfs/compress.c b/fs/ntfs/compress.c
-> index f3c14518f78e..a3af669b1008 100644
+> index a3af669b1008..ea29fade9b9b 100644
 > --- a/fs/ntfs/compress.c
 > +++ b/fs/ntfs/compress.c
-> @@ -1327,7 +1327,7 @@ static int ntfs_write_cb(struct ntfs_inode *ni, lof=
-f_t pos, struct page **pages,
->         static char twozeroes[] =3D {0x02, 0xb0, 0x00, 0x00, 0x00};
->         /* more compressed zeroes, to be followed by some count */
->         static char morezeroes[] =3D {0x03, 0xb0, 0x02, 0x00};
-> -       s64 bio_lcn;
-> +       s64 bio_lcn, bio_pos;
->         struct runlist_element *rlc, *rl;
->         int i, err;
->         u32 cb_clusters =3D ni->itype.compressed.block_clusters;
-> @@ -1410,41 +1410,20 @@ static int ntfs_write_cb(struct ntfs_inode *ni, l=
-off_t pos, struct page **pages,
->         }
+> @@ -1501,6 +1501,7 @@ int ntfs_compress_write(struct ntfs_inode *ni, loff=
+_t pos, size_t count,
+>                 pgoff_t index;
+>                 size_t copied, bytes;
+>                 unsigned int page_offset;
+> +               bool full_cb;
+>                 int off;
 >
->         bio_lcn =3D rlc->lcn;
-> -       i =3D 0;
-> -       while (bio_size > 0) {
-> -               int page_size;
-> -
-> -               if (bio_size >=3D PAGE_SIZE) {
-> -                       page_size =3D PAGE_SIZE;
-> -                       bio_size -=3D PAGE_SIZE;
-> -               } else {
-> -                       page_size =3D bio_size;
-> -                       bio_size =3D 0;
-> -               }
-> +       bio_pos =3D ntfs_cluster_to_bytes(vol, bio_lcn);
-> +       bio =3D bio_alloc(vol->sb->s_bdev, DIV_ROUND_UP(bio_size, PAGE_SI=
-ZE),
-> +                       REQ_OP_WRITE, GFP_NOIO);
-> +       bio->bi_iter.bi_sector =3D ntfs_bytes_to_sector(vol, bio_pos);
+>                 off =3D pos & (cb_size - 1);
+> @@ -1512,6 +1513,8 @@ int ntfs_compress_write(struct ntfs_inode *ni, loff=
+_t pos, size_t count,
+>                 page_offset =3D offset_in_page(cb_off);
+>                 pages_per_cb =3D DIV_ROUND_UP(page_offset + cb_size, PAGE=
+_SIZE);
+>                 index =3D cb_off >> PAGE_SHIFT;
+> +               full_cb =3D !off && bytes =3D=3D cb_size && !page_offset =
+&&
+> +                               !(cb_size & (PAGE_SIZE - 1));
 >
-> -setup_bio:
-> -               if (!bio) {
-> -                       bio =3D bio_alloc(vol->sb->s_bdev, 1, REQ_OP_WRIT=
-E,
-> -                                       GFP_NOIO);
-> -                       if (!bio) {
-> -                               err =3D -ENOMEM;
-> -                               goto free_rlc;
-> -                       }
-> -                       bio->bi_iter.bi_sector =3D
-> -                               ntfs_bytes_to_sector(vol,
-> -                                               ntfs_cluster_to_bytes(vol=
-, bio_lcn) +
-> -                                               ((s64)i << PAGE_SHIFT));
-> -               }
-> +       for (i =3D 0; bio_size; i++) {
-> +               unsigned int len =3D min_t(unsigned int, bio_size, PAGE_S=
-IZE);
->
-> -               if (!bio_add_page(bio, ws->pages[i], page_size, 0)) {
-> -                       err =3D submit_bio_wait(bio);
-> +               if (bio_add_page(bio, ws->pages[i], len, 0) !=3D len) {
-> +                       err =3D -EIO;
->                         bio_put(bio);
-> -                       if (err)
-> -                               goto free_rlc;
-> -                       bio =3D NULL;
-> -                       goto setup_bio;
-> +                       goto free_rlc;
+>                 if (unlikely(fault_in_iov_iter_readable(from, bytes))) {
+>                         err =3D -EFAULT;
+> @@ -1519,7 +1522,10 @@ int ntfs_compress_write(struct ntfs_inode *ni, lof=
+f_t pos, size_t count,
 >                 }
-> -               i++;
-> +               bio_size -=3D len;
->         }
 >
->         err =3D submit_bio_wait(bio);
+>                 for (i =3D 0; i < pages_per_cb; i++) {
+> -                       folio =3D read_mapping_folio(mapping, index + i, =
+NULL);
+> +                       if (full_cb)
+> +                               folio =3D filemap_grab_folio(mapping, ind=
+ex + i);
+> +                       else
+> +                               folio =3D read_mapping_folio(mapping, ind=
+ex + i, NULL);
+>                         if (IS_ERR(folio)) {
+>                                 for (ip =3D 0; ip < i; ip++) {
+>                                         folio_unlock(page_folio(pages[ip]=
+));
+> @@ -1529,7 +1535,8 @@ int ntfs_compress_write(struct ntfs_inode *ni, loff=
+_t pos, size_t count,
+>                                 goto out;
+>                         }
+>
+> -                       folio_lock(folio);
+> +                       if (!full_cb)
+> +                               folio_lock(folio);
+>                         pages[i] =3D folio_page(folio, 0);
+>                 }
+>
 > --
 > 2.34.1
 >
