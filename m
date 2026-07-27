@@ -1,251 +1,151 @@
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8205F2BEC45
-	for <ntfs@lists.linux.dev>; Mon, 27 Jul 2026 01:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A3634404A
+	for <ntfs@lists.linux.dev>; Mon, 27 Jul 2026 01:48:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.176
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785116705; cv=pass; b=ORCDru39yKsN37plp5EvZhI9KAv1du/zBRflzY3ZKoh8K/Nwb1DGN/i438g54trtZ21pBx+mBKVhBCZfZKsarbHfbxXbjhm+NsQOGWuf3UoGGnQ9apF69+Txoh0l9vfnRkLMYaFvwxHIP3nREt2kFj5x13bxbIaHEMctLZoyTF4=
+	t=1785116917; cv=pass; b=HR2FqBUxKXJoL84e65J/Wl0aUmAkevcLugmN4F1Z1dBZEHn8dHeCGsJF7cM6B/3Yx7Wbr/J3t7NoNEMu83sC6vb1n98o6GRy4xa9UDD+Qdbpc58zC8z2wqHTAvI+aim3Dco/1cyuHg2QaU15jd8voXXTZ963nRkoejVdg840PUM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785116705; c=relaxed/simple;
-	bh=GpPVqK0yedI7MogcuOKKw0y9EmEKpyxWE9J7owI0ioU=;
+	s=arc-20240116; t=1785116917; c=relaxed/simple;
+	bh=whFkCPlU9dz3f1EX4GHkwCwKocy2OHyPJlIQhkJ+wEQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bLA0/Dn2xd6OWuU4tESykILP2aJDNgCiBdM+CLnXPJqSkfzjx74qfaSSckx/7TwxXdbrk2gdsjEN/uiU4Rm0EoRn+yeJUhcNIzvfkwcLhMaFm4ddeKhLSfFrYGHmNpXWInGx5TvjEWuGfwuXp+CS6cV15GvSW5ac5Yo98BKdfCE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MlBkPdue; arc=pass smtp.client-ip=209.85.167.49
+	 To:Cc:Content-Type; b=slEz3JHtP4h0QbzlckKzxkbDFfQIDdb1Ond8xpncJ/Md5PkS+KOx7iKznTd6YtIHzSwflAYXdHHWrro7SXANZIpuWLedgXBdyOAc6J6WV6BkPkBnraMqNVzdMx+U1wWL6mPSPQ54kG15IM1fG1kp3/WyZ4LOd4xbuKVqz9Ayroc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ci992AC2; arc=pass smtp.client-ip=209.85.208.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MlBkPdue"
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5b013084dc2so1567134e87.0
-        for <ntfs@lists.linux.dev>; Sun, 26 Jul 2026 18:45:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1785116701; cv=none;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ci992AC2"
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-39c8dbf4f38so19083291fa.3
+        for <ntfs@lists.linux.dev>; Sun, 26 Jul 2026 18:48:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1785116914; cv=none;
         d=google.com; s=arc-20260327;
-        b=OeqN3qbHPWymP6vbrbWnVEM+t2CzP84s3I07EMGKoBEFNDNVijnTWOSGsALJlcUtG4
-         x0eCPu/y0lDMQOE/Yej8vxmh/ZPUWHm/bt3+p3uGLAbYOTzxqU2b97Z+PXmv/OpkxmXm
-         Xn6QNcirVJT3GApsZfxnlhDXS2fHY6acLmQADpKVfV91NoauPHgCRQyOwP3F+LhW1Z8H
-         wS/akmZP7oqnx5NCNHOGYU0+NP833MNvXZyqTnVuTJF3A53BIx28J3NCEEnkwU+kl3KM
-         /jpDQhT4jlbRux6ESyMFw24Go3kNYKQbWnwTXiE75UGmu31VbqJkgqGahqHuUT1pi4+C
-         SiuA==
+        b=LiOQ7MBMkRFUHmKmr9intMnwrQgjDNwJDbksp9eVJwGjn1YnjPpoFTBdTJFA65C5S5
+         QpIFSOrHk6hNmjp26Czzy7NhGe1pt+lIjElAkcrwUG1iCzp93fxn4+VxAs82UE8diEYK
+         uARnSRY4woHihYNFy8uGgZomqq/B6Y1HxF+2lKCEZcJCFJvabHswJcQmVqBojhM8lnC2
+         HE/figj4Bnr/mddVAMW/VZaTtHCAAU9i3FPyEHgp3vQiG6KyxGyB10EYNvfmveChTqQR
+         gpCfCG1TuT72Gcw6o8nL/LU0MjnAazm801b+UVI2gMOGzejBf7Totht1///8nsdY0wXC
+         V3UA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=kP+3DJgbSuTQTP0Qr8L5IJefZbj+1ZijbjemjjV/pQs=;
-        fh=b394puWBZZgW/bBhKhe6GpdOOXciOX3IEfmRW618GdA=;
-        b=PAWQONXv995pYfSisVvRMz6kVDmbAQeGKEbUNxjeQUUaYXK6wnHoaKCKlyRyHtgbtX
-         YUZUR0fObmelPisbweO8LLlKBTjMTqQrBEf/3U+JBRY1Wmm9G7b9JSiBnh0sMAUdwJJL
-         /kUDnfHUQkcDJe0UcugaH3NSFGletlXNZ9urQd91WtT080JRddV6z7sx6U1u3yxyS9mM
-         TNs9i1IE8oR2bcTQ5L5MR/0HGUAi5sY0d06VfYucE/G2U2TTu6RqGDu6BSx6FZ4/Jt05
-         r1Xs9Q8sXukPsHXS+9PTKiNJNH/DvX79lUPsKJOD/pzUqaQFFWMqZDYPisx/5BDyLG/4
-         yhvA==;
+        bh=k7+HSyvbpNzON5WZgNTuo7n/+mTxR6saM4OTcFquMTk=;
+        fh=x9ZoGpJXLWmno5K7GTfKOBTflCvHItF40uzc9RX1dYg=;
+        b=AbD2mb2nQ9t2+UbThfKEkbh015WPi9Pz4BJ7mY69PAZ9FadmD4u4k2u0tHa8ohi3FO
+         CNyR1HU2Ukpu68qE6xO1AvHh2LgSOpzp4MgVUeNAGTjpZoTsmx2Fzp8jPXDDr8iUD8pY
+         iwh3/Ud50mMfldhVq1Izv4cumGAZEE5HHdlX+mcl7dZI9hb6yyDyltSh4elL7rzofnOy
+         Na4sbNrWCEsgRbudfV/7gh/zitPsUa3aKhm9V4Pfu7K0mEsl+ddulnctwaPsItb0DKoa
+         68/P+1RZMVng1jkTxS2/jhi18seqWg9p2jBtkX+mTd7g/RHLd2mgH5IkLGFvnJL/43dr
+         hxQQ==;
         darn=lists.linux.dev
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1785116701; x=1785721501; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1785116914; x=1785721714; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=kP+3DJgbSuTQTP0Qr8L5IJefZbj+1ZijbjemjjV/pQs=;
-        b=MlBkPduezw62YqaZtxnslomeNXIa0zMz5rkJdfk+fTltCQpOMUta901mlknFrzlKoO
-         NQx79UbQWrZGNKvQ/91IaeeVP0+MSYTjZDelw3R1hquT2BIbxUvuMyHZr6EY8PeJb9TK
-         Myyelp4TTF3Uajt9qaiGnfInGNF5No3eKAEojbrol2hzw666IAL6WTmkMwPCVY4Xh2Xd
-         pVKceMHFXHLf6kEYNIx7H1QWp1A4vKMTgdgD3LopptMtb060jT0jdJL2IAk3qFNDtZTv
-         Qu24Pq3hcSTmAGDXAlWTckSPulC2X69G7/t7qi5s1jt3OwVOmFMfGSt7Iya/iWgGN9e6
-         bk3g==
+        bh=k7+HSyvbpNzON5WZgNTuo7n/+mTxR6saM4OTcFquMTk=;
+        b=Ci992AC2J/RCzqLhyGqvK4D9x1/0hAoKYUfiaUzUeNbNlksKcMOSvHTXWR8Al4EGbC
+         ZkP9GhOdbTy561SWRCKqGeZNVX6r96ZiaUuETm10XgH/R0oDtWauDBmImw1l0rRYiL++
+         p685PiJuHknUrEL+t4GUsx3jGoBVckDgZRi3y6/3fHt+KqLise5jb3BMyjDy/hjuKgZk
+         MARmdD7J9/Rzhb9Ulma2aVlceq3bDhjVfeCztlx9UKMS9UX8l5OQqozrJy31wAVwM8oc
+         q1HC66Bmte2wcz+df1NLsRlNLBIlsgAmGZ6KGQ6PTtUL89xs3o4zkQ7ubWeb+cA6L3Bo
+         ipKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785116701; x=1785721501;
+        d=1e100.net; s=20251104; t=1785116914; x=1785721714;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=kP+3DJgbSuTQTP0Qr8L5IJefZbj+1ZijbjemjjV/pQs=;
-        b=bfmRyLaXwTlBkuwHbEi8a+puN80qW0Nxdr14FMjHmXtyUnmKO0PzQYG6NJDAMi2+7U
-         hM2BUCHgrCaOeCyDTutfX5RrYcc0Mg2vlw7CTLebf/V/LLYWkaMCwxFY/CMdn8FEVYlZ
-         KHRpekJG8L0Bcp4qbJG+hqfgkzbe+Z637drQvOhIQt+nnU6yZWP5xLH9AQaDamM3rXC0
-         dRs/LxP5dDbFaMP3+RG7ZkNefJP8Iq1rPKjteCUJNkSfC11eZECLyPwq0DX8kA/I1tMR
-         asVBF5guHZL5+ok/w4DDpJQfUyCySWILWzELis8InqzRNUZ6qqCbu22O6SXRj24ZNOvY
-         PpOA==
-X-Forwarded-Encrypted: i=1; AHgh+RoygNJyGIbkiY24ccQRHJncbgA5sO9f5+kiYKkCWxjySaoJGAXWExeFyob4WYiYOVuqpPaI@lists.linux.dev
-X-Gm-Message-State: AOJu0YxOtjdpPPiu4zG95OK7gEICSjZOxFuq1T6P1bgnhEnjE0v3c62G
-	r4oy3nhbPtcB1fG2M8C9B5TJZQA/D19wbD6PC8HdmZkDPykCMIBfABFOZC7CwYsZYFxsgKdeh66
-	NZHtJJ6TlP4KTZb4G7131UGwVRlEf5sI=
-X-Gm-Gg: AR+sD12NDR+YNNgXcye24gPLQAwyJp08pwCZdXCloMFg5Pd62W9ft5gmco6StN9IBVJ
-	6tnLXPUBEzxo3aPsjpCo+0ZvEREaYPLvPqHkPgOBWfkCRUEFbaToUl1i1VKM4+mZkwYFZLm8L4k
-	7gfusTc0JFUX64YKMnN0KsxpNctdIcpOPb0Q+d3RKXOUAidw6ANev5kp1wc/N2Q196l0rShLa8c
-	wf9VlSEnrg5wibraIoXtGViJMkWjcD+J7EPaMCmr7vCTSffoAiPkGRfp0P4Pg==
-X-Received: by 2002:a05:6512:2351:b0:5ae:b969:417d with SMTP id
- 2adb3069b0e04-5b2c1abf0ccmr1207806e87.0.1785116700314; Sun, 26 Jul 2026
- 18:45:00 -0700 (PDT)
+        bh=k7+HSyvbpNzON5WZgNTuo7n/+mTxR6saM4OTcFquMTk=;
+        b=fwPvpY2OXEyWNQaF/2R0+zhkUKr6e7LGdQrKIAM36M6NE+29njirrw8iUu/blYFjPS
+         XH2BEthIGZBwZGqnyv75SNbDsiAclYao+aFYXRQA5vDPH4SarsGT0XdswbhHdK/MMPVI
+         iYpgBJ48DRcr8iGmponyJ3W4Vunb1Z/4ArnSnGACM4ywKd4yo64n7l6ggdTJdTWON1Jw
+         RaJHhVW8p1njhanghNGbVDx8wZDIjUfMRXDAYuRxVBVfLrlODzMSxazfbByoVpRU4zDy
+         KW8XPYw7uOsgk/qaMYtB7ozCBNIiotkyQhFfjJDa/g0/KkDV3ZfMDKtISPY04YQ5xv7e
+         tscg==
+X-Gm-Message-State: AOJu0Yw6FFPJH9hJURik+yyZIuwOEzb2s9yeTAnQ8TjKnxr1OqP2JMJJ
+	JmPMJtaPg8KYh27JzRu5aJedV4jmSNval3v+0xUTHHouJDZhYvYwqG5Yf+t/LPvlcMqAIuUVUEP
+	qvXV7VqFqgKtjckbyaWpIAW7Yxr93RLA=
+X-Gm-Gg: AR+sD117heSUjDTaJPruurb6QGW/rPimwqFpwgnObV8WkU8Hktzk7gYzOGFf92Vhbro
+	gAVt1gopli0KwswyVdSGlr8IbtQ0RqJUuNAHfgKDo8YgOC59d+mbEnqWmwChzM4sdXB93XGL30A
+	/YsMA30I4xsy1BXVaNsKm5NsaopawkKHQR3uAwE6nN8JWg41etmE8oCleJtIXRIL/YfDC2pG0vC
+	XqTWX9SMJfxzJGykutnazH7/kyQASmSWOvQALwVb9cTf0KtEq/QW3Mk8dtn+g==
+X-Received: by 2002:a05:6512:1281:b0:5aa:8823:e311 with SMTP id
+ 2adb3069b0e04-5b2c1b4d79emr1158896e87.47.1785116913998; Sun, 26 Jul 2026
+ 18:48:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260726-b4-disp-9cd2a8a2-v1-1-8d66c6dceac4@proton.me>
-In-Reply-To: <20260726-b4-disp-9cd2a8a2-v1-1-8d66c6dceac4@proton.me>
+References: <20260724154900.21524-1-linkinjeon@kernel.org> <20260724154900.21524-2-linkinjeon@kernel.org>
+In-Reply-To: <20260724154900.21524-2-linkinjeon@kernel.org>
 From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Mon, 27 Jul 2026 10:44:48 +0900
-X-Gm-Features: AUfX_mzBW712rPgRVkvS8eIPzeTBF7pkrZhvHO3OPVMOgiixtgb_q9TmtN_9pAg
-Message-ID: <CANFS6bYise8cD8AttfFMnLkmGRzwGxQriOWTavRZo7nCQwiRJA@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: bound the free-cluster bitmap scan to the volume
-To: hexlabsecurity@proton.me
-Cc: Namjae Jeon <linkinjeon@kernel.org>, linux-kernel@vger.kernel.org, 
-	ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org
+Date: Mon, 27 Jul 2026 10:48:22 +0900
+X-Gm-Features: AUfX_my9R2UBXYZF_bwnAhQ0ZaoFdFbTmldOj4Ms9g-oh-ezxlbjdwm_Otzu1Y8
+Message-ID: <CANFS6bYsh2=9xK3LVSn7zKRFEK9D6kUnVTnpxbrZh2hnw+afww@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ntfs: preserve chmod mode before applying mount masks
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: ntfs@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-2026=EB=85=84 7=EC=9B=94 27=EC=9D=BC (=EC=9B=94) =EC=98=A4=EC=A0=84 8:29, B=
-ryam Vargas via B4 Relay
-<devnull+hexlabsecurity.proton.me@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=
-=EC=84=B1:
+2026=EB=85=84 7=EC=9B=94 25=EC=9D=BC (=ED=86=A0) =EC=98=A4=EC=A0=84 12:49, =
+Namjae Jeon <linkinjeon@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
 >
-> From: Bryam Vargas <hexlabsecurity@proton.me>
->
-> vol->lcn_empty_bits_per_page is sized from vol->nr_clusters at mount, but
-> ntfs_cluster_alloc() bounds its scan of that array by the size of $Bitmap=
+> fmask and dmask must continue to constrain the effective permissions
+> of every file on a mount. Applying either mask before persisting an
+> ATTR_MODE change, however, stores the masked mode in . later remount with
+> a less restrictive mask then cannot restore the mode that chmod requested=
 .
-> Those are independent on-disk quantities and the mount-time check only
-> rejects a $Bitmap that is too small, so an image whose $Bitmap covers mor=
-e
-> clusters than the volume has lets the scan index past the array.  A run
-> whose LCN lies in that gap takes the allocator straight there, since the
-> caller passes the file's own last LCN as its locality hint.  KASAN report=
-s
-> a slab out-of-bounds read when a file on such a volume is extended.
 >
-> Clamp the scan to what that array covers, mirroring the max_index
-> calculation the mount-time scan already uses, and reject a decoded LCN
-> at or beyond nr_clusters in the mapping pairs decoder.  Conforming
-> volumes are unaffected.
+> Store the requested mode in  first, then apply the mount mask to
+> the in-memory inode. This retains the mount-wide access restriction
+> without making it permanent. Also return failures while writing the
+> WSL inode EA to the caller.
 >
-> Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator=
-")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Bryam Vargas <hexlabsecurity@proton.me>
+> Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
 
 Looks good to me.
 
 Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
 > ---
-> Either hunk alone stops the access; they close it at different levels.  T=
-he
-> clamp bounds the index whatever the caller passes as a hint.  The decoder
-> check stops a run pointing outside the volume from being accepted at all,
-> which also covers ntfs_cluster_free_from_rl(), where the only test today =
-is
-> lcn < 0.  Happy to drop either one if you'd rather keep it minimal.
+>  fs/ntfs/file.c | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
 >
-> Reproducer.  A volume whose $Bitmap covers more pages than nr_clusters
-> requires, with one file's data run placed in the resulting gap:
+> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+> index c8e49f83fd92..a6855d62e1fc 100644
+> --- a/fs/ntfs/file.c
+> +++ b/fs/ntfs/file.c
+> @@ -342,14 +342,17 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct de=
+ntry *dentry,
+>                 if (ia_valid & ATTR_MODE)
+>                         flags |=3D NTFS_EA_MODE;
 >
->   truncate -s 13G img && mkntfs -F -f img
->   mount -i -t ntfs -o rw img /mnt && dd if=3D/dev/urandom of=3D/mnt/v.bin=
- \
->       bs=3D4096 count=3D16 && umount /mnt
->
->   # $Boot total_sectors (0x28) -> 1703936*8, i.e. nr_clusters =3D 1703936=
-,
->   # just above mftmirr_lcn.  lcn_empty_bits_per_page then covers 52 pages
->   # while $Bitmap still spans 104, leaving indices 52..103 unbacked.
->   # v.bin's single data run (3-byte LCN delta) -> LCN 3000000, index 91.
->
->   mount -i -t ntfs -o rw img /mnt
->   dd if=3D/dev/zero bs=3D4096 count=3D8 >> /mnt/v.bin
->
-> mount -i matters: without it the ntfs-3g helper takes the volume and this
-> code never runs.
->
-> A/B on v7.2-rc1 with KASAN, one arm per boot:
->
->   unpatched, crafted image:
->     BUG: KASAN: slab-out-of-bounds in ntfs_cluster_alloc+0x249e/0x2db0 [n=
-tfs]
->     Read of size 4 at addr ffff8881029dad6c by task kworker/u32:6/96
->     Workqueue: writeback wb_workfn (flush-7:0)
->      ntfs_cluster_alloc+0x249e/0x2db0 [ntfs]
->      ntfs_attr_map_cluster+0x444/0xf50 [ntfs]
->      __ntfs_write_iomap_begin+0x8b7/0x22c0 [ntfs]
->      ntfs_writeback_range+0xd3/0x130 [ntfs]
->     Allocated by task 2255:
->      __kvmalloc_node_noprof+0x1cc/0x5d0
->      ntfs_fill_super+0x16c0/0x6fd0 [ntfs]
->     The buggy address is located 156 bytes to the right of
->      allocated 208-byte region [ffff8881029dac00, ffff8881029dacd0)
->
->   52 pages * sizeof(unsigned int) is 208 bytes, and index 91 is offset 36=
-4.
->
->   clamp only:    clean; the volume mounts and the append completes
->   decoder only:  clean; the run is refused
->   both:          clean; the append returns EIO and the decoder logs
->                  "LCN >=3D nr_clusters in mapping pairs array"
->   pristine mkntfs volume, unpatched, same operations: clean
->
-> The write side takes the same LCN.  A kprobe caught
-> __ntfs_bitmap_set_bits_in_run() with start_bit=3D3000000 count=3D16, whic=
-h lands
-> on the same array through ntfs_set_lcn_empty_bits(); KASAN reports once p=
-er
-> boot, so only the read above splatted.
-> ---
->  fs/ntfs/lcnalloc.c | 7 ++++++-
->  fs/ntfs/runlist.c  | 7 +++++++
->  2 files changed, 13 insertions(+), 1 deletion(-)
->
-> diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
-> index 835a041023a2..aa2e017a4384 100644
-> --- a/fs/ntfs/lcnalloc.c
-> +++ b/fs/ntfs/lcnalloc.c
-> @@ -298,7 +298,12 @@ struct runlist_element *ntfs_cluster_alloc(struct nt=
-fs_volume *vol, const s64 st
->         clusters =3D count;
->         rlpos =3D rlsize =3D 0;
->         mapping =3D lcnbmp_vi->i_mapping;
-> -       i_size =3D i_size_read(lcnbmp_vi);
-> +       /*
-> +        * lcn_empty_bits_per_page is sized from nr_clusters, but $Bitmap=
- can
-> +        * cover more clusters than that; bound the scan by the array.
-> +        */
-> +       i_size =3D min_t(s64, i_size_read(lcnbmp_vi),
-> +                      ((s64)vol->nr_clusters + 7) >> 3);
->         while (1) {
->                 ntfs_debug("Start of outer while loop: done_zones 0x%x, s=
-earch_zone %i, pass %i, zone_start 0x%llx, zone_end 0x%llx, bmp_initial_pos=
- 0x%llx, bmp_pos 0x%llx, rlpos %i, rlsize %i.",
->                                 done_zones, search_zone, pass,
-> diff --git a/fs/ntfs/runlist.c b/fs/ntfs/runlist.c
-> index cbb6576cf725..74f94b4b6c5b 100644
-> --- a/fs/ntfs/runlist.c
-> +++ b/fs/ntfs/runlist.c
-> @@ -880,6 +880,13 @@ struct runlist_element *ntfs_mapping_pairs_decompres=
-s(const struct ntfs_volume *
->                                         ntfs_error(vol->sb, "lcn =3D=3D -=
-1");
->                         }
->  #endif
-> +                       /* Check lcn is within the volume. */
-> +                       if (unlikely(lcn >=3D (s64)vol->nr_clusters)) {
-> +                               ntfs_error(vol->sb,
-> +                                               "LCN >=3D nr_clusters in =
-mapping pairs array.");
-> +                               goto err_out;
-> +                       }
+> +               mutex_lock(&ni->mrec_lock);
+> +               err =3D ntfs_ea_set_wsl_inode(vi, 0, NULL, flags);
+> +               mutex_unlock(&ni->mrec_lock);
+> +               if (err)
+> +                       goto out;
 > +
->                         /* Check lcn is not below -1. */
->                         if (unlikely(lcn < -1)) {
->                                 ntfs_error(vol->sb, "Invalid s64 < -1 in =
-mapping pairs array.");
+> +               /* Apply mount masks after saving the unmasked POSIX mode=
+. */
+>                 if (S_ISDIR(vi->i_mode))
+>                         vi->i_mode &=3D ~vol->dmask;
+>                 else
+>                         vi->i_mode &=3D ~vol->fmask;
+> -
+> -               mutex_lock(&ni->mrec_lock);
+> -               ntfs_ea_set_wsl_inode(vi, 0, NULL, flags);
+> -               mutex_unlock(&ni->mrec_lock);
+>         }
 >
-> ---
-> base-commit: 4235cb24ec1e8e96843f3671ba4da2a6ccca2c7b
-> change-id: 20260726-b4-disp-9cd2a8a2-007c3a970c87
->
-> Best regards,
+>         mark_inode_dirty(vi);
 > --
-> Bryam Vargas <hexlabsecurity@proton.me>
->
+> 2.25.1
 >
 
 
