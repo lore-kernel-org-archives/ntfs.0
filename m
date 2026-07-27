@@ -1,192 +1,254 @@
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8185134CCF
-	for <ntfs@lists.linux.dev>; Mon, 27 Jul 2026 00:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785113980; cv=none; b=cuAfNenYK6kmeMCtrkX1S2E3BhzHPOhaMNTbHhWxP/CZUHYtyW9EEpkLepg5KB3ifObb09/jaNEXF9flpUFvfatN5/gnn0O8Jm7r/cH/OAUQVtaEaY9tLdA9uSJutv2LGSFxWYrB3BGPxbmTYEWawZGSmjFG+6cLIImEA6UKsIA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785113980; c=relaxed/simple;
-	bh=QgQFZEq4yEmJJSuGoIBWi4UvS89vLhbeOoL4Sl+FlIk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XFcblFolurX/r3sPcvXy0ucjLtfFzVC8d4+RuEEMbYUca5KchWmWxS3tcgqQPxf4etiW3UhzmwbrM1B0PNy8aAHuiP1v3SZH62z06wxPM2bgNvWOaq3FixKRYqeUJqP/yTNgLTJHwrxET2T1gPkPWx67nuTqvNLlKxl9QX3dy/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iYYLhFcQ; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8205F2BEC45
+	for <ntfs@lists.linux.dev>; Mon, 27 Jul 2026 01:45:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1785116705; cv=pass; b=ORCDru39yKsN37plp5EvZhI9KAv1du/zBRflzY3ZKoh8K/Nwb1DGN/i438g54trtZ21pBx+mBKVhBCZfZKsarbHfbxXbjhm+NsQOGWuf3UoGGnQ9apF69+Txoh0l9vfnRkLMYaFvwxHIP3nREt2kFj5x13bxbIaHEMctLZoyTF4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1785116705; c=relaxed/simple;
+	bh=GpPVqK0yedI7MogcuOKKw0y9EmEKpyxWE9J7owI0ioU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bLA0/Dn2xd6OWuU4tESykILP2aJDNgCiBdM+CLnXPJqSkfzjx74qfaSSckx/7TwxXdbrk2gdsjEN/uiU4Rm0EoRn+yeJUhcNIzvfkwcLhMaFm4ddeKhLSfFrYGHmNpXWInGx5TvjEWuGfwuXp+CS6cV15GvSW5ac5Yo98BKdfCE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MlBkPdue; arc=pass smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iYYLhFcQ"
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2cfff5f88dbso919485ad.3
-        for <ntfs@lists.linux.dev>; Sun, 26 Jul 2026 17:59:38 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MlBkPdue"
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5b013084dc2so1567134e87.0
+        for <ntfs@lists.linux.dev>; Sun, 26 Jul 2026 18:45:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1785116701; cv=none;
+        d=google.com; s=arc-20260327;
+        b=OeqN3qbHPWymP6vbrbWnVEM+t2CzP84s3I07EMGKoBEFNDNVijnTWOSGsALJlcUtG4
+         x0eCPu/y0lDMQOE/Yej8vxmh/ZPUWHm/bt3+p3uGLAbYOTzxqU2b97Z+PXmv/OpkxmXm
+         Xn6QNcirVJT3GApsZfxnlhDXS2fHY6acLmQADpKVfV91NoauPHgCRQyOwP3F+LhW1Z8H
+         wS/akmZP7oqnx5NCNHOGYU0+NP833MNvXZyqTnVuTJF3A53BIx28J3NCEEnkwU+kl3KM
+         /jpDQhT4jlbRux6ESyMFw24Go3kNYKQbWnwTXiE75UGmu31VbqJkgqGahqHuUT1pi4+C
+         SiuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=kP+3DJgbSuTQTP0Qr8L5IJefZbj+1ZijbjemjjV/pQs=;
+        fh=b394puWBZZgW/bBhKhe6GpdOOXciOX3IEfmRW618GdA=;
+        b=PAWQONXv995pYfSisVvRMz6kVDmbAQeGKEbUNxjeQUUaYXK6wnHoaKCKlyRyHtgbtX
+         YUZUR0fObmelPisbweO8LLlKBTjMTqQrBEf/3U+JBRY1Wmm9G7b9JSiBnh0sMAUdwJJL
+         /kUDnfHUQkcDJe0UcugaH3NSFGletlXNZ9urQd91WtT080JRddV6z7sx6U1u3yxyS9mM
+         TNs9i1IE8oR2bcTQ5L5MR/0HGUAi5sY0d06VfYucE/G2U2TTu6RqGDu6BSx6FZ4/Jt05
+         r1Xs9Q8sXukPsHXS+9PTKiNJNH/DvX79lUPsKJOD/pzUqaQFFWMqZDYPisx/5BDyLG/4
+         yhvA==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1785113978; x=1785718778; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+        d=gmail.com; s=20251104; t=1785116701; x=1785721501; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=vHmzUcWeMDx0EeWShSELad/lrav8LT4pvUEZoZxAPsA=;
-        b=iYYLhFcQUX5TpRvvo2NqmcRe2xqUsCDwfuqKVlW3bWfyHIF7+PwXIEoikrPgbKHoZT
-         wF3aXXs53U/aCDn7d8gokBIzuP6jIqlb/wM9O73XZqfE8X4dHM3yG5W8nYCA2GCVcovG
-         6wMm76SzFsLvIRsfjmxUny9VPLGw1pht0OaT2EEDga22vuW+geJ/uxmWDREMYztTZanY
-         RRr6nwKfSRg0DP0kulTzxSycQ8ceuOyewyzIG2nTPLpqBsX1y9b/JnBpuYvI0xcHAC4M
-         v7hhHF3zHurPNVMjnWFIJ5qF97YoA3O7U1o3eie71upg2jQ9IxmsrVug0K/lzbtQacXo
-         Z4Og==
+        bh=kP+3DJgbSuTQTP0Qr8L5IJefZbj+1ZijbjemjjV/pQs=;
+        b=MlBkPduezw62YqaZtxnslomeNXIa0zMz5rkJdfk+fTltCQpOMUta901mlknFrzlKoO
+         NQx79UbQWrZGNKvQ/91IaeeVP0+MSYTjZDelw3R1hquT2BIbxUvuMyHZr6EY8PeJb9TK
+         Myyelp4TTF3Uajt9qaiGnfInGNF5No3eKAEojbrol2hzw666IAL6WTmkMwPCVY4Xh2Xd
+         pVKceMHFXHLf6kEYNIx7H1QWp1A4vKMTgdgD3LopptMtb060jT0jdJL2IAk3qFNDtZTv
+         Qu24Pq3hcSTmAGDXAlWTckSPulC2X69G7/t7qi5s1jt3OwVOmFMfGSt7Iya/iWgGN9e6
+         bk3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785113978; x=1785718778;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+        d=1e100.net; s=20251104; t=1785116701; x=1785721501;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=vHmzUcWeMDx0EeWShSELad/lrav8LT4pvUEZoZxAPsA=;
-        b=Ng/7aeQjCUT+TZd19epCBj6u+vfm9YEwILSPpCgAFBhhAVfXcNgmzvwX2U2sTcNo9/
-         omtk/ijk8XhyerHtZJK8i82DcaKhYZk9haBiam4FuleS8HfxdyiSsClu9xCby+RLewD0
-         wc7JtPcqHdjaTN3DKBcCeuRaZyKE/TqFocaTbYpCAODByp2Zr6vATuasDCYE0bMZsT9m
-         VEVQ0HjitBTLZfKqX1m3KnVzSsK2tweRUALkZcwMOCEqxisPC+X6GC/82Gz2uqB3ybXQ
-         dI5zZhuZ2owBn3BO/n6fHAe3JinZxuKejYONVz6z/KUUSjItruxf3dlKfVMfZhEL63R0
-         CLrw==
-X-Forwarded-Encrypted: i=1; AHgh+RrhT+grhlNS4AE/rOFb/hOjzoXMieppWzpi2xz3YL1MdP9IQWrhR+n6pSDid/nYmybqTBaE@lists.linux.dev
-X-Gm-Message-State: AOJu0Yzc4EnBRv8cCpA8EXJKvAIAyyWa3Y8nZAUkrYNRCs3MUXTEr3bK
-	1/SUubKAvN1H0xjniMEDs1LgMkMy76ch4/WZmFtk7quS50NeI7D1QZRj
-X-Gm-Gg: AR+sD13zZdyjFoQKOKRju7CpRbDgE2j3riaZP/TKnDGm9nJrfc2qzkc1aq9HoDsamW4
-	zxJUgBtb7olZNKRVimu6YLh1wMI9HRn6RpIxpQgmOViYhv4HBYc99eLjB+zzuaTy4sbp1qecyv+
-	WhzxsKgPP0+p/YCJKkQGEQvqPOKVeYrM6sVOjU11xd5nkIl+CW/vbJ2MW94f5ubC3/LJE2p77OT
-	iD0H6Q4mJDZQHS2ZbshNLq3eymvhBM5nqya4Vh268RfEkQl5MO4fpuSCsI5hnvPU07vUnYyGGcn
-	Bkz0QgpSa84zZfVqAHCv48Q4NX5acmLNDpkUxRjgn8w/0V5J3G1/Mzd8YZUQ+g0ppYOiCx10w1h
-	ApxG+63rBYZXwXOe9HxES5ep9znBpv2klDZNYm/ervDWRJLv6gr9uDRBQrzuUVAl0jgsvICya/F
-	8+TPFUVni0VgP6j1F5Qme/JOygVA==
-X-Received: by 2002:a17:902:ec92:b0:2c9:ff29:3f73 with SMTP id d9443c01a7336-2cfde82559cmr59945675ad.28.1785113978250;
-        Sun, 26 Jul 2026 17:59:38 -0700 (PDT)
-Received: from hyunchul-PC01.tail461a24.ts.net ([125.177.232.58])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2cfde7bbda1sm25349585ad.53.2026.07.26.17.59.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Jul 2026 17:59:37 -0700 (PDT)
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>,
-	ntfs@lists.linux.dev,
-	Cen Zhang <zzzccc427@gmail.com>
-Subject: [PATCH 4/4] ntfs: protect mapping-pairs attr-list updates with attr_list_persist_lock
-Date: Mon, 27 Jul 2026 09:58:46 +0900
-Message-ID: <20260727-topic-attr-list-lock-v6-v1-4-664c5339d9b9@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260727-topic-attr-list-lock-v6-v1-0-664c5339d9b9@gmail.com>
-References: <20260727-topic-attr-list-lock-v6-v1-0-664c5339d9b9@gmail.com>
+        bh=kP+3DJgbSuTQTP0Qr8L5IJefZbj+1ZijbjemjjV/pQs=;
+        b=bfmRyLaXwTlBkuwHbEi8a+puN80qW0Nxdr14FMjHmXtyUnmKO0PzQYG6NJDAMi2+7U
+         hM2BUCHgrCaOeCyDTutfX5RrYcc0Mg2vlw7CTLebf/V/LLYWkaMCwxFY/CMdn8FEVYlZ
+         KHRpekJG8L0Bcp4qbJG+hqfgkzbe+Z637drQvOhIQt+nnU6yZWP5xLH9AQaDamM3rXC0
+         dRs/LxP5dDbFaMP3+RG7ZkNefJP8Iq1rPKjteCUJNkSfC11eZECLyPwq0DX8kA/I1tMR
+         asVBF5guHZL5+ok/w4DDpJQfUyCySWILWzELis8InqzRNUZ6qqCbu22O6SXRj24ZNOvY
+         PpOA==
+X-Forwarded-Encrypted: i=1; AHgh+RoygNJyGIbkiY24ccQRHJncbgA5sO9f5+kiYKkCWxjySaoJGAXWExeFyob4WYiYOVuqpPaI@lists.linux.dev
+X-Gm-Message-State: AOJu0YxOtjdpPPiu4zG95OK7gEICSjZOxFuq1T6P1bgnhEnjE0v3c62G
+	r4oy3nhbPtcB1fG2M8C9B5TJZQA/D19wbD6PC8HdmZkDPykCMIBfABFOZC7CwYsZYFxsgKdeh66
+	NZHtJJ6TlP4KTZb4G7131UGwVRlEf5sI=
+X-Gm-Gg: AR+sD12NDR+YNNgXcye24gPLQAwyJp08pwCZdXCloMFg5Pd62W9ft5gmco6StN9IBVJ
+	6tnLXPUBEzxo3aPsjpCo+0ZvEREaYPLvPqHkPgOBWfkCRUEFbaToUl1i1VKM4+mZkwYFZLm8L4k
+	7gfusTc0JFUX64YKMnN0KsxpNctdIcpOPb0Q+d3RKXOUAidw6ANev5kp1wc/N2Q196l0rShLa8c
+	wf9VlSEnrg5wibraIoXtGViJMkWjcD+J7EPaMCmr7vCTSffoAiPkGRfp0P4Pg==
+X-Received: by 2002:a05:6512:2351:b0:5ae:b969:417d with SMTP id
+ 2adb3069b0e04-5b2c1abf0ccmr1207806e87.0.1785116700314; Sun, 26 Jul 2026
+ 18:45:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1785113395; l=3807; i=hyc.lee@gmail.com; s=20260727; h=from:subject:message-id; bh=QgQFZEq4yEmJJSuGoIBWi4UvS89vLhbeOoL4Sl+FlIk=; b=V1dZOiW82tTrbDaJiUfA7Kk8nSd/FBNodAo5zaR+bpw0W6OWLSTTHMwsZUStbrgNg8/aR9Gnt 9JTr0Y1Ur1BB5EdPT8kaYsqfVjRqzsWRqfpCgFU4yJ89mJ+SKSW8Nqg
-X-Developer-Key: i=hyc.lee@gmail.com; a=ed25519; pk=XjFN8PRLk/ZCdNmwABbNomUbzLtXDFRX8iJkKn3fgGc=
-Content-Transfer-Encoding: 8bit
+References: <20260726-b4-disp-9cd2a8a2-v1-1-8d66c6dceac4@proton.me>
+In-Reply-To: <20260726-b4-disp-9cd2a8a2-v1-1-8d66c6dceac4@proton.me>
+From: Hyunchul Lee <hyc.lee@gmail.com>
+Date: Mon, 27 Jul 2026 10:44:48 +0900
+X-Gm-Features: AUfX_mzBW712rPgRVkvS8eIPzeTBF7pkrZhvHO3OPVMOgiixtgb_q9TmtN_9pAg
+Message-ID: <CANFS6bYise8cD8AttfFMnLkmGRzwGxQriOWTavRZo7nCQwiRJA@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: bound the free-cluster bitmap scan to the volume
+To: hexlabsecurity@proton.me
+Cc: Namjae Jeon <linkinjeon@kernel.org>, linux-kernel@vger.kernel.org, 
+	ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-ntfs_attr_update_mapping_pairs() updates several ALEs while rebuilding
-a fragmented attribute's mapping pairs and persists the attribute
-list once after the loop.  Each ALE update is covered by
-attr_list_lock, but the overall publish/persist sequence is not
-serialized against concurrent ntfs_attrlist_entry_add()/rm() on the
-same base inode.
+2026=EB=85=84 7=EC=9B=94 27=EC=9D=BC (=EC=9B=94) =EC=98=A4=EC=A0=84 8:29, B=
+ryam Vargas via B4 Relay
+<devnull+hexlabsecurity.proton.me@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=
+=EC=84=B1:
+>
+> From: Bryam Vargas <hexlabsecurity@proton.me>
+>
+> vol->lcn_empty_bits_per_page is sized from vol->nr_clusters at mount, but
+> ntfs_cluster_alloc() bounds its scan of that array by the size of $Bitmap=
+.
+> Those are independent on-disk quantities and the mount-time check only
+> rejects a $Bitmap that is too small, so an image whose $Bitmap covers mor=
+e
+> clusters than the volume has lets the scan index past the array.  A run
+> whose LCN lies in that gap takes the allocator straight there, since the
+> caller passes the file's own last LCN as its locality hint.  KASAN report=
+s
+> a slab out-of-bounds read when a file on such a volume is extended.
+>
+> Clamp the scan to what that array covers, mirroring the max_index
+> calculation the mount-time scan already uses, and reject a decoded LCN
+> at or beyond nr_clusters in the mapping pairs decoder.  Conforming
+> volumes are unaffected.
+>
+> Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator=
+")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Bryam Vargas <hexlabsecurity@proton.me>
 
-Acquire attr_list_persist_lock once after resolving base_ni whenever
-the call can touch the attribute list, and hold it across every ALE
-update and the deferred ntfs_attrlist_update() call.
+Looks good to me.
 
-Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
----
- fs/ntfs/attrib.c | 31 ++++++++++++++++++++++++++++---
- 1 file changed, 28 insertions(+), 3 deletions(-)
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 00ff223d9c21..85736af66bb1 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -3887,7 +3887,7 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
- 	struct attr_record *a;
- 	s64 stop_vcn;
- 	int err = 0, mp_size, cur_max_mp_size, exp_max_mp_size;
--	bool finished_build, attrlist_changed = false;
-+	bool finished_build, attrlist_changed = false, attrlist_locked = false;
- 	bool first_updated = false;
- 	struct super_block *sb;
- 	struct runlist_element *start_rl;
-@@ -3912,9 +3912,16 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
- 	else
- 		base_ni = ni;
- 
-+	if (NInoAttrList(base_ni) && ni->type != AT_ATTRIBUTE_LIST) {
-+		mutex_lock(&base_ni->attr_list_persist_lock);
-+		attrlist_locked = true;
-+	}
-+
- 	ctx = ntfs_attr_get_search_ctx(base_ni, NULL);
- 	if (!ctx) {
- 		ntfs_error(sb, "%s: Failed to get search context", __func__);
-+		if (attrlist_locked)
-+			mutex_unlock(&base_ni->attr_list_persist_lock);
- 		return -ENOMEM;
- 	}
- 
-@@ -3989,6 +3996,10 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
- 		err = ntfs_attr_update_meta(a, ni, m, ctx);
- 		if (err < 0) {
- 			if (err == -EAGAIN) {
-+				if (attrlist_locked) {
-+					mutex_unlock(&base_ni->attr_list_persist_lock);
-+					attrlist_locked = false;
-+				}
- 				ntfs_attr_put_search_ctx(ctx);
- 				goto retry;
- 			}
-@@ -4025,6 +4036,10 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
- 			 * attributes and try again.
- 			 */
- 			if (ni->type == AT_ATTRIBUTE_LIST) {
-+				if (WARN_ON_ONCE(attrlist_locked)) {
-+					mutex_unlock(&base_ni->attr_list_persist_lock);
-+					attrlist_locked = false;
-+				}
- 				ntfs_attr_put_search_ctx(ctx);
- 				if (ntfs_inode_free_space(base_ni, mp_size -
- 							cur_max_mp_size)) {
-@@ -4038,6 +4053,10 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
- 
- 			/* Add attribute list if it isn't present, and retry. */
- 			if (!NInoAttrList(base_ni)) {
-+				if (WARN_ON_ONCE(attrlist_locked)) {
-+					mutex_unlock(&base_ni->attr_list_persist_lock);
-+					attrlist_locked = false;
-+				}
- 				ntfs_attr_put_search_ctx(ctx);
- 				if (ntfs_inode_add_attrlist(base_ni)) {
- 					ntfs_error(sb, "Can not add attrlist");
-@@ -4151,9 +4170,13 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
- 
- 	if (attrlist_changed) {
- 		err = ntfs_attrlist_update(base_ni);
--		if (err)
--			goto put_err_out;
- 	}
-+	if (attrlist_locked) {
-+		mutex_unlock(&base_ni->attr_list_persist_lock);
-+		attrlist_locked = false;
-+	}
-+	if (attrlist_changed && err)
-+		goto put_err_out;
- 
- 	/* Deallocate not used attribute extents and return with success. */
- 	if (finished_build) {
-@@ -4272,6 +4295,8 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
- 	return 0;
- 
- put_err_out:
-+	if (attrlist_locked)
-+		mutex_unlock(&base_ni->attr_list_persist_lock);
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
- 	return err;
+> ---
+> Either hunk alone stops the access; they close it at different levels.  T=
+he
+> clamp bounds the index whatever the caller passes as a hint.  The decoder
+> check stops a run pointing outside the volume from being accepted at all,
+> which also covers ntfs_cluster_free_from_rl(), where the only test today =
+is
+> lcn < 0.  Happy to drop either one if you'd rather keep it minimal.
+>
+> Reproducer.  A volume whose $Bitmap covers more pages than nr_clusters
+> requires, with one file's data run placed in the resulting gap:
+>
+>   truncate -s 13G img && mkntfs -F -f img
+>   mount -i -t ntfs -o rw img /mnt && dd if=3D/dev/urandom of=3D/mnt/v.bin=
+ \
+>       bs=3D4096 count=3D16 && umount /mnt
+>
+>   # $Boot total_sectors (0x28) -> 1703936*8, i.e. nr_clusters =3D 1703936=
+,
+>   # just above mftmirr_lcn.  lcn_empty_bits_per_page then covers 52 pages
+>   # while $Bitmap still spans 104, leaving indices 52..103 unbacked.
+>   # v.bin's single data run (3-byte LCN delta) -> LCN 3000000, index 91.
+>
+>   mount -i -t ntfs -o rw img /mnt
+>   dd if=3D/dev/zero bs=3D4096 count=3D8 >> /mnt/v.bin
+>
+> mount -i matters: without it the ntfs-3g helper takes the volume and this
+> code never runs.
+>
+> A/B on v7.2-rc1 with KASAN, one arm per boot:
+>
+>   unpatched, crafted image:
+>     BUG: KASAN: slab-out-of-bounds in ntfs_cluster_alloc+0x249e/0x2db0 [n=
+tfs]
+>     Read of size 4 at addr ffff8881029dad6c by task kworker/u32:6/96
+>     Workqueue: writeback wb_workfn (flush-7:0)
+>      ntfs_cluster_alloc+0x249e/0x2db0 [ntfs]
+>      ntfs_attr_map_cluster+0x444/0xf50 [ntfs]
+>      __ntfs_write_iomap_begin+0x8b7/0x22c0 [ntfs]
+>      ntfs_writeback_range+0xd3/0x130 [ntfs]
+>     Allocated by task 2255:
+>      __kvmalloc_node_noprof+0x1cc/0x5d0
+>      ntfs_fill_super+0x16c0/0x6fd0 [ntfs]
+>     The buggy address is located 156 bytes to the right of
+>      allocated 208-byte region [ffff8881029dac00, ffff8881029dacd0)
+>
+>   52 pages * sizeof(unsigned int) is 208 bytes, and index 91 is offset 36=
+4.
+>
+>   clamp only:    clean; the volume mounts and the append completes
+>   decoder only:  clean; the run is refused
+>   both:          clean; the append returns EIO and the decoder logs
+>                  "LCN >=3D nr_clusters in mapping pairs array"
+>   pristine mkntfs volume, unpatched, same operations: clean
+>
+> The write side takes the same LCN.  A kprobe caught
+> __ntfs_bitmap_set_bits_in_run() with start_bit=3D3000000 count=3D16, whic=
+h lands
+> on the same array through ntfs_set_lcn_empty_bits(); KASAN reports once p=
+er
+> boot, so only the read above splatted.
+> ---
+>  fs/ntfs/lcnalloc.c | 7 ++++++-
+>  fs/ntfs/runlist.c  | 7 +++++++
+>  2 files changed, 13 insertions(+), 1 deletion(-)
+>
+> diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
+> index 835a041023a2..aa2e017a4384 100644
+> --- a/fs/ntfs/lcnalloc.c
+> +++ b/fs/ntfs/lcnalloc.c
+> @@ -298,7 +298,12 @@ struct runlist_element *ntfs_cluster_alloc(struct nt=
+fs_volume *vol, const s64 st
+>         clusters =3D count;
+>         rlpos =3D rlsize =3D 0;
+>         mapping =3D lcnbmp_vi->i_mapping;
+> -       i_size =3D i_size_read(lcnbmp_vi);
+> +       /*
+> +        * lcn_empty_bits_per_page is sized from nr_clusters, but $Bitmap=
+ can
+> +        * cover more clusters than that; bound the scan by the array.
+> +        */
+> +       i_size =3D min_t(s64, i_size_read(lcnbmp_vi),
+> +                      ((s64)vol->nr_clusters + 7) >> 3);
+>         while (1) {
+>                 ntfs_debug("Start of outer while loop: done_zones 0x%x, s=
+earch_zone %i, pass %i, zone_start 0x%llx, zone_end 0x%llx, bmp_initial_pos=
+ 0x%llx, bmp_pos 0x%llx, rlpos %i, rlsize %i.",
+>                                 done_zones, search_zone, pass,
+> diff --git a/fs/ntfs/runlist.c b/fs/ntfs/runlist.c
+> index cbb6576cf725..74f94b4b6c5b 100644
+> --- a/fs/ntfs/runlist.c
+> +++ b/fs/ntfs/runlist.c
+> @@ -880,6 +880,13 @@ struct runlist_element *ntfs_mapping_pairs_decompres=
+s(const struct ntfs_volume *
+>                                         ntfs_error(vol->sb, "lcn =3D=3D -=
+1");
+>                         }
+>  #endif
+> +                       /* Check lcn is within the volume. */
+> +                       if (unlikely(lcn >=3D (s64)vol->nr_clusters)) {
+> +                               ntfs_error(vol->sb,
+> +                                               "LCN >=3D nr_clusters in =
+mapping pairs array.");
+> +                               goto err_out;
+> +                       }
+> +
+>                         /* Check lcn is not below -1. */
+>                         if (unlikely(lcn < -1)) {
+>                                 ntfs_error(vol->sb, "Invalid s64 < -1 in =
+mapping pairs array.");
+>
+> ---
+> base-commit: 4235cb24ec1e8e96843f3671ba4da2a6ccca2c7b
+> change-id: 20260726-b4-disp-9cd2a8a2-007c3a970c87
+>
+> Best regards,
+> --
+> Bryam Vargas <hexlabsecurity@proton.me>
+>
+>
 
--- 
-2.43.0
 
+--=20
+Thanks,
+Hyunchul
