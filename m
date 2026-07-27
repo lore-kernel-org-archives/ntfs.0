@@ -1,147 +1,85 @@
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A332E8462
-	for <ntfs@lists.linux.dev>; Mon, 27 Jul 2026 01:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.181
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785116985; cv=pass; b=CadxB/8KdASRXHIUcubSZkfIcyifeCKiRC2tfqEy73sIW29ubzFInnZjBSNNy2OHn61KOPsfs966+gAHmxgiKMcJyetALca43zz8YjedBACTi2yy84Z+9GAPiKaakWSUAvrpU9a0VoVhCicwnWBdRicCKP9jLrXBUL43oF9neyg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785116985; c=relaxed/simple;
-	bh=tjWmZFN/D0b2H9VDh4/BMzmeqLxLXwI+ue3vaGAbQD4=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6E5379980
+	for <ntfs@lists.linux.dev>; Mon, 27 Jul 2026 09:19:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1785143970; cv=none; b=EjjGB60cNlZkJd8fEVCPdCB0w962dw3DFs9NShlOcJo7yIbEQO3I9ug2XLezpM7Z82ZL7W6j+wjvEUmUZ0auUeG+XEbyF7CQznXmXW0syFujUwaY6C/g4XUpfAv7gqw7SOw7Hr7hbzXylHLb+EUaEX7mqEEMdAIqT9TIS1h9v0M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1785143970; c=relaxed/simple;
+	bh=swijtrGNwyJHZ51jwsfxfJirQ38Id+RvzKrtH26Y0Us=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sMpIIReqkwdozjAMfNyx9v4HeTmCTWh3Z3+WJzjLo+z8QAA5ngdAijQXwPFeCtNRbE2b+3k2/biojLPGoEWYkeUK6fBb6PRmXnMN2ZhRUsLSvgRXPqcB8gdBbdaSjWORnMah8vTIQ0/hzkxfVm/hV3GopAQdI9BM41jbW8dQUr0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jvv3WXAX; arc=pass smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	 To:Cc:Content-Type; b=Thc49bUi4iGeuCS14wvbdx72X7S3gD2BAKsaXJrehXVPao9aXfCM5M9nz6ZT+UqX/iTxwP1baw8eX8hpYvE4UvFrn2w7EipjAQ+GW2haf03BF9M6hpOCyQ4odh/tBuuM1cuWBEtDDsdwgRBHR+0l/lX/jOovPwgw6XRtxo6caeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X+JmJe6E; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jvv3WXAX"
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-39db07589caso18589551fa.2
-        for <ntfs@lists.linux.dev>; Sun, 26 Jul 2026 18:49:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1785116982; cv=none;
-        d=google.com; s=arc-20260327;
-        b=KwgtEgzh3QllNXoBaG79E6HYQGaW17KfdYl6Mkt/0RNoGr2aQJYW8/aC1HUZrZw+OE
-         xh08SsGeN9H/QPjd6AmBevk1L3zxho3qyUm+GFyZYZa9GfPOZgv1SXgHBEjwC6tNUDHm
-         6/SbLwXUXF6PgZSdw7+hevDi5NYs+HMk7L3K4LDmMFoh0nE7HbqaWthBV3F0qAkWjWDx
-         AfzPa/5UrDFiPWZK7pwp1odr8KZ0b2XEzFZp16XO6mnn9vDz1umiAyES35BRaRVWxS12
-         4pKygPkKG/L9Bgvlph2HmcUhZg38IKwgVTEYyJqntIncljqEwyjwl+GyFov5NdDODGfE
-         2mjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=cPizEviKlGHtPpBvflznAAzndpfzge8K3G7E2rbtD08=;
-        fh=x9ZoGpJXLWmno5K7GTfKOBTflCvHItF40uzc9RX1dYg=;
-        b=YMi/4uUnbd7ZoaApcOOZdPwG0dMQ0Y+HkDDH+TWeb/p2vj0RfspB5XBhGh8S71uXSB
-         OTcUB+4a7yRczbnMJRH9WOSuVAU9OSgCcaCo7PP590jRKhGk/efYssfBV//CcvckFP1g
-         48A7Vs+eEgFbkFzB+qEPafjlyNeQzP9N+bGfJUq3nwORxmQe+imU4YofS4ko/DRHaKAa
-         V/qZD7yQB0fVt2QokbQmQSRbY0CWLTquZ5em/p7I1mZQyZPXSrp45oUpfUIY81RddgW4
-         qPpi6MEAgu5ZXbxVbp4A7EpTqERf7n4S33c/Fkt/Yi7uXkjqtCBP27qJmPAf0tdJb4vu
-         UWNQ==;
-        darn=lists.linux.dev
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1785116982; x=1785721782; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=cPizEviKlGHtPpBvflznAAzndpfzge8K3G7E2rbtD08=;
-        b=jvv3WXAXEPk9KSunP9fB8ghwofuXdRcmbgtTenQ/1veVhTh9ZmxQPyjt8oeI3FbgCM
-         nmAVff7tWSB6YFO/WBRMieCY2AJfjdLKU8pU+tF1pio6igVrjRKdq1JBjQYf3jtecYDM
-         LI4IcA7aKfFTFFMCduxQRjsfyjC12fgSV9UsLcChXJ+H5TLCz4qI3MpmRXt9IuMGCc9S
-         ij4k9qX/rGbbcLwA04gwRkAUDitm6L8QHKWH5ANX0MAXLk0j0aQRiDsCqJSHF+NkAg5E
-         O5ntz2JzM52Y6m20iP7GU0NcgyxKQVHDJI/X33gg0DwvOc4E7YXbZ9cX62JE3PLJ/iVf
-         uSQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785116982; x=1785721782;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=cPizEviKlGHtPpBvflznAAzndpfzge8K3G7E2rbtD08=;
-        b=UywdmvrHtL5ALPkw5x2Oi7r0T3kSa2T8qxTpnnogkUEEnMXclCuhmwB2Lz3HFUMGg1
-         h+R8IGwgHq3xu0lWarqDnmJduq5hjizoNjbsp8aUnAbBQWdXkmSD59K+qRvClZ5szD4s
-         jJTwix21p17bQSM2ex8+lTntrQmuhmIJrJrVALAStC24MKM0GYuXZItdE6Gsk8a2x0Hu
-         y0C2cw2spPVntWddose3WVKVbG1r0DkkgQGZ5O8zkI8AOu8VPjW0R22l3iVx6IGm6sU0
-         QLtbSPf1sSKv+WFBmsaH6bOw5AmAPMPYgtRZ0UtkGmB1HfC49zIVK/TMYPWRMLyAorwn
-         rWQw==
-X-Gm-Message-State: AOJu0Yw8HaagXoLtzT0RxcvOJbC9ecgkbfI9OnrI4kwufj8Gz9qVj/V/
-	NL9gc9Riss8coo3adnjl+xH9/9SKpIOuoyyp0qUrZf7dM6KN0XBzJis/U7rG58yV5ZOF0crp/2F
-	hU8LTicbVmrWdv+yEEyeEWGK1HcVCQeP2qhgP
-X-Gm-Gg: AR+sD12T80B5tnmAlBM93Od4qBXt1p/i6MiryDo1S+dNdoLCOU8+ca5uoQWh1+gO+tE
-	qaZg23J3QEUtzrz1TxfulAjfQCHIkshBWZ+oGv8EfjxBWGf1pdmuOAOV7SxLknsnxClnRYSOWZd
-	QS3fZ6amG3PiAVYKx8B1Djf6NC5IRocZGSUl6hHO+NOzL5j65b/h4p6fDFPK9mRxIfAEWvD++Pq
-	5BO3x5rKtBJTqj+dOcKDnJBqNQ/yFEv1WJaT7LwXo5anoHgYJPnNstbWPw4aQ==
-X-Received: by 2002:a05:6512:61a1:b0:5b1:5b10:523a with SMTP id
- 2adb3069b0e04-5b2c1b5181amr1030106e87.62.1785116981379; Sun, 26 Jul 2026
- 18:49:41 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+JmJe6E"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CED21F00A3A
+	for <ntfs@lists.linux.dev>; Mon, 27 Jul 2026 09:19:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1785143968;
+	bh=L+zejFW3cFT+YOYos4muap5F4V5G8LJXR+Rxgobla4k=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=X+JmJe6E41ypNauP06vxuXfELjz41zXZyTzvvXvAlxoITcrtrgEY4u4VcAw2ey2dq
+	 YYutty3j8uglk4Hgrdzh87H/pu8x0LdApO8JVdmMT2gOuPUCDXX3wIGV1a9vck48uz
+	 DxJtYlcD+PERoQKehPDXvrMKd3t45KOuHFcFF8dxJIxw97HWdQxOoOHWck7ObYgUau
+	 v6UPEfUo7eVVit2fp+HNDSHQxFwfCWkxzDuL/96DtOnygcbS5KYiuFbrrpfzInJ2Lz
+	 ImtgL9KXx9bueuR6lxskMyYK256sWuLq8XQIuoE5RO7LObpMfHRhBHmKSUtIL8zJVO
+	 KdtqRrPKWsaLQ==
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6983f20a8bfso3852254a12.1
+        for <ntfs@lists.linux.dev>; Mon, 27 Jul 2026 02:19:28 -0700 (PDT)
+X-Gm-Message-State: AOJu0YzlWNB378+byqquZYuG4444OK5Sc6fpmEZPgxgJHtxrzwqpyBHi
+	OIUs3lAya/LbTFiaEgoEY0qcPIx49TohHf1ycRe9Hocr7/GX2VRiCVpbHe9diFY1kx4675SjsDQ
+	6v7fOS3LVkVcAOV7LCzV3CIcnwpd3ZjQ=
+X-Received: by 2002:a17:906:9fca:b0:c16:9d13:26ba with SMTP id
+ a640c23a62f3a-c1f1f0ab0cdmr343588866b.35.1785143967129; Mon, 27 Jul 2026
+ 02:19:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260724154900.21524-1-linkinjeon@kernel.org>
-In-Reply-To: <20260724154900.21524-1-linkinjeon@kernel.org>
-From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Mon, 27 Jul 2026 10:49:28 +0900
-X-Gm-Features: AUfX_myK8GVa7VXw3TFx3qmW3VlqYh_rX_GCulKRi_Pnw_b1bIKajABTjsfGsaI
-Message-ID: <CANFS6bYpvf=zCmj+pe=xQj0C--K8JX0AYPQ8OKXhXyYwb=+6Fg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ntfs: apply Windows name checks only with windows_names
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: ntfs@lists.linux.dev
+References: <20260727-topic-attr-list-lock-v6-v1-0-664c5339d9b9@gmail.com>
+In-Reply-To: <20260727-topic-attr-list-lock-v6-v1-0-664c5339d9b9@gmail.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Mon, 27 Jul 2026 18:19:14 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd9KwVD8RB4pB9KM1ayx_FT1Mw+xH_rqQkWmmJKZcWiwSw@mail.gmail.com>
+X-Gm-Features: AUfX_myWNVgLVD5Ew_kSqwpP3QFGBbO9138fuyl1Rr2DMvGCRUP5TaetlGrMqhI
+Message-ID: <CAKYAXd9KwVD8RB4pB9KM1ayx_FT1Mw+xH_rqQkWmmJKZcWiwSw@mail.gmail.com>
+Subject: Re: [PATCH 0/4] ntfs: serialize attribute-list access
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev, Cen Zhang <zzzccc427@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-2026=EB=85=84 7=EC=9B=94 25=EC=9D=BC (=ED=86=A0) =EC=98=A4=EC=A0=84 12:49, =
-Namjae Jeon <linkinjeon@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+On Mon, Jul 27, 2026 at 9:59=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> wr=
+ote:
 >
-> The windows_names mount option is documented to reject names containing
-> characters forbidden by Windows. However, ntfs_check_bad_windows_name()
-> unconditionally rejects those characters before checking the mount option=
-.
+> ntfs_external_attr_find() walks base_ni->attr_list using raw
+> attr_list_entry pointers stored in ctx->al_entry.  Because other paths
+> can replace base_ni->attr_list and free the old buffer while a lookup
+> still holds one of those cursors, a concurrent attribute-list mutation
+> can turn a saved cursor into a stale or freed pointer.
 >
-> Move the character validation after the option check so a default NTFS
-> mount accepts POSIX names such as names containing ':'. Mounts using
-> windows_names retain the existing Windows-compatible validation, includin=
-g
-> reserved device names and trailing spaces or dots.
+> Reported in:
+>   https://lore.kernel.org/all/20260702161710.2606853-1-zzzccc427@gmail.co=
+m/
 >
-> Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
-
-Looks good to me.
-
-Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
-
-> ---
->  fs/ntfs/namei.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> This series fixes that hazard by replacing the raw ctx->al_entry
+> pointer with restartable, generation-checked locators, and by adding
+> locks that serialize attribute-list buffer replacement and on-disk
+> persistence so concurrent mutations cannot corrupt state or double-free
+> memory.
 >
-> diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
-> index cd403b1d99ee..aee7aabaf059 100644
-> --- a/fs/ntfs/namei.c
-> +++ b/fs/ntfs/namei.c
-> @@ -61,12 +61,12 @@ static int ntfs_check_bad_windows_name(struct ntfs_vo=
-lume *vol,
->                                        const __le16 *wc,
->                                        unsigned int wc_len)
->  {
-> -       if (ntfs_check_bad_char(wc, wc_len))
-> -               return -EINVAL;
-> -
->         if (!NVolCheckWindowsNames(vol))
->                 return 0;
+> The four patches are:
 >
-> +       if (ntfs_check_bad_char(wc, wc_len))
-> +               return -EINVAL;
-> +
->         /* Check for trailing space or dot. */
->         if (wc_len > 0 &&
->             (wc[wc_len - 1] =3D=3D cpu_to_le16(' ') ||
-> --
-> 2.25.1
->
-
-
---=20
-Thanks,
-Hyunchul
+>   1. ntfs: replace raw ctx->al_entry with restartable attr-list locators
+>   2. ntfs: protect attribute-list buffer replacement with
+>      attr_list_persist_lock
+>   3. ntfs: protect attribute-list creation/teardown with
+>      attr_list_persist_lock
+>   4. ntfs: protect mapping-pairs attr-list updates with
+>      attr_list_persist_lock
+Please add Fixes tags to the patches.
+Thanks!
