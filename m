@@ -1,74 +1,74 @@
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62FD13A0B24
-	for <ntfs@lists.linux.dev>; Thu, 30 Jul 2026 04:57:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B3737C103
+	for <ntfs@lists.linux.dev>; Thu, 30 Jul 2026 04:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785387431; cv=none; b=r5lUlOnd5fJmJ/QMHIvtUXTIo11S92+YudginoVeizRjBBVe2S1PF9On11qUnM4lOIbhLT/YbOo4/Muv9pzV8gdvCPAL/r5XQEKxdz1cs0T9/BZ6Qa+lmYruz2yr9odrzTmfcGwg25eISfB90Doxud/fystgzaTdovCV1fDWK1I=
+	t=1785387436; cv=none; b=CEBUuwwUcQYkEW1JGwg82lstR+yyzvQowh6B5MGbfIVRGZ11PAn962jIgnatpFkph4ByyLI86rTdRrMTsS6NFMUP555ctKbYvM6qjXVQ2I6VLbDH1S97YL6HyUSaJPfFVUSGUKtvC+dsay9PyjxefWk/2FPYbqjWACiYxcj3DPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785387431; c=relaxed/simple;
-	bh=Kl3eWN+ectH2lmXRi3PVBfBXXp5AUimHw6z7FIkQwO4=;
+	s=arc-20240116; t=1785387436; c=relaxed/simple;
+	bh=9XBvHat/s3s0SOpTqfMbJVgrtlZ8oOBTRDq9UDYzGcA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KtzxC+Q6HW0LjBHfGo9BIwE/03jgPVfVTU9QGwyUj3guVwnL9VOuVi23cfjpjWaWhokmLtLVMZzQTQr6koZOAELh5TMf52kAKwkKMiuvLt2/ZsKnZZ0/U+4h0TVOH/w4MDXAsIS1e1WVSEJSTtEiUEa1zRS68V5KnxSBHPPC5qM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SyboeYdP; arc=none smtp.client-ip=209.85.214.170
+	 MIME-Version:Content-Type; b=AombPtcqbcwCtTmRUJ4xKzdZEUtPX9DCsehJXPa2acUmHhrfxKHxDAKHKOXoAtRaDkYQYUWmy87CwhNCByyOBjcOP8+vopQnE09L2O6Yqo8FZDra7O17EGmB796db5C+oEAsuPzf6sE+B9GtRGgH+Gs6QGMQmwahwROZQjPgQhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YZgcQ6yt; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SyboeYdP"
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2ceab75934dso20682635ad.2
-        for <ntfs@lists.linux.dev>; Wed, 29 Jul 2026 21:57:10 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YZgcQ6yt"
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2cfbbdfa60bso16712955ad.3
+        for <ntfs@lists.linux.dev>; Wed, 29 Jul 2026 21:57:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1785387430; x=1785992230; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1785387434; x=1785992234; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=KncaE4prH9uwEM7HOZQQkhU+SOiEkuZBd/8TeS6vi5g=;
-        b=SyboeYdPq+Yt1wbDvwdrfLzi+DtWUDUwN8yFGED3HMFGsljXBcbvsQ+geaF0ZjMGX4
-         /orgBJ2vqNWVDU4mzChqKIUMKaHNxCgSoy/IPNyO8eoDKQyk7FClyUS9mXEyKWc5TuPA
-         PnNejRAWIqL+uxdLgSducLKzaDXLSUpL1QBP0CPCNVE1TrcxMOIPakIjV3Dlte4xPeG2
-         t3lDoEY60kaNoBNfFqQ3Tq7gW68IWjcDnlMUJ2KO3epRm/GelsG5Fo/X1LmJfJvdILzI
-         beGEm58ogxtkfnrG6toRbvsMHxbJZt29YtD368Ds2aTyZFX638tPi5khdSla7P0Behx6
-         2whw==
+        bh=qURMdIA34CKyjqLkDIq3HnEzln8S+2wLoVCqh/odCh4=;
+        b=YZgcQ6ytcArw8oTlFr4HPuTK1j2LQ5K/+XHk4hQ4wLdA0O7ATQlgWUpUhGB8xddSFp
+         qyytceeJIAIG/fdjzBtG9LDtIn0CCnRQ0aYiPmekDy92LLWAeJcLJlSpoDJPDk24Zpig
+         qNrG7+1gD3K8DNQOxWKInIEWHFgOx/moVI5fXMvFEJRmQ0p1ozKuxJ50GTvjboeVtqvk
+         ALa51jlC9zJayoAkMfnJEmTmuc1QiykuC0xEOEGRgQBwDktA1x6daOHr6tkZkewyu2xh
+         Jn98jv+mm2+m+yhn0NwxN+JF8eKYdHvJqoj9tnVq/DIttPkOl8UgbhkAsdCMNJfWWZ0s
+         1m1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785387430; x=1785992230;
+        d=1e100.net; s=20251104; t=1785387434; x=1785992234;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=KncaE4prH9uwEM7HOZQQkhU+SOiEkuZBd/8TeS6vi5g=;
-        b=HvTqQudmTwjMZwtI0YnEzH2xwOXZf8B9D5BEwiBFNpUmM/HS1cB9D01iIxAsums03Y
-         1NcOIvF5BY3ypekuqHtr0usopr0sNrYJZjZoUjPvWni0+VQT6YdwTBzR4lDcFV/hoYFz
-         yoTn19b229VsUz5BvbtY01J1a79Ptai8I9gjQc2Y2M+427nHAu8Q9qxXO/FNHl8E41dM
-         e+IpZLKBhiDwIBj3OeIs0K2pDMj60gLjU5JSTyOnrKDC8xd3aEhyYsyO/If25j4Jf1TW
-         IVmzmYlfZiWNh0SHEpH0CPBaf3JM+6CKHLfJV27Rgmkpx1szxJU1Grk7CH3MlVRCM0JT
-         iQMQ==
-X-Forwarded-Encrypted: i=1; AHgh+RpFsovYaL7bffol1fdOBWY1dbpy3tABbSrH9Z8cuK9EKg6cl9RzBl5z6j1IYPcf7XG8AlcC@lists.linux.dev
-X-Gm-Message-State: AOJu0Yzgp5Ygj2giG6xu17wnysG3RDRnQBMT4Wor0WO41mIseio85zvK
-	x/2fZV/wvpnHmbfTRMlHAayeZSkxSjwwaRHvRFMRTeLTpc4sgeS5QbWb
-X-Gm-Gg: AR+sD12JjgJBS0qHsPTaEekL0OCDV4+uu9SJ4e/35DwE9VAB4C3ICnD8N+fqiqL1SRR
-	k4almVmTOyEbCyiHgXEghPHyDX8Hr1ZGByoA5YO5sWuY0F7Ivec8o5wwCGvbzc0ZQcze/jV8d+Y
-	MRVqwCuq3HMwQxkszWbfdsT4YebnQAsh+Oo1sswHqfGwRaA0lyrMkw/CbE3x3bbk3D9GWALhVS6
-	6rJjBdCyCiNLgurm3x3JTb1JZwu2ePubWryOX8t5L449x3npU5FDrUkvtgiyjSg98PP7MTM/mlM
-	0sEV6goSvm7oWYg9br8jncQfQ0lKDrn4VuWcJ4LrDVaUqefiSTUrLk5X9qyR8Ug+tyd9uFeitNZ
-	WN78bxy+UP6GUGLyEGlgrJsmhGb0k+zqouGpckmou6B7FQLsF2IBucPXooBOglN/ujUPQapYhs+
-	9nLXthjYbpW6ifnWJfEYWCnpCePARCawEYauCixDvwv21swzOCUtzDOTosAqGRJO0HJevEzvVad
-	yV5PfhUkm2s
-X-Received: by 2002:a17:902:d2d2:b0:2c9:e69f:edce with SMTP id d9443c01a7336-2d035d3be92mr13930085ad.44.1785387429567;
-        Wed, 29 Jul 2026 21:57:09 -0700 (PDT)
+        bh=qURMdIA34CKyjqLkDIq3HnEzln8S+2wLoVCqh/odCh4=;
+        b=PGAV4ocWXwABD8ro474V3l7R1wkAoJ475ZGKWGEm+bIQucYOwMIfHONelUeswz/iVN
+         ezJSY6C+UVwK9+8sc2S8dAOkdM0O1HbA1ZBtxFMPMQEqb5jvOL6Bog+i6FuWzndaQOxL
+         +Kyn9lvwwf8go1Y1XnUaE70+Svlj8V0owKB72UgKA6GcZshDvpJmwDoJSu2K37XWCgE0
+         iSIPkNVAaElE8EXEIhlsWrcatIBbpBQ5xFj0PzLRmvWhvdvWzrkbnPOx18VzKe/chSLe
+         cQUpKmXpkFOFHwBCANGkWqaZQ3GYBcJMqqpNPxhS937bHvjsTdQ8xWW+QPZEMjNff1yx
+         2UDw==
+X-Forwarded-Encrypted: i=1; AHgh+Rob7L9KBLJ/MrilnzcTyVFll6w6oPMQjVNGhkVM4RZgGpOcQs8kr1mYXMaTRks4e2UVq82x@lists.linux.dev
+X-Gm-Message-State: AOJu0YzuRF8R4LUSBF+FIA+FAMWTJMP44Mny5yRxOiPyJyGYSTcX3E54
+	XzTlC0ddTvUW2+WQzvP1OLX+Bmng9IYhkN37W7jS+fAElE8xQKMoBA/j
+X-Gm-Gg: AR+sD13iUTCxYDFFoSmaH0sICp2KRBu/PQYREgxyLlUb3WsrfJVgkdUv46PROZVl6fL
+	uV0u88vHDqwu0yNcPk/EoQdzQe4YPJ5SDHm6sjZCTZsN74ca6VzpkJLGy26PZITkuQsF7BDLkd8
+	V+fcG7mIAjs4ubVhnjZaRt1tAP9Cr/tFMMlPEqLnstwERLrQkki1VrdNoJyWxq+o59eMMlyZn/A
+	h6ThbAP0WJV7W+85i85u2L9gttOXOjrB80y+3l8hRo0XLsUzb3olxbFiKAZVrPVRKfIZGyGUtXt
+	+0yBev5bu21Z2IibKe1ygmvhy5Nf1DTp0qqi2GT0yELIoocZzK5C+07IRaWeL4z4Kp/7oI4gWZV
+	Vzd1Gwj/aYucVMVrsbrrxaDHyOLUvfamjyVdT3HLU3mIxtIMUXNU3irbM36+UwjnG8aK5ScK+jK
+	DsPvKGCcwflKI+cRUYEqcmS4JPyzrWB5Me7TvEX2S3oczCosZYHfqwynsr+/mU4Sk8g3P+q4B0b
+	rIa2gO2pAOCZy8cwL/lOPE=
+X-Received: by 2002:a17:902:fd87:b0:2ca:b48f:3395 with SMTP id d9443c01a7336-2d035cd397bmr12520485ad.34.1785387434139;
+        Wed, 29 Jul 2026 21:57:14 -0700 (PDT)
 Received: from hyunchul-PC01.tail461a24.ts.net ([125.177.232.58])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2d022a46969sm19875325ad.25.2026.07.29.21.57.06
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2d022a46969sm19875325ad.25.2026.07.29.21.57.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jul 2026 21:57:08 -0700 (PDT)
+        Wed, 29 Jul 2026 21:57:13 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev,
 	Cen Zhang <zzzccc427@gmail.com>,
 	stable@vger.kernel.org
-Subject: [PATCH v4 3/4] ntfs: protect attribute-list creation/teardown with attr_list_persist_lock
-Date: Thu, 30 Jul 2026 13:56:14 +0900
-Message-ID: <20260730-topic-attr-list-lock-v6-v4-3-80d5fe0a6951@gmail.com>
+Subject: [PATCH v4 4/4] ntfs: protect mapping-pairs attr-list updates with attr_list_persist_lock
+Date: Thu, 30 Jul 2026 13:56:15 +0900
+Message-ID: <20260730-topic-attr-list-lock-v6-v4-4-80d5fe0a6951@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260730-topic-attr-list-lock-v6-v4-0-80d5fe0a6951@gmail.com>
 References: <20260730-topic-attr-list-lock-v6-v4-0-80d5fe0a6951@gmail.com>
@@ -80,19 +80,20 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1785387323; l=9392; i=hyc.lee@gmail.com; s=20260727; h=from:subject:message-id; bh=Kl3eWN+ectH2lmXRi3PVBfBXXp5AUimHw6z7FIkQwO4=; b=tAd6LeUOFe/NoNMCXwDTkDM3hrlOOqCeAxfbE2wQb8alOcen2Z36gIryhDyt4aOVaxINaecvr XnzsrIezOCPCDxEo3DB7KuRje+EXO1sC4bCwVe8QNBUWn+eYwEIGM2m
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1785387323; l=4387; i=hyc.lee@gmail.com; s=20260727; h=from:subject:message-id; bh=9XBvHat/s3s0SOpTqfMbJVgrtlZ8oOBTRDq9UDYzGcA=; b=EzODELIuVIGWadJaRrv4M8qaxLG5TxiKBZRkmKgGUHTNZLNlBHEob8l11zUQmRI7xOGJUXOp1 AYWT8oBlMwdDXtnK2GrK7i+tEWQAae5V4Ii50dZ6LXnNMmT7mQ3FVSa
 X-Developer-Key: i=hyc.lee@gmail.com; a=ed25519; pk=XjFN8PRLk/ZCdNmwABbNomUbzLtXDFRX8iJkKn3fgGc=
 Content-Transfer-Encoding: 8bit
 
-ntfs_attr_record_rm() and ntfs_inode_add_attrlist() update the
-in-memory attribute list without any lock, so a concurrent reader can
-observe an inconsistent trio. Teardown can also free a buffer that a
-concurrent ntfs_attrlist_entry_add()/rm() transaction still owns while
-it sleeps in ntfs_attrlist_update().
+ntfs_attr_update_mapping_pairs() updates several ALEs while rebuilding
+a fragmented attribute's mapping pairs and persists the attribute
+list once after the loop.  Each ALE update is covered by
+attr_list_lock, but the overall publish/persist sequence is not
+serialized against concurrent ntfs_attrlist_entry_add()/rm() on the
+same base inode.
 
-Protect both functions with attr_list_persist_lock for their whole
-publish/persist or teardown sequence, and with attr_list_lock (write)
-around the actual buffer pointer/size/gen updates.
+Acquire attr_list_persist_lock once after resolving base_ni whenever
+the call can touch the attribute list, and hold it across every ALE
+update and the deferred ntfs_attrlist_update() call.
 
 Reported-by: Cen Zhang <zzzccc427@gmail.com>
 Link: https://lore.kernel.org/all/20260702161710.2606853-1-zzzccc427@gmail.com/
@@ -101,241 +102,108 @@ Cc: stable@vger.kernel.org
 Tested-by: Cen Zhang <zzzccc427@gmail.com>
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
- fs/ntfs/attrib.c | 47 +++++++++++++++++++++++++++++++++++++++++------
- fs/ntfs/attrib.h |  2 +-
- fs/ntfs/inode.c  | 36 ++++++++++++++++++++++++++++++++++--
- fs/ntfs/namei.c  |  2 +-
- fs/ntfs/super.c  |  2 +-
- 5 files changed, 78 insertions(+), 11 deletions(-)
+ fs/ntfs/attrib.c | 38 ++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 36 insertions(+), 2 deletions(-)
 
 diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index e9004d410918..0fdcf6757d02 100644
+index 0fdcf6757d02..0ef3b6d61b2f 100644
 --- a/fs/ntfs/attrib.c
 +++ b/fs/ntfs/attrib.c
-@@ -2774,12 +2774,15 @@ static int ntfs_non_resident_attr_record_add(struct ntfs_inode *ni, __le32 type,
+@@ -3905,7 +3905,7 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
+ 	struct attr_record *a;
+ 	s64 stop_vcn;
+ 	int err = 0, mp_size, cur_max_mp_size, exp_max_mp_size;
+-	bool finished_build, attrlist_changed = false;
++	bool finished_build, attrlist_changed = false, attrlist_locked = false;
+ 	bool first_updated = false;
+ 	struct super_block *sb;
+ 	struct runlist_element *start_rl;
+@@ -3930,9 +3930,16 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
+ 	else
+ 		base_ni = ni;
  
- /*
-  * ntfs_attr_record_rm - remove attribute extent
-- * @ctx:	search context describing the attribute which should be removed
-+ * @ctx:		search context describing the attribute which should be removed
-+ * @persist_locked:	true if the caller already holds
-+ *			base_ni->attr_list_persist_lock for the in-flight
-+ *			transaction this removal is part of
-  *
-  * If this function succeed, user should reinit search context if he/she wants
-  * use it anymore.
-  */
--int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx)
-+int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx, bool persist_locked)
- {
- 	struct ntfs_inode *base_ni, *ni;
- 	__le32 type;
-@@ -2819,10 +2822,33 @@ int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx)
- 
- 	/* Post $ATTRIBUTE_LIST delete setup. */
- 	if (type == AT_ATTRIBUTE_LIST) {
-+		/*
-+		 * attr_list_persist_lock serializes this in-memory attr_list
-+		 * teardown against a concurrent ntfs_attrlist_entry_add()/rm()
-+		 * transaction on the same inode.
-+		 *
-+		 * @persist_locked is true when we got here from
-+		 * ntfs_attr_update_mapping_pairs() rebuilding the mapping
-+		 * pairs of the $ATTRIBUTE_LIST attribute itself: that call
-+		 * only happens underneath ntfs_attrlist_update(), which is
-+		 * always invoked by ntfs_attrlist_entry_add()/rm() or
-+		 * ntfs_inode_add_attrlist() while already holding this same
-+		 * mutex. Taking it again here would deadlock the caller
-+		 * against itself, so skip the (re-)acquisition in that case
-+		 * and rely on the lock already held further up the stack.
-+		 */
-+		if (!persist_locked)
-+			mutex_lock(&base_ni->attr_list_persist_lock);
-+		down_write(&base_ni->attr_list_lock);
- 		if (NInoAttrList(base_ni) && base_ni->attr_list)
- 			kvfree(base_ni->attr_list);
- 		base_ni->attr_list = NULL;
-+		base_ni->attr_list_size = 0;
-+		base_ni->attr_list_gen++;
- 		NInoClearAttrList(base_ni);
-+		up_write(&base_ni->attr_list_lock);
-+		if (!persist_locked)
-+			mutex_unlock(&base_ni->attr_list_persist_lock);
- 	}
- 
- 	/* Free MFT record, if it doesn't contain attributes. */
-@@ -2869,7 +2895,7 @@ int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx)
- 			kvfree(al_rl);
- 		}
- 		/* Remove attribute record itself. */
--		if (ntfs_attr_record_rm(ctx)) {
-+		if (ntfs_attr_record_rm(ctx, false)) {
- 			ntfs_debug("Couldn't remove attribute list. Succeed anyway.\n");
- 			return 0;
- 		}
-@@ -4158,8 +4184,17 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
- 			if (le64_to_cpu(ctx->attr->data.non_resident.highest_vcn) !=
- 					NTFS_VCN_DELETE_MARK)
- 				continue;
--			/* Remove unused attribute record. */
--			err = ntfs_attr_record_rm(ctx);
-+			/*
-+			 * Remove unused attribute record. When @ni is the
-+			 * $ATTRIBUTE_LIST attribute itself, we only get here
-+			 * underneath ntfs_attrlist_update(), whose caller
-+			 * (ntfs_attrlist_entry_add()/rm() or
-+			 * ntfs_inode_add_attrlist()) already holds
-+			 * base_ni->attr_list_persist_lock for this
-+			 * transaction, so tell ntfs_attr_record_rm() not to
-+			 * recurse into it.
-+			 */
-+			err = ntfs_attr_record_rm(ctx, ni->type == AT_ATTRIBUTE_LIST);
- 			if (err) {
- 				ntfs_error(sb, "Could not remove unused attr");
- 				goto put_err_out;
-@@ -5417,7 +5452,7 @@ int ntfs_attr_rm(struct ntfs_inode *ni)
- 	}
- 	while (!(err = ntfs_attr_lookup(ni->type, ni->name, ni->name_len,
- 				CASE_SENSITIVE, 0, NULL, 0, ctx))) {
--		err = ntfs_attr_record_rm(ctx);
-+		err = ntfs_attr_record_rm(ctx, false);
- 		if (err) {
- 			ntfs_error(sb,
- 				"Failed to remove attribute extent. Leaving inconstant metadata.\n");
-diff --git a/fs/ntfs/attrib.h b/fs/ntfs/attrib.h
-index 2e5f87abd852..ec0c846febf1 100644
---- a/fs/ntfs/attrib.h
-+++ b/fs/ntfs/attrib.h
-@@ -161,7 +161,7 @@ int ntfs_attr_exist(struct ntfs_inode *ni, const __le32 type, __le16 *name,
- 		u32 name_len);
- int ntfs_attr_remove(struct ntfs_inode *ni, const __le32 type, __le16 *name,
- 		u32 name_len);
--int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx);
-+int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx, bool persist_locked);
- int ntfs_attr_record_move_to(struct ntfs_attr_search_ctx *ctx, struct ntfs_inode *ni);
- int ntfs_attr_add(struct ntfs_inode *ni, __le32 type,
- 		__le16 *name, u8 name_len, u8 *val, s64 size);
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index f9d3e37f99e7..0297de482a36 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -3049,6 +3049,7 @@ int ntfs_inode_add_attrlist(struct ntfs_inode *ni)
- 	struct attr_list_entry *ale = NULL;
- 	struct mft_record *ni_mrec;
- 	u32 attr_al_len;
-+	bool attrlist_locked = false;
- 
- 	if (!ni)
- 		return -EINVAL;
-@@ -3124,9 +3125,14 @@ int ntfs_inode_add_attrlist(struct ntfs_inode *ni)
- 	}
- 
- 	/* Set in-memory attribute list. */
-+	mutex_lock(&ni->attr_list_persist_lock);
-+	attrlist_locked = true;
-+	down_write(&ni->attr_list_lock);
- 	ni->attr_list = al;
- 	ni->attr_list_size = al_len;
-+	ni->attr_list_gen++;
- 	NInoSetAttrList(ni);
-+	up_write(&ni->attr_list_lock);
- 
- 	attr_al_len = offsetof(struct attr_record, data.resident.reserved) + 1 +
- 		((al_len + 7) & ~7);
-@@ -3153,28 +3159,45 @@ int ntfs_inode_add_attrlist(struct ntfs_inode *ni)
- 	if (err < 0)
- 		goto remove_attrlist_record;
- 
-+	mutex_unlock(&ni->attr_list_persist_lock);
-+	attrlist_locked = false;
- 	ntfs_attr_put_search_ctx(ctx);
- 	unmap_mft_record(ni);
- 	return 0;
- 
- remove_attrlist_record:
--	/* Prevent ntfs_attr_recorm_rm from freeing attribute list. */
-+	down_write(&ni->attr_list_lock);
- 	ni->attr_list = NULL;
-+	ni->attr_list_gen++;
- 	NInoClearAttrList(ni);
-+	up_write(&ni->attr_list_lock);
-+	mutex_unlock(&ni->attr_list_persist_lock);
-+	attrlist_locked = false;
-+
- 	/* Remove $ATTRIBUTE_LIST record. */
- 	ntfs_attr_reinit_search_ctx(ctx);
- 	if (!ntfs_attr_lookup(AT_ATTRIBUTE_LIST, NULL, 0,
- 				CASE_SENSITIVE, 0, NULL, 0, ctx)) {
--		if (ntfs_attr_record_rm(ctx))
-+		if (ntfs_attr_record_rm(ctx, false))
- 			ntfs_error(ni->vol->sb, "Rollback failed to remove attrlist");
- 	} else {
- 		ntfs_error(ni->vol->sb, "Rollback failed to find attrlist");
- 	}
- 
-+	/*
-+	 * Without this lock, a concurrent ntfs_attrlist_entry_add()/rm()
-+	 * could replace or free @al out from under this loop.
-+	 */
-+	mutex_lock(&ni->attr_list_persist_lock);
-+	attrlist_locked = true;
-+
- 	/* Setup back in-memory runlist. */
-+	down_write(&ni->attr_list_lock);
- 	ni->attr_list = al;
- 	ni->attr_list_size = al_len;
-+	ni->attr_list_gen++;
- 	NInoSetAttrList(ni);
-+	up_write(&ni->attr_list_lock);
- rollback:
- 	/*
- 	 * Scan attribute list for attributes that placed not in the base MFT
-@@ -3201,10 +3224,19 @@ int ntfs_inode_add_attrlist(struct ntfs_inode *ni)
- 	}
- 
- 	/* Remove in-memory attribute list. */
-+	down_write(&ni->attr_list_lock);
- 	ni->attr_list = NULL;
- 	ni->attr_list_size = 0;
-+	ni->attr_list_gen++;
- 	NInoClearAttrList(ni);
- 	NInoClearAttrListDirty(ni);
-+	up_write(&ni->attr_list_lock);
-+
-+	if (attrlist_locked) {
-+		mutex_unlock(&ni->attr_list_persist_lock);
-+		attrlist_locked = false;
++	if (NInoAttrList(base_ni) && ni->type != AT_ATTRIBUTE_LIST) {
++		mutex_lock(&base_ni->attr_list_persist_lock);
++		attrlist_locked = true;
 +	}
 +
+ 	ctx = ntfs_attr_get_search_ctx(base_ni, NULL);
+ 	if (!ctx) {
+ 		ntfs_error(sb, "%s: Failed to get search context", __func__);
++		if (attrlist_locked)
++			mutex_unlock(&base_ni->attr_list_persist_lock);
+ 		return -ENOMEM;
+ 	}
+ 
+@@ -4006,6 +4013,10 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
+ 		err = ntfs_attr_update_meta(a, ni, m, ctx);
+ 		if (err < 0) {
+ 			if (err == -EAGAIN) {
++				if (attrlist_locked) {
++					mutex_unlock(&base_ni->attr_list_persist_lock);
++					attrlist_locked = false;
++				}
+ 				ntfs_attr_put_search_ctx(ctx);
+ 				goto retry;
+ 			}
+@@ -4042,19 +4053,34 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
+ 			 * attributes and try again.
+ 			 */
+ 			if (ni->type == AT_ATTRIBUTE_LIST) {
++				if (WARN_ON_ONCE(attrlist_locked)) {
++					mutex_unlock(&base_ni->attr_list_persist_lock);
++					attrlist_locked = false;
++				}
+ 				ntfs_attr_put_search_ctx(ctx);
+ 				if (ntfs_inode_free_space(base_ni, mp_size -
+ 							cur_max_mp_size)) {
+ 					ntfs_debug("Attribute list is too big. Defragment the volume\n");
+ 					return -ENOSPC;
+ 				}
+-				if (ntfs_attrlist_update(base_ni))
++				/*
++				 * This call is only ever reached while
++				 * rebuilding the $ATTRIBUTE_LIST attribute's
++				 * own mapping pairs, which happens underneath
++				 * ntfs_attrlist_update_locked() while holding
++				 * persist lock.
++				 */
++				if (ntfs_attrlist_update_locked(base_ni))
+ 					return -EIO;
+ 				goto retry;
+ 			}
+ 
+ 			/* Add attribute list if it isn't present, and retry. */
+ 			if (!NInoAttrList(base_ni)) {
++				if (WARN_ON_ONCE(attrlist_locked)) {
++					mutex_unlock(&base_ni->attr_list_persist_lock);
++					attrlist_locked = false;
++				}
+ 				ntfs_attr_put_search_ctx(ctx);
+ 				if (ntfs_inode_add_attrlist(base_ni)) {
+ 					ntfs_error(sb, "Can not add attrlist");
+@@ -4171,6 +4197,12 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
+ 		if (err)
+ 			goto put_err_out;
+ 	}
++	if (attrlist_locked) {
++		mutex_unlock(&base_ni->attr_list_persist_lock);
++		attrlist_locked = false;
++	}
++	if (attrlist_changed && err)
++		goto put_err_out;
+ 
+ 	/* Deallocate not used attribute extents and return with success. */
+ 	if (finished_build) {
+@@ -4298,6 +4330,8 @@ int ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni, s64 from_vcn)
+ 	return 0;
+ 
  put_err_out:
- 	ntfs_attr_put_search_ctx(ctx);
- err_out:
-diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
-index 5ff25e9aaa32..9c85caa00a0c 100644
---- a/fs/ntfs/namei.c
-+++ b/fs/ntfs/namei.c
-@@ -941,7 +941,7 @@ static int ntfs_delete(struct ntfs_inode *ni, struct ntfs_inode *dir_ni,
- 	if (err)
- 		goto err_out;
- 
--	err = ntfs_attr_record_rm(actx);
-+	err = ntfs_attr_record_rm(actx, false);
- 	if (err)
- 		goto err_out;
- 
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 8abe7bee4c0d..6d28c4c25a05 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -485,7 +485,7 @@ int ntfs_write_volume_label(struct ntfs_volume *vol, char *label)
- 	ret = ntfs_attr_lookup(AT_VOLUME_NAME, NULL, 0, 0, 0, NULL, 0,
- 			       ctx);
- 	if (!ret)
--		ret = ntfs_attr_record_rm(ctx);
-+		ret = ntfs_attr_record_rm(ctx, false);
- 	else if (ret == -ENOENT)
- 		ret = 0;
- 	ntfs_attr_put_search_ctx(ctx);
++	if (attrlist_locked)
++		mutex_unlock(&base_ni->attr_list_persist_lock);
+ 	if (ctx)
+ 		ntfs_attr_put_search_ctx(ctx);
+ 	return err;
 
 -- 
 2.43.0
