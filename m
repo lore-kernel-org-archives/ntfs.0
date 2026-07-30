@@ -1,758 +1,181 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7363AFD16;
-	Wed, 29 Jul 2026 11:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5BB37C103
+	for <ntfs@lists.linux.dev>; Thu, 30 Jul 2026 04:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785322856; cv=none; b=eCBq+uhHKDwR18evt/wsxiqar+hKE7wCGhJwrnEQ3XuwlW30VabCJ1M34DWtWvjxb4/i59MawsFlMZMqPGcQdClQWLTyEgY2HQbOUyWZqLHH/kBUbx95fRjazEN2Sjv11hDzAOozDjCc70eKfAfOs8CJvhg2bMTL7HUmB+wIdXY=
+	t=1785387399; cv=none; b=IAGeDIUXFM/dwmS5okpuqbFl+gSJR6ZUL+wGrzDz7jyd9nHXAFak+/UJOV/c/vh6ISFw4F6ggnNoRRLKUGtt2G6RLWP4LpdRhzTjswQdCrnk7BpxSfW50z3LqTAAh8GEjfCRToZa048t4ZdR7qvR5e5kppab8x7UO29rMqI7XoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785322856; c=relaxed/simple;
-	bh=VLpW/dEvcKVkDmiT9lml/cSTo9kBycKoE43pnQSAfB4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=s0HidyBbAvTrQianlBwhXL2DJXqzmhWl7LxvjltdKtYyTCvNB3Z5DkSh+QfH4D2EbT7fR2b6ToZcgAoqks3AHDS5/ezeWHm2zJ9qmS28KvwFOOLmq/s36wEywDlvhKiHtvgUsJdK/xfi8z3c6tfCIjbqUZYwQLoeWk4KIAjT1u8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IR22DZl3; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1785387399; c=relaxed/simple;
+	bh=yX5PtH2UawY/1gFAeYes7DcwALsqUnRXEsWOxC2Pu4g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=awN2XP8qncCvLvB8WBSE+bvHa8GcwWR6V4YLbyCqeQleJtBAWg+UgjCwUkY0xrhUFVnxf+5G6MDC+xC4FF3Rp5OTuvCWf8sLUHcFB/b+eTMcqw3YUr0C3JA883bi22clj8rWnSrOFHkMzpnIXSrTD9IAEJSyHOjtn4A/ZXfV9qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PqIDhoNa; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IR22DZl3"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D13471F000E9;
-	Wed, 29 Jul 2026 11:00:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785322854;
-	bh=CZkGzeTOvoWZrqaOctW06bUz6tq0Op+/YqR+st3a2lI=;
-	h=From:To:Cc:Subject:Date;
-	b=IR22DZl3JcD5M/gdl6LuxGrSvm9tvX6689LPEsjRYu5mzcKdmJtlePATxjRv6NwTY
-	 mTpRuOiDusQHmQmPAkOo5qxNeGFG6rau1T2WOxn+OF8tGiRUp4v7pohtMkawlRbmaL
-	 4ZoSO2nwR7PXhWc/DjQuz9vfS47uS+QbsxgY1JGuv3JbFA0SzZDklxWJ7gmk2INI2d
-	 X8ar7mQ1JJLgp9IxE9/biRNZTR8f8RifRJr3Cxm2Q8CvXhKYqMbadt3fUbh71EGBT+
-	 RkffwYn3MM8npMCuyXeMRELuhlrrwEnzb4rTscqLdfyY11nlOVO2LfThYMODOndfQZ
-	 0nYybMTttM3ew==
-From: Namjae Jeon <linkinjeon@kernel.org>
-To: hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-fsdevel@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	sebastian.n.feld@gmail.com,
-	cedric.blancher@gmail.com,
-	Lionelcons1972@gmail.com,
-	Namjae Jeon <linkinjeon@kernel.org>
-Subject: [PATCH 1/1] ntfs: add ioctl support for named data streams
-Date: Wed, 29 Jul 2026 20:00:36 +0900
-Message-Id: <20260729110036.12129-1-linkinjeon@kernel.org>
-X-Mailer: git-send-email 2.25.1
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PqIDhoNa"
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2cee9b74ee1so14034315ad.3
+        for <ntfs@lists.linux.dev>; Wed, 29 Jul 2026 21:56:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1785387397; x=1785992197; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=z5+4H6ku/KH2GD/roI9o+eFEb2VQbXfpl2sQKxFQu6M=;
+        b=PqIDhoNaE14Y/mwOuEnIV5Rs+QNriCYGgifvNPBBUVYRtdXDG3puyUEu/+CQpwss4h
+         l7wxLp8l8qKRpDv7CqpUQMDdvJZ0oy249aRDgzOYPjkmaXrFnFj76PQtt5yJ1TdreAEs
+         cRte1ICBs9cTIAwXmND3lVZPWw936Tq2OieuSOVB7Dhk0iIJRNvWYKI/03bHWpd0/asQ
+         cA+aJ+K5iAzHGIFBbku5tK0JiXsKu8z6VG+JnQRrhLVanc0eu3Asr08W2tnfP93LEU5o
+         Sk30GcmBjWnealHjF04KOfQCWdZF2/wJObFURXnCTRcjxOAoseScKjaKsD/b+WlPjj/X
+         hg0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1785387397; x=1785992197;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=z5+4H6ku/KH2GD/roI9o+eFEb2VQbXfpl2sQKxFQu6M=;
+        b=bQI5qcEkSB8sNuEwmhoPLMkNj/ziZATnlALjqIiwsh9CqKPLYMJJfDGYh8ff0BCXVh
+         r5DZuTnTg88o5QGqtlK3y2K4ueNqMIT7n3I9ilyRkajY5Ud3cY+y4LMwYIpBIU6q2nlK
+         TXGT9w57qKsZS0sl64IWlg0YBgteqae1For+M2RqE3Ik9WqWlD4S0NN/PK60r8yhL7po
+         dQEk310H0t3qJ6nsbO7zQc+e5o/ygZ+C4E/j6Zg7JKTfH9Mw1Nyp8gGLqO1lQ847VX4i
+         uCZsNDxlFnDP4Eiz4B66/vvbXkQV6LFLXMrS3d9qXx8/rpIgAkxHrYI0AJfpm21HNlSH
+         UEiA==
+X-Forwarded-Encrypted: i=1; AHgh+RokphZJyyKH/WZ4J8XO9sFcbSNdcM0dRxFOaBpGbIiidhfikpoMYl7mPmwCEwjalZ3PU7/L@lists.linux.dev
+X-Gm-Message-State: AOJu0YyepmmGVBxRJ9f+Rs/B95Itv8fDf4vuocjo/JcDyMa0tK3VxAYT
+	Uuo0LoIg0ejJa9hSRm7PQ/zr3t3xb2JVBkG0r4mgFucm9SeFaDEElvve
+X-Gm-Gg: AR+sD12tdPNO91/Y5rHG8nxsO0Z6YcuGRR10szdd1DeZMalp3ecvWiOxZrWifd8/AtC
+	KKygH23xjAWgc5VKQEawoSEfscxCtc23YXwKITaHhnwD3dh3rMh3KHEpSswVhjS3WD+97Chz0ii
+	U6nEVDZ36FJP7Q8xmB5WmnufyHBeXkWrRk8kQnaEKTCSdOiul0FeLpq5v4+pGg9G/Qhy5UtnkBy
+	ZoHRSEdZDwG3qSNnxtFjVnLNERbfvM/ID0//6v8/HGAZA8zRSoQYveHsZ8ykD1w2FU4D/O8GrAt
+	FZj9WS811ZfvIQ3w6Rd5B2lW7LD+iiufmfJzNneAb6d+pIWJmkyFXAAtD32xYnN7MmWyi9Dl7N0
+	7af56DTpSuBzjM62BvsXXvnjA0Pbi2bme4J//yuVmeUoXytO7csVP69Ye4tWO0OaPtdv65p/flL
+	QhLXRzHr2iR0ee6sC6lOKJ9xUwAq/z8uuAX71FjkWJOEtKcq2ln/WJbi6KTcJPTnkfwNQqxxOvh
+	OZsHTmRK8dO
+X-Received: by 2002:a17:902:f54e:b0:2cf:9f0b:b560 with SMTP id d9443c01a7336-2d035ccca4bmr12477335ad.29.1785387396552;
+        Wed, 29 Jul 2026 21:56:36 -0700 (PDT)
+Received: from hyunchul-PC01.tail461a24.ts.net ([125.177.232.58])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2d022a46969sm19875325ad.25.2026.07.29.21.56.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jul 2026 21:56:35 -0700 (PDT)
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>,
+	ntfs@lists.linux.dev,
+	Cen Zhang <zzzccc427@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v4 0/4] ntfs: serialize attribute-list access
+Date: Thu, 30 Jul 2026 13:56:11 +0900
+Message-ID: <20260730-topic-attr-list-lock-v6-v4-0-80d5fe0a6951@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1785387323; l=3936; i=hyc.lee@gmail.com; s=20260727; h=from:subject:message-id; bh=yX5PtH2UawY/1gFAeYes7DcwALsqUnRXEsWOxC2Pu4g=; b=kfF0Sz3M6AieBmg0Fg9eoO0JGRneX3w0tk5A6KW25WUPpoZD8snQA/yjsP/5wWPOqLs074pcC 0Ey9tdINThGAP0qCrDOxk2Uz7iZe4kwtu6tygyNie3gXYEK3S/4DvqR
+X-Developer-Key: i=hyc.lee@gmail.com; a=ed25519; pk=XjFN8PRLk/ZCdNmwABbNomUbzLtXDFRX8iJkKn3fgGc=
 Content-Transfer-Encoding: 8bit
 
-Sebastian and Cedric requested NTFS driver support for an interface that
-WINE can use to access named data streams.
+ntfs_external_attr_find() walks base_ni->attr_list using raw
+attr_list_entry pointers stored in ctx->al_entry.  Because other paths
+can replace base_ni->attr_list and free the old buffer while a lookup
+still holds one of those cursors, a concurrent attribute-list mutation
+can turn a saved cursor into a stale or freed pointer.
 
-NTFS supports multiple named $DATA attributes, commonly known as alternate
-data streams, but they are not directly accessible through the existing
-file operations. Add NTFS-specific ioctl commands to let userspace list,
-read, write, and remove named data streams on an opened file.
+Reported in:
+  https://lore.kernel.org/all/20260702161710.2606853-1-zzzccc427@gmail.com/
 
-The new UAPI provides separate commands for each operation:
+This series fixes that hazard by replacing the raw ctx->al_entry
+pointer with restartable, generation-checked locators, and by adding
+locks that serialize attribute-list buffer replacement and on-disk
+persistence so concurrent mutations cannot corrupt state or double-free
+memory.
 
-  - NTFS_IOC_STREAM_READ
-  - NTFS_IOC_STREAM_WRITE
-  - NTFS_IOC_STREAM_REMOVE
-  - NTFS_IOC_LIST_STREAMS
+The four patches are:
 
-The read and write commands use an offset and length based request format.
-Writes create the named stream when it does not already exist. The list
-command returns variable-length stream entries containing stream size,
-allocated size, and stream name.
+  1. ntfs: replace raw ctx->al_entry with restartable attr-list locators
+  2. ntfs: protect attribute-list buffer replacement with
+     attr_list_persist_lock
+  3. ntfs: protect attribute-list creation/teardown with
+     attr_list_persist_lock
+  4. ntfs: protect mapping-pairs attr-list updates with
+     attr_list_persist_lock
 
-Stream names use the mounted filesystem NLS by default, or raw UTF-16LE
-when the UTF-16 flag is requested. Read and write transfers are limited to
-16 MiB per request. If the list buffer is too small, the list command
-returns -ENOSPC while reporting the required size and stream count.
+What changes
+------------
 
-Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
+Instead of a raw struct attr_list_entry *, the search context now
+carries three value-only locators:
+
+  - al_cursor  -- where ntfs_external_attr_find() resumes enumeration;
+                  invalidated on generation mismatch.
+  - al_insert  -- insertion point captured on -ENOENT lookups.
+  - al_exact   -- immutable identity snapshot (type, lowest_vcn,
+                  mft_reference, instance, name length) used by writers
+                  to re-locate the same ALE after a buffer replacement.
+
+The inode gains an rw_semaphore, attr_list_lock, and a 64-bit
+attr_list_gen counter.  The lock protects attr_list, attr_list_size,
+and attr_list_gen; the counter is bumped on every buffer replacement
+so a stale locator is detected before it is dereferenced.
+
+Because ntfs_attrlist_update() can sleep and recurse back into
+attribute lookups, attr_list_lock cannot be held across persistence.
+A separate mutex, attr_list_persist_lock, serializes the whole
+publish-buffer -> persist-to-disk -> rollback-on-failure transaction
+for each mutator.
+
+Lock ordering is:
+
+    mrec_lock -> attr_list_persist_lock -> attr_list_lock
+
+attr_list_lock is never held across anything that can take runlist.lock
+or extent_lock.
+
 ---
- .../userspace-api/ioctl/ioctl-number.rst      |   1 +
- fs/ntfs/file.c                                | 509 ++++++++++++++++++
- include/uapi/linux/ntfs.h                     | 115 ++++
- 3 files changed, 625 insertions(+)
- create mode 100644 include/uapi/linux/ntfs.h
+* Changes in v4:
+  * Patch 1: fix attr-list lock/unlock and uninitialized locator on
+    the AT_END path
+  * Patch 2: hold attr_list_persist_lock around all
+    ntfs_attrlist_update() callers and recheck the attribute-list
+    state after locking
+  * Patch 4: avoid self-deadlock rebuilding $ATTRIBUTE_LIST's own
+    mapping pairs
+* Changes in v3:
+  * Patch 1: fix $ATTRIBUTE_LIST extent double-delivery during
+    mapping-pairs rebuild (xfstests generic/040)
+  * Patch 3: fix self-deadlock on attr_list_persist_lock during
+    attr-list rebuild (xfstests generic/040)
+* Changes in v2:
+  * add Fixes tags
+  * add Reported-by and Tested-by tags
 
-diff --git a/Documentation/userspace-api/ioctl/ioctl-number.rst b/Documentation/userspace-api/ioctl/ioctl-number.rst
-index 3f0ef1e27eb0..2b9869aeb811 100644
---- a/Documentation/userspace-api/ioctl/ioctl-number.rst
-+++ b/Documentation/userspace-api/ioctl/ioctl-number.rst
-@@ -399,6 +399,7 @@ Code  Seq#    Include File                                             Comments
- 0xE5  00-3F  linux/fuse.h
- 0xEC  00-01  drivers/platform/chrome/cros_ec_dev.h                     ChromeOS EC driver
- 0xEE  00-09  uapi/linux/pfrut.h                                        Platform Firmware Runtime Update and Telemetry
-+0xEF  00-0F  uapi/linux/ntfs.h                                         NTFS
- 0xF3  00-3F  drivers/usb/misc/sisusbvga/sisusb.h                       sisfb (in development)
-                                                                        <mailto:thomas@winischhofer.net>
- 0xF6  all                                                              LTTng Linux Trace Toolkit Next Generation
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index d4282822b3ce..961b94f545f2 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -15,6 +15,8 @@
- #include <linux/posix_acl_xattr.h>
- #include <linux/compat.h>
- #include <linux/falloc.h>
-+#include <linux/overflow.h>
-+#include <uapi/linux/ntfs.h>
- 
- #include "lcnalloc.h"
- #include "ntfs.h"
-@@ -23,6 +25,7 @@
- #include "iomap.h"
- #include "bitmap.h"
- #include "volume.h"
-+#include "mft.h"
- 
- #include <linux/filelock.h>
- 
-@@ -839,6 +842,504 @@ static int ntfs_ioctl_fitrim(struct ntfs_volume *vol, unsigned long arg)
- 	return 0;
- }
- 
-+#define NTFS_STREAM_MAX_IO	(16 * 1024 * 1024) /* 16MB limit */
-+
-+/*
-+ * ntfs_read_named_stream - Read data from a named $DATA stream.
-+ *
-+ * @ni:		NTFS inode
-+ * @uname:	Stream name
-+ * @uname_len:	Length of name in Unicode characters
-+ * @offset:	Byte offset in the stream
-+ * @len:	Number of bytes to read
-+ * @data_buf:	Buffer to copy data to
-+ *
-+ * Return:	0 on success, negative error code otherwise.
-+ *		If offset >= stream size, returns 0.
-+ */
-+static int ntfs_read_named_stream(struct ntfs_inode *ni, __le16 *uname,
-+		u32 uname_len, u64 offset, u64 len, void *data_buf,
-+		u64 *rbytes)
-+{
-+	struct ntfs_attr_search_ctx *ctx;
-+	struct inode *attr_vi;
-+	int err = 0;
-+	u64 data_size;
-+	s64 bytes;
-+	char *rbuf = NULL;
-+
-+	if (!ni || !uname || uname_len == 0)
-+		return -EINVAL;
-+
-+	if (len == 0 || len > NTFS_STREAM_MAX_IO)
-+		return -EINVAL;
-+
-+	mutex_lock(&ni->mrec_lock);
-+	ctx = ntfs_attr_get_search_ctx(ni, NULL);
-+	if (!ctx) {
-+		mutex_unlock(&ni->mrec_lock);
-+		return -ENOMEM;
-+	}
-+
-+	err = ntfs_attr_lookup(AT_DATA, uname, uname_len, CASE_SENSITIVE, 0,
-+			NULL, 0, ctx);
-+	if (err)
-+		goto out_lock;
-+
-+	if (ctx->attr->non_resident)
-+		data_size = le64_to_cpu(ctx->attr->data.non_resident.data_size);
-+	else
-+		data_size = le32_to_cpu(ctx->attr->data.resident.value_length);
-+
-+	if (offset >= data_size) {
-+		*rbytes = 0;
-+		/* EOF: nothing to read */
-+		goto out_lock;
-+	}
-+
-+	/* Adjust length to not read beyond EOF */
-+	if (len > data_size - offset)
-+		len = data_size - offset;
-+
-+	attr_vi = ntfs_attr_iget(VFS_I(ni), AT_DATA, uname, uname_len);
-+	ntfs_attr_put_search_ctx(ctx);
-+	mutex_unlock(&ni->mrec_lock);
-+
-+	if (IS_ERR(attr_vi)) {
-+		err = PTR_ERR(attr_vi);
-+		goto out_free;
-+	}
-+
-+	rbuf = kvzalloc(len, GFP_NOFS);
-+	if (!rbuf) {
-+		err = -ENOMEM;
-+		iput(attr_vi);
-+		goto out_free;
-+	}
-+
-+	bytes = ntfs_inode_attr_pread(attr_vi, offset, len, rbuf);
-+	iput(attr_vi);
-+	if (bytes < 0) {
-+		err = bytes;
-+		goto out_free;
-+	}
-+
-+	*rbytes = bytes;
-+	memcpy(data_buf, rbuf, bytes);
-+
-+out_free:
-+	kvfree(rbuf);
-+	return err;
-+
-+out_lock:
-+	ntfs_attr_put_search_ctx(ctx);
-+	mutex_unlock(&ni->mrec_lock);
-+	return err;
-+}
-+
-+/*
-+ * ntfs_write_named_stream - Write data from a named $DATA stream.
-+ *
-+ * @ni:		NTFS inode
-+ * @uname:	Stream name
-+ * @uname_len:	Length of name in Unicode characters
-+ * @offset:	Byte offset in the stream
-+ * @len:	Number of bytes to write
-+ * @data_stream: Data to write
-+ *
-+ * Return:	0 on success, negative error code otherwise.
-+ */
-+static int ntfs_write_named_stream(struct ntfs_inode *ni, __le16 *uname,
-+		u32 uname_len, u64 offset, u64 len, void *data_stream,
-+		u64 *wbytes)
-+{
-+	struct ntfs_attr_search_ctx *ctx;
-+	struct inode *attr_vi;
-+	int err;
-+	s64 bytes;
-+
-+	if (!ni || !uname || uname_len == 0 || !data_stream)
-+		return -EINVAL;
-+
-+	if (len == 0 || len > NTFS_STREAM_MAX_IO)
-+		return -EINVAL;
-+
-+	mutex_lock(&ni->mrec_lock);
-+	ctx = ntfs_attr_get_search_ctx(ni, NULL);
-+	if (!ctx) {
-+		err = -ENOMEM;
-+		goto out_unlock;
-+	}
-+
-+	err = ntfs_attr_lookup(AT_DATA, uname, uname_len, CASE_SENSITIVE, 0,
-+			NULL, 0, ctx);
-+	if (err) {
-+		if (err != -ENOENT)
-+			goto out_unlock;
-+		err = ntfs_attr_add(ni, AT_DATA, uname, uname_len, NULL, 0);
-+		if (err)
-+			goto out_unlock;
-+		mark_mft_record_dirty(ni);
-+	}
-+
-+	attr_vi = ntfs_attr_iget(VFS_I(ni), AT_DATA, uname, uname_len);
-+	ntfs_attr_put_search_ctx(ctx);
-+	mutex_unlock(&ni->mrec_lock);
-+
-+	if (IS_ERR(attr_vi)) {
-+		err = PTR_ERR(attr_vi);
-+		goto out;
-+	}
-+
-+	bytes = ntfs_inode_attr_pwrite(attr_vi, offset, len, data_stream,
-+				       false);
-+	if (bytes < 0)
-+		err = bytes;
-+	else
-+		*wbytes = bytes;
-+	iput(attr_vi);
-+
-+out:
-+	return err;
-+
-+out_unlock:
-+	if (ctx)
-+		ntfs_attr_put_search_ctx(ctx);
-+	mutex_unlock(&ni->mrec_lock);
-+	return err;
-+}
-+
-+/*
-+ * ntfs_remove_named_stream - Remove a named $DATA stream.
-+ *
-+ * @ni:		NTFS inode
-+ * @uname:	Stream name
-+ * @uname_len:	Name length in Unicode characters
-+ *
-+ * Return:	0 on success, negative error
-+ *              -ENOENT if stream not found
-+ */
-+static int ntfs_remove_named_stream(struct ntfs_inode *ni, __le16 *uname,
-+		u32 uname_len)
-+{
-+	if (!ni || !uname || uname_len == 0)
-+		return -EINVAL;
-+
-+	return ntfs_attr_remove(ni, AT_DATA, uname, uname_len);
-+}
-+
-+enum ntfs_stream_op {
-+	NTFS_STREAM_OP_READ,
-+	NTFS_STREAM_OP_WRITE,
-+	NTFS_STREAM_OP_REMOVE,
-+};
-+
-+static long ntfs_ioctl_stream(struct file *filp, unsigned long arg,
-+			      enum ntfs_stream_op op)
-+{
-+	struct inode *inode = file_inode(filp);
-+	struct ntfs_inode *ni = NTFS_I(inode);
-+	struct ntfs_stream __user *ureq =
-+		(struct ntfs_stream __user *)arg;
-+	struct ntfs_stream *req;
-+	size_t header_size = sizeof(struct ntfs_stream);
-+	size_t data_size, total_size;
-+	char *kname, *kdata;
-+	__le16 *uname = NULL, *sname;
-+	int err = 0, sname_len;
-+	bool utf16;
-+	struct ntfs_stream hdr;
-+
-+	/* First copy fixed header */
-+	if (copy_from_user(&hdr, ureq, header_size))
-+		return -EFAULT;
-+
-+	if (hdr.io_len > NTFS_STREAM_MAX_IO ||
-+	    (hdr.flags & ~NTFS_STREAM_FL_UTF16) || hdr.reserved)
-+		return -EINVAL;
-+
-+	utf16 = hdr.flags & NTFS_STREAM_FL_UTF16;
-+
-+	if (hdr.name_len == 0)
-+		return -EINVAL;
-+	if (utf16) {
-+		/* UTF-16LE byte count: must be even and within the limit. */
-+		if ((hdr.name_len & 1) ||
-+		    hdr.name_len > NTFS_MAX_NAME_LEN * sizeof(__le16))
-+			return -EINVAL;
-+	} else if (hdr.name_len > NTFS_MAX_NAME_LEN) {
-+		return -EINVAL;
-+	}
-+
-+	switch (op) {
-+	case NTFS_STREAM_OP_READ:
-+		if (!(filp->f_mode & FMODE_READ) || hdr.io_len == 0)
-+			return -EINVAL;
-+		data_size = hdr.io_len;
-+		break;
-+	case NTFS_STREAM_OP_WRITE:
-+		if (!(filp->f_mode & FMODE_WRITE) || hdr.io_len == 0)
-+			return -EINVAL;
-+		data_size = hdr.io_len;
-+		break;
-+	case NTFS_STREAM_OP_REMOVE:
-+		if (!(filp->f_mode & FMODE_WRITE) || hdr.io_len != 0)
-+			return -EINVAL;
-+		data_size = 0;
-+		break;
-+	default:
-+		return -ENOTTY;
-+	}
-+
-+	if (check_add_overflow(header_size, (size_t)hdr.name_len, &total_size) ||
-+	    check_add_overflow(total_size, data_size, &total_size))
-+		return -EOVERFLOW;
-+
-+	req = memdup_user(ureq, total_size);
-+	if (IS_ERR(req))
-+		return PTR_ERR(req);
-+
-+	req->bytes_returned = 0;
-+
-+	kname = (char *)req->buffer;
-+	kdata = (char *)req->buffer + req->name_len;
-+
-+	if (req->name_len != hdr.name_len || req->io_len != hdr.io_len ||
-+	    req->flags != hdr.flags || req->reserved) {
-+		err = -EINVAL;
-+		goto out_free;
-+	}
-+
-+	if (utf16) {
-+		/* Name is already on-disk UTF-16LE; use it in place. */
-+		sname = (__le16 *)kname;
-+		sname_len = req->name_len / sizeof(__le16);
-+	} else {
-+		if (memchr(kname, '\0', req->name_len)) {
-+			err = -EINVAL;
-+			goto out_free;
-+		}
-+		sname_len = ntfs_nlstoucs(ni->vol, kname, req->name_len,
-+				&uname, NTFS_MAX_NAME_LEN);
-+		if (sname_len < 0) {
-+			err = sname_len;
-+			goto out_free;
-+		}
-+		sname = uname;
-+	}
-+
-+	switch (op) {
-+	case NTFS_STREAM_OP_READ:
-+		err = ntfs_read_named_stream(ni, sname, sname_len,
-+					     req->stream_offset, req->io_len,
-+					     kdata,
-+					     &req->bytes_returned);
-+		if (!err) {
-+			if (copy_to_user(ureq, req,
-+					header_size + req->name_len + req->bytes_returned))
-+				err = -EFAULT;
-+		}
-+		break;
-+	case NTFS_STREAM_OP_WRITE:
-+		err = mnt_want_write_file(filp);
-+		if (err)
-+			break;
-+		err = ntfs_write_named_stream(ni, sname, sname_len,
-+					      req->stream_offset, req->io_len,
-+					      kdata,
-+					      &req->bytes_returned);
-+		mnt_drop_write_file(filp);
-+		if (!err) {
-+			if (copy_to_user(&ureq->bytes_returned,
-+					 &req->bytes_returned,
-+					 sizeof(req->bytes_returned)))
-+				err = -EFAULT;
-+		}
-+		break;
-+	case NTFS_STREAM_OP_REMOVE:
-+		err = mnt_want_write_file(filp);
-+		if (err)
-+			break;
-+		err = ntfs_remove_named_stream(ni, sname, sname_len);
-+		mnt_drop_write_file(filp);
-+		break;
-+	default:
-+		err = -ENOTTY;
-+	}
-+
-+out_free:
-+	if (uname)
-+		kmem_cache_free(ntfs_name_cache, uname);
-+	kfree(req);
-+	return err;
-+}
-+
-+static int ntfs_ioctl_list_streams(struct file *filp, unsigned long arg)
-+{
-+	struct inode *inode = file_inode(filp);
-+	struct ntfs_inode *ni = NTFS_I(inode);
-+	struct ntfs_list_streams hdr;
-+	struct ntfs_stream_entry *entry, *last_entry = NULL;
-+	size_t required = 0;
-+	void *kbuf = NULL;
-+	void __user *ubuf;
-+	struct attr_record *a;
-+	struct ntfs_attr_search_ctx *actx;
-+	int ret = 0, err, count = 0;
-+	size_t entry_size, offset = 0;
-+	unsigned int name_len;
-+	unsigned char *sn;
-+	bool utf16;
-+
-+	if (copy_from_user(&hdr, (void __user *)arg, sizeof(hdr)))
-+		return -EFAULT;
-+
-+	if ((hdr.flags & ~NTFS_STREAM_FL_UTF16) || hdr.reserved)
-+		return -EINVAL;
-+
-+	utf16 = hdr.flags & NTFS_STREAM_FL_UTF16;
-+
-+	ubuf = (void __user *)arg + sizeof(hdr);
-+
-+	mutex_lock(&ni->mrec_lock);
-+	actx = ntfs_attr_get_search_ctx(ni, NULL);
-+	if (!actx) {
-+		mutex_unlock(&ni->mrec_lock);
-+		return -ENOMEM;
-+	}
-+
-+	while ((err = ntfs_attrs_walk(actx)) == 0) {
-+		a = actx->attr;
-+		if (a->type != AT_DATA || !a->name_length)
-+			continue;
-+
-+		if (utf16) {
-+			name_len = a->name_length * sizeof(__le16);
-+		} else {
-+			sn = ntfs_attr_name_get(ni->vol,
-+					(__le16 *)((u8 *)a + le16_to_cpu(a->name_offset)),
-+					a->name_length);
-+			if (!sn) {
-+				ret = -EIO;
-+				goto out;
-+			}
-+			name_len = strlen(sn);
-+			ntfs_attr_name_free(&sn);
-+		}
-+
-+		entry_size = sizeof(*entry) + name_len;
-+		entry_size = ALIGN(entry_size, 8);
-+
-+		if (required > SIZE_MAX - entry_size) {
-+			ret = -EOVERFLOW;
-+			goto out;
-+		}
-+		required += entry_size;
-+		count++;
-+	}
-+	if (err != -ENOENT) {
-+		ret = err;
-+		goto out;
-+	}
-+
-+	hdr.stream_count = count;
-+	hdr.bytes_returned = required;
-+
-+	if (!count)
-+		goto out;
-+
-+	if (hdr.buffer_size < required) {
-+		ret = -ENOSPC;
-+		goto out;
-+	}
-+
-+	kbuf = kvzalloc(required, GFP_NOFS);
-+	if (!kbuf) {
-+		ret = -ENOMEM;
-+		goto out;
-+	}
-+
-+	ntfs_attr_reinit_search_ctx(actx);
-+	while ((err = ntfs_attrs_walk(actx)) == 0) {
-+		a = actx->attr;
-+		if (a->type != AT_DATA || !a->name_length)
-+			continue;
-+		if (utf16) {
-+			sn = NULL;
-+			name_len = a->name_length * sizeof(__le16);
-+		} else {
-+			sn = ntfs_attr_name_get(ni->vol,
-+					(__le16 *)((u8 *)a + le16_to_cpu(a->name_offset)),
-+					a->name_length);
-+			if (!sn) {
-+				ret = -EIO;
-+				goto out;
-+			}
-+			name_len = strlen(sn);
-+		}
-+
-+		entry_size = sizeof(*entry) + name_len;
-+		entry_size = ALIGN(entry_size, 8);
-+		if (offset > required - entry_size) {
-+			ret = -EOVERFLOW;
-+			ntfs_attr_name_free(&sn);
-+			goto out;
-+		}
-+
-+		entry = (struct ntfs_stream_entry *)(kbuf + offset);
-+
-+		if (a->non_resident) {
-+			entry->size = le64_to_cpu(a->data.non_resident.data_size);
-+			entry->alloc_size =
-+				le64_to_cpu(a->data.non_resident.allocated_size);
-+
-+		} else {
-+			entry->size = le32_to_cpu(a->data.resident.value_length);
-+			entry->alloc_size = le32_to_cpu(a->length) -
-+				le16_to_cpu(a->data.resident.value_offset);
-+		}
-+
-+		entry->name_len = name_len;
-+		if (utf16)
-+			memcpy(entry->name,
-+			       (u8 *)a + le16_to_cpu(a->name_offset), name_len);
-+		else
-+			memcpy(entry->name, sn, name_len);
-+		ntfs_attr_name_free(&sn);
-+
-+		entry->next_entry_off = entry_size;
-+		last_entry = entry;
-+		offset += entry_size;
-+	}
-+	if (err != -ENOENT) {
-+		ret = err;
-+	} else {
-+		/* The chain terminates at the last entry. */
-+		if (last_entry)
-+			last_entry->next_entry_off = 0;
-+		hdr.bytes_returned = offset;
-+	}
-+
-+out:
-+	mutex_unlock(&ni->mrec_lock);
-+	ntfs_attr_put_search_ctx(actx);
-+
-+	if (ret && ret != -ENOSPC)
-+		goto out_free;
-+
-+	if (!ret && kbuf && copy_to_user(ubuf, kbuf, hdr.bytes_returned)) {
-+		ret = -EFAULT;
-+		goto out_free;
-+	}
-+
-+	if (copy_to_user((void __user *)arg, &hdr, sizeof(hdr)))
-+		ret = -EFAULT;
-+
-+out_free:
-+	kvfree(kbuf);
-+	return ret;
-+}
-+
- long ntfs_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
- {
- 	switch (cmd) {
-@@ -850,6 +1351,14 @@ long ntfs_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
- 		return ntfs_ioctl_set_volume_label(filp, arg);
- 	case FITRIM:
- 		return ntfs_ioctl_fitrim(NTFS_SB(file_inode(filp)->i_sb), arg);
-+	case NTFS_IOC_STREAM_READ:
-+		return ntfs_ioctl_stream(filp, arg, NTFS_STREAM_OP_READ);
-+	case NTFS_IOC_STREAM_WRITE:
-+		return ntfs_ioctl_stream(filp, arg, NTFS_STREAM_OP_WRITE);
-+	case NTFS_IOC_STREAM_REMOVE:
-+		return ntfs_ioctl_stream(filp, arg, NTFS_STREAM_OP_REMOVE);
-+	case NTFS_IOC_LIST_STREAMS:
-+		return ntfs_ioctl_list_streams(filp, arg);
- 	default:
- 		return -ENOTTY;
- 	}
-diff --git a/include/uapi/linux/ntfs.h b/include/uapi/linux/ntfs.h
-new file mode 100644
-index 000000000000..a5783dc3b905
---- /dev/null
-+++ b/include/uapi/linux/ntfs.h
-@@ -0,0 +1,115 @@
-+/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-+/*
-+ * Copyright (c) 2026 LG Electronics Co., Ltd.
-+ */
-+
-+#ifndef _UAPI_LINUX_NTFS_H
-+#define _UAPI_LINUX_NTFS_H
-+#include <linux/types.h>
-+#include <linux/ioctl.h>
-+
-+#define NTFS_IOC_MAGIC	0xEF
-+
-+/*
-+ * Flags for ntfs_stream.flags and ntfs_list_streams.flags.
-+ *
-+ * The stream name is raw UTF-16LE, exactly as stored on disk, instead of
-+ * being encoded with the mounted filesystem NLS. This allows lossless
-+ * round-tripping of stream names whose characters are not representable
-+ * in the mount NLS (e.g. for Wine, which works in UTF-16 natively).
-+ * When set, the name length fields count bytes of UTF-16LE and must
-+ * therefore be even.
-+ */
-+#define NTFS_STREAM_FL_UTF16	0x1
-+
-+/*
-+ * ntfs named stream ioctl structure.
-+ *
-+ * @stream_offset:	Offset within the named stream.
-+ * @io_len:		Number of bytes to read/write.
-+ * @bytes_returned:	Actual bytes transferred (out).
-+ * @name_len:		Stream name length in bytes, not including any
-+ *			terminating NUL (which must not be present). When
-+ *			NTFS_STREAM_FL_UTF16 is set this is a UTF-16LE byte
-+ *			count and must be even.
-+ * @flags:		Bit mask of NTFS_STREAM_FL_* flags. other bits must be
-+ *			zero.
-+ * @reserved:		Must be zero.
-+ * @buffer:		Stream name followed by stream data.
-+ *
-+ * The stream name is the bare stream name, without the leading ':' or the
-+ * trailing ":$DATA" decoration used by Windows. By default it is encoded with
-+ * the mounted filesystem NLS. If NTFS_STREAM_FL_UTF16 is set in @flags it is
-+ * raw UTF-16LE instead. For read and write, @io_len bytes of data follow the
-+ * name. For remove, only the name is required and @io_len must be zero.
-+ */
-+struct ntfs_stream {
-+	__aligned_u64 stream_offset;
-+	__aligned_u64 io_len;
-+	__aligned_u64 bytes_returned;
-+	__u32 name_len;
-+	__u32 flags;
-+	__aligned_u64 reserved;
-+	__u8 buffer[]; /* name + data */
-+};
-+
-+/*
-+ * Single stream entry returned by NTFS_IOC_LIST_STREAMS.
-+ *
-+ * @next_entry_off:	Byte offset from the start of this entry to the next
-+ *			entry, or zero for the last entry. Always a multiple
-+ *			of 8. Consumers must use this to advance instead of
-+ *			computing the stride themselves, so the entry can grow
-+ *			new fields without breaking the ABI.
-+ * @size:		Stream data size in bytes.
-+ * @alloc_size:		Bytes allocated for the stream (cluster aligned for
-+ *			non-resident streams).
-+ * @name_len:		Stream name length in bytes, not including a NUL
-+ *			terminator (none is stored). Counts UTF-16LE bytes
-+ *			when NTFS_STREAM_FL_UTF16 was requested.
-+ * @reserved:		Must be zero.
-+ * @name:		Bare stream name; NLS encoded, or raw UTF-16LE when
-+ *			NTFS_STREAM_FL_UTF16 was requested (see struct
-+ *			ntfs_stream).
-+ */
-+struct ntfs_stream_entry {
-+	__aligned_u64 next_entry_off;
-+	__aligned_u64 size;
-+	__aligned_u64 alloc_size;
-+	__u32 name_len;
-+	__u32 reserved;
-+	__u8 name[];
-+};
-+
-+/*
-+ * ntfs list streams ioctl structure.
-+ *
-+ * @buffer_size:	user buffer size(in).
-+ * @bytes_returned:	actual bytes written or required(out).
-+ * @stream_count:	number of streams(out).
-+ * @flags:		Bit mask of NTFS_STREAM_FL_* flags controlling the
-+ *			encoding of the returned names; other bits must be zero.
-+ * @reserved:		Must be zero.
-+ * @buffer:		ntfs_stream_entry array.
-+ *
-+ * The variable-length entries follow the header in @buffer, each aligned on
-+ * an 8-byte boundary and chained via ntfs_stream_entry.next_entry_off. If
-+ * @buffer_size is too small, no data is copied, @stream_count and
-+ * @bytes_returned report the required values and the ioctl fails with
-+ * -ENOSPC.
-+ */
-+struct ntfs_list_streams {
-+	__aligned_u64 buffer_size;
-+	__aligned_u64 bytes_returned;
-+	__aligned_u64 stream_count;
-+	__u32 flags;
-+	__u32 reserved;
-+	__u8 buffer[];
-+};
-+
-+#define NTFS_IOC_STREAM_READ		_IOWR(NTFS_IOC_MAGIC, 1, struct ntfs_stream)
-+#define NTFS_IOC_STREAM_WRITE		_IOWR(NTFS_IOC_MAGIC, 2, struct ntfs_stream)
-+#define NTFS_IOC_STREAM_REMOVE		_IOWR(NTFS_IOC_MAGIC, 3, struct ntfs_stream)
-+#define NTFS_IOC_LIST_STREAMS		_IOWR(NTFS_IOC_MAGIC, 4, struct ntfs_list_streams)
-+
-+#endif /* _UAPI_LINUX_NTFS_H */
+---
+Hyunchul Lee (4):
+      ntfs: replace raw ctx->al_entry with restartable attr-list locators
+      ntfs: protect attribute-list buffer replacement with attr_list_persist_lock
+      ntfs: protect attribute-list creation/teardown with attr_list_persist_lock
+      ntfs: protect mapping-pairs attr-list updates with attr_list_persist_lock
+
+ fs/ntfs/attrib.c   | 472 ++++++++++++++++++++++++++++++++++++++++++++---------
+ fs/ntfs/attrib.h   |  48 +++++-
+ fs/ntfs/attrlist.c | 181 ++++++++++++++++----
+ fs/ntfs/attrlist.h |   1 +
+ fs/ntfs/index.c    |   3 +-
+ fs/ntfs/inode.c    |  73 +++++++--
+ fs/ntfs/inode.h    |   9 +
+ fs/ntfs/namei.c    |   2 +-
+ fs/ntfs/super.c    |   2 +-
+ 9 files changed, 659 insertions(+), 132 deletions(-)
+---
+base-commit: 985e0ded13bc51da8d5eba3a3bad1cb3ffb4870f
+change-id: 20260727-topic-attr-list-lock-v6-f1a909e3c859
+
+Best regards,
 -- 
-2.25.1
+Hyunchul Lee <hyc.lee@gmail.com>
 
