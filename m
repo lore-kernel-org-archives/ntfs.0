@@ -1,111 +1,140 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183AF356778
-	for <ntfs@lists.linux.dev>; Fri, 31 Jul 2026 13:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785506190; cv=none; b=H0cfT4wQKYgAqHNR+3zwMEUltKjSMFfqJ6ihINn2CRjV8zn4SbTRNw1HJgRpgjWHO3oMVFDbiB+xuwoASC70toYOhL1mcWyFYn6yET27aNWNbZKwNlmtWfHWg8R0Zqcx8f87/xiAHwpFxwxGLf7+hRVSkpT4EGTyhahOwLBtPaQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785506190; c=relaxed/simple;
-	bh=HlouSjId4hTq1RwnL9VvjUWA+mJLEAQW2fYFV3Ly/cA=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6355C23EAB0
+	for <ntfs@lists.linux.dev>; Sun,  2 Aug 2026 02:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1785638423; cv=pass; b=ReTfphkosWNP7W+TJS4ysEnt3YNMwhNOIOVrLUVbET/tU2Ciiuw5P06IFBmt2TVfFY6Du8tErGjyD40G2Ti4kIlpnkwYsn9o8urWJogWj0qy/Bw8JBdqbTfrwqnGdwSv/aaQ1ujfDi5R11+IlvUrsWG05nL5TaXhcp3l38ZUb6I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1785638423; c=relaxed/simple;
+	bh=dWYzkBPHjoRWTktMR28GquvCS5W2PfaR5W+p3DMyDjM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WJgbVDs6MIDDvyyIJi8epE9+QreOQqZ6RvI6Y0zF+Uh0Mt4QXewtjfWqmLwtDIcMev8W+/rGx6ddEHMSTuETERUJn7fJXf6FrUdwW8MYo7pCFauozJtwsaDnizWIBOK94/RoI9lO405RgbjNIkC+elLiXg67GL3XBwQ2rjAuVTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H+k+KrjU; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=IuCS4tUoVCdCKUzo0cfBO2JMq1+bzzoGsVtu76IzMm4l8t4qOKTZUnft8SzVKfDUIWQspyzuNoLbp+62bHpATeJuIFlSD8cWAJRKYnHFUZeMStMCyknm8LyO+3Yy/XEZz1MXhI/G43dLh+m6b9gFvm2232dYrWPztNgMmp4cCPk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UOneMZ6D; arc=pass smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H+k+KrjU"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1A441F00A3A
-	for <ntfs@lists.linux.dev>; Fri, 31 Jul 2026 13:56:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785506188;
-	bh=vNU2/CVtX06yMKmxx3sw2HcWOA1bjUjgqyax1T4uNLE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=H+k+KrjUKXQymky0jZxT+RpGlfly1rO7vZgD/0SwnmSJKLX1HZj5C6q1y9nFJGG96
-	 sKVdBKP1rg2nCoZhmoio9c3HiHjf1HOu5TRDDSW5L9TDyF16GmudaCElchJNWDTNpp
-	 SMFMLVUFXiJfUC/V4TIaI0xhYdveWCIASqtkvShQeTxFaqoNTYy0lp/xVm5GpwFr2l
-	 BUfwWUlmaHiJu12bJIL61Mujm05x5YoCYIhvIsT8x3Vl4Ml2d3XW3FrBECvRPEaTuU
-	 E1GWziyyE8xNy1Mf8Ws5dqsT4b7myVxcxZsxnDVUxsce8wOzML/Ulmy9NyQQHtWgr1
-	 DwTxg5jq+tNNA==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-c15d47266baso126148866b.3
-        for <ntfs@lists.linux.dev>; Fri, 31 Jul 2026 06:56:28 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwHCqhCOeWUtBtleO/RW42DGDQmHWUmvKyJzmbgoCuOsWQOwOoz
-	tHeiHx33m9CGbuThDW/ZsUHyNtAXjAsExGnGIevsvqWgr3XpwoVM717HxCdXtgglrjM8QYqzowM
-	cHygCM1ax+e5utsfn9Kcocrr+kePpd2A=
-X-Received: by 2002:a17:906:6a0a:b0:c16:886e:f0f with SMTP id
- a640c23a62f3a-c1fd28aebc0mr125184066b.48.1785506187526; Fri, 31 Jul 2026
- 06:56:27 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UOneMZ6D"
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5b15dcaca31so2217589e87.0
+        for <ntfs@lists.linux.dev>; Sat, 01 Aug 2026 19:40:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1785638420; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Mc/oLwO7BtcyGlH7ESqiKW+PKwu4HyiRSpUXNaSJx2MzumYGUdlgrvChckKA2QUTln
+         BdbyIgCGTzNK3yPVOY+5UPODzO1Mi1PMfwmTrCIp8SmBDMtyvgsYJlbFkQajpzpFPcWy
+         AUYGWYvnQU8+MvvYpB2Hv4Uwig/mfcTlYkcJxHbnSLh7TTpWiUjsebxwyQWkdWmGWymf
+         FuOeeyAHoeHgBrVCcZsljTqQQkSFcjud6aJuPUkkVWagGxwwxM/HiK6D85j3mChilclg
+         GOmY72LzKcL9b/JiPPDBsEY71WwIK1g7Mei8eWaw7WUtQSiIBXsPoHMSN3qon4QpKPf8
+         nYgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=jMqriKZrmU/aQM9SZtLPb82GZ5/DQwM7KJHSXQ48bRw=;
+        fh=msxMZ6kEuMy61c1HjmZNkacC5gZrb9Vj8Fz5eIfaJy8=;
+        b=sRg5ogDT1mPRd6rrUfNRHf55QW737MHeZ05s28juqI0kvsR/sTaj2oZbaOQJowI4hr
+         C9iJO4oysROED3CP8UNqI4Zt9U9zdCu+D16PsKxJoG461Qfnqoqpv4jo7JwWGfKtIiph
+         +Ipes7em/umFpFz8oeK2B+veNB5U8OzPWvWvan5u/eFW0Kl5atL1WibiAKjDbR9MYRD8
+         V7DSEU9IGVxlg4rg0x3cPj7tXupWU3sKm2NsdyeyQ+Z4NtdqsQSFxxXqL0cMOpJXBFK/
+         /krgJFKRYoNbVxGeo+7sfVC37x2GZHm6hIWYpgAHuPiu5uHVJ+wT29V7Ae73vsTxtTgf
+         1xXw==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1785638420; x=1786243220; darn=lists.linux.dev;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=jMqriKZrmU/aQM9SZtLPb82GZ5/DQwM7KJHSXQ48bRw=;
+        b=UOneMZ6DLSHqmnx0ktxCh0I/SKUeAwMhF9NRAJNbdgfM6h7lk+g8ajQWtCYJPxlXpQ
+         4pnpmLalxwF2+qrD1USef5eJ6BgL1dlcaYIKBq/Ser11xfB/L82s7PQDO5OX+ZX5CDcF
+         apWIH1bLAQ/AgKGfcigCCWPPOwLOGWvKWa8QkEXvdlLf/q8hM/ZXCYDNg71GnA6z+pmH
+         4O1x0ZvbJrUODD9Ag2RNWiyt6Ha/QK4OigsGl/P5n3EVb+KKo/q26Ds24kMniSoqM/xh
+         +jaHmvz7yP3tkTk04mgzF3cMaqkRaA2Qd6BMlK8TZZ5jq1IZ/pDxCaPmNw1BQ3cMjyzd
+         NQyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1785638420; x=1786243220;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=jMqriKZrmU/aQM9SZtLPb82GZ5/DQwM7KJHSXQ48bRw=;
+        b=cFJ3W5OS+n4uNqF7mhB5S9RAqpQNDxSjKMkKEnRT7WJDr7QDecEb5XKedhMVkwOauN
+         CuaiR7UYm4P5kreRpLg5AZ5nLrDRvyl5s2wL45+3XAaxpHXg/TFJluS1LH9N0Fmv6h4R
+         cq3WNlkCVn1WZU/AdZdeF6ZXfJbB7VoJDrsoXe15OgWannsLfmhhIg/fPjU1C4SdWKs8
+         UzEw879N/f52b/J6huOsLoovyUaH44nV4QJw4CeuJ7WXZrIU5No6hKJ+3DFxrN2QAGHK
+         FhkpGa5F7lRVmEFFvLPU0UtxlYLYVy8dkyMorkOMxfZVKYfbspBX5ADoxe3rdhv7tfxC
+         iycg==
+X-Gm-Message-State: AOJu0YzFvA5G4nZWcVB1b0Rg+XZOnLvfpx3xW5N4wbj5QwUyxOymtm4k
+	4X0Io3zztA7z6/mKS8iQ7jDY2Ck13L2rfGS3FjtwNhshL6ITtPFDl/mOu26G4mYEPfeKNGfmctu
+	zg3fhqL/ZIY61WxJsroVMajgmqUScORw=
+X-Gm-Gg: AR+sD12GrfIkIi7z9mbw+oTZA4baA1+3O14SbdbDbbslbwmuiWiDkJNl5SQASVng7uB
+	4ePoTzNKlR0kSwVtBXXsZX88APPeZG5q3NEHAse4A88Wa76iaLMHBIrP5bLWGLekpo6tuOM/vtQ
+	FGYdGL8rMnZoDdiWwsLN4q8jfTxxGUGcjTHjhNiZSjCzZ6l7vqfoQ29oN9uFSIGSgFrupipuhWo
+	hJGpmakzEvsxuvVVc59mzKMC1Qtgg5VQ/rSWTX7yNb42KgngV3yT8j4qiuDKNC69jDVQxzu/DhS
+	kcWXf0urZcUY9lRmqOGEUlqeENqL+6Z+rHpB6C5FMK/UAg==
+X-Received: by 2002:a05:6512:10cd:b0:5b1:59ec:2452 with SMTP id
+ 2adb3069b0e04-5b2e4f1af20mr802759e87.9.1785638420093; Sat, 01 Aug 2026
+ 19:40:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260730-topic-attr-list-lock-v6-v4-0-80d5fe0a6951@gmail.com> <20260730-topic-attr-list-lock-v6-v4-2-80d5fe0a6951@gmail.com>
-In-Reply-To: <20260730-topic-attr-list-lock-v6-v4-2-80d5fe0a6951@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Fri, 31 Jul 2026 22:56:15 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8sQyEjnh69qdOX_-jaP-6ViN0K4YibhaPH+MC4-18QVg@mail.gmail.com>
-X-Gm-Features: AUfX_mxOoHBmHcoM1i5th5_e2pUCjOBQA0K14VQPlkaAA1EK_01lWOV-g7-4mZQ
-Message-ID: <CAKYAXd8sQyEjnh69qdOX_-jaP-6ViN0K4YibhaPH+MC4-18QVg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] ntfs: protect attribute-list buffer replacement
- with attr_list_persist_lock
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev, Cen Zhang <zzzccc427@gmail.com>
+References: <20260729110036.12129-1-linkinjeon@kernel.org>
+In-Reply-To: <20260729110036.12129-1-linkinjeon@kernel.org>
+From: Hyunchul Lee <hyc.lee@gmail.com>
+Date: Sun, 2 Aug 2026 11:40:08 +0900
+X-Gm-Features: AUfX_mz1QryY1YiO8B-7V1ridiP1cPu51EZnnD1BpsBy69qUokY6kOuLPiyUdPc
+Message-ID: <CANFS6bY95QuokT5bDLnVTkHbJt_jwzS9jgBSp_rFhMMZp4+p_Q@mail.gmail.com>
+Subject: Re: [PATCH 1/1] ntfs: add ioctl support for named data streams
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, sebastian.n.feld@gmail.com, 
+	cedric.blancher@gmail.com, Lionelcons1972@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 
-> +int ntfs_attrlist_update_locked(struct ntfs_inode *base_ni)
->  {
->         struct inode *attr_vi;
->         struct ntfs_inode *attr_ni;
-> @@ -111,6 +117,23 @@ int ntfs_attrlist_update(struct ntfs_inode *base_ni)
->         return 0;
->  }
+> +
+> +       bytes = ntfs_inode_attr_pwrite(attr_vi, offset, len, data_stream,
+> +                                      false);
+> +       if (bytes < 0)
+> +               err = bytes;
 
-Thread A and Thread B are serialized by different locks here.
+offset is u64, but ntfs_inode_attr_pwrite takes s64.
+If offset is U64_MAX and len = 1, pos becomes -1.
+A resident stream can the reach memcpy(addr + pos, ...),
+causing an out-of-bounds write.
 
-Thread A holds attr_list_persist_lock and enters
-ntfs_attrlist_update_locked().  It passes base_ni->attr_list directly
-to
-ntfs_inode_attr_pwrite(), but it does not hold attr_list_lock while
-that buffer is being read and written to disk.
-At the same time, Thread B can enter ntfs_attr_record_move_to().  That
-path takes only attr_list_lock for write, so it is not blocked by
-Thread A's attr_list_persist_lock.  Thread B can therefore change an
-ALE's mft_reference and instance while Thread A is still copying the
-same attr_list buffer to disk.
+> +static int ntfs_remove_named_stream(struct ntfs_inode *ni, __le16 *uname,
+> +               u32 uname_len)
+> +{
+> +       if (!ni || !uname || uname_len == 0)
+> +               return -EINVAL;
+> +
+> +       return ntfs_attr_remove(ni, AT_DATA, uname, uname_len);
 
-The on-disk attribute list can then contain stale or partially updated
-extent identity information, even though the corresponding attribute
-record has already been moved.
+Dirty folios are not guaranteed to be evicted before
+ntfs_attr_rm() frees clusters. So invalidating
+page caches seem to be needed.
 
-The mutation and the persist need to belong to the same transaction.
-Either make every in-place ALE modifier hold attr_list_persist_lock
-until its update has been persisted, or take a private copy of
-attr_list under attr_list_lock and persist that snapshot instead of
-the live buffer.
+And we have to serialize ntfs_attr_remove() against
+other mft record modifications.
 
+> +       case NTFS_STREAM_OP_WRITE:
+> +               err = mnt_want_write_file(filp);
+> +               if (err)
+> +                       break;
+> +               err = ntfs_write_named_stream(ni, sname, sname_len,
+> +                                             req->stream_offset, req->io_len,
+> +                                             kdata,
+> +                                             &req->bytes_returned);
+> +               mnt_drop_write_file(filp);
+> +               if (!err) {
+> +                       if (copy_to_user(&ureq->bytes_returned,
+> +                                        &req->bytes_returned,
+> +                                        sizeof(req->bytes_returned)))
+> +                               err = -EFAULT;
+> +               }
+> +               break;
+> +
 
-  Thread A: persist transaction                 Thread B: record move
-  -------------------------------------------   --------------------------------
-
-  1. Takes attr_list_persist_lock
-
-  2. Starts ntfs_attrlist_update_locked()
-
-  3. Passes base_ni->attr_list directly
-     to ntfs_inode_attr_pwrite()
-     (does NOT hold attr_list_lock)
-
-                                                 4. Takes
-attr_list_lock for write
-                                                    This succeeds
-because Thread A
-                                                    does not hold its read side.
-
-                                                 5. Changes ALE:
-                                                    ale->mft_reference = ...
-                                                    ale->instance = ...
-
-                                                 6. Releases attr_list_lock
-
-  7. Continues copying the same buffer to disk
+We have to check NVolShutdown().
