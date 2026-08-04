@@ -1,39 +1,80 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06DA37F726
-	for <ntfs@lists.linux.dev>; Tue,  4 Aug 2026 00:01:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785801684; cv=none; b=qOiB5a9XgZrPckzG8XlHW1zu1BD4rDZQqYfOzJsGZ7uq1YzfquroeU2j/exMpl5CHsutCZsjkm/Dt/hHEnwcwmyHO9UZW6Zb0/qYsuVd1s1E89g/foB5hBATPgAjBF5dfxblUoObi2xcsE3YnVSgrvG0cXGSimAKjM0cpBInGx0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785801684; c=relaxed/simple;
-	bh=2odeOeh1T+U7dvOGrIBGgChezk5e0BwvV/4VQvkXvXU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F023E8685
+	for <ntfs@lists.linux.dev>; Tue,  4 Aug 2026 09:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1785834653; cv=pass; b=RKuldxFQYBZ0RE/3u1l8EMpZ/1eW01GPAuTPMiCSw21jJvZUOTBJb2+cP/xnL2wTpAimgYQjrdJUaQ9mZQ8zdar/hDeq+xZE+ehd2KfuSHAv5vZNz5DVMqKsvJWRzDt9cDBbI/6tLWirgOHaL5o7z0UVYso4RuR5ka6yf4ztYqE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1785834653; c=relaxed/simple;
+	bh=D41cRLYBHnw6B9Y2G3XWqLyHU0FJj3zLnJbRklH5eKQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=l3T8kYurnQQzYV+QS4UuRM5ZvSfgVnz0AQEdkN6hXvFzhCrkN8Q5EbaHAMxDw6V5p5ucU2kOchPij0s+HOKIk6UKFMwZa37ccw2lD1jH4RNv2GthaOPutXHqhAOIpHWGDuJL2xDkiLLM4VaZa0QkZenOror2hgHeQVI/yVtgXtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VqCMbVd5; arc=none smtp.client-ip=100.103.45.18
+	 To:Content-Type; b=VjR4T4ay9fOWHXV7WKdmu7CQNqFf14mIE48J5ZYBi91MtxO5aQmxX3GEN+APpJltlbtbqKDso/2+WiMyKcDjq6noflvF2X035S6apPkRq3z6ScUYkwTvE27pXZxgdIxDrDuu9CCImJ14XQdeUHLQIAaZlkfoyQcbY00G10Vu2Ow=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NsCjJ0qs; arc=pass smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VqCMbVd5"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C98811F000E9
-	for <ntfs@lists.linux.dev>; Tue,  4 Aug 2026 00:01:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785801680;
-	bh=k4QGE6NSPXlab5Yww5cEWxbsUkUBTyzy6TaVwcYtAmM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=VqCMbVd57pX6BjJdZYnsEZEwf9vgTQN9socyzIsZxX8Fr/KElZghl2KBsTmp5cfuc
-	 RHIpZ3rWdxZm5pk4g8pwEkYrtCudm6JfxSVwxz0FI0R2LUvynx80Dljp95ed3l1z6L
-	 oHO/Zy78bYA5ibpzOl8F34Qx9378yhXnPlv1nbMLmxklATg0Ww7Do1jDpAr1XoQcPP
-	 c0EYC3ChavJZ8IdKvXrvTLDMGYUxvMkShCF91C+5aVDojPehHuVpjvwtIVhgGUmYMs
-	 bIdgyJtAiaYW0qt7CTDcKfo6k/2qD59TdPJEUyHo9cTWaCOxF/gxsyvfP6pkG9yMNb
-	 3lI47pMAxIBxw==
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-c1fbe461f59so571252966b.2
-        for <ntfs@lists.linux.dev>; Mon, 03 Aug 2026 17:01:20 -0700 (PDT)
-X-Gm-Message-State: AOJu0YzWfec/0EXSPbo5v2SOxtvfiioiTsHFUC6ptsyblDCEnWXhg0/m
-	4vZWhFtUzF38aJiYG+JxSJ80ptcyG8wQdXoEo7TizpZpHujKkWbwGQ/uoqEFd82nMrdxOh5AV82
-	l6eFzB5VuIisaqBFSMi2fJdc7oGyGStw=
-X-Received: by 2002:a17:907:97d6:b0:c19:6d4a:425b with SMTP id
- a640c23a62f3a-c1ff382b897mr965775766b.18.1785801679418; Mon, 03 Aug 2026
- 17:01:19 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NsCjJ0qs"
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5b0115b9e17so4119344e87.0
+        for <ntfs@lists.linux.dev>; Tue, 04 Aug 2026 02:10:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1785834650; cv=none;
+        d=google.com; s=arc-20260327;
+        b=N8J+Jt7TeaM7GqtgC2Dh+kqiDg+zptGJtlVXF9QpLnv3hd1SJNuuo8TbECnFU+210h
+         TSmdBAyW50ERg+cDfhiK0qYR3MEugggj/UU3RFITkIQE+48XhqkBYzsKjtWh6czPDfFY
+         L+5xpAEll7CHO3LrRQUOxcuKDNFZDHvO+kko+i6crbv0Glq+dzsmuHA8aoCalVIq78xy
+         2BlXWu7TbY1AAzQmg7txz8PpC9IDBORsecYFJnx9P6XgwoGPBACiT3nmyP/aBKYNkLoz
+         fGlimTlJOIxu1dJFr9JCTkRy6x/ZW0W211RZJ8eYl0ZlGfrTqjz4joacr0uIk6qs3Fa8
+         j0Bw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=gKrRKD9mOOpHls+nK2VAtpKS46uprjKQsiDimCvh0MI=;
+        fh=hwtfrABqq5NLEhMhwvoXeIH1gcb6eoKj9e4/4hBIHbU=;
+        b=W9GDqTur7uMJ3D/YmiQkQWi+8nl2KmS5yuLyI3G036EZXW68UZCU7Ca2zotT/Afdpd
+         HCn8FsyKbLZxscohQiqoHkI0AK5cgV5fmZ4RFsCnZMKOROaFq2AnqOzHPJMpjpQbiOi3
+         AmKN/DfTnxZukcY1RZoDCQSM26Shl0dmqaoCO1RO77kYUJQ10IxBOZyxCtFV+aLrwKRC
+         7VU05aSCNb6urKVb01rxffLnYIBzZ3Oklpznzzd3pX3GQPOCvjWfUBg5cm8I1+6uTnX3
+         sIcnYdWptK4WXXvpQHmo6vaiaZXTjlTX5nC1zCuzCYBoXQJ9ULjaAvwN4dAuv14eOmOX
+         zy3Q==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1785834650; x=1786439450; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=gKrRKD9mOOpHls+nK2VAtpKS46uprjKQsiDimCvh0MI=;
+        b=NsCjJ0qsO36WPXxSNTCqtwGAkZSMOdR0XHXbUZXCTDPk4g+XLrElaxYJr+d+kTuV7v
+         OSSyFRDkVmGeRngEjXlY7y97RO6nP4PpSbsQS2ObIDY2BRt5egN1lh+Ku+hLH7ZMBIeQ
+         NyR0HWPHGAcRHdKoI0pgpIMGAeUUElbXy4SibZQXI2QrLlKQTXwIFHhuqmNZoe3q6hwI
+         wWTo+rdLgOyA3XDKEnxrkUdETMd5a3kvOxLOnC8h2eDB8tvA2hOKEDmKbJKmq5mp3ud2
+         uODfA43xqMVluyhyuh+gBqSvB7SGqZeV5XlKLp2mfl+LvJMzRscyvNEFLbIs/MMpHfmj
+         Ntcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1785834650; x=1786439450;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=gKrRKD9mOOpHls+nK2VAtpKS46uprjKQsiDimCvh0MI=;
+        b=G3lt/5aHfj6TcZG8VZ0yrR0WntT8Oqxqmq7J1FXnvTOFu+6GYST5XIrA4W/8Rf0/6c
+         svtYbaPYfS4p2eNeva5Rt572jjkCUVv12ruEGgNeIeEH/bEzTIxdy0xhJnGwPj5741+w
+         ueX36Q4R5+d2FMxRKodrF2SuDyhakvURdwMdQGXlb/uSJiApixqGcTrB9+q8bCXiJ8CW
+         u65N4WlPUCJJ0RdJKLOy9Mvso/jW5uQHnhWnZyV9gH+n5Wjw6MvUuFt7sxw5w6zMEOu0
+         kWMt+b/ugyAbtLJ2Ek+d+F+e5K3wfcnoh+lY1XZq7ChFCsS7gsxSGyrvk8jnCR9UGfDB
+         TpiQ==
+X-Forwarded-Encrypted: i=1; AHgh+RoXdB7CSjzn+Aon3Ga42qLN+6fMLIisYVMcgchjniarkl+lxrmPN+9ieBP/OO4MQOiDkgbd@lists.linux.dev
+X-Gm-Message-State: AOJu0YwEZoucSiHaNk9ErXgGnNA38g7uOyuYtuv/QLIfgYXWTZnkiRs3
+	DYbPAh3OzruwY2uGtTHgvcCbK7lUxewAePrOFPo+S3B835SnDX6QZr4+6at0JhV/DcWGwY7SIK3
+	32CLOp7GFOiO3plsPHKRiFmI0cnjn0Hk=
+X-Gm-Gg: AR+sD10qWEWsUyITHNKLAiM9sbeaAXJy9kTVKNROGROH1cFzQht6WQQ0EqHqtbaCUkV
+	ZZxeisVpZwGgWrFrDxNkm0NVzvrstiQwPCzfgNAvRtrnxzDHpbGYJYyR2YnaM/ZAOOE+o7HNxD4
+	GePOqTwSch/UkR+vCNmDSxHIpQcHySBVPZ/hGx48GKhABEhoWKjt7LHXI6sRgijFsPrHlfhWWv0
+	KYw//PFY1hS3krSan2OyeH09MhZNwxOTDCMwIIHZDwKoa39P0ehixDJ1zfCvHouUDH1u9m5OSfS
+	4avU5ICVm0DTFC18FpxpOfNf/+1wRnrNyD9V3EWxUpYVqyqKV9a4k38=
+X-Received: by 2002:ac2:4307:0:b0:5b0:82d:e90e with SMTP id
+ 2adb3069b0e04-5b2e4f3405fmr1874406e87.19.1785834650023; Tue, 04 Aug 2026
+ 02:10:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -41,52 +82,71 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 References: <20260729110036.12129-1-linkinjeon@kernel.org> <CAPJSo4WUxiKcfjDkHuOVhqBmvHng7JdWX1dibsYFjW6qwTCUSw@mail.gmail.com>
-In-Reply-To: <CAPJSo4WUxiKcfjDkHuOVhqBmvHng7JdWX1dibsYFjW6qwTCUSw@mail.gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Tue, 4 Aug 2026 09:01:07 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd_oohSF2rLCns432OMACc6S-M7Hv8jCGtkD-rOd2QMYEQ@mail.gmail.com>
-X-Gm-Features: AUfX_mzMcNYphat83VSAzBWJ7zNVLgLPGxzUUc8iSZVmufsI1rI9f8b9t-YmBaY
-Message-ID: <CAKYAXd_oohSF2rLCns432OMACc6S-M7Hv8jCGtkD-rOd2QMYEQ@mail.gmail.com>
+ <CAKYAXd_oohSF2rLCns432OMACc6S-M7Hv8jCGtkD-rOd2QMYEQ@mail.gmail.com>
+In-Reply-To: <CAKYAXd_oohSF2rLCns432OMACc6S-M7Hv8jCGtkD-rOd2QMYEQ@mail.gmail.com>
+From: Sebastian Feld <sebastian.n.feld@gmail.com>
+Date: Tue, 4 Aug 2026 11:10:12 +0200
+X-Gm-Features: AUfX_mxs4J-zNjoQGvz1DTxT6nz7Z7O04WeQAWYbe-SYZyntetnQXDrEW-1S1So
+Message-ID: <CAHnbEGJxN9mh7cGN7ycay63F75Z0+_G0fsHm9bgxHesacUrcSA@mail.gmail.com>
 Subject: Re: [PATCH 1/1] ntfs: add ioctl support for named data streams
-To: Lionel Cons <lionelcons1972@gmail.com>
-Cc: ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+To: Namjae Jeon <linkinjeon@kernel.org>, ntfs@lists.linux.dev, 
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 3, 2026 at 6:10=E2=80=AFPM Lionel Cons <lionelcons1972@gmail.co=
-m> wrote:
+On Tue, Aug 4, 2026 at 2:01=E2=80=AFAM Namjae Jeon <linkinjeon@kernel.org> =
+wrote:
 >
-> On Wed, 29 Jul 2026 at 13:00, Namjae Jeon <linkinjeon@kernel.org> wrote:
+> On Mon, Aug 3, 2026 at 6:10=E2=80=AFPM Lionel Cons <lionelcons1972@gmail.=
+com> wrote:
 > >
-> > Sebastian and Cedric requested NTFS driver support for an interface tha=
-t
-> > WINE can use to access named data streams.
+> > On Wed, 29 Jul 2026 at 13:00, Namjae Jeon <linkinjeon@kernel.org> wrote=
+:
+> > >
+> > > Sebastian and Cedric requested NTFS driver support for an interface t=
+hat
+> > > WINE can use to access named data streams.
+> > >
+> > > NTFS supports multiple named $DATA attributes, commonly known as alte=
+rnate
+> > > data streams, but they are not directly accessible through the existi=
+ng
+> > > file operations. Add NTFS-specific ioctl commands to let userspace li=
+st,
+> > > read, write, and remove named data streams on an opened file.
+> > >
+> > > The new UAPI provides separate commands for each operation:
+> > >
+> > >   - NTFS_IOC_STREAM_READ
+> > >   - NTFS_IOC_STREAM_WRITE
+> > >   - NTFS_IOC_STREAM_REMOVE
 > >
-> > NTFS supports multiple named $DATA attributes, commonly known as altern=
-ate
-> > data streams, but they are not directly accessible through the existing
-> > file operations. Add NTFS-specific ioctl commands to let userspace list=
-,
-> > read, write, and remove named data streams on an opened file.
-> >
-> > The new UAPI provides separate commands for each operation:
-> >
-> >   - NTFS_IOC_STREAM_READ
-> >   - NTFS_IOC_STREAM_WRITE
-> >   - NTFS_IOC_STREAM_REMOVE
->
-> Wouldn't it be better to just provide an API to get a fd, relative to
-> a filename? Win32 named streams can be sparse, and it is common to
-> punch holes to deallocate sections of streams too. Streams do have
-> their own timestamps, too.
-I believe the current ioctl interface is the best fit for this
-support. It operates on an already-open base-file fd, avoids pathname
-ambiguity with :, supports UTF-16 stream names, and does not require a
-new system call or VFS changes. If WINE requires hole punching for
-sparse streams, I can extend the ioctl interface to support it.
->
-> >   - NTFS_IOC_LIST_STREAMS
->
-> NTFS_IOC_LIST_STREAMS looks OK.
-Thanks!
+> > Wouldn't it be better to just provide an API to get a fd, relative to
+> > a filename? Win32 named streams can be sparse, and it is common to
+> > punch holes to deallocate sections of streams too. Streams do have
+> > their own timestamps, too.
+> I believe the current ioctl interface is the best fit for this
+> support. It operates on an already-open base-file fd, avoids pathname
+> ambiguity with :,
+
+Nope, NFS already fixed this by allowing "unnamed" fd for deleted
+files. Not having a name is OK. Win32 uses
+"filename:streamname:$DATA", if any resolving is needed. That works,
+because the Win32 API and NTFS forbit ':' within file and dir names.
+
+> supports UTF-16 stream names, and does not require a
+> new system call or VFS changes. If WINE requires hole punching for
+> sparse streams, I can extend the ioctl interface to support it.
+
+Wearing my hat as the one who has to do the WINE implementation side:
+I think a fd with all normal file operations available is the better
+option, because we need to do per stream: read(), write(), fsync(),
+fdatasync(), sync_file_range(), file locking for each stream
+separately, mmap(), getting/setting timestamps, futimes(), fstat(),
+ftruncate(), lseek() SEEK_HOLE,SEEK_DATA, fallocate() for space
+allocation/deallocation, unlink(), ... and likely more. Pretty much
+every syscall, except mkdir(),mknod(),rmdir().
+
+Sebi
+--=20
+Sebastian Feld - IT security consultant
