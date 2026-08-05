@@ -1,152 +1,143 @@
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F023E8685
-	for <ntfs@lists.linux.dev>; Tue,  4 Aug 2026 09:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785834653; cv=pass; b=RKuldxFQYBZ0RE/3u1l8EMpZ/1eW01GPAuTPMiCSw21jJvZUOTBJb2+cP/xnL2wTpAimgYQjrdJUaQ9mZQ8zdar/hDeq+xZE+ehd2KfuSHAv5vZNz5DVMqKsvJWRzDt9cDBbI/6tLWirgOHaL5o7z0UVYso4RuR5ka6yf4ztYqE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785834653; c=relaxed/simple;
-	bh=D41cRLYBHnw6B9Y2G3XWqLyHU0FJj3zLnJbRklH5eKQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Content-Type; b=VjR4T4ay9fOWHXV7WKdmu7CQNqFf14mIE48J5ZYBi91MtxO5aQmxX3GEN+APpJltlbtbqKDso/2+WiMyKcDjq6noflvF2X035S6apPkRq3z6ScUYkwTvE27pXZxgdIxDrDuu9CCImJ14XQdeUHLQIAaZlkfoyQcbY00G10Vu2Ow=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NsCjJ0qs; arc=pass smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NsCjJ0qs"
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5b0115b9e17so4119344e87.0
-        for <ntfs@lists.linux.dev>; Tue, 04 Aug 2026 02:10:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1785834650; cv=none;
-        d=google.com; s=arc-20260327;
-        b=N8J+Jt7TeaM7GqtgC2Dh+kqiDg+zptGJtlVXF9QpLnv3hd1SJNuuo8TbECnFU+210h
-         TSmdBAyW50ERg+cDfhiK0qYR3MEugggj/UU3RFITkIQE+48XhqkBYzsKjtWh6czPDfFY
-         L+5xpAEll7CHO3LrRQUOxcuKDNFZDHvO+kko+i6crbv0Glq+dzsmuHA8aoCalVIq78xy
-         2BlXWu7TbY1AAzQmg7txz8PpC9IDBORsecYFJnx9P6XgwoGPBACiT3nmyP/aBKYNkLoz
-         fGlimTlJOIxu1dJFr9JCTkRy6x/ZW0W211RZJ8eYl0ZlGfrTqjz4joacr0uIk6qs3Fa8
-         j0Bw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=gKrRKD9mOOpHls+nK2VAtpKS46uprjKQsiDimCvh0MI=;
-        fh=hwtfrABqq5NLEhMhwvoXeIH1gcb6eoKj9e4/4hBIHbU=;
-        b=W9GDqTur7uMJ3D/YmiQkQWi+8nl2KmS5yuLyI3G036EZXW68UZCU7Ca2zotT/Afdpd
-         HCn8FsyKbLZxscohQiqoHkI0AK5cgV5fmZ4RFsCnZMKOROaFq2AnqOzHPJMpjpQbiOi3
-         AmKN/DfTnxZukcY1RZoDCQSM26Shl0dmqaoCO1RO77kYUJQ10IxBOZyxCtFV+aLrwKRC
-         7VU05aSCNb6urKVb01rxffLnYIBzZ3Oklpznzzd3pX3GQPOCvjWfUBg5cm8I1+6uTnX3
-         sIcnYdWptK4WXXvpQHmo6vaiaZXTjlTX5nC1zCuzCYBoXQJ9ULjaAvwN4dAuv14eOmOX
-         zy3Q==;
-        darn=lists.linux.dev
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1785834650; x=1786439450; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:to:subject:message-id:date
-         :from:in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=gKrRKD9mOOpHls+nK2VAtpKS46uprjKQsiDimCvh0MI=;
-        b=NsCjJ0qsO36WPXxSNTCqtwGAkZSMOdR0XHXbUZXCTDPk4g+XLrElaxYJr+d+kTuV7v
-         OSSyFRDkVmGeRngEjXlY7y97RO6nP4PpSbsQS2ObIDY2BRt5egN1lh+Ku+hLH7ZMBIeQ
-         NyR0HWPHGAcRHdKoI0pgpIMGAeUUElbXy4SibZQXI2QrLlKQTXwIFHhuqmNZoe3q6hwI
-         wWTo+rdLgOyA3XDKEnxrkUdETMd5a3kvOxLOnC8h2eDB8tvA2hOKEDmKbJKmq5mp3ud2
-         uODfA43xqMVluyhyuh+gBqSvB7SGqZeV5XlKLp2mfl+LvJMzRscyvNEFLbIs/MMpHfmj
-         Ntcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785834650; x=1786439450;
-        h=content-transfer-encoding:content-type:to:subject:message-id:date
-         :from:in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=gKrRKD9mOOpHls+nK2VAtpKS46uprjKQsiDimCvh0MI=;
-        b=G3lt/5aHfj6TcZG8VZ0yrR0WntT8Oqxqmq7J1FXnvTOFu+6GYST5XIrA4W/8Rf0/6c
-         svtYbaPYfS4p2eNeva5Rt572jjkCUVv12ruEGgNeIeEH/bEzTIxdy0xhJnGwPj5741+w
-         ueX36Q4R5+d2FMxRKodrF2SuDyhakvURdwMdQGXlb/uSJiApixqGcTrB9+q8bCXiJ8CW
-         u65N4WlPUCJJ0RdJKLOy9Mvso/jW5uQHnhWnZyV9gH+n5Wjw6MvUuFt7sxw5w6zMEOu0
-         kWMt+b/ugyAbtLJ2Ek+d+F+e5K3wfcnoh+lY1XZq7ChFCsS7gsxSGyrvk8jnCR9UGfDB
-         TpiQ==
-X-Forwarded-Encrypted: i=1; AHgh+RoXdB7CSjzn+Aon3Ga42qLN+6fMLIisYVMcgchjniarkl+lxrmPN+9ieBP/OO4MQOiDkgbd@lists.linux.dev
-X-Gm-Message-State: AOJu0YwEZoucSiHaNk9ErXgGnNA38g7uOyuYtuv/QLIfgYXWTZnkiRs3
-	DYbPAh3OzruwY2uGtTHgvcCbK7lUxewAePrOFPo+S3B835SnDX6QZr4+6at0JhV/DcWGwY7SIK3
-	32CLOp7GFOiO3plsPHKRiFmI0cnjn0Hk=
-X-Gm-Gg: AR+sD10qWEWsUyITHNKLAiM9sbeaAXJy9kTVKNROGROH1cFzQht6WQQ0EqHqtbaCUkV
-	ZZxeisVpZwGgWrFrDxNkm0NVzvrstiQwPCzfgNAvRtrnxzDHpbGYJYyR2YnaM/ZAOOE+o7HNxD4
-	GePOqTwSch/UkR+vCNmDSxHIpQcHySBVPZ/hGx48GKhABEhoWKjt7LHXI6sRgijFsPrHlfhWWv0
-	KYw//PFY1hS3krSan2OyeH09MhZNwxOTDCMwIIHZDwKoa39P0ehixDJ1zfCvHouUDH1u9m5OSfS
-	4avU5ICVm0DTFC18FpxpOfNf/+1wRnrNyD9V3EWxUpYVqyqKV9a4k38=
-X-Received: by 2002:ac2:4307:0:b0:5b0:82d:e90e with SMTP id
- 2adb3069b0e04-5b2e4f3405fmr1874406e87.19.1785834650023; Tue, 04 Aug 2026
- 02:10:50 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8AB03F8EAF
+	for <ntfs@lists.linux.dev>; Wed,  5 Aug 2026 09:29:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1785922166; cv=none; b=UqSKjV1GwEwrPCh13/wIXGdEfMqbugNjkHyz6xFx5MWkV9QBDSIM4tg0cDRmzzmfd2Y7rdu2bVCzRouXh2WT9crrnYQH39iB1kN5tpVbgQGKPXtcQLz6M3OAIePm/kC6y1urNn/InBugLCINwoCaWILzYgDI3wW27AcbdIX+wXY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1785922166; c=relaxed/simple;
+	bh=Ky0V2UofAujX66s+HUXLD01q1ni68J3p0RJ1NV/yM/A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CI9mM+U3Ki21Slo/tsAqbh3UKGO3N3I/72TC7maCJk4l5mFidnnHAza+E/AprVas0s2E1sXIozjG8nNLlSMjggIB+cVlm9E1bJUEEh8SdTUmLxM36PSg/rOulkoEhCAxfcqa8b8lXDIlwjQLw2ukJy4VBR6Vca7M/Wv8j5MBiHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 1eb0878e90b011f1aa26b74ffac11d73-20260805
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:3a183ffd-c44f-4b1d-a550-e5b0ef6beab0,IP:0,U
+	RL:0,TC:0,Content:0,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:25
+X-CID-META: VersionHash:e7bac3a,CLOUDID:2d74e6fef57bd11b15d13d202d0218e5,BulkI
+	D:nil,BulkQuantity:0,Recheck:0,SF:102|850|865|898,TC:nil,Content:0|15|50,E
+	DM:5,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:
+	0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 1eb0878e90b011f1aa26b74ffac11d73-20260805
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1187836271; Wed, 05 Aug 2026 17:29:12 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com,
+	alexandro.calo@nozominetworks.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH] ntfs: fix name offset validation in ntfs_non_resident_attr_value_is_valid
+Date: Wed,  5 Aug 2026 17:29:08 +0800
+Message-Id: <20260805092908.77549-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260729110036.12129-1-linkinjeon@kernel.org> <CAPJSo4WUxiKcfjDkHuOVhqBmvHng7JdWX1dibsYFjW6qwTCUSw@mail.gmail.com>
- <CAKYAXd_oohSF2rLCns432OMACc6S-M7Hv8jCGtkD-rOd2QMYEQ@mail.gmail.com>
-In-Reply-To: <CAKYAXd_oohSF2rLCns432OMACc6S-M7Hv8jCGtkD-rOd2QMYEQ@mail.gmail.com>
-From: Sebastian Feld <sebastian.n.feld@gmail.com>
-Date: Tue, 4 Aug 2026 11:10:12 +0200
-X-Gm-Features: AUfX_mxs4J-zNjoQGvz1DTxT6nz7Z7O04WeQAWYbe-SYZyntetnQXDrEW-1S1So
-Message-ID: <CAHnbEGJxN9mh7cGN7ycay63F75Z0+_G0fsHm9bgxHesacUrcSA@mail.gmail.com>
-Subject: Re: [PATCH 1/1] ntfs: add ioctl support for named data streams
-To: Namjae Jeon <linkinjeon@kernel.org>, ntfs@lists.linux.dev, 
-	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 4, 2026 at 2:01=E2=80=AFAM Namjae Jeon <linkinjeon@kernel.org> =
-wrote:
->
-> On Mon, Aug 3, 2026 at 6:10=E2=80=AFPM Lionel Cons <lionelcons1972@gmail.=
-com> wrote:
-> >
-> > On Wed, 29 Jul 2026 at 13:00, Namjae Jeon <linkinjeon@kernel.org> wrote=
-:
-> > >
-> > > Sebastian and Cedric requested NTFS driver support for an interface t=
-hat
-> > > WINE can use to access named data streams.
-> > >
-> > > NTFS supports multiple named $DATA attributes, commonly known as alte=
-rnate
-> > > data streams, but they are not directly accessible through the existi=
-ng
-> > > file operations. Add NTFS-specific ioctl commands to let userspace li=
-st,
-> > > read, write, and remove named data streams on an opened file.
-> > >
-> > > The new UAPI provides separate commands for each operation:
-> > >
-> > >   - NTFS_IOC_STREAM_READ
-> > >   - NTFS_IOC_STREAM_WRITE
-> > >   - NTFS_IOC_STREAM_REMOVE
-> >
-> > Wouldn't it be better to just provide an API to get a fd, relative to
-> > a filename? Win32 named streams can be sparse, and it is common to
-> > punch holes to deallocate sections of streams too. Streams do have
-> > their own timestamps, too.
-> I believe the current ioctl interface is the best fit for this
-> support. It operates on an already-open base-file fd, avoids pathname
-> ambiguity with :,
+ntfs_attr_update_meta() performs memmove operations on attribute names
+when converting between sparse and non-sparse attributes:
 
-Nope, NFS already fixed this by allowing "unnamed" fd for deleted
-files. Not having a name is OK. Win32 uses
-"filename:streamname:$DATA", if any resolving is needed. That works,
-because the Win32 API and NTFS forbit ':' within file and dir names.
+- Converting to sparse shifts the name forward by 8 bytes
+  (name_offset + 8)
+- Converting from sparse shifts the name backward by 8 bytes
+  (name_offset - 8)
 
-> supports UTF-16 stream names, and does not require a
-> new system call or VFS changes. If WINE requires hole punching for
-> sparse streams, I can extend the ioctl interface to support it.
+However, the validator does not check that name_offset is within safe
+boundaries for these operations. A malicious MFT record could set
+name_offset such that:
 
-Wearing my hat as the one who has to do the WINE implementation side:
-I think a fd with all normal file operations available is the better
-option, because we need to do per stream: read(), write(), fsync(),
-fdatasync(), sync_file_range(), file locking for each stream
-separately, mmap(), getting/setting timestamps, futimes(), fstat(),
-ftruncate(), lseek() SEEK_HOLE,SEEK_DATA, fallocate() for space
-allocation/deallocation, unlink(), ... and likely more. Pretty much
-every syscall, except mkdir(),mknod(),rmdir().
+1. The name is positioned at the very end of a non-sparse attribute.
+   Converting to sparse would shift the name forward by 8 bytes,
+   writing beyond the attribute boundary.
 
-Sebi
---=20
-Sebastian Feld - IT security consultant
+2. The name overlaps with the mapping pairs, causing corruption during
+   conversion.
+
+Add validation to ensure:
+- For named attributes, name_offset is within valid bounds
+- Name does not extend beyond the attribute or overlap with mapping pairs
+- For non-sparse attributes, name_end + 8 fits within attr_len to allow
+  room for the forward shift when becoming sparse
+
+Note: name_offset validation only applies when name_length != 0, as
+unnamed attributes use name_offset = 0 which is valid.
+
+Fixes: 7e2a1c554bc4 ("ntfs: Fix min_len for compressed/sparse attributes in ntfs_non_resident_attr_value_is_valid()")
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+ fs/ntfs/attrib.c | 33 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 32 insertions(+), 1 deletion(-)
+
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index d354c3b0fae1..778b13cf9762 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -693,6 +693,9 @@ static bool ntfs_non_resident_attr_value_is_valid(const struct attr_record *a)
+ 	u32 attr_len;
+ 	u32 min_len;
+ 	u16 mp_offset;
++	u16 name_offset;
++	u16 name_len;
++	u32 name_end;
+ 
+ 	attr_len = le32_to_cpu(a->length);
+ 	min_len = offsetof(struct attr_record, data.non_resident.initialized_size) +
+@@ -706,7 +709,35 @@ static bool ntfs_non_resident_attr_value_is_valid(const struct attr_record *a)
+ 		return false;
+ 
+ 	mp_offset = le16_to_cpu(a->data.non_resident.mapping_pairs_offset);
+-	return mp_offset >= min_len && mp_offset <= attr_len;
++	if (mp_offset < min_len || mp_offset > attr_len)
++		return false;
++
++	/*
++	 * Validate name_offset for named attributes.
++	 * Unnamed attributes have name_length = 0 and name_offset may be 0.
++	 */
++	name_len = le16_to_cpu(a->name_length);
++	if (name_len) {
++		name_offset = le16_to_cpu(a->name_offset);
++
++		if (name_offset < min_len || name_offset >= attr_len)
++			return false;
++
++		name_end = name_offset + name_len * sizeof(__le16);
++		if (name_end > attr_len || name_end > mp_offset)
++			return false;
++
++		/*
++		 * For non-sparse -> sparse conversion, name shifts forward
++		 * by 8 bytes. Ensure there's room for the shift.
++		 */
++		if (!(a->flags & ATTR_IS_SPARSE) &&
++		     name_end + 8 > attr_len)
++			return false;
++	}
++
++	return true;
++
+ }
+ 
+ static bool ntfs_attr_value_is_valid(struct ntfs_volume *vol,
+-- 
+2.25.1
+
