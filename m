@@ -1,24 +1,24 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8AB03F8EAF
-	for <ntfs@lists.linux.dev>; Wed,  5 Aug 2026 09:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D853A9854
+	for <ntfs@lists.linux.dev>; Thu,  6 Aug 2026 01:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785922166; cv=none; b=UqSKjV1GwEwrPCh13/wIXGdEfMqbugNjkHyz6xFx5MWkV9QBDSIM4tg0cDRmzzmfd2Y7rdu2bVCzRouXh2WT9crrnYQH39iB1kN5tpVbgQGKPXtcQLz6M3OAIePm/kC6y1urNn/InBugLCINwoCaWILzYgDI3wW27AcbdIX+wXY=
+	t=1785980363; cv=none; b=cVpE7u/oNZjF2fqwPzhKnlX98Y5Qk0tke3wiOsqU4FiEmWAEKSaek2fO72qa3fLlaXj90pj1TwjxDChCq8XxBZPy52dXar8xlaGuDcVQYumin7jTksSiL3DObcuQ1nRpwCODnhMixzTzb/TX4/nTgfMfuUX9GR83rBlTaN4mNbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785922166; c=relaxed/simple;
-	bh=Ky0V2UofAujX66s+HUXLD01q1ni68J3p0RJ1NV/yM/A=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CI9mM+U3Ki21Slo/tsAqbh3UKGO3N3I/72TC7maCJk4l5mFidnnHAza+E/AprVas0s2E1sXIozjG8nNLlSMjggIB+cVlm9E1bJUEEh8SdTUmLxM36PSg/rOulkoEhCAxfcqa8b8lXDIlwjQLw2ukJy4VBR6Vca7M/Wv8j5MBiHw=
+	s=arc-20240116; t=1785980363; c=relaxed/simple;
+	bh=TjqPnAU/Pt5O1nUz79TpUwdCD+jdKwW4O13a7b32MjY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=G+ORCjwbyvdMYb1sgFsnRYD8RG8sHq5j27G/C3JvIoQIMu5mkm1fjdCUwQj7wmR8AqeBYHaGNz6FAIJtu1WNthvOCZGuE6cp2Wj5Ki0V8PZLHOvbtNEnL2nRdUwCJKag1UKvWwtck/in11zRyZewyQfpHbOnTW62XTJSHt8B4s4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 1eb0878e90b011f1aa26b74ffac11d73-20260805
+X-UUID: 9d995f9e913711f1aa26b74ffac11d73-20260806
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12,REQID:3a183ffd-c44f-4b1d-a550-e5b0ef6beab0,IP:0,U
+X-CID-O-INFO: VERSION:1.3.12,REQID:ab964d6b-8eb4-48a2-a5d2-ee410b13b3e3,IP:0,U
 	RL:0,TC:0,Content:0,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
 	:release,TS:25
-X-CID-META: VersionHash:e7bac3a,CLOUDID:2d74e6fef57bd11b15d13d202d0218e5,BulkI
+X-CID-META: VersionHash:e7bac3a,CLOUDID:51e2d7b99f8e0ebe579273d1060236cc,BulkI
 	D:nil,BulkQuantity:0,Recheck:0,SF:102|850|865|898,TC:nil,Content:0|15|50,E
 	DM:5,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:
 	0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -26,23 +26,24 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 1eb0878e90b011f1aa26b74ffac11d73-20260805
+X-UUID: 9d995f9e913711f1aa26b74ffac11d73-20260806
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1187836271; Wed, 05 Aug 2026 17:29:12 +0800
+	with ESMTP id 1767105865; Thu, 06 Aug 2026 09:39:07 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com,
 	alexandro.calo@nozominetworks.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
 	Hongling Zeng <zenghongling@kylinos.cn>,
 	stable@vger.kernel.org
-Subject: [PATCH] ntfs: fix name offset validation in ntfs_non_resident_attr_value_is_valid
-Date: Wed,  5 Aug 2026 17:29:08 +0800
-Message-Id: <20260805092908.77549-1-zenghongling@kylinos.cn>
+Subject: [PATCH v2] ntfs: fix name offset validation in ntfs_non_resident_attr_value_is_valid
+Date: Thu,  6 Aug 2026 09:39:03 +0800
+Message-Id: <20260806013903.8526-1-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
@@ -84,11 +85,17 @@ Fixes: 7e2a1c554bc4 ("ntfs: Fix min_len for compressed/sparse attributes in ntfs
 Cc: stable@vger.kernel.org
 Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 ---
+Changes in v2:
+- Read name_length directly as an 8-bit field instead of using
+  le16_to_cpu().
+- Restrict the name forward-shift bounds check to the same attribute
+  types that can actually be converted by ntfs_attr_update_meta().
+---
  fs/ntfs/attrib.c | 33 ++++++++++++++++++++++++++++++++-
  1 file changed, 32 insertions(+), 1 deletion(-)
 
 diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index d354c3b0fae1..778b13cf9762 100644
+index d354c3b0fae1..ffd08633970a 100644
 --- a/fs/ntfs/attrib.c
 +++ b/fs/ntfs/attrib.c
 @@ -693,6 +693,9 @@ static bool ntfs_non_resident_attr_value_is_valid(const struct attr_record *a)
@@ -96,7 +103,7 @@ index d354c3b0fae1..778b13cf9762 100644
  	u32 min_len;
  	u16 mp_offset;
 +	u16 name_offset;
-+	u16 name_len;
++	u8 name_len;
 +	u32 name_end;
  
  	attr_len = le32_to_cpu(a->length);
@@ -111,9 +118,9 @@ index d354c3b0fae1..778b13cf9762 100644
 +
 +	/*
 +	 * Validate name_offset for named attributes.
-+	 * Unnamed attributes have name_length = 0 and name_offset may be 0.
++	 * may be zero for unnamed attributes.
 +	 */
-+	name_len = le16_to_cpu(a->name_length);
++	name_len = a->name_length;
 +	if (name_len) {
 +		name_offset = le16_to_cpu(a->name_offset);
 +
@@ -125,10 +132,10 @@ index d354c3b0fae1..778b13cf9762 100644
 +			return false;
 +
 +		/*
-+		 * For non-sparse -> sparse conversion, name shifts forward
-+		 * by 8 bytes. Ensure there's room for the shift.
++		 * A normal non-resident attribute moves its name forward when
++		 * it is converted to a sparse attribute.
 +		 */
-+		if (!(a->flags & ATTR_IS_SPARSE) &&
++		if (!(a->flags & (ATTR_IS_SPARSE | ATTR_COMPRESSION_MASK)) &&
 +		     name_end + 8 > attr_len)
 +			return false;
 +	}
