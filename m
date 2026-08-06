@@ -1,176 +1,89 @@
-Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295AE31A556
-	for <ntfs@lists.linux.dev>; Thu,  6 Aug 2026 02:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2E426BB5B
+	for <ntfs@lists.linux.dev>; Thu,  6 Aug 2026 05:19:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1785984121; cv=none; b=ZnU/frtGePjdy+WECP4LSGvpbU4wRe+mAE1gfYGqR6UqsyC5gqYwye4XLXRppwiF3E05+R3ml251yCbJ1y29d09d4pz7BCG8cEM1bDmzYLeDHEdt6HDLEL6+hVfH34gXoakhd3975diXoomv2C7jQsEQrSXQ2ClzDOpZLFdpUaM=
+	t=1785993597; cv=none; b=ce8SQCqvuhnmkKXmUwUOnav5BB/bB4m3sslIKTaBeDZL6USVWtDzn9br8Ghq91RxDf9HFVEemyDoEwt1/IHIfwHzaq/+dvUgmVydQf+Rf1P2sqY3m3ihVRweqtYh5L+VZrjZshPCYom31wj6xKwpzfvu+Ivd6E9oyeY4c/iFYRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1785984121; c=relaxed/simple;
-	bh=znqWYK+kJAzSc8m8nkMxWv3ngkK/sEbvSqXnY69TPSQ=;
-	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
-	 In-Reply-To:Content-Type; b=BE7N315Qb7XnsJq8DbVc5PsrN9HlTQYH/9/siXCpjWEHFitwLp2bN17ykFPK/sG+AQD5EA2r7zmBp8HlZK0AvbnaeuS7rT4t3TjeygrjOE5i1Y/jqJ5gvpNYIX5SxkdKko/NbBX1IXhZJty+uOcb3Z1tA9WEa7KDBw63zmXrq04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=K8S1fIKa; arc=none smtp.client-ip=117.135.210.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+	s=arc-20240116; t=1785993597; c=relaxed/simple;
+	bh=h3B0Vezh45bp+syJ6ykSwwSFwyswAprgVvK7vldvF7k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zqy08a95C198RD8O+hj7AT/Tw9317fLaZGz2O/WsCSr1GL8A4YTy2B1o9T2Qf1fqOIO5HieW9khzPboA8YEjrgz/MBZp/6bFA8GAXK/Fz5qDNgwyCNnGA36IfXCydUHGOo7Z4DwgriaUB16LhnYeLW4YYBrMtNskGQX2zgvsYzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CBis4whZ; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="K8S1fIKa"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
-	Content-Type; bh=DSfIgg5NWZj0se3kV3wMvKcY8bkrdATY3NQzbPHbp34=;
-	b=K8S1fIKaHZNPGyTjy+0tDqocW2ItjaZ5gv+o+UfHg3HBgi29TfvKS6Slu21t/3
-	Hm0/UbqchQRE35Zf5MVtCKKQS5v2WrA3KkQdzZTjHe8TUVZGMLvu9gnp7CHtp0TJ
-	6fpECjWoEtN5Cbko6LbHi7C2pcF0bLdmZCLaKMwDBrRmE=
-Received: from localhost.localdomain (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PykvCgDXT1y983NqIc8aEg--.60829S2;
-	Thu, 06 Aug 2026 10:38:54 +0800 (CST)
-Message-ID: <6A73F3A9.7020608@126.com>
-Date: Thu, 06 Aug 2026 10:38:33 +0800
-From: Hongling Zeng <zhongling0719@126.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CBis4whZ"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C28821F000E9
+	for <ntfs@lists.linux.dev>; Thu,  6 Aug 2026 05:19:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1785993596;
+	bh=b8whuCMGhsKq/LH0NvSUcTIg3gAsgHMfunKkOmlEMio=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=CBis4whZds88XVH50UWb2WVKpzccj6Jzgnunw2rRr0IJoSstSosCXZ+PKMIwg6bhl
+	 sLa4pl7J61hNkNIZljmPdksrSULiWj5jagoFErkmvqRV1C93h++HchVa2X6fHmbIO9
+	 R8A7lBkxCyN2v+IGr6W4vjIiT03hSfcN4liKrEyYoJvyiWyKHD2H45LMvnxwwOQED0
+	 32mvUAUQexnzp4w0hGlJLWNqqpni5hf2C5slRRsK733nXDMSl/aLmJoCj0gkq7iBqS
+	 BCp5LlwTft6ty9hjvNaSQzD1LBVRqQNAOiOMACJTbzINuV6fWid7akyakIJfzo55zZ
+	 aMdH2/eRhcynA==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-c15e2dab83eso285795566b.1
+        for <ntfs@lists.linux.dev>; Wed, 05 Aug 2026 22:19:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RqSui5O0ldFw2UYMAkgaUYP9nZs4KqpVuVO7SabISUim6Aqct1D9cD/nsxR/wmzd2ApdyRt@lists.linux.dev
+X-Gm-Message-State: AOJu0YxMeWx5+ijZV9CkT6R8nlgkUFQSiTTWTsEolO7O37OtOx+bc+O3
+	/cFjdc+EKBYyrji8ZaXdUV4UGMw251qxm74oceT1lXqmQFtoOP7hYWb/YxKbmn3o4/hVMcstl0/
+	ACreeICFuLpRCxnM7kqiyNGcrsmlsnY4=
+X-Received: by 2002:a17:907:9410:b0:c19:523f:5a0 with SMTP id
+ a640c23a62f3a-c2039b373b4mr556793766b.11.1785993595492; Wed, 05 Aug 2026
+ 22:19:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-To: linkinjeon@kernel.org
-CC: Hongling Zeng <zenghongling@kylinos.cn>, hyc.lee@gmail.com, 
- alexandro.calo@nozominetworks.com, ntfs@lists.linux.dev, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20260806013903.8526-1-zenghongling@kylinos.cn> <6A73F3A9.7020608@126.com>
+In-Reply-To: <6A73F3A9.7020608@126.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Thu, 6 Aug 2026 14:19:43 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd8xYZvB1N94+wPEcvGRVeBv77vfPXX2DKDbg0Rna8hRFw@mail.gmail.com>
+X-Gm-Features: AUfX_myQIAvDC1YdMzdLaqH2q-orUwM34tqAXVhglKPDiU_ekBatU-cCg0BE234
+Message-ID: <CAKYAXd8xYZvB1N94+wPEcvGRVeBv77vfPXX2DKDbg0Rna8hRFw@mail.gmail.com>
 Subject: Re: [PATCH v2] ntfs: fix name offset validation in ntfs_non_resident_attr_value_is_valid
-References: <20260806013903.8526-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260806013903.8526-1-zenghongling@kylinos.cn>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PykvCgDXT1y983NqIc8aEg--.60829S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxAF18trWkAF4UWF1DuryDWrg_yoWrZry7pF
-	ZrGryfKw4Svr1xXwsF9ws8X3WF9wn5ur4jqF9rtw17CrWjq3W7JFy8Kr9Yqw13ArWDWw17
-	ta15Xw43G3y5XaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jajg7UUUUU=
-X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrx6jdGpz874ofwAA3l
+To: Hongling Zeng <zhongling0719@126.com>
+Cc: Hongling Zeng <zenghongling@kylinos.cn>, hyc.lee@gmail.com, 
+	alexandro.calo@nozominetworks.com, ntfs@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi:
-
-  Thank you for the review. You're absolutely right on both points:
-
-   1. name_length is u8, not __le16 - my mistake.
-
-   2. Moving the check outside the if (name_length) block is better as
-      it covers both named and unnamed attributes.
-
-   However, I have a concern about using ATTR_COMPRESSION_MASK here.
-
-   In ntfs_attr_update_meta() line 3610, the actual conversion check is:
-
-       if (sparse && !(a->flags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED)))
-
-   This uses ATTR_IS_COMPRESSED (0x0001), not ATTR_COMPRESSION_MASK (0x00ff).
-
-   If a malicious MFT record sets flags = 0x0002:
-   - Your check would skip (0x0002 & 0x00ff is true)
-   - But ntfs_attr_update_meta() would still do the forward shift
-     (0x0002 & 0x0001 is false)
-
-   Should we use ATTR_IS_COMPRESSED instead to match the actual conversion
-   predicate? Or is there another reason for the mask that I'm missing?
-
-   Otherwise, your suggested approach of checking:
-       attr_len - mp_offset < sizeof(a->data.non_resident.compressed_size)
-   is much cleaner than checking name_end + 8.
-
-在 2026年08月06日 09:39, Hongling Zeng 写道:
-> ntfs_attr_update_meta() performs memmove operations on attribute names
-> when converting between sparse and non-sparse attributes:
+On Thu, Aug 6, 2026 at 11:39=E2=80=AFAM Hongling Zeng <zhongling0719@126.co=
+m> wrote:
 >
-> - Converting to sparse shifts the name forward by 8 bytes
->    (name_offset + 8)
-> - Converting from sparse shifts the name backward by 8 bytes
->    (name_offset - 8)
+> Hi:
 >
-> However, the validator does not check that name_offset is within safe
-> boundaries for these operations. A malicious MFT record could set
-> name_offset such that:
+>   Thank you for the review. You're absolutely right on both points:
 >
-> 1. The name is positioned at the very end of a non-sparse attribute.
->     Converting to sparse would shift the name forward by 8 bytes,
->     writing beyond the attribute boundary.
+>    1. name_length is u8, not __le16 - my mistake.
 >
-> 2. The name overlaps with the mapping pairs, causing corruption during
->     conversion.
+>    2. Moving the check outside the if (name_length) block is better as
+>       it covers both named and unnamed attributes.
 >
-> Add validation to ensure:
-> - For named attributes, name_offset is within valid bounds
-> - Name does not extend beyond the attribute or overlap with mapping pairs
-> - For non-sparse attributes, name_end + 8 fits within attr_len to allow
->    room for the forward shift when becoming sparse
+>    However, I have a concern about using ATTR_COMPRESSION_MASK here.
 >
-> Note: name_offset validation only applies when name_length != 0, as
-> unnamed attributes use name_offset = 0 which is valid.
+>    In ntfs_attr_update_meta() line 3610, the actual conversion check is:
 >
-> Fixes: 7e2a1c554bc4 ("ntfs: Fix min_len for compressed/sparse attributes in ntfs_non_resident_attr_value_is_valid()")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-> ---
-> Changes in v2:
-> - Read name_length directly as an 8-bit field instead of using
->    le16_to_cpu().
-> - Restrict the name forward-shift bounds check to the same attribute
->    types that can actually be converted by ntfs_attr_update_meta().
-> ---
->   fs/ntfs/attrib.c | 33 ++++++++++++++++++++++++++++++++-
->   1 file changed, 32 insertions(+), 1 deletion(-)
+>        if (sparse && !(a->flags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED)))
 >
-> diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-> index d354c3b0fae1..ffd08633970a 100644
-> --- a/fs/ntfs/attrib.c
-> +++ b/fs/ntfs/attrib.c
-> @@ -693,6 +693,9 @@ static bool ntfs_non_resident_attr_value_is_valid(const struct attr_record *a)
->   	u32 attr_len;
->   	u32 min_len;
->   	u16 mp_offset;
-> +	u16 name_offset;
-> +	u8 name_len;
-> +	u32 name_end;
->   
->   	attr_len = le32_to_cpu(a->length);
->   	min_len = offsetof(struct attr_record, data.non_resident.initialized_size) +
-> @@ -706,7 +709,35 @@ static bool ntfs_non_resident_attr_value_is_valid(const struct attr_record *a)
->   		return false;
->   
->   	mp_offset = le16_to_cpu(a->data.non_resident.mapping_pairs_offset);
-> -	return mp_offset >= min_len && mp_offset <= attr_len;
-> +	if (mp_offset < min_len || mp_offset > attr_len)
-> +		return false;
-> +
-> +	/*
-> +	 * Validate name_offset for named attributes.
-> +	 * may be zero for unnamed attributes.
-> +	 */
-> +	name_len = a->name_length;
-> +	if (name_len) {
-> +		name_offset = le16_to_cpu(a->name_offset);
-> +
-> +		if (name_offset < min_len || name_offset >= attr_len)
-> +			return false;
-> +
-> +		name_end = name_offset + name_len * sizeof(__le16);
-> +		if (name_end > attr_len || name_end > mp_offset)
-> +			return false;
-> +
-> +		/*
-> +		 * A normal non-resident attribute moves its name forward when
-> +		 * it is converted to a sparse attribute.
-> +		 */
-> +		if (!(a->flags & (ATTR_IS_SPARSE | ATTR_COMPRESSION_MASK)) &&
-> +		     name_end + 8 > attr_len)
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +
->   }
->   
->   static bool ntfs_attr_value_is_valid(struct ntfs_volume *vol,
-
+>    This uses ATTR_IS_COMPRESSED (0x0001), not ATTR_COMPRESSION_MASK (0x00=
+ff).
+>
+>    If a malicious MFT record sets flags =3D 0x0002:
+>    - Your check would skip (0x0002 & 0x00ff is true)
+>    - But ntfs_attr_update_meta() would still do the forward shift
+>      (0x0002 & 0x0001 is false)
+>
+>    Should we use ATTR_IS_COMPRESSED instead to match the actual conversio=
+n
+>    predicate? Or is there another reason for the mask that I'm missing?
+You're right. Can you send v3 patch after updating it ?
+Thanks!
