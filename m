@@ -1,70 +1,75 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F1A32AABA
-	for <ntfs@lists.linux.dev>; Thu,  6 Aug 2026 13:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98500391501
+	for <ntfs@lists.linux.dev>; Fri,  7 Aug 2026 01:59:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1786022238; cv=none; b=BXjKy9HZSZMMIMo+W4xk/Vn7CQOGKnHCX6fu2ckGYL53awqDHrfvUr/ROlY5hu9U5y8yM4TAiZzj91f00kuXCaihq2s8U5bdlBJO7DxmQvZJHX7/+6F4h5l6jJwqUda981BnggbCD3yn6SzFgiqR2fAMU0MO2en2NvVB3TPoFBM=
+	t=1786067950; cv=none; b=TFl0Si39DpdQZyStPZWVa+QbPSlIxOtir+70wVL/8fXJG56P7m0KlsUXcj7O6LUQuj6HjDV+9PoFyUHPOs7RC0DiHTZA0ZEG6YUwiCRVBgOy8CZ/SffwpXEbVBIXVJcDf7a2jUFoS/NSX23y5GqoK5XYNvvboAC5vjY3u+UzlWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1786022238; c=relaxed/simple;
-	bh=GupLksirK7Qy6q3M/0V2W/2Pkw9ax8e3PR7aLOSID7U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pL2C/BqM92P5jF6r5NLq9mQADmq/mK2iC6i5yxD1tebACberBKQrHgXzb+ZvroKgyBxMnIY+Yd1ndbtxewWScW0osqsmhqhIIqwpNm+DxZ7SSrcmyS9xM1ZDs7+bBJoVqMDQ63NUAqzJyNfNqqkaDaXQWaNr0VWQGgRqOckKosI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EBrBL/CQ; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1786067950; c=relaxed/simple;
+	bh=on2D0luqT6mzoqhF+mDYoAnSPwR8IXyf430Vv0Aw674=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=YSM+xvI8tpgkOpD/PSYwFNikqG27VinWcX4Qx8dtqRDKMJnQ2mBFkwzCsMaTrpHQueGYbEYYjicnK9GIoeuTUFNXo+ZrNVr6MSEayGUKWtIlxiHRsvopuoJaE/LNZ/qtcYaze9ZIkUtlINdAIv7z++f/dFzdqNvSkaUrQnmsTYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=dGGo+H1p; arc=none smtp.client-ip=117.135.210.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EBrBL/CQ"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 999221F00A3D
-	for <ntfs@lists.linux.dev>; Thu,  6 Aug 2026 13:17:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786022235;
-	bh=suc9VIClv9utsSrdXKm36L4Vkmn/HQyr5waQoWGQwcM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=EBrBL/CQShv2hMiSBVccxUEvkyNqFRFoUr13dI+uFXweZK0ecPMfal14GbBJ6ffns
-	 3KYjwvCOwzg1XCBXQxqbh0HvJ4D/928kHMsfMHIXMmV/qeI6jx9C5aqQst0mu9gKRP
-	 FwTXeFhifeki0Z5hFxmNODbbqOhQVo9R+uMw+T7LfU4ZKSBkzevtgxiGorXEEgww2Q
-	 yEKHMOrpzv6ai/t3ijD5XW/mdZJMulo2+Ivr+9o8P6plTo4+xZLXvCLwrEaOEt/p//
-	 BePsGp+ByYcRfuQzlJERFMqsqhF2bAPA8yjjEsM5nswsTfQRqg44HJj5lAJjWLegTo
-	 ipqQxLk+I4vXg==
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-c2055573c8cso176596866b.3
-        for <ntfs@lists.linux.dev>; Thu, 06 Aug 2026 06:17:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rq5ZBl98n/8DVMFnQ18Ilu5hBkm/W6R6wa5ntobLpTlXDibwzSsX3fPiIMI0P4mZsCPjeQE@lists.linux.dev
-X-Gm-Message-State: AOJu0YwDTCnvvr4n222jCmPa1fL7SrdXwXvdaD4sYNHpd8P2Z9sJA1TG
-	ngXWb7sL9rPN7Qx8k4k8NZbP8zSAf/wJ4Chu9n7iQtLagqFub7go2qI1KMnBWs2xqveynXYs8m2
-	P7RiLfUtukWG0mr0q4lgQW1Dqxw8/GSg=
-X-Received: by 2002:a17:907:809:b0:c12:4647:a629 with SMTP id
- a640c23a62f3a-c2039cb38acmr676084266b.25.1786022234242; Thu, 06 Aug 2026
- 06:17:14 -0700 (PDT)
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="dGGo+H1p"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
+	Content-Type; bh=5DUrrGdlyZvyvoUP0goFItoyUXVm51ZRkbFuiWOVPCQ=;
+	b=dGGo+H1pBBL8Z09tJjOMsqy4Bv0+zz08RGo/Ta/UE+57b/ny8sPOUqcmMQMbLM
+	SOwyqPWA1pCMCPWwAqb3MeVlQUF+WaqIuemQGJjakwzc7qetTLI38fOykEAZ2xHv
+	RoH9CWR3u4VOeZI1qzNWXnNMOk3ebZE/RiYicO2EiupXU=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDnf4Y6O3Vq21rUEw--.16321S2;
+	Fri, 07 Aug 2026 09:56:10 +0800 (CST)
+Message-ID: <6A753B23.3070908@126.com>
+Date: Fri, 07 Aug 2026 09:55:47 +0800
+From: Hongling Zeng <zhongling0719@126.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260806055713.42067-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260806055713.42067-1-zenghongling@kylinos.cn>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 6 Aug 2026 22:17:02 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd91TzMghrpOG4pBYr-9UBY9qJ6by=mrkS0m4BxMZEbrHg@mail.gmail.com>
-X-Gm-Features: AUfX_mztcv2mffPRTVCk5jxOPDz8dihUTUKIkSRXjYZc8ICGwTxmrUqGuVB7OtU
-Message-ID: <CAKYAXd91TzMghrpOG4pBYr-9UBY9qJ6by=mrkS0m4BxMZEbrHg@mail.gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>, 
+ Hongling Zeng <zenghongling@kylinos.cn>
+CC: hyc.lee@gmail.com, alexandro.calo@nozominetworks.com, 
+ ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org
 Subject: Re: [PATCH v3] ntfs: validate non-resident attribute offsets
-To: Hongling Zeng <zenghongling@kylinos.cn>
-Cc: hyc.lee@gmail.com, alexandro.calo@nozominetworks.com, ntfs@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, zhongling0719@126.com, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+References: <20260806055713.42067-1-zenghongling@kylinos.cn> <CAKYAXd91TzMghrpOG4pBYr-9UBY9qJ6by=mrkS0m4BxMZEbrHg@mail.gmail.com>
+In-Reply-To: <CAKYAXd91TzMghrpOG4pBYr-9UBY9qJ6by=mrkS0m4BxMZEbrHg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDnf4Y6O3Vq21rUEw--.16321S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Jw48AFWrWrWDKr1rCw1UGFg_yoWftrX_Wa
+	93Xr1xu395Aw45Ca1DKrWxKFy7t39rX3W3Xrs8CF4fZry8JFZxXan5Xa4jvryDJrZYq3ZI
+	y34kWFyUGwsF9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8q0P3UUUUU==
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBoBrUpWp1OzqfdAAA3+
 
-> +       /* Ensure there's room for the compressed_size field if needed. */
-> +       if (!(a->flags & ATTR_IS_SPARSE) &&
-> +           !(a->flags & ATTR_IS_COMPRESSED) &&
-> +           attr_len - mp_offset < sizeof(a->data.non_resident.compressed_size))
-> +               return false;
-Sorry for the confusion. I rechecked the code and realized that
-ATTR_COMPRESSION_MASK is correct here. It covers the entire
-compression field, while ATTR_IS_COMPRESSED checks only the 0x0001
-bit. Since this validation checks whether the attribute layout
-includes compressed_size, it should use the mask, consistent with the
-existing min_len check.  So I have applied the previously attached
-patch.
 
-Thanks!
+在 2026年08月06日 21:17, Namjae Jeon 写道:
+>> +       /* Ensure there's room for the compressed_size field if needed. */
+>> +       if (!(a->flags & ATTR_IS_SPARSE) &&
+>> +           !(a->flags & ATTR_IS_COMPRESSED) &&
+>> +           attr_len - mp_offset < sizeof(a->data.non_resident.compressed_size))
+>> +               return false;
+> Sorry for the confusion. I rechecked the code and realized that
+> ATTR_COMPRESSION_MASK is correct here. It covers the entire
+> compression field, while ATTR_IS_COMPRESSED checks only the 0x0001
+> bit. Since this validation checks whether the attribute layout
+> includes compressed_size, it should use the mask, consistent with the
+> existing min_len check.  So I have applied the previously attached
+> patch.
+>
+> Thanks!
+You're absolutely correct， Thanks for the guidance and applied the 
+patch . I now understand that ATTR_COMPRESSION_MASK
+   (0x00ff) is the correct choice—it covers all compression cases, not 
+just  the 0x0001 flag.
+
