@@ -1,74 +1,72 @@
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 634C1381B0A
-	for <ntfs@lists.linux.dev>; Mon, 10 Aug 2026 04:48:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B7B2BE65B
+	for <ntfs@lists.linux.dev>; Mon, 10 Aug 2026 05:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1786337314; cv=none; b=B5M9Kn33IHRE1S2zNQ6vRouKdr4kwkR6zsuTPdvEQXu9F/OQ7wfRpHJfE0UhfokU9bQjzuLA+ksu072TUtFaOib1NhZlblqZSpVYbPRAc1GjzVCvNv48Wdh9sfd4Y9vhj80NgbK0xHRb3lrYYjHT6Qe7Or8CzopSdqajCdjQeJQ=
+	t=1786339201; cv=none; b=ujwoxNy33wlKfBEaFyep5NSeeQnlxg/VprA2r8THEU/3dt7QmeaXmek1qA3T/eJJYb72UUg28vaTwsYDHT+v9Vb0V8eSb1PdSIhoj/LrdoOJ1oHWIMx3luxBoN4SeSeTriNvKzK2/H2iQT0Wq5nAXPdHW0IsVe20rsOotLsT40Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1786337314; c=relaxed/simple;
-	bh=0o99TCxw3kqSLrzy385lULUQzqEFEzibqtMiGKQLAqE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JtP2HhBdMwLrfrbapieHOKIMQru/7e67bCyNFpT02IrDObWo9E6X8C0kOJSvBhNBqLwRZtEOWQcFuiCMPVvRm0T55Z+VQuzVWe2cAyq4+qqSMH9NRu3mcu1yYRPaXFcKDdfgnigMyHYDvVH5kT2zM7LZGpWPj4EiOP40kY+yitU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DpzC6NaK; arc=none smtp.client-ip=209.85.216.48
+	s=arc-20240116; t=1786339201; c=relaxed/simple;
+	bh=kZEXJaw30AewGzSMg2H3NLgJgJBC5Qvz9diP+1NXcRk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ai3CRhRRgoBhZ4tkcpSTiwTZG52RYa1IC+bQifX0JFtA41mPhMbpayQavwq9jGCjoqkV5HnXKkYfduvGjqFt28ffl8chGbbjx5erImspuTxPxRJw4lziLivx4N5LHUhM/7g3lJhuH/lPmefMXKThxIlDXExjG80iI+8cvkWXbno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bi2XkjWN; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DpzC6NaK"
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-38e7109321dso779264a91.3
-        for <ntfs@lists.linux.dev>; Sun, 09 Aug 2026 21:48:31 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bi2XkjWN"
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2cfbbdfa60bso11614255ad.3
+        for <ntfs@lists.linux.dev>; Sun, 09 Aug 2026 22:20:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1786337310; x=1786942110; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Fq7nhTSTTRPtGaEtu6ggKx7xggpzDEzW+A1IoaMWaMA=;
-        b=DpzC6NaKdnuSjWtxKp0KAXGH4hmLyviYfOL3ytxa9o8RF+5qehYmYiKUw+bJFniBax
-         MMj5MjaQZgKbCoDQlmopREiZj4EBDmloqteD+Zk0wR9bzM530EazzXfGRK2KanhjLmRQ
-         uus87I6Sg0VbQ2+7hAz0DTXZkENhxiYUKf2oxj6yYQTojjT3dKk4f6LshxfKkrkKysFh
-         +BfDbZeaRR06AjeOzhUWUqQ87/PvHuizZ7d8gzKnjc7Yc2qUHbVyL+fzv10W1iRNH9WA
-         d65LgY7AxYjg69cLgP3hJEsjb2IMmp3ibEjh2LINxT3Qn6DbwK6ItEbxHf0pqb1padhU
-         SvmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786337310; x=1786942110;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=gmail.com; s=20251104; t=1786339200; x=1786944000; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Fq7nhTSTTRPtGaEtu6ggKx7xggpzDEzW+A1IoaMWaMA=;
-        b=Qfku/CvvMhjnnbX1IlIXRQ/Ml194JhPhKcGaiqcI/s6azg+udZcYNsNELqMgIOWUPu
-         upiqvDQwyR9WcOD115uSSnBDfnFsZTvOIxAcHmY/d/570II4sd4tNaG1Pwuk/GsDSRTk
-         jhGofeIOxRj6TrtK/SNL8tkTvNRSdkkNSXtkNpNnreXw0fgo1I6dr8XCNlgA5UFedJiE
-         AHnMgpUhe9rQQq6NSgI8q9U3B4LzWM/xOBb/K+0q0xTsbDX7nHx6lHN2BzQSJBicpBwR
-         N1whjhFwmXu4bhRHxWmJBK55wk2B171iYJjuA9dKNk5n9mx7JpS4Nu57wO76nrUv521A
-         vinw==
-X-Forwarded-Encrypted: i=1; AHgh+RqHkjRXY1io2ACCpQzi8pMJulc4AWcY7UwmfP44+OBxtVkvddmRNsMmul0GqIvcOBeDl5wa@lists.linux.dev
-X-Gm-Message-State: AOJu0Ywx7xVR9GcExri9FkSRLwUeD8OXNgA1JsX298UFbWZ08AzJMaLO
-	OvddS0nv51ca42XVnJvDQXQRCQc9WsJrBzvQats8IFd1kwk1AKtkgxhN
-X-Gm-Gg: AR+sD10w/sokWohEGZlTlW9o6NDpQ8Qtzxf6ksYUDwTRKPkeQt2LahDPEsK/GFfPle+
-	PDuIMQF5YIfp8gWek1TyCFcTBljyyNNoty5nsJvpznvQY4U65m6OTB5F8Sw3ZwapsrCN6ApYY5U
-	AlzYokFulvVYvU6di3XJsFAYTdOruFQRGte5ffYRzp7p0yQ5RLB2BB8VNjZt4vAgXk/U1iWKXVv
-	F0WoLc+N2AK65cN0e1ES0/iy4zKtrGZcQUWcEzUnQUsgPNNUkW3If2Lx/PajHO5v63lg/qRgz+J
-	Ul/klKSbekCPHKKNDVrhkzqSSP5/d6O8KhvogVfmUZtcH3Gd6SHYpWFd2ZPDsAI9LP0AUSEp+pM
-	Jk4u3Nvm1L7Dp6bf4c5WO9JrCkxVALV/pNL+PD/N+Di25dETlj08Xc0F0NQZtm0dTylcepXcNPL
-	cwGLQz0kWmc74OTyj2kvWf3cVOKVkSFTw9/y/heY1AeD2erKv2XbhxREdVth9f/wNE5Ys=
-X-Received: by 2002:a17:90b:1807:b0:38e:6dd:a9ad with SMTP id 98e67ed59e1d1-39281b1b0c8mr15915394a91.0.1786337310456;
-        Sun, 09 Aug 2026 21:48:30 -0700 (PDT)
+        bh=PWbUjUsCeO7z+PBaYiZsUP8fiRq2bBzVvFTdGBMKdAc=;
+        b=Bi2XkjWN3dELueh97Y5AqVfO57KVS+76G6+XXAI//CNJ5fcHh+/Op/JgCJNc9i8pZW
+         Rpb38LXGp4aTQVC1ncX25Q1ib1/rr2AcWc7qU+rHkG8gci6s/SMDHTGRiZtEQ9kJ2qF3
+         Rl8to/iPUfZYkCG8bB61Rx5uA75xwsIw2huDIMkDBQQsb7OMMpVSo43Hfwpfst5N6BpI
+         Dz9qbGy48INBjYuae6/X1eYX/ubRrHhvKvWeduaMJR3VlINvK+s4vo6ViQylxONP3Efd
+         rP36lC0UCQ1cuoJplpjz2XcaVuJ8ytYunJB9x+tyXNJCoCxOvdu5/hNe+8naVvpT59p6
+         FdaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1786339200; x=1786944000;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=PWbUjUsCeO7z+PBaYiZsUP8fiRq2bBzVvFTdGBMKdAc=;
+        b=DDoa2QniHjGnys1+jnlZGsnUtKWyQY8JEZScOgDbSYAtWqPBLF03cenOBlA2efAmkI
+         eqBap66hYD461zvaf8gNo30ym85SlZquvt8nLS7PKUe1qb/Jd01Ip9ypJB8m0ptI7RlR
+         CRBPJLyupfQSTud61nVhFYJuS3gQOd0vylIo4ve3ndxCDfTzuVutU0jYONCS8SQf9WS6
+         o/VNjpenCVPg2Hs/24tu9g7One0LYBiIT0oAkRIJVlopJIIAk08QXLj+Kh85wqLsc9fU
+         wNfFjA0CE6XDTjwRe8YgTYLOifxEXDYacI8ScCL7unU4QTWv/1v56d0DRwjVoWsnF1fg
+         w7qg==
+X-Forwarded-Encrypted: i=1; AHgh+RrxZK2nkoP3c9i7ZjIkluboyIvMoWKf91hLLBy+RR2KqKbbWjh6c/eablIrUNaQzIU4kyCD@lists.linux.dev
+X-Gm-Message-State: AOJu0YwEUpXnIYFmjtyE8wa4hhZ7XUVYJIPixYug13rSEWJqwj1rrB/8
+	0yWJZmSoQmydWeFoW0zl03wpi4hSk3XDSGKXliWkiFygbPScXkUquXkW
+X-Gm-Gg: AR+sD12HCZNqA4iRNj/4f3kM54e0JJ1uyic1vGY0LBVtg3ExDVe6lEOQO90cGR82RHM
+	rlb5EMjIJbdjUcVSJP7H4QPOfuL0KT71NGaWtqqYctLpN2HHLevRxj1YgYtQX5Jd6Mv/dnuS9pK
+	5pRJgDJfy2bIctJChAEDr/lyo1fQHgZO8Ti6qFdSl7s7qoW9mkT2niUfEg2sL22lmIlRmDg7wmm
+	Ae5GUmbf/490gopuJ83U/HXIOJ1fXsKzEG3YrKjz6gUyivDCRGbyp1Uu/0nSDtkW3pHB0DYTXBc
+	BYMXBHwdO4SZDWRYyGDiYBDm687vOkO3utm34IshaSJROTtqArR6uqhyXPRlov4n6/lme0loCUf
+	nOS/ttz6o/vCri8X5eDoylG/+PsL0vZDEAesVJ5qogyv7H15m+1+Cl7pmayqK9B0kT0BoKhhFXU
+	6NXgMkPtHiZ52+IRkXUlThll9siVq2Vp/TY5pD1HjByTkfHfDOvInDbHdwOHBOg5vLXHI=
+X-Received: by 2002:a17:902:ebc2:b0:2cc:d69a:354a with SMTP id d9443c01a7336-2d2a8eb76e2mr235553535ad.22.1786339199686;
+        Sun, 09 Aug 2026 22:19:59 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-39085dc396dsm13045106a91.3.2026.08.09.21.48.28
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2d14ccac191sm28749235ad.15.2026.08.09.22.19.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Aug 2026 21:48:29 -0700 (PDT)
+        Sun, 09 Aug 2026 22:19:59 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
-	ntfs@lists.linux.dev
-Subject: [PATCH 8/8] ntfs: support resident WOF decompression
-Date: Mon, 10 Aug 2026 13:48:02 +0900
-Message-ID: <20260810-topic-wof-v1-8-6a97cfa3bb59@gmail.com>
+	ntfs@lists.linux.dev,
+	Cen Zhang <zzzccc427@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v6 0/4] ntfs: serialize attribute-list access
+Date: Mon, 10 Aug 2026 14:19:37 +0900
+Message-ID: <20260810-topic-attr-list-lock-v6-v6-0-e3fb8c4494d3@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260810-topic-wof-v1-0-6a97cfa3bb59@gmail.com>
-References: <20260810-topic-wof-v1-0-6a97cfa3bb59@gmail.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -77,192 +75,137 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5062; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=0o99TCxw3kqSLrzy385lULUQzqEFEzibqtMiGKQLAqE=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqeVeR3Llq1VY0kLf3v0x0vtItOMkQ6mtJzV3xy
- FJTaKyNE7iJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCanlXkQAKCRA08jD6945I
- 0yVhD/9hTqT/qmhOyg4sF6iz2MtCTdCdxX9QBHztRuiEs1kqWOE6SO0+zbIf36SGnaIoowrLm/l
- a70OgDW8XtyioiTd0BrdsMISGRri19SiYxqIhOFM1vTVlGzzxPWP2XcO1a/QQZK6B90Vi1hd4wd
- 0u46tlfx/TxxZpYTeuTwIK4FGohd9idxoLEISwUJ99fbjJ31OHIL3ouaz9uEZakXhj4ij4cn/lF
- hlZG2hgEt4VoeRV/Ng6SRM/Z8fn+loZES8fl4tEuEK5oMtz5RjJJ+DxqRWD6Y4AOa0O6sWjsD0x
- HzXbNB/OLbvW+hl0lMY5iCBwf2p++4YSorjYo9R/RYdKXihvBpnUtCglj+Rcek7gdzUzfcY6wGR
- xbH9JY+HxhD0JPsmBA+dZEq6AYp2Tgz5hiXdXRluyUadss64TWotRLGINikJpJpttrEVvJl6cwO
- dsjAwZj+kmKW0rdLwV72G/dQBs2QR3Q4vknw65MThkQAdXeGrQuTM3F1MTJrGv6CToytJnGKH+x
- i1akXWjSN8sZUmp7reV+jIQPxAhZGbdT7F9pdxMHNpqdQGDWdWlZomhpWbJFiO+ES/4xY35HN9T
- 885rVrQmamO19jy0DizzOcGZBExUfcPdlHYakhEqSW4itDyuv9xW6VJW+yAHGy6Ov6PI8KlNCRG rfMkY0WKm+GVtjg==
-X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
-Content-Transfer-Encoding: 8bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4868; i=hyc.lee@gmail.com;
+ h=from:subject:message-id; bh=JmGJ3S97E1dqx9NlJlG+CkY5BZKoBhK+G4G+Qez1nt4=;
+ b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqeV3UyZCKHrcuRKnY3CzUiYNwAuAuRggR7Xtvp
+ c/w8S3ilyiJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCanld1AAKCRA08jD6945I
+ 0ynwD/9mTkUM0S2SvOhAOgmHnTI0Xdc44Iwmi1oO2Rm3YsNu6UXKtz4azyslT5hyeMgLs8M/znz
+ CRv+DvbUPFenLYjzm9PhpS70WwK5kMqtbxPEpMopPgWxmu/AIwqfkrPjc5oDJj5gYfgMU/W4Y69
+ +da8RZZY0XMYwfFAEFlZpsWj/zH8LE9hZg4SJdf2YE/VdZXl0Q6uF5ZdfmCEOb49e8kDyBB04FW
+ yiqTgjdzGZDLjlXj7W0iZxfJXCfLQ4HraSEKEPbxBbVBUQqOkSucjw/9gaF7fVT6KTzbpTdCi/E
+ e6W1cIHfYtpDm4qXplCTGJnUWjXf9l9vlD1kjEwXOEXau2GBiYFZ8e1jg3qzgn0GB8a0vrbf+X+
+ BiSoZubKWqzpSTJUYN1TzBCGIulp7BJ84kKZz/AChYqkzPSA8gsoRychDSsHvtO81Fyn2qrbPxb
+ bAYj3lgKoMpLKcFYy+OFnkxoO4QsKjJ5WIAnA1O3mmaGfs5EnlmEx7LdHganACWccbEm2cuUocl
+ bQurXCJSLq1qEjIltk3vfC8VLPhEnukXq0BPxnvMABOvLfIILOGnSVVoCT1rdHEHniF5gzjC/aF
+ jC6ccRNZrFy1B941jzZzuECZZ/kGQ714M7sNEAdTL8f6pIUxVp/X/q+NZ3w471wwAJXyZsBLiKp
+ OH16iCjpFX18g6A==
+X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp;
+ fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
+Content-Transfer-Encoding: quoted-printable
 
-Extend WOF decompression to support files where the  reparse named
-data attribute or the compressed chunks themselves are resident. Retrieve
-resident metadata using ntfs_attr_lookup() and copy compressed chunks
-directly from the resident attribute payload.
-
-Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
----
- fs/ntfs/wof.c | 114 +++++++++++++++++++++++++++++++++++++++++++++-------------
- 1 file changed, 90 insertions(+), 24 deletions(-)
-
-diff --git a/fs/ntfs/wof.c b/fs/ntfs/wof.c
-index 4c2a5943ffaf..dd80b30cf123 100644
---- a/fs/ntfs/wof.c
-+++ b/fs/ntfs/wof.c
-@@ -99,7 +99,8 @@ static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx, u64 chunk
- {
- 	u8 bytes_per_off;
- 	u8 *buf_aligned = NULL, *buf = NULL;
--	u64 off[2];
-+	u64 addr[2] = {0, }, off[2];
-+	u64 byte_off;
- 	u64 chunk_data_size;
- 	int ret = 0;
- 
-@@ -114,16 +115,15 @@ static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx, u64 chunk
- 		return -EINVAL;
- 	chunk_data_size = ni->data_size - (chunk_count - 1) * bytes_per_off;
- 
-+	if (chunk_idx > 0)
-+		byte_off = (chunk_idx - 1) * bytes_per_off;
-+	else
-+		byte_off = 0;
-+
- 	if (NInoNonResident(ni)) {
--		u64 byte_off;
- 		sector_t start_sector;
- 		u32 sector_off, sectors;
- 
--		if (chunk_idx > 0)
--			byte_off = (chunk_idx - 1) * bytes_per_off;
--		else
--			byte_off = 0;
--
- 		start_sector = byte_off >> 9;
- 		sector_off = byte_off & ((1 << 9) - 1);
- 		sectors = DIV_ROUND_UP(sector_off + 2 * bytes_per_off, 512);
-@@ -139,21 +139,61 @@ static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx, u64 chunk
- 			goto out;
- 		}
- 		buf = buf_aligned + sector_off;
-+	} else {
-+		struct ntfs_attr_search_ctx *ctx = NULL;
-+		u32 value_length;
-+		u16 value_offset;
-+		u8 *attr;
-+
-+		ctx = ntfs_attr_get_search_ctx(ni, NULL);
-+		if (!ctx) {
-+			ret = -ENOMEM;
-+			goto out;
-+		}
- 
--		if (chunk_idx + 1 == chunk_count) {
--			if (bytes_per_off == sizeof(__le32))
--				((__le32 *)buf)[1] =
--					cpu_to_le32(ni->data_size -
--						    (chunk_count - 1) * bytes_per_off);
--			else
--				((__le64 *)buf)[1] =
--					cpu_to_le64(ni->data_size -
--						    (chunk_count - 1) * bytes_per_off);
-+		ret = ntfs_attr_lookup(AT_DATA, (__le16 *)WOF_NAME,
-+				       WOF_NAME_LEN, CASE_SENSITIVE, 0, NULL, 0,
-+				       ctx);
-+		if (ret) {
-+			ntfs_attr_put_search_ctx(ctx);
-+			goto out;
- 		}
--	} else {
--		/* Resident WOF chunk table logic will be added in Commit 8 */
--		ret = -EOPNOTSUPP;
--		goto out;
-+
-+		value_length =
-+			le32_to_cpu(ctx->attr->data.resident.value_length);
-+		value_offset =
-+			le16_to_cpu(ctx->attr->data.resident.value_offset);
-+
-+		if (byte_off + bytes_per_off > value_length ||
-+		    (chunk_idx + 1 != chunk_count &&
-+		     byte_off + 2 * bytes_per_off > value_length)) {
-+			ntfs_attr_put_search_ctx(ctx);
-+			ret = -EINVAL;
-+			goto out;
-+		}
-+
-+		attr = (u8 *)ctx->attr + value_offset;
-+
-+		if (chunk_idx + 1 == chunk_count)
-+			memcpy((u8 *)addr, attr + byte_off, bytes_per_off);
-+		else
-+			memcpy((u8 *)addr, attr + byte_off, 2 * bytes_per_off);
-+
-+		buf = (u8 *)addr;
-+
-+		ntfs_attr_put_search_ctx(ctx);
-+	}
-+
-+	/* Last chunk has an implicit end offset derived from data_size. */
-+	if (chunk_idx + 1 == chunk_count) {
-+		if (bytes_per_off == sizeof(__le32))
-+			((__le32 *)buf)[1] =
-+				cpu_to_le32(ni->data_size -
-+					    (chunk_count - 1) * bytes_per_off);
-+		else
-+			((__le64 *)buf)[1] =
-+				cpu_to_le64(ni->data_size -
-+					    (chunk_count - 1) * bytes_per_off);
- 	}
- 
- 	if (bytes_per_off == sizeof(__le32)) {
-@@ -243,7 +283,7 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
- 	}
- 
- 	wof_ni = NTFS_I(wof_inode);
--	if (!wof_ni->runlist.rl) {
-+	if (NInoNonResident(wof_ni) && !NInoFullyMapped(wof_ni)) {
- 		err = ntfs_attr_map_whole_runlist(wof_ni);
- 		if (err)
- 			goto out_iput;
-@@ -308,9 +348,35 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
- 
- 	/* Read compressed data from disk */
- 	if (!NInoNonResident(wof_ni)) {
--		/* Resident WOF data read logic will be added in Commit 8 */
--		err = -EOPNOTSUPP;
--		goto out_free;
-+		struct ntfs_attr_search_ctx *ctx = NULL;
-+
-+		ctx = ntfs_attr_get_search_ctx(wof_ni, NULL);
-+		if (!ctx) {
-+			err = -ENOMEM;
-+			goto out_free;
-+		}
-+
-+		err = ntfs_attr_lookup(AT_DATA, (__le16 *)WOF_NAME,
-+				       WOF_NAME_LEN, CASE_SENSITIVE,
-+				       0, NULL, 0, ctx);
-+		if (err) {
-+			ntfs_attr_put_search_ctx(ctx);
-+			goto out_free;
-+		}
-+
-+		if (chunk_offset + chunk_size >
-+		    le32_to_cpu(ctx->attr->data.resident.value_length)) {
-+			ntfs_attr_put_search_ctx(ctx);
-+			err = -EINVAL;
-+			goto out_free;
-+		}
-+
-+		memcpy(chunk_mem_aligned,
-+		       (u8 *)ctx->attr +
-+		       le16_to_cpu(ctx->attr->data.resident.value_offset) +
-+		       chunk_offset, chunk_size);
-+		ntfs_attr_put_search_ctx(ctx);
-+		chunk_mem = chunk_mem_aligned;
- 	} else {
- 		err = ntfs_bdev_read_from_rl(vol, &wof_ni->runlist,
- 					     chunk_offset >> 9,
-
--- 
-2.43.0
-
+ntfs_external_attr_find() walks base_ni->attr_list using raw=0D
+attr_list_entry pointers stored in ctx->al_entry. Because other paths=0D
+can replace base_ni->attr_list and free the old buffer while a lookup=0D
+still holds one of those cursors, a concurrent attribute-list mutation=0D
+can turn a saved cursor into a stale or freed pointer.=0D
+=0D
+Reported in:=0D
+  https://lore.kernel.org/all/20260702161710.2606853-1-zzzccc427@gmail.com/=
+=0D
+=0D
+This series fixes that hazard by replacing the raw ctx->al_entry=0D
+pointer with restartable, generation-checked locators, and by adding=0D
+locks that serialize attribute-list buffer replacement and on-disk=0D
+persistence so concurrent mutations cannot corrupt state or double-free=0D
+memory.=0D
+=0D
+The four patches are:=0D
+=0D
+  1. ntfs: replace raw ctx->al_entry with restartable attr-list locators=0D
+  2. ntfs: protect attribute-list buffer replacement with=0D
+     attr_list_persist_lock=0D
+  3. ntfs: protect attribute-list creation/teardown with=0D
+     attr_list_persist_lock=0D
+  4. ntfs: protect mapping-pairs attr-list updates with=0D
+     attr_list_persist_lock=0D
+=0D
+What changes=0D
+------------=0D
+=0D
+Instead of a raw struct attr_list_entry *, the search context now=0D
+carries three value-only locators:=0D
+=0D
+  - al_cursor  -- where ntfs_external_attr_find() resumes enumeration;=0D
+                  invalidated on generation mismatch.=0D
+  - al_insert  -- insertion point captured on -ENOENT lookups.=0D
+  - al_exact   -- immutable identity snapshot (type, lowest_vcn,=0D
+                  mft_reference, instance, name length) used by writers=0D
+                  to re-locate the same ALE after a buffer replacement.=0D
+=0D
+The inode gains attr_list_lock, an rwsem that protects the live buffer,=0D
+its size and generation, and in-place ALE changes. Readers hold it=0D
+only while dereferencing the buffer; writers hold it while replacing the=0D
+buffer or changing an ALE, then increment the generation. Pointers into=0D
+the buffer never survive an unlock, and the rwsem is dropped before=0D
+persistence or an operation that can take runlist.lock or extent_lock.=0D
+=0D
+attr_list_persist_lock is a non-recursive mutex that serializes a=0D
+mutation through persistence and rollback, including list creation and=0D
+teardown. ntfs_attrlist_update_locked() writes the live buffer without=0D
+attr_list_lock, so the caller holds this mutex from mutation through the=0D
+write. It also stabilizes the buffer while attaching extents. When both=0D
+locks are needed, take attr_list_persist_lock first. Creation owns the=0D
+mutex itself, so callers must create first and then restart; re-entrant=0D
+teardown uses persist_locked instead of recursively acquiring it.=0D
+=0D
+---=0D
+* Changes in v6:=0D
+  * Patch 2: initialize new_al before an early error path can reach its=0D
+    cleanup, fixing an x86_64 allmodconfig Clang build warning.=0D
+* Changes in v5:=0D
+  * Patch 3: keep each in-place ALE update and its persist in one=0D
+    transaction. This fixes the Patch 2 review: a record move could=0D
+    update an ALE while persistence copied the same buffer.=0D
+  * Patch 3: serialize attribute-list creation, teardown, and extent=0D
+    attachment.=0D
+  * Patch 4: acquire the mutex unconditionally for mapping-pairs updates to=
+=0D
+    close the attribute-list creation TOCTOU; drop it before creating a=0D
+    missing list and restart afterward to avoid self-deadlock.=0D
+* Changes in v4:=0D
+  * Patch 1: fix attr-list lock/unlock and uninitialized locator on=0D
+    the AT_END path=0D
+  * Patch 2: hold attr_list_persist_lock around all=0D
+    ntfs_attrlist_update() callers and recheck the attribute-list=0D
+    state after locking=0D
+  * Patch 4: avoid self-deadlock rebuilding $ATTRIBUTE_LIST's own=0D
+    mapping pairs=0D
+* Changes in v3:=0D
+  * Patch 1: fix $ATTRIBUTE_LIST extent double-delivery during=0D
+    mapping-pairs rebuild (xfstests generic/040)=0D
+  * Patch 3: fix self-deadlock on attr_list_persist_lock during=0D
+    attr-list rebuild (xfstests generic/040)=0D
+* Changes in v2:=0D
+  * add Fixes tags=0D
+  * add Reported-by and Tested-by tags=0D
+=0D
+---=0D
+Hyunchul Lee (4):=0D
+      ntfs: replace raw ctx->al_entry with restartable attr-list locators=0D
+      ntfs: protect attribute-list buffer replacement with attr_list_persis=
+t_lock=0D
+      ntfs: protect attribute-list creation/teardown with attr_list_persist=
+_lock=0D
+      ntfs: protect mapping-pairs attr-list updates with attr_list_persist_=
+lock=0D
+=0D
+ fs/ntfs/attrib.c   | 567 ++++++++++++++++++++++++++++++++++++++++++++-----=
+----=0D
+ fs/ntfs/attrib.h   |  48 ++++-=0D
+ fs/ntfs/attrlist.c | 181 +++++++++++++----=0D
+ fs/ntfs/attrlist.h |   3 +-=0D
+ fs/ntfs/index.c    |  26 ++-=0D
+ fs/ntfs/inode.c    | 110 +++++++++--=0D
+ fs/ntfs/inode.h    |  10 +=0D
+ fs/ntfs/namei.c    |   2 +-=0D
+ fs/ntfs/super.c    |   2 +-=0D
+ 9 files changed, 793 insertions(+), 156 deletions(-)=0D
+---=0D
+base-commit: 5c244a0e9ca95468f4c2087b2c9269825429a13f=0D
+change-id: 20260727-topic-attr-list-lock-v6-f1a909e3c859=0D
+=0D
+Best regards,=0D
+-- =0D
+Thanks,=0D
+Hyunchul=0D
+=0D
