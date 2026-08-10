@@ -1,72 +1,72 @@
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11AE3148DD
-	for <ntfs@lists.linux.dev>; Mon, 10 Aug 2026 04:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA82298CAF
+	for <ntfs@lists.linux.dev>; Mon, 10 Aug 2026 04:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1786337307; cv=none; b=X0yaaJAOk2XYZlMGTCvP0HnV2ah46xPzq3zdmk1fdJV1+atLwt6ro6DoRkOqpYaeltk5u1H/F2kDEsWQX2Gag6S+mDdATm2YDF6dp2XYgvDtaucOHf/yFgPSc8zc9Mj0qI7EC/3acc+mgcxuwQrhnAhmY1Wi3baKb8Ja7I7iYY8=
+	t=1786337310; cv=none; b=MaSRrgY40rXlWpo9Cb4GkdlA8Q806amLcWy1hjGCKwLTzwXVDq1u/1UHW9Rb50thMd+gXxegIW2t64boBo5S21a4UEYIDCoxdE2ykee5rDyj+6bd1PDWBsHfzSj5Hcq00zTTbJGKyR/Us4KUHuKNb2fc8+3BkwA4D30ITKwQkGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1786337307; c=relaxed/simple;
-	bh=+iBsitCOBW5Aj3NrPDOUKbl5s8gPBGWypBI+ibTJUxg=;
+	s=arc-20240116; t=1786337310; c=relaxed/simple;
+	bh=y9Ka3GoFfH7ME1EdMIauAkDmtDLocMwMf9MrNO1h5yI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r+CnA7rCW0UPh/gkgF8Q6NYFHGFBxVSeDK8l0/YEaS9xMyJlBmxU9013ayT2dl7ZOzv8ZjG7ZH6exuZyR21NsML18JbROKQoQkwtoxjfhiUwm8M6J71dJarfDrCUAhrHF68eWdhlNR2qOhepmdwazpzpwZjMhfkmvHQ3Rg9cytk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DOtx1Arn; arc=none smtp.client-ip=209.85.216.51
+	 MIME-Version:Content-Type; b=Zm0hSdmjvcAd3nLEu3BCg4QZNE02dm5lMtQtCuCmZ7NzrXV51YMPHmAj+P4OmekVPi/zjeSGkzPcsv0hGfalDXpUwlYbLo1pKuGoR25ivVjToULje30fBWCjfJN5WlhXzth423vwvaMiUfjxxzla1P5pkYj3b6qIoxhMb34GWSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j9P/YDFk; arc=none smtp.client-ip=209.85.216.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DOtx1Arn"
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-38a0c7e841fso1921594a91.2
-        for <ntfs@lists.linux.dev>; Sun, 09 Aug 2026 21:48:24 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j9P/YDFk"
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-38e041ea211so1559700a91.0
+        for <ntfs@lists.linux.dev>; Sun, 09 Aug 2026 21:48:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1786337304; x=1786942104; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1786337308; x=1786942108; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=767zd7QfrURcWnppc6qu0UmolFtjv0Se+YBPR1hul78=;
-        b=DOtx1Arn1xQNYzvOLXsVoIX0ca686yQsrDsEzrgUOL9rF72T4/nP7ESxMNfqS22ejr
-         LsWZTUdcL61vufzqJybI8Fo7DEwPHs8RijKWPV9YZEUAEs4Foaf86oyhK7v9iRGdgO4Q
-         hi8bRV6VdlHUFu5Vgt9X6LPcgw6nO74+cj09zPQflWq7iCoQ/eFyxK+J5ALk6ZThuP/b
-         +oaXNH3qEg642YrZnXbECcWD8nzU6R+YfyX50WF9MXvcYGYi4h9KBdUcYzRaTQUJ8kg9
-         8nGFDUjrWSxRFDhr4tZSp6kmBafUZJZy4PeLo5cpHf0BoM+em649R3U/vmg4HjbytbUA
-         G+kg==
+        bh=VvM9uzibDT1dsmmdiyZzYqWH8kKxedUBcxK8X9AYyRE=;
+        b=j9P/YDFk6vILW5We16BIdhIlczkL2QbkF8IjuGdxu4oVkC+6m8MP1nRPw3L6hpSJ3r
+         IXYkjx+F06LkXQKlCLuWFjiGsJKX+UexytMj6ooUXEpOSJVQRkcssTcjZ8+NZHjA9qOH
+         Vy1kCX8hO2hLsVD7sJIpLik7TNDI43Pfjwsmio3YIVjNUWiNVQcxKfHma1yaVuJOeALl
+         4OoqzSKysIM0QZApqdCB/zC/uerXUymlG8OGlnpwmxKSzteV/RG21HVvLFD+Qvh8Xcrc
+         heCFYiKWeQEFtd1J4uidQH8FpfjNFyi1XbmnR4dayvLwSNUQS+O0fd9leoN4iC9YjhAk
+         s7bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786337304; x=1786942104;
+        d=1e100.net; s=20251104; t=1786337308; x=1786942108;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=767zd7QfrURcWnppc6qu0UmolFtjv0Se+YBPR1hul78=;
-        b=XjUXmCFaygWeoySoMwKjUEMmAvkJvN/+1ON+/dJoPA2k1D0bYWhAHXvotjWD3AyJ3e
-         /kM6ltaiJHyUh1nYDNzXy39IscFzIe8MgV3HNufpNMKKObZXNCKGiPwqmGiaGFzHI80P
-         SnxZzEiYnvSLdJ3Ll0vStEsFIy0JydI5f8kKYtS5xbDFXdvkdwYDLok7u6ApOaKJ2Zgp
-         1FET8mLTDysAtGkeXksnZKCATxtBRXXVfamdbtO4IIcm6vDH1NcoqjfQ8vi6h8m0jNuz
-         vN5+PZhHrWT3S01gux7sA0kUqch9U1+TZygKFvSr1d93Ksmp+YMx2rWTHSZsLAhqmWl7
-         8pDg==
-X-Forwarded-Encrypted: i=1; AHgh+RqMn6YCwptHletPK6GAEa9GoDatVueTEvN7V2t3Hu38+vFiVYnFtIYZdZ05FQGR+xDsWv/Q@lists.linux.dev
-X-Gm-Message-State: AOJu0YxL1TNITOALD+DsCp35YjYn9/qr44LfRt/9DwMBxz1dtyfoux6+
-	4k0RgM2XaH4MPz99cfcjYJD2qo/YVhnw/dw64SoBPPxEIhNskAeYBKw5nVJhvQ==
-X-Gm-Gg: AR+sD13l1nwVj54SSI+JyMgE9qrpduI/X540K5Ukcz6tT0riyKFE5A8kvNIZkc5FT+K
-	ZFl//Hj2NOX6uWod58xhZlUWtYsl6QWH5Eodh6BvFaD6cBUBSwr7jhehZ4cDgvRSm8AohapfCGr
-	2GuZa4DTtpPXpF6Bs6C0CkBYHIDu+Eo+6/bES7aGpVWJa4FV4+44HqkPFik+Y7u7WFtvjxp/9K2
-	hW42QpbHeax+1rVV3wO4zwWhnuk7KeSJpXe37e/cCQaD4a1GiEdANAKlu4yjrbcs3po5EyTb0HL
-	HFT+rV7aWl+ORo5T7By9Y7uuzc6fxvqNJ1G1V4y9NE+vkvgJ7CvoBzWovk2moxqG24GJVcpsill
-	hOfVmXMYJqhGE4yu6JbJ7dxIb8J1LmKrCJt1TFqrkA/ejLOJGIq+oAT3p2qcv6yut7dPvVr5s5p
-	ypXMqMSpZQXyB7pnOZiMLJpO/HZU0vypkwGBq4DPrFxQXyEfNL+47PkwgHc2bNhrTlJFD9GCV5q
-	FQlHA==
-X-Received: by 2002:a17:90a:d445:b0:381:20b:a9ee with SMTP id 98e67ed59e1d1-3926213f22emr20619766a91.14.1786337303488;
-        Sun, 09 Aug 2026 21:48:23 -0700 (PDT)
+        bh=VvM9uzibDT1dsmmdiyZzYqWH8kKxedUBcxK8X9AYyRE=;
+        b=snuGr+pS9WYHnYc5VLjd8Z2PjqMxSHezl2hGg8YKF2B82Wi0ZZwzB5gG5FSnbu/Z5U
+         tZKxdin6GXrPONueyK2gJjjJ5bJ9tdUJ7AeM+WAsakJgwa1Y/OH4o9/ONIk6dEGWJXE3
+         6D4XU5lzx7lfMYV9DfTM/R+fWmWXfBd/EDbh2sDQUYlOdMrbX8kMNcFKahOUwYh+flae
+         f/8sTj21G5Ui6EmwUvGrZCmP0PfM7ixM04DX+4+DuPthtBBfJ8mJWoY8w3ZzLpYAlobw
+         NARMKSR040NuhIpanEn7gHAnAT2ft1XiQxV/meenSu+WzaDX4QSZhernK13TcJhPDEq3
+         N5ig==
+X-Forwarded-Encrypted: i=1; AHgh+RrrgaMxk12ORaU2Y/fCMlCP4KqsNfFGDTZewbU/1nADDCsMqj/Nr4Amc2jv+k38oYyKMkiP@lists.linux.dev
+X-Gm-Message-State: AOJu0YyGtgMDk0mZIJJVhnepp65o0K1FLHLAAfh9eaIpQczdd09/D2LM
+	sBmPksTuDNiQGrO7U56zHwuSL/mrq6GY2uxJIH+2sdnxQH+5lu8bHe2u
+X-Gm-Gg: AR+sD129VDMEeWvhVZJN4FUKTueVujZeDg7kBWdw3S7ACp0f07CUbrQC4OShKTP5OPH
+	Teo9xhvORCqxHSLPuj59rNDjIfT2vUCZdthp1mSwN4pL/x3DVV/ryGWqQHc2B+S3X6qT8XO0Io2
+	yBEcGIZihNjE+maXXhYecXmJ4sb1fRxkJaZuEA/E035/gUl4vJI92lcWZk7iOKfXAJnB3lmLYop
+	pG9IL0VhKcP5L8lqR9QTo2yrXuuNAnBm0O/Uw5LYX4uwhP8qocw6u/JewcYE2OBUjcnPO9nlE8P
+	p2JlvgN4WNb34+VI3HunEzZgKVer7ciqzyyJ9zOmv6EtzuT8wulmgXBHE7JJNWvemZMxMZWTGV8
+	WYTx033thqU/rbvm952a/2J86exZUtQ3NzQL1I5c7J1HUPP9F82PeTq3K8Md/jLNJ1NfdHObvPL
+	hXsFnIKsTvqB9SuJLeXXzgL+CDmdasobTj4h6aikEuFo+cUNBubpBH4OZJ4n5PbdrQHOcz4V4ZS
+	Rzcqw==
+X-Received: by 2002:a17:90b:28c3:b0:381:bc4c:da56 with SMTP id 98e67ed59e1d1-3903c6128c6mr42689252a91.19.1786337308075;
+        Sun, 09 Aug 2026 21:48:28 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-39085dc396dsm13045106a91.3.2026.08.09.21.48.21
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-39085dc396dsm13045106a91.3.2026.08.09.21.48.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Aug 2026 21:48:22 -0700 (PDT)
+        Sun, 09 Aug 2026 21:48:27 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev
-Subject: [PATCH 5/8] ntfs: port lzx/xpress decompressors from ntfs-3g-system-compression
-Date: Mon, 10 Aug 2026 13:47:59 +0900
-Message-ID: <20260810-topic-wof-v1-5-6a97cfa3bb59@gmail.com>
+Subject: [PATCH 7/8] ntfs: add non-resident WOF decompression
+Date: Mon, 10 Aug 2026 13:48:01 +0900
+Message-ID: <20260810-topic-wof-v1-7-6a97cfa3bb59@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260810-topic-wof-v1-0-6a97cfa3bb59@gmail.com>
 References: <20260810-topic-wof-v1-0-6a97cfa3bb59@gmail.com>
@@ -78,1509 +78,511 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=51732; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=+iBsitCOBW5Aj3NrPDOUKbl5s8gPBGWypBI+ibTJUxg=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqeVeQd14ieGgrOzlTGYOvf7/NOe4KOySvvmzWz
- AdqG4OTitWJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCanlXkAAKCRA08jD6945I
- 0708EACbuOSGPNn9i+6I6DKrwzutvgLl4E0KfNqyNHMuMdMsFVulOl1qxl9BtIMBDDt0PPLvPKX
- XVJpFb7KM3r3t5xTHrel7KfYtMKDTm7R+jea19hM/UVl3wdEq8eZjZu59nmswxJYVxfNxeXVjEO
- ejzRYowfP9zD7edRA5jGFDshUNKHVr0AIH/0R5TrimUvei7vMc97qTVd+SPqn0XqXNRoWCKmt8N
- 4M6Iq9e2r1yyAhXfId+wW2c+ehIu3DFoalMMqeYiYnwDV7l69IbtZQ6YeSHa2IA4y9rxRqKtt8S
- kioLkXnMZl77JXdY7oVneHm69Ds0RQjJ4y7yXiU64mFLb1STVvfI4C3OcuMdffVnHoHx6Rwxqqy
- 9G7Jq+K+Zw0CIIbOfPslGKllGTR8/SpLrpp78vjC5Z2bGcooa/fdMN702i96HzqMTFX7hh5nbH4
- toZA4OYvI1o17IJpa93Zou2d6PcZB6KYCpGBG0T4gqtoeGMP5Fz1e2nbuG7itXHvv/xdmLMCjlX
- Uw+gDta6WtInZy+YxftN4jAnKDw+gFKgKsG+YDAwWX4s0FllPkKRMhzZ2rMeBT4mYycL1A+naaB
- B+W+hk2jQCV2R5Ifg68IgFjEttZuNh82KxPUphjeN8/jOOZX1IKoe8SKvTdio4/N0VaJoQ1S7yN o22MbHwJof4jaCg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=14742; i=hyc.lee@gmail.com;
+ h=from:subject:message-id; bh=y9Ka3GoFfH7ME1EdMIauAkDmtDLocMwMf9MrNO1h5yI=;
+ b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqeVeRbd62q3+150TePEMCZC8ukjIznmLkfP9OY
+ GxeA/VggoOJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCanlXkQAKCRA08jD6945I
+ 0/MzEACqyAGCTruVPvwhqsaxfuf7CaJj+UcKR0hWPhm/7OYUvpAAVzcb9pF9aNoiNCRC6QW6Ul3
+ 3orrMF++52cyyTsC2R3dpVoEYcOhSY1DGSUPbRBpJ/N2UDG05EojwsVNdSUZaB0e04fEoes6Loe
+ w4kk4xUFtdzWzjPnhXzRDLQh8/ENvrPRQNgJTSEYUiiS2z8hgTNrv2jIEcZFkkwKRyk8FerSqCH
+ URlB7yUiMfGfZbuEMMCvm020oLbcO3TnYLtxQIItmTBW8nDyH3qJdRk0zDwB6SCslSuldNA8Z0+
+ /Yjipt61A0O7ePdl+aHmsezOuz9+qlOqDhrj5feGDHpM4cLEYJUoWkr5oaeSegUTDtcHMJw3wWx
+ lWqrZ6CnWecGb4u/WUUzdZBiDqqTbfR9u/7LYjw4F+5tS5LM5OvR+8F4gCvicC7E5S/h6kyp8tN
+ GAfeKcC1UM/urTrs4eN7Puy2M3s7RxF4gaLwP1V67cLHhYkL1DmRwy89duSCw3jiYRtya/ygzyW
+ W/I62ejU0YWEVgu8QHfC7FM/EDaeVhQHceIVFSsx6AVLmZY09H5kHqY76JzfsAIS9RC/3RF+Ukg
+ 6RWtbRiVV1QqmVoa/pco8udrOio9rTMMfIoX0Se6vGLRDDoWegeUk1+px0pFEZzgBLk6k4HQtOz 87ALjugR1cywc5w==
 X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
 Content-Transfer-Encoding: 8bit
 
-Port the LZX and XPRESS decompressors from the userspace
-ntfs-3g-system-compression plugin (Eric Biggers,
-https://github.com/ebiggers/ntfs-3g-system-compression) into the in-tree
-NTFS driver under lib/, and adapt them to the kernel environment.
+Introduce non-resident Windows System Compression (WOF) decompression
+support. Add wof.c containing parse_wof_chunk_table() and
+ntfs_read_wof_compressed_block(), and routing them via transparent
+codec ops table with dynamic scratch memory allocation. Hook up
+ntfs_readpage/read_folio paths in aops.c to delegate to the WOF block
+reader when NInoWofCompressed is set.
 
-The upstream plugin implements WOF ("Windows Overlay Filesystem", a.k.a.
-system compression / "Compact OS") decompression for the NTFS-3G FUSE
-driver, and itself borrows the LZX/XPRESS decompressors that the same
-author wrote for wimlib (https://wimlib.net/).  The XPRESS and LZX
-formats used here are identical to those used in WIM archives.  This
-commit is the kernel-side port that lets fs/ntfs/wof.c read
-system-compressed files.
-
-The library keeps the upstream subtable-based Huffman decoder (root
-table + contiguous subtables decoded with MAKE_DECODE_TABLE_ENTRY()), so
-long codewords only need one extra lookup instead of bit-by-bit tree
-traversal.  The ntfs_codec_ops interface exported to fs/ntfs/wof.c
-(ntfs_lzx32k_codec_ops and ntfs_xpress{4k,8k,16k}_codec_ops) matches
-what the WOF layer expects.
-
-Modifications made while porting from the upstream plugin:
-
-- Replace the variable LZX window order (2^15..2^21) with a fixed
-  32768-byte window, which is the only size WOF uses
-
-- Simplify the bitstream helper:
-  - bitstream_ensure_bits() now guarantees 16 valid bits instead of the
-    carried-over 17-bit refill path from wimlib.  Neither LZX (max
-    codeword length 16) nor XPRESS (max 15) needs more than 16 bits.
-
-- Refactor codes to satisfy checkpatch.
-
-Assisted-by: Copilot:gpt-5.6
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
- fs/ntfs/Makefile                |   3 +
- fs/ntfs/lib/decompress_common.c | 200 +++++++++++++
- fs/ntfs/lib/decompress_common.h | 444 +++++++++++++++++++++++++++++
- fs/ntfs/lib/lib.h               |  29 ++
- fs/ntfs/lib/lzx_decompress.c    | 610 ++++++++++++++++++++++++++++++++++++++++
- fs/ntfs/lib/xpress_decompress.c | 120 ++++++++
- 6 files changed, 1406 insertions(+)
+ fs/ntfs/Makefile |   2 +-
+ fs/ntfs/aops.c   |   7 +-
+ fs/ntfs/attrib.c |   2 +-
+ fs/ntfs/inode.c  |   4 +-
+ fs/ntfs/ntfs.h   |   3 +
+ fs/ntfs/wof.c    | 380 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 6 files changed, 393 insertions(+), 5 deletions(-)
 
 diff --git a/fs/ntfs/Makefile b/fs/ntfs/Makefile
-index e120c2e69862..5e5fd05f5863 100644
+index 5e5fd05f5863..ee8987e496a8 100644
 --- a/fs/ntfs/Makefile
 +++ b/fs/ntfs/Makefile
-@@ -7,4 +7,7 @@ ntfs-y := aops.o attrib.o collate.o dir.o file.o index.o inode.o \
+@@ -7,7 +7,7 @@ ntfs-y := aops.o attrib.o collate.o dir.o file.o index.o inode.o \
  	  upcase.o bitmap.o lcnalloc.o logfile.o reparse.o compress.o \
  	  iomap.o debug.o sysctl.o object_id.o bdev-io.o
  
-+ntfs-$(CONFIG_NTFS_FS_WOF_COMPRESSION) += \
-+	lib/decompress_common.o lib/lzx_decompress.o lib/xpress_decompress.o
-+
+-ntfs-$(CONFIG_NTFS_FS_WOF_COMPRESSION) += \
++ntfs-$(CONFIG_NTFS_FS_WOF_COMPRESSION) += wof.o \
+ 	lib/decompress_common.o lib/lzx_decompress.o lib/xpress_decompress.o
+ 
  ccflags-$(CONFIG_NTFS_DEBUG) += -DDEBUG
-diff --git a/fs/ntfs/lib/decompress_common.c b/fs/ntfs/lib/decompress_common.c
-new file mode 100644
-index 000000000000..1705face42a3
---- /dev/null
-+++ b/fs/ntfs/lib/decompress_common.c
-@@ -0,0 +1,200 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * decompress_common.c - Code shared by the XPRESS and LZX decompressors
-+ *
-+ * This is a port of the upstream wimlib "decompress_common.c" which builds
-+ * subtable-based Huffman decode tables, as opposed to the older
-+ * binary-tree-based format previously used in this library.  The vectorized
-+ * (SSE2/AVX2) fill paths are omitted for portability in the kernel.
-+ *
-+ * Copyright (C) 2022 Eric Biggers
-+ */
-+
-+#include "decompress_common.h"
-+
-+/* Compute the number of bits with which a subtable must be indexed for a
-+ * codeword of length @codeword_len, given that the root table is indexed with
-+ * @table_bits bits.
-+ */
-+static u32 compute_subtable_bits(u32 table_bits,
-+				 u32 codeword_len, u16 len_counts[])
-+{
-+	u32 subtable_bits = codeword_len - table_bits;
-+	s32 remainder = (s32)1 << subtable_bits;
-+
-+	for (;;) {
-+		remainder -= len_counts[table_bits + subtable_bits];
-+		if (remainder <= 0)
-+			break;
-+		subtable_bits++;
-+		remainder <<= 1;
-+	}
-+	return subtable_bits;
-+}
-+
-+/* Build the subtables for codewords longer than table_bits. */
-+static int build_subtables(u16 decode_table[], u32 num_syms, u32 table_bits,
-+			   u16 len_counts[], const u16 sorted_syms[], u32 sym_idx,
-+			   u32 decode_table_pos, u32 decode_table_size)
-+{
-+	u32 subtable_pos = 1U << table_bits;
-+	u32 subtable_bits = table_bits;
-+	u32 subtable_prefix = (u32)-1;
-+	u32 codeword_len = table_bits + 1;
-+	u32 codeword = decode_table_pos << 1;
-+	u32 prefix;
-+	u16 entry;
-+	u32 n;
-+
-+	for (; sym_idx < num_syms; sym_idx++) {
-+		while (len_counts[codeword_len] == 0) {
-+			codeword_len++;
-+			codeword <<= 1;
-+		}
-+
-+		prefix = codeword >> (codeword_len - table_bits);
-+
-+		if (prefix != subtable_prefix) {
-+			subtable_prefix = prefix;
-+			subtable_bits = compute_subtable_bits(table_bits, codeword_len,
-+							      len_counts);
-+			decode_table[subtable_prefix] =
-+				MAKE_DECODE_TABLE_ENTRY(subtable_pos, subtable_bits);
-+		}
-+
-+		entry = MAKE_DECODE_TABLE_ENTRY(sorted_syms[sym_idx],
-+						codeword_len - table_bits);
-+		n = 1U << (subtable_bits - (codeword_len - table_bits));
-+
-+		/* Defensive bound check: 'lens' is derived from untrusted
-+		 * on-disk compressed data, and subtable growth depends on
-+		 * its content.  This should never trigger for a correctly
-+		 * sized DECODE_TABLE_ENOUGH() value, but turns a wrong value
-+		 * into a clean decode failure instead of writing past the
-+		 * caller's decode_table[].
-+		 */
-+		if (unlikely(subtable_pos + n > decode_table_size))
-+			return -1;
-+
-+		do {
-+			decode_table[subtable_pos++] = entry;
-+		} while (--n);
-+
-+		len_counts[codeword_len]--;
-+		codeword++;
-+	}
-+
-+	return 0;
-+}
-+
-+/*
-+ * Given an alphabet of symbols and the length of each symbol's codeword in a
-+ * canonical prefix code, build a table for quickly decoding symbols that were
-+ * encoded with that code.
-+ *
-+ * The root table is indexed with 'table_bits' bits.  Codewords not longer than
-+ * 'table_bits' are decoded directly from the root table.  Longer codewords are
-+ * decoded via subtables: the corresponding root entry is a pointer (the index
-+ * of the subtable plus the number of bits with which the subtable is indexed),
-+ * and the subtable is indexed with the remaining bits of the codeword.
-+ *
-+ * Each entry stores both the symbol (high 12 bits) and the codeword length (low
-+ * 4 bits), so a single lookup yields the symbol and lets the bitstream be
-+ * advanced by the correct number of bits.
-+ *
-+ * @decode_table:  array in which to build the table (declared with
-+ *		   DECODE_TABLE()).  May alias @lens.
-+ * @num_syms:      number of symbols in the alphabet.
-+ * @table_bits:    log2 of the number of root table entries.
-+ * @lens:         array of @num_syms codeword lengths, indexed by symbol.
-+ * @max_codeword_len: longest codeword length allowed for this code.
-+ * @working_space: temporary array declared with DECODE_TABLE_WORKING_SPACE().
-+ * @decode_table_size: number of u16 entries in @decode_table (i.e.
-+ *		   ARRAY_SIZE(decode_table) at the call site).  Used only as a
-+ *		   defensive bound check against @lens-dependent subtable growth.
-+ *
-+ * Returns 0 on success, or -1 if the lengths do not form a valid prefix code,
-+ * or if building the subtables would overflow @decode_table_size entries.
-+ */
-+int make_huffman_decode_table(u16 decode_table[], u32 num_syms, u32 table_bits,
-+			      const u8 lens[], u32 max_codeword_len,
-+			      u16 working_space[], u32 decode_table_size)
-+{
-+	u16 *const len_counts = &working_space[0];
-+	u16 *const offsets = &working_space[1 * (max_codeword_len + 1)];
-+	u16 *const sorted_syms = &working_space[2 * (max_codeword_len + 1)];
-+	u32 decode_table_pos = 0;
-+	u32 sym_idx;
-+	u32 codeword_len;
-+	s32 remainder = 1;
-+	void *entry_ptr = decode_table;
-+	u32 len;
-+	u32 sym;
-+
-+	/* Count how many codewords have each length, including 0. */
-+	for (len = 0; len <= max_codeword_len; len++)
-+		len_counts[len] = 0;
-+	for (sym = 0; sym < num_syms; sym++)
-+		len_counts[lens[sym]]++;
-+
-+	/* A codeword of length n should require a proportion of the codespace
-+	 * equaling (1/2)^n.  The code is complete iff the codespace is exactly
-+	 * filled by the lengths.
-+	 */
-+	for (len = 1; len <= max_codeword_len; len++) {
-+		remainder = (remainder << 1) - len_counts[len];
-+		if (unlikely(remainder < 0))
-+			return -1;	/* over-subscribed */
-+	}
-+
-+	if (remainder != 0) {
-+		/* Incomplete code.  Permitted only if the code is empty. */
-+		if (unlikely(remainder != (s32)(1U << max_codeword_len)))
-+			return -1;
-+
-+		/* Empty code: zero the root table so lookups yield symbol 0
-+		 * without consuming any bits.
-+		 */
-+		memset(decode_table, 0, sizeof(decode_table[0]) << table_bits);
-+		return 0;
-+	}
-+
-+	/* Sort the symbols primarily by increasing codeword length and
-+	 * secondarily by increasing symbol value.
-+	 */
-+	offsets[0] = 0;
-+	for (len = 0; len < max_codeword_len; len++)
-+		offsets[len + 1] = offsets[len] + len_counts[len];
-+	for (sym = 0; sym < num_syms; sym++)
-+		sorted_syms[offsets[lens[sym]]++] = sym;
-+
-+	/* Fill the root table entries for codewords no longer than table_bits. */
-+	sym_idx = offsets[0];
-+	codeword_len = 1;
-+	for (; codeword_len <= table_bits; codeword_len++) {
-+		u32 stores_per_loop = 1U << (table_bits - codeword_len);
-+		u32 end_sym_idx = sym_idx + len_counts[codeword_len];
-+
-+		for (; sym_idx < end_sym_idx; sym_idx++) {
-+			u16 v = MAKE_DECODE_TABLE_ENTRY(sorted_syms[sym_idx],
-+							codeword_len);
-+			u32 n = stores_per_loop;
-+			u16 *p = entry_ptr;
-+
-+			do {
-+				*p++ = v;
-+			} while (--n);
-+			entry_ptr = p;
-+		}
-+	}
-+	decode_table_pos = (u16 *)entry_ptr - decode_table;
-+
-+	/* If all symbols were processed, no subtables are required. */
-+	if (sym_idx == num_syms)
-+		return 0;
-+
-+	/* At least one subtable is required.  Process the remaining symbols. */
-+	return build_subtables(decode_table, num_syms, table_bits, len_counts,
-+			       sorted_syms, sym_idx, decode_table_pos,
-+			       decode_table_size);
-+}
-diff --git a/fs/ntfs/lib/decompress_common.h b/fs/ntfs/lib/decompress_common.h
-new file mode 100644
-index 000000000000..9bf85cd52e6d
---- /dev/null
-+++ b/fs/ntfs/lib/decompress_common.h
-@@ -0,0 +1,444 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * decompress_common.h - Code shared by the XPRESS and LZX decompressors
-+ *
-+ * This is a port of the upstream wimlib "decompress_common.h" which uses a
-+ * subtable-based Huffman decode table format, as opposed to the older
-+ * binary-tree-based format previously used in this library.
-+ *
-+ * Copyright (C) 2022 Eric Biggers
-+ */
-+
-+#ifndef _LINUX_NTFS_LIB_DECOMPRESS_COMMON_H
-+#define _LINUX_NTFS_LIB_DECOMPRESS_COMMON_H
-+
-+#include <linux/compiler.h>
-+#include <linux/string.h>
-+#include <linux/types.h>
-+#include <linux/slab.h>
-+#include <linux/unaligned.h>
-+
-+/* "Force inline" macro (not required, but helpful for performance). */
-+#define forceinline __always_inline
-+
-+/* Size of a machine word. */
-+#define WORDBYTES	sizeof(size_t)
-+#define WORDBITS	(8 * WORDBYTES)
-+
-+/* UNALIGNED_ACCESS_IS_FAST should be 1 if unaligned memory accesses can be
-+ * performed efficiently on the target platform.
-+ */
-+#ifdef CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS
-+#  define UNALIGNED_ACCESS_IS_FAST 1
-+#else
-+#  define UNALIGNED_ACCESS_IS_FAST 0
+diff --git a/fs/ntfs/aops.c b/fs/ntfs/aops.c
+index 173de4cbee0f..57dfb99ae567 100644
+--- a/fs/ntfs/aops.c
++++ b/fs/ntfs/aops.c
+@@ -93,6 +93,10 @@ static int ntfs_read_folio(struct file *file, struct folio *folio)
+ 		/* Compressed data streams are handled in compress.c. */
+ 		if (NInoNonResident(ni) && NInoCompressed(ni))
+ 			return ntfs_read_compressed_block(folio);
++#ifdef CONFIG_NTFS_FS_WOF_COMPRESSION
++		else if (NInoWofCompressed(ni))
++			return ntfs_read_wof_compressed_block(folio);
 +#endif
-+
-+/* Deprecated name kept for compatibility with the upstream source. */
-+#define FAST_UNALIGNED_ACCESS	UNALIGNED_ACCESS_IS_FAST
-+
-+/* likely()/unlikely() are provided by <linux/compiler.h>. */
-+
-+/* STATIC_ASSERT() - verify the truth of an expression at compile time. */
-+#define STATIC_ASSERT(expr)	((void)sizeof(char[1 - 2 * !(expr)]))
-+
-+/* STATIC_ASSERT_ZERO() - like STATIC_ASSERT() but evaluates to 0 so it can be
-+ * used in constant expressions.
-+ */
-+#define STATIC_ASSERT_ZERO(expr) ((int)sizeof(char[-!(expr)]))
-+
-+/* Unaligned word load/store helpers. */
-+static forceinline size_t load_word_unaligned(const void *p)
-+{
-+	size_t v;
-+
-+	memcpy(&v, p, sizeof(v));
-+	return v;
-+}
-+
-+static forceinline void store_word_unaligned(size_t v, void *p)
-+{
-+	memcpy(p, &v, sizeof(v));
-+}
-+
-+static forceinline void copy_word_unaligned(const void *src, void *dst)
-+{
-+	store_word_unaligned(load_word_unaligned(src), dst);
-+}
-+
-+static forceinline size_t repeat_u16(u16 b)
-+{
-+	size_t v = b;
-+
-+	STATIC_ASSERT(WORDBITS == 32 || WORDBITS == 64);
-+	v |= v << 16;
-+	v |= v << ((WORDBITS == 64) ? 32 : 0);
-+	return v;
-+}
-+
-+static forceinline size_t repeat_byte(u8 b)
-+{
-+	return repeat_u16(((u16)b << 8) | b);
-+}
-+
-+/******************************************************************************/
-+/*                   Input bitstream for XPRESS and LZX                       */
-+/*----------------------------------------------------------------------------*/
-+
-+/* Structure that encapsulates a block of in-memory data being interpreted as a
-+ * stream of bits, optionally with interwoven literal bytes.  Bits are assumed
-+ * to be stored in little endian 16-bit coding units, with the bits ordered high
-+ * to low.
-+ */
-+struct input_bitstream {
-+	/* Bits that have been read from the input buffer.  The bits are
-+	 * left-justified; the next bit is always bit 31.
-+	 */
-+	u32 bitbuf;
-+
-+	/* Number of bits currently held in @bitbuf. */
-+	u32 bitsleft;
-+
-+	/* Pointer to the next byte to be retrieved from the input buffer. */
-+	const u8 *next;
-+
-+	/* Pointer past the end of the input buffer. */
-+	const u8 *end;
-+};
-+
-+/* Initialize a bitstream to read from the specified input buffer. */
-+static forceinline void init_input_bitstream(struct input_bitstream *is,
-+					     const void *buffer, u32 size)
-+{
-+	is->bitbuf = 0;
-+	is->bitsleft = 0;
-+	is->next = buffer;
-+	is->end = is->next + size;
-+}
-+
-+/* Note: for performance reasons, the following methods don't return error
-+ * codes to the caller if the input buffer is overrun.  Instead, they just
-+ * assume that all overrun data is zeroes.
-+ */
-+
-+/* Ensure the bit buffer variable for the bitstream contains at least @num_bits
-+ * bits.  Following this, bitstream_peek_bits() and/or bitstream_remove_bits()
-+ * may be called on the bitstream to peek or remove up to @num_bits bits.  This
-+ * works for at most 16 bits, which is sufficient for LZX (max codeword length
-+ * 16) and XPRESS (max codeword length 15).
-+ */
-+static forceinline void bitstream_ensure_bits(struct input_bitstream *is,
-+					      unsigned int num_bits)
-+{
-+	if (is->bitsleft >= num_bits)
-+		return;
-+
-+	if (unlikely(is->end - is->next < 2))
-+		goto overflow;
-+
-+	is->bitbuf |= (u32)get_unaligned_le16(is->next) << (16 - is->bitsleft);
-+	is->next += 2;
-+	is->bitsleft += 16;
-+	return;
-+
-+overflow:
-+	is->bitsleft = 32;
-+}
-+
-+/* Return the next @num_bits bits from the bitstream, without removing them.
-+ * There must be at least @num_bits remaining in the buffer variable.
-+ */
-+static forceinline u32 bitstream_peek_bits(const struct input_bitstream *is,
-+					   unsigned int num_bits)
-+{
-+	return (is->bitbuf >> 1) >> (sizeof(is->bitbuf) * 8 - num_bits - 1);
-+}
-+
-+/* Remove @num_bits from the bitstream. */
-+static forceinline void bitstream_remove_bits(struct input_bitstream *is,
-+					      unsigned int num_bits)
-+{
-+	is->bitbuf <<= num_bits;
-+	is->bitsleft -= num_bits;
-+}
-+
-+/* Remove and return @num_bits bits from the bitstream. */
-+static forceinline u32 bitstream_pop_bits(struct input_bitstream *is,
-+					  unsigned int num_bits)
-+{
-+	u32 bits = bitstream_peek_bits(is, num_bits);
-+
-+	bitstream_remove_bits(is, num_bits);
-+	return bits;
-+}
-+
-+/* Read and return the next @num_bits bits from the bitstream. */
-+static forceinline u32 bitstream_read_bits(struct input_bitstream *is,
-+					   unsigned int num_bits)
-+{
-+	bitstream_ensure_bits(is, num_bits);
-+	return bitstream_pop_bits(is, num_bits);
-+}
-+
-+/* Read and return the next literal byte embedded in the bitstream. */
-+static forceinline u8 bitstream_read_byte(struct input_bitstream *is)
-+{
-+	if (unlikely(is->end == is->next))
-+		return 0;
-+	return *is->next++;
-+}
-+
-+/* Read and return the next 16-bit integer embedded in the bitstream. */
-+static forceinline u16 bitstream_read_u16(struct input_bitstream *is)
-+{
-+	u16 v;
-+
-+	if (unlikely(is->end - is->next < 2))
-+		return 0;
-+	v = get_unaligned_le16(is->next);
-+	is->next += 2;
-+	return v;
-+}
-+
-+/* Read and return the next 32-bit integer embedded in the bitstream. */
-+static forceinline u32 bitstream_read_u32(struct input_bitstream *is)
-+{
-+	u32 v;
-+
-+	if (unlikely(is->end - is->next < 4))
-+		return 0;
-+	v = get_unaligned_le32(is->next);
-+	is->next += 4;
-+	return v;
-+}
-+
-+/* Read into @dst_buffer an array of literal bytes embedded in the bitstream.
-+ * Return 0 if there were enough bytes remaining in the input, otherwise -1.
-+ */
-+static forceinline int bitstream_read_bytes(struct input_bitstream *is,
-+					    void *dst_buffer, size_t count)
-+{
-+	if (unlikely((size_t)(is->end - is->next) < count))
-+		return -1;
-+	memcpy(dst_buffer, is->next, count);
-+	is->next += count;
-+	return 0;
-+}
-+
-+/* Align the input bitstream on a coding-unit boundary. */
-+static forceinline void bitstream_align(struct input_bitstream *is)
-+{
-+	is->bitsleft = 0;
-+	is->bitbuf = 0;
-+}
-+
-+/******************************************************************************/
-+/*                             Huffman decoding                               */
-+/*----------------------------------------------------------------------------*/
-+
-+/*
-+ * Required alignment for the Huffman decode tables.  We require this alignment
-+ * so that we can fill the entries with word instructions without having to deal
-+ * with misaligned buffers.
-+ */
-+#define DECODE_TABLE_ALIGNMENT 16
-+
-+/*
-+ * Each decode table entry is 16 bits divided into two fields: 'symbol' (high 12
-+ * bits) and 'length' (low 4 bits).  See the comments in decompress_common.c for
-+ * the precise meaning of these fields depending on the entry type.
-+ */
-+#define DECODE_TABLE_SYMBOL_SHIFT  4
-+#define DECODE_TABLE_MAX_SYMBOL	   ((1 << (16 - DECODE_TABLE_SYMBOL_SHIFT)) - 1)
-+#define DECODE_TABLE_MAX_LENGTH    ((1 << DECODE_TABLE_SYMBOL_SHIFT) - 1)
-+#define DECODE_TABLE_LENGTH_MASK   DECODE_TABLE_MAX_LENGTH
-+#define MAKE_DECODE_TABLE_ENTRY(symbol, length) \
-+	(((symbol) << DECODE_TABLE_SYMBOL_SHIFT) | (length))
-+
-+/*
-+ * Read and return the next Huffman-encoded symbol from the given bitstream
-+ * using the given decode table.  If the input data is exhausted, then the
-+ * Huffman symbol will be decoded as if the missing bits were all zeroes.
-+ */
-+static forceinline unsigned int read_huffsym(struct input_bitstream *is,
-+					     const u16 decode_table[],
-+					     unsigned int table_bits,
-+					     unsigned int max_codeword_len)
-+{
-+	unsigned int entry;
-+	unsigned int symbol;
-+	unsigned int length;
-+
-+	/* Preload the bitbuffer with 'max_codeword_len' bits. */
-+	bitstream_ensure_bits(is, max_codeword_len);
-+
-+	/* Index the root table by the next 'table_bits' bits of input. */
-+	entry = decode_table[bitstream_peek_bits(is, table_bits)];
-+
-+	/* Extract the "symbol" and "length" from the entry. */
-+	symbol = entry >> DECODE_TABLE_SYMBOL_SHIFT;
-+	length = entry & DECODE_TABLE_LENGTH_MASK;
-+
-+	/* If the codeword is longer than 'table_bits', the root entry is a
-+	 * subtable pointer.  Discard the bits used to index the root table and
-+	 * index the subtable by the next 'length' bits.
-+	 */
-+	if (max_codeword_len > table_bits &&
-+	    entry >= (1U << (table_bits + DECODE_TABLE_SYMBOL_SHIFT))) {
-+		bitstream_remove_bits(is, table_bits);
-+		entry = decode_table[symbol + bitstream_peek_bits(is, length)];
-+		symbol = entry >> DECODE_TABLE_SYMBOL_SHIFT;
-+		length = entry & DECODE_TABLE_LENGTH_MASK;
-+	}
-+
-+	/* Discard the (remaining) bits of the codeword. */
-+	bitstream_remove_bits(is, length);
-+
-+	return symbol;
-+}
-+
-+/*
-+ * DECODE_TABLE_ENOUGH() evaluates to the maximum number of decode table
-+ * entries, including all subtable entries, that may be required for decoding a
-+ * given Huffman code.  It is a compile-time mapping computed by the zlib
-+ * 'enough' utility.  An unknown combination produces a build error.
-+ */
-+#define DECODE_TABLE_ENOUGH(num_syms, table_bits, max_codeword_len) (	\
-+	((num_syms) == 8 && (table_bits) == 5 && (max_codeword_len) == 7) ? 36 : \
-+	((num_syms) == 8 && (table_bits) == 6 && (max_codeword_len) == 7) ? 66 : \
-+	((num_syms) == 8 && (table_bits) == 7 && (max_codeword_len) == 7) ? 128 : \
-+	((num_syms) == 20 && (table_bits) == 5 && (max_codeword_len) == 15) ? 1062 : \
-+	((num_syms) == 20 && (table_bits) == 6 && (max_codeword_len) == 15) ? 582 : \
-+	((num_syms) == 20 && (table_bits) == 7 && (max_codeword_len) == 15) ? 390 : \
-+	((num_syms) == 54 && (table_bits) == 9 && (max_codeword_len) == 15) ? 618 : \
-+	((num_syms) == 54 && (table_bits) == 10 && (max_codeword_len) == 15) ? 1098 : \
-+	((num_syms) == 249 && (table_bits) == 9 && (max_codeword_len) == 16) ? 878 : \
-+	((num_syms) == 249 && (table_bits) == 10 && (max_codeword_len) == 16) ? 1326 : \
-+	((num_syms) == 249 && (table_bits) == 11 && (max_codeword_len) == 16) ? 2318 : \
-+	((num_syms) == 496 && (table_bits) == 11 && (max_codeword_len) == 16) ? 2566 : \
-+	((num_syms) == 256 && (table_bits) == 9 && (max_codeword_len) == 15) ? 822 : \
-+	((num_syms) == 256 && (table_bits) == 10 && (max_codeword_len) == 15) ? 1302 : \
-+	((num_syms) == 256 && (table_bits) == 11 && (max_codeword_len) == 15) ? 2310 : \
-+	((num_syms) == 512 && (table_bits) == 10 && (max_codeword_len) == 15) ? 1558 : \
-+	((num_syms) == 512 && (table_bits) == 11 && (max_codeword_len) == 15) ? 2566 : \
-+	((num_syms) == 512 && (table_bits) == 12 && (max_codeword_len) == 15) ? 4606 : \
-+	((num_syms) == 656 && (table_bits) == 10 && (max_codeword_len) == 16) ? 1734 : \
-+	((num_syms) == 656 && (table_bits) == 11 && (max_codeword_len) == 16) ? 2726 : \
-+	((num_syms) == 656 && (table_bits) == 12 && (max_codeword_len) == 16) ? 4758 : \
-+	((num_syms) == 799 && (table_bits) == 9 && (max_codeword_len) == 15) ? 1366 : \
-+	((num_syms) == 799 && (table_bits) == 10 && (max_codeword_len) == 15) ? 1846 : \
-+	((num_syms) == 799 && (table_bits) == 11 && (max_codeword_len) == 15) ? 2854 : \
-+	-1)
-+
-+/* Wrapper around DECODE_TABLE_ENOUGH() that does additional compile-time
-+ * validation.
-+ */
-+#define DECODE_TABLE_SIZE(num_syms, table_bits, max_codeword_len) (	\
-+	STATIC_ASSERT_ZERO((num_syms) > 0) +				\
-+	STATIC_ASSERT_ZERO((table_bits) > 0) +				\
-+	STATIC_ASSERT_ZERO((max_codeword_len) > 0) +			\
-+	STATIC_ASSERT_ZERO((num_syms) <= 1U << (max_codeword_len)) +	\
-+	STATIC_ASSERT_ZERO((table_bits) <= (max_codeword_len)) +	\
-+	STATIC_ASSERT_ZERO((num_syms) - 1 <= DECODE_TABLE_MAX_SYMBOL) +	\
-+	STATIC_ASSERT_ZERO((table_bits) <= DECODE_TABLE_MAX_LENGTH) +	\
-+	STATIC_ASSERT_ZERO((max_codeword_len) - (table_bits) <=		\
-+			   DECODE_TABLE_MAX_LENGTH) +			\
-+	STATIC_ASSERT_ZERO((1U << table_bits) > (num_syms) - 1) +	\
-+	STATIC_ASSERT_ZERO(DECODE_TABLE_ENOUGH(				\
-+				(num_syms), (table_bits),		\
-+				(max_codeword_len)) > 0) +		\
-+	STATIC_ASSERT_ZERO(DECODE_TABLE_ENOUGH(				\
-+				(num_syms), (table_bits),		\
-+				(max_codeword_len)) - 1 <=		\
-+					DECODE_TABLE_MAX_SYMBOL) +	\
-+	DECODE_TABLE_ENOUGH((num_syms), (table_bits),			\
-+			    (max_codeword_len))				\
-+)
-+
-+/* Declare the decode table for a Huffman code. */
-+#define DECODE_TABLE(name, num_syms, table_bits, max_codeword_len) \
-+	u16 name[DECODE_TABLE_SIZE((num_syms), (table_bits),		\
-+				   (max_codeword_len))]		\
-+		__aligned(DECODE_TABLE_ALIGNMENT)
-+
-+/* Declare the temporary "working_space" array needed for building the decode
-+ * table for a Huffman code.
-+ */
-+#define DECODE_TABLE_WORKING_SPACE(name, num_syms, max_codeword_len)	\
-+	u16 name[2 * ((max_codeword_len) + 1) + (num_syms)]
-+
-+int make_huffman_decode_table(u16 decode_table[], u32 num_syms,
-+			      u32 table_bits, const u8 lens[],
-+			      u32 max_codeword_len, u16 working_space[],
-+			      u32 decode_table_size);
-+
-+/******************************************************************************/
-+/*                             LZ match copying                               */
-+/*----------------------------------------------------------------------------*/
-+
-+/*
-+ * Copy an LZ77 match of 'length' bytes from the match source at 'out_next -
-+ * offset' to the match destination at 'out_next'.  The source and destination
-+ * may overlap.  This handles validating the length and offset; it returns 0 if
-+ * the match was valid (and was copied), otherwise -1.
-+ */
-+static forceinline int lz_copy(u32 length, u32 offset, u8 *out_begin,
-+			       u8 *out_next, u8 *out_end, u32 min_length)
-+{
-+	const u8 *src;
-+	u8 *end;
-+
-+	/* Validate the offset. */
-+	if (unlikely(offset > (u32)(out_next - out_begin)))
-+		return -1;
-+
-+	src = out_next - offset;
-+
-+	/* Fast path: copy a short, non-overlapping match whose end is not too
-+	 * close to the end of the buffer.
-+	 */
-+	if (UNALIGNED_ACCESS_IS_FAST && length <= 3 * WORDBYTES &&
-+	    offset >= WORDBYTES && out_end - out_next >= 3 * WORDBYTES) {
-+		copy_word_unaligned(src + WORDBYTES * 0, out_next + WORDBYTES * 0);
-+		copy_word_unaligned(src + WORDBYTES * 1, out_next + WORDBYTES * 1);
-+		copy_word_unaligned(src + WORDBYTES * 2, out_next + WORDBYTES * 2);
-+		return 0;
-+	}
-+
-+	/* Validate the length. */
-+	if (unlikely(length > (u32)(out_end - out_next)))
-+		return -1;
-+	end = out_next + length;
-+
-+	if (UNALIGNED_ACCESS_IS_FAST && likely(out_end - end >= WORDBYTES - 1)) {
-+		if (offset >= WORDBYTES) {
-+			do {
-+				copy_word_unaligned(src, out_next);
-+				src += WORDBYTES;
-+				out_next += WORDBYTES;
-+			} while (out_next < end);
-+			return 0;
-+		} else if (offset == 1) {
-+			size_t v = repeat_byte(*(out_next - 1));
-+
-+			do {
-+				store_word_unaligned(v, out_next);
-+				src += WORDBYTES;
-+				out_next += WORDBYTES;
-+			} while (out_next < end);
-+			return 0;
-+		}
-+	}
-+
-+	/* Fall back to a bytewise copy. */
-+	if (min_length >= 2)
-+		*out_next++ = *src++;
-+	if (min_length >= 3)
-+		*out_next++ = *src++;
-+	do {
-+		*out_next++ = *src++;
-+	} while (out_next != end);
-+	return 0;
-+}
-+
-+#endif /* _LINUX_NTFS_LIB_DECOMPRESS_COMMON_H */
-diff --git a/fs/ntfs/lib/lib.h b/fs/ntfs/lib/lib.h
+ 	}
+ 
+ 	iomap_read_folio(&ntfs_read_iomap_ops, &ctx, NULL);
+@@ -234,7 +238,8 @@ static void ntfs_readahead(struct readahead_control *rac)
+ 	 * Resident files are not cached in the page cache,
+ 	 * and readahead is not implemented for compressed files.
+ 	 */
+-	if (!NInoNonResident(ni) || NInoCompressed(ni))
++	if (!NInoNonResident(ni) || NInoCompressed(ni) ||
++	    NInoWofCompressed(ni))
+ 		return;
+ 	iomap_readahead(&ntfs_read_iomap_ops, &ctx, NULL);
+ }
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index c62c8ca8b987..45624e3d1dc9 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -2137,7 +2137,7 @@ int ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size)
+ 		ni->runlist.count = 0;
+ 	write_lock_irqsave(&ni->size_lock, flags);
+ 	ni->allocated_size = new_size;
+-	if (NInoSparse(ni) || NInoCompressed(ni)) {
++	if ((NInoSparse(ni) && !NInoWofCompressed(ni)) || NInoCompressed(ni)) {
+ 		ni->itype.compressed.size = ni->allocated_size;
+ 		if (a->data.non_resident.compression_unit) {
+ 			ni->itype.compressed.block_size = 1U <<
+diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
+index 8d9bbc151309..0d7d19cd6c49 100644
+--- a/fs/ntfs/inode.c
++++ b/fs/ntfs/inode.c
+@@ -1119,7 +1119,7 @@ static int ntfs_read_locked_inode(struct inode *vi)
+ 		}
+ 		if (a->non_resident) {
+ 			NInoSetNonResident(ni);
+-			if (NInoCompressed(ni) || NInoSparse(ni)) {
++			if (NInoCompressed(ni) || (NInoSparse(ni) && !NInoWofCompressed(ni))) {
+ 				if (NInoCompressed(ni) &&
+ 				    a->data.non_resident.compression_unit != 4) {
+ 					ntfs_error(vi->i_sb,
+@@ -1398,7 +1398,7 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
+ 				"Attribute name is placed after the mapping pairs array.");
+ 			goto unm_err_out;
+ 		}
+-		if (NInoCompressed(ni) || NInoSparse(ni)) {
++		if (NInoCompressed(ni) || (NInoSparse(ni) && !NInoWofCompressed(ni))) {
+ 			if (NInoCompressed(ni) && a->data.non_resident.compression_unit != 4) {
+ 				ntfs_error(vi->i_sb,
+ 					"Found non-standard compression unit (%u instead of 4).  Cannot handle this.",
+diff --git a/fs/ntfs/ntfs.h b/fs/ntfs/ntfs.h
+index 45064dbcc2e4..e6dbe382de4e 100644
+--- a/fs/ntfs/ntfs.h
++++ b/fs/ntfs/ntfs.h
+@@ -202,6 +202,9 @@ static inline struct ntfs_volume *NTFS_SB(struct super_block *sb)
+ 
+ /* From fs/ntfs/compress.c */
+ int ntfs_read_compressed_block(struct folio *folio);
++#ifdef CONFIG_NTFS_FS_WOF_COMPRESSION
++int ntfs_read_wof_compressed_block(struct folio *folio);
++#endif
+ int allocate_compression_buffers(void);
+ void free_compression_buffers(void);
+ int ntfs_compress_write(struct ntfs_inode *ni, loff_t pos, size_t count,
+diff --git a/fs/ntfs/wof.c b/fs/ntfs/wof.c
 new file mode 100644
-index 000000000000..a684d600fd3c
+index 000000000000..4c2a5943ffaf
 --- /dev/null
-+++ b/fs/ntfs/lib/lib.h
-@@ -0,0 +1,29 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+/*
-+ * lib.h - Public declarations for the LZX and XPRESS decompressors.
-+ *
-+ * Adapted for the linux kernel.  These are the low-level decompressor
-+ * allocations; WOF (system-compressed) access goes through the
-+ * ntfs_codec_ops interface declared in "../ntfs_codec.h".
-+ */
-+
-+#ifndef _LINUX_NTFS_LIB_LIB_H
-+#define _LINUX_NTFS_LIB_LIB_H
-+
-+#include <linux/types.h>
-+
-+/* globals from xpress_decompress.c */
-+struct xpress_decompressor *xpress_allocate_decompressor(void);
-+void xpress_free_decompressor(struct xpress_decompressor *d);
-+int xpress_decompress(struct xpress_decompressor *d,
-+		      const void *compressed_data, size_t compressed_size,
-+		      void *uncompressed_data, size_t uncompressed_size);
-+
-+/* globals from lzx_decompress.c */
-+struct lzx_decompressor *lzx_allocate_decompressor(void);
-+void lzx_free_decompressor(struct lzx_decompressor *d);
-+int lzx_decompress(struct lzx_decompressor *d, const void *compressed_data,
-+		   size_t compressed_size, void *uncompressed_data,
-+		   size_t uncompressed_size);
-+
-+#endif /* _LINUX_NTFS_LIB_LIB_H */
-diff --git a/fs/ntfs/lib/lzx_decompress.c b/fs/ntfs/lib/lzx_decompress.c
-new file mode 100644
-index 000000000000..3b3c198d07e4
---- /dev/null
-+++ b/fs/ntfs/lib/lzx_decompress.c
-@@ -0,0 +1,610 @@
++++ b/fs/ntfs/wof.c
+@@ -0,0 +1,380 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later
 +/*
-+ * lzx_decompress.c - A decompressor for the LZX compression format
++ * Windows System Compression (WOF) decompression glue.
 + *
-+ * This is a port of the upstream wimlib "lzx_decompress.c" which uses a
-+ * subtable-based Huffman decode table format.  The window size is fixed at
-+ * 32768 bytes, which is the only size used in System-compressed (WOF) files.
-+ *
-+ * Copyright (C) 2012-2016 Eric Biggers
++ * Copyright (c) 2026 LG Electronics Co., Ltd.
 + */
 +
-+#include <linux/array_size.h>
-+#include <linux/bits.h>
++#include <linux/fs.h>
++#include <linux/blkdev.h>
++#include <linux/highmem.h>
++#include <linux/vmalloc.h>
++#include <linux/slab.h>
 +
-+#include "decompress_common.h"
-+#include "lib.h"
++#include "ntfs.h"
++#include "inode.h"
++#include "debug.h"
++#include "ntfs_codec.h"
++#include "attrib.h"
 +
-+/* Number of literal byte values. */
-+#define LZX_NUM_CHARS		256
-+
-+/* The smallest and largest allowed match lengths. */
-+#define LZX_MIN_MATCH_LEN	2
-+#define LZX_MAX_MATCH_LEN	257
-+
-+/* Number of distinct match lengths that can be represented. */
-+#define LZX_NUM_LENS		(LZX_MAX_MATCH_LEN - LZX_MIN_MATCH_LEN + 1)
-+
-+/* Number of match lengths for which no length symbol is required. */
-+#define LZX_NUM_PRIMARY_LENS	7
-+#define LZX_NUM_LEN_HEADERS	(LZX_NUM_PRIMARY_LENS + 1)
-+
-+/* Valid values of the 3-bit block type field. */
-+#define LZX_BLOCKTYPE_VERBATIM		1
-+#define LZX_BLOCKTYPE_ALIGNED		2
-+#define LZX_BLOCKTYPE_UNCOMPRESSED	3
-+
-+/* LZX window size is fixed at 32768 bytes for System-compressed files. */
-+
-+/* Number of offset slots for a 32768-byte window. */
-+#define LZX_NUM_OFFSET_SLOTS	30
-+
-+/* Number of symbols in the main code. */
-+#define LZX_MAINCODE_NUM_SYMBOLS	\
-+	(LZX_NUM_CHARS + (LZX_NUM_OFFSET_SLOTS * LZX_NUM_LEN_HEADERS))
-+
-+/* Number of symbols in the length code. */
-+#define LZX_LENCODE_NUM_SYMBOLS		(LZX_NUM_LENS - LZX_NUM_PRIMARY_LENS)
-+
-+/* Number of symbols in the precode. */
-+#define LZX_PRECODE_NUM_SYMBOLS		20
-+
-+/* Number of bits in which each precode codeword length is represented. */
-+#define LZX_PRECODE_ELEMENT_SIZE	4
-+
-+/* Number of low-order bits of each match offset that are entropy-encoded in
-+ * aligned offset blocks.
-+ */
-+#define LZX_NUM_ALIGNED_OFFSET_BITS	3
-+
-+/* Number of symbols in the aligned offset code. */
-+#define LZX_ALIGNEDCODE_NUM_SYMBOLS	BIT(LZX_NUM_ALIGNED_OFFSET_BITS)
-+
-+/* Mask for the match offset bits that are entropy-encoded in aligned offset
-+ * blocks.
-+ */
-+#define LZX_ALIGNED_OFFSET_BITMASK	(BIT(LZX_NUM_ALIGNED_OFFSET_BITS) - 1)
-+
-+/* Number of bits in which each aligned offset codeword length is represented. */
-+#define LZX_ALIGNEDCODE_ELEMENT_SIZE	3
-+
-+/* The first offset slot which requires an aligned offset symbol in aligned
-+ * offset blocks.
-+ */
-+#define LZX_MIN_ALIGNED_OFFSET_SLOT	8
-+
-+/* Maximum lengths (in bits) of the codewords in each Huffman code. */
-+#define LZX_MAX_MAIN_CODEWORD_LEN	16
-+#define LZX_MAX_LEN_CODEWORD_LEN	16
-+#define LZX_MAX_PRE_CODEWORD_LEN	((1 << LZX_PRECODE_ELEMENT_SIZE) - 1)
-+#define LZX_MAX_ALIGNED_CODEWORD_LEN	((1 << LZX_ALIGNEDCODE_ELEMENT_SIZE) - 1)
-+
-+/* For LZX-compressed blocks in WIM/system-compressed files this value is
-+ * always used as the filesize parameter for the E8 call preprocessing.
-+ */
-+#define LZX_WIM_MAGIC_FILESIZE	12000000
-+
-+/* Assumed LZX block size when the encoded block size begins with a 0 bit. */
-+#define LZX_DEFAULT_BLOCK_SIZE	32768
-+
-+/* Number of offsets in the recent (or "repeat") offsets queue. */
-+#define LZX_NUM_RECENT_OFFSETS	3
-+
-+/* An offset of n bytes is actually encoded as (n + LZX_OFFSET_ADJUSTMENT). */
-+#define LZX_OFFSET_ADJUSTMENT	(LZX_NUM_RECENT_OFFSETS - 1)
-+
-+/* These values are chosen for fast decompression. */
-+#define LZX_MAINCODE_TABLEBITS		11
-+#define LZX_LENCODE_TABLEBITS		9
-+#define LZX_PRECODE_TABLEBITS		6
-+#define LZX_ALIGNEDCODE_TABLEBITS	7
-+
-+#define LZX_READ_LENS_MAX_OVERRUN	50
-+
-+/* Mapping: offset slot => first match offset that uses that offset slot.
-+ * The offset slots for repeat offsets map to "fake" offsets < 1.
-+ */
-+static const s32 lzx_offset_slot_base[LZX_NUM_OFFSET_SLOTS + 1] = {
-+	-2,      -1,      0,       1,       2,       /* 0  --- 4  */
-+	4,       6,       10,      14,      22,      /* 5  --- 9  */
-+	30,      46,      62,      94,      126,     /* 10 --- 14 */
-+	190,     254,     382,     510,     766,     /* 15 --- 19 */
-+	1022,    1534,    2046,    3070,    4094,    /* 20 --- 24 */
-+	6142,    8190,    12286,   16382,   24574,   /* 25 --- 29 */
-+	32766,					 /* extra     */
++static const __le16 WOF_NAME[] = {
++	cpu_to_le16('W'), cpu_to_le16('o'), cpu_to_le16('f'),
++	cpu_to_le16('C'), cpu_to_le16('o'), cpu_to_le16('m'),
++	cpu_to_le16('p'), cpu_to_le16('r'), cpu_to_le16('e'),
++	cpu_to_le16('s'), cpu_to_le16('s'), cpu_to_le16('e'),
++	cpu_to_le16('d'), cpu_to_le16('D'), cpu_to_le16('a'),
++	cpu_to_le16('t'), cpu_to_le16('a'),
 +};
 +
-+/* Mapping: offset slot => how many extra bits must be read and added to the
-+ * corresponding offset slot base to decode the match offset.
-+ */
-+static const u8 lzx_extra_offset_bits[LZX_NUM_OFFSET_SLOTS] = {
-+	0,  0,  0,  0,  1,
-+	1,  2,  2,  3,  3,
-+	4,  4,  5,  5,  6,
-+	6,  7,  7,  8,  8,
-+	9,  9,  10, 10, 11,
-+	11, 12, 12, 13, 13,
-+};
++#define WOF_NAME_LEN 17
 +
-+/* Like lzx_extra_offset_bits[], but with the entropy-coded aligned offset
-+ * bits already subtracted.  Valid only for offset slots that may appear in
-+ * aligned offset blocks.
-+ */
-+static const u8 lzx_extra_offset_bits_minus_aligned[LZX_NUM_OFFSET_SLOTS] = {
-+	0,  0,  0,  0,  1,
-+	1,  2,  2,  0,  0,
-+	1,  1,  2,  2,  3,
-+	3,  4,  4,  5,  5,
-+	6,  6,  7,  7,  8,
-+	8,  9,  9,  10, 10,
-+};
-+
-+/* Reusable heap-allocated memory for LZX decompression.  The decode tables and
-+ * their corresponding codeword length arrays are grouped in unions so the
-+ * memory can be reused across phases, and the per-code working spaces share a
-+ * single union since only one is needed at a time.
-+ */
-+struct lzx_decompressor {
-+	DECODE_TABLE(maincode_decode_table, LZX_MAINCODE_NUM_SYMBOLS,
-+		     LZX_MAINCODE_TABLEBITS, LZX_MAX_MAIN_CODEWORD_LEN);
-+	u8 maincode_lens[LZX_MAINCODE_NUM_SYMBOLS + LZX_READ_LENS_MAX_OVERRUN];
-+
-+	DECODE_TABLE(lencode_decode_table, LZX_LENCODE_NUM_SYMBOLS,
-+		     LZX_LENCODE_TABLEBITS, LZX_MAX_LEN_CODEWORD_LEN);
-+	u8 lencode_lens[LZX_LENCODE_NUM_SYMBOLS + LZX_READ_LENS_MAX_OVERRUN];
-+
-+	union {
-+		DECODE_TABLE(alignedcode_decode_table,
-+			     LZX_ALIGNEDCODE_NUM_SYMBOLS,
-+			     LZX_ALIGNEDCODE_TABLEBITS,
-+			     LZX_MAX_ALIGNED_CODEWORD_LEN);
-+		u8 alignedcode_lens[LZX_ALIGNEDCODE_NUM_SYMBOLS];
-+	};
-+
-+	union {
-+		DECODE_TABLE(precode_decode_table, LZX_PRECODE_NUM_SYMBOLS,
-+			     LZX_PRECODE_TABLEBITS, LZX_MAX_PRE_CODEWORD_LEN);
-+		u8 precode_lens[LZX_PRECODE_NUM_SYMBOLS];
-+		/* extra_offset_bits[] is used as scratch in aligned blocks. */
-+		u8 extra_offset_bits[LZX_NUM_OFFSET_SLOTS];
-+	};
-+
-+	union {
-+		DECODE_TABLE_WORKING_SPACE(maincode_working_space,
-+					   LZX_MAINCODE_NUM_SYMBOLS,
-+					   LZX_MAX_MAIN_CODEWORD_LEN);
-+		DECODE_TABLE_WORKING_SPACE(lencode_working_space,
-+					   LZX_LENCODE_NUM_SYMBOLS,
-+					   LZX_MAX_LEN_CODEWORD_LEN);
-+		DECODE_TABLE_WORKING_SPACE(alignedcode_working_space,
-+					   LZX_ALIGNEDCODE_NUM_SYMBOLS,
-+					   LZX_MAX_ALIGNED_CODEWORD_LEN);
-+		DECODE_TABLE_WORKING_SPACE(precode_working_space,
-+					   LZX_PRECODE_NUM_SYMBOLS,
-+					   LZX_MAX_PRE_CODEWORD_LEN);
-+	};
-+} __aligned(DECODE_TABLE_ALIGNMENT);
-+
-+static forceinline unsigned int read_presym(const struct lzx_decompressor *d,
-+					    struct input_bitstream *is)
++static int ntfs_bdev_read_from_rl(struct ntfs_volume *vol, struct runlist *runlist,
++				  sector_t start_sector, u32 sector_count, void *buf)
 +{
-+	return read_huffsym(is, d->precode_decode_table, LZX_PRECODE_TABLEBITS,
-+			    LZX_MAX_PRE_CODEWORD_LEN);
-+}
++	struct runlist_element *rl;
++	u32 sec_per_clu_bits = vol->cluster_size_bits - 9;
++	s64 vcn = start_sector >> sec_per_clu_bits;
++	u32 sec_off = start_sector & ((1 << sec_per_clu_bits) - 1);
++	u32 buf_off = 0;
++	int err;
 +
-+static forceinline unsigned int read_mainsym(const struct lzx_decompressor *d,
-+					     struct input_bitstream *is)
-+{
-+	return read_huffsym(is, d->maincode_decode_table,
-+			    LZX_MAINCODE_TABLEBITS, LZX_MAX_MAIN_CODEWORD_LEN);
-+}
-+
-+static forceinline unsigned int read_lensym(const struct lzx_decompressor *d,
-+					    struct input_bitstream *is)
-+{
-+	return read_huffsym(is, d->lencode_decode_table, LZX_LENCODE_TABLEBITS,
-+			    LZX_MAX_LEN_CODEWORD_LEN);
-+}
-+
-+static forceinline unsigned int
-+read_alignedsym(const struct lzx_decompressor *d, struct input_bitstream *is)
-+{
-+	return read_huffsym(is, d->alignedcode_decode_table,
-+			    LZX_ALIGNEDCODE_TABLEBITS,
-+			    LZX_MAX_ALIGNED_CODEWORD_LEN);
-+}
-+
-+/*
-+ * Read a precode from the compressed bitstream, then use it to decode
-+ * @num_lens codeword length values and write them to @lens.
-+ */
-+static int lzx_read_codeword_lens(struct lzx_decompressor *d,
-+				  struct input_bitstream *is, u8 *lens,
-+				  u32 num_lens)
-+{
-+	u8 *len_ptr = lens;
-+	u8 *lens_end = lens + num_lens;
-+	u32 i;
-+
-+	/* Read the lengths of the precode codewords.  These are stored
-+	 * explicitly.
-+	 */
-+	for (i = 0; i < LZX_PRECODE_NUM_SYMBOLS; i++) {
-+		d->precode_lens[i] =
-+			bitstream_read_bits(is, LZX_PRECODE_ELEMENT_SIZE);
++	down_read(&runlist->lock);
++	if (!runlist->rl) {
++		up_read(&runlist->lock);
++		return -EINVAL;
 +	}
 +
-+	/* Build the decoding table for the precode. */
-+	if (make_huffman_decode_table(d->precode_decode_table,
-+				      LZX_PRECODE_NUM_SYMBOLS,
-+				      LZX_PRECODE_TABLEBITS,
-+				      d->precode_lens,
-+				      LZX_MAX_PRE_CODEWORD_LEN,
-+				      d->precode_working_space,
-+				      ARRAY_SIZE(d->precode_decode_table)))
-+		return -1;
++	rl = __ntfs_attr_find_vcn_nolock(runlist, vcn);
++	if (IS_ERR(rl)) {
++		err = PTR_ERR(rl);
++		goto out_unlock;
++	}
 +
-+	/* Decode the codeword lengths. */
-+	do {
-+		u32 presym;
-+		u8 len;
++	while (sector_count > 0) {
++		s64 lcn;
++		loff_t byte_off;
++		u32 byte_len, sectors;
 +
-+		presym = read_presym(d, is);
-+		if (presym < 17) {
-+			/* Difference from old length. */
-+			len = *len_ptr - presym;
-+			if ((s8)len < 0)
-+				len += 17;
-+			*len_ptr++ = len;
++		if (!rl->length || vcn < rl->vcn) {
++			err = -EINVAL;
++			goto out_unlock;
++		}
++
++		lcn = ntfs_rl_vcn_to_lcn(rl, vcn);
++		if (lcn < 0 && lcn != LCN_HOLE) {
++			err = -EINVAL;
++			goto out_unlock;
++		}
++
++		/* Sectors available in remaining clusters of this rl element */
++		sectors = ((rl->vcn + rl->length - vcn) << sec_per_clu_bits) - sec_off;
++		sectors = min_t(u32, sector_count, sectors);
++		byte_off = ntfs_cluster_to_bytes(vol, lcn) + (sec_off << 9);
++		byte_len = sectors << 9;
++
++		if (lcn == LCN_HOLE) {
++			memset((u8 *)buf + buf_off, 0, byte_len);
 +		} else {
-+			/* Special RLE values. */
-+			u32 run_len;
-+
-+			if (presym == 17) {
-+				run_len = 4 + bitstream_read_bits(is, 4);
-+				len = 0;
-+			} else if (presym == 18) {
-+				run_len = 20 + bitstream_read_bits(is, 5);
-+				len = 0;
-+			} else {
-+				run_len = 4 + bitstream_read_bits(is, 1);
-+				presym = read_presym(d, is);
-+				if (unlikely(presym > 17))
-+					return -1;
-+				len = *len_ptr - presym;
-+				if ((s8)len < 0)
-+					len += 17;
-+			}
-+
-+			do {
-+				*len_ptr++ = len;
-+			} while (--run_len);
-+			/* The worst case overrun is when presym == 18,
-+			 * run_len == 20 + 31, and only 1 length was
-+			 * remaining, so LZX_READ_LENS_MAX_OVERRUN == 50.
-+			 * Overrun while reading the first half of
-+			 * maincode_lens can corrupt the previous values in
-+			 * the second half, but the resulting lengths will
-+			 * still be in range, and data that generates overruns
-+			 * is invalid anyway.
-+			 */
++			err = ntfs_bdev_read(vol->sb->s_bdev, (char *)buf + buf_off,
++					     byte_off, byte_len);
++			if (err)
++				goto out_unlock;
 +		}
-+	} while (len_ptr < lens_end);
 +
-+	return 0;
-+}
-+
-+static void undo_translate_target(void *target, s32 input_pos)
-+{
-+	s32 abs_offset, rel_offset;
-+
-+	abs_offset = get_unaligned_le32(target);
-+	if (abs_offset >= 0) {
-+		if (abs_offset < LZX_WIM_MAGIC_FILESIZE) {
-+			/* "good translation" */
-+			rel_offset = abs_offset - input_pos;
-+			put_unaligned_le32(rel_offset, target);
-+		}
-+	} else {
-+		if (abs_offset >= -input_pos) {
-+			/* "compensating translation" */
-+			rel_offset = abs_offset + LZX_WIM_MAGIC_FILESIZE;
-+			put_unaligned_le32(rel_offset, target);
-+		}
++		buf_off += byte_len;
++		sector_count -= sectors;
++		rl++;
++		vcn = rl->vcn;
++		sec_off = 0;
 +	}
++
++	err = 0;
++out_unlock:
++	up_read(&runlist->lock);
++	return err;
 +}
 +
-+/*
-+ * Undo the 'E8' preprocessing used in LZX.  Before compression, the
-+ * uncompressed data was preprocessed by changing the targets of suspected x86
-+ * CALL instructions from relative offsets to absolute offsets.  After
-+ * match/literal decoding, the decompressor must undo the translation.
-+ *
-+ * E8 preprocessing is disabled in the last 6 bytes of the data, which means
-+ * the 5-byte call instruction cannot start in the last 10 bytes.  The scalar
-+ * implementation below exploits this by replacing the last 6 bytes with 0xE8
-+ * trap bytes, eliminating end-of-buffer checks from the inner loop.
-+ */
-+static void lzx_postprocess(u8 *data, u32 size)
++static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx, u64 chunk_count,
++				 u64 *chunk_offset, u32 *chunk_size)
 +{
-+	u8 *tail;
-+	u8 saved_bytes[6];
-+	u8 *p;
++	u8 bytes_per_off;
++	u8 *buf_aligned = NULL, *buf = NULL;
++	u64 off[2];
++	u64 chunk_data_size;
++	int ret = 0;
 +
-+	if (size <= 10)
-+		return;
-+
-+	tail = &data[size - 6];
-+	memcpy(saved_bytes, tail, 6);
-+	memset(tail, 0xE8, 6);
-+	p = data;
-+	for (;;) {
-+		while (*p != 0xE8)
-+			p++;
-+		if (p >= tail)
-+			break;
-+		undo_translate_target(p + 1, (s32)(p - data));
-+		p += 5;
-+	}
-+	memcpy(tail, saved_bytes, 6);
-+}
-+
-+static int lzx_read_block_header(struct lzx_decompressor *d,
-+				 struct input_bitstream *is,
-+				 u32 recent_offsets[], int *block_type_ret,
-+				 u32 *block_size_ret)
-+{
-+	int block_type;
-+	u32 block_size;
-+	u32 i;
-+
-+	bitstream_ensure_bits(is, 4);
-+
-+	/* Read the block type. */
-+	block_type = bitstream_pop_bits(is, 3);
-+
-+	/* Read the block size.  With the 32768-byte window used in system
-+	 * compression, block sizes are always encoded in 16 bits.
-+	 */
-+	if (bitstream_pop_bits(is, 1))
-+		block_size = LZX_DEFAULT_BLOCK_SIZE;
++	/* Determine offset table entry size based on file size */
++	if (ni->data_size < (1ULL << 32))
++		bytes_per_off = sizeof(__le32);
 +	else
-+		block_size = bitstream_read_bits(is, 16);
++		bytes_per_off = sizeof(__le64);
 +
-+	switch (block_type) {
-+	case LZX_BLOCKTYPE_ALIGNED:
-+		/* Read the aligned offset codeword lengths. */
-+		for (i = 0; i < LZX_ALIGNEDCODE_NUM_SYMBOLS; i++) {
-+			d->alignedcode_lens[i] =
-+				bitstream_read_bits(is,
-+						    LZX_ALIGNEDCODE_ELEMENT_SIZE);
++	if (!chunk_count ||
++	    ni->data_size < (chunk_count - 1) * bytes_per_off)
++		return -EINVAL;
++	chunk_data_size = ni->data_size - (chunk_count - 1) * bytes_per_off;
++
++	if (NInoNonResident(ni)) {
++		u64 byte_off;
++		sector_t start_sector;
++		u32 sector_off, sectors;
++
++		if (chunk_idx > 0)
++			byte_off = (chunk_idx - 1) * bytes_per_off;
++		else
++			byte_off = 0;
++
++		start_sector = byte_off >> 9;
++		sector_off = byte_off & ((1 << 9) - 1);
++		sectors = DIV_ROUND_UP(sector_off + 2 * bytes_per_off, 512);
++
++		buf_aligned = kmalloc(sectors << 9, GFP_NOFS);
++		if (!buf_aligned)
++			return -ENOMEM;
++		if (ntfs_bdev_read_from_rl(ni->vol, &ni->runlist,
++					   start_sector,
++					   sectors,
++					   buf_aligned)) {
++			ret = -EIO;
++			goto out;
 +		}
-+		/* Fall though, since the rest of the header for aligned offset
-+		 * blocks is the same as that for verbatim blocks.
-+		 */
-+		fallthrough;
++		buf = buf_aligned + sector_off;
 +
-+	case LZX_BLOCKTYPE_VERBATIM:
-+		/* Read the main codeword lengths, which are divided into two
-+		 * parts: literal symbols and match headers.
-+		 */
-+		if (lzx_read_codeword_lens(d, is, d->maincode_lens,
-+					   LZX_NUM_CHARS))
-+			return -1;
-+		if (lzx_read_codeword_lens(d, is,
-+					   d->maincode_lens + LZX_NUM_CHARS,
-+					   LZX_MAINCODE_NUM_SYMBOLS - LZX_NUM_CHARS))
-+			return -1;
-+
-+		/* Read the length codeword lengths. */
-+		if (lzx_read_codeword_lens(d, is, d->lencode_lens,
-+					   LZX_LENCODE_NUM_SYMBOLS))
-+			return -1;
-+		break;
-+
-+	case LZX_BLOCKTYPE_UNCOMPRESSED:
-+		/* The header of an uncompressed block contains new values for
-+		 * the recent offsets queue, starting on the next 16-bit
-+		 * boundary in the bitstream.  If the stream is *already*
-+		 * aligned, the next 16 bits must be discarded.
-+		 */
-+		bitstream_ensure_bits(is, 1);
-+		bitstream_align(is);
-+		recent_offsets[0] = bitstream_read_u32(is);
-+		recent_offsets[1] = bitstream_read_u32(is);
-+		recent_offsets[2] = bitstream_read_u32(is);
-+
-+		/* Offsets of 0 are invalid. */
-+		if (recent_offsets[0] == 0 || recent_offsets[1] == 0 ||
-+		    recent_offsets[2] == 0)
-+			return -1;
-+		break;
-+
-+	default:
-+		/* Unrecognized block type. */
-+		return -1;
++		if (chunk_idx + 1 == chunk_count) {
++			if (bytes_per_off == sizeof(__le32))
++				((__le32 *)buf)[1] =
++					cpu_to_le32(ni->data_size -
++						    (chunk_count - 1) * bytes_per_off);
++			else
++				((__le64 *)buf)[1] =
++					cpu_to_le64(ni->data_size -
++						    (chunk_count - 1) * bytes_per_off);
++		}
++	} else {
++		/* Resident WOF chunk table logic will be added in Commit 8 */
++		ret = -EOPNOTSUPP;
++		goto out;
 +	}
 +
-+	*block_type_ret = block_type;
-+	*block_size_ret = block_size;
-+	return 0;
++	if (bytes_per_off == sizeof(__le32)) {
++		__le32 *addr = (__le32 *)buf;
++
++		off[0] = chunk_idx ? le32_to_cpu(addr[0]) : 0;
++		off[1] = chunk_idx ? le32_to_cpu(addr[1]) : le32_to_cpu(addr[0]);
++	} else {
++		__le64 *addr = (__le64 *)buf;
++
++		off[0] = chunk_idx ? le64_to_cpu(addr[0]) : 0;
++		off[1] = chunk_idx ? le64_to_cpu(addr[1]) : le64_to_cpu(addr[0]);
++	}
++
++	if (off[1] <= off[0] || off[1] > chunk_data_size) {
++		ret = -EINVAL;
++		goto out;
++	}
++
++	*chunk_offset = (chunk_count - 1) * bytes_per_off + off[0];
++	*chunk_size = (u32)(off[1] - off[0]);
++
++out:
++	kfree(buf_aligned);
++	return ret;
 +}
 +
-+static int lzx_decompress_block(struct lzx_decompressor *d,
-+				struct input_bitstream *is, int block_type,
-+				u32 block_size, u8 *const out_begin,
-+				u8 *out_next, u32 recent_offsets[])
++int ntfs_read_wof_compressed_block(struct folio *folio)
 +{
-+	u8 *const block_end = out_next + block_size;
-+	unsigned int min_aligned_offset_slot;
-+	const u8 *extra_offset_bits;
++	struct page *page = &folio->page;
++	struct address_space *mapping = folio->mapping;
++	struct ntfs_inode *ni = NTFS_I(mapping->host), *wof_ni;
++	struct inode *wof_inode;
++	struct ntfs_volume *vol = ni->vol;
++	loff_t i_size = i_size_read(VFS_I(ni));
++	char *decomp_mem = NULL, *chunk_mem = NULL, *chunk_mem_aligned;
++	struct page **pages = NULL;
++	u32 comp_unit, pages_per_chunk, chunk_size, chunk_size_aligned, decomp_size;
++	u64 chunk_offset_aligned, chunk_idx, chunk_count, chunk_offset;
++	unsigned long index;
++	int i, err = 0;
++	const struct ntfs_codec_ops *codec;
 +
-+	/* Build the Huffman decode tables.  The main and length tables are
-+	 * always needed; for aligned blocks the aligned offset table is also
-+	 * needed.
++	index = folio->index;
++
++	/* Determine frame size and frame number */
++	comp_unit = 1U << ni->itype.compressed.block_size_bits;
++	chunk_offset_aligned = (u64)index << PAGE_SHIFT;
++	chunk_offset_aligned &= ~((u64)comp_unit - 1);
++	chunk_idx = chunk_offset_aligned >> ni->itype.compressed.block_size_bits;
++	chunk_count = DIV_ROUND_UP_ULL(i_size, comp_unit);
++
++	/*
++	 * If the requested page is past the end of the file, there is no
++	 * chunk to decompress.  Zero the page and return success.
 +	 */
-+	if (make_huffman_decode_table(d->maincode_decode_table,
-+				      LZX_MAINCODE_NUM_SYMBOLS,
-+				      LZX_MAINCODE_TABLEBITS, d->maincode_lens,
-+				      LZX_MAX_MAIN_CODEWORD_LEN,
-+				      d->maincode_working_space,
-+				      ARRAY_SIZE(d->maincode_decode_table)))
-+		return -1;
-+
-+	if (make_huffman_decode_table(d->lencode_decode_table,
-+				      LZX_LENCODE_NUM_SYMBOLS,
-+				      LZX_LENCODE_TABLEBITS, d->lencode_lens,
-+				      LZX_MAX_LEN_CODEWORD_LEN,
-+				      d->lencode_working_space,
-+				      ARRAY_SIZE(d->lencode_decode_table)))
-+		return -1;
-+
-+	if (block_type == LZX_BLOCKTYPE_ALIGNED) {
-+		if (make_huffman_decode_table(d->alignedcode_decode_table,
-+					      LZX_ALIGNEDCODE_NUM_SYMBOLS,
-+					      LZX_ALIGNEDCODE_TABLEBITS,
-+					      d->alignedcode_lens,
-+					      LZX_MAX_ALIGNED_CODEWORD_LEN,
-+					      d->alignedcode_working_space,
-+					      ARRAY_SIZE(d->alignedcode_decode_table)))
-+			return -1;
-+		min_aligned_offset_slot = LZX_MIN_ALIGNED_OFFSET_SLOT;
-+		extra_offset_bits = lzx_extra_offset_bits_minus_aligned;
-+	} else {
-+		min_aligned_offset_slot = LZX_NUM_OFFSET_SLOTS;
-+		extra_offset_bits = lzx_extra_offset_bits;
++	if (chunk_idx >= chunk_count) {
++		folio_zero_segments(folio, 0, PAGE_SIZE, 0, 0);
++		SetPageUptodate(page);
++		unlock_page(page);
++		return 0;
 +	}
 +
-+	/* Decode the literals and matches. */
-+	do {
-+		unsigned int mainsym;
-+		unsigned int length;
-+		u32 offset;
-+		unsigned int offset_slot;
++	/* Select codec based on block size bits */
++	switch (ni->itype.compressed.block_size_bits) {
++	case 12:
++		codec = &ntfs_xpress4k_codec_ops;
++		break;
++	case 13:
++		codec = &ntfs_xpress8k_codec_ops;
++		break;
++	case 14:
++		codec = &ntfs_xpress16k_codec_ops;
++		break;
++	case 15:
++		codec = &ntfs_lzx32k_codec_ops;
++		break;
++	default:
++		err = -EINVAL;
++		goto out;
++	}
 +
-+		mainsym = read_mainsym(d, is);
-+		if (mainsym < LZX_NUM_CHARS) {
-+			/* Literal */
-+			*out_next++ = mainsym;
++	wof_inode = ntfs_attr_iget(VFS_I(ni), AT_DATA, (__le16 *)WOF_NAME, WOF_NAME_LEN);
++	if (IS_ERR(wof_inode)) {
++		err = PTR_ERR(wof_inode);
++		goto out;
++	}
++
++	wof_ni = NTFS_I(wof_inode);
++	if (!wof_ni->runlist.rl) {
++		err = ntfs_attr_map_whole_runlist(wof_ni);
++		if (err)
++			goto out_iput;
++	}
++
++	err = parse_wof_chunk_table(wof_ni, chunk_idx, chunk_count,
++				    &chunk_offset, &chunk_size);
++	if (err)
++		goto out_iput;
++
++	if (chunk_size > comp_unit) {
++		ntfs_error(vol->sb, "Compressed size (%u) > frame size (%u)",
++			   chunk_size, comp_unit);
++		err = -EINVAL;
++		goto out_iput;
++	}
++
++	if (chunk_idx + 1 == chunk_count)
++		decomp_size = 1 + ((i_size - 1) & (comp_unit - 1));
++	else
++		decomp_size = comp_unit;
++
++	/* Allocate pages for the uncompressed chunk */
++	pages_per_chunk = comp_unit >> PAGE_SHIFT;
++	pages = kcalloc(pages_per_chunk, sizeof(struct page *), GFP_NOFS);
++	if (!pages) {
++		err = -ENOMEM;
++		goto out_iput;
++	}
++
++	for (i = 0; i < pages_per_chunk; i++) {
++		unsigned long pg_index = (chunk_offset_aligned >> PAGE_SHIFT) + i;
++		struct page *p;
++
++		if (pg_index == index) {
++			pages[i] = page;
 +			continue;
 +		}
-+
-+		/* Match */
-+
-+		/* Decode the length header and offset slot.
-+		 */
-+		STATIC_ASSERT(LZX_NUM_CHARS % LZX_NUM_LEN_HEADERS == 0);
-+		length = mainsym % LZX_NUM_LEN_HEADERS;
-+		offset_slot = (mainsym - LZX_NUM_CHARS) / LZX_NUM_LEN_HEADERS;
-+
-+		/* If needed, read a length symbol to decode the full length. */
-+		if (length == LZX_NUM_PRIMARY_LENS)
-+			length += read_lensym(d, is);
-+		length += LZX_MIN_MATCH_LEN;
-+
-+		if (offset_slot < LZX_NUM_RECENT_OFFSETS) {
-+			/* Repeat offset.  This isn't a real LRU queue, since
-+			 * using the R2 offset doesn't bump the R1 offset down
-+			 * to R2.
-+			 */
-+			offset = recent_offsets[offset_slot];
-+			recent_offsets[offset_slot] = recent_offsets[0];
-+		} else {
-+			/* Explicit offset. */
-+			offset = bitstream_read_bits(is,
-+						     extra_offset_bits[offset_slot]);
-+			if (offset_slot >= min_aligned_offset_slot) {
-+				offset = (offset << LZX_NUM_ALIGNED_OFFSET_BITS) |
-+					 read_alignedsym(d, is);
-+			}
-+			offset += lzx_offset_slot_base[offset_slot];
-+
-+			/* Update the match offset LRU queue. */
-+			STATIC_ASSERT(LZX_NUM_RECENT_OFFSETS == 3);
-+			recent_offsets[2] = recent_offsets[1];
-+			recent_offsets[1] = recent_offsets[0];
++		p = grab_cache_page_nowait(mapping, pg_index);
++		if (!p) {
++			err = -ENOMEM;
++			goto out_unlock;
 +		}
-+		recent_offsets[0] = offset;
-+
-+		/* Validate the match and copy it to the current position. */
-+		if (unlikely(lz_copy(length, offset, out_begin, out_next,
-+				     block_end, LZX_MIN_MATCH_LEN)))
-+			return -1;
-+		out_next += length;
-+	} while (out_next != block_end);
-+
-+	return 0;
-+}
-+
-+int lzx_decompress(struct lzx_decompressor *d, const void *compressed_data,
-+		   size_t compressed_size, void *uncompressed_data,
-+		   size_t uncompressed_size)
-+{
-+	u8 *const out_begin = uncompressed_data;
-+	u8 *out_next = out_begin;
-+	u8 *const out_end = out_begin + uncompressed_size;
-+	struct input_bitstream is;
-+
-+	STATIC_ASSERT(LZX_NUM_RECENT_OFFSETS == 3);
-+	u32 recent_offsets[LZX_NUM_RECENT_OFFSETS] = {1, 1, 1};
-+	bool may_have_e8_byte = false;
-+
-+	init_input_bitstream(&is, compressed_data, compressed_size);
-+
-+	/* Codeword lengths begin as all 0's for delta encoding purposes. */
-+	memset(d->maincode_lens, 0, LZX_MAINCODE_NUM_SYMBOLS);
-+	memset(d->lencode_lens, 0, LZX_LENCODE_NUM_SYMBOLS);
-+
-+	/* Decompress blocks until we have all the uncompressed data.
-+	 */
-+	while (out_next != out_end) {
-+		int block_type;
-+		u32 block_size;
-+
-+		if (lzx_read_block_header(d, &is, recent_offsets, &block_type,
-+					  &block_size))
-+			return -1;
-+
-+		if (block_size < 1 || block_size > (u32)(out_end - out_next))
-+			return -1;
-+
-+		if (likely(block_type != LZX_BLOCKTYPE_UNCOMPRESSED)) {
-+			/* Compressed block. */
-+			if (lzx_decompress_block(d, &is, block_type, block_size,
-+						 out_begin, out_next,
-+						 recent_offsets))
-+				return -1;
-+
-+			/* If the first E8 byte was in this block, then it
-+			 * must have been encoded as a literal (mainsym E8).
-+			 */
-+			if (d->maincode_lens[0xE8])
-+				may_have_e8_byte = true;
-+		} else {
-+			/* Uncompressed block. */
-+			if (bitstream_read_bytes(&is, out_next, block_size))
-+				return -1;
-+			if (block_size & 1)
-+				bitstream_read_byte(&is);
-+			/* There may have been an E8 byte in the block. */
-+			may_have_e8_byte = true;
-+		}
-+		out_next += block_size;
++		pages[i] = p;
 +	}
 +
-+	/* Postprocess the data unless it cannot possibly contain E8 bytes. */
-+	if (may_have_e8_byte)
-+		lzx_postprocess(uncompressed_data, uncompressed_size);
-+
-+	return 0;
-+}
-+
-+struct lzx_decompressor *lzx_allocate_decompressor(void)
-+{
-+	return kmalloc_obj(struct lzx_decompressor, GFP_NOFS);
-+}
-+
-+void lzx_free_decompressor(struct lzx_decompressor *d)
-+{
-+	kfree(d);
-+}
-diff --git a/fs/ntfs/lib/xpress_decompress.c b/fs/ntfs/lib/xpress_decompress.c
-new file mode 100644
-index 000000000000..7066810ee6cd
---- /dev/null
-+++ b/fs/ntfs/lib/xpress_decompress.c
-@@ -0,0 +1,120 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * xpress_decompress.c - A decompressor for the XPRESS compression format
-+ * (Huffman variant), which can be used in "System Compressed" (WOF) files.
-+ *
-+ * This is a port of the upstream wimlib "xpress_decompress.c" which uses a
-+ * subtable-based Huffman decode table format.  The decode table and the
-+ * codeword-length array share a union since the lengths are fully consumed
-+ * before the table is written.
-+ *
-+ * Copyright (C) 2012-2016 Eric Biggers
-+ */
-+
-+#include <linux/array_size.h>
-+
-+#include "decompress_common.h"
-+#include "lib.h"
-+
-+#define XPRESS_NUM_CHARS	256
-+#define XPRESS_NUM_SYMBOLS	512
-+#define XPRESS_MAX_CODEWORD_LEN	15
-+#define XPRESS_MIN_MATCH_LEN	3
-+
-+/* This value is chosen for fast decompression. */
-+#define XPRESS_TABLEBITS	11
-+
-+/* Reusable heap-allocated memory for XPRESS decompression.  The decode table
-+ * and the codeword-length array alias each other in a union: all lengths are
-+ * consumed into the working space before any decode-table entry is written.
-+ */
-+struct xpress_decompressor {
-+	union {
-+		DECODE_TABLE(decode_table, XPRESS_NUM_SYMBOLS, XPRESS_TABLEBITS,
-+			     XPRESS_MAX_CODEWORD_LEN);
-+		u8 lens[XPRESS_NUM_SYMBOLS];
-+	};
-+	DECODE_TABLE_WORKING_SPACE(working_space, XPRESS_NUM_SYMBOLS,
-+				   XPRESS_MAX_CODEWORD_LEN);
-+} __aligned(DECODE_TABLE_ALIGNMENT);
-+
-+int xpress_decompress(struct xpress_decompressor *d,
-+		      const void *compressed_data, size_t compressed_size,
-+		      void *uncompressed_data, size_t uncompressed_size)
-+{
-+	const u8 *const in_begin = compressed_data;
-+	u8 *const out_begin = uncompressed_data;
-+	u8 *out_next = out_begin;
-+	u8 *const out_end = out_begin + uncompressed_size;
-+	struct input_bitstream is;
-+	u32 i;
-+
-+	/* Read the Huffman codeword lengths (512 4-bit values packed into 256
-+	 * bytes).
-+	 */
-+	if (compressed_size < XPRESS_NUM_SYMBOLS / 2)
-+		return -1;
-+	for (i = 0; i < XPRESS_NUM_SYMBOLS / 2; i++) {
-+		d->lens[2 * i + 0] = in_begin[i] & 0xf;
-+		d->lens[2 * i + 1] = in_begin[i] >> 4;
++	decomp_mem = vmap(pages, pages_per_chunk, VM_MAP, PAGE_KERNEL);
++	if (!decomp_mem) {
++		err = -ENOMEM;
++		goto out_unlock;
 +	}
 +
-+	/* Build a decoding table for the Huffman code. */
-+	if (make_huffman_decode_table(d->decode_table, XPRESS_NUM_SYMBOLS,
-+				      XPRESS_TABLEBITS, d->lens,
-+				      XPRESS_MAX_CODEWORD_LEN,
-+				      d->working_space,
-+				      ARRAY_SIZE(d->decode_table)))
-+		return -1;
++	/* Allocate buffer for compressed data */
++	chunk_size_aligned = DIV_ROUND_UP_ULL(chunk_offset + chunk_size, 1 << 9) -
++			     (chunk_offset >> 9);
++	chunk_size_aligned <<= 9;
++	chunk_mem_aligned = kvmalloc(chunk_size_aligned, GFP_NOFS);
++	if (!chunk_mem_aligned) {
++		err = -ENOMEM;
++		goto out_unmap;
++	}
 +
-+	/* Decode the matches and literals. */
-+	init_input_bitstream(&is, in_begin + XPRESS_NUM_SYMBOLS / 2,
-+			     compressed_size - XPRESS_NUM_SYMBOLS / 2);
++	/* Read compressed data from disk */
++	if (!NInoNonResident(wof_ni)) {
++		/* Resident WOF data read logic will be added in Commit 8 */
++		err = -EOPNOTSUPP;
++		goto out_free;
++	} else {
++		err = ntfs_bdev_read_from_rl(vol, &wof_ni->runlist,
++					     chunk_offset >> 9,
++					     chunk_size_aligned >> 9,
++					     chunk_mem_aligned);
++		if (err)
++			goto out_free;
++		chunk_mem = chunk_mem_aligned + (chunk_offset & ((1 << 9) - 1));
++	}
 +
-+	while (out_next != out_end) {
-+		u32 sym;
-+		u32 log2_offset;
-+		u32 length;
-+		u32 offset;
++	/* Decompress using codec ops with dynamic scratch */
++	if (chunk_size == decomp_size) {
++		memcpy(decomp_mem, chunk_mem, decomp_size);
++	} else {
++		void *scratch;
 +
-+		sym = read_huffsym(&is, d->decode_table, XPRESS_TABLEBITS,
-+				   XPRESS_MAX_CODEWORD_LEN);
-+		if (sym < XPRESS_NUM_CHARS) {
-+			/* Literal */
-+			*out_next++ = sym;
-+		} else {
-+			/* Match */
-+			length = sym & 0xf;
-+			log2_offset = (sym >> 4) & 0xf;
-+
-+			bitstream_ensure_bits(&is, 16);
-+
-+			offset = ((u32)1 << log2_offset) |
-+				 bitstream_pop_bits(&is, log2_offset);
-+
-+			if (length == 0xf) {
-+				length += bitstream_read_byte(&is);
-+				if (length == 0xf + 0xff)
-+					length = bitstream_read_u16(&is);
-+			}
-+			length += XPRESS_MIN_MATCH_LEN;
-+
-+			if (unlikely(lz_copy(length, offset, out_begin, out_next,
-+					     out_end, XPRESS_MIN_MATCH_LEN)))
-+				return -1;
-+
-+			out_next += length;
++		scratch = kvzalloc(codec->scratch_size(comp_unit), GFP_NOFS);
++		if (!scratch) {
++			err = -ENOMEM;
++			goto out_free;
++		}
++		err = codec->decompress_chunk(scratch, chunk_mem, chunk_size,
++					      decomp_mem, decomp_size, comp_unit);
++		kvfree(scratch);
++		if (err) {
++			ntfs_error(vol->sb, "Decompression failed: %d", err);
++			err = -EINVAL;
++			goto out_free;
 +		}
 +	}
-+	return 0;
-+}
 +
-+struct xpress_decompressor *xpress_allocate_decompressor(void)
-+{
-+	return kmalloc_obj(struct xpress_decompressor, GFP_NOFS);
-+}
++	/* Zero any partial page at end */
++	if (decomp_size < comp_unit)
++		memset(decomp_mem + decomp_size, 0, comp_unit - decomp_size);
 +
-+void xpress_free_decompressor(struct xpress_decompressor *d)
-+{
-+	kfree(d);
++	/* Mark pages as uptodate */
++	for (i = 0; i < pages_per_chunk; i++) {
++		if (pages[i]) {
++			SetPageUptodate(pages[i]);
++			flush_dcache_page(pages[i]);
++		}
++	}
++
++out_free:
++	kvfree(chunk_mem_aligned);
++out_unmap:
++	vunmap(decomp_mem);
++out_unlock:
++	for (i = 0; i < pages_per_chunk; i++) {
++		if (pages[i] && pages[i] != page) {
++			if (err)
++				ClearPageUptodate(pages[i]);
++			unlock_page(pages[i]);
++			put_page(pages[i]);
++		}
++	}
++	kfree(pages);
++out_iput:
++	iput(wof_inode);
++out:
++	if (err)
++		ClearPageUptodate(page);
++	else
++		SetPageUptodate(page);
++	unlock_page(page);
++	return err;
 +}
 
 -- 
