@@ -1,201 +1,107 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D827A3A383C
-	for <ntfs@lists.linux.dev>; Mon, 10 Aug 2026 14:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56925304976
+	for <ntfs@lists.linux.dev>; Tue, 11 Aug 2026 02:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1786370646; cv=none; b=NDjuEr6Q+af0yVh0MP1YqGevpRHPWWRdATZs6Y2I20+6ULiDz33w7Vy+wPJUssubsa0iWJE13JJ4GlYz1Y16ZCknBeZj4vEjzfvZi9Ds7wffjaG1PxwuM9MxD7r42tFkDUxXNKKZ2Cq4Xw3/64WlkinRvlLNjIwSBE6XiqFls6U=
+	t=1786414559; cv=none; b=XDJcOlk15+yvrO71eMu8MREEY8/75pY4t1WP9aCfq3nBSqbVIKgcw6rOdxqhIVntcSetuPmwiTeKn7omqX00Ecc/0fKq5+e7Tki2LSG9I/Zv7OF7dgpqOyy02GKkv2uBIX5DVabvlpVrG6F6pEpCUD0OhxTjDGPVR24XOVLFa0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1786370646; c=relaxed/simple;
-	bh=xsjLosKCMjliYx17uoy3r0bXmgGSlSSv0DcHJDxAxgE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R1cpsUMpFlCFJSGuCLkHIAXN4Br0PFNXsIBvwSMkwNjvSymb2G7TFtrRPkWqB9WowjB5uoqtNtKnGHIHZC2e09qkS0Y50zoXu0/BA/qGI2PRHc8LDzfCccXDlWIHHhrEJcGK+r3Cic+OOdWgVc2PubOx+wK65CIcevJp2BQXR6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TXwEdcyF; arc=none smtp.client-ip=100.103.45.18
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TXwEdcyF"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEAB91F00A3F
-	for <ntfs@lists.linux.dev>; Mon, 10 Aug 2026 14:04:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786370644;
-	bh=5RNPBeL0SxywBYGUja65SDX2xWmoOKI3GywPqjKu+t4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=TXwEdcyF1dF40cV6WFzXFA/M7c3Y0m/q8FWCkETFk1He+q8VDjFCdtS8QDub6TQ64
-	 Wv3bx+4E49k9XjUuuuxT9BY/vmNe67ZGFSTUMlutAx/fnB9K18g6YWX+SrcLzkgF6m
-	 228mpPXggLg3MZgRChU1cI6iZsGSlb1yNFWwb0QIFlfgdAdSDel8eYMm/bTeRrEcYG
-	 2AdWzU/PlIVSbitph9FhG0Sr7IAU4ci2Z9NI9yOqi8btUjOgSpSf+UWW5OqGGXmMpf
-	 BmbHLvfjtadN02qG5RAxmcM9BqAFaZeSdoOQAO9IzmZx7f5l60kaKmrRGCpsHjtzk2
-	 V9s3pVyKtxZHA==
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-c15f020a223so280680466b.1
-        for <ntfs@lists.linux.dev>; Mon, 10 Aug 2026 07:04:04 -0700 (PDT)
-X-Gm-Message-State: AOJu0YxLQlhSluUr9kAft7Q9Mym5KErjf9Fjva9Bi9ID7DXWqugO5lti
-	Y4Iq/HB4hbmkqvd9LzAzIOBw0lGI4pbtnBW3hFSpbaOSdjALHZim9iK7slzEJGZp3bF9CAWd3PV
-	Expo7yta/r1N3F5gVNs3MCImB1pWnJSE=
-X-Received: by 2002:a17:907:e00c:10b0:c20:9447:bd5e with SMTP id
- a640c23a62f3a-c209447e6ccmr512397566b.9.1786370643317; Mon, 10 Aug 2026
- 07:04:03 -0700 (PDT)
+	s=arc-20240116; t=1786414559; c=relaxed/simple;
+	bh=sTe+XpyhJzMWfTNhvWfFNAL6pCP89RRwpvH6J10fqRA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=f/s74TtBnpk6cVEKCuokL7dqTqQxQs0ZSUFekfPMAyrwalJyVBNKo5sRlRK3eyIMfbDS6WkTzJQsGggptXP5QapPLbMeYJA64Vpw483tB0Fw8bFjajiideAnSUI1+8uLBMOz0GvbLkkXNs3KiygGilKSwUzEC08FIm/E7HoaSAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 93da974c952a11f1aa26b74ffac11d73-20260811
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:219899ee-5547-4ea3-953e-39053f9ff749,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:e7bac3a,CLOUDID:3fe5d8582adcfcb05c23e364a984aed9,BulkI
+	D:nil,BulkQuantity:0,Recheck:0,SF:102|136|850|865|898,TC:nil,Content:0|15|
+	50,EDM:-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,
+	OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 93da974c952a11f1aa26b74ffac11d73-20260811
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 391263554; Tue, 11 Aug 2026 10:15:52 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com,
+	hexlabsecurity@proton.me
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH] ntfs: verify run length exceeding volume boundary
+Date: Tue, 11 Aug 2026 10:15:48 +0800
+Message-Id: <20260811021548.15328-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260810-topic-attr-list-lock-v6-v6-0-e3fb8c4494d3@gmail.com> <20260810-topic-attr-list-lock-v6-v6-3-e3fb8c4494d3@gmail.com>
-In-Reply-To: <20260810-topic-attr-list-lock-v6-v6-3-e3fb8c4494d3@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Mon, 10 Aug 2026 23:03:49 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd-9o32RfkeH9oxY5ASDVocXBm+SO+ATDu_B2qBaJ779cw@mail.gmail.com>
-X-Gm-Features: AUfX_myuDWfoor6pc73zMGk6TM83i9iW0n0SGLjMtOAWjL-UoW_C6ibSScKU_7U
-Message-ID: <CAKYAXd-9o32RfkeH9oxY5ASDVocXBm+SO+ATDu_B2qBaJ779cw@mail.gmail.com>
-Subject: Re: [PATCH v6 3/4] ntfs: protect attribute-list creation/teardown
- with attr_list_persist_lock
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev, Cen Zhang <zzzccc427@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-> +       /* Keep ALE removal and the follow-up need check in one transaction. */
-> +       if (!attrlist_locked && type != AT_ATTRIBUTE_LIST &&
-> +           NInoAttrList(base_ni)) {
-> +               mutex_lock(&base_ni->attr_list_persist_lock);
-> +               attrlist_locked = true;
-> +       }
-> +
->         /* Remove attribute itself. */
->         if (ntfs_attr_record_resize(ctx->mrec, ctx->attr, 0)) {
->                 ntfs_debug("Couldn't remove attribute record. Bug or damaged MFT record.\n");
-> -               return -EIO;
-> +               err = -EIO;
-> +               goto out_unlock;
->         }
->         mark_mft_record_dirty(ni);
->
-> @@ -2837,19 +2849,42 @@ int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx)
->          * delete $ATTRIBUTE_LIST itself.
->          */
->         if (NInoAttrList(base_ni) && type != AT_ATTRIBUTE_LIST) {
-> -               err = ntfs_attrlist_entry_rm(ctx);
-> +               err = ntfs_attrlist_entry_rm_locked(ctx);
-The first NInoAttrList() test does not prevent an attribute list from
-being created immediately after the test.  In that case this function
-later observes the new list and calls ntfs_attrlist_entry_rm_locked()
-without holding attr_list_persist_lock.
+The mapping pairs decoder validates that the starting LCN is within the
+volume but does not check if the run extends beyond the volume boundary.
 
-For example:
+A malformed NTFS image with a crafted mapping pairs array could cause
+the kernel to access memory beyond the volume boundary, potentially leading
+to memory corruption and privilege escalation.
 
-  Thread A: ntfs_attr_record_rm()          Thread B: ntfs_inode_add_attrlist()
-  --------------------------------------   -----------------------------------
+Add validation to ensure lcn + length stays within nr_clusters.
 
-  1. Checks NInoAttrList(base_ni)
-     -> false
-     -> does not take persist lock
+Cc: stable@vger.kernel.org
+Fixes: b4be3a47f8ba4 ("ntfs: bound the free-cluster bitmap scan to the volume")
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+ fs/ntfs/runlist.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-                                            2. Takes persist lock
-                                               Builds and publishes attr_list
-                                               Sets NI_AttrList
+diff --git a/fs/ntfs/runlist.c b/fs/ntfs/runlist.c
+index 17eb275a21ff..9eaadbc0ef47 100644
+--- a/fs/ntfs/runlist.c
++++ b/fs/ntfs/runlist.c
+@@ -897,6 +897,28 @@ struct runlist_element *ntfs_mapping_pairs_decompress(const struct ntfs_volume *
+ 				goto err_out;
+ 			}
+ 
++			if (lcn >= 0) {
++				s64 run_end;
++
++				/*
++				 * Ensure that the run stays within the volume.
++				 * A valid starting LCN is not sufficient because
++				 * the run length comes from disk.
++				 */
++				if (unlikely(check_add_overflow(lcn,
++						rl[rlpos].length,
++						&run_end))) {
++					ntfs_error(vol->sb,
++							"Run length overflow in mapping pairs array.");
++					goto err_out;
++				}
++				if (unlikely(run_end > (s64)vol->nr_clusters)) {
++					ntfs_error(vol->sb,
++							"Run extends beyond volume boundary.");
++					goto err_out;
++				}
++			}
++
+ 			/* chkdsk accepts zero-sized runs only for holes */
+ 			if ((lcn != -1) && !rl[rlpos].length) {
+ 				ntfs_error(vol->sb,
+-- 
+2.25.1
 
-  3. Removes the attribute record
-
-  4. Checks NInoAttrList(base_ni)
-     -> now true
-
-  5. Calls ntfs_attrlist_entry_rm_locked()
-     without holding attr_list_persist_lock
-
-This violates the _locked() helper's contract and will trigger its lockdep
-assertion.  It can also race with Thread B while Thread B is constructing and
-persisting a list that may still contain the attribute being removed.
-
-For every non-$ATTRIBUTE_LIST removal, the function should acquire
-attr_list_persist_lock whenever persist_locked is false, regardless of the
-initial NInoAttrList() value.  This serializes removal against both an existing
-attribute list and concurrent attribute-list creation.
-
->         /* Free MFT record, if it doesn't contain attributes. */
-> @@ -2857,17 +2892,18 @@ int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx)
->                         le16_to_cpu(ctx->mrec->attrs_offset) == 8) {
->                 if (ntfs_mft_record_free(ni->vol, ni)) {
->                         ntfs_debug("Couldn't free MFT record.\n");
-> -                       return -EIO;
-> +                       err = -EIO;
-> +                       goto out_unlock;
->                 }
->                 /* Remove done if we freed base inode. */
->                 if (ni == base_ni)
-> -                       return 0;
-> +                       goto out_unlock;
->                 ntfs_inode_close(ni);
->                 ctx->ntfs_ino = ni = NULL;
->         }
->
->         if (type == AT_ATTRIBUTE_LIST || !NInoAttrList(base_ni))
-> -               return 0;
-> +               goto out_unlock;
->
->         /* Remove attribute list if we don't need it any more. */
->         if (!ntfs_attrlist_need(base_ni)) {
-> @@ -2878,7 +2914,7 @@ int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx)
->                 if (ntfs_attr_lookup(AT_ATTRIBUTE_LIST, NULL, 0, CASE_SENSITIVE,
->                                         0, NULL, 0, ctx)) {
->                         ntfs_debug("Couldn't find attribute list. Succeed anyway.\n");
-> -                       return 0;
-> +                       goto out_unlock;
->                 }
->                 /* Deallocate clusters. */
->                 if (ctx->attr->non_resident) {
-> @@ -2889,16 +2925,16 @@ int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx)
->                                         ctx->attr, NULL, &new_rl_count);
->                         if (IS_ERR(al_rl)) {
->                                 ntfs_debug("Couldn't decompress attribute list runlist. Succeed anyway.\n");
-> -                               return 0;
-> +                               goto out_unlock;
->                         }
->                         if (ntfs_cluster_free_from_rl(base_ni->vol, al_rl))
->                                 ntfs_debug("Leaking clusters! Run chkdsk. Couldn't free clusters from attribute list runlist.\n");
->                         kvfree(al_rl);
->                 }
->                 /* Remove attribute record itself. */
-> -               if (ntfs_attr_record_rm(ctx)) {
-> +               if (ntfs_attr_record_rm(ctx, true)) {
->                         ntfs_debug("Couldn't remove attribute list. Succeed anyway.\n");
-> -                       return 0;
-> +                       goto out_unlock;
->                 }
->
->                 na.mft_no = VFS_I(base_ni)->i_ino;
-> @@ -2914,7 +2950,10 @@ int ntfs_attr_record_rm(struct ntfs_attr_search_ctx *ctx)
->                 }
->
->         }
-> -       return 0;
-> +out_unlock:
-> +       if (attrlist_locked && !persist_locked)
-> +               mutex_unlock(&base_ni->attr_list_persist_lock);
-> +       return err;
-Several old `return 0` statements were converted to goto out_unlock,
-but err is not initialized on those successful paths.
-
-> +       /* Serialize the initial state check and attribute-list publication. */
-> +       mutex_lock(&ni->attr_list_persist_lock);
-> +       attrlist_locked = true;
-> +
->         if (NInoAttrList(ni) || ni->nr_extents) {
->                 ntfs_error(ni->vol->sb, "Inode already has attribute list");
-> +               mutex_unlock(&ni->attr_list_persist_lock);
->                 return -EEXIST;
->         }
-The newly acquired attr_list_persist_lock is not released on the
-existing early error paths.
-
-  mutex_lock(attr_list_persist_lock)
-          |
-          +-- map_mft_record() fails
-          |      -> return -EIO
-          |         lock remains held
-          |
-          +-- search-context allocation fails
-          |      -> goto err_out
-          |         lock remains held
-          |
-          +-- attribute enumeration or kvrealloc() fails
-                 -> goto put_err_out
-                    lock remains held
