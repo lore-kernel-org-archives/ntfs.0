@@ -1,71 +1,71 @@
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3862939A04A
-	for <ntfs@lists.linux.dev>; Wed, 19 Aug 2026 07:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDE438D006
+	for <ntfs@lists.linux.dev>; Wed, 19 Aug 2026 07:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787125446; cv=none; b=QjrwGw2C1ntmBDOzOoC2FhM5mH1iHlB8VFFyurXSFSJ4QV+SAD3nNRVqUhaKXzB9/YAu7EX9AkDqWLgK4k4UHdNAi2Jtb2LkCkLkpbD1dSp7RstuZZ/piWDfAEJH9I3D01+yQroZhTG38WzXu2XbBYLEsk9JaVvCD9ESTLxnPhw=
+	t=1787125446; cv=none; b=AmnqUWzO3M9VgKMDqxaAovACEDF6l2ILNsFrbaTGEuP70w0EX0jVIkxUcfJjLZSKCxLy0NJmKT5IxkY4qvGYs/xRHQA9hakdAFEvTQo583QDKeR3UOQBpuhL894kjSH5INYSKDoP2tfJ8g5cMou3IKs8vV+rgzipMpJ5vP/4e/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1787125446; c=relaxed/simple;
-	bh=qm1YhdIsIznblMUX98EvIMy0EOdSaTiPYtV+csiUhfo=;
+	bh=SUPmh6CPVP4L1qs+0WNoJf8EKQBdE8Z/EE1dAgHjG+o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d8YbJCXoGKCrOsZhZtPVgfz6u1gXE2Y8taKk7+cigl5GGL28dtQIa2/NDKslDboqZTDS/02KGWHzk9nnjdkHbB50Mf5meH2BjoX/Z+pIfn/mnUmeGq00ScHwy+OZGgbwByN3kpROu54PdMD3lzB1vKUtIbxIhSdKLtYmcsL8YsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c1dtvGBT; arc=none smtp.client-ip=209.85.210.179
+	 MIME-Version:Content-Type; b=dzgq644lXNIo5DDI3Kj/sju/uybc3UH4WWGmryjqVNT6WxGa5E6rJGIvzYrLqw6ZCr1F1FxY9mtGzPcUJgPKpAQzhXbd2SHVv7WHvOcy7mCu5TlmP0Mb9gRUl0L1ZU3ZeAuk+4cKeMFl9sflL2LyDlmTHitJgFFyoMPVnCZIu18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ql+y+Wtd; arc=none smtp.client-ip=209.85.210.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c1dtvGBT"
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-8485b358552so272297b3a.2
-        for <ntfs@lists.linux.dev>; Wed, 19 Aug 2026 00:44:01 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ql+y+Wtd"
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-848643382fcso926324b3a.1
+        for <ntfs@lists.linux.dev>; Wed, 19 Aug 2026 00:44:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787125441; x=1787730241; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1787125443; x=1787730243; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=5CI2F8SsTFVeYrmImWtdgQuw9y9xV9GtkW3jF/HL9uM=;
-        b=c1dtvGBTcesYNEo+U5ek8w9PAHaI44pQFPITrMXc3aSOkVyFSyrUZ7jkCYZ65dL2zF
-         enKbU/e95yA50f+mMy79T9OHpuguuZrkXjwBABU4OAuuV8TSnHyqFoAt5ioE4+ttM63a
-         zB3DJ/SoMTg/bbGhFceCfXsbPSecACLf6iIavVFyIcmFp1krp4cQQPkEXa77eeS+YUxB
-         NAYSxfptufHb8S/gBTPJlg3S0ocmpJw5igfjufs18eT6vQaljeXp/skvXxO3eXx+DW/A
-         AvLLFEMm3CZNdP7OzeAusE5OnQx+NsXxU8DHf5qztEMj2eoAjnHlOnNLzNQ+M4Uxad/o
-         4jxA==
+        bh=8w43mAkc7SQNdT1gFvXCWZd/3R2nddvGvjsG6tiKsMQ=;
+        b=ql+y+WtdwGpcvBq+NgdY7oTmEh5uTd075RDpUPcD/u6YNZeVS41Poo5E9ZAfttOP7l
+         UakJ/X0zNiEGrsONM8eDj/MnWnpQUB9RW4/JMVt+4WVNiKRSoD9ea+ocfhyAdncNu0e1
+         qm8y44YWxhXP33RaVm4YCJZyq8+0MJgZxY9qiyQVi+4wtY903/tbXaUZW3sR4uIS7xJA
+         RmOZZG1vUKgm2ib55qkrHZNvqSwgF2rAsd+14qUm6EgiBd0Xv4y5zi+Mk45QCim6b9ng
+         4z2/xh+oXwJvfyTtJNCcI29N7nf0+tXQs8dF9XVO4vP3Vzs/s3pOTYrE0LF8cp+p6kNO
+         WkAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787125441; x=1787730241;
+        d=1e100.net; s=20251104; t=1787125443; x=1787730243;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=5CI2F8SsTFVeYrmImWtdgQuw9y9xV9GtkW3jF/HL9uM=;
-        b=ESc8plEEcMuaRVMK9TlQqV0vF6qeqPRjoSRCM7+FQ6LC2TWDfqcAJ8D3Yur888izYU
-         eRo+ivZyPFO3WU8AaA9R+o5XUyCVhVuB8SeChV9KRC3EvEpLGddn+N2Nr0xyH9zqxc5J
-         KuzFjMNTaUSdZMyidePfEFT2ZInD4EBFoO3XMaeXY19n+M7BRhRiYDPFt3xEnTwk6Idg
-         +eRSBrUrXF83KpBUEpKfleiWkWKwTrUaY8RqANEh1nLI1KHKiuxuLYMlzPaeQmMUg5rl
-         0MMbr1RSjXq470L7H0QIMjdllL/47YjOC2hhVO2CdDmzACboj4VzL6djVGVDvl83ZiMQ
-         5nGA==
-X-Forwarded-Encrypted: i=1; AHgh+RrKRREz8mLGEmq2eqTukCvlw9EXCnWmEC8MhjyGyOgAzSoqZSsL1p9GF8OZSV8x1cX7j2Ql@lists.linux.dev
-X-Gm-Message-State: AOJu0YxM/TJ8wlCr2P9aEm9c+oEzyycoQ3AniupeoVNwUuWn864y0OWT
-	PdAW+1jdaOk2i8ew3jAgWXFBu6voePFm4K7rkPGi/Hno64yhyaMTGhZQ
-X-Gm-Gg: AR+sD132vqiYfszWuDsVAhwbt1Q4gvgH6pHTTZBVDRyV8GUPPkfSBmvsjqTUwvsy0zx
-	0u1+xUqqD552PICECxDrcyxP2OdYnowQLWI6Y/m+99tP3V5elaJogPth2nSo4EEYBwi6gh4v5P6
-	ebMxAdS4Al9uwSGRji0CKaiKiss/6fKPI+GPfl7XMoFGUjv/YW13LknWWjutmG+IVfsbPYBsozU
-	55grZP/crq9pRv7YGG4Wf3c8JC18znetdUZLuNi+2B1vYYy2O5GQkc/c2eUGmLlaVu3maym9WQO
-	DKXUkqvofqtqjubF4fQzgt5k1E4RJDfO4Ve5NOIq0dcs463eHm3bfBXqONAzu25Z1WVOgO9OAux
-	RkOuoAroU3CHEeUfFhOw2Mwu27sSNLp8ntbX/o6aFbTFU1N14QOGqPjrSzjwcOi+HMGOUI3G8vq
-	tkeVbq/Q0KGidcGnsEgzLjR+ywJTV89KiT/x+4xtp5JM+fGdWzpY8s7t6M5QvqC4XegFE=
-X-Received: by 2002:a05:6a00:188b:b0:84e:d5e6:a085 with SMTP id d2e1a72fcca58-851d34d7b76mr4422093b3a.0.1787125440884;
-        Wed, 19 Aug 2026 00:44:00 -0700 (PDT)
+        bh=8w43mAkc7SQNdT1gFvXCWZd/3R2nddvGvjsG6tiKsMQ=;
+        b=AyBdIxBDUV06SHJsbj9hb9DjQx57AQk1WFPgsjel3rvR5mWrtGBUvSB/jFaPo5/aPk
+         ze0vCDWclA91V4hDvQBlHEM/ztUeMN+KSv7c9VSdae9VA4gf9eUa309tLywO5JdpLQcA
+         YdKGhPf4YEU3uJF6IJlPoBVi0Y5s2/fw6uQ1xNjBIlWdFBN6qghqk3fylc0P1bWNtZdE
+         vI14OyG+MWeTr9Yb37AUYo2iW/0MEbjQIJpcu+XXCOzMDyK47KGXUZOaLAEaIfY8ZYrO
+         mFrpznaHmx2S6K0DfmhWfBhdY0nyJXcOUHkaMPVnMZUL/RJ8RorAetx7Bo44aQPR33a0
+         duPA==
+X-Forwarded-Encrypted: i=1; AHgh+RptmOVNpTB2K0msfGXPu/ePsxucVhvU2whaX0di97faWiiPLuCLMKQ52IIVeZOYTOVr9n+L@lists.linux.dev
+X-Gm-Message-State: AOJu0YxsHIf6ioNH76sl3PoHzhjY8oTXsRVxfdmgYgvxYUZOfzFNTryJ
+	owJc6WR/5H1xPjNn5zs4RSlk4OObOIbNQSxTEQA5SCRL0f5oz8u0ku/3
+X-Gm-Gg: AR+sD11gZ2+bwaG/ZKLSslXpxoeaV08zD7gJi5MXwmQTTS9lpGnyidxTWT5GsaBzvSz
+	PtG6McAyUe/0x07fcXI+ParEKQ1JUQJDJEGKDJsemCTyChjjMkv7o8Yen7iaP5lrrU6upzTjNA5
+	Ww5tOoE+FpVq1O0M3HROJuwV5Wq6i8RzUzp6/wLCSixc+vB+ptsm5NDt37zx6OD5c3ZNr0XKIED
+	iWa2CAZYtGq0vjUbmMPBhhGmKJLG2goIMNSXlTWwaMk35St7aQZK99ox8QeW0zAuxS/1leI4zFQ
+	Pi5HMSguuvPmF11DDl+1yk70LOREXaPAiAmjLB1YnL61Sj6xzDXP+FcrS9V4kiJKFCrL/fSiTnu
+	e9QB9GZXPwYheli86V6tERaktapPhHrDEokHHZuhF+y/x+dVBbHqoSanmKN5hKp1cMgTjhoNXp/
+	PdYk5JN52DHhBAD0ue55q1SxLX1UmAn1SMB0861FFEHEfZMz3q4mYkbaOvCVbfKZtR6H0=
+X-Received: by 2002:a05:6a00:8d96:b0:848:599f:26b with SMTP id d2e1a72fcca58-851d3923319mr4743105b3a.14.1787125443293;
+        Wed, 19 Aug 2026 00:44:03 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-851d3640a19sm314623b3a.43.2026.08.19.00.43.58
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-851d3640a19sm314623b3a.43.2026.08.19.00.44.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2026 00:44:00 -0700 (PDT)
+        Wed, 19 Aug 2026 00:44:02 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev
-Subject: [PATCH v2 7/8] ntfs: add non-resident WOF decompression
-Date: Wed, 19 Aug 2026 16:43:25 +0900
-Message-ID: <20260819-topic-wof-v2-v2-7-40f56903e7e7@gmail.com>
+Subject: [PATCH v2 8/8] ntfs: support resident WOF decompression
+Date: Wed, 19 Aug 2026 16:43:26 +0900
+Message-ID: <20260819-topic-wof-v2-v2-8-40f56903e7e7@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260819-topic-wof-v2-v2-0-40f56903e7e7@gmail.com>
 References: <20260819-topic-wof-v2-v2-0-40f56903e7e7@gmail.com>
@@ -77,1172 +77,249 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=35155; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=qm1YhdIsIznblMUX98EvIMy0EOdSaTiPYtV+csiUhfo=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqhV5xMuJi6wuR13cbPUl9n12gaUJSJahtNrLk0
- SCJpcsqeiCJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaoVecQAKCRA08jD6945I
- 0wQ+EACpnSOIignPJZn/2/hoNEXiD5KBlpct7+2lO7VlH3A7u6vnhmjS6ROT4ysNDB92BYZOYzW
- OZmjE7qqVoVGhQEHScYMAwa9mZnfpJQV9/Wz1UOrERDGlIFf0UjO0kxKJNhPXVkJr5vm6VF9sw0
- GCruikvQtrhhYRXN8hYOfs6Dt/KomxNVF9a0Xa6Ug5gCAf7HC7/muLIYYv0E5vDF4YJa9QycIwU
- MkRkUQG6WDtH0W/EK5Oi2/FNPwNhFgc2+cxPubOUNcFTENePkEjYcOJ8EKzU90lFwUgEQcRmWkt
- uNwt+nlTHxo7tCTCfeoF29d5lCPpvGDNEjzuQwOvSjQIxiCnzQyCAditDlWZ/ogQF3yHOKxmvGb
- 6M2s+If56qYmck0gUcm7ExVG++he6ucdXH9BeCZkvO20VR2VxjQHXDmkp8kw0j+oLz9DEV6xZh2
- ALjvyoUAA0MPIposNuXFmjLmOuwgij1ET1/AjTYrVyU+KnrrzUnMmAWdGB6AOhDvaNmsqjNZF/k
- XkDm5LCmoNIsmevPO2vyNdXwTOBxxKGmwpYCaaqG42kOJ1NdnSc1VWzynXTs6Qs1WxCpIM1ORm7
- tK7bvwhhxK3aXNghy3312CVecwk3PivrtVNRi5XvgERU9zlYxqPDSU2XWvSxQFGRah3HJvcUgTB FqXlhMfw8opPmjA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7378; i=hyc.lee@gmail.com; h=from:subject:message-id; bh=SUPmh6CPVP4L1qs+0WNoJf8EKQBdE8Z/EE1dAgHjG+o=; b=kA0DAAoBNPIw+veOSNMByyZiAGqFXnGj0aOhJRcCW0iqok+przeNA+uRRpzKt9PbmY0ujtPPH okCMwQAAQoAHRYhBNWFKcxTduNtbh5vYjTyMPr3jkjTBQJqhV5xAAoJEDTyMPr3jkjTDKIP/R58 I2hoMDYHkxpTLNPuGKdcgd57tetPbqIJcYITBpnU6j9nJBnEofZsd2jDgXRLHu8Nyd3dMMwpaI3 0TY3ha/69/eaVyhWP98rUglInZ73kA2R6iZugRgrMWJvLruagW1/h53hHCWs5ee34QW8IRE4/1W KLXDExk6XeCGrc4rksAt8/CMqjjLFFHsxRKeT8cVCeBSP4vTmxXij2GXZESs9MQc5L9p1X3/rdT fomHkB9Gcztrp3H4qg2TQSOC9r6FKFJN4J3UutCJeC8zAROC4a3vJJDoGFfhm46Qeg+wT1acJ9P sNioJxr9QDJo689iRAsy4APYPEpOxQNvWXOqawiD3Zz5Bb5bUuJvIdWjftEztXsUlEm1SeTEZAM NxJZFqIwBJc6tGNcA5wV0iKHaz1cavSEKUe9/TT6sp/xzigy88uD7lWBrC4oYzCSjgPUCl1j7tA cNwuJr+9i8zZ4kowUo94ee6QAO/ikOcyP8vdc5FJI1MXwfUS5KxniiqBkFuCS4UBV68SAk/fjWE RT9U9LjRXYofgpHNCuG4PLNmVfQ9S4faI6bV++qp511E8YjdPSkWSzz25gFIIU2YHjXPvyxQfqD o7GtaNgBBUdWPu+39NrqkmHNaaMtWggjWUz4ULDgC6joJppfW/ocJHo0R0FPJb7USp8EYu56sip jCrR9
 X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
 Content-Transfer-Encoding: 8bit
 
-Introduce non-resident Windows System Compression (WOF) decompression
-support. Add wof.c containing parse_wof_chunk_table() and
-ntfs_read_wof_compressed_block(), and routing them via transparent
-codec ops table with dynamic scratch memory allocation. Hook up
-ntfs_readpage/read_folio paths in aops.c to delegate to the WOF block
-reader when NInoWofCompressed is set.
+Extend WOF decompression to support files where the  reparse named
+data attribute or the compressed chunks themselves are resident. Retrieve
+resident metadata using ntfs_attr_lookup() and copy compressed chunks
+directly from the resident attribute payload.
 
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
- fs/ntfs/Makefile  |   2 +-
- fs/ntfs/aops.c    |  19 +-
- fs/ntfs/attrib.c  |   2 +-
- fs/ntfs/bdev-io.c |   4 +-
- fs/ntfs/ea.c      |  28 ++-
- fs/ntfs/file.c    |  47 +++-
- fs/ntfs/inode.c   |   9 +-
- fs/ntfs/ntfs.h    |   4 +
- fs/ntfs/reparse.c |  59 +++--
- fs/ntfs/super.c   |   3 +
- fs/ntfs/wof.c     | 667 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 11 files changed, 791 insertions(+), 53 deletions(-)
+ fs/ntfs/wof.c | 141 ++++++++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 97 insertions(+), 44 deletions(-)
 
-diff --git a/fs/ntfs/Makefile b/fs/ntfs/Makefile
-index 5e5fd05f5863..ee8987e496a8 100644
---- a/fs/ntfs/Makefile
-+++ b/fs/ntfs/Makefile
-@@ -7,7 +7,7 @@ ntfs-y := aops.o attrib.o collate.o dir.o file.o index.o inode.o \
- 	  upcase.o bitmap.o lcnalloc.o logfile.o reparse.o compress.o \
- 	  iomap.o debug.o sysctl.o object_id.o bdev-io.o
- 
--ntfs-$(CONFIG_NTFS_FS_WOF_COMPRESSION) += \
-+ntfs-$(CONFIG_NTFS_FS_WOF_COMPRESSION) += wof.o \
- 	lib/decompress_common.o lib/lzx_decompress.o lib/xpress_decompress.o
- 
- ccflags-$(CONFIG_NTFS_DEBUG) += -DDEBUG
-diff --git a/fs/ntfs/aops.c b/fs/ntfs/aops.c
-index 173de4cbee0f..517d9a1563e7 100644
---- a/fs/ntfs/aops.c
-+++ b/fs/ntfs/aops.c
-@@ -90,6 +90,14 @@ static int ntfs_read_folio(struct file *file, struct folio *folio)
- 			folio_unlock(folio);
- 			return -EOPNOTSUPP;
- 		}
-+		if (NInoWofCompressed(ni)) {
-+#ifdef CONFIG_NTFS_FS_WOF_COMPRESSION
-+			return ntfs_read_wof_compressed_block(folio);
-+#else
-+			folio_unlock(folio);
-+			return -EOPNOTSUPP;
-+#endif
-+		}
- 		/* Compressed data streams are handled in compress.c. */
- 		if (NInoNonResident(ni) && NInoCompressed(ni))
- 			return ntfs_read_compressed_block(folio);
-@@ -136,11 +144,12 @@ static sector_t ntfs_bmap(struct address_space *mapping, sector_t block)
- 	ntfs_debug("Entering for mft_no 0x%llx, logical block 0x%llx.",
- 			ni->mft_no, (unsigned long long)block);
- 	if (ni->type != AT_DATA || !NInoNonResident(ni) || NInoEncrypted(ni) ||
--	    NInoMstProtected(ni)) {
-+	    NInoWofCompressed(ni) || NInoMstProtected(ni)) {
- 		ntfs_error(vol->sb, "BMAP does not make sense for %s attributes, returning 0.",
- 				(ni->type != AT_DATA) ? "non-data" :
- 				(!NInoNonResident(ni) ? "resident" :
--				"encrypted"));
-+				(NInoWofCompressed(ni) ? "WOF-compressed" :
-+				"encrypted")));
- 		return 0;
- 	}
- 	/* None of these can happen. */
-@@ -234,7 +243,8 @@ static void ntfs_readahead(struct readahead_control *rac)
- 	 * Resident files are not cached in the page cache,
- 	 * and readahead is not implemented for compressed files.
- 	 */
--	if (!NInoNonResident(ni) || NInoCompressed(ni))
-+	if (!NInoNonResident(ni) || NInoCompressed(ni) ||
-+	    NInoWofCompressed(ni))
- 		return;
- 	iomap_readahead(&ntfs_read_iomap_ops, &ctx, NULL);
- }
-@@ -286,6 +296,9 @@ static int ntfs_writepages(struct address_space *mapping,
- static int ntfs_swap_activate(struct swap_info_struct *sis,
- 		struct file *swap_file, sector_t *span)
- {
-+	if (NInoWofCompressed(NTFS_I(file_inode(swap_file))))
-+		return -EOPNOTSUPP;
-+
- 	return iomap_swapfile_activate(sis, swap_file, span,
- 			&ntfs_read_iomap_ops);
- }
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 990c3937a551..b82145763052 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -2137,7 +2137,7 @@ int ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size)
- 		ni->runlist.count = 0;
- 	write_lock_irqsave(&ni->size_lock, flags);
- 	ni->allocated_size = new_size;
--	if (NInoSparse(ni) || NInoCompressed(ni)) {
-+	if ((NInoSparse(ni) && !NInoWofCompressed(ni)) || NInoCompressed(ni)) {
- 		ni->itype.compressed.size = ni->allocated_size;
- 		if (a->data.non_resident.compression_unit) {
- 			ni->itype.compressed.block_size = 1U <<
-diff --git a/fs/ntfs/bdev-io.c b/fs/ntfs/bdev-io.c
-index 27d7c2767a33..86db4d9298ed 100644
---- a/fs/ntfs/bdev-io.c
-+++ b/fs/ntfs/bdev-io.c
-@@ -33,7 +33,7 @@ int ntfs_bdev_read(struct block_device *bdev, char *data, loff_t start, size_t s
- 	unsigned int done = 0, added;
- 	int error;
- 	struct bio *bio;
--	enum req_op op;
-+	blk_opf_t op;
- 	sector_t sector = start >> SECTOR_SHIFT;
- 
- 	if (start & (SECTOR_SIZE - 1))
-@@ -66,7 +66,7 @@ int ntfs_bdev_read(struct block_device *bdev, char *data, loff_t start, size_t s
- 	error = submit_bio_wait(bio);
- 	bio_put(bio);
- 
--	if (op == REQ_OP_READ)
-+	if ((op & REQ_OP_MASK) == REQ_OP_READ)
- 		invalidate_kernel_vmap_range(data, size);
- 	return error;
- }
-diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index fc6cec7ce130..7aa4accd3842 100644
---- a/fs/ntfs/ea.c
-+++ b/fs/ntfs/ea.c
-@@ -814,6 +814,17 @@ static bool ntfs_is_reserved_lxattr(const char *name)
- 	       !strcmp(name, "$LXMOD") || !strcmp(name, "$LXDEV");
- }
- 
-+static int ntfs_validate_fattr(struct ntfs_inode *ni, __le32 fattr)
-+{
-+	const __le32 wof_flags = FILE_ATTR_SPARSE_FILE |
-+				 FILE_ATTR_REPARSE_POINT;
-+
-+	if (NInoWofCompressed(ni) && ((ni->flags ^ fattr) & wof_flags))
-+		return -EPERM;
-+
-+	return 0;
-+}
-+
- static int ntfs_setxattr(const struct xattr_handler *handler,
- 		struct mnt_idmap *idmap, struct dentry *unused,
- 		struct inode *inode, const char *name, const void *value,
-@@ -834,7 +845,8 @@ static int ntfs_setxattr(const struct xattr_handler *handler,
- 			err = -EINVAL;
- 			goto out;
- 		}
--		fattr = cpu_to_le32(*(u8 *)value);
-+		fattr = cpu_to_le32((le32_to_cpu(ni->flags) & ~0xffU) |
-+				    *(u8 *)value);
- 		goto set_fattr;
- 	}
- 
-@@ -849,6 +861,10 @@ static int ntfs_setxattr(const struct xattr_handler *handler,
- 		else
- 			fattr = cpu_to_le32(*(u32 *)value);
- 
-+		err = ntfs_validate_fattr(ni, fattr);
-+		if (err)
-+			goto out;
-+
- 		if (S_ISREG(inode->i_mode)) {
- 			mutex_lock(&ni->mrec_lock);
- 			err = ntfs_new_attr_flags(ni, fattr);
-@@ -863,6 +879,10 @@ static int ntfs_setxattr(const struct xattr_handler *handler,
- 		else
- 			fattr &= ~FILE_ATTR_DIRECTORY;
- 
-+		err = ntfs_validate_fattr(ni, fattr);
-+		if (err)
-+			goto out;
-+
- 		if (ni->flags != fattr) {
- 			ni->flags = fattr;
- 			if (fattr & FILE_ATTR_READONLY)
-@@ -881,8 +901,10 @@ static int ntfs_setxattr(const struct xattr_handler *handler,
- 	mutex_unlock(&ni->mrec_lock);
- 
- out:
--	inode_set_ctime_current(inode);
--	mark_inode_dirty(inode);
-+	if (!err) {
-+		inode_set_ctime_current(inode);
-+		mark_inode_dirty(inode);
-+	}
+diff --git a/fs/ntfs/wof.c b/fs/ntfs/wof.c
+index b1d89df75dcf..2b4a8ae73889 100644
+--- a/fs/ntfs/wof.c
++++ b/fs/ntfs/wof.c
+@@ -242,10 +242,11 @@ static int ntfs_bdev_read_from_rl(struct ntfs_volume *vol,
  	return err;
  }
  
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index d4282822b3ce..88747217ba61 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -128,7 +128,8 @@ static int ntfs_trim_prealloc(struct inode *vi)
- 
- static int ntfs_file_release(struct inode *vi, struct file *filp)
+-static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx,
+-				 u64 chunk_count, u64 *chunk_offset,
+-				 u32 *chunk_size, void *table_buf,
+-				 size_t table_buf_size)
++static int parse_wof_chunk_table(struct ntfs_inode *base_ni,
++				 struct ntfs_inode *ni, u64 chunk_idx,
++				 u64 chunk_count, u32 decomp_size,
++				 u64 *chunk_offset, u32 *chunk_size,
++				 void *table_buf, size_t table_buf_size)
  {
--	if (!NInoCompressed(NTFS_I(vi)))
-+	if (!NInoCompressed(NTFS_I(vi)) &&
-+	    !NInoWofCompressed(NTFS_I(vi)))
- 		return ntfs_trim_prealloc(vi);
+ 	u8 bytes_per_off;
+ 	u8 *buf;
+@@ -254,7 +255,7 @@ static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx,
+ 	u32 bytes_to_read;
+ 	int ret = 0;
  
- 	return 0;
-@@ -256,10 +257,11 @@ static int ntfs_setattr_size(struct inode *vi, struct iattr *attr)
- 	int err;
- 	loff_t old_size = vi->i_size;
+-	if (ni->data_size < (1ULL << 32))
++	if (i_size_read(VFS_I(base_ni)) < (1ULL << 32))
+ 		bytes_per_off = sizeof(__le32);
+ 	else
+ 		bytes_per_off = sizeof(__le64);
+@@ -268,11 +269,11 @@ static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx,
+ 	chunk_data_size = ni->data_size - table_size;
  
--	if (NInoCompressed(ni) || NInoEncrypted(ni)) {
--		ntfs_warning(vi->i_sb,
--			"Changes in inode size are not supported yet for %s files, ignoring.",
--			NInoCompressed(ni) ? "compressed" : "encrypted");
-+	if (NInoCompressed(ni) || NInoEncrypted(ni) || NInoWofCompressed(ni)) {
-+		ntfs_warning(
-+			vi->i_sb,
-+			"Changes in inode size are not supported yet for %s files.",
-+			NInoEncrypted(ni) ? "encrypted" : "compressed");
- 		return -EOPNOTSUPP;
+ 	if (chunk_count == 1) {
+-		if (chunk_data_size > U32_MAX)
++		if (chunk_data_size > decomp_size)
+ 			return -EINVAL;
+ 		*chunk_offset = 0;
+ 		*chunk_size = chunk_data_size;
+-		return 0;
++		goto out;
  	}
  
-@@ -308,6 +310,13 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
- 	if (err)
- 		goto out;
+ 	byte_off = chunk_idx ? (chunk_idx - 1) * bytes_per_off : 0;
+@@ -280,10 +281,7 @@ static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx,
+ 				bytes_per_off :
+ 				(chunk_idx ? 2 : 1) * bytes_per_off;
  
-+	if ((ia_valid & ATTR_SIZE) &&
-+	    (NInoCompressed(ni) || NInoEncrypted(ni) ||
-+	     NInoWofCompressed(ni))) {
-+		err = -EOPNOTSUPP;
-+		goto out;
-+	}
+-	if (!NInoNonResident(ni))
+-		return -EOPNOTSUPP;
+-
+-	{
++	if (NInoNonResident(ni)) {
+ 		sector_t start_sector = byte_off >> 9;
+ 		u32 sector_off = byte_off & ((1 << 9) - 1);
+ 		u32 sectors = DIV_ROUND_UP(sector_off + bytes_to_read, 512);
+@@ -293,11 +291,45 @@ static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx,
+ 		buf = table_buf;
+ 		ret = ntfs_bdev_read_from_rl(ni->vol, &ni->runlist,
+ 					     start_sector, sectors, buf);
+-		if (ret) {
+-			ret = -EIO;
+-			return ret;
+-		}
++		if (ret)
++			return -EIO;
+ 		buf += sector_off;
++	} else {
++		struct ntfs_attr_search_ctx *ctx;
++		u32 value_length;
++		u16 value_offset;
 +
- 	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
- 		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
- 
-@@ -370,7 +379,7 @@ int ntfs_getattr(struct mnt_idmap *idmap, const struct path *path,
- 	stat->result_mask |= STATX_BTIME;
- 	stat->btime = NTFS_I(inode)->i_crtime;
- 
--	if (NInoCompressed(ni))
-+	if (NInoCompressed(ni) || NInoWofCompressed(ni))
- 		stat->attributes |= STATX_ATTR_COMPRESSED;
- 
- 	if (NInoEncrypted(ni))
-@@ -395,7 +404,8 @@ int ntfs_getattr(struct mnt_idmap *idmap, const struct path *path,
- 			bdev_logical_block_size(inode->i_sb->s_bdev);
- 
- 		stat->result_mask |= STATX_DIOALIGN;
--		if (!NInoCompressed(ni) && !NInoEncrypted(ni)) {
-+		if (!NInoCompressed(ni) && !NInoEncrypted(ni) &&
-+		    !NInoWofCompressed(ni)) {
- 			stat->dio_mem_align = align;
- 			stat->dio_offset_align = align;
- 		}
-@@ -408,6 +418,10 @@ static loff_t ntfs_file_llseek(struct file *file, loff_t offset, int whence)
- {
- 	struct inode *inode = file->f_mapping->host;
- 
-+	if (NInoWofCompressed(NTFS_I(inode)) &&
-+	    (whence == SEEK_HOLE || whence == SEEK_DATA))
-+		return -EOPNOTSUPP;
++		if (bytes_to_read > table_buf_size)
++			return -EINVAL;
 +
- 	switch (whence) {
- 	case SEEK_HOLE:
- 		inode_lock_shared(inode);
-@@ -438,7 +452,8 @@ static ssize_t ntfs_file_read_iter(struct kiocb *iocb, struct iov_iter *to)
- 	if (NVolShutdown(NTFS_SB(sb)))
- 		return -EIO;
- 
--	if (NInoCompressed(NTFS_I(vi)) && iocb->ki_flags & IOCB_DIRECT)
-+	if ((NInoCompressed(NTFS_I(vi)) || NInoWofCompressed(NTFS_I(vi))) &&
-+	    iocb->ki_flags & IOCB_DIRECT)
- 		return -EOPNOTSUPP;
- 
- 	inode_lock_shared(vi);
-@@ -569,6 +584,9 @@ static ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
- 	if (NVolShutdown(vol))
- 		return -EIO;
- 
-+	if (NInoWofCompressed(ni))
-+		return -EOPNOTSUPP;
++		mutex_lock(&base_ni->mrec_lock);
++		ctx = ntfs_attr_get_search_ctx(base_ni, NULL);
++		if (!ctx) {
++			ret = -ENOMEM;
++			goto out_unlock_mrec;
++		}
++		ret = ntfs_attr_lookup(ni->type, ni->name, ni->name_len,
++				       CASE_SENSITIVE, 0, NULL, 0, ctx);
++		if (ret)
++			goto out_put_ctx;
 +
- 	if (NInoEncrypted(ni)) {
- 		ntfs_error(vi->i_sb, "Writing for %s files is not supported yet",
- 			   NInoCompressed(ni) ? "Compressed" : "Encrypted");
-@@ -653,6 +671,9 @@ static vm_fault_t ntfs_filemap_page_mkwrite(struct vm_fault *vmf)
- 	struct inode *inode = file_inode(vmf->vma->vm_file);
- 	vm_fault_t ret;
++		value_length =
++			le32_to_cpu(ctx->attr->data.resident.value_length);
++		value_offset =
++			le16_to_cpu(ctx->attr->data.resident.value_offset);
++		if (byte_off + bytes_to_read > value_length) {
++			ret = -EINVAL;
++			goto out_put_ctx;
++		}
++		memcpy(table_buf, (u8 *)ctx->attr + value_offset + byte_off,
++		       bytes_to_read);
++		buf = table_buf;
++out_put_ctx:
++		ntfs_attr_put_search_ctx(ctx);
++out_unlock_mrec:
++		mutex_unlock(&base_ni->mrec_lock);
++		if (ret)
++			return ret;
+ 	}
  
-+	if (NInoWofCompressed(NTFS_I(inode)))
-+		return VM_FAULT_SIGBUS;
-+
- 	sb_start_pagefault(inode->i_sb);
- 	file_update_time(vmf->vma->vm_file);
+ 	if (bytes_per_off == sizeof(__le32)) {
+@@ -313,14 +345,15 @@ static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx,
+ 	}
  
-@@ -675,7 +696,7 @@ static int ntfs_file_mmap_prepare(struct vm_area_desc *desc)
- 	if (NVolShutdown(NTFS_SB(file->f_mapping->host->i_sb)))
- 		return -EIO;
+ 	if (off[1] <= off[0] || off[1] > chunk_data_size ||
+-	    off[1] - off[0] > U32_MAX) {
+-		ret = -EINVAL;
+-		return ret;
+-	}
++	    off[1] - off[0] > decomp_size)
++		return -EINVAL;
  
--	if (NInoCompressed(NTFS_I(inode)))
-+	if (NInoCompressed(NTFS_I(inode)) || NInoWofCompressed(NTFS_I(inode)))
- 		return -EOPNOTSUPP;
- 
- 	if (vma_desc_test_all(desc, VMA_SHARED_BIT, VMA_MAYWRITE_BIT)) {
-@@ -703,6 +724,9 @@ static int ntfs_file_mmap_prepare(struct vm_area_desc *desc)
- static int ntfs_fiemap(struct inode *inode, struct fiemap_extent_info *fieinfo,
- 		u64 start, u64 len)
- {
-+	if (NInoWofCompressed(NTFS_I(inode)))
-+		return -EOPNOTSUPP;
-+
- 	return iomap_fiemap(inode, fieinfo, start, len, &ntfs_read_iomap_ops);
+ 	*chunk_offset = table_size + off[0];
+ 	*chunk_size = off[1] - off[0];
+-	return ret;
++out:
++	if (!*chunk_size)
++		return -EINVAL;
++	return 0;
  }
  
-@@ -1097,6 +1121,9 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
- 	if (mode & ~(NTFS_FALLOC_FL_SUPPORTED))
- 		return -EOPNOTSUPP;
+ static int ntfs_read_wof_chunk(struct ntfs_volume *vol,
+@@ -328,23 +361,54 @@ static int ntfs_read_wof_chunk(struct ntfs_volume *vol,
+ 			       u32 chunk_size, void *input, size_t input_size,
+ 			       char **chunk_mem)
+ {
++	struct ntfs_inode *base_ni = wof_ni->ext.base_ntfs_ino;
++	struct ntfs_attr_search_ctx *ctx;
+ 	u32 input_offset = chunk_offset & 511;
+ 	u32 input_size_aligned;
++	u32 value_length;
++	u16 value_offset;
+ 	int err;
  
-+	if (NInoCompressed(ni) || NInoEncrypted(ni) || NInoWofCompressed(ni))
-+		return -EOPNOTSUPP;
-+
- 	if (!NVolFreeClusterKnown(vol))
- 		wait_event(vol->free_waitq, NVolFreeClusterKnown(vol));
+ 	input_size_aligned = round_up(chunk_size + input_offset, 512);
+ 	if (input_size_aligned > input_size)
+ 		return -EINVAL;
  
-@@ -1120,7 +1147,7 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
- 	old_size = i_size_read(vi);
- 
- 	inode_lock(vi);
--	if (NInoCompressed(ni) || NInoEncrypted(ni)) {
-+	if (NInoCompressed(ni) || NInoEncrypted(ni) || NInoWofCompressed(ni)) {
- 		err = -EOPNOTSUPP;
- 		goto out;
- 	}
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 45e013eb3541..591dc63cb24c 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -1091,6 +1091,11 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 		/* Setup the state. */
- 		if (a->flags & (ATTR_COMPRESSION_MASK | ATTR_IS_SPARSE)) {
- 			if (a->flags & ATTR_COMPRESSION_MASK) {
-+				if (NInoWofCompressed(ni)) {
-+					ntfs_error(vi->i_sb,
-+						"Found native compression on a WOF file.");
-+					goto unm_err_out;
-+				}
- 				NInoSetCompressed(ni);
- 				ni->flags |= FILE_ATTR_COMPRESSED;
- 				if (vol->cluster_size > 4096) {
-@@ -1121,7 +1126,7 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 		}
- 		if (a->non_resident) {
- 			NInoSetNonResident(ni);
--			if (NInoCompressed(ni) || NInoSparse(ni)) {
-+			if (NInoCompressed(ni) || (NInoSparse(ni) && !NInoWofCompressed(ni))) {
- 				if (NInoCompressed(ni) &&
- 				    a->data.non_resident.compression_unit != 4) {
- 					ntfs_error(vi->i_sb,
-@@ -1400,7 +1405,7 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
- 				"Attribute name is placed after the mapping pairs array.");
- 			goto unm_err_out;
- 		}
--		if (NInoCompressed(ni) || NInoSparse(ni)) {
-+		if (NInoCompressed(ni) || (NInoSparse(ni) && !NInoWofCompressed(ni))) {
- 			if (NInoCompressed(ni) && a->data.non_resident.compression_unit != 4) {
- 				ntfs_error(vi->i_sb,
- 					"Found non-standard compression unit (%u instead of 4).  Cannot handle this.",
-diff --git a/fs/ntfs/ntfs.h b/fs/ntfs/ntfs.h
-index 45064dbcc2e4..df5a75d506f6 100644
---- a/fs/ntfs/ntfs.h
-+++ b/fs/ntfs/ntfs.h
-@@ -202,6 +202,10 @@ static inline struct ntfs_volume *NTFS_SB(struct super_block *sb)
- 
- /* From fs/ntfs/compress.c */
- int ntfs_read_compressed_block(struct folio *folio);
-+#ifdef CONFIG_NTFS_FS_WOF_COMPRESSION
-+int ntfs_read_wof_compressed_block(struct folio *folio);
-+void ntfs_wof_free_workspaces(void);
-+#endif
- int allocate_compression_buffers(void);
- void free_compression_buffers(void);
- int ntfs_compress_write(struct ntfs_inode *ni, loff_t pos, size_t count,
-diff --git a/fs/ntfs/reparse.c b/fs/ntfs/reparse.c
-index 5c2771e82c65..3420167ee1db 100644
---- a/fs/ntfs/reparse.c
-+++ b/fs/ntfs/reparse.c
-@@ -223,25 +223,9 @@ static bool valid_reparse_data(struct ntfs_inode *ni,
- 			return false;
- 		break;
- 	case IO_REPARSE_TAG_WOF: {
--		const struct wof_reparse_data *wof_data =
--			(const struct wof_reparse_data *)reparse_attr->reparse_data;
--
- 		if (!valid_reparse_buffer(ni, reparse_attr, size,
- 					  sizeof(struct wof_reparse_data)))
- 			return false;
--
--		if (le16_to_cpu(reparse_attr->reparse_data_length) <
--		    sizeof(struct wof_reparse_data) ||
--		    wof_data->version != WOF_CURRENT_VERSION ||
--		    wof_data->provider != WOF_PROVIDER_FILE ||
--		    wof_data->provider_version !=
--		    WOF_PROVIDER_CURRENT_VERSION)
--			return false;
--		if (wof_data->compression_format != WOF_COMPRESSION_XPRESS4K &&
--		    wof_data->compression_format != WOF_COMPRESSION_XPRESS8K &&
--		    wof_data->compression_format != WOF_COMPRESSION_XPRESS16K &&
--		    wof_data->compression_format != WOF_COMPRESSION_LZX)
--			return false;
- 		break;
- 	}
- 	default:
-@@ -359,22 +343,35 @@ int ntfs_parse_reparse(struct ntfs_inode *ni, unsigned int *mode)
- 			const struct wof_reparse_data *wof_data =
- 				(const struct wof_reparse_data *)reparse_attr->reparse_data;
- 
--			switch (wof_data->compression_format) {
--			case WOF_COMPRESSION_XPRESS4K:
--				ni->itype.compressed.block_size_bits = 12;
--				break;
--			case WOF_COMPRESSION_XPRESS8K:
--				ni->itype.compressed.block_size_bits = 13;
--				break;
--			case WOF_COMPRESSION_XPRESS16K:
--				ni->itype.compressed.block_size_bits = 14;
--				break;
--			case WOF_COMPRESSION_LZX:
--				ni->itype.compressed.block_size_bits = 15;
--				break;
-+			ni->itype.compressed.block_size_bits = 0;
-+			ni->itype.compressed.block_size = 0;
-+			if (wof_data->version == WOF_CURRENT_VERSION &&
-+			    wof_data->provider == WOF_PROVIDER_FILE &&
-+			    wof_data->provider_version ==
-+				    WOF_PROVIDER_CURRENT_VERSION) {
-+				switch (wof_data->compression_format) {
-+				case WOF_COMPRESSION_XPRESS4K:
-+					ni->itype.compressed.block_size_bits =
-+						12;
-+					break;
-+				case WOF_COMPRESSION_XPRESS8K:
-+					ni->itype.compressed.block_size_bits =
-+						13;
-+					break;
-+				case WOF_COMPRESSION_XPRESS16K:
-+					ni->itype.compressed.block_size_bits =
-+						14;
-+					break;
-+				case WOF_COMPRESSION_LZX:
-+					ni->itype.compressed.block_size_bits =
-+						15;
-+					break;
-+				}
- 			}
--			ni->itype.compressed.block_size =
--				1 << ni->itype.compressed.block_size_bits;
-+			if (ni->itype.compressed.block_size_bits)
-+				ni->itype.compressed.block_size =
-+					1
-+					<< ni->itype.compressed.block_size_bits;
- #endif
- 			NInoSetWofCompressed(ni);
- 			VFS_I(ni)->i_mode &= ~0222;
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 8abe7bee4c0d..ab3f9847eea3 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -2691,6 +2691,9 @@ static void __exit exit_ntfs_fs(void)
- 	 * destroy cache.
- 	 */
- 	rcu_barrier();
-+#ifdef CONFIG_NTFS_FS_WOF_COMPRESSION
-+	ntfs_wof_free_workspaces();
-+#endif
- 	kmem_cache_destroy(ntfs_big_inode_cache);
- 	kmem_cache_destroy(ntfs_inode_cache);
- 	kmem_cache_destroy(ntfs_name_cache);
-diff --git a/fs/ntfs/wof.c b/fs/ntfs/wof.c
-new file mode 100644
-index 000000000000..b1d89df75dcf
---- /dev/null
-+++ b/fs/ntfs/wof.c
-@@ -0,0 +1,667 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Windows System Compression (WOF) decompression glue.
-+ *
-+ * Copyright (c) 2026 LG Electronics Co., Ltd.
-+ */
-+
-+#include <linux/fs.h>
-+#include <linux/blkdev.h>
-+#include <linux/overflow.h>
-+#include <linux/pagemap.h>
-+#include <linux/sched/mm.h>
-+#include <linux/slab.h>
-+#include <linux/unaligned.h>
-+#include <linux/vmalloc.h>
-+
-+#include "ntfs.h"
-+#include "inode.h"
-+#include "debug.h"
-+#include "ntfs_codec.h"
-+#include "attrib.h"
-+
-+static const __le16 WOF_NAME[] = {
-+	cpu_to_le16('W'), cpu_to_le16('o'), cpu_to_le16('f'),
-+	cpu_to_le16('C'), cpu_to_le16('o'), cpu_to_le16('m'),
-+	cpu_to_le16('p'), cpu_to_le16('r'), cpu_to_le16('e'),
-+	cpu_to_le16('s'), cpu_to_le16('s'), cpu_to_le16('e'),
-+	cpu_to_le16('d'), cpu_to_le16('D'), cpu_to_le16('a'),
-+	cpu_to_le16('t'), cpu_to_le16('a'),
-+};
-+
-+#define WOF_NAME_LEN 17
-+
-+#define NTFS_WOF_MAX_COMP_UNIT (1U << 15)
-+#define NTFS_WOF_MAX_PAGES \
-+	DIV_ROUND_UP(NTFS_WOF_MAX_COMP_UNIT + PAGE_SIZE - 1, PAGE_SIZE)
-+
-+struct ntfs_wof_workspace {
-+	struct mutex *lock;
-+	const struct ntfs_codec_ops *codec;
-+	u32 comp_unit;
-+	void *input;
-+	size_t input_size;
-+	void *output;
-+	void *scratch;
-+};
-+
-+static DEFINE_MUTEX(ntfs_wof_xpress4k_lock);
-+static DEFINE_MUTEX(ntfs_wof_xpress8k_lock);
-+static DEFINE_MUTEX(ntfs_wof_xpress16k_lock);
-+static DEFINE_MUTEX(ntfs_wof_lzx32k_lock);
-+
-+static struct ntfs_wof_workspace ntfs_wof_xpress4k_workspace = {
-+	.lock = &ntfs_wof_xpress4k_lock,
-+	.codec = &ntfs_xpress4k_codec_ops,
-+	.comp_unit = 1U << 12,
-+};
-+
-+static struct ntfs_wof_workspace ntfs_wof_xpress8k_workspace = {
-+	.lock = &ntfs_wof_xpress8k_lock,
-+	.codec = &ntfs_xpress8k_codec_ops,
-+	.comp_unit = 1U << 13,
-+};
-+
-+static struct ntfs_wof_workspace ntfs_wof_xpress16k_workspace = {
-+	.lock = &ntfs_wof_xpress16k_lock,
-+	.codec = &ntfs_xpress16k_codec_ops,
-+	.comp_unit = 1U << 14,
-+};
-+
-+static struct ntfs_wof_workspace ntfs_wof_lzx32k_workspace = {
-+	.lock = &ntfs_wof_lzx32k_lock,
-+	.codec = &ntfs_lzx32k_codec_ops,
-+	.comp_unit = 1U << 15,
-+};
-+
-+static struct ntfs_wof_workspace *const ntfs_wof_workspaces[] = {
-+	&ntfs_wof_xpress4k_workspace,
-+	&ntfs_wof_xpress8k_workspace,
-+	&ntfs_wof_xpress16k_workspace,
-+	&ntfs_wof_lzx32k_workspace,
-+};
-+
-+static struct ntfs_wof_workspace *ntfs_wof_workspace(u8 block_size_bits)
-+{
-+	switch (block_size_bits) {
-+	case 12:
-+		return &ntfs_wof_xpress4k_workspace;
-+	case 13:
-+		return &ntfs_wof_xpress8k_workspace;
-+	case 14:
-+		return &ntfs_wof_xpress16k_workspace;
-+	case 15:
-+		return &ntfs_wof_lzx32k_workspace;
-+	default:
-+		return NULL;
-+	}
-+}
-+
-+static int ntfs_wof_workspace_prepare(struct ntfs_wof_workspace *ws)
-+{
-+	void *input, *output, *scratch;
-+	size_t scratch_size;
-+
-+	if (ws->input)
+-	if (!NInoNonResident(wof_ni))
+-		return -EOPNOTSUPP;
++	if (NInoNonResident(wof_ni)) {
++		err = ntfs_bdev_read_from_rl(vol, &wof_ni->runlist,
++					     chunk_offset >> 9,
++					     input_size_aligned >> 9, input);
++		if (err)
++			return err;
++		*chunk_mem = (u8 *)input + input_offset;
 +		return 0;
-+
-+	ws->input_size = round_up((size_t)ws->comp_unit + 511, 512);
-+	scratch_size = ws->codec->scratch_size(ws->comp_unit);
-+	if (!scratch_size)
-+		return -EINVAL;
-+
-+	input = kvmalloc(ws->input_size, GFP_NOFS);
-+	output = kvmalloc(ws->comp_unit, GFP_NOFS);
-+	scratch = kvzalloc(scratch_size, GFP_NOFS);
-+	if (!input || !output || !scratch) {
-+		kvfree(input);
-+		kvfree(output);
-+		kvfree(scratch);
-+		return -ENOMEM;
 +	}
 +
-+	ws->input = input;
-+	ws->output = output;
-+	ws->scratch = scratch;
-+	return 0;
-+}
-+
-+void ntfs_wof_free_workspaces(void)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(ntfs_wof_workspaces); i++) {
-+		struct ntfs_wof_workspace *ws = ntfs_wof_workspaces[i];
-+
-+		mutex_lock(ws->lock);
-+		kvfree(ws->input);
-+		kvfree(ws->output);
-+		kvfree(ws->scratch);
-+		ws->input = NULL;
-+		ws->output = NULL;
-+		ws->scratch = NULL;
-+		mutex_unlock(ws->lock);
++	mutex_lock(&base_ni->mrec_lock);
++	ctx = ntfs_attr_get_search_ctx(base_ni, NULL);
++	if (!ctx) {
++		err = -ENOMEM;
++		goto out_unlock_mrec;
 +	}
-+}
+ 
+-	err = ntfs_bdev_read_from_rl(vol, &wof_ni->runlist, chunk_offset >> 9,
+-				     input_size_aligned >> 9, input);
++	err = ntfs_attr_lookup(wof_ni->type, wof_ni->name, wof_ni->name_len,
++			       CASE_SENSITIVE, 0, NULL, 0, ctx);
+ 	if (err)
+-		return err;
+-	*chunk_mem = (u8 *)input + input_offset;
+-	return 0;
++		goto out_put_ctx;
 +
-+static int ntfs_bdev_read_from_rl(struct ntfs_volume *vol,
-+				  struct runlist *runlist,
-+				  sector_t start_sector, u64 sector_count,
-+				  void *buf)
-+{
-+	struct runlist_element *rl;
-+	u32 sec_per_clu_bits;
-+	s64 vcn;
-+	u64 sec_off;
-+	size_t buf_off = 0;
-+	unsigned int nofs_flags;
-+	int err;
-+
-+	if (vol->cluster_size_bits < 9)
-+		return -EINVAL;
-+	sec_per_clu_bits = vol->cluster_size_bits - 9;
-+	vcn = start_sector >> sec_per_clu_bits;
-+	sec_off = start_sector & ((1ULL << sec_per_clu_bits) - 1);
-+
-+	nofs_flags = memalloc_nofs_save();
-+	down_read(&runlist->lock);
-+	if (!runlist->rl) {
++	value_length = le32_to_cpu(ctx->attr->data.resident.value_length);
++	value_offset = le16_to_cpu(ctx->attr->data.resident.value_offset);
++	if (chunk_offset + chunk_size > value_length) {
 +		err = -EINVAL;
-+		goto out_unlock;
++		goto out_put_ctx;
 +	}
-+
-+	rl = __ntfs_attr_find_vcn_nolock(runlist, vcn);
-+	if (IS_ERR(rl)) {
-+		err = PTR_ERR(rl);
-+		goto out_unlock;
-+	}
-+
-+	while (sector_count > 0) {
-+		s64 lcn;
-+		s64 rl_end;
-+		u64 byte_off, byte_len, sectors, available;
-+
-+		if (rl->length <= 0 || vcn < rl->vcn) {
-+			err = -EINVAL;
-+			goto out_unlock;
-+		}
-+
-+		lcn = ntfs_rl_vcn_to_lcn(rl, vcn);
-+		if (lcn < 0 && lcn != LCN_HOLE) {
-+			err = -EINVAL;
-+			goto out_unlock;
-+		}
-+
-+		if (check_add_overflow(rl->vcn, rl->length, &rl_end) ||
-+		    rl_end <= vcn ||
-+		    (u64)(rl_end - vcn) > (U64_MAX >> sec_per_clu_bits)) {
-+			err = -EOVERFLOW;
-+			goto out_unlock;
-+		}
-+		available = (u64)(rl_end - vcn) << sec_per_clu_bits;
-+		if (available <= sec_off) {
-+			err = -EINVAL;
-+			goto out_unlock;
-+		}
-+		available -= sec_off;
-+		sectors = min_t(u64, sector_count, available);
-+		if (check_mul_overflow(sectors, (u64)SECTOR_SIZE, &byte_len) ||
-+		    byte_len > SIZE_MAX - buf_off) {
-+			err = -EOVERFLOW;
-+			goto out_unlock;
-+		}
-+
-+		if (lcn == LCN_HOLE) {
-+			memset((u8 *)buf + buf_off, 0, byte_len);
-+		} else {
-+			byte_off = ntfs_cluster_to_bytes(vol, lcn);
-+			if (check_add_overflow(byte_off, sec_off << 9,
-+					       &byte_off) ||
-+			    byte_off > S64_MAX) {
-+				err = -EOVERFLOW;
-+				goto out_unlock;
-+			}
-+			err = ntfs_bdev_read(vol->sb->s_bdev,
-+					     (char *)buf + buf_off,
-+					     (loff_t)byte_off, byte_len);
-+			if (err)
-+				goto out_unlock;
-+		}
-+
-+		buf_off += byte_len;
-+		sector_count -= sectors;
-+		rl++;
-+		vcn = rl->vcn;
-+		sec_off = 0;
-+	}
-+
-+	err = 0;
-+out_unlock:
-+	up_read(&runlist->lock);
-+	memalloc_nofs_restore(nofs_flags);
++	memcpy(input, (u8 *)ctx->attr + value_offset + chunk_offset,
++	       chunk_size);
++	*chunk_mem = input;
++out_put_ctx:
++	ntfs_attr_put_search_ctx(ctx);
++out_unlock_mrec:
++	mutex_unlock(&base_ni->mrec_lock);
 +	return err;
-+}
-+
-+static int parse_wof_chunk_table(struct ntfs_inode *ni, u64 chunk_idx,
-+				 u64 chunk_count, u64 *chunk_offset,
-+				 u32 *chunk_size, void *table_buf,
-+				 size_t table_buf_size)
-+{
-+	u8 bytes_per_off;
-+	u8 *buf;
-+	u64 off[2];
-+	u64 byte_off, chunk_data_size, table_size;
-+	u32 bytes_to_read;
-+	int ret = 0;
-+
-+	if (ni->data_size < (1ULL << 32))
-+		bytes_per_off = sizeof(__le32);
-+	else
-+		bytes_per_off = sizeof(__le64);
-+
-+	if (!chunk_count || chunk_idx >= chunk_count)
-+		return -EINVAL;
-+
-+	table_size = (chunk_count - 1) * bytes_per_off;
-+	if (ni->data_size < table_size)
-+		return -EINVAL;
-+	chunk_data_size = ni->data_size - table_size;
-+
-+	if (chunk_count == 1) {
-+		if (chunk_data_size > U32_MAX)
-+			return -EINVAL;
-+		*chunk_offset = 0;
-+		*chunk_size = chunk_data_size;
-+		return 0;
-+	}
-+
-+	byte_off = chunk_idx ? (chunk_idx - 1) * bytes_per_off : 0;
-+	bytes_to_read = chunk_idx + 1 == chunk_count ?
-+				bytes_per_off :
-+				(chunk_idx ? 2 : 1) * bytes_per_off;
-+
-+	if (!NInoNonResident(ni))
-+		return -EOPNOTSUPP;
-+
-+	{
-+		sector_t start_sector = byte_off >> 9;
-+		u32 sector_off = byte_off & ((1 << 9) - 1);
-+		u32 sectors = DIV_ROUND_UP(sector_off + bytes_to_read, 512);
-+
-+		if ((size_t)sectors << 9 > table_buf_size)
-+			return -EINVAL;
-+		buf = table_buf;
-+		ret = ntfs_bdev_read_from_rl(ni->vol, &ni->runlist,
-+					     start_sector, sectors, buf);
-+		if (ret) {
-+			ret = -EIO;
-+			return ret;
-+		}
-+		buf += sector_off;
-+	}
-+
-+	if (bytes_per_off == sizeof(__le32)) {
-+		off[0] = chunk_idx ? get_unaligned_le32(buf) : 0;
-+		off[1] = chunk_idx + 1 == chunk_count ?
-+				 chunk_data_size :
-+				 get_unaligned_le32(buf + bytes_per_off);
-+	} else {
-+		off[0] = chunk_idx ? get_unaligned_le64(buf) : 0;
-+		off[1] = chunk_idx + 1 == chunk_count ?
-+				 chunk_data_size :
-+				 get_unaligned_le64(buf + bytes_per_off);
-+	}
-+
-+	if (off[1] <= off[0] || off[1] > chunk_data_size ||
-+	    off[1] - off[0] > U32_MAX) {
-+		ret = -EINVAL;
-+		return ret;
-+	}
-+
-+	*chunk_offset = table_size + off[0];
-+	*chunk_size = off[1] - off[0];
-+	return ret;
-+}
-+
-+static int ntfs_read_wof_chunk(struct ntfs_volume *vol,
-+			       struct ntfs_inode *wof_ni, u64 chunk_offset,
-+			       u32 chunk_size, void *input, size_t input_size,
-+			       char **chunk_mem)
-+{
-+	u32 input_offset = chunk_offset & 511;
-+	u32 input_size_aligned;
-+	int err;
-+
-+	input_size_aligned = round_up(chunk_size + input_offset, 512);
-+	if (input_size_aligned > input_size)
-+		return -EINVAL;
-+
-+	if (!NInoNonResident(wof_ni))
-+		return -EOPNOTSUPP;
-+
-+	err = ntfs_bdev_read_from_rl(vol, &wof_ni->runlist, chunk_offset >> 9,
-+				     input_size_aligned >> 9, input);
-+	if (err)
-+		return err;
-+	*chunk_mem = (u8 *)input + input_offset;
-+	return 0;
-+}
-+
-+struct ntfs_wof_dest {
-+	struct folio *folios[NTFS_WOF_MAX_PAGES];
-+	struct page *pages[NTFS_WOF_MAX_PAGES];
-+	unsigned int nr_folios;
-+	unsigned int nr_pages;
-+};
-+
-+static void ntfs_wof_release_dest(struct ntfs_wof_dest *dest,
-+				  struct folio *target, bool success)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < dest->nr_folios; i++) {
-+		struct folio *folio = dest->folios[i];
-+
-+		if (folio == target)
-+			continue;
-+		if (success) {
-+			flush_dcache_folio(folio);
-+			folio_mark_uptodate(folio);
-+		} else {
-+			folio_clear_uptodate(folio);
-+		}
-+		folio_unlock(folio);
-+		folio_put(folio);
-+	}
-+}
-+
-+static int ntfs_wof_collect_dest(struct address_space *mapping,
-+				 struct folio *target, loff_t chunk_start,
-+				 loff_t chunk_end, struct ntfs_wof_dest *dest)
-+{
-+	pgoff_t index, last, page_index;
-+	unsigned int i;
-+
-+	memset(dest, 0, sizeof(*dest));
-+	index = chunk_start >> PAGE_SHIFT;
-+	last = (chunk_end - 1) >> PAGE_SHIFT;
-+	while (index <= last) {
-+		struct folio *folio;
-+		pgoff_t next;
-+		bool is_target;
-+
-+		if (folio_contains(target, index)) {
-+			folio = target;
-+			is_target = true;
-+		} else {
-+			folio = __filemap_get_folio(
-+				mapping, index,
-+				FGP_LOCK | FGP_CREAT | FGP_NOFS | FGP_NOWAIT,
-+				GFP_NOFS);
-+			if (IS_ERR(folio))
-+				return PTR_ERR(folio);
-+			is_target = false;
-+			if (folio_pos(folio) < chunk_start ||
-+			    folio_next_pos(folio) > chunk_end) {
-+				folio_unlock(folio);
-+				folio_put(folio);
-+				return -EAGAIN;
-+			}
-+		}
-+
-+		if (dest->nr_folios == ARRAY_SIZE(dest->folios)) {
-+			if (!is_target) {
-+				folio_unlock(folio);
-+				folio_put(folio);
-+			}
-+			return -EINVAL;
-+		}
-+		dest->folios[dest->nr_folios++] = folio;
-+		next = folio->index + folio_nr_pages(folio);
-+		if (next <= index)
-+			return -EAGAIN;
-+		index = next;
-+	}
-+
-+	for (page_index = chunk_start >> PAGE_SHIFT; page_index <= last;
-+	     page_index++) {
-+		struct folio *folio = NULL;
-+
-+		for (i = 0; i < dest->nr_folios; i++) {
-+			if (folio_contains(dest->folios[i], page_index)) {
-+				folio = dest->folios[i];
-+				break;
-+			}
-+		}
-+		if (!folio || dest->nr_pages == ARRAY_SIZE(dest->pages))
-+			return -EAGAIN;
-+		dest->pages[dest->nr_pages++] =
-+			folio_page(folio, page_index - folio->index);
-+	}
-+	return 0;
-+}
-+
-+static int ntfs_wof_decode(struct ntfs_wof_workspace *ws, const void *src,
-+			   u32 src_len, void *dst, u32 dst_len)
-+{
-+	if (src_len == dst_len) {
-+		memcpy(dst, src, dst_len);
-+		return 0;
-+	}
-+	return ws->codec->decompress_chunk(ws->scratch, src, src_len, dst,
-+					   dst_len, ws->comp_unit);
-+}
-+
-+static int ntfs_wof_decode_page_direct(struct ntfs_wof_workspace *ws,
-+				       struct folio *target, loff_t chunk_start,
-+				       const void *src, u32 src_len,
-+				       u32 dst_len)
-+{
-+	unsigned int page_offset = offset_in_page(chunk_start);
-+	struct page *page;
-+	pgoff_t page_index;
-+	void *addr;
-+	int err;
-+
-+	page_index = chunk_start >> PAGE_SHIFT;
-+	if (!folio_contains(target, page_index))
-+		return -EAGAIN;
-+
-+	page = folio_page(target, page_index - target->index);
-+	addr = kmap_local_page(page);
-+	err = ntfs_wof_decode(ws, src, src_len, (u8 *)addr + page_offset,
-+			      dst_len);
-+	kunmap_local(addr);
-+	if (err)
-+		return -EINVAL;
-+	return 0;
-+}
-+
-+static int ntfs_wof_decode_folios_direct(struct ntfs_wof_workspace *ws,
-+					 struct address_space *mapping,
-+					 struct folio *target,
-+					 loff_t chunk_start, loff_t chunk_end,
-+					 const void *src, u32 src_len,
-+					 u32 dst_len)
-+{
-+	unsigned int page_offset = offset_in_page(chunk_start);
-+	struct ntfs_wof_dest dest;
-+	void *addr;
-+	unsigned int nofs_flags;
-+	int err;
-+
-+	err = ntfs_wof_collect_dest(mapping, target, chunk_start, chunk_end,
-+				    &dest);
-+	if (err) {
-+		ntfs_wof_release_dest(&dest, target, false);
-+		return -EAGAIN;
-+	}
-+
-+	nofs_flags = memalloc_nofs_save();
-+	addr = vmap(dest.pages, dest.nr_pages, VM_MAP, PAGE_KERNEL);
-+	memalloc_nofs_restore(nofs_flags);
-+	if (!addr) {
-+		ntfs_wof_release_dest(&dest, target, false);
-+		return -EAGAIN;
-+	}
-+
-+	err = ntfs_wof_decode(ws, src, src_len, (u8 *)addr + page_offset,
-+			      dst_len);
-+	vunmap(addr);
-+	if (err) {
-+		ntfs_wof_release_dest(&dest, target, false);
-+		return -EINVAL;
-+	}
-+	ntfs_wof_release_dest(&dest, target, true);
-+	return 0;
-+}
-+
-+static int ntfs_wof_try_direct(struct ntfs_wof_workspace *ws,
-+			       struct address_space *mapping,
-+			       struct folio *target, loff_t chunk_start,
-+			       loff_t chunk_end, const void *src, u32 src_len,
-+			       u32 dst_len)
-+{
-+	unsigned int page_offset = offset_in_page(chunk_start);
-+
-+	if (dst_len <= PAGE_SIZE - page_offset)
-+		return ntfs_wof_decode_page_direct(ws, target, chunk_start, src,
-+						   src_len, dst_len);
-+
-+	return ntfs_wof_decode_folios_direct(ws, mapping, target, chunk_start,
-+					     chunk_end, src, src_len, dst_len);
-+}
-+
-+int ntfs_read_wof_compressed_block(struct folio *folio)
-+{
-+	struct address_space *mapping = folio->mapping;
-+	struct ntfs_inode *ni = NTFS_I(mapping->host), *wof_ni;
-+	struct inode *wof_inode;
-+	struct ntfs_volume *vol = ni->vol;
-+	struct ntfs_wof_workspace *ws;
-+	loff_t i_size = i_size_read(VFS_I(ni));
-+	loff_t folio_start = folio_pos(folio);
-+	loff_t folio_end = folio_next_pos(folio);
-+	char *chunk_mem;
-+	u32 decomp_size;
-+	u64 chunk_count, chunk_idx, last_chunk, chunk_offset;
-+	int err = 0;
-+
-+	ws = ntfs_wof_workspace(ni->itype.compressed.block_size_bits);
-+	if (!ws) {
-+		err = -EOPNOTSUPP;
-+		goto out;
-+	}
-+
-+	if (folio_start >= i_size) {
-+		folio_zero_segment(folio, 0, folio_size(folio));
-+		goto out;
-+	}
-+
-+	wof_inode = ntfs_attr_iget(VFS_I(ni), AT_DATA, (__le16 *)WOF_NAME,
-+				   WOF_NAME_LEN);
-+	if (IS_ERR(wof_inode)) {
-+		err = PTR_ERR(wof_inode);
-+		goto out;
-+	}
-+
-+	wof_ni = NTFS_I(wof_inode);
-+	if (wof_ni->initialized_size != wof_ni->data_size) {
-+		ntfs_error(vol->sb,
-+			   "WOF compressed stream is not fully initialized (init %lld, data %lld).",
-+			   wof_ni->initialized_size, wof_ni->data_size);
-+		err = -EIO;
-+		goto out_iput;
-+	}
-+	if (!NInoNonResident(wof_ni)) {
-+		err = -EOPNOTSUPP;
-+		goto out_iput;
-+	}
-+	if (!NInoFullyMapped(wof_ni)) {
-+		down_write(&wof_ni->runlist.lock);
-+		if (!NInoFullyMapped(wof_ni))
-+			err = ntfs_attr_map_whole_runlist(wof_ni);
-+		up_write(&wof_ni->runlist.lock);
+ }
+ 
+ struct ntfs_wof_dest {
+@@ -573,11 +637,7 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
+ 		err = -EIO;
+ 		goto out_iput;
+ 	}
+-	if (!NInoNonResident(wof_ni)) {
+-		err = -EOPNOTSUPP;
+-		goto out_iput;
+-	}
+-	if (!NInoFullyMapped(wof_ni)) {
++	if (NInoNonResident(wof_ni) && !NInoFullyMapped(wof_ni)) {
+ 		down_write(&wof_ni->runlist.lock);
+ 		if (!NInoFullyMapped(wof_ni))
+ 			err = ntfs_attr_map_whole_runlist(wof_ni);
+@@ -600,22 +660,15 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
+ 		u64 chunk_file_offset;
+ 		loff_t chunk_end, copy_start, copy_end;
+ 
+-		err = parse_wof_chunk_table(wof_ni, chunk_idx, chunk_count,
+-					    &chunk_offset, &chunk_size,
+-					    ws->input, ws->input_size);
+-		if (err)
+-			goto out_unlock_ws;
+ 		decomp_size = chunk_idx + 1 == chunk_count ?
+ 				      i_size - chunk_idx * ws->comp_unit :
+ 				      ws->comp_unit;
+-		if (!chunk_size || chunk_size > decomp_size) {
+-			ntfs_error(
+-				vol->sb,
+-				"Invalid compressed size (%u) for frame size (%u)",
+-				chunk_size, decomp_size);
+-			err = -EINVAL;
++		err = parse_wof_chunk_table(ni, wof_ni, chunk_idx, chunk_count,
++					    decomp_size, &chunk_offset,
++					    &chunk_size, ws->input,
++					    ws->input_size);
 +		if (err)
-+			goto out_iput;
-+	}
-+
-+	mutex_lock(ws->lock);
-+	err = ntfs_wof_workspace_prepare(ws);
-+	if (err)
-+		goto out_unlock_ws;
-+
-+	chunk_idx = div_u64(folio_start, ws->comp_unit);
-+	last_chunk =
-+		div_u64(min_t(loff_t, folio_end, i_size) - 1, ws->comp_unit);
-+	chunk_count = DIV_ROUND_UP_ULL(i_size, ws->comp_unit);
-+	for (; chunk_idx <= last_chunk; chunk_idx++) {
-+		u32 chunk_size;
-+		u64 chunk_file_offset;
-+		loff_t chunk_end, copy_start, copy_end;
-+
-+		err = parse_wof_chunk_table(wof_ni, chunk_idx, chunk_count,
-+					    &chunk_offset, &chunk_size,
-+					    ws->input, ws->input_size);
-+		if (err)
-+			goto out_unlock_ws;
-+		decomp_size = chunk_idx + 1 == chunk_count ?
-+				      i_size - chunk_idx * ws->comp_unit :
-+				      ws->comp_unit;
-+		if (!chunk_size || chunk_size > decomp_size) {
-+			ntfs_error(
-+				vol->sb,
-+				"Invalid compressed size (%u) for frame size (%u)",
-+				chunk_size, decomp_size);
-+			err = -EINVAL;
-+			goto out_unlock_ws;
-+		}
-+
-+		err = ntfs_read_wof_chunk(vol, wof_ni, chunk_offset, chunk_size,
-+					  ws->input, ws->input_size,
-+					  &chunk_mem);
-+		if (err)
-+			goto out_unlock_ws;
-+
-+		chunk_file_offset = chunk_idx * ws->comp_unit;
-+		chunk_end = chunk_file_offset + decomp_size;
-+		err = ntfs_wof_try_direct(ws, mapping, folio, chunk_file_offset,
-+					  chunk_end, chunk_mem, chunk_size,
-+					  decomp_size);
-+		if (!err)
-+			continue;
-+		if (err != -EAGAIN)
-+			goto out_unlock_ws;
-+
-+		err = ntfs_wof_decode(ws, chunk_mem, chunk_size, ws->output,
-+				      decomp_size);
-+		if (err) {
-+			ntfs_error(vol->sb, "Decompression failed: %d", err);
-+			err = -EINVAL;
-+			goto out_unlock_ws;
-+		}
-+		copy_start = max_t(loff_t, folio_start, chunk_file_offset);
-+		copy_end = min_t(loff_t, folio_end,
-+				 chunk_file_offset + decomp_size);
-+		memcpy_to_folio(folio, copy_start - folio_start,
-+				ws->output + copy_start - chunk_file_offset,
-+				copy_end - copy_start);
-+	}
-+
-+	if (folio_end > i_size)
-+		folio_zero_segment(folio, i_size - folio_start,
-+				   folio_size(folio));
-+out_unlock_ws:
-+	mutex_unlock(ws->lock);
-+out_iput:
-+	iput(wof_inode);
-+out:
-+	if (!err) {
-+		flush_dcache_folio(folio);
-+		folio_mark_uptodate(folio);
-+	} else {
-+		folio_clear_uptodate(folio);
-+	}
-+	folio_unlock(folio);
-+	return err;
-+}
+ 			goto out_unlock_ws;
+-		}
+ 
+ 		err = ntfs_read_wof_chunk(vol, wof_ni, chunk_offset, chunk_size,
+ 					  ws->input, ws->input_size,
 
 -- 
 2.43.0
