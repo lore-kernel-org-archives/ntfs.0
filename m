@@ -1,24 +1,24 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D0C3B14B6
-	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 07:39:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D443D9544
+	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 08:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787211554; cv=none; b=Spe+/LnmidqXliqzfqzfA8huzNa8yHhKmFzmbfW46gCcEntd3EaTwCMx2Q3ZK+cNZ5lGYnCUzwyWSPdU1gdkAeaUN/oY/pk2Ok/8cU1+TZeflixdbdH6GRV+RI41RrDhf5/noYRQ7Ve1iiNUJT3Z5sBMwjs0WEqOJPyGbYtZR5U=
+	t=1787213665; cv=none; b=Eh/0v9H8+oOCyzBNzRHv0Cm1uid/xxSfusZhCnMCLYThRcFNvVpC9C1E2ZtRGFSbuWa9j3wksPxlZWj1cOe/DZzg7sKvxI9v80GfBlLjXbTbAnTR+IZUFn9lPi3E1GwkTJf+++j6WjmhUAUV6rypzX4AuwY0u7EC98qNWrdHVcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787211554; c=relaxed/simple;
-	bh=DdN3Gh1lxmKnB9+GTGOIIMmXR2A2U4BnLOhD1NseQtA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bAzSl5hvynieco1PKMjtK3rOv5xsnquGo8zAD/uX0L9OeayWys4pdviI2k5XpP9uR+CQdIrLvIMnPYwCNurIM5h+Z78ahYFgZysrZEio2eJDSGevKqf6uyzodAiguVS4u1yiKDcBWbqdAybpIkrAHaGw9QceQKhEWvFO9Iv9ee4=
+	s=arc-20240116; t=1787213665; c=relaxed/simple;
+	bh=1A5L8ijJG2tEtIq8gJzYCoIWgbA4oubX/xAZRhZJ21E=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PqlQ/69kRlwQFdZVR/i4UGgF7hgUzlPcDELlJPhi9nVp1SiLUZMdDBtzKUwrrEOncUQF0SNhyFtwDfk3WcCb3FShP5BM91hB5cwe+lu/vdiIAijV7g1U4oCs7SlVkiiJxdOFYNHRDCbYrcNPZG97aUaWqhtTvbvtj8Lnu37JLLA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 38f104649c6a11f19a56ed5b684f684d-20260820
+X-UUID: 21e3cc209c6f11f19a56ed5b684f684d-20260820
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:36b88cc6-04b6-43c6-a0c8-dfa35fd10a37,IP:0,U
+X-CID-O-INFO: VERSION:1.3.19,REQID:2e859270-3c3e-4a3d-801b-1fb4af7d294c,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:f055d0e2a151bed5bf24dc88124f2a7e,BulkI
+X-CID-META: VersionHash:7db8b62,CLOUDID:01b2380bf8adf81f379fa11415948ba6,BulkI
 	D:nil,BulkQuantity:0,SF:102|850|865|898,TC:nil,Content:0|15|50,EDM:-3,IP:n
 	il,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
 	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -26,12 +26,12 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 38f104649c6a11f19a56ed5b684f684d-20260820
+X-UUID: 21e3cc209c6f11f19a56ed5b684f684d-20260820
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 941672992; Thu, 20 Aug 2026 15:39:06 +0800
+	with ESMTP id 1492087287; Thu, 20 Aug 2026 16:14:14 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -40,9 +40,9 @@ Cc: ntfs@lists.linux.dev,
 	zhongling0719@126.com,
 	Hongling Zeng <zenghongling@kylinos.cn>,
 	stable@vger.kernel.org
-Subject: [PATCH] ntfs: require owner privileges for system attribute xattrs
-Date: Thu, 20 Aug 2026 15:39:02 +0800
-Message-Id: <20260820073902.136352-1-zenghongling@kylinos.cn>
+Subject: [PATCH] ntfs: fix resource leak in ntfs_new_attr_flags
+Date: Thu, 20 Aug 2026 16:14:10 +0800
+Message-Id: <20260820081410.152325-1-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
@@ -52,43 +52,42 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-ntfs_setxattr() allows system.dos_attrib and system.ntfs_attrib to update
-NTFS file attributes. These attributes affect the inode mode because the
-READONLY flag is mapped to the write permission bits.
+When handling resident attributes that don't need sparse/compressed
+changes, ntfs_new_attr_flags() returns 0 directly at line 678 without
+calling unmap_mft_record() or ntfs_attr_put_search_ctx(). This leaks
+the MFT record mapping and attribute search context.
 
-Require the caller to own the inode or hold CAP_FOWNER before accepting
-updates to these xattrs. This prevents unprivileged callers from changing
-file mode semantics through NTFS attribute updates.
+An unprivileged user can cause a denial of service by repeatedly
+calling setxattr(2) with system.ntfs_attrib on files with resident
+attributes, eventually exhausting kernel memory.
 
+Fix by replacing the direct return with goto err_out to ensure proper
+cleanup of resources via the existing cleanup code.
+
+Fixes: e791930240a5 ("ntfs: fix resident conversion in ntfs_new_attr_flags")
 Cc: stable@vger.kernel.org
 Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 ---
- fs/ntfs/ea.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ fs/ntfs/ea.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index 4fbea76afe7e..5cd5a4a02d1e 100644
+index 5cd5a4a02d1e..44252f2c2ca6 100644
 --- a/fs/ntfs/ea.c
 +++ b/fs/ntfs/ea.c
-@@ -820,6 +820,18 @@ static int ntfs_setxattr(const struct xattr_handler *handler,
- 	if (NVolShutdown(ni->vol))
- 		return -EIO;
+@@ -674,8 +674,10 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
+ 	}
  
-+	/*
-+	 * system.dos_attrib and system.ntfs_attrib affect file permissions
-+	 * (READONLY flag maps to write permissions). Require owner or
-+	 * CAP_FOWNER to prevent unauthorized access control bypass.
-+	 */
-+	if (!strcmp(name, SYSTEM_DOS_ATTRIB) ||
-+	    !strcmp(name, SYSTEM_NTFS_ATTRIB) ||
-+	    !strcmp(name, SYSTEM_NTFS_ATTRIB_BE)) {
-+		if (!inode_owner_or_capable(idmap, inode))
-+			return -EPERM;
-+	}
-+
- 	if (!strcmp(name, SYSTEM_DOS_ATTRIB)) {
- 		if (sizeof(u8) != size) {
- 			err = -EINVAL;
+ 	if (!a->non_resident) {
+-		if (!(new_aflags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED)))
+-			return 0;
++		if (!(new_aflags & (ATTR_IS_SPARSE | ATTR_IS_COMPRESSED))) {
++			err = 0;
++			goto err_out;
++		}
+ 
+ 		if (le32_to_cpu(a->data.resident.value_length)) {
+ 			pr_err("Can't change sparse/compressed for non-empty file");
 -- 
 2.25.1
 
