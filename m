@@ -1,78 +1,70 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796BC41DDF8
-	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 11:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FFD40D58B
+	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 11:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787224531; cv=none; b=ojYB28d17P49s0I5KQ5sSSTuXhuyN5OLrg6lVdcQk1C8hP5EQQehkHsgYOCOQdIR7qSaGVtnpUcGzAedWG1rIBVJ8ZQJaV2bOFjxsUaldka52tef8C/hENEkDhZbhL5sJj8Pm9iRCoFub0Rmwi87IjbvJAlaLCLNwJU3jvdiXeA=
+	t=1787224585; cv=none; b=rGb2R8mRJjZs15lUwFaUoiKKb4UrfyeeP3GLUujfmqqff8AmfXPgRfFMOUtHzRjyhZDXOmbURx31FWAYYaLa6p+IMzM+xPlzXEB6CkEyDOjlGpSe1ThB7UaWYNqiF7XSy98dBTVuR9+ZrlgceCkSJ3tAXiEb2eTl5pPnddBEOBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787224531; c=relaxed/simple;
-	bh=l0pNZJFfzkYWFJzl8/RiEC49jZiTv++D5qRrBJM8U8E=;
+	s=arc-20240116; t=1787224585; c=relaxed/simple;
+	bh=q6HQq+I9dQfNzGlpu1zi7Sq070BAgcHm4FdYtiPdPBU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hTJK9B3146y10a4Cfs9BL9fbU0drudcxrX97fftXNoPjkoIzrXg8X0X8RxGWqVIZHmhF+61vJVdCsm1TulglSK07ePrEWOcN4vuBWakaqScY/wR5CikDByoBt/QfpEmHjJMKRq1oBNPubBLUbx5wobih7AjkEFE9wlDhH2aK2Wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dpUUIA4Z; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=TnOPTDZ5TvS5zbDMILGJsSAVthBlbJ2spYl4l/DvgcabEdRWSCY+LKHCnZXGayuTnXgt6Yvta6uiBX6+gKpbHuxI2arwimViZtlxYvLJ+GM2sU5J/H64VqrfrQ7qj3RN6zTrRzt5lGLNxOIyEH6n/yPNwYqb0fuP/uI4ldccKfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iKbIN6Az; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dpUUIA4Z"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4955F1F00A3A
-	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 11:15:29 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iKbIN6Az"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E05A1F000E9
+	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 11:16:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1787224529;
-	bh=l0pNZJFfzkYWFJzl8/RiEC49jZiTv++D5qRrBJM8U8E=;
+	s=k20260515; t=1787224583;
+	bh=q6HQq+I9dQfNzGlpu1zi7Sq070BAgcHm4FdYtiPdPBU=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=dpUUIA4ZJ8i3dkniOPbQxgtf+nw97tifq1TDA7RqRhUHo1M/DiCEBo8DismL5xLqZ
-	 UmUWaDbRjSkxlqwGngs753xnipTJdzEdFP8CS3v7A4N9JC7E6m9X1MdoJzo/8ZQk5Q
-	 OZOrf33Q9arTMS+TpKwZVGeRTtrm6yNH90WBfOeW3a4HIsWZV8QTrdJgl1QBuHFHHp
-	 nT7vbGbyzyIOD8NCRXDA58c8tk7Jn8ZOlgJ7T2D7AUSa/OViY6cNyppiBaRG0hVmPW
-	 cNbA9qOtaaLAhq6yJpaUPr44tDkkXhTsxahXkKNWY622pLr0qZmBdz115AVdGyJDEy
-	 GKoNioGacgAMw==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-69f7fa1c548so3688364a12.2
-        for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 04:15:29 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rqgehh+5mtXAPQQFuh+a5R0SqLYXoJR5IFWoKuxt5NC4XjW437yHDGRCjB1FVvYWgQ8JDeO@lists.linux.dev
-X-Gm-Message-State: AFuF++kTfiSFqrsTRFnzt20OP2h+yoNYluxo9HLoJA3iTrd9jY4jpdYe
-	pZ8YR7Z5P494ytgqi+sCrbhpQ3g1/b9pQTOtKgtoSD+XKXcdKAy+16aOoq4A7BwBKL2pJGYXOPC
-	Kr8A8SRvLLrI32+o3li22F6dqQfYMfGs=
-X-Received: by 2002:a05:6402:e0e:b0:6a3:6d83:ba44 with SMTP id
- 4fb4d7f45d1cf-6a403297189mr8751598a12.2.1787224527918; Thu, 20 Aug 2026
- 04:15:27 -0700 (PDT)
+	b=iKbIN6AzmnoOXelz1e5RqMylL2FVAYbAleZQd9fDS1elv3HcihDHhly01ePPN/Wdu
+	 3xmAeSL+M3l3Pz3YruKyXV1k+jZsC74IG4mn2REE1RIJznzuYerJTF8bpA1z6RASXn
+	 ImqXqvRXMnHL92neafPHO3wrBjtpDEvJmk1y0QtTaNuuUFYEwrmCdKhRoTym7Jj0GX
+	 f0vOeujMg7ZhlNR9tvYCjUWowKr0eZIv/Lcu8q/cXqw6+khtj64HCAt33wizcTQgEV
+	 riVakOBUNOBxXpXAaYsk59trUk2pR5CinEX1Syith56qWKlylGHmvcYy8jOm8oil+h
+	 G4PWu2xXeaAOg==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-6a0de062db5so3806598a12.1
+        for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 04:16:23 -0700 (PDT)
+X-Gm-Message-State: AOJu0YzQUXJ+f85k0VMuxL6+eUjUOJIWAWo3pv8tyAZHoJfkcBwMMLea
+	KBlYCbQF8wX1xb7hZFUkgMTTknKgLhbiLS3Fdbw8oWu9kuouf0Y55RKCNDdmFo/Vx39z4Z0+P7W
+	KN8itGeRPEWw50KkXa5KP/BP8iepcbzY=
+X-Received: by 2002:a17:906:7949:b0:c16:8adf:f183 with SMTP id
+ a640c23a62f3a-c242e22dc77mr863348166b.14.1787224582224; Thu, 20 Aug 2026
+ 04:16:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260820081410.152325-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260820081410.152325-1-zenghongling@kylinos.cn>
+References: <20260820-fix-empty-mp-v2-1-5d3367048b76@gmail.com>
+In-Reply-To: <20260820-fix-empty-mp-v2-1-5d3367048b76@gmail.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 20 Aug 2026 20:15:15 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd9K-foqh6sd6ncmG-vKObkw7Gy8V7XRABMQ7YOCtcLnFg@mail.gmail.com>
-X-Gm-Features: AcwNN1WmSpEV-t6mtjK2pddGFCb184unB7f03c-gYwRT5QfLjUmBrcwO1o5Jo2Y
-Message-ID: <CAKYAXd9K-foqh6sd6ncmG-vKObkw7Gy8V7XRABMQ7YOCtcLnFg@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: fix resource leak in ntfs_new_attr_flags
-To: Hongling Zeng <zenghongling@kylinos.cn>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhongling0719@126.com, stable@vger.kernel.org
+Date: Thu, 20 Aug 2026 20:16:09 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd8Jp393dq5vBNW57gkF6m61Ov-s5Su86t1DSUo5zVZjxA@mail.gmail.com>
+X-Gm-Features: AcwNN1XWy5tCl9IZmBwf9H6YcLXocngnzDD8PsgTJxw_rNLDaIjOjLD2tiTLPv8
+Message-ID: <CAKYAXd8Jp393dq5vBNW57gkF6m61Ov-s5Su86t1DSUo5zVZjxA@mail.gmail.com>
+Subject: Re: [PATCH v2] ntfs: reject invalid empty mapping pairs
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
+	Robert Morris <rtm@csail.mit.edu>, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 20, 2026 at 5:14=E2=80=AFPM Hongling Zeng <zenghongling@kylinos=
-.cn> wrote:
+On Thu, Aug 20, 2026 at 11:19=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> w=
+rote:
 >
-> When handling resident attributes that don't need sparse/compressed
-> changes, ntfs_new_attr_flags() returns 0 directly at line 678 without
-> calling unmap_mft_record() or ntfs_attr_put_search_ctx(). This leaks
-> the MFT record mapping and attribute search context.
+> Reject an attribute with empty mapping pairs if it has inconsistent
+> highest VCN and size.
 >
-> An unprivileged user can cause a denial of service by repeatedly
-> calling setxattr(2) with system.ntfs_attrib on files with resident
-> attributes, eventually exhausting kernel memory.
->
-> Fix by replacing the direct return with goto err_out to ensure proper
-> cleanup of resources via the existing cleanup code.
->
-> Fixes: e791930240a5 ("ntfs: fix resident conversion in ntfs_new_attr_flag=
-s")
+> Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator=
+")
+> Reported-by: Robert Morris <rtm@csail.mit.edu>
+> Closes: https://lore.kernel.org/all/9519.1786907182@localhost/
 > Cc: stable@vger.kernel.org
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+> Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 Applied it to #ntfs-next.
 Thanks!
