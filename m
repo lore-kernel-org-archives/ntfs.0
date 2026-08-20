@@ -1,70 +1,74 @@
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 430C23803E1
-	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 05:49:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108503803E1
+	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 05:49:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787204970; cv=none; b=LHLV7o1xxSM/1nbGZrw9QmGEOYp9AUVjF2EWIY2S95BDSZTuA4m2Vg3LuN3Gni+prfy5FA+Q1Le6nGzn1xYTJJ2RoOgYl4HhbyxbIzbVkhWtzDU40WW2gp+Z7M/pkJ92S1U+FrCBGQNFWYcQB7FLojQIL7ZdHFYSyrk0Uwh5s/w=
+	t=1787204973; cv=none; b=Cj+4aOyiOCYRI+CihzTjOb6JlffmZZ/Vj+cgKZseXM03RSYq16KxujYMxQ7cwqlk6FGWOAiKrkw31k3PjMuiCM0UKkua9Phwxu97Oi+Y4Dh3SHZ0VHMVYm2RfLiR6e3JwgIzFbdwqrbsY9G9CqFZbD3Q7szIVk2PaOBVnp3ywUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787204970; c=relaxed/simple;
-	bh=AWIjpXenoWEGbURCpGUQynL0RGWRQzpaHEbPQW9D55g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BdfEUodDi5BjTGJ0wbDZ5AUkslKAN7fto2/2kJ0Vp5a6eqeygE8DKi8EgMl49lvp8hshy0H9H2lpCE9Q1IVCUoWz69bCfr4xg0Vqjj902Gz+2m22t12NktqERXxYkxLjyw3p5zLvPLD8qO9BWLcK49lj2F+wH+8G0MewA4pxXrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lek61Wu2; arc=none smtp.client-ip=209.85.216.48
+	s=arc-20240116; t=1787204973; c=relaxed/simple;
+	bh=0UQNyVmJYfdBgX6/MSNSx2J6luZyDXjqhPD6XOSRCuY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U+R4hE/44f14MzUYJMm8Pj1idiFxyZH5iiVFVdLJhUOSU+a/N0jhW499iryynoupatbDN90MTesIpoPfdKDiZzCscc3PnXhxX4tuvxsJTHjnyP4BWD9ET/bpEIGcMEG84ZhN7evjnZIL2l1NYXCd2ku2T7chfjN2vpx5+YIgH1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aeLVtsir; arc=none smtp.client-ip=209.85.215.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lek61Wu2"
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-381c51fde6bso2230034a91.2
-        for <ntfs@lists.linux.dev>; Wed, 19 Aug 2026 22:49:29 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aeLVtsir"
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-ca7c1176317so1259109a12.1
+        for <ntfs@lists.linux.dev>; Wed, 19 Aug 2026 22:49:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787204968; x=1787809768; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:mime-version:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=KcDEcUDTZLe8nKRV9dhZbAluW0n3jXcOuvSMhA1v/j8=;
-        b=Lek61Wu2BEyNq6qci/pLBlwmGjWP2DKDIR87vmL5EFkTIDbjaRfOhmvZL0QUhwdkzP
-         szxC+cM6Kc9dpZ+lRmAJ9OE7OqMrPenhZFc3qXIFbqexhL05JdtoS6Om435vK1cOaaUe
-         V+y0FvDZOaPsEZArvUnUpQ0zsX4UiCi2Nz1itifnYB+bjMIePihxS7tjcA7c3Dux9W4a
-         tux8xCiDYCdClrQ+reqbW/u0xRTfclkHVdsNzR2SkgcUYD1x/IX8eEhuyuV0eYgIxkL1
-         DkPXJJbRnSJfCFZwsZViIkNsEZ9JMl3QKI9i35RXTAlRxC+tqyzVqnyEqEfqqqLfHRa1
-         p9MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787204968; x=1787809768;
-        h=content-transfer-encoding:content-type:mime-version:message-id:date
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+        d=gmail.com; s=20251104; t=1787204971; x=1787809771; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=KcDEcUDTZLe8nKRV9dhZbAluW0n3jXcOuvSMhA1v/j8=;
-        b=c6oNOCEBe67rd+DjYH7IQdCsxVdIxxYV/ucKvpUfrFQfH4rsdnTNBLaKyNZ7cLeh2S
-         9Lcm6KMTkwCFCSNay2z6AKRbbRAba/R0StE3tb0ItN1ZMIxZ70TbG2s7/eHlZc7uW8Hx
-         Qz9aFAwwO3Jmd0SsI1ppO3Z1SlZFBB45OHNVy9iRV6OTL2T9IyinZf/9zS6Vs1I/6tq4
-         /QFFNRIocSg3bv3JrrklV4e6W5iq/AGAPWCugHIL/AW6WC13yTfw2GTlTgmczR7xVTvj
-         knvcQUDi3wGrSnCEb/ERZr0rcb+TL4Xc+b6rQE3+PwfGVh+t9znvhVb/cGgm8nwdgxPH
-         vKjg==
-X-Forwarded-Encrypted: i=1; AHgh+RpE2iF/h8stpbjWPlDHqAFAdem0fsPKg+rCuyFFO7HX3AetKkkStmf7yGCfhmCS+4AZo/Mj@lists.linux.dev
-X-Gm-Message-State: AFuF++nhclGoJ6k+UUzITLmifBOGsVdKBRUIFehmAzu4refqd/43rHf7
-	FC7P03CDLUg8dYog5WPFVmsimiue10KtiChyfl8HX4jBifKlbH8QyCbT
-X-Gm-Gg: AR+sD13ES44NszgURXGPnRNMU//rjYfqgb/LpoaBiTy/nH9jr8K2qUhDD/uBZcp3sqd
-	NZTrv9WXfj6kDBBwa8w0NZyXnpz7vP2DVDFVi/LaZ6y1JmFHz/9FmsFzrW5bOSFU2VgoFJs5v9N
-	tRvldQ81Wxi+Rxp75DfhN+gToYJfEqh24F5heFoSJ1wjcNZ1nVK3kjjpLXYVN5BLWzJBMf1IDdb
-	Byak6D2yv3AZYHR4iMvIansgTkSzbbnFNsl62674d7CbeqoM2050GvgUxX/uO2ujBsx5NdApk5m
-	oewnvnmtT+AoK9zVQuc74xLU2q0tBNyuRW9OfctYUEsv5N2LEZVJTgTo+nyb1FmMSnQYBTZpSz1
-	kzwSkryDtN/9BARtNp5iE+/tn6k0aAAZmTnvjgajVI2WV20CNiWHiQXW6ilkkbIYGN+IAXGgA13
-	C65favHDDNR4F13pKemEe1K9MFrPe1NltebVen6y2gdtOBVqIR842A648+3mLxDm5DLI0=
-X-Received: by 2002:a17:90b:280a:b0:38d:dfd1:7a8 with SMTP id 98e67ed59e1d1-39580a81304mr19468057a91.2.1787204968341;
-        Wed, 19 Aug 2026 22:49:28 -0700 (PDT)
+        bh=DeuNNYhc8zxJyGq0KMBRaUOlAG4DH8ILTl/g96a0CLY=;
+        b=aeLVtsir47aroJ3Yrnn9UoBy5tnLe3u9mZB/AdUQuvIXmZ1MptU9GEyofJl6cTz9xY
+         n0M8hFVmU4kDQFXw6m0mi4hE5h6LiaxNME40bHNuvuNRfElj+GkzRlgTtu1I/UKUf56k
+         ttyPkqB+NPWOJ3R1Fk4wcAAWNeu+WaFy3jmlNekh3LJ/fEGeNSj6XruaD7iZfLokoRTU
+         lnEFw/lUFWC9V5sbHV2pTZK8Fq6UQAm4/iP/tRXwHtJyaI42EadQtH0ziNiapmWcd7Ag
+         Jm6vkUZrgnPpqJH2s0BgwfnXYkCrGXX4tX/kQM2iqt+fjjsrD17tORsXTu8Y32Yvai00
+         uaUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787204971; x=1787809771;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=DeuNNYhc8zxJyGq0KMBRaUOlAG4DH8ILTl/g96a0CLY=;
+        b=gPlZNVAcI4T+cLYo0Ln+iOF4RILDLwfjCQf+CFGgteBU4BBVu+E9EepuYp1FJfdKPE
+         o7yYn2pPdTDg9t8COKiD39jnlpMpTUhxdtOqAXIa68npOMIPbTy1OShewNdZRBw1uF8o
+         Rpb6djqYYLT4HSOrAwuHkqTKlX0qhd31nGPUo++b4cnDADiTLvxGwEa7q7pXiw4SU3Mu
+         Jq/VH+2SDJ/QU0C7Q1DU5jjymjv5gN7kZh0Bb6VNjlhUh8+gd5+kr7pEimwnplRIakM1
+         f6IoQGXAlt6a1WlOXFyB+QtboX6HonNStXraH1WU2iUtuBWP8kdOcyrAPHqWDzS+Weoz
+         OdWw==
+X-Forwarded-Encrypted: i=1; AHgh+RrrzXgbYhiztu2qlXAdvHnKfdJcXTDNySjJ1yk3hCoinfTcwnX4JLxcY6nlMtMlJGCG4Vol@lists.linux.dev
+X-Gm-Message-State: AFuF++kwk7J9v0c5MPvK3or5POZSyGn72zAWi3NzMSwTzMNeBQP6YwOu
+	9hXkGjg1LeK2ynSiEO/8mYS8WBJAPyVNGJVC0w0Ri7+OGLt063ZHMcCj
+X-Gm-Gg: AR+sD10IOQqqAs6pIawQIdZRYGUWUieHSD4iXlm5y/KMS0W3TChzVvGV6A9qxwcoiq0
+	jq1iTzOBBGfSW2E6Ii8oiHF89YqgHzdke5GVbGy3ATgewDZ28r8BzFqHtHUxfrWVC/aOyXSy26L
+	dkkK9sMABC62/lKhFAMstx+vx1fjDjwn1mAqOxEky/JtZBaVaSZsmDuleBLLNypBLR0unZTPF6l
+	/DYIzEOJaVMnZ+iTF+NGXEVPmMJBiAtcl1U7wyL0M5+NkwiBMaAlfwgVSfXTtRxhGXBt8g5yYUA
+	qxr1qQMc68QhCB33+0kTgT5ZxkE+ny7ZITRxxGgtmcx0VRMUBW4c1oWuvjNr7js8h+dhVwkbrGz
+	lnWXWMvvBJ3zVWfMm4hsUWIgFXfd9nf+t/pdtz4Ie7n+FRjHdXrzk2hAj4IYU5/+u9agOWT52Kj
+	Yhj5fLDCYp4KUppGX98foTX52zq/pPOt7JC382Y/Pn/qmOKjlU+Im6SC+9DVxcBi3jL6E=
+X-Received: by 2002:a17:90b:2241:b0:380:105f:8ffd with SMTP id 98e67ed59e1d1-39581228dbdmr17899762a91.16.1787204971249;
+        Wed, 19 Aug 2026 22:49:31 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-395b66bccf5sm106766a91.2.2026.08.19.22.49.26
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-395b66bccf5sm106766a91.2.2026.08.19.22.49.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2026 22:49:27 -0700 (PDT)
+        Wed, 19 Aug 2026 22:49:30 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev
-Subject: [PATCH v3 0/9] ntfs: add Windows system compression support
-Date: Thu, 20 Aug 2026 14:48:13 +0900
-Message-ID: <20260820-topic-wof-v2-v3-0-ef6149b4541e@gmail.com>
+Subject: [PATCH v3 1/9] ntfs: introduce transparent compression codec interface
+Date: Thu, 20 Aug 2026 14:48:14 +0900
+Message-ID: <20260820-topic-wof-v2-v3-1-ef6149b4541e@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260820-topic-wof-v2-v3-0-ef6149b4541e@gmail.com>
+References: <20260820-topic-wof-v2-v3-0-ef6149b4541e@gmail.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -73,96 +77,84 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3480; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=AWIjpXenoWEGbURCpGUQynL0RGWRQzpaHEbPQW9D55g=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqhpULkqD95xnp4jDAtyCsYe5tEyfQLOqthkbSF
- ubuqKEqZBSJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaoaVCwAKCRA08jD6945I
- 05kvD/0b8BoFeNXtJJWIcca1TYlB0STxA4i8PoeanEE496YGIfB1ikEphi17J/gyhl7L3IiGo/0
- AWbkyD5qCud0q2vWG9MM8bgTNU7aGYNOdrySdki/HUCj8h3kIfe36KkPLSiikGCS8Gd+bjfJNNo
- mLEWFGOhBUjv308l7SxydBAzj5ZZNLQLafizFe+aaT7MWSTLrZsmnTTgdOwnCZLtzwb1Wp0GbnY
- fIVixje3RPmJkbJqQByNvr9cjL7HxwNsq6HIheWRlN0Uhmiqrq/fRwRa+MjNoKa2YRp3u/ludYZ
- Ir6GCRdLJMXytgfThUQoQhIdC4IAp1XHVv5mNZVFh23/4YYM4eXczJHNbKP+hcJtYxZrY2HlrjC
- 0zUDIIKXkAd/ifQqphAyTvw6K7jBJF16M5CqO8WFzm1M2QbYqI4LxyjrkGwepnvqsAiK9sDFJPM
- cZHFK9UFhQN0aUrvpHKOYN6qlMvlcgQfQbavusRtd35TSKW4COFkPUjec8PbojcRJLzyJJ5MZco
- n6uRCpGJjjDZg44nk1dG3cVjQ/IvzB+ALKqq+sqH1R1Tl1wcixOkCoQByVrP0EBnrbFX7cplnuZ
- cjR2Gw8Meo9JQyRiK/3Ke1okw/cYzBYRaVJIbP1EgiuE0p0GTpVbolyrP4gRCYh0FCY6BE87spo rLV1uVbtm5D0APg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1745; i=hyc.lee@gmail.com;
+ h=from:subject:message-id; bh=0UQNyVmJYfdBgX6/MSNSx2J6luZyDXjqhPD6XOSRCuY=;
+ b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqhpULFMXtRU4ksm2dC3VhZRLhf4/AfR9o7+FON
+ YZlIqOSWoeJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaoaVCwAKCRA08jD6945I
+ 097HEACNB7H52mEzvUXVP84mHbi8yVutGdx3AA81CMSC/3vHZyLFAHEE1V7GhgtuykHRpbwWAg9
+ Yoii95t4bxoeX67hmgibTaU4zl/hwY4zA3j+Ad/XEoySH5oXhoDmV6vuvi68mcpj1Ew2MA3NJtb
+ j7akW7OkC+qb6PP33X7jtRn4iuYiE2zEGqSQPkIsiYwpba9hD35X1bfjLr0piZzQXPaMmSJ4bxg
+ WcU4w1l20w1rwTaYHX9iHNU4uTfeSBEGpuBYzUv3kWBZxrmwQAGNlFCN/cbuWPPLidI3uWllnU5
+ Ry28fVd9ttdwkHIAuiQZhLGH9WdgsAuE/6F0nA5D42UYHbapMlq9ka5ona1g70Fw83dx1Buf6cJ
+ n81luFAzfLlLRSDe6pw+m98wF8fM4L2hCbYhl625fQ9ybkJrDAaVoHXppVLDyFiQD1AeisB8muO
+ 4qYAm15ehyCSwEMjYll+aUZSy+Cl0sD4IEfvSG16MQK4PMY7k6I/8W6S9NLgyuDWC3/frjmaoBn
+ xeImEvaEaCpc7/9SlYEb6+VuIjTTWaX5/HCkrUWWHe2OQMP7VBz5oJ0KVFz6yuIh5OOt8XwiFB5
+ SLf7gNchO1S+2m9BHceFs8dybIwK7xyjj/GHGjqYnsreF/OwtQeX69V0XDMkUA1E7p7+DgzDTK6 oQl1PZstcoi5dCw==
 X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
 Content-Transfer-Encoding: 8bit
 
-This series adds Windows system compression support to the NTFS driver.
+Introduce struct ntfs_codec_ops and enum ntfs_codec_id to provide a
+unified interface for compression and decompression algorithms. This
+interface supports WOF and LZNT1 decompression.
 
-Windows system compression more aggressively compresses system files,
-such as binaries and DLLs, using XPRESS or LZX.  It is intended for
-files that are rarely modified.
-
-The series adds a CONFIG_NTFS_FS_WOF_COMPRESSION option, parses WOF
-reparse points, and adds XPRESS and LZX codec support. It handles both
-resident and non-resident WOF metadata and compressed data.
-
-The first two patches introduce the generic compression codec interface
-and bind the existing LZNT1 implementation.  The remaining patches add
-the configuration option, WOF parsing, decompression libraries, codec
-operations, and WOF decompression support.
-
-Changes in v3:
-  * Patch 4: Added to make ntfs_attr_readall() return errors, including
-    -ENOMEM, so transient read failures are not reported as filesystem
-    corruption.
-  * Patch 8: derive WOF chunk table entry width from the base file size
-    and fold this fix into the non-resident WOF decompression patch.
-Changes in v2:
-  * Patch 3: fix the missing space in the WOF Kconfig help text.
-  * Patch 4: validate WOF reparse data and retain WOF state without a
-    decoder, returning -EOPNOTSUPP for unsupported providers or formats.
-  * Patch 7: reject WOF direct I/O and data-changing paths, report WOF
-    files as compressed without DIO alignment, serialize runlist access,
-    and avoid sibling-page lock cycles with private-buffer/direct-folio
-    fallback.
-  * Patch 8: derive offset width from the base file size, handle
-    one-chunk streams, validate chunk sizes while parsing, and use the
-    base inode's MFT-record lock for resident metadata lookups.
-
+Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
-Hyunchul Lee (9):
-      ntfs: introduce transparent compression codec interface
-      ntfs: define LZNT1 codec ops under transparent codec interface
-      ntfs: add WOF compression config option
-      ntfs: return errors from ntfs_attr_readall
-      ntfs: parse REPARSE_TAG_WOF
-      ntfs: port lzx/xpress decompressors from ntfs-3g-system-compression
-      ntfs: implement codec ops for LZX and XPRESS
-      ntfs: add non-resident WOF decompression
-      ntfs: support resident WOF decompression
+ fs/ntfs/ntfs_codec.h | 46 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
- fs/ntfs/Kconfig                 |  11 +
- fs/ntfs/Makefile                |   3 +
- fs/ntfs/aops.c                  |  19 +-
- fs/ntfs/attrib.c                |  10 +-
- fs/ntfs/bdev-io.c               |   4 +-
- fs/ntfs/compress.c              |  12 +-
- fs/ntfs/ea.c                    |  66 +++-
- fs/ntfs/file.c                  |  47 ++-
- fs/ntfs/index.c                 |   4 +-
- fs/ntfs/inode.c                 |  16 +-
- fs/ntfs/inode.h                 |   2 +
- fs/ntfs/lib/decompress_common.c | 200 +++++++++++
- fs/ntfs/lib/decompress_common.h | 444 +++++++++++++++++++++++++
- fs/ntfs/lib/lib.h               |  29 ++
- fs/ntfs/lib/lzx_decompress.c    | 631 +++++++++++++++++++++++++++++++++++
- fs/ntfs/lib/xpress_decompress.c | 154 +++++++++
- fs/ntfs/ntfs.h                  |   4 +
- fs/ntfs/ntfs_codec.h            |  54 +++
- fs/ntfs/reparse.c               |  98 +++++-
- fs/ntfs/reparse.h               |   2 +-
- fs/ntfs/super.c                 |   3 +
- fs/ntfs/wof.c                   | 720 ++++++++++++++++++++++++++++++++++++++++
- 22 files changed, 2486 insertions(+), 47 deletions(-)
----
-base-commit: df7dce2090342170b7643d36f694204cae7792a9
-change-id: 20260818-topic-wof-v2-53051d7f0848
+diff --git a/fs/ntfs/ntfs_codec.h b/fs/ntfs/ntfs_codec.h
+new file mode 100644
+index 000000000000..14a69d1e4d7f
+--- /dev/null
++++ b/fs/ntfs/ntfs_codec.h
+@@ -0,0 +1,46 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/*
++ * Transparent compression codec interface.
++ *
++ * Copyright (c) 2026 LG Electronics Co., Ltd.
++ */
++
++#ifndef _NTFS_CODEC_H
++#define _NTFS_CODEC_H
++
++#include <linux/types.h>
++#include <linux/fs.h>
++#include <linux/mm.h>
++
++struct compress_context;
++
++enum ntfs_codec_id {
++	NTFS_CODEC_LZNT1,
++#ifdef CONFIG_NTFS_FS_WOF_COMPRESSION
++	NTFS_CODEC_XPRESS4K,
++	NTFS_CODEC_XPRESS8K,
++	NTFS_CODEC_XPRESS16K,
++	NTFS_CODEC_LZX32K,
++#endif
++};
++
++struct ntfs_codec_ops {
++	enum ntfs_codec_id id;
++	const char *name;
++	size_t (*scratch_size)(u32 chunk_size);
++	int (*decompress_chunk)(void *scratch,
++				const void *src, size_t src_len,
++				void *dst, size_t dst_len,
++				u32 chunk_size);
++	int (*decompress_pages)(struct page *dest_pages[],
++				int completed_pages[],
++				int *dest_index, int *dest_ofs,
++				int dest_max_index, int dest_max_ofs,
++				int xpage, char *xpage_done,
++				u8 *cb_start, u32 cb_size,
++				loff_t i_size, s64 initialized_size);
++	int (*compress_subblock)(struct compress_context *pctx,
++				 const char *inbuf, int bufsize, char *outbuf);
++};
++
++#endif /* _NTFS_CODEC_H */
 
-Best regards,
 -- 
-Thanks,
-Hyunchul
+2.43.0
 
