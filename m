@@ -1,71 +1,71 @@
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5269319F115
-	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 05:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5613619F115
+	for <ntfs@lists.linux.dev>; Thu, 20 Aug 2026 05:49:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787204984; cv=none; b=YxANNi7skUrdIR6bG3fMQUjyuMcWwZysv0qSY9hIkfVva3WxJTGMM0Du2FHvo3YkvUjPsdy/+MvCGGLaDf8PhEzvfnc6+PR5Ij4kfb7FEHYKMEZb0dySq3nGLN2vI2vNyxQNpMLFUhauVHTeejzF4dXShfO2M90tihvhZ0xr8wM=
+	t=1787204989; cv=none; b=rkvBUtRASIwHCI9pZ897wSe4JRrDLXoRDFFRBtt2y/eWoS0Uy+v4ywI9LWqmKPxwG0/dBb3kvFkImj7ZH/iuKdAHPb9zbYVcfyvYJUs7NeAGpgi37MIoP6seGhJi4KePZneuGUyHOZJIJiEAT6gV0Taq4x41Z3GTRmCCsSxzZFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787204984; c=relaxed/simple;
-	bh=RcUnZ8bJFYZR1Fooy9aOzukcPRTXY5z2l/khc2t+xCs=;
+	s=arc-20240116; t=1787204989; c=relaxed/simple;
+	bh=ezLLljtWUNmvnqnVKGP/WLXf/QhjLRYsYSNqXYlPugs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pMQHGUy4raLuozAxk/7Gjh2rGPLU07GGPIGeC0NWdVM4TINuyh7ctIwl82bA679J2bxik8o3gCis9FQr+oxyYNw6Kcs0U4bcokko/SXBzRXjtfDyzEoUXLp8XMrV71GEhEl+oAdL9jis1N0P+YHlhxwiDB2pCO0XS5n6xdRzcGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UTNsFJr0; arc=none smtp.client-ip=209.85.214.178
+	 MIME-Version:Content-Type; b=L/JXcLv8cwHlLwO1Voc84qRP01bp2G42/qL/TkhHDCQ7Qip/ymDK4+K8vKnK/cJV4XYhlrNn3ae55uAiq60By2hAZQWgJWOY8FmezgpsdUzPpJAQceu17u/6U27REf7WwA8fDos2T0bAqLdscvAVfYrYU1CdMcOmazSBE9QkL94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HrBqlUs2; arc=none smtp.client-ip=209.85.216.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UTNsFJr0"
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2cc61541f8cso6696295ad.0
-        for <ntfs@lists.linux.dev>; Wed, 19 Aug 2026 22:49:43 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HrBqlUs2"
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-38e347638adso2017946a91.0
+        for <ntfs@lists.linux.dev>; Wed, 19 Aug 2026 22:49:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787204982; x=1787809782; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1787204987; x=1787809787; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=EKhX0mlhzl4UH5sPFFS9et1hkPwhijj7k8EEd7+S6/g=;
-        b=UTNsFJr0XXGc2jkuQpkqi4bMoHDzlP3z+tKxzWbPiPFF4PX35vfv6e0A0Xckmpxoib
-         k69J0jnjtOiH6+JpfdHSOxL8MZEm20i2ykKK8QxzoFIsDsX+IKwAkiek1UwV5gTCCGNR
-         /bv8taFrtl13TpRJv8KQSxjYPpINXex8kIsWyMf3kPGSWTV/WNNGFt0gL36s/FRCcTZz
-         jReuJDKKWYhsTY7AeSpWgk0n/C/KkearfTWB4SKrK706BuM11rNC7eqehcpMWW9d5ULu
-         RkdC98HZDnQb04Qos3pBvkTgpUVjRFgAIW1wAwG4O+d/hK+MW0dbJMV9B1p+jGcDDeQD
-         fegA==
+        bh=k0NUImn1oG7DqNp4/p8jkehokCgj80N7VsU6UHcMCgo=;
+        b=HrBqlUs2teVoKpYMgejks/NA4IGv9SpfapJMM/v3mvEy3mztnd4Cjrl8jmGMjYu3HC
+         t9/RLdsejmDlWZndDll7VETTkzF6U86fph3Ej/u3SHJoHw3f18LHw3jlyoC4VoZJgzgX
+         RiABMDKsrieqx6Zn3L2FlhR5wtrlRIiviapV38Adf10OkD5BbiCsazwb6e7Lil8mr0NW
+         vWR8Lm2CUPbVDZpqDzvFV4AVPh2ZhgecU9cecSiQCYhqm1uG1dhFrbeISC/ykbs50eI8
+         fhvR2V86YwUz3oDr1Rc3ihuPhfES6URYC0s+eiz2KJUCfoJL2LQYUAdcl0dl/LwCS+GJ
+         4g8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787204982; x=1787809782;
+        d=1e100.net; s=20251104; t=1787204987; x=1787809787;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=EKhX0mlhzl4UH5sPFFS9et1hkPwhijj7k8EEd7+S6/g=;
-        b=g+KWLB5NRJLqN3YYwDegH934JXAEe34WoEz9dXqlr1fPtem+0byRNZMTb5DQv902yB
-         gND7+k2BLsm4tZYfhHKWsk0hAzgizylJ2TPGypRCURdoRc+m+R9dPo00XxnNtZDVnNMw
-         yaCR0lW6/2F9q77EExZMiDULKQv0/dKjcZDePaxFwTX8mTqU7iSHLv8WYkZlhYDiU9u9
-         +WAAZP0zyL+YLvK2Z/Ld6Ru5aggRH8s6iAAgKXFlTSC80ralWgKRE/AqTl5DDauItwKQ
-         leFoPduZm8xXfH6Rl+wiV9AbGxRJ8hLBGCUhCM2BO2Pi0EsohK3X6FNQFDaXxjA+8V8h
-         d6fw==
-X-Forwarded-Encrypted: i=1; AHgh+RrAEI7N2IkxDbSABlDThg3kUBxYki6Uoc8hLTbFLT/g0gtIk7d3Lh1/wXo7/gkt5QPtEeC/@lists.linux.dev
-X-Gm-Message-State: AFuF++m1/TP2ijCeRq6Oxa2YoRxzi5Pn/aTC0YgUSrFuPwUWIkjtljln
-	p8r8aVd0XnAsPb/NsUHNNBzXKu8hBnZI/AwkLOriJaLrYxmXeL+APAoR
-X-Gm-Gg: AR+sD10OEh+Lb/zgEJnpIyLliXKObbMXYZYWerRD3XAO0wKHTSeC/4cQ3GdzXJRuhMU
-	nrM9zDIOM1KzBgMe2YnTV8H/8wlgPr4jSrIoGf0tPL6G3vwpoTLeLfRM306okevvAjQyqeEN41V
-	fNdCp7pq6vjR5rrWxa5hF+VaRdDkqFBM9kATwqzZUMkvtTphdW0OOgrT/Cjh3QvRjCeKV37FDYi
-	lrbDcE8tTRba5HDs/eLA6E8A7FHQR9AUPPWAB/ZZEKcGX166Kh/JZT+x5qZPJgflL11gesZ4aOH
-	qQI5bc2ch5guB9JzOVwo1YZ0Jpnw4uAwmns08m+FsGzFGbHkHRN6p2ztXcfdFzbGTWwptTaxp3S
-	7IWcA7EyTNbZU54c1x/Qv2YulBJeGawbso1o/CLFIGj5TFXj9zz0llsfXcwl+V3PbEy9jj4AJuo
-	DrovaBUpDAt7IsBhsOZSsPhJA+oh/1dssU1C7vyjAHYSRzryxdh7CKr6M8OVkESCj6JOg=
-X-Received: by 2002:a17:90b:5846:b0:38e:42f5:d096 with SMTP id 98e67ed59e1d1-395a00e4cdfmr4483540a91.0.1787204982476;
-        Wed, 19 Aug 2026 22:49:42 -0700 (PDT)
+        bh=k0NUImn1oG7DqNp4/p8jkehokCgj80N7VsU6UHcMCgo=;
+        b=jU/NL9gk9lzjawuPd2Wo53SqrRkKePK9RSiMPr0W/ffjg80ZMXGSj77zFP4+0RcZSN
+         YwtYVv7C09OfCWECpC6vRnoQBHdtzc4YeZeSnWsNbHYtcRdzCSVJQAqBYbdGC90bxNOv
+         qbbbP56JChA3KvBFSj0rANLFPItkqGEBjIGovA5uPCM8Qu12L6unsq9Ba7OlkkTGtS0M
+         XtBo168shbtrzWcvqcGj6EMmal+CH0KORuY9BTa9SYJylRejkOWYLOIi89Z1fdtT5NxZ
+         gNQZOwaZp9K5FHSNT7PXhd29AwA+9p6NtvXKNBaC8tflDmZugHBU5F25OZyXMTZPR6Xe
+         zJhg==
+X-Forwarded-Encrypted: i=1; AHgh+Ro2hnk2xRYgaJDGEoZ6LbviBRZJRcW5oL0NsKjyuadm/3rfKHI9aG0ekgHKmi1vZi+Ee0ix@lists.linux.dev
+X-Gm-Message-State: AFuF++kV0awv/LpHYe7yzkAl6OreYa6kV6IR2BHxGA1u8e419Cm2elxy
+	dEQBo3Zp70gbnmzhyMch8+ws9gObCor++8yEWOwcAkt+5qxzzr2qjS4z5Ip43K2x
+X-Gm-Gg: AR+sD12vtTrVjcJOWOq5DnI3UB2HMVZCmwI4N4pDAmgrrM2xzyI8VBC6bcgBWFnFEZS
+	lePP1/QUEhI+9OCniiV/EHulZYOGFXKbHGT5nPXJ8UOSdzGhXuyQiNaeWx94Y3xGzTYInmwTZTD
+	Kjr6vIWr3Zgjvp2Pj+RecX84CzGvUIMeYQwhgdj6m8WJ+uztKTh5Lt/i3pJ9F6V/U3IK+ujFUA/
+	xEngQM4AW7sGX6PgzshXV8C+sv5ENG+Vdi/+kx8uB1e5x11kXqAY1PSdgDHGAj2oseB91hWlDah
+	8XakVWbTh5Eb4TxH6SyOWnZkgEseAQ1QTgDTURjHuvGb9yASfYZjNCy9SVU20gOo/r85wbGQw2a
+	H10QW+TT7AHbQ6XyWhwn0lQshD4JdFyRnsD117cradbQd9UuiUgPaAX2iP/21FPx6s34T7pXrJJ
+	kMpR6p3QXCzUZMwHmDbxswQAznzxPtRTXabWitToKQMxY2EHCR0rMTbkAHzsb+y5ExAFU=
+X-Received: by 2002:a17:90b:280a:b0:38d:dfd1:7a8 with SMTP id 98e67ed59e1d1-39580a81304mr19470461a91.2.1787204987470;
+        Wed, 19 Aug 2026 22:49:47 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-395b66bccf5sm106766a91.2.2026.08.19.22.49.40
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-395b66bccf5sm106766a91.2.2026.08.19.22.49.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2026 22:49:41 -0700 (PDT)
+        Wed, 19 Aug 2026 22:49:46 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev
-Subject: [PATCH v3 5/9] ntfs: parse REPARSE_TAG_WOF
-Date: Thu, 20 Aug 2026 14:48:18 +0900
-Message-ID: <20260820-topic-wof-v2-v3-5-ef6149b4541e@gmail.com>
+Subject: [PATCH v3 7/9] ntfs: implement codec ops for LZX and XPRESS
+Date: Thu, 20 Aug 2026 14:48:20 +0900
+Message-ID: <20260820-topic-wof-v2-v3-7-ef6149b4541e@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260820-topic-wof-v2-v3-0-ef6149b4541e@gmail.com>
 References: <20260820-topic-wof-v2-v3-0-ef6149b4541e@gmail.com>
@@ -77,251 +77,136 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7248; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=RcUnZ8bJFYZR1Fooy9aOzukcPRTXY5z2l/khc2t+xCs=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqhpUMiAjoc3xuaYDWbnYHv/M3fBMlF4zr1xhMG
- 9vsaAgSrD6JAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaoaVDAAKCRA08jD6945I
- 01OpD/9Aeg4sl5Zbzn060rwaOX5SQeB/EYoKS+F6QZyIH2BZTwbrlOyTEuRQZUceVPZO3BgaFKI
- dKa6mUW+aqhycCmSt9yvE4FpL1E0GZinbsNApqsFio46RxRYruGidZL6Gkxspylgh+e2W6SJN+f
- 1u6JG3SUOX7T4o/wItb/68fhuFOFBN5Lcs9+Rk3zCPNYc/y7tIeGpr6Wgv1RBSw3wcNl7zS3iSm
- Diz9NM6Ra3rtUtsF/+VohzUI4HfSZfaEpbD+wBd0QV3r76ZC44ud5natRJKoQd5urBn/IzmI2/Y
- lle0bkTUxCpmSlL4ucC/cnZeF2Ka7AiWRDTbXC00NXF06kDUhUXepDRRfBTVm+bXmhM2PA4Ei7e
- AItHLBErIJW+lp1LVRFuJACnGzW3/ZCBTJCX5YniNkqrl/MgGe0N3oIdipATgycw14vVW94gb0j
- V5MdCrUZRqZUjo/L/mR54D8VvfPq5Aqk2QQxd5e4M/WNVORmtKBh+R0ILVghvoayqxKqgGfYIhT
- iMALLH5DqzrrEap2S6ASimfIz8KpTXaxs/tBp9XmKNFSnqgcVuLf3c1Xd46QiiUvnjOIKfTgeE1
- lOtM34v3Nh3lcv/HnGLCRpo3jzApoEVfSxQhrJyNk5nvObHoY1oVvt0webmuiNygb3zFEfBus1n qZ1+lDVLPmZF1aQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3634; i=hyc.lee@gmail.com;
+ h=from:subject:message-id; bh=ezLLljtWUNmvnqnVKGP/WLXf/QhjLRYsYSNqXYlPugs=;
+ b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqhpUNMa79HRhJOgiMpfK0kXP5lLCJVcTnk2hGJ
+ gRijaUHDm2JAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaoaVDQAKCRA08jD6945I
+ 08/0D/9z6Lhk1D30dt68fkLjIOw7aUOrwNHgcqr4UWZPTgzEHvriNst1/uJhfjPLNZ3nKrUrtwP
+ 24Ep7Sv8EdH6F57EDZoMa2iwhDs352Rff0n7FE/784ttCNXbT5DIPpwH5Xw6ghDim5ubB1fcw11
+ bUm3pvRB1mqL21ShrHO2IbKSfAmeXL1oWKD9RiBVuiw/W1k5dEaAwJ6MO6q0n069OEs0ZjVXTsn
+ hE+1u/cAp1l1ChnhaQ7nS7YL2mpi6mb83nwnA4mFpXzkjVH4zG9uQ8+WnGhfuKUxppHBOQny6pF
+ fUorrjC9o4LzVwhqivd5kkCDLtyZnu7WiEXHwFEzQjsSHbMrFgLfc3ToP0BDzJoMQB3QjZ3t/qx
+ fYNZFkTBU9Kbn1UL/17Y/brByZQHl8Mm1uLBkQ8C+EWVNgfZPDlIGAgcTFKdFYhPhvp1v9OxGYk
+ 3vDENiAlvW1lX32lnx2+S5sT15/p8jt6vv1g3Dgxur5EjSeyw5KsQtB5QWVHVRW0/uiYWRvhyKm
+ P46pGkumQhMRRbJ3oEuSJrcVOrRI8/s1uWM3E+w/oOpczHc2HFTIFE63g72TdCEOKRjGQ/+WIQP
+ xDzNI6MAZPU2pw3gCroNxWzrLPHYQAH8pbnOW/JFPxU6OulL/o3zaGxlBkSYPv5uDCsuCfloyQP 9kOsmBAT3yHMLXw==
 X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
 Content-Transfer-Encoding: 8bit
 
-Introduce parsing support for REPARSE_TAG_WOF reparse points. Rename
-ntfs_make_symlink() to ntfs_parse_reparse() since it now handles both
-symlinks and WOF reparse tags. Introduce NI_WofCompressed flag to
-indicate files compressed via Windows System Compression (WOF), and
-configure compressed block size accordingly (12 to 15 bits based on the
-format).
+Implement the transparent compression codec ops for XPRESS (4K, 8K,
+16K) and LZX (32K) algorithms. The xpress_scratch_size,
+lzx_scratch_size, xpress_decompress_chunk, and lzx_decompress_chunk
+wrappers provide unified interfaces and use per-call dynamic scratch
+state allocation (avoiding global mutexed singletons).
 
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
- fs/ntfs/inode.c   |   7 ++--
- fs/ntfs/inode.h   |   2 ++
- fs/ntfs/reparse.c | 101 +++++++++++++++++++++++++++++++++++++++++++++++-------
- fs/ntfs/reparse.h |   2 +-
- 4 files changed, 96 insertions(+), 16 deletions(-)
+ fs/ntfs/lib/lzx_decompress.c    | 21 +++++++++++++++++++++
+ fs/ntfs/lib/xpress_decompress.c | 34 ++++++++++++++++++++++++++++++++++
+ fs/ntfs/ntfs_codec.h            |  6 ++++++
+ 3 files changed, 61 insertions(+)
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 46be4514b60f..45e013eb3541 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -869,7 +869,9 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 	if (ni->flags & FILE_ATTR_REPARSE_POINT) {
- 		unsigned int mode;
+diff --git a/fs/ntfs/lib/lzx_decompress.c b/fs/ntfs/lib/lzx_decompress.c
+index 3b3c198d07e4..be040dce6e23 100644
+--- a/fs/ntfs/lib/lzx_decompress.c
++++ b/fs/ntfs/lib/lzx_decompress.c
+@@ -14,6 +14,7 @@
  
--		mode = ntfs_make_symlink(ni);
-+		err = ntfs_parse_reparse(ni, &mode);
-+		if (err)
-+			goto unm_err_out;
- 		if (mode)
- 			vi->i_mode |= mode;
- 		else {
-@@ -1214,7 +1216,8 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 	 * sizes of all non-resident attributes present to give us the Linux
- 	 * correct size that should go into i_blocks (after division by 512).
- 	 */
--	if (S_ISREG(vi->i_mode) && (NInoCompressed(ni) || NInoSparse(ni)))
-+	if (S_ISREG(vi->i_mode) &&
-+	    (NInoCompressed(ni) || (NInoSparse(ni) && !NInoWofCompressed(ni))))
- 		vi->i_blocks = ni->itype.compressed.size >> 9;
- 	else
- 		vi->i_blocks = ni->allocated_size >> 9;
-diff --git a/fs/ntfs/inode.h b/fs/ntfs/inode.h
-index aee1c1fdb609..ff61bd402df0 100644
---- a/fs/ntfs/inode.h
-+++ b/fs/ntfs/inode.h
-@@ -189,6 +189,7 @@ enum {
- 	NI_NonResident,
- 	NI_IndexAllocPresent,
- 	NI_Compressed,
-+	NI_WofCompressed,
- 	NI_Encrypted,
- 	NI_Sparse,
- 	NI_SparseDisabled,
-@@ -248,6 +249,7 @@ NINO_FNS(MstProtected)
- NINO_FNS(NonResident)
- NINO_FNS(IndexAllocPresent)
- NINO_FNS(Compressed)
-+NINO_FNS(WofCompressed)
- NINO_FNS(Encrypted)
- NINO_FNS(Sparse)
- NINO_FNS(SparseDisabled)
-diff --git a/fs/ntfs/reparse.c b/fs/ntfs/reparse.c
-index b8d601f5500f..12a7baf1badd 100644
---- a/fs/ntfs/reparse.c
-+++ b/fs/ntfs/reparse.c
-@@ -24,6 +24,25 @@ struct wsl_link_reparse_data {
- 	char	link[];
+ #include "decompress_common.h"
+ #include "lib.h"
++#include "../ntfs_codec.h"
+ 
+ /* Number of literal byte values. */
+ #define LZX_NUM_CHARS		256
+@@ -608,3 +609,23 @@ void lzx_free_decompressor(struct lzx_decompressor *d)
+ {
+ 	kfree(d);
+ }
++
++static size_t lzx_scratch_size(u32 chunk_size)
++{
++	return sizeof(struct lzx_decompressor);
++}
++
++static int lzx_decompress_chunk(void *scratch, const void *src, size_t src_len,
++				void *dst, size_t dst_len, u32 chunk_size)
++{
++	struct lzx_decompressor *d = scratch;
++
++	return lzx_decompress(d, src, src_len, dst, dst_len);
++}
++
++const struct ntfs_codec_ops ntfs_lzx32k_codec_ops = {
++	.id = NTFS_CODEC_LZX32K,
++	.name = "lzx32k",
++	.scratch_size = lzx_scratch_size,
++	.decompress_chunk = lzx_decompress_chunk,
++};
+diff --git a/fs/ntfs/lib/xpress_decompress.c b/fs/ntfs/lib/xpress_decompress.c
+index 7066810ee6cd..cb212543268d 100644
+--- a/fs/ntfs/lib/xpress_decompress.c
++++ b/fs/ntfs/lib/xpress_decompress.c
+@@ -15,6 +15,7 @@
+ 
+ #include "decompress_common.h"
+ #include "lib.h"
++#include "../ntfs_codec.h"
+ 
+ #define XPRESS_NUM_CHARS	256
+ #define XPRESS_NUM_SYMBOLS	512
+@@ -118,3 +119,36 @@ void xpress_free_decompressor(struct xpress_decompressor *d)
+ {
+ 	kfree(d);
+ }
++
++static size_t xpress_scratch_size(u32 chunk_size)
++{
++	return sizeof(struct xpress_decompressor);
++}
++
++static int xpress_decompress_chunk(void *scratch, const void *src,
++				   size_t src_len, void *dst, size_t dst_len,
++				   u32 chunk_size)
++{
++	return xpress_decompress(scratch, src, src_len, dst, dst_len);
++}
++
++const struct ntfs_codec_ops ntfs_xpress4k_codec_ops = {
++	.id = NTFS_CODEC_XPRESS4K,
++	.name = "xpress4k",
++	.scratch_size = xpress_scratch_size,
++	.decompress_chunk = xpress_decompress_chunk,
++};
++
++const struct ntfs_codec_ops ntfs_xpress8k_codec_ops = {
++	.id = NTFS_CODEC_XPRESS8K,
++	.name = "xpress8k",
++	.scratch_size = xpress_scratch_size,
++	.decompress_chunk = xpress_decompress_chunk,
++};
++
++const struct ntfs_codec_ops ntfs_xpress16k_codec_ops = {
++	.id = NTFS_CODEC_XPRESS16K,
++	.name = "xpress16k",
++	.scratch_size = xpress_scratch_size,
++	.decompress_chunk = xpress_decompress_chunk,
++};
+diff --git a/fs/ntfs/ntfs_codec.h b/fs/ntfs/ntfs_codec.h
+index 408b18561a03..6030055fb0c1 100644
+--- a/fs/ntfs/ntfs_codec.h
++++ b/fs/ntfs/ntfs_codec.h
+@@ -44,5 +44,11 @@ struct ntfs_codec_ops {
  };
  
-+struct wof_reparse_data {
-+	__le32 version;
-+	__le32 provider;
-+	__le32 provider_version;
-+	__le32 compression_format;
-+} __packed;
-+
-+#define WOF_CURRENT_VERSION			cpu_to_le32(1)
-+
-+#define WOF_PROVIDER_WIM			cpu_to_le32(1)
-+#define WOF_PROVIDER_FILE			cpu_to_le32(2)
-+
-+#define WOF_PROVIDER_CURRENT_VERSION		cpu_to_le32(1)
-+
-+#define WOF_COMPRESSION_XPRESS4K		cpu_to_le32(0)
-+#define WOF_COMPRESSION_LZX			cpu_to_le32(1)
-+#define WOF_COMPRESSION_XPRESS8K		cpu_to_le32(2)
-+#define WOF_COMPRESSION_XPRESS16K		cpu_to_le32(3)
-+
- static bool reparse_name_is_valid(size_t size, size_t name_off, u16 len)
- {
- 	if ((name_off | len) & 1)
-@@ -203,6 +222,28 @@ static bool valid_reparse_data(struct ntfs_inode *ni,
- 		    !(ni->flags & FILE_ATTRIBUTE_RECALL_ON_OPEN))
- 			return false;
- 		break;
-+	case IO_REPARSE_TAG_WOF: {
-+		const struct wof_reparse_data *wof_data =
-+			(const struct wof_reparse_data *)reparse_attr->reparse_data;
-+
-+		if (!valid_reparse_buffer(ni, reparse_attr, size,
-+					  sizeof(struct wof_reparse_data)))
-+			return false;
-+
-+		if (le16_to_cpu(reparse_attr->reparse_data_length) <
-+		    sizeof(struct wof_reparse_data) ||
-+		    wof_data->version != WOF_CURRENT_VERSION ||
-+		    wof_data->provider != WOF_PROVIDER_FILE ||
-+		    wof_data->provider_version !=
-+		    WOF_PROVIDER_CURRENT_VERSION)
-+			return false;
-+		if (wof_data->compression_format != WOF_COMPRESSION_XPRESS4K &&
-+		    wof_data->compression_format != WOF_COMPRESSION_XPRESS8K &&
-+		    wof_data->compression_format != WOF_COMPRESSION_XPRESS16K &&
-+		    wof_data->compression_format != WOF_COMPRESSION_LZX)
-+			return false;
-+		break;
-+	}
- 	default:
- 		if (!valid_reparse_buffer(ni, reparse_attr, size, 0))
- 			return false;
-@@ -239,28 +280,34 @@ static unsigned int ntfs_reparse_tag_mode(__le32 reparse_tag)
- }
- 
- /*
-- * Get the target for symbolic link
-+ * Parse reparse point data and initialize its in-memory representation.
-  */
--unsigned int ntfs_make_symlink(struct ntfs_inode *ni)
-+int ntfs_parse_reparse(struct ntfs_inode *ni, unsigned int *mode)
- {
- 	s64 attr_size = 0;
--	int err;
-+	int err = -EINVAL;
- 	unsigned int lth;
- 	struct reparse_point *reparse_attr;
--	unsigned int mode = 0;
- 
- 	kvfree(ni->target);
- 	ni->target = NULL;
- 	ni->reparse_tag = 0;
- 	ni->reparse_flags = 0;
-+	*mode = 0;
- 
- 	reparse_attr = ntfs_attr_readall(ni, AT_REPARSE_POINT, NULL, 0,
- 					 &attr_size);
--	if (IS_ERR(reparse_attr))
--		reparse_attr = NULL;
--	if (reparse_attr &&
--	    valid_reparse_data(ni, reparse_attr, attr_size)) {
--		err = -EINVAL;
-+	if (IS_ERR(reparse_attr)) {
-+		err = PTR_ERR(reparse_attr);
-+		ntfs_error(ni->vol->sb,
-+			   "Failed to read reparse point: %d.", err);
-+		return err;
-+	}
-+	if (!valid_reparse_data(ni, reparse_attr, attr_size)) {
-+		ntfs_error(ni->vol->sb, "Invalid reparse point.");
-+		err = -EFSCORRUPTED;
-+		goto out;
-+	}
- 
- 		switch (reparse_attr->reparse_tag) {
- 		case IO_REPARSE_TAG_MOUNT_POINT:
-@@ -308,20 +355,48 @@ unsigned int ntfs_make_symlink(struct ntfs_inode *ni)
- 			}
- 			break;
- 		}
-+		case IO_REPARSE_TAG_WOF:
-+		{
+ extern const struct ntfs_codec_ops ntfs_lznt1_codec_ops;
 +#ifdef CONFIG_NTFS_FS_WOF_COMPRESSION
-+			const struct wof_reparse_data *wof_data =
-+				(const struct wof_reparse_data *)reparse_attr->reparse_data;
-+
-+			switch (wof_data->compression_format) {
-+			case WOF_COMPRESSION_XPRESS4K:
-+				ni->itype.compressed.block_size_bits = 12;
-+				break;
-+			case WOF_COMPRESSION_XPRESS8K:
-+				ni->itype.compressed.block_size_bits = 13;
-+				break;
-+			case WOF_COMPRESSION_XPRESS16K:
-+				ni->itype.compressed.block_size_bits = 14;
-+				break;
-+			case WOF_COMPRESSION_LZX:
-+				ni->itype.compressed.block_size_bits = 15;
-+				break;
-+			}
-+			ni->itype.compressed.block_size =
-+				1 << ni->itype.compressed.block_size_bits;
++extern const struct ntfs_codec_ops ntfs_xpress4k_codec_ops;
++extern const struct ntfs_codec_ops ntfs_xpress8k_codec_ops;
++extern const struct ntfs_codec_ops ntfs_xpress16k_codec_ops;
++extern const struct ntfs_codec_ops ntfs_lzx32k_codec_ops;
 +#endif
-+			NInoSetWofCompressed(ni);
-+			VFS_I(ni)->i_mode &= ~0222;
-+			err = 0;
-+			break;
-+		}
- 		default:
- 			err = 0;
- 		}
  
- 		if (!err) {
--			mode = ntfs_reparse_tag_mode(reparse_attr->reparse_tag);
-+			*mode = ntfs_reparse_tag_mode(
-+				reparse_attr->reparse_tag);
- 			ni->reparse_tag = reparse_attr->reparse_tag;
- 		}
--	} else
--		ni->flags &= ~FILE_ATTR_REPARSE_POINT;
- 
-+out:
- 	kvfree(reparse_attr);
- 
--	return mode;
-+	return err;
- }
- 
- unsigned int ntfs_reparse_tag_dt_types(struct ntfs_volume *vol, unsigned long mref)
-diff --git a/fs/ntfs/reparse.h b/fs/ntfs/reparse.h
-index c11a5bb7e6a5..b6360b0452e6 100644
---- a/fs/ntfs/reparse.h
-+++ b/fs/ntfs/reparse.h
-@@ -9,7 +9,7 @@
- 
- extern __le16 reparse_index_name[];
- 
--unsigned int ntfs_make_symlink(struct ntfs_inode *ni);
-+int ntfs_parse_reparse(struct ntfs_inode *ni, unsigned int *mode);
- unsigned int ntfs_reparse_tag_dt_types(struct ntfs_volume *vol, unsigned long mref);
- int ntfs_translate_symlink_path(struct dentry *dentry, const char *target,
- 				char **translated);
+ #endif /* _NTFS_CODEC_H */
 
 -- 
 2.43.0
