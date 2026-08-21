@@ -1,30 +1,30 @@
 Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08531403B1E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B208C403B10
 	for <ntfs@lists.linux.dev>; Fri, 21 Aug 2026 05:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787290387; cv=none; b=Ag4rljb4uplxre0Sr1KmzKrKCfTbud0ULVy2bFN0JsjvZ9GMHdql7qpxj5VEcdLGVZQJzofK6ZKrtLSNsSVjxvkdPROmjlWD7dg94RNSvhu4NZTScYqGzK5BoKzlWKsG+e96/4fy4645m+dU0CyPK72JtFI90d8y3CTGMEDiy48=
+	t=1787290387; cv=none; b=W9vq4m7KybbxCcHJojNTjw8d4vx7D1UdhGhTiyH9QmGmh2bTlrAt6kWxMri8pOhq9Ax359yD0OZZRb4wFOA2wxGUhHkSqeEV7bEZ6KHcu+Uk56ClNPQufIkimKijb4WEp2lyZbeJTQbSgMhYHljXTstSRUkHNNSQt5BDNJmcLfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1787290387; c=relaxed/simple;
-	bh=2mLYyqLFMIwzeXQBfFgm+G71LdtYzTnFxEfui/ZcBfI=;
+	bh=rG9/5whMLFzxlYA0WBDa8QbuRpAiX1b6RqvS6zZKCq0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=R/wurgoYSGvbNevxWr4hVtQz1Y5RQ6bPCzxQJzZTIeSlOwW8K8MknDMb0LvLMyJ8sd3BrY26AXRXua4XIAVgss9EGe2fQvGhJWf1KLrNN7DglGrwALoqcrdxzoCCm9WdpcmPHjEyL2rHrXJZLUxFsk4gEwxNKIZ6YCCHuhnu/wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=YmTR8D1z; arc=none smtp.client-ip=220.197.31.2
+	 MIME-Version; b=OXkQmQDLFhFItBNewd39X0x3c4ueDTNe9iuSK+izM2UeGwURVf+/ClkFZCSRqzx6XOafN9e2CgD7gDoYIjD7dSuiVwB/wygAz8opiC1ZmzQy4fg3ie5M9WRE31INJE7fG04TWop7tym5x5eKGPb8vXtTR73ZYBmrbsEHja4ksSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=qK98Bvq/; arc=none smtp.client-ip=220.197.31.2
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="YmTR8D1z"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="qK98Bvq/"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=zr
-	1AaFjT/F5Yyyq/ldc7qcfTWLX1MLOt+Y6zjHnfMqg=; b=YmTR8D1zdBW0o8ri3G
-	q7eMQ+E7mWa5EWxQvj23PkSIpXl1CuByR7g4r3cy1hWaCkcUOozEsVLWEHwmbc2L
-	NDOVu1gjqgrdY6QZmIyejR0bOIxj3JCafffUVqus+A3eAS7WJgd565yX1jZZE90z
-	gEflCxgeSg1DlUWKHPBF5xdcg=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=4j
+	UovKIvcXbStcAehtc2/3r4Y3/x+PfHFNP/t6niMHo=; b=qK98Bvq/zx3Sldt96s
+	rR0Scl0/NHmh7u7JDdtSf1usAlu9mFeZpKRuWUbSd4M207vZRTCiVIYHj31hbxCI
+	1LrVbTcSuP8p1t8LY1ELhubMn2Cp0Ts/XeMT6BV8cq72XHHZaT+YpYWwWx0Y13SM
+	KSg6jBVRPjWq+b/t3MC3azrmA=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnzHn44odqtfQKPQ--.8742S3;
-	Fri, 21 Aug 2026 13:32:44 +0800 (CST)
+	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnzHn44odqtfQKPQ--.8742S5;
+	Fri, 21 Aug 2026 13:32:48 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -33,9 +33,9 @@ Cc: ntfs@lists.linux.dev,
 	liubaolin12138@163.com,
 	liubaolin12138@gmail.com,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v1 1/9] ntfs: return DT_UNKNOWN on inode lookup failure in readdir
-Date: Fri, 21 Aug 2026 13:32:30 +0800
-Message-ID: <20260821053238.1281310-2-liubaolin12138@163.com>
+Subject: [PATCH v1 3/9] ntfs: propagate reparse index insertion failure
+Date: Fri, 21 Aug 2026 13:32:32 +0800
+Message-ID: <20260821053238.1281310-4-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260821053238.1281310-1-liubaolin12138@163.com>
 References: <20260821053238.1281310-1-liubaolin12138@163.com>
@@ -46,42 +46,46 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnzHn44odqtfQKPQ--.8742S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7GFyxtw1fGFWxXw43Wr15Jwb_yoWDtFc_W3
-	W3Aayv9FnxKFsFg3ZxGFW2vF9aqF40grs7urW3JFZIy398Ar1DGFsYyrs5XFWkurW5Jry5
-	X3yDWry7Cr1ayjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRgmiRJUUUUU==
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hx0P2qH4vzWrwAA33
+X-CM-TRANSID:_____wDnzHn44odqtfQKPQ--.8742S5
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ZrW7KryxJr1UJr1UCw13XFb_yoW8JF47pr
+	Zxua1rKayxJr10ka1vyF4DZr10kw17G3yUta4rZ3WfK3WFqr1kt3yrKFsYgryrCa48JFWU
+	Xr1rKr43ZF4DA3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRG9aPUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwgB1QGqH4wCi9QAA3u
 
 From: Baolin Liu <liubaolin@kylinos.cn>
 
-ntfs_reparse_tag_dt_types() returns PTR_ERR(vi) when ntfs_iget()
-fails, but its return type is unsigned int and the caller passes
-the value straight to dir_emit() as d_type. A stale or corrupt MFT
-reference in a directory index thus makes readdir report a garbage
-d_type value to userspace.
+update_reparse_data() ignores the return value of
+set_reparse_index(). When index insertion fails, the code removes
+the just-written reparse data as cleanup but still returns 0, so
+symlink(2) (and WSL special file creation) reports success while
+no reparse data exists on disk. When there was no previous reparse
+data (oldsize == 0), the failure was likewise silently ignored.
 
-Return DT_UNKNOWN on lookup failure instead.
+Propagate the error to the caller.
 
 Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
 Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 ---
- fs/ntfs/reparse.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ fs/ntfs/reparse.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/fs/ntfs/reparse.c b/fs/ntfs/reparse.c
-index 0d3988992119..a8e413c61353 100644
+index a8e413c61353..905ee08422d4 100644
 --- a/fs/ntfs/reparse.c
 +++ b/fs/ntfs/reparse.c
-@@ -331,7 +331,7 @@ unsigned int ntfs_reparse_tag_dt_types(struct ntfs_volume *vol, unsigned long mr
+@@ -618,8 +618,9 @@ static int update_reparse_data(struct ntfs_inode *ni, struct ntfs_index_context
+ 		goto put_rp_inode;
+ 	}
  
- 	vi = ntfs_iget(vol->sb, mref);
- 	if (IS_ERR(vi))
--		return PTR_ERR(vi);
-+		return DT_UNKNOWN;
- 
- 	reparse_attr = (struct reparse_point *)ntfs_attr_readall(NTFS_I(vi),
- 			AT_REPARSE_POINT, NULL, 0, &attr_size);
+-	if (set_reparse_index(ni, xr, ((const struct reparse_point *)value)->reparse_tag) &&
+-	    oldsize > 0) {
++	err = set_reparse_index(ni, xr,
++				((const struct reparse_point *)value)->reparse_tag);
++	if (err && oldsize > 0) {
+ 		/*
+ 		 * If cannot index, try to remove the reparse
+ 		 * data and log the error. There will be an
 -- 
 2.51.0
 
