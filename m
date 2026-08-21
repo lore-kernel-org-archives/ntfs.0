@@ -1,30 +1,30 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584C2369D6E
-	for <ntfs@lists.linux.dev>; Fri, 21 Aug 2026 05:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C3B4052DE
+	for <ntfs@lists.linux.dev>; Fri, 21 Aug 2026 05:33:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787290390; cv=none; b=CBDb3irnJozwJ7yCxcr17viLvd5CkQt+CoO08FUGYdm08QVW8xjD3XJa48S8TguTW1/GT2Kxh1FI+7XwPw4+zBtl+RBMGM7lMTsUMFDpyRLhLRzUTpOUmGwp/m9ACUJdRI4nniPjljzAFEeI98u7xh2LrZJjn9YfGn4QP24Ou5g=
+	t=1787290390; cv=none; b=N10jSB9vdnfJsxLsasBfU10aqlJkGYBxLFDs1yOPLeEpDyqm9+YmOGCBDDhCkMzc/noLt5gi8kTRCXRO5iwnzydBwC+EGI16LNJ4uo5uqDzF8UB5n7VNxQspBJDEEapEZ51BG+oWVu0aW19qceXuypCtWVCze8544/iCBg7hRDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1787290390; c=relaxed/simple;
-	bh=PBpTp0PsaWchJZZ16pDrvCCQvsD9rrqXyUFIJajPSFs=;
+	bh=HBBuvzT4wS9YFsivgZ2CKY9EfvTvgWdjA/n4NsLezYA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=T0Z5AR1MzSJe51/v8tP+5kql2CXzP5NgH4eyHPBNeSDbFyqCBSNoEPTzlirIi9kQcdEsb6v0BALtmx5jw9SEGrDkfkguIOLhquZ6oLiJmqbpIoyFe7aOUC+CCDiVvVAG88tSjIyhPxpqXSf4szjPO1btnutohx556nsTKs6pr6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=BYC615oi; arc=none smtp.client-ip=117.135.210.5
+	 MIME-Version; b=lPzbJTTIUHj+FM0WDWlI/LqBjcy3t77tAQ04WWRzPzq4KiQa0Zww8vQQUTI7za1cnEfZymaDB9CLiyHMvDI6eiB1lzdk6qqiaNDqxV3OSJuPfl5gE/djP+XF+fvYk0nPsbeZfg/ONTdE4DTQ9Moa3O4CUpSus+BmsfrVk/dsWLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=RlIxZE4D; arc=none smtp.client-ip=220.197.31.3
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="BYC615oi"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="RlIxZE4D"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=jM
-	UxUTOh7D6jKzuUn54ZoReOZbsAvOg31bl39zQnPd0=; b=BYC615oinchjKTUIVP
-	FDc2tTUCsO6Zde5r5KDrV9135ME1bmb7FrTkVYK4IfqlVj/vHa7rScXPqsoQdOIK
-	9Jkx86t5HcHbHcnPkZw6/LkJ3l6c9fU0wskSUFaapiyYwrvJhUzS2eWIIDVA3t7b
-	ejT+DVIPLLy3oIo6csXYYMMRg=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=yy
+	ewxQpzTX4jMIjjHf6ILa7KbCm0j8w8sc+Bg4zybjY=; b=RlIxZE4DDq/QbWE264
+	9HRko/AuorbH0+bdH1YAbABzlId67xJ+ZMLK7RstDFM0Ix2RYtGqY9govNQpxwi2
+	hkvT9a8Ve+mfS/Ea135iUAjGC/KcQX0wUjgwOEj3/ghN9So0c+ZakzyuQLQ+dg1r
+	PdVzBwq+k6CtX3PS5Zq9rOmtY=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnzHn44odqtfQKPQ--.8742S4;
-	Fri, 21 Aug 2026 13:32:46 +0800 (CST)
+	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnzHn44odqtfQKPQ--.8742S8;
+	Fri, 21 Aug 2026 13:32:53 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -33,9 +33,9 @@ Cc: ntfs@lists.linux.dev,
 	liubaolin12138@163.com,
 	liubaolin12138@gmail.com,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v1 2/9] ntfs: fail EA update when reading $EA_INFORMATION fails
-Date: Fri, 21 Aug 2026 13:32:31 +0800
-Message-ID: <20260821053238.1281310-3-liubaolin12138@163.com>
+Subject: [PATCH v1 6/9] ntfs: return real error from ntfs_non_resident_attr_record_add()
+Date: Fri, 21 Aug 2026 13:32:35 +0800
+Message-ID: <20260821053238.1281310-7-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260821053238.1281310-1-liubaolin12138@163.com>
 References: <20260821053238.1281310-1-liubaolin12138@163.com>
@@ -46,66 +46,40 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnzHn44odqtfQKPQ--.8742S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CFyUuFWDtFW8Gw48tFy7Wrg_yoW8AFy5pr
-	yfGa4UKw43Jr12kF97CFWvqay5ZrZ7GrWUtryxKw1S9wnYqr1Utw4jya4kuFWfKryrGw1F
-	qFs0g39xZ3WjgaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pNiihbUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwR50P2qH4v6VIgAA3S
+X-CM-TRANSID:_____wDnzHn44odqtfQKPQ--.8742S8
+X-Coremail-Antispam: 1Uf129KBjvdXoW7GFyfZw4fCw15tw4kJFWkZwb_yoW3uwb_Ca
+	1xX3WkCrn8JF95Ca1kC34aka13ta4rurs8K34rGFnrG34jyF15ZrWDArs8tFWDXr17K345
+	Gr1FgFyY9F1SyjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRJ8nYPUUUUU==
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gV2QWqH4wXXcQAA31
 
 From: Baolin Liu <liubaolin@kylinos.cn>
 
-In ntfs_set_ea(), when the $EA_INFORMATION attribute exists but
-reading it fails or returns an unexpected size, the function jumps
-to the exit label with err still 0, so setxattr(2) reports success
-without writing anything.
+ntfs_non_resident_attr_record_add() returns -1 at its put_err_out
+label, which callers propagate as -EPERM to userspace.
 
-Worse, ea_info_qsize is still 0 at that point, so the exit path
-calls NInoClearHasEA() on an inode that does have EAs on disk,
-hiding all existing EAs until the inode is evicted.
+Return the actual error code. Every path reaching the label has
+err set to a negative errno.
 
-Return -EIO in this case and leave the HasEA flag untouched on
-failure.
-
-Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+Fixes: 495e90fa3348 ("ntfs: update attrib operations")
 Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 ---
- fs/ntfs/ea.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+ fs/ntfs/attrib.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index 59e5e86e38e3..10d5b192f07e 100644
---- a/fs/ntfs/ea.c
-+++ b/fs/ntfs/ea.c
-@@ -208,8 +208,10 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
- 	if (ntfs_attr_exist(ni, AT_EA_INFORMATION, AT_UNNAMED, 0)) {
- 		p_ea_info = ntfs_attr_readall(ni, AT_EA_INFORMATION, NULL, 0,
- 						&ea_info_size);
--		if (!p_ea_info || ea_info_size != sizeof(struct ea_information))
-+		if (!p_ea_info || ea_info_size != sizeof(struct ea_information)) {
-+			err = -EIO;
- 			goto out;
-+		}
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index 3d0b305703d3..a2502eee717e 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -2639,7 +2639,7 @@ static int ntfs_non_resident_attr_record_add(struct ntfs_inode *ni, __le32 type,
+ 	return offset;
+ put_err_out:
+ 	ntfs_attr_put_search_ctx(ctx);
+-	return -1;
++	return err;
+ }
  
- 		ea_buf = ntfs_attr_readall(ni, AT_EA, NULL, 0, &all_ea_size);
- 		if (!ea_buf) {
-@@ -390,10 +392,12 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
- 		*packed_ea_size = p_ea_info->ea_length;
- 	mark_mft_record_dirty(ni);
- out:
--	if (ea_info_qsize > 0)
--		NInoSetHasEA(ni);
--	else
--		NInoClearHasEA(ni);
-+	if (!err) {
-+		if (ea_info_qsize > 0)
-+			NInoSetHasEA(ni);
-+		else
-+			NInoClearHasEA(ni);
-+	}
- 
- 	kvfree(ea_buf);
- 	kvfree(old_ea_buf);
+ /*
 -- 
 2.51.0
 
