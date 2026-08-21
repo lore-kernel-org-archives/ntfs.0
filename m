@@ -1,88 +1,70 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3051D369D6E
-	for <ntfs@lists.linux.dev>; Fri, 21 Aug 2026 05:33:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EE8470E8E
+	for <ntfs@lists.linux.dev>; Fri, 21 Aug 2026 10:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787290393; cv=none; b=FGHm0UHgGOh8SJu13RkTow58Md1mmowIwSFsjwueD4OMwa5t2ZQO72woRmcmH8G2dmD831h6/th8RsnMvaxf1D+jJSrCNNucZLW54HLLDfLOtuCWmwCVQhy+TSPmL0O7JgjD8Lh49cV0JwVVyhQfk1LxrFFG6rLlPYJ9FlDZRiM=
+	t=1787307433; cv=none; b=RjaQoFzcu4UryQ3m6S9s32IVB/xTAopYGzI7PnC/j4zt/h76v+/2Kp5kQG2yPNwiUMiWKPp/9gajhvX3IPUq3Sz+gvHg+lYSO+zsPg0R2SJp6qkprrmcanVkU9+tU+y6GbpJU8HbBOZIRF7Pd5Abog51FxP+4ILLlEQZ4aA55Qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787290393; c=relaxed/simple;
-	bh=Jg1anYCcLfSpOVEs8Qq4zxReVpkLqMbbUzyxB/Zl8/w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ym/WcC/8hLks/2CVXIM1MNQVnYLILBNZSDPA4QKiXr4rLlljnevjXQGIrPj93OczFixYZlaq5Ucjyi8pLDwXfYr3iOG/c81EE+ntLXCvA5m5L/6CQzOEKLbN5G5e2Fh+j86FwDSrQ2w/FK0m0RRZczzROuDZdEgfx+3uBN/Ka2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Le1GA0Li; arc=none smtp.client-ip=117.135.210.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1787307433; c=relaxed/simple;
+	bh=1SzNxufBfvJUZorLx/0LyJ3L9HyuFDzXuxmgF6SVraQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n45wfwNktGKLLlKydhPSeNFaT2CDrQVTy+QiOcPwwouoD/kTYlSYdZ+8G210jRbYUD90Mncbn4Uzt7XZ0gIsySmN7wkXKf8gF790q0kOcH3XXZpiXqEGG8QBbScR5afA5d+QgqbJhUx1ga1xqoYaqlOm6qobqbPdOMAWlz2l6Ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mngxfd+h; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Le1GA0Li"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=L3
-	r+pw+SkSw77dGpHhU+FrNHZM9TPC0TXs+iZt1rokY=; b=Le1GA0LigKtvEYoc96
-	wAhtyNQ+C4WECkNXzWquYtYLpqZHDGPJWeQ9XTeqt/otXRPGPhphDHv7M0s/4svN
-	cPvqHpQP+M2OtMLUexsh816D8DpH3BfAYDKm/NUrn1LV4LLfIe3if+1jimQBPQiI
-	BtFH6BKYz83eGsTJYRMnPGXiM=
-Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnzHn44odqtfQKPQ--.8742S11;
-	Fri, 21 Aug 2026 13:32:58 +0800 (CST)
-From: Baolin Liu <liubaolin12138@163.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	liubaolin12138@163.com,
-	liubaolin12138@gmail.com,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v1 9/9] ntfs: skip free cluster decrement when rollback fails
-Date: Fri, 21 Aug 2026 13:32:38 +0800
-Message-ID: <20260821053238.1281310-10-liubaolin12138@163.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260821053238.1281310-1-liubaolin12138@163.com>
-References: <20260821053238.1281310-1-liubaolin12138@163.com>
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mngxfd+h"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DA541F00A3D
+	for <ntfs@lists.linux.dev>; Fri, 21 Aug 2026 10:16:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1787307419;
+	bh=xsvCleKLncgdW45efwqLmiLanOAfeh9mW4F2tSqfh90=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=Mngxfd+hArt2kKE2NlPqqbRX2LZiDVjVARyp0dadslBTHBLPfA7RgziumundygnCK
+	 ca9z9lnSBp29/ZNfvzNdqv4Z7UsZHLr4XZPV7ilzRsEC5EtKsW7l+KkY4VGudLBMoM
+	 mDuhMxSt1Y/qRSS7Ma2yGactXqgY37z5olLXuZl/w+HEc05U6ahU6DY9HPWLaK3WHJ
+	 ThPOoepownncrLvZoWjsCroqK2AXlWi32LLOnQaAPNfqKmdSIbh+Y1zB7QtQyMFi7o
+	 MPH68zzH4TZpbqWD0QjpOgeCq+qh5EX/XKPMV5mevvfFuC8+L9NLU4O2SQyk77DIE4
+	 dTHdknRiSG6mg==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-c1677c91969so100834666b.1
+        for <ntfs@lists.linux.dev>; Fri, 21 Aug 2026 03:16:59 -0700 (PDT)
+X-Gm-Message-State: AFuF++kP/ofhmrpnvZtCufLkakFf0HInUkUJ747PLwV2fFSv3mztiJYC
+	IeuGnEupbwl1M+/rZzzQBbzs2bZ5IJxan1Zpos/K9ADywTgKZ8I88rhCmPjXWyaeV7avIQbZD6D
+	rpZp1vY+7XmtwgZKY9dnzv/erROkZ5Ss=
+X-Received: by 2002:a17:907:c789:b0:c16:831c:427d with SMTP id
+ a640c23a62f3a-c246a736bfdmr625376366b.21.1787307418227; Fri, 21 Aug 2026
+ 03:16:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnzHn44odqtfQKPQ--.8742S11
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKF15AF4fCr47WF15KrW5Awb_yoWkKrcEga
-	yUJFZrG34UtF1rGa4vg39FgrWIv3WkK3s2g3y5tFZ8A3yfCa1rZa4DArZ5Aw4Igr4jkw45
-	JwnY9FyrAF1SqjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRJUUU3UUUUU==
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Qp3QmqH4woHyQAA3c
+References: <20260821-topic-wof-v2-v4-0-7a6fa10743b8@gmail.com> <20260821-topic-wof-v2-v4-9-7a6fa10743b8@gmail.com>
+In-Reply-To: <20260821-topic-wof-v2-v4-9-7a6fa10743b8@gmail.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Fri, 21 Aug 2026 19:16:46 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd9COOLvx6ypsRW+9dZXvUj0-=1njHhdTgmSiw5JDLGJbQ@mail.gmail.com>
+X-Gm-Features: AcwNN1Xy5ihFi8xyNueLawgeG3_fR-pc_OkkQSFIeu-JwHhi0XjOcCPiQBufz50
+Message-ID: <CAKYAXd9COOLvx6ypsRW+9dZXvUj0-=1njHhdTgmSiw5JDLGJbQ@mail.gmail.com>
+Subject: Re: [PATCH v4 09/10] ntfs: add non-resident WOF decompression
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 
-From: Baolin Liu <liubaolin@kylinos.cn>
-
-When the rollback in __ntfs_cluster_free() fails, the recursive
-call returns a negative errno and the subsequent
-ntfs_dec_free_clusters(vol, delta) subtracts that negative value,
-adding bogus clusters to the counter on an already-failing volume.
-
-Skip the decrement when the rollback failed.
-
-Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator")
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
----
- fs/ntfs/lcnalloc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
-index 795f71d26895..0d6cd08ee2e7 100644
---- a/fs/ntfs/lcnalloc.c
-+++ b/fs/ntfs/lcnalloc.c
-@@ -1045,8 +1045,9 @@ s64 __ntfs_cluster_free(struct ntfs_inode *ni, const s64 start_vcn, s64 count,
- 			"Failed to rollback (error %i).  Leaving inconsistent metadata!  Unmount and run chkdsk.",
- 			(int)delta);
- 		NVolSetErrors(vol);
-+	} else {
-+		ntfs_dec_free_clusters(vol, delta);
- 	}
--	ntfs_dec_free_clusters(vol, delta);
- 	up_write(&vol->lcnbmp_lock);
- 	memalloc_nofs_restore(memalloc_flags);
- 	ntfs_error(vol->sb, "Aborting (error %i).", err);
--- 
-2.51.0
-
+> @@ -905,8 +925,10 @@ static int ntfs_setxattr(const struct xattr_handler *handler,
+>         mutex_unlock(&ni->mrec_lock);
+>
+>  out:
+> -       inode_set_ctime_current(inode);
+> -       mark_inode_dirty(inode);
+> +       if (!err) {
+> +               inode_set_ctime_current(inode);
+> +               mark_inode_dirty(inode);
+> +       }
+>         return err;
+>  }
+I can not apply this patch because of this change. It looks like this
+code bled in from another ntfs patch. I'll remove this code block and
+apply this patch.
+Thanks.
