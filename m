@@ -1,30 +1,30 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84205403B1E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584C2369D6E
 	for <ntfs@lists.linux.dev>; Fri, 21 Aug 2026 05:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787290389; cv=none; b=hauLc8Ta7/BgarUnFNmAeCCbuWi9JRyJl0TzM2zHdYjTNPbKYdng9CO7QAhs1qB/ShZA8hFY++X+WaiXgr8+X5CxGWRcGUTS+4NE3bpi8GdUaMqdr7c3pAbazlm8zJb5jg30E2KrKzzWktJFB11MZFFKMjXf4IQVTA5fNICOtO4=
+	t=1787290390; cv=none; b=CBDb3irnJozwJ7yCxcr17viLvd5CkQt+CoO08FUGYdm08QVW8xjD3XJa48S8TguTW1/GT2Kxh1FI+7XwPw4+zBtl+RBMGM7lMTsUMFDpyRLhLRzUTpOUmGwp/m9ACUJdRI4nniPjljzAFEeI98u7xh2LrZJjn9YfGn4QP24Ou5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787290389; c=relaxed/simple;
-	bh=vXZ82cIJl30J/lUUuNAiztPZPzHrSOIFtnVNeXs7Fic=;
+	s=arc-20240116; t=1787290390; c=relaxed/simple;
+	bh=PBpTp0PsaWchJZZ16pDrvCCQvsD9rrqXyUFIJajPSFs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GPohTQcGe39/A73Xo9hgOr0r/WjPHm/xqZDd98XOKzRGWZxWQdQND3CXMzOcZQdM+uvG0VdS2VPgulKVA506NY+wzsJRbdO1LSy962hUzu/iFC3tDWEHKYhcz+/hrfoIcimFfbM1ul/rtPJF/HSBDDRUZffU4EjKRRqGVDUdNkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=VcR1qGOB; arc=none smtp.client-ip=220.197.31.5
+	 MIME-Version; b=T0Z5AR1MzSJe51/v8tP+5kql2CXzP5NgH4eyHPBNeSDbFyqCBSNoEPTzlirIi9kQcdEsb6v0BALtmx5jw9SEGrDkfkguIOLhquZ6oLiJmqbpIoyFe7aOUC+CCDiVvVAG88tSjIyhPxpqXSf4szjPO1btnutohx556nsTKs6pr6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=BYC615oi; arc=none smtp.client-ip=117.135.210.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="VcR1qGOB"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="BYC615oi"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=t9
-	QYEKYGLGk6E0NVSSKqtALxrXdnw0JG/Gs8KcVSN7M=; b=VcR1qGOBgHkpiYsEpH
-	7xe4QgJKMlmSCQNHW+L3nTdgowOIln4MnYTp49rBkSHUT3yoBvj1HRK3ksZBqXAo
-	T5OvCkxZ0ydH9qyG0RAC/z42CZHua0JubiAfDX2Jd/9jRBkpensyR2FL4VvA7q6x
-	Ne9IGt+F3Iwx9xisftD6fRgLU=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=jM
+	UxUTOh7D6jKzuUn54ZoReOZbsAvOg31bl39zQnPd0=; b=BYC615oinchjKTUIVP
+	FDc2tTUCsO6Zde5r5KDrV9135ME1bmb7FrTkVYK4IfqlVj/vHa7rScXPqsoQdOIK
+	9Jkx86t5HcHbHcnPkZw6/LkJ3l6c9fU0wskSUFaapiyYwrvJhUzS2eWIIDVA3t7b
+	ejT+DVIPLLy3oIo6csXYYMMRg=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnzHn44odqtfQKPQ--.8742S9;
-	Fri, 21 Aug 2026 13:32:54 +0800 (CST)
+	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnzHn44odqtfQKPQ--.8742S4;
+	Fri, 21 Aug 2026 13:32:46 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -33,9 +33,9 @@ Cc: ntfs@lists.linux.dev,
 	liubaolin12138@163.com,
 	liubaolin12138@gmail.com,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v1 7/9] ntfs: fix kmap_local leak in write_mft_record_nolock() error paths
-Date: Fri, 21 Aug 2026 13:32:36 +0800
-Message-ID: <20260821053238.1281310-8-liubaolin12138@163.com>
+Subject: [PATCH v1 2/9] ntfs: fail EA update when reading $EA_INFORMATION fails
+Date: Fri, 21 Aug 2026 13:32:31 +0800
+Message-ID: <20260821053238.1281310-3-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260821053238.1281310-1-liubaolin12138@163.com>
 References: <20260821053238.1281310-1-liubaolin12138@163.com>
@@ -46,51 +46,66 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnzHn44odqtfQKPQ--.8742S9
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tw4xXFWxKrWxGr43Cw4UJwb_yoW8Gr45pF
-	ZIkwn7Kw4ktr17KwsrKF4Yyay2k3s3GayUWw4kWw12krs5tw1qvanxta4kXryfKFW5Kw48
-	trZ293y3XFyUZw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0z_UUUnUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwgZ2QWqH4wajjAAA3U
+X-CM-TRANSID:_____wDnzHn44odqtfQKPQ--.8742S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CFyUuFWDtFW8Gw48tFy7Wrg_yoW8AFy5pr
+	yfGa4UKw43Jr12kF97CFWvqay5ZrZ7GrWUtryxKw1S9wnYqr1Utw4jya4kuFWfKryrGw1F
+	qFs0g39xZ3WjgaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pNiihbUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwR50P2qH4v6VIgAA3S
 
 From: Baolin Liu <liubaolin@kylinos.cn>
 
-write_mft_record_nolock() maps the MFT record folio with
-kmap_local_folio(), but the pre_write_mst_fixup() and
-bio_add_folio() failure paths jump to the error label without
-unmapping it. kmap_local mappings are stack-ordered per task, so
-leaking one corrupts the nesting for any outer mapping.
+In ntfs_set_ea(), when the $EA_INFORMATION attribute exists but
+reading it fails or returns an unexpected size, the function jumps
+to the exit label with err still 0, so setxattr(2) reports success
+without writing anything.
 
-Unmap the folio on those error paths too.
+Worse, ea_info_qsize is still 0 at that point, so the exit path
+calls NInoClearHasEA() on an inode that does have EAs on disk,
+hiding all existing EAs until the inode is evicted.
 
-Fixes: 115380f9a2f9 ("ntfs: update mft operations")
+Return -EIO in this case and leave the HasEA flag untouched on
+failure.
+
+Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
 Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 ---
- fs/ntfs/mft.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ fs/ntfs/ea.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 984a0827f9ac..69b007e574fc 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -580,7 +580,7 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
- 	err = pre_write_mst_fixup((struct ntfs_record *)fixup_m, vol->mft_record_size);
- 	if (err) {
- 		ntfs_error(vol->sb, "Failed to apply mst fixups!");
--		goto err_out;
-+		goto unmap_err_out;
- 	}
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index 59e5e86e38e3..10d5b192f07e 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -208,8 +208,10 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 	if (ntfs_attr_exist(ni, AT_EA_INFORMATION, AT_UNNAMED, 0)) {
+ 		p_ea_info = ntfs_attr_readall(ni, AT_EA_INFORMATION, NULL, 0,
+ 						&ea_info_size);
+-		if (!p_ea_info || ea_info_size != sizeof(struct ea_information))
++		if (!p_ea_info || ea_info_size != sizeof(struct ea_information)) {
++			err = -EIO;
+ 			goto out;
++		}
  
- 	folio_size = vol->mft_record_size / ni->mft_lcn_count;
-@@ -645,6 +645,8 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
- 	return 0;
- put_bio_out:
- 	bio_put(bio);
-+unmap_err_out:
-+	kunmap_local(kaddr);
- err_out:
- 	/*
- 	 * The caller should mark the base inode as bad so no more I/O
+ 		ea_buf = ntfs_attr_readall(ni, AT_EA, NULL, 0, &all_ea_size);
+ 		if (!ea_buf) {
+@@ -390,10 +392,12 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 		*packed_ea_size = p_ea_info->ea_length;
+ 	mark_mft_record_dirty(ni);
+ out:
+-	if (ea_info_qsize > 0)
+-		NInoSetHasEA(ni);
+-	else
+-		NInoClearHasEA(ni);
++	if (!err) {
++		if (ea_info_qsize > 0)
++			NInoSetHasEA(ni);
++		else
++			NInoClearHasEA(ni);
++	}
+ 
+ 	kvfree(ea_buf);
+ 	kvfree(old_ea_buf);
 -- 
 2.51.0
 
