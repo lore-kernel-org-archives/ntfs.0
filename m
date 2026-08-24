@@ -1,114 +1,173 @@
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3223793CA
-	for <ntfs@lists.linux.dev>; Mon, 24 Aug 2026 05:08:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787548127; cv=none; b=V4QJbdBW9/JG0RNw9TAh29784WHU6wT8LnoHPaFwDDDXfIp9JoE6e7uQDTZ4Y3UGcyOMKuILEGEWT4rTKs5WU+dXbVlrR7gVLGN2xZxYoPALHIaQIwLDFLAUn73OGlulK+epcvRzutgQ0Xxgkg6Z7Dzqcx7jiAT2Cfp9+xtT8Zc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787548127; c=relaxed/simple;
-	bh=5ddXkY1p1Huql97Y09zRJYg3yqWcJ63/XKnMViTbDKg=;
-	h=Message-ID:Date:From:To:Cc:Subject:MIME-Version:Content-Type:
-	 Content-Disposition; b=r4Ebso6P2mVIUmXWJVK/gQ5f78RJ7Bznm6m9mjpYhr24oZhns1W8LaPIByDPxnR7ICdUvmUig7uH/+frBeI3aOpsbFdU/uXUqiz4WTxoBHJWX9hQ8DOcVcdLx2OUd8k/LCNTg/5AnRmSKbqneetEM814318ChtvNTgIPLkcYA0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=emAL5jSj; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B322331EA8
+	for <ntfs@lists.linux.dev>; Mon, 24 Aug 2026 05:09:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1787548152; cv=pass; b=FyEqlSO8Jpc3ZPYMTZ2WO6Lx8uNunCH0+jRMtroJ1cwpnF/5vpwB/skAPDW7w0E6uwNPe0ni4Np63Ih4lsVVt+jDNHlK1eIhHwGEsp0uNGsSrZ7uZCC6REYndoynk60bCrMYzzpmWSU7CG3dzpwdcKcwOZ+/DDxIEDXeznd4KCA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1787548152; c=relaxed/simple;
+	bh=oPnJoYRjsNPA8xg6al8HI9/9f/17eJKIUxWHpf9q3hY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X7G13VR1lv/YJZV1qCx8jZQBxdebj8xmpaWzYZU4NQjC0F4F+jqHcWjz21BykrNtPWVycLrP/7uM6QdpFW4+dv9+0BhWAsopdR/IszWq2OVMvnQtpcNRanaxYz1llekEnszoGnbFJsN+gNaFn2BT0RJ/Euse0uZOU3Ta5fmItME=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HXHjyWjV; arc=pass smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="emAL5jSj"
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-84faf87d19dso3006455b3a.3
-        for <ntfs@lists.linux.dev>; Sun, 23 Aug 2026 22:08:45 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HXHjyWjV"
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5b29599b81cso3718865e87.1
+        for <ntfs@lists.linux.dev>; Sun, 23 Aug 2026 22:09:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1787548149; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ijFq+MXhMRTDwE4e/SR2gHia7XBZxrW/NhvjGE53X7heJd79SsLADBPADIxtvwj7kG
+         K4GB/+OqlPzCLi4KENb9MUk0ZG2yjaKTAZ4fMtDL/XztIGfmPThXw4bvwcvNItDNuAXv
+         vIdFx7cCfTfGlOZClAYD+6TOyeoE2UNuF8Us0g687haY2YKnLSa3/4jE43JFB8ScIaTx
+         cmF2Ky2PlYIlg469qyQqIoaKyJ7gEoLuOuypJAAUvOWXyoVNfnm8y7Hlf6xohErIh5IU
+         u1NqJLcsXxzyAf2MFlF30yAVA+H0gmN35Ijd71dx7xHfqUhCUFL7V49oXRF9UTjIhE+h
+         F/pw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=BpAjc1lkb3aji+6OoovnhPPrlgUdpHLBfYHpVvjp7ko=;
+        fh=RUlbyqponndMw1hWZCVnl3E7acgzessgNd8BoU/gH9o=;
+        b=XJd41HD/V4VPKJSLgicrngsJ0DHMeha5RPeotDBy9cd+hdu++Z42FsNWdX9g2t1NyZ
+         rNHuEOjaY/LMFSkEKHFcw0psPbUnPMvzHOrC3Y8ts+n0GDpkUp45HAYiDVkRweCsVAah
+         mzAyrEog1EgryI2GriIAG2Q+G5sJtFR/wEyIQHDniD0qXtvAC8etT0r6XOukSg3CRabu
+         OBtFWY1rpEXK+zAFYYuoz8MCsDYdsTmw9so7nIx9ukuJ0T6ovOB1hee3PORma+pkoIpQ
+         RRIGeK0Pk+9qf3m61OhgWP8zE8D1NJy0dabQIWqVii3OJU+QSsWgFodtCv1t8a4ZJ1kH
+         6PYA==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787548125; x=1788152925; darn=lists.linux.dev;
-        h=content-disposition:content-type:mime-version:subject:cc:to:from
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=LrFzfkuWgCIrnYEkQM7tNXClDbOIOCxxgl2oHl1c0Go=;
-        b=emAL5jSjaiwNSzjbkFDfadKqtKvvQ6lGgeXsuz8znzTjQQ3N4EXV72RLzVqujkyDup
-         WUkxsT7CSYJjipU9fZNSWLIHIGjphSzz+m9OelUmxjh45zxVW3aDqlHRTxdOICnBwsta
-         W29OJ62MVvZY3jhWmmC6QiXegM4eq+pnj/Na8KWdZ9kA1ukXA5lA7vS5bWHzof+d0EQ8
-         WOj+wxHzArG4xDZSYOTzCMAZBHLpiBVkqsEGIkwIQM2EZNzoQRTBnxktUO4kvEPyAICU
-         VVjQfo1Og4buMUk5PsY+7FgqHE9CXacEUhoWnDMPfT+q4egBSgOCmtVWxmjDb+iCyViW
-         Z6vw==
+        d=gmail.com; s=20251104; t=1787548149; x=1788152949; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=BpAjc1lkb3aji+6OoovnhPPrlgUdpHLBfYHpVvjp7ko=;
+        b=HXHjyWjVpVPZdrNfYyS8Nih3+MA4OpsexJpRDZWV1RrbwpAsf5NhDhaGo8UBHCP/S8
+         VceuGPvr5KlHawyDHzf3dDe7+q3cYx+CyU/a4fW9Fpa9hJXNL9OLwYlfrq2nzOszh82x
+         aB1kStUztQVcQtcPu8pYA8gmmYESteFjVHn5cVX4i7DYt7APpqtowGIhxwvLkv1v9aNO
+         VfRsQKFefY33IROoFhqD4CM/tZOlenbUtL/Y1r5b90IesShj/CiIr+Q9i8UD6CCcczz3
+         U9AJ+OxJEPilZd2ewcHV6awTfTvV2By4Ai3HUyYv3eeQ19UpU9AByGyGMbgpYtkLODJw
+         SStg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787548125; x=1788152925;
-        h=content-disposition:content-type:mime-version:subject:cc:to:from
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=LrFzfkuWgCIrnYEkQM7tNXClDbOIOCxxgl2oHl1c0Go=;
-        b=Q4RKHrah5j+GS8l9RG8jPRy1C9Qlm1lqK9/jVyrD+LA8HeyfcFuamJZd9RHucBV8d5
-         UNtH6xQ8HgZjBQJR4rkrtJzeAgcoxoHtjEEL3GuzdO4Ym9pTUT1pTm6281JgI2PMJrPv
-         kij4zAb+ZENYnQeBraTMPkm6M7I1B/zpzylOXOjCn5XuwXcSnxrnoveQossiuh5greBm
-         HlNdV3dQ5kHXhLEv9nLB3D0b/ARTGSMZy00F9InfS1JKilg7at0gW6WggDvd6o0h0Xa2
-         13QI03Y1Q1axD7HOFDvCM3+cjiMUp6becOw7/12uIiO0z1tU3k9jW0i4yR/C5VGmpbJc
-         o+XA==
-X-Gm-Message-State: AFuF++mQ1t+NnzTCPGfSmJ38n0q7AadqjBWh7iiQPl03ytta/xrOD2Di
-	2+k2ZkII84tpr7UGnfj9Q9EjPQYsFudS2UgrOwi7mwLz/BpzLvUcedNL
-X-Gm-Gg: AR+sD10hphbqVJ9yFvb9OIPqXBNs6zOTOqtWU/E+gvyDKD4uFME7ywarsBKSjPIioh0
-	H8dXLffs/VKx7q8C7VhLfrj/GS2Wv/QARifqcsoynEzXvfZ+amdIxBK0W09NaWRYiUtFxZkp3LN
-	1Xa5d01O0ONuSqFgvey/6kt5wTfM1YqRVh3ARADg7HHD506z+mgyFuYoFuN0heixL/4KZjlezJP
-	iZsW8AeXCUBk7Q8coHfqRffaJD/+OI09Z4RwQ6ZFVOqZl16ZuqybXRiJrt3XCYH8qXNqlJJj3vS
-	nbBC9uOUEALX0qqxQ/7RcAgCWIFEJGSwnMYKgaeER/fPVALDEiOYZ6JpvovftkcZ1e8oT3qzgKh
-	uxQmoEkij/P7w+gvWQl4XJVgWPWbm1iAJp0taMdO45heQVDqhB4XFGmVKZ2W9bd8Rg3zWWfcKEc
-	WhYtuENRiCPZoSdlssVJrplOQ8U9SEdIdBgjXg5grKdODNLyXxalaGYOUrRo/LkR5tOpDd7v44V
-	SloKRthtPDDQRk45PVvNLRPzMMpoK9Ocq+1igi29dbK/A==
-X-Received: by 2002:a05:6a20:4320:b0:3c4:1c9f:d7e with SMTP id adf61e73a8af0-3cd4ba0a414mr26163686637.6.1787548125269;
-        Sun, 23 Aug 2026 22:08:45 -0700 (PDT)
-Received: from localhost (75-172-9-230.tukw.qwest.net. [75.172.9.230])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc199e60abbsm674053a12.23.2026.08.23.22.08.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Aug 2026 22:08:44 -0700 (PDT)
-Message-ID: <6a8bd1dc.009b1f07.b9616.7896@mx.google.com>
-X-Google-Original-Message-ID: <aovR2GU9d3pmRWA_@DESKTOP-HH660AU.>
-Date: Sun, 23 Aug 2026 22:08:40 -0700
-From: Dennis Tighe <dennis.tighe@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH] ntfs: do not mark the volume clean in sync_fs when errors
- were recorded
+        d=1e100.net; s=20251104; t=1787548149; x=1788152949;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=BpAjc1lkb3aji+6OoovnhPPrlgUdpHLBfYHpVvjp7ko=;
+        b=SJSwtcJrB+7lzM9h0qr1NJNbWmeBEv3c9orB3V0e0am4SbKkDcNFZiCHobKyQXRptW
+         9XUlGUX+MB2epREq+e34I9faJvQRWT/d3ZYNz3Cb/TaDjduTCF8i5rIGWgwXCDYlRV/i
+         F3+KiCnO+/6Cu643YMSByQgo9HP4NXWa9PMwobxbO/Ic6Yfu6IJ7DVLnVQyXNCrVnk9o
+         ZCuNhObgZ/GD9Cmx24MCpT6xKcICoOvZjuuL9Z0NS7QamQEVEsqaiLbjBkAeZMaSpVbX
+         7m1s5usFdR2gltBawUatr8lH/2nui+nH83m8IyVPz7T7QQWZ8zj1jD442XFsBctcPmsn
+         28Ig==
+X-Forwarded-Encrypted: i=1; AHgh+RoKu3PkZJlCkQo2Hnwr8u1zQAX00M7LefwCWOxUnmx+dL/9WQlP3iOOieaBbCuAWUgR56za@lists.linux.dev
+X-Gm-Message-State: AFuF++lUdqjPepiCAVi1Owx/ccYoNnOhedLmHBNE71HBuxaBy9aY7/Bg
+	iHPwH2w68Y2q4a1KsCgq9/sd+/scRHVo5ZPxSvY1H5Z20Z4pYtQhtEi56uxmzodJHYMAHoSHAfl
+	IE1trsnkQ1OfkccyHeBXxFGof7uHUO0U=
+X-Gm-Gg: AR+sD12eJHUNO9f23QPCpqHt5R+D1izERb4pBqbndQalxKsU2NK73jxgEeaPYy9zOT3
+	t/D/ZaqTSn4i9uLXdYOqUUQkShq5vECfa3kziVLHjfklLSYNxDi56YZHoZPm/GxGmgkV/qZhix9
+	nC5+waBEVUz4mBNtm9R7ZW6z//2Viln0ptCZxuXQNh2/yZkTH8WRV3tOsIFYLQbzE+covw03Scs
+	8ojzPTryLNoQXiEu+zJeq7WTwMDcWkpPEcZdU6WjdijgZDn6YD45AnF7UBFvln0pvXcQJ4Us2ww
+	1NT0/PUQ+KhznGS7/pObIn0kR1AfLlwqEsPOPemon0fnnpFKdeRhDFo=
+X-Received: by 2002:a05:6512:2398:b0:5b4:5352:e2b5 with SMTP id
+ 2adb3069b0e04-5b48b88bfc0mr4529948e87.15.1787548148475; Sun, 23 Aug 2026
+ 22:09:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20260821053238.1281310-1-liubaolin12138@163.com> <20260821053238.1281310-3-liubaolin12138@163.com>
+In-Reply-To: <20260821053238.1281310-3-liubaolin12138@163.com>
+From: Hyunchul Lee <hyc.lee@gmail.com>
+Date: Mon, 24 Aug 2026 14:08:57 +0900
+X-Gm-Features: AcwNN1Xc7cD5fNsuuyBRRrTJ_gF0oceYk1kkDz5HHX1-doYdRLc7g8Kxu1Tkuuw
+Message-ID: <CANFS6bap1ZRdf1HCgKq3XMQ-JwPrxJNrGdnBJ9zBtMNU72aoiA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/9] ntfs: fail EA update when reading $EA_INFORMATION fails
+To: Baolin Liu <liubaolin12138@163.com>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	liubaolin12138@gmail.com, Baolin Liu <liubaolin@kylinos.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-ntfs_put_super() and the remount-read-only path both clear the dirty bit
-only when NVolErrors(vol) is false. ntfs_sync_fs() clears it
-unconditionally, so any sync() on a volume that recorded an error marks
-that volume clean. A volume without this set is then seen as not needing 
-recovery and it does not run one, so whatever went wrong is never repaired.
+2026=EB=85=84 8=EC=9B=94 21=EC=9D=BC (=EA=B8=88) =EC=98=A4=ED=9B=84 2:33, B=
+aolin Liu <liubaolin12138@163.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+>
+> From: Baolin Liu <liubaolin@kylinos.cn>
+>
+> In ntfs_set_ea(), when the $EA_INFORMATION attribute exists but
+> reading it fails or returns an unexpected size, the function jumps
+> to the exit label with err still 0, so setxattr(2) reports success
+> without writing anything.
+>
+> Worse, ea_info_qsize is still 0 at that point, so the exit path
+> calls NInoClearHasEA() on an inode that does have EAs on disk,
+> hiding all existing EAs until the inode is evicted.
+>
+> Return -EIO in this case and leave the HasEA flag untouched on
+> failure.
+>
+> Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+> Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 
-This change skips resetting the dirty bit when there are volume errors.
+Looks good to me.
 
-Reproduced on a volume whose $MFTMirr does not match $MFT, which sets the
-error flag while leaving the mount read-write: after a write and a sync,
-the on-disk volume flags read 0x0000 with this driver and 0x0001 with the
-guard in place.
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
-Fixes: 6251f0b0de7d ("ntfs: update super block operations")
-Assisted-by: claude:claude-opus-5
-Signed-off-by: Dennis Tighe <dennis.tighe@gmail.com>
----
- fs/ntfs/super.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> ---
+>  fs/ntfs/ea.c | 14 +++++++++-----
+>  1 file changed, 9 insertions(+), 5 deletions(-)
+>
+> diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+> index 59e5e86e38e3..10d5b192f07e 100644
+> --- a/fs/ntfs/ea.c
+> +++ b/fs/ntfs/ea.c
+> @@ -208,8 +208,10 @@ static int ntfs_set_ea(struct inode *inode, const ch=
+ar *name, size_t name_len,
+>         if (ntfs_attr_exist(ni, AT_EA_INFORMATION, AT_UNNAMED, 0)) {
+>                 p_ea_info =3D ntfs_attr_readall(ni, AT_EA_INFORMATION, NU=
+LL, 0,
+>                                                 &ea_info_size);
+> -               if (!p_ea_info || ea_info_size !=3D sizeof(struct ea_info=
+rmation))
+> +               if (!p_ea_info || ea_info_size !=3D sizeof(struct ea_info=
+rmation)) {
+> +                       err =3D -EIO;
+>                         goto out;
+> +               }
+>
+>                 ea_buf =3D ntfs_attr_readall(ni, AT_EA, NULL, 0, &all_ea_=
+size);
+>                 if (!ea_buf) {
+> @@ -390,10 +392,12 @@ static int ntfs_set_ea(struct inode *inode, const c=
+har *name, size_t name_len,
+>                 *packed_ea_size =3D p_ea_info->ea_length;
+>         mark_mft_record_dirty(ni);
+>  out:
+> -       if (ea_info_qsize > 0)
+> -               NInoSetHasEA(ni);
+> -       else
+> -               NInoClearHasEA(ni);
+> +       if (!err) {
+> +               if (ea_info_qsize > 0)
+> +                       NInoSetHasEA(ni);
+> +               else
+> +                       NInoClearHasEA(ni);
+> +       }
+>
+>         kvfree(ea_buf);
+>         kvfree(old_ea_buf);
+> --
+> 2.51.0
+>
+>
 
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 30481e5d5dd4..a4dc64fb89ed 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -1862,7 +1862,8 @@ static int ntfs_sync_fs(struct super_block *sb, int wait)
- 		return 0;
- 
- 	/* If there are some dirty buffers in the bdev inode */
--	if (ntfs_clear_volume_flags(vol, VOLUME_IS_DIRTY)) {
-+	if (!NVolErrors(vol) &&
-+	    ntfs_clear_volume_flags(vol, VOLUME_IS_DIRTY)) {
- 		ntfs_warning(sb, "Failed to clear dirty bit in volume information flags.  Run chkdsk.");
- 		err = -EIO;
- 	}
--- 
-2.43.0
 
+--=20
+Thanks,
+Hyunchul
