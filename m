@@ -1,95 +1,94 @@
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B10375F97
-	for <ntfs@lists.linux.dev>; Mon, 24 Aug 2026 05:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 830591A6803
+	for <ntfs@lists.linux.dev>; Mon, 24 Aug 2026 05:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.43
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787548204; cv=pass; b=SkxBmAAjL9rJOIUajT/pdrNuHiN3CGEC7uA5e83EIbvNDPEosA7f0Y91kyUiu/FX3OdDV0W2lJsvID3YoDjfcQwvKEMN9Axu+ia9db8GB2hTBzvypkreMNScpze3cTnethDJkqdzkaZ1Lp9mU4v/M0cQnvU4/+Q9ckFJvO5kKEs=
+	t=1787548252; cv=pass; b=MDFQLc3HbVyDbN518L18/SXYXU8qsf3mjqZxFowSosGEWrJrrNy1HNsilhlb7XPIoVH6PPksmD3rVLkxK+WEYbDWWvuiGe0Lksh0XPbyPtDJfw1PG2MA4CNE49kcOashTg/kH1mZ6v6n/IMuoqi+dwtAMsDHX+vFm5qd5U1yT0s=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787548204; c=relaxed/simple;
-	bh=c4KXW/+U4N+nFd+TSZuWBro4me1AHQbaFXcJAwQ+S4Q=;
+	s=arc-20240116; t=1787548252; c=relaxed/simple;
+	bh=7wG727y0Cck35UQYmtu04T7mNitl/9KBtq5d0RMvb7E=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LHjjujUxDIkwdOTttv5LlNBJNgvfo/b6yBFaH4r80HXlyGKyhZg2ZrUtT0ccvBEaH2Th2+qtUZHXiSjustzRHULL9+TgaZkwclI7sPhCxguotJxgPkBLgfFXjyrbxVrBUBvjH9AWOTgVz88axupPL1BklolSI5r5HZyfotJzZUg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JQ88DDw4; arc=pass smtp.client-ip=209.85.167.52
+	 To:Cc:Content-Type; b=jxLdLTf4/U5nqTnmVcsK4VwUXk0CtuzodB1lenSmKgR8VKDM2BK0cPQqLoJvHgU0fa8c9AbxEWbsZ1o/cpqIW8w2dub3I76Chvq4ejZ6kRveD7WJq10fZ2Dvrqw0WaN6lKKrzXQsvi/LKFUrEFfQ0mx84UxMzdFtlPhXmHuc6hQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=evzgSvr6; arc=pass smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQ88DDw4"
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5aeb24c0807so2580117e87.0
-        for <ntfs@lists.linux.dev>; Sun, 23 Aug 2026 22:10:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1787548201; cv=none;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="evzgSvr6"
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5b45f1cd80eso2699290e87.2
+        for <ntfs@lists.linux.dev>; Sun, 23 Aug 2026 22:10:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1787548248; cv=none;
         d=google.com; s=arc-20260327;
-        b=BT8ZGbqTvGF5LiV1xqcFuiXALTK2NVmJjhoQzbnXbqKQldDGyel9s4Pupz36uYImwZ
-         BYEdAhin44bIlsdRjeJlJXs+w3CueO12EGcCe17+MnLOizJr0EW0no3KWP29Kh7aPU83
-         aGgvGyYQOFtmo3PVPtn1gkgx7EtYeY6VKmcaGWikfKBl/ABhAVQRSZJBTvm5pcvPj4XQ
-         u9hM6C6OEOJ+9XXGjlBYh7L1X/nleX5QHYgR1TfHOh6M43HhYZY7i3LC6HjFYFITFMdY
-         qWKcPqLQW7iD2I0kRY9APZnie/BWffiPYHqRXsNekBgCkj+aEItT6q7GWNzNBeB2fd51
-         m5Dw==
+        b=IvpTotXcJldLSLDKJyMVVGpwu3BlMMQTQCzZR7EwPobLjwxBTRKziLMqS6PRgTlshH
+         7hf87jWHSSYg4MwtUGwpNzlOQ8IvSbB+g9Kulw6XGqnqhDWMcEqOhAIeMyjNbvgoDSOz
+         7CKBgnnDjH88pYW/rD/uWlQjqc04FFFg+5RqNFFA80cT8vNc8xX4dzBSpZ5l/Ux2wHBT
+         k3ahqlEpxDkSgnxJSdJ8pgc/KPeqV+y8NTLfsg7okrrW71H4s2LqQoLsBqCiTRF3ljk9
+         53c6UxPRaTWQTeykHywLwcmAS8FBU7b3VoMG3tM3pX7HjdCbrO3uQxRbc0XBiY60hxHh
+         s5VQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=YpnjSypwQ2J6HbuMu17kiGwvd8M88GI44T/eQuWZ/4s=;
-        fh=3bZuP8CqM/zUwlyQCYR8xIFsI81IJg8ptfhyxRJlIyc=;
-        b=YcZxfh1qzW8y3gLt3jYODlJL5C1RpyJp2hM/mjZApW2XdoKdIvgJvNKr8hLJqgvXYV
-         QKX8NqRhWzY4YgsQOYoDSBV8t6Dz4MtPZxty3Ryaw5dylTxtuRihPeNLU/0LQORxyH9C
-         yJB/L7IPSyNH81njdNtG0eEy7AM9JNvs/yg/AazvX4MrStSzDt4v9QzowYNO+B9wSJzL
-         d/HiTZb45dP3YEIUmLUHRlih/dEy5IwEJdVu+hP1+InfGXCq0ckLmBeXU9yQkmld+daz
-         iMVt7yl1fy7nw8IGflZU1BD2suBc77xVu48tMUHXABIr8NPH8rvEwkdEKCKcxjg5Nub2
-         er7w==;
+        bh=0HPOP0e6Kvn5YDjgXDyoI3zotbYGLwyyFx5bxZX6j/k=;
+        fh=bB1jOZBzbeObU7YNBXEqaYG9oBTkojXeKi3Ut7Ax4X8=;
+        b=jmm+o1KTNXpBfG/iebU9k8FMLa0/Hl/hZOkSJSTykRF/yk95Io+1OIw1tfljoEAE3n
+         k4YwIhPW9qEEZU9bEnR1bUpWvf32XhJIg75IY1vfNP8Q15auAubELOpXiuFiOJkJUCO8
+         sqqrNpmpnnoZmT3ASRo00aVaOXr8amCFTlBDrCFi26J/lLGzie/wDTvOjEMIWOeLCGqy
+         bvxVATYoAn4MUSexu6anE0ktWX+VMSpUZOP50epJBYZQqDD+fS/o0jhcDGJXTe2OXDbq
+         0q8QY5iwWm2yrjhG/qcaZyvRmi7fD+cXUmjEHv4n4p44RjcI9OMJVR11ecPO9etBsKPQ
+         FUHw==;
         darn=lists.linux.dev
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787548201; x=1788153001; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1787548248; x=1788153048; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=YpnjSypwQ2J6HbuMu17kiGwvd8M88GI44T/eQuWZ/4s=;
-        b=JQ88DDw4PKzPqMVr2yogRIOP7A4LbzndlOwDgQaZz9+TEanvcF2LKufimQqYfn25TO
-         whd3k1uzA1tHfa7v3iEV73SB8eqEx+swCHS4u9QOx2ZUgboKZ8JpyERoffis/3PtNzBj
-         iQAbu69Reg1PKenjN4k2TYcvX5GQBjAuGS2QDW+tzVRAcZ/ya5kka/uAhHW8USPfVKfn
-         Ieo3YjlKJ0Q7F+Z+CogidyIah2IFoNZ4V45Il+eZ84OBLNzezB8Ye793E+/Sj8JU8BVJ
-         7w5YrKgk+cXL+YoA8n68vG1zFpHk5sM9GI3TGGxq1xfj5K6zpKl9r1kYvLG+l3nA2/bt
-         Dxuw==
+        bh=0HPOP0e6Kvn5YDjgXDyoI3zotbYGLwyyFx5bxZX6j/k=;
+        b=evzgSvr6BzsOSlozFhVFZho13EdTAnUvQN0XWkzgG/Dn87EmHP4BODpwXCjsxjQ+ac
+         qTQB43Hw4CpljYxg3vDOflflGTeuizLKfbW32AiDubuziPsvH+p5aC3QHbmTCx6PUGTB
+         bLl/xwOekTttpNJDVyxBMgJt7ZNpL8Of/KrdYPL+OL/CCEOrzBkrfhlef5FywKWhBQHy
+         a/HJVfF0D4P4VSvO1zUD3k5IUdlFig6iS1TqttEyP9jtES0oao8K7u/CIt6D1U3MhZlb
+         JT3EGo/7HXKXLe0hPiOFO2QgN8gq5Stl32MxQmY7do1cFLoIHS86k88LAQhAKh+URTa7
+         AZSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787548201; x=1788153001;
+        d=1e100.net; s=20251104; t=1787548248; x=1788153048;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=YpnjSypwQ2J6HbuMu17kiGwvd8M88GI44T/eQuWZ/4s=;
-        b=r0DbC7JOHVwdHBwZDUOQuHLmA91GvtH2s9wM75ZT4eD/gnbQnsFmZUNmz0MaybzZH7
-         wUHd/ZU4oq5wn5CDFsvR8yrU+hHvvzf00iTeTpjHU8cPdUC2cCCfZLi3q2tHr81luGo7
-         wMXDSBFUTvT9s3hD4rshrSTFn3PVCQbibQ8AzFAjZgQkJdOYIHHMamdSeDITbqEPwKjx
-         Vcm7wEWiwcRUScYwzF9F7gUxLOVpMCz35yrkATHav+hc4S/K9U5tfqgw1L7b/LT0ABx9
-         j0knmlUpk17DrPDK+A8XYgNsY6XX9ToKufFK99a/2L+SgwckfQurYrGaarNA2ZrBZidu
-         HBCA==
-X-Forwarded-Encrypted: i=1; AHgh+RrQfqhIyDE0yVUgGep5Qa+U8fgEDWLY+PxB93t9u1+/mLK6ipQl/mZk2JRB8MU/6nU5OR86@lists.linux.dev
-X-Gm-Message-State: AFuF++khjDynp9bwAuNy0Urkp9ouTwAB7O+QfcxFtA7hz3YYNflwnFuM
-	juk7Gs/d4Us1et2mSl9clbgasaZHCV6vIAlXyCPSIziaCUXeJTMRW2wz8J4u7WVQmOurVwPKyV/
-	HusiH9x7+lRYVhQzvvQi6f7fv3nYxB08=
-X-Gm-Gg: AR+sD13ol91FOyG6CeCQX6f0l0C4oFULM2rRc0PUppYgOMIDVEx4aJ0MwJiM0VnnA70
-	DkrExnIsXP4NBTjX77j8Nx7Sj4ZQG4jgw5kre87Y49zeDC6tkwtYHzNyF5NC9Fe9iGkijr/kG58
-	0RvuZB9w7cMviwRR3ECUwppUOAjiKNcN8PI1Z+JM0d4DmlQS6V8iPfsvN6x0O4tLdw7usBmLRzv
-	cSR2PCKKN8CtuO8wLaBZGq5WDzgGDP+XD8RXIfrxYSpNkNgUUCFNeRfe/dh6Nc71WPrC2LKp6V1
-	BSUo70KNs3sCrcGClXobH9cGRsMMOdISnKItoVrwNiJl
-X-Received: by 2002:a05:6512:2315:b0:5b0:11cc:2279 with SMTP id
- 2adb3069b0e04-5b484208ff0mr7134290e87.1.1787548200613; Sun, 23 Aug 2026
- 22:10:00 -0700 (PDT)
+        bh=0HPOP0e6Kvn5YDjgXDyoI3zotbYGLwyyFx5bxZX6j/k=;
+        b=bpzfQtyxe1pPOn0QzySIaGjIOu+6hK7PD7sxt8y7uI9ym63rxOB0OvBoiZNuznE9t9
+         LEluIYoVcpw3lYV0WfcrqtapgnusvpDFReO4x44uzkgAEnBtAh5ewyK2wv/KzXQuin5d
+         Dk4yaJLMChqDJspGABG+0AlVBq0ygvwpCv3lPnDPtc0eHE7rGwPQjg2sCsGCpWFas0O9
+         Nwa6mKfhahqaUe2qtniyoEucjwge+bdvVo6cqOXRiHiFSGQktTK82UTahMutqyP35iqA
+         O9pj/qwQ+oxH8tGrAlV0iiq9W5Cv+uwz7/ykmYpkGGT+R3nloIfW64ie8ncnZVH4Auze
+         ZYNg==
+X-Forwarded-Encrypted: i=1; AHgh+RryCDMj4gvEUuX4shLb05Ln/LJShUYdTM0fyON/XX2yd6Bw7kzY+QlP2or1MtfEVVGF4YUF@lists.linux.dev
+X-Gm-Message-State: AFuF++npFoRdS149g52kVtcl2RbSKblc4iG+7nS97ZPWrN3XVxQ2B9Q/
+	jcdRixm+1RseaV3Vec0upLWq1OFWKkm1x342LSN6O/nznDZdNGkoq7f7tB9lWOxqSv/cKqxP292
+	dswR2VTuRz7+iKXtcyt/5x6xUMuG7lYU=
+X-Gm-Gg: AR+sD10b1N3hVG9XrvH6VzTFLwwn6oWBbrBNHIbJSm6pIkOAeZhAKiMlEUxNsZU5QFE
+	48geivS5Jh8vXTcCcwRhjbXh17G3r0YGAJsg8Z5YqXMbPzDJsGRe4Szqw0G9PSINIVtHbETQQUv
+	/EmAHGqj1CDZrvC7eLsePId+Em9DrzYHCUe7bV9SkKTeH+etN83f6+xRtIGsnA2VqMx4P7PEPkI
+	UGjON04gs2VZceiOOirFedGOVit4H8sORkd0gMY7e9XV9pea8hMyIN8kkjojpTX1SS2aUui1B3z
+	SPyK+lhG5W404VnqegM9R5tgihXwgAxxYwUKUUBcwQyr
+X-Received: by 2002:a05:6512:3b2a:b0:5ae:c659:f01f with SMTP id
+ 2adb3069b0e04-5b48b7874b5mr4212820e87.9.1787548248337; Sun, 23 Aug 2026
+ 22:10:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260821053238.1281310-1-liubaolin12138@163.com> <20260821053238.1281310-9-liubaolin12138@163.com>
-In-Reply-To: <20260821053238.1281310-9-liubaolin12138@163.com>
+References: <20260821053238.1281310-1-liubaolin12138@163.com> <20260821053238.1281310-7-liubaolin12138@163.com>
+In-Reply-To: <20260821053238.1281310-7-liubaolin12138@163.com>
 From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Mon, 24 Aug 2026 14:09:48 +0900
-X-Gm-Features: AcwNN1XRWhv0_BEMBfC5ugzVO3Cctxwz7S_QzRhmLU6Imf8S7_rM1fEVRG7ZqMg
-Message-ID: <CANFS6baAZz_Hv2Qes3O=VzCB-PEsQySp_3HnV6cc6LGfvexYsA@mail.gmail.com>
-Subject: Re: [PATCH v1 8/9] ntfs: only count successfully cleared runs when
- freeing clusters
+Date: Mon, 24 Aug 2026 14:10:36 +0900
+X-Gm-Features: AcwNN1Vb3lS5ed1oTBU5sZVhnUKeZ4QJw64IsoEtqWiU2HCWyNWS5xzF4G3Vejo
+Message-ID: <CANFS6bagc57dHH3K1rgx00+5ZymC5Fa+451M8p-Ns7Uxz9Tg9Q@mail.gmail.com>
+Subject: Re: [PATCH v1 6/9] ntfs: return real error from ntfs_non_resident_attr_record_add()
 To: Baolin Liu <liubaolin12138@163.com>
 Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
 	liubaolin12138@gmail.com, Baolin Liu <liubaolin@kylinos.cn>
@@ -101,20 +100,13 @@ aolin Liu <liubaolin12138@163.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
 >
 > From: Baolin Liu <liubaolin@kylinos.cn>
 >
-> ntfs_cluster_free_from_rl_nolock() adds a run's length to nr_freed
-> whenever the error bookkeeping condition is false, which includes
-> cases where ntfs_bitmap_clear_run() actually failed - e.g. a second
-> run failing with the same errno as an earlier one, or any failure
-> after a non-ENOMEM error was already recorded. Since a failed
-> ntfs_bitmap_clear_run() rolls back its partial modifications, no
-> bits were cleared for that run, yet its length still inflates
-> vol->free_clusters, corrupting statfs output and the allocator's
-> free space gate.
+> ntfs_non_resident_attr_record_add() returns -1 at its put_err_out
+> label, which callers propagate as -EPERM to userspace.
 >
-> Only count runs whose bitmap clear succeeded.
+> Return the actual error code. Every path reaching the label has
+> err set to a negative errno.
 >
-> Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator=
-")
+> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
 > Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 
 Looks good to me.
@@ -122,30 +114,23 @@ Looks good to me.
 Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
 > ---
->  fs/ntfs/lcnalloc.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  fs/ntfs/attrib.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
-> index aa2e017a4384..795f71d26895 100644
-> --- a/fs/ntfs/lcnalloc.c
-> +++ b/fs/ntfs/lcnalloc.c
-> @@ -53,10 +53,10 @@ int ntfs_cluster_free_from_rl_nolock(struct ntfs_volu=
-me *vol,
->                 if (rl->lcn < 0)
->                         continue;
->                 err =3D ntfs_bitmap_clear_run(lcnbmp_vi, rl->lcn, rl->len=
-gth);
-> -               if (unlikely(err && (!ret || ret =3D=3D -ENOMEM) && ret !=
-=3D err))
-> -                       ret =3D err;
-> -               else
-> +               if (likely(!err))
->                         nr_freed +=3D rl->length;
-> +               else if (!ret || ret =3D=3D -ENOMEM)
-> +                       ret =3D err;
->         }
->         ntfs_inc_free_clusters(vol, nr_freed);
->         ntfs_debug("Done.");
+> diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+> index 3d0b305703d3..a2502eee717e 100644
+> --- a/fs/ntfs/attrib.c
+> +++ b/fs/ntfs/attrib.c
+> @@ -2639,7 +2639,7 @@ static int ntfs_non_resident_attr_record_add(struct=
+ ntfs_inode *ni, __le32 type,
+>         return offset;
+>  put_err_out:
+>         ntfs_attr_put_search_ctx(ctx);
+> -       return -1;
+> +       return err;
+>  }
+>
+>  /*
 > --
 > 2.51.0
 >
