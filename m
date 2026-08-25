@@ -1,91 +1,103 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD7763CD8BF
-	for <ntfs@lists.linux.dev>; Tue, 25 Aug 2026 07:28:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 857D740B111
+	for <ntfs@lists.linux.dev>; Tue, 25 Aug 2026 09:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787642912; cv=none; b=tJ+9JZtn2hjNkHfKwl4i7Zkujh0IvUmQfztaI2l0nlzUfMp64T3j3p9bPLyLHsAnCRYms2gNG4O37v13NublG+sX1f4fcxPMyfIZilefl0vAwEOtdyjGrnetBnwhOzUku3X6/nyfqH7/CxwdDuA/Ar4h6f9BH4JJYEqMiEZGZ5s=
+	t=1787651657; cv=none; b=X2WHupOSn5dNvMWxEOPhY4lPF7luKC5ZBQB3fo4dXPV+kI9MISiOTa79bzzti46h1H91Wz7OVDHkYtObFOmdWMmXRapDkdyeaV6lgCDM3X+/nEGbbwmaXcKsa9u/roJzbxQ7rw8xcBmTQTeIGs/2OTTYtrn1fb/ivp6BsVM2Lsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787642912; c=relaxed/simple;
-	bh=jgVTNqtVoTjLkxkknZ+b4kzTrQatYNGmcbvwotZYPGA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=asjrH/IELKrTLWyiHZgHukJQH9zQvtczNzagi11vbtSOrrR673vUzn4QHLi20yArLY0YuZ80c7dgOwK0fY/k4NewxLYI3v8+IqPgCknkMunT+F7S8p6s6gYY+ZRFwOroBf+WmvQzED5fGmSzUEw8ruzdM7hKJYPdKKeT6ewhXMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AB9YIcYl; arc=none smtp.client-ip=100.103.45.18
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AB9YIcYl"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FFFE1F00A3E
-	for <ntfs@lists.linux.dev>; Tue, 25 Aug 2026 07:28:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1787642911;
-	bh=ZNZVmCECI42X8E8eZzGspgnTGbVW4QVbr9N5dLzXKas=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=AB9YIcYlnvFf6TUeb0ZRNyIGdztW6lanPOmWu4llvKlweLoe7FOYEFOu8zsbOzZ9U
-	 AYB+TwmO9fgrtA+JgK6LtGb7g23nxDNwgVjRzfEF+AjVvLPkRUKsROw3LPhmie1+15
-	 I6kmI7Q8zNR/qbooy6FGC9xbXxWh7l+AtEz1NA8fA0fBusT9Z/Km4ZV084gE3904tO
-	 EXu9EheYia+kkS0s/Jf1GMjYnEHollR64xmomXvydmoSxFegRzf2DH0N81GBGHHaZ8
-	 e2mLhDvY4nZdft5C//7IjSXCC90d2s8ppJa+z4ARkI7cmvhgEOURy2cJ+uCIL+4u74
-	 Px8QaAmcTDiZw==
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-c15f020a223so648172766b.1
-        for <ntfs@lists.linux.dev>; Tue, 25 Aug 2026 00:28:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RqP02npbB+zd9RJps0jSskrc2XxlesqBB00eqS3Bv2eOhgYNntNlVW+k56Dq/gqLNPzKXyZ@lists.linux.dev
-X-Gm-Message-State: AFuF++mFhMKIKpCEMGyxU4e/E+CTbwe8xJPT7yFDmlB1nnSHa1uDVvzU
-	vsJ1zRFYfkmZsp1m1jGSkzi3VBELvHzUdou0eZMrySw1v6B1FOBQH0M5TMkigNRh0L0iDG+X2Jf
-	PfK0cB/n5pCapYP8Y3sJEqqZPaKz/cVU=
-X-Received: by 2002:a17:907:a703:b0:c16:13c3:b1ef with SMTP id
- a640c23a62f3a-c246a73b5b7mr3808015266b.24.1787642910034; Tue, 25 Aug 2026
- 00:28:30 -0700 (PDT)
+	s=arc-20240116; t=1787651657; c=relaxed/simple;
+	bh=9VzUH3yQXpFtXHm7ZxHmWMtcLFl1q+qw7kcAIRn37H4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CYjsQX27/y8VlPO77LbajtQAeLs78t4BZdnLZuRpB1g9pc3pU4b6iOiGDRCLu/WfB8jK2jJxMGTr2wYFqPavzYagWLrJUvyWIStf4jvHoyWPlLdZUORF//XPUnlnDo1WFdOj8sDFD/mYic3Da6fC3kLZrcSLlNFdBQNw3JhAxiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: eab5e56ca06a11f19a56ed5b684f684d-20260825
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:3d8f985e-fdd4-45c7-8c88-0b9d3a8b262d,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:840bb7b4110cd749ec60fbbc926f4b1a,BulkI
+	D:nil,BulkQuantity:0,SF:102|850|865|898,TC:nil,Content:0|15|50,EDM:-3,IP:n
+	il,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
+	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: eab5e56ca06a11f19a56ed5b684f684d-20260825
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1235446033; Tue, 25 Aug 2026 17:54:08 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH] ntfs: fix undefined behavior in mft/index record size calculation
+Date: Tue, 25 Aug 2026 17:54:05 +0800
+Message-Id: <20260825095405.858623-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <6a8b31d3.6dfd78af.244576.33c7@mx.google.com> <ao0saL_dQcM35LFU@infradead.org>
-In-Reply-To: <ao0saL_dQcM35LFU@infradead.org>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Tue, 25 Aug 2026 16:28:17 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd_=JmKzF7W74JEcvKcKoLa8AmD2fY_Y3qLG8ihRXbDgXQ@mail.gmail.com>
-X-Gm-Features: AcwNN1U-EmoWgx6_eU4mHGPLbPx0mVF6r3z2wUG0zUZJf1dvSPF_Sgn2sD3Vr3A
-Message-ID: <CAKYAXd_=JmKzF7W74JEcvKcKoLa8AmD2fY_Y3qLG8ihRXbDgXQ@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: mount read-only when mft records are smaller than
- the device block
-To: Christoph Hellwig <hch@infradead.org>
-Cc: Dennis Tighe <dennis.tighe@gmail.com>, Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 25, 2026 at 2:47=E2=80=AFPM Christoph Hellwig <hch@infradead.or=
-g> wrote:
->
-> On Sun, Aug 23, 2026 at 10:45:48AM -0700, Dennis Tighe wrote:
-> > An mft record is written with a single bio of exactly mft_record_size
-> > bytes. bio_unaligned() rejects a bio whose size is not a multiple of th=
-e
-> > device's logical block size, so on a volume whose mft records are small=
-er
-> > than that block no mft record can be written at all.
-> >
-> > On 512n and 512e drives this is a non-issue; however, on 4Kn drives whe=
-n
-> > the mft record (1k) is smaller than the logical block size (4k) mft
-> > writes begin to fail. At the same time, other writes that use all 4k
-> > will succeed leading to a corruption situation.
-> >
-> > This is a stopgap change that mounts as read-only. The longer term fix =
-is
-> > to perform 4k writes on 4Kn devices when writing the mft; however, that=
-'s
-> > more involved.
->
-> Between this and your previous patch it is pretty clear that a sector
-> size > 512 bytes is not supported.  So instead of adding predicted
-> band aids, reject this entirely for now and let someone who has the time
-> actually understand this for real fix it with a real design test plan
-> and all the others bits needed.
-NTFS previously supported 4K native, so this seems to be a regression
-introduced by some changes.
-We will look into it a bit more and then decide whether to reject the mount=
-.
-Thanks!
+The boot sector validation allows clusters_per_mft_record and
+clusters_per_index_record to range from 0xE1 (-31) to 0xF7 (-9) when
+interpreted as signed values. When these are used as negative shift
+counts in expressions like `1 << -clusters_per_mft_record`, values
+like 0xE1 cause `1 << 31`, which shifts into the sign bit of a 32-bit
+signed integer, resulting in undefined behavior.
+
+Fix by using unsigned shift (1U << ...) instead of signed shift.
+This prevents undefined behavior while preserving the full valid
+range of negative values (-31 to -9) that may appear in NTFS boot
+sectors.
+
+The encoding scheme uses negative values to represent record sizes
+smaller than cluster_size: -log2(record_size). Common values include
+-10 (1024 bytes) for mft_record_size and -12 (4096 bytes) for
+index_record_size.
+
+Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+ fs/ntfs/super.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 30481e5d5dd4..a1813093222b 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -695,7 +695,7 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
+ 		 * = -log2(mft_record_size) bytes. mft_record_size normaly is
+ 		 * 1024 bytes, which is encoded as 0xF6 (-10 in decimal).
+ 		 */
+-		vol->mft_record_size = 1 << -clusters_per_mft_record;
++		vol->mft_record_size = 1U << -clusters_per_mft_record;
+ 	vol->mft_record_size_mask = vol->mft_record_size - 1;
+ 	vol->mft_record_size_bits = ffs(vol->mft_record_size) - 1;
+ 	ntfs_debug("vol->mft_record_size = %i (0x%x)", vol->mft_record_size,
+@@ -732,7 +732,7 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
+ 		 * index_record_size normaly equals 4096 bytes, which is
+ 		 * encoded as 0xF4 (-12 in decimal).
+ 		 */
+-		vol->index_record_size = 1 << -clusters_per_index_record;
++		vol->index_record_size = 1U << -clusters_per_index_record;
+ 	vol->index_record_size_mask = vol->index_record_size - 1;
+ 	vol->index_record_size_bits = ffs(vol->index_record_size) - 1;
+ 	ntfs_debug("vol->index_record_size = %i (0x%x)",
+-- 
+2.25.1
+
