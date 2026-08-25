@@ -1,188 +1,72 @@
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B184175A83
-	for <ntfs@lists.linux.dev>; Tue, 25 Aug 2026 05:45:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787636743; cv=pass; b=a6AHX9DdclyyS41cEaSUXKQd2eaGk7RxHwhyJXiK0hjJ8aykbUv/t4M3IM9rOD+3vuYHVNEdXORfKsm92wJ59ZmSIAvbaiBdDsbVEosWAe6zRydtDZZ4dZVwKc7YDk21HgF6i7wJOmVy+UwQb4dWodTuC+5wP7BTW/8vLcAMSrQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787636743; c=relaxed/simple;
-	bh=fVKmBJGxjhinLcjH37If02pe9z8nlCMRKqdziirEWes=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QX3ekDGWV6eEVq40NO2pPrz1Wi9aw2HPcxyIoIwG95WlyIBDMYRste72C/ZZe95+p27dDq10ZsSPTmRl60wkxnvWWOSipKcUtSQNqENqAZwFOikW2pbXVua/hIa5VQklD9G5gqHPLiMroJLmTcwFW7Pc8IzpsFFTVUirbmmdU4Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e51U1QYi; arc=pass smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB221A23A6;
+	Tue, 25 Aug 2026 05:47:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1787636843; cv=none; b=POce8Pk3XfM4Vj5l/rfLq2qrrGZcRxNH+ZmMIF0kmJLC4P0uqqLljwR0L+Q+OZdkr9p+flN9fU0DMdFi6bvPNT5uN+u5y5iPpC+oSS5BHUNxMs/yyEojotOw0dIqp7YHxoCJFGGHJwiIZSeYuI29WiJuPN+1xMfdyDC1w70CQs8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1787636843; c=relaxed/simple;
+	bh=6KHZ1jQKCGuJiPy4u9wqKmrlj2/oQFmHPFeuB3+5xEs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BskGJ9X0I+2SZ0fS4Re/CIpu9iUsVXEVLQ4/Bdn0vFoeb4Uop9oiObeuPfEypNDPUSWu7jtQI/+xVbhIRiBOfN/hNc5NZBxZsWTX/i85jgZFPHeKElv4bf27NR90G5wUr1jSLgZ45G050fDvIVATq+UbmKQNZyHLM94wbVatFhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=cCjPgf3o; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e51U1QYi"
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5b4747943b8so3589851e87.0
-        for <ntfs@lists.linux.dev>; Mon, 24 Aug 2026 22:45:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1787636740; cv=none;
-        d=google.com; s=arc-20260327;
-        b=XnDHv8GiyYwL+Pcy5wayQTT2dWIcRsRAZzKY+9ZbLrjr5g46hCOdmXGXhrHUT4EtXO
-         YJxaKNrN30rhd4X8PjrdE1VI0KkYbVdYLBD0p5GvFtrjZol8sqTm8kVzFDYHcWp0Yffi
-         A3A0h4mxHyuxse0x9fI1qR2ZhcmYOz1qM89t58u3TqnnDOti2PGxnGcovzr+Kbn8FLNR
-         abERGWEFXLmiyVSauhHNtYTZ5LFAfMH4auGxw/4uj5vTDVthibDveFVLBYAhLHS8lKI4
-         ZDadoU2TOL067B7vLru4uYu5Sa1DniNtnF4WHqJEp5e6r0yHKxadkBmP8EfrtEY1JboD
-         pang==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=nZm3zCM2V5j8UkW0i/0Tml0ywqi5opHYJwOAEvHaea0=;
-        fh=JGBhUMt3IMtKkhoxLcwjlpnAv9CU874js/Wn3g4YlBk=;
-        b=ZHY3cIS6wMVl0lYbvnIYzKLaZkPAvCpyXWj9ouGwk4NKjj/ODM3bYOJiMRRA8CCqUm
-         slmksW103jIZFddWn3uMqc+3fFS8X5PP/vy64lRklQpcKGu4N+mvVA9yFaSxkEHcbP6t
-         IDJJvPhAxDRyV7b5V2CfXyciZIiqXHhTZmlGI7pRnNEC9chnz2OZJIr2GwUwf5tuycth
-         rmjAdcceOIRSfTm/Fa2YIJvFl8VDPWGKEIuvpbKupYIR7iCi0waGFnv6l7ZxLM5hU8mj
-         mqR31gmSPjtibrZtIBMcgZdByfCjIOB7bzQTsfuSZwUMnjTIBht58OzF3qIHtjM5MtWE
-         o/BA==;
-        darn=lists.linux.dev
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787636740; x=1788241540; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=nZm3zCM2V5j8UkW0i/0Tml0ywqi5opHYJwOAEvHaea0=;
-        b=e51U1QYi6NoTbzsOxc1DSaX0/E2l+QLm75m2phntuIYgTrREuFkETy7CLkHUQihJmK
-         YS7ZWrtzj9ytd7vovgeq8ZkNcax7aWD/inyFfiTdAB2M033ez2byRZRvfSzVGs9+X1nh
-         cDw00g+dPuvNwb4+4PsJto6jy9ucFv7sRekAgpy2GlBm4bGWiAqjiXpogAD1ijkWfQ3y
-         jc8ncgRVFkHxwI32v4w3JyPQkfP8uBd9YXXGWGEsDtRVnVwpRTkv980ENaFwZqOzhYZi
-         Zp3W27/dGEXmOE4GICkVhdT5YwYsZXSVkO5l7AD4iJjTA+ptHTkMUT4fFSZF1DVNZ+r+
-         Gl9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787636740; x=1788241540;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=nZm3zCM2V5j8UkW0i/0Tml0ywqi5opHYJwOAEvHaea0=;
-        b=RC9y4niGi05wIqYZtrmv4AyXUG6c1i/yX+xkX1iFZ21luJFxccjwh8gayOCHCToplA
-         hbsw6dfD5ue0E+1356I4O4nw8pHBFMA0rXsZmwJD1FBRK07QVO15FzQiEm0a8NahPbka
-         S4nfUghlhqo75obKaed/lcFk5lcAFp2EhQiIl18rfWE5u6imroiNjvSL9d34BcCHMtpe
-         GnwHEoB6FhbqjiCmAdPEdqx/YVCvQM1RskjebXKfIT2o+y7V3hZZiVlLiydZO5OIqiIB
-         JWNOjuyVaViNt0chw8oIq6G7sMB9IhenrctKxoNoUW/ORQQkngMqTKduX24BRjqYI4Xf
-         bIAw==
-X-Forwarded-Encrypted: i=1; AHgh+Rp/2lPkH3zR13x7pdRXgYNeotb8O4cEX1Dh0SjGBBeGseLV3A6yARSp+joJM7d1yCxI3asS@lists.linux.dev
-X-Gm-Message-State: AFuF++k2b45I22HOC8gIUylauH5drAOPXwYoS+7RjxMSkm0m5vtQqpfM
-	FFab5+5l+CKspMTSfI4/M7xmfVIelwTu45k1RM+XqTKRLjXuq8RsVpqSs+0cbDmXwxgdeJWcOHJ
-	ZKo+3nvnNpYJhAn3YdbRjxYtjD2GKjpU=
-X-Gm-Gg: AR+sD10dfv84q69HhvKNcbW+1yc/iCRNqi4bLxrZOsQB5VH9m1NicC8OBSuynX37pvH
-	FxE6fk0dehGFp/MK6vUIVkcSP6L3BIauFFMrCGt9cufjC+2l4ym+7ucu5lWflLAUJlb7LjYcQrT
-	bWvyjb5JezbHgt8aaIAFmVRbdc0NY1PUPkJBPWIvoqEcM5x9/SceMRm4O1FjUwocaFDbDWmVhZd
-	v4W9OZhhmNG68o3rxciLLf0MLZoeTRbyCMQVLyO2vKbECflH5pV9dgzvOlp93IS7GlvuwoQkHUh
-	Ln1QxCJGY3VCuZxMkvdJDHZ1ucwXrW1Rc3p5xD6RBBWu
-X-Received: by 2002:a05:6512:6c2:b0:5ae:b59e:aa45 with SMTP id
- 2adb3069b0e04-5b48b89675dmr6626651e87.17.1787636739775; Mon, 24 Aug 2026
- 22:45:39 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="cCjPgf3o"
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=lrOmmuZi2zKrq4WM18URglN6PfduESyPqGqUeFLWLe4=; b=cCjPgf3oLfyZk38xewAP0QSQV6
+	5JnHUedrUKPBSL5PXVvdJZnKNRJmK3R73G6mvBEj7FDycAfWpp0zyB92J3h8/RNi/8VUwAuXNfMqU
+	gC8Vm64RRoJiJa78juIlPXvt6EO2PdmJ8ZckJGNey1HkcTAOs1rJm5bMV9mMfa1e1MVDLWLXC77qC
+	h7+UvQLKucMN4B0iLOVyGOjy5lL+oVMjaZIRBm8uGzsWH+3/z3l0niwGgUjJEN/uHDhPKVhFwjcDX
+	QoLk3VQ/u50hUnTOewqtunIvrUE02E6QsTheOqIQmF2a8vy890lLPbtSBM4chSb0Tp2MnPCc9mFHA
+	mJrRQsFA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wyk0G-00000000CcW-0qqh;
+	Tue, 25 Aug 2026 05:47:20 +0000
+Date: Mon, 24 Aug 2026 22:47:20 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: Dennis Tighe <dennis.tighe@gmail.com>
+Cc: Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>,
+	ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ntfs: mount read-only when mft records are smaller than
+ the device block
+Message-ID: <ao0saL_dQcM35LFU@infradead.org>
+References: <6a8b31d3.6dfd78af.244576.33c7@mx.google.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260824075935.170457-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260824075935.170457-1-zenghongling@kylinos.cn>
-From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Tue, 25 Aug 2026 14:45:28 +0900
-X-Gm-Features: AcwNN1U11ydoTh6uaw40HLjsN2bokfkPv25rkwZoOV36XuEEmlRAqCwe6v9Q9XY
-Message-ID: <CANFS6bZczfbx3HKO9pN2wOm9Wy8oCX0GAA_uAoXzhu1j34Jo7w@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: fix memmove overlap in ntfs_new_attr_flags
-To: Hongling Zeng <zenghongling@kylinos.cn>
-Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhongling0719@126.com, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6a8b31d3.6dfd78af.244576.33c7@mx.google.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 
-Hi Hongling,
+On Sun, Aug 23, 2026 at 10:45:48AM -0700, Dennis Tighe wrote:
+> An mft record is written with a single bio of exactly mft_record_size
+> bytes. bio_unaligned() rejects a bio whose size is not a multiple of the
+> device's logical block size, so on a volume whose mft records are smaller
+> than that block no mft record can be written at all.
+> 
+> On 512n and 512e drives this is a non-issue; however, on 4Kn drives when
+> the mft record (1k) is smaller than the logical block size (4k) mft
+> writes begin to fail. At the same time, other writes that use all 4k
+> will succeed leading to a corruption situation.
+> 
+> This is a stopgap change that mounts as read-only. The longer term fix is
+> to perform 4k writes on 4Kn devices when writing the mft; however, that's
+> more involved.
 
-2026=EB=85=84 8=EC=9B=94 24=EC=9D=BC (=EC=9B=94) =EC=98=A4=ED=9B=84 4:59, H=
-ongling Zeng <zenghongling@kylinos.cn>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1=
-:
->
-> When the record shrinks while the payload offsets increase (e.g., enablin=
-g
-> compression reduces padding, making arec_size < old_arec_size, but the he=
-ader
-> grows by 8 bytes), moving the name first can overwrite the old mapping_pa=
-irs
-> before they are copied. Move mapping_pairs first in this case.
+Between this and your previous patch it is pretty clear that a sector
+size > 512 bytes is not supported.  So instead of adding predicted
+band aids, reject this entirely for now and let someone who has the time
+actually understand this for real fix it with a real design test plan
+and all the others bits needed.
 
-Can this situation occur even when
-it is not a crafted image?
-
->
-> Since mp_ofs is derived from name_ofs, they always change in the same
-> direction. Checking name_ofs alone is sufficient.
->
-> Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-> ---
->  fs/ntfs/ea.c | 33 +++++++++++++++++++++++++++------
->  1 file changed, 27 insertions(+), 6 deletions(-)
->
-> diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-> index 534f7efaf128..c836d33ab0d3 100644
-> --- a/fs/ntfs/ea.c
-> +++ b/fs/ntfs/ea.c
-> @@ -729,15 +729,36 @@ static int ntfs_new_attr_flags(struct ntfs_inode *n=
-i, __le32 fattr)
->         old_arec_size =3D le32_to_cpu(a->length);
->
->         /*
-> -        * Move payloads before shrinking the record.  Otherwise resizing=
- moves
-> +        * Move payloads before shrinking the record. Otherwise resizing =
-moves
->          * the following attribute over the old payload before it can be =
-copied.
-> +        *
-> +        * When offsets increase, move mapping_pairs first to avoid name
-> +        * overwriting the start of mapping_pairs.
->          */
->         if (arec_size < old_arec_size) {
-> -               if (a->name_length && name_ofs !=3D old_name_ofs)
-> -                       memmove((u8 *)a + name_ofs, (u8 *)a + old_name_of=
-s,
-> -                               a->name_length * sizeof(__le16));
-> -               if (mp_ofs !=3D old_mp_ofs)
-> -                       memmove((u8 *)a + mp_ofs, (u8 *)a + old_mp_ofs, m=
-p_size);
-> +               if (name_ofs > old_name_ofs) {
-> +                       /* Payload offsets increased: move mapping pairs =
-first. */
-> +                       if (mp_ofs !=3D old_mp_ofs)
-> +                               memmove((u8 *)a + mp_ofs,
-> +                                               (u8 *)a + old_mp_ofs,
-> +                                               mp_size);
-> +                       if (a->name_length && name_ofs !=3D old_name_ofs)
-> +                               memmove((u8 *)a + name_ofs,
-> +                                               (u8 *)a + old_name_ofs,
-> +                                               a->name_length *
-> +                                                       sizeof(__le16));
-> +               } else {
-> +                       /* Payload offsets decreased or unchanged: move n=
-ame first. */
-> +                       if (a->name_length && name_ofs !=3D old_name_ofs)
-> +                               memmove((u8 *)a + name_ofs,
-> +                                               (u8 *)a + old_name_ofs,
-> +                                               a->name_length *
-> +                                                       sizeof(__le16));
-> +                       if (mp_ofs !=3D old_mp_ofs)
-> +                               memmove((u8 *)a + mp_ofs,
-> +                                               (u8 *)a + old_mp_ofs,
-> +                                               mp_size);
-> +               }
->         }
->
->         err =3D ntfs_attr_record_resize(ctx->mrec, a, arec_size);
-> --
-> 2.25.1
->
-
-
---=20
-Thanks,
-Hyunchul
