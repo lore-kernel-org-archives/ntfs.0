@@ -1,124 +1,131 @@
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B458286D5E
-	for <ntfs@lists.linux.dev>; Tue, 25 Aug 2026 01:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E58541FF7C8
+	for <ntfs@lists.linux.dev>; Tue, 25 Aug 2026 01:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.179
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787621288; cv=pass; b=WvT7H48ak3Y2egdG7Opo3pQDipi3gXdHB9MB0g73JD4bQJzSchzRumMKWaIv924KOShVcRBARPQJetFlGRFG8uusaF8Hcl0y4RxYcVCqzXMn5+O/dESgJ0EvEK8TMH7gKjpK0eJsNTwfvol3hHfMO4Ll5K9+kDNCEVR+Wiqzvkw=
+	t=1787621437; cv=pass; b=mQyarS91CsWyw8dP5WWj0EQEMezsIoSN6ETzoNV3D2ZILfTMejz3jc1LqCN7vCXc29vJIyssqxFu+lxzHvugq+MPML07d4oOS0byUK5xF3cN6YWrOoRe4kpQmWsBzzoIhZ9+q5vzwQc+ufLdGT2zX4Zf+/QwtSI+9rxuQOc4V0Q=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787621288; c=relaxed/simple;
-	bh=OgFIw1ITBHOjtxRBAvgZTYDe6yst15gd8beHS5lZ8qs=;
+	s=arc-20240116; t=1787621437; c=relaxed/simple;
+	bh=cM0/7iRrggwx13fJlmVTiTrl5iQ6FdVCOXdjRrR2HXs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m4AtETmMup+RbBeldo4KP5gMzAAxxvN5tdG7kwGeubekzaKAKsS36Ln/rygWQc6XdH26oyNAhp3nv6fYg6DPidHpEzPws9TucNTyVpKcW8VQEcZ/IzN+Myd4VOV0QPhxk3D5QDIUOMHTrxV0ZFKs5EzVZQ0O0Ie0rFPJ6hcIHW0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QBMlAO3U; arc=pass smtp.client-ip=209.85.167.41
+	 To:Cc:Content-Type; b=T8Mrf/z2WdKlbSQCGmlamu/RTEAT3yKwRnbUpjEzSlIN9sbutlln8orhSub8COou43wTMnPAz0wDZcUMCEr9XQ2K7KzYWcx7PqLE6m+K4atjLz45gk5lke5kWRngxYIDY0coEzb8sW7Of0fLf9XJbHMjel8dhRgQ0AoQEtpaspI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F4jcpn4L; arc=pass smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QBMlAO3U"
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5b2b92065ffso4041447e87.1
-        for <ntfs@lists.linux.dev>; Mon, 24 Aug 2026 18:28:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1787621284; cv=none;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F4jcpn4L"
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-39f91ba1ef7so30474561fa.3
+        for <ntfs@lists.linux.dev>; Mon, 24 Aug 2026 18:30:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1787621434; cv=none;
         d=google.com; s=arc-20260327;
-        b=c512RTtfxaKsZ50pzsewitPDe0E8sqpRVzftL58ZcR869FqfwjJf+m1HAmbisOWih/
-         PO6p2C8RGvubvwKrliWJsQFuF/R3/PRhTXDKB4iKdEs7tAhMyimlPEANnNnQ7hJHjr+6
-         epE26tEOdSkmZSqQsfDJpQY8ryuJ6qeDIjZv0Dmb4fPkpShufigjE5VAkzeMQOBECmd5
-         fw/VGFWeKTTmYnOwm+SA28WQhEW66WBNDV7aR1uI1vVHjmdGIRGLeAA2K4+vSM0Ija54
-         LWnPVeFEPEfjZ67g5cC0vfBq8omg+hPE0uFXPRJkloSzWInN2UJ5+YQzW4wXDYv0WNT6
-         oYsg==
+        b=G7TmXO2izGHa0KjZMrF0h4Izf66b4srH3GsW3YvfECqj4pCP8R3zEU/VbLXKhGNqqC
+         5pm5xVAP5q4R+YS2OWTb4fVKRfnBgvo65npLqCSkLB2ZXH6sesMNncsjkEXd3smWWg0Z
+         71xsilIE/8812WKPHCHSe5m9MvZtGMKmJ7EU4eYG4CD20KExZRDlpr5swbU5H486Np9t
+         rfv3EGtsEYLXdbVdXAxy+DxhuvKC+P20O300nVXFfW3nlTX0lOri+zePiSBfqeIirvW/
+         do4CXVPnhAPJ9OmAjURytpND8N2dvk+xsCmEG2OPTm7A/Xnlnvo0QbS5U21Ryfo2h0GD
+         BsSQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=OgFIw1ITBHOjtxRBAvgZTYDe6yst15gd8beHS5lZ8qs=;
-        fh=6DFHX+EydnFRlM8Tr3IJQ+DPfow+4sSHQ4pI43fdoS4=;
-        b=EyVVe3oP2GOhPxkXbySI8UHpxXw0VfonSJBa5zR2zDVi9t8G9VcNbfW6A50EI3FtvE
-         WtylZMIbuzfcjdbECzjFqBFX2N2c38TtMoZ6GbSy7IlsiRud5w6kYz6bJEokQztK1kwT
-         AtgR4LCtWvPijW67UEsh+HHJqtl651yPZ65C6iPiSRgEOmW9/0sbpZGQqyuANAyFilKM
-         krxzju1ywNmYW4JfMt1svR6RAWws15zisu3qczbRhMOf1V4IZlPFBXFZiDuihn7U/L9R
-         anl17SibN4o6oqIczfi3FaBHaBBEyQyjj6QyIf4t6aYSRmAaWcn2zt/L8TZv79BQa4JN
-         R7Wg==;
+        bh=cM0/7iRrggwx13fJlmVTiTrl5iQ6FdVCOXdjRrR2HXs=;
+        fh=Dnp0/GN/a29fWIL4NEzbrxxfnMgSbXh3OV+VTfqxihw=;
+        b=LaEsdzBp6PbulDnlvPbPb3eJo/qTeUmtEdAIIJuGixzpDxRQx/7mCCSTvBaSW2JNl0
+         M3tB8waYyaWluAoj3R5s60Atw88RTdw2FyJ3UcGRwTu1TRPrl3VbQhQ+vv12LxqvLahh
+         U1fct14zKodjrx1Uau2OYVTRUyAUz3g4w0PN0SXWUfvROi4SJk2Ufal4QThHLnndm+BA
+         El+K55kbvKEuxKLjNKO0Gt7ZX01rjRyKs1Adxf1ry+SMBuJri2M8jHTDFm8utqrDvWhg
+         ffmBXnvCrqXhRCuSNhYYzGCQy9MPsa3gpT5LKWYuIWytuhk62GTM6e/nFSDFlYpI+B8q
+         kUjg==;
         darn=lists.linux.dev
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787621284; x=1788226084; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1787621434; x=1788226234; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=OgFIw1ITBHOjtxRBAvgZTYDe6yst15gd8beHS5lZ8qs=;
-        b=QBMlAO3URwBkOqpD3N7hA3j62hJUkv0q/4LE0H3jBshK67v8vXJ/prYx6mcv2daKVD
-         SZq+ERnT8A3RExxjvMzN1PxRoXnIzqmuYUhnwYG0x1jk0lgK7oB+r4VJOdTPc5/awKe+
-         claQ26OOmGKF0mvQH0I9+MWjTqnOmeh1WEN7ROxSgz9zor5pBlIVVtVtZnd+UTbRy5E8
-         bnC9VAEIS4QhewnzSA9i22Uq2MH3c2uy7+0Jjz8DhDS5vP//trDVlKdqKjP+BLDyBj4t
-         Y+7PgPmCwJRD2hEn4ZCuT3CmtW8WdnFaNRNBSzyp5Re/Fp8HoF/d+Obxgn7JMQDGfdTN
-         djqQ==
+        bh=cM0/7iRrggwx13fJlmVTiTrl5iQ6FdVCOXdjRrR2HXs=;
+        b=F4jcpn4Lzx947zPGWJWRy4QY5IQ6Pt+vByJdz7b2UrPnzPTwRyCx2PNK1GKte8Y0/F
+         VpGGLy9njy4bUQIVVqNnXd5TyazS1EucTSxxMmKp4rgrQQo02g5C0E0fILhwF/F/nWal
+         RYXrijwGWItZId9rFDASrgm9QGFrc/nvrO2nb1DN2uesmxIf1UHvht/zvImysb/dq504
+         D6Z+X37ufrd0ff9purFR5NIsaHdH6Hyc4uE7D86WHr+vxi8eiZWW21aGI8dS5WFmPFof
+         DEFfAE6OIjd5YZBoQKgl1c6XQAF8Kix4Eg7Z2EuxN2QMes+G7fY8KdMg1h8S0fOwlFYb
+         Au+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787621284; x=1788226084;
+        d=1e100.net; s=20251104; t=1787621434; x=1788226234;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=OgFIw1ITBHOjtxRBAvgZTYDe6yst15gd8beHS5lZ8qs=;
-        b=MvCOyUpsfZ+lAk1tupiWOafWDpCPtWcWLh3eKdEKnTSKiPJqUPyCRweD/CPfcPeVc6
-         VoM0sJ+aDb/T5zaGFVbbHf1H3RBod494V9rabl+vcW3ztfG3nisE0VytMLh5RmKYP8C4
-         83Xs/6eegZEdqpjZ/ulERphKVB2N9/WvHNj1q2WDCDPtWPX9XdwZmILfVOC+MKFONkaA
-         rdVBAvtJ8XNkCuqy3VXH2Xm+xgI8a/tmbVyiHYPM5RXDY6vAYvOGOVkDmm0DdZfeTd5P
-         JnIj1SKJQJ1TkmGlsM81d/4OVsplvEnAdsDZh/P4O2eu/ZDAhXAu3zwKb5o4BO2dx3Fs
-         Pnkw==
-X-Forwarded-Encrypted: i=1; AHgh+RqY6m8NioRXaS9ih81rd6s9yX4Z5Kutee80EFM7P49sNbvDlODIKDr2UR5oPUoymT2U4Ntp@lists.linux.dev
-X-Gm-Message-State: AFuF++lAVeAH88YomgzuXQfiRU64hE0hab3JHGElqBNHNc5py336IHB4
-	tWUlUVf8qk8cZXWMljMytJeVCFmUrzGpzuHt0do2/OC05uenUBnlEVPjHe1P6fWkORmZnD1g2UW
-	6gxoVqQoF7JZ/72M+2rqq8HO+Ct0Wnqn3+Q==
-X-Gm-Gg: AR+sD10kSPx43ldyAs0zweW4jFwwB+PdtNqyjolmNyHSD4UVbgUqLtEndaJyZXEMKsA
-	LnFKMac/VKHRtYSpPfbg83FSaZCrUAGCwEzP+n6iaixloOsmP+k6n/GTHO7B15ZQ5SAm4w0INud
-	/GKqoAoLIOahgkEB7T+wUpXWop4dS1Sb3Nu4CliV2kdH0mg0kvyiYNpleOO6RJo/MTKBv/xF1kN
-	FtnPGPlOxDUkOHFihwgheg4Sce1bwoMzvJPrGnkWxOgyb6QpTAIUVWBvc92P96dxlCh9k0xHwWv
-	XNcYt6o5MIcVzpJ4+IImX2P7cYbDj5cK/WSGRynRGLoR
-X-Received: by 2002:a05:6512:2356:b0:5b4:5352:e2db with SMTP id
- 2adb3069b0e04-5b49cdbf946mr629437e87.20.1787621284021; Mon, 24 Aug 2026
- 18:28:04 -0700 (PDT)
+        bh=cM0/7iRrggwx13fJlmVTiTrl5iQ6FdVCOXdjRrR2HXs=;
+        b=XCFxO5LQQ/ulADvbb1XR3dWcetYzGnawipncvqb0bHrAR2ZP3hnSKqg/aEm9u29IZ+
+         A1iFa0V4g6KIOcKqvdQrLzPf6nL9KRwT0y+KjwjMyr6pIJ2/SCLnaVb0MzLpm0HCLQuU
+         H48yW8bjicSQjSKl98bXby6gFzvz3Tr2LsLDYyRgN4tFLYsnXqPni8eHAWNZFYR8fq5X
+         lbBgPQM9rktzMAajb6Us1OtLVBV4+0MuWELGZfjQoSSnB364vHGqt93KpguIMNN7gAd1
+         bK6ZXmbFv7Y3DNWazAUqJkpfMrz3EMrK9+80ins/dCzuyxCX2lTUNJCGrw4Na0aVCzD/
+         ghuA==
+X-Forwarded-Encrypted: i=1; AHgh+RpJt8pH68QZa1lqGbS067T5BJo9st0FecR8m8LIVoeHJ7pDwJpue629LwiBEx7MU7zTAV4Y@lists.linux.dev
+X-Gm-Message-State: AFuF++lD94j19FvkSZO/xKAJbxAcpmNAC51+xza9Dbgcr8GbS6G8ETj2
+	tAtn/iCQFPTbvL9DFuvQyUJVeFjNgKGifkgyMzFsqo0htQU/5b1UhmFXiPbupkYg87ZOaeU6L84
+	sbvXKny8sX90bXLy4Nrsv4cain3CoNeg=
+X-Gm-Gg: AR+sD12Zm6T/1zMJzNG+/c2gZadHKzf87trUra/D8psRTg16T9PZHcNmGaKwYGq5I3N
+	JhnQD5p9w2vnNA6v+7SJXeqO/Uj8uVFaNiz5oYzsR18FYniM8fXZS80/+Elkxh6hj1bdJ7JzYJl
+	tWrL6uYjyUTtZB3eIC1EROM6bQ+vIQGKUupRfB2eE3R+pnCQMTdymLiHNVEZJ3y6bmO/akl9kTR
+	ubeRcdfWAELwqsljFe3O4NFa+VpxpsE4M3CgXSvLQTf89h5SnH7jaeAn4S8EqxENNToGfkPFTCk
+	TQmiaonkLYMTcgpVPz/f/S8o50NU6lnZhYaGjpRPqKjX
+X-Received: by 2002:a05:651c:41d3:b0:39b:695:32a3 with SMTP id
+ 38308e7fff4ca-3a1c1ea8683mr49067031fa.13.1787621433570; Mon, 24 Aug 2026
+ 18:30:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <6a8a9d9a.fdee0002.34cbe9.559f@mx.google.com>
-In-Reply-To: <6a8a9d9a.fdee0002.34cbe9.559f@mx.google.com>
+References: <CANFS6bb5BHY_XskcC2BoYQnB8iq0J0q90+r08xuANRoJNwHOeQ@mail.gmail.com>
+ <6a8c583f.a4ccd6f3.2488d7.bd37@mx.google.com>
+In-Reply-To: <6a8c583f.a4ccd6f3.2488d7.bd37@mx.google.com>
 From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Tue, 25 Aug 2026 10:27:51 +0900
-X-Gm-Features: AcwNN1WIXAg39AFOqUD6aJisxaiVpxY4q1Ck_OBHsL7d3qXQ8FwoFhkEifyu9NU
-Message-ID: <CANFS6bb_WdkXBanNr+MXXN=5OemG_DfmTAec7xCNyEkRBrSUSQ@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: compute bi_sector in 512-byte units
+Date: Tue, 25 Aug 2026 10:30:21 +0900
+X-Gm-Features: AcwNN1U-7uQo7LPI8ozaC1VB1_fK-kIAwioGuMEeNRr3HNOUH2RX7rV2L5A0O74
+Message-ID: <CANFS6bbXLNsuuMoOP6_BSX48K5bzNx3M-BnxJrYGBJQbPAX9TA@mail.gmail.com>
+Subject: Re: [PATCH v2] ntfs: mount read-only when mft records are smaller
+ than the device block
 To: Dennis Tighe <dennis.tighe@gmail.com>
 Cc: Namjae Jeon <linkinjeon@kernel.org>, ntfs@lists.linux.dev, 
 	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-2026=EB=85=84 8=EC=9B=94 23=EC=9D=BC (=EC=9D=BC) =EC=98=A4=ED=9B=84 4:13, D=
-ennis Tighe <dennis.tighe@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+2026=EB=85=84 8=EC=9B=94 24=EC=9D=BC (=EC=9B=94) =EC=98=A4=ED=9B=84 11:42, =
+Dennis Tighe <dennis.tighe@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
 >
-> bi_sector counts in 512 byte sectors and not in multiples of the
-> volume's sector size. Under "normal" circumstances (with 512 byte
-> sectors in NTFS) the current code works as is; however, when we have
-> a 4k sector size on the volume the current usage of NTFS_B_TO_SECTOR()
-> and ntfs_bytes_to_sector() end up converting to the number of 4k
-> sectors after mount.
+> An mft record is written with a single bio of exactly mft_record_size
+> bytes. bio_unaligned() rejects a bio whose size is not a multiple of the
+> device's logical block size, so on a volume whose mft records are smaller
+> than that block no mft record can be written at all.
 >
-> Reads work today on 4k volumes as bdev-io.c as performing the shift
-> correctly inline. With writes, we end up with significant silent disk
-> corruption on these volumes.
+> On 512n and 512e drives this is a non-issue, since both report a 512-byte
+> logical block and a 1k record is a clean multiple of it. On 4Kn drives th=
+e
+> mft record (1k) is smaller than the 4k logical block, so every mft write
+> fails. At the same time, other writes (like directory index entries) that
+> are 4k will succeed leading references to unwritten mft records and a
+> corruption situation.
 >
-> This fixes changes to use the new ntfs_bytes_to_bio_sector() function
-> everywhere we're performing this calculation (including the existing
-> read path). For the change in inode.c it removes a dead code block
-> rather than updating.
+> Reads are unaffected, so mount read-only rather than refusing outright,
+> and refuse a later remount read-write for the same reason.
 >
-> Fixes: 40796051991d ("ntfs: update in-memory, on-disk structures and head=
-ers")
+> This is a stopgap. Writing these volumes needs read-modify-write at the
+> device's block size, which this does not implement.
+>
 > Assisted-by: Claude:claude-opus-5
 > Signed-off-by: Dennis Tighe <dennis.tighe@gmail.com>
 
 Looks good to me.
 
 Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+
+--=20
+Thanks,
+Hyunchul
