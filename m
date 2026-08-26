@@ -1,111 +1,82 @@
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89D6380FFD
-	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 06:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98687331200
+	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 11:21:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787724006; cv=none; b=AHx63kfD7AFLmzht6s96/VkMmHyWsB2q7s76wGHr9bXU2DjdoB6UPRQWxGx2mstn79Y+1X3Cd8FxZP2TZn+Urs4KtfUSPPPlUOooWyzCV95LMBrX1uXalIanxbD2HBHeLy0XdCd88us+zKn9WcAWhTacmKla7Mh/sHN3BKQ046o=
+	t=1787743288; cv=none; b=Q190liIygYeX6VwdAEdiUMVnHnAjh5A43a6g6gWM6QdYUa/JvB3MtALiBS4qdWFlAjF/wejGTSxceXUJjTGQZFdB+Is7T48kgcQZ8c4xKxJsFPxxGcf6kFgFsKhJBUtR2ha4BNOVs4hHR3OKMTpzY5FeiwWutj/3ouE8NJl+YHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787724006; c=relaxed/simple;
-	bh=dJ8zHLxh75koeGnAhUjt/ZtyAlrqxVcaqAAHLkZIpl4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bbQu4u62EHQgTETfGB4+zVFHXDFgQtC7Fab55W+AUuWL8AnQDirfqA1iNUArsi9vqh7FmcgGuXRLGOp44Nf/3H27dWAOkoAbHCSDASRy7woK2yn/nzF0x5C64dhO0PYLa2yVcCeLzZowsGw4QiTIjaRCAd9f/lUMFYRSiutzRdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 5e22f32aa11311f19a56ed5b684f684d-20260826
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:a9f11fd1-1881-4dac-a326-ecbf187bef64,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:7db8b62,CLOUDID:d615874be65cdd41e698268807d626b7,BulkI
-	D:nil,BulkQuantity:0,SF:102|850|865|898,TC:nil,Content:0|15|50,EDM:-3,IP:n
-	il,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
-	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 5e22f32aa11311f19a56ed5b684f684d-20260826
-X-User: zenghongling@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <zenghongling@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1797813150; Wed, 26 Aug 2026 13:59:58 +0800
-From: Hongling Zeng <zenghongling@kylinos.cn>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>,
-	stable@vger.kernel.org
-Subject: [PATCH] ntfs: handle signal interruption in fallocate
-Date: Wed, 26 Aug 2026 13:59:53 +0800
-Message-Id: <20260826055953.1372417-1-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1787743288; c=relaxed/simple;
+	bh=3TWQtl67amFd6rwDX6OKuST2K4ku3M1/2+nxyHoM7gs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KLHIH+HI0KnPrhQ/MQuXdxsvc4Yg4/4IFlPPQgbkBwmGn/5akcvRI+Ns+GPB9AtwAnI6djAJJzxYcRxIhqAmjiYldCAE7I/jyxhOH895ukAYiiCB0OYwgCbG34Kuvn0vjPHPJVn0iVLgcKR5CPXyAf7LGASqn9IrRn845wuX+nY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JWMU7PN1; arc=none smtp.client-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JWMU7PN1"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68C8F1F00A3F
+	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 11:21:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1787743287;
+	bh=7C4wsVDXaSUv3AN3rf75M1YoJedhjqTP/brju4gXUkI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=JWMU7PN1zYy39EtNyNL/FMee7DpKY/6v9IccA60YjRbJGRkszYpDeqdu35NNXG5Dp
+	 SE7uHzCwC8gJOS5fq6oFbcJEahcwHxNH4gSNvLmoG2sCoTLMkIw/QeyB5eaUzIVv1E
+	 pE8ixtjjtso8uYiS0KQxQ5Y3uiheiP3sFzn4aj4WlGcTLOjcGBCiYymcLrkAP2S10Q
+	 dgiFXUSE3mwSzMF2ndNkrwIVvw9/e3WscuBPmBzVMXR5xMxGYstXQEhu+T/HCQLqPn
+	 BZYc08krbgYpVOp+3ZfwkEjFiq18/v1cMu3pIXet8lT9v/bK3vai1B2Eq6SETSRnYb
+	 zUopzKs5kJUCw==
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-c1670dad7a8so127974566b.3
+        for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 04:21:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RoiBJezSgLanAAm/tuO+sfyI5Z5diGjVvJ5/SWWmXRMC/0BKV1HYFhCuqC3FzQAkWwBL0Cp@lists.linux.dev
+X-Gm-Message-State: AFuF++nnbReFsZXymvMnbtNf6/kkJbGa/IVADqPAeBaavTtWAkQuZyP3
+	3ccadoUp33Byco66rmzLu6xD3VxueIbWuK8pdWobzQXGQMeRWR2U05XP4AFmhKw/9hXBQ/iFQnS
+	aDVwdPnW3JMNt1/vXSKP6USQai+WR5TU=
+X-Received: by 2002:a17:907:728b:b0:c1f:c061:569a with SMTP id
+ a640c23a62f3a-c250bbe0e01mr718095366b.7.1787743286033; Wed, 26 Aug 2026
+ 04:21:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260821053238.1281310-1-liubaolin12138@163.com>
+In-Reply-To: <20260821053238.1281310-1-liubaolin12138@163.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Wed, 26 Aug 2026 20:21:13 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd8gPPzMuKxrwXAUyLC88=uUNbUK-EoRWKWrKwNxXcKH6Q@mail.gmail.com>
+X-Gm-Features: AcwNN1UM_AvS6ko4LRB3-tA4wHyLUpLmFBa43smy_F5JBEGofyR3qytF3sWqApk
+Message-ID: <CAKYAXd8gPPzMuKxrwXAUyLC88=uUNbUK-EoRWKWrKwNxXcKH6Q@mail.gmail.com>
+Subject: Re: [PATCH v1 0/9] ntfs: assorted error path fixes
+To: Baolin Liu <liubaolin12138@163.com>
+Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	liubaolin12138@gmail.com, Baolin Liu <liubaolin@kylinos.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The ntfs_attr_fallocate() function checks for pending signals during
-allocation loops and exits early via 'out' label. However, when a signal
-interrupts the operation with err == 0, the function returns 0 (success)
-instead of -EINTR.
+On Fri, Aug 21, 2026 at 2:32=E2=80=AFPM Baolin Liu <liubaolin12138@163.com>=
+ wrote:
+>
+> From: Baolin Liu <liubaolin@kylinos.cn>
+>
+> This series fixes a number of problems on error paths in the ntfs
+> driver: errors that are swallowed or collapsed so operations report
+> success or a wrong errno (patches 1-6), a kmap_local leak (patch 7),
+> and free cluster miscounting on failed frees (patches 8-9).
+>
+> Baolin Liu (9):
+>   ntfs: return DT_UNKNOWN on inode lookup failure in readdir
+>   ntfs: fail EA update when reading $EA_INFORMATION fails
+>   ntfs: propagate reparse index insertion failure
+>   ntfs: return -ERANGE for undersized xattr buffer
+>   ntfs: preserve error code in ntfs_resident_attr_record_add()
+>   ntfs: return real error from ntfs_non_resident_attr_record_add()
+>   ntfs: fix kmap_local leak in write_mft_record_nolock() error paths
+>   ntfs: only count successfully cleared runs when freeing clusters
+>   ntfs: skip free cluster decrement when rollback fails
 
-The signal_pending() checks at the allocation loops jump to 'out' without
-setting err = -EINTR, so the function returns success even when interrupted
-by a signal.
+Applied them except 0002 patch to #ntfs-next.
+Could you please recreate 0002 patch based on the #ntfs-next branch?
 
-Set err = -EINTR when jumping to the signal exit path, and only override
-when no other error is pending. This ensures:
-
-- Allocation interrupted by signal returns -EINTR
-- Allocation that completed successfully before signal arrived returns 0
-- Other errors are preserved and not overwritten by -EINTR
-
-Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-Cc: stable@vger.kernel.org
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
----
- fs/ntfs/attrib.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 60264833bb63..c898250f63a7 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -5709,7 +5709,7 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
- 				}
- 
- 				if (signal_pending(current))
--					goto out;
-+					goto signal_out;
- 
- 				vcn += alloc_cnt;
- 				try_alloc_cnt -= alloc_cnt;
-@@ -5730,7 +5730,7 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
- 		up_write(&ni->runlist.lock);
- 		mutex_unlock(&ni->mrec_lock);
- 		if (err || signal_pending(current))
--			goto out;
-+			goto signal_out;
- 
- 		vcn += alloc_cnt;
- 		try_alloc_cnt -= alloc_cnt;
-@@ -5756,4 +5756,8 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
- 	mutex_unlock(&ni->mrec_lock);
- out:
- 	return err >= 0 ? 0 : err;
-+signal_out:
-+	if (!err)
-+		err = -EINTR;
-+	goto out;
- }
--- 
-2.25.1
-
+Thanks.
