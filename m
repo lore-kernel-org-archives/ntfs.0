@@ -1,82 +1,105 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9B33EB10D
-	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 11:30:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BFD3F825B
+	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 12:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787743812; cv=none; b=MBrpGpiJ6L6xZDaC3jRiS8fwr8Cv9nrmtyV/1VB1szTN2Cd5ytvCGh8z5OkVDuWw2W4tKv16ehuuGjTNUxKcu50UuKBE5NgewPf4hjBlAr5u5a88UlJj7SJU/Yt6d++2WzzNS8ZWouz5GTbTta6jPu0TnmlhqIdlxI2LXo5ngag=
+	t=1787746178; cv=none; b=X3IlwhPVQWAEc+2JSISqX9wKUx6vTRTSQgGEV5ev6Kff+iLQti13FjeWjSkG2wqLJIe9ZHh296rxI3YqzqQI5DY6KlVsmFBSwZ5k626sI3awyZz3hWHl8gH98NYIQ/sFKA2B+O9ZX7kTQNZruoLZQjOJTCwUKAim8cfGM4fsUTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787743812; c=relaxed/simple;
-	bh=5cJffYrbzvlLTLs/MGEVbZcRNd+BMA0Y9cIfNr/ZVHU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Fus8bFdzWZdV0JBcOECfyD35eA8ZPzA1OIUx0GH25CpKXQTPzd7nTB07gZYZvX5gFT+gc4xFLyIQq28XsEv0fuHojFlXKvIG5NFJhS5/kEogU6k8ULrSJyvMShJK3d7A9uClkdBMOY92MI2eUQj0MpiBho8VUzuzaRizS3o1jmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Url3wdI9; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1787746178; c=relaxed/simple;
+	bh=tVESxrkysASDZtz8u5tIVzEav1NZ7JHJDUehOyzURc0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jRe4+jUrLE8BlZxz6gYh2RtUnC+CQUKFt0QFghuDRch8Ze0bOIVcjATx2cRR7Ivts4f+1h1dX0ZTcUYWUIFYNwCbWxZkQUMy+W1P8T5tWWQIZzbZkMAQqNpEAkkG/TWPFOoGXu3WnxKP0jAkphaNyuV9LYbvvaLHhEAxpICuR6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=WezzRXDS; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Url3wdI9"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 699411F00A3F
-	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 11:30:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1787743811;
-	bh=5cJffYrbzvlLTLs/MGEVbZcRNd+BMA0Y9cIfNr/ZVHU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=Url3wdI9jGBf11dykA+qqN+TfAZTqfEF/iD2ASdB/sBdHT1Wity+DNZAO+Vi+/Fh1
-	 P6L8zIB7a+86vWF4R+WjBMyLtCws24e/mVQvZWYIS2raGbUT7fseEkcmnosvVGHwHX
-	 akpJSZtI4n0eD4oxy0CKk6yOdhwmyx/VZ3Gc4t4WL/ILpDySd3vHihqIztASn6ZdBx
-	 9qMgitsTxSXHuypr9WGRt6gEHtoLZkJQhCRKQd85lKBJtggExcQynAKILwYHMOSV2C
-	 jqtO/Iyeck8HzXxpQ7OXAfociHvJ4FRuZHJ2DF4NVGY/cckcweRZ8bC5sa3eNtmB6H
-	 ATeDxQRabd+3g==
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-6a18840e2abso1395683a12.0
-        for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 04:30:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RpcJEpGD3RqQ61W/26gjhhXzP2NnIouajn8WKKxQ+GdVtSG3/lxT3/AwNnv927uogNpDFZ6@lists.linux.dev
-X-Gm-Message-State: AFuF++lWvQd2xSA15V9SUGfQMU8DyGZySpTI2n1xtUX/s64dSME+HgI9
-	ZSQoSQ2v/u+xOnDG1AxIn7jcweOZoX0kv5vcEkoT2bMnp2cxLBawX0xg0O61YzbSutYfF+RS6Jr
-	zARqAPDQExerdvXPDzuSJhEPNuD97fro=
-X-Received: by 2002:a17:906:fe0c:b0:c21:382e:9a38 with SMTP id
- a640c23a62f3a-c250c449b9fmr764484466b.2.1787743810078; Wed, 26 Aug 2026
- 04:30:10 -0700 (PDT)
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="WezzRXDS"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=OR27lAMvT0wF9I/E939+cWjWXgTuo5inFEVMKcGCh9s=;
+	b=WezzRXDSeSh2wfN+BaAktVBWAV8ueUi3u4Yx6PxD0fKKEV1GC8MOisuie2BxR4
+	onplNV34E0svtUPrFZprnyJZA5MozC3aA6JjyEVwOGIoPChP7/LGQVHXl6oRzdU9
+	6GlUdMiittci76FFpjSY0EkFn7XHdm7LqTE4WpTnyS5Mk=
+Received: from [IPV6:2409:8900:1ef9:dee:fd7d:3170:e603:8258] (unknown [])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wCnD5Ri145qRTSASA--.60674S2;
+	Wed, 26 Aug 2026 20:09:08 +0800 (CST)
+Message-ID: <28cce6b3-60ea-4ff5-b5bd-ff5c11516b08@163.com>
+Date: Wed, 26 Aug 2026 20:09:03 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260825095405.858623-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260825095405.858623-1-zenghongling@kylinos.cn>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Wed, 26 Aug 2026 20:29:57 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8Vso+9+w2Dr7+vCSvRiHs0YPFz=Gk0Er1U6SJVG84H7A@mail.gmail.com>
-X-Gm-Features: AcwNN1WrBSfwzM2PN0UKTrEZYMyN8MA4TywdX16d31u7gFDR-wvU_LF3q0CbisE
-Message-ID: <CAKYAXd8Vso+9+w2Dr7+vCSvRiHs0YPFz=Gk0Er1U6SJVG84H7A@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: fix undefined behavior in mft/index record size calculation
-To: Hongling Zeng <zenghongling@kylinos.cn>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhongling0719@126.com, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ntfs: fix race between fallocate and mmap reads
+To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ zhongling0719@126.com, stable@vger.kernel.org
+References: <20260826054204.1364589-1-zenghongling@kylinos.cn>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20260826054204.1364589-1-zenghongling@kylinos.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wCnD5Ri145qRTSASA--.60674S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CF15Wr17uF1kAw4DWrykZrb_yoW8ZF1xpr
+	ZIgF1rK34fXryjqF1kKw48uF1rWw4kW3y5Wr4Fq3WxuFn3tFn7Kw4jkrn5WFyxKF98Xr45
+	Xr12qrZrua42vaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTCJQUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gRNGGqO12TEVgAA3+
 
-On Tue, Aug 25, 2026 at 6:54=E2=80=AFPM Hongling Zeng <zenghongling@kylinos=
-.cn> wrote:
->
-> The boot sector validation allows clusters_per_mft_record and
-> clusters_per_index_record to range from 0xE1 (-31) to 0xF7 (-9) when
-> interpreted as signed values. When these are used as negative shift
-> counts in expressions like `1 << -clusters_per_mft_record`, values
-> like 0xE1 cause `1 << 31`, which shifts into the sign bit of a 32-bit
-> signed integer, resulting in undefined behavior.
->
-> Fix by using unsigned shift (1U << ...) instead of signed shift.
-> This prevents undefined behavior while preserving the full valid
-> range of negative values (-31 to -9) that may appear in NTFS boot
-> sectors.
->
-> The encoding scheme uses negative values to represent record sizes
-> smaller than cluster_size: -log2(record_size). Common values include
-> -10 (1024 bytes) for mft_record_size and -12 (4096 bytes) for
-> index_record_size.
->
-> Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
+
+
+在 2026/8/26 13:42, Hongling Zeng 写道:
+> The fallocate implementation only takes invalidate_lock for punch hole,
+> collapse range, and insert range operations. For standard allocation modes
+> (mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
+> 
+> During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
+> ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). This
+> creates a window where concurrent mmap page faults can read uninitialized
+> disk data.
+> 
+> Since mmap uses filemap_fault() which takes invalidate_lock in shared mode,
+> it can fault in pages during this window and expose old disk contents to
+> userspace. This is an information leak and data integrity issue.
+> 
+> Fix by taking invalidate_lock for all fallocate operations, not just for
+> punch/collapse/insert modes. This prevents concurrent page faults from
+> accessing unzeroed clusters during the allocation window.
+> 
+> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
 > Cc: stable@vger.kernel.org
 > Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-Applied it to #ntfs-next with Baolin's reviewed-by tag.
-Thanks!
+> ---
+>   fs/ntfs/file.c | 8 +++-----
+>   1 file changed, 3 insertions(+), 5 deletions(-)
+> 
+> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+> index 88747217ba61..6958a1469fb0 100644
+> --- a/fs/ntfs/file.c
+> +++ b/fs/ntfs/file.c
+> @@ -1153,11 +1153,9 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
+>   	}
+>   
+>   	inode_dio_wait(vi);
+> -	if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
+> -		    FALLOC_FL_INSERT_RANGE)) {
+> -		filemap_invalidate_lock(vi->i_mapping);
+> -		map_locked = true;
+> -	}
+> +	/* Take invalidate_lock for all fallocate operations to prevent races */
+> +	filemap_invalidate_lock(vi->i_mapping);
+> +	map_locked = true;
+>   
+>   	switch (mode & FALLOC_FL_MODE_MASK) {
+>   	case FALLOC_FL_ALLOCATE_RANGE:
+
+I verified the race window exists and the fix looks correct.
+
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+
