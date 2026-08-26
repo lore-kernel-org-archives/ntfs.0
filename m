@@ -1,24 +1,24 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEEF637F321
-	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 05:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89D6380FFD
+	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 06:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787722940; cv=none; b=HnpJi+FHGZbUahAvx0xfLo6z6vNj0i17DvnaieFEcdzeiZUIl+zxuEqfPJxQE1SUowJo+5mR4jW5SkKjv+9zVHL806Yr83af8oFyVKZFor2iZWuag8DrWjOs1lgLD+/m0LHW7Vm0wg9DU45ZcVxJYFWqrOgcXfhzIAYqPZsCT+I=
+	t=1787724006; cv=none; b=AHx63kfD7AFLmzht6s96/VkMmHyWsB2q7s76wGHr9bXU2DjdoB6UPRQWxGx2mstn79Y+1X3Cd8FxZP2TZn+Urs4KtfUSPPPlUOooWyzCV95LMBrX1uXalIanxbD2HBHeLy0XdCd88us+zKn9WcAWhTacmKla7Mh/sHN3BKQ046o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787722940; c=relaxed/simple;
-	bh=pDmQaGK+0Ostm0KUxDQDQx8yEujpOu+No0rZGKEeTt8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UPAjmBuSUZagwESqSkXp4AH8okjRVhIIIJEXicuChy5N/biTUV+LyJMWWVm9Tk0raVHCKUzPxDBQzDO1T1CouGqvhHY8lTIhQX1ub3RTe2Qza+ZO4IlOPAe5mdsJPaQb6Q3R3bATGu8DaOl/N9x1tmQkkF7FmaLYBPVxUdtJ+dA=
+	s=arc-20240116; t=1787724006; c=relaxed/simple;
+	bh=dJ8zHLxh75koeGnAhUjt/ZtyAlrqxVcaqAAHLkZIpl4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bbQu4u62EHQgTETfGB4+zVFHXDFgQtC7Fab55W+AUuWL8AnQDirfqA1iNUArsi9vqh7FmcgGuXRLGOp44Nf/3H27dWAOkoAbHCSDASRy7woK2yn/nzF0x5C64dhO0PYLa2yVcCeLzZowsGw4QiTIjaRCAd9f/lUMFYRSiutzRdI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: e10db5fca11011f19a56ed5b684f684d-20260826
+X-UUID: 5e22f32aa11311f19a56ed5b684f684d-20260826
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:f8a2c4fd-12f2-4073-ab85-deef77a6957f,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:3a95710aee9e9994cffdb857aa69e56a,BulkI
+X-CID-O-INFO: VERSION:1.3.19,REQID:a9f11fd1-1881-4dac-a326-ecbf187bef64,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:7db8b62,CLOUDID:d615874be65cdd41e698268807d626b7,BulkI
 	D:nil,BulkQuantity:0,SF:102|850|865|898,TC:nil,Content:0|15|50,EDM:-3,IP:n
 	il,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
 	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -26,12 +26,12 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: e10db5fca11011f19a56ed5b684f684d-20260826
+X-UUID: 5e22f32aa11311f19a56ed5b684f684d-20260826
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 556608147; Wed, 26 Aug 2026 13:42:09 +0800
+	with ESMTP id 1797813150; Wed, 26 Aug 2026 13:59:58 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -40,9 +40,9 @@ Cc: ntfs@lists.linux.dev,
 	zhongling0719@126.com,
 	Hongling Zeng <zenghongling@kylinos.cn>,
 	stable@vger.kernel.org
-Subject: [PATCH] ntfs: fix race between fallocate and mmap reads
-Date: Wed, 26 Aug 2026 13:42:04 +0800
-Message-Id: <20260826054204.1364589-1-zenghongling@kylinos.cn>
+Subject: [PATCH] ntfs: handle signal interruption in fallocate
+Date: Wed, 26 Aug 2026 13:59:53 +0800
+Message-Id: <20260826055953.1372417-1-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
@@ -52,49 +52,60 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The fallocate implementation only takes invalidate_lock for punch hole,
-collapse range, and insert range operations. For standard allocation modes
-(mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
+The ntfs_attr_fallocate() function checks for pending signals during
+allocation loops and exits early via 'out' label. However, when a signal
+interrupts the operation with err == 0, the function returns 0 (success)
+instead of -EINTR.
 
-During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
-ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). This
-creates a window where concurrent mmap page faults can read uninitialized
-disk data.
+The signal_pending() checks at the allocation loops jump to 'out' without
+setting err = -EINTR, so the function returns success even when interrupted
+by a signal.
 
-Since mmap uses filemap_fault() which takes invalidate_lock in shared mode,
-it can fault in pages during this window and expose old disk contents to
-userspace. This is an information leak and data integrity issue.
+Set err = -EINTR when jumping to the signal exit path, and only override
+when no other error is pending. This ensures:
 
-Fix by taking invalidate_lock for all fallocate operations, not just for
-punch/collapse/insert modes. This prevents concurrent page faults from
-accessing unzeroed clusters during the allocation window.
+- Allocation interrupted by signal returns -EINTR
+- Allocation that completed successfully before signal arrived returns 0
+- Other errors are preserved and not overwritten by -EINTR
 
 Fixes: 495e90fa3348 ("ntfs: update attrib operations")
 Cc: stable@vger.kernel.org
 Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 ---
- fs/ntfs/file.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ fs/ntfs/attrib.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 88747217ba61..6958a1469fb0 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -1153,11 +1153,9 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
- 	}
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index 60264833bb63..c898250f63a7 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -5709,7 +5709,7 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
+ 				}
  
- 	inode_dio_wait(vi);
--	if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
--		    FALLOC_FL_INSERT_RANGE)) {
--		filemap_invalidate_lock(vi->i_mapping);
--		map_locked = true;
--	}
-+	/* Take invalidate_lock for all fallocate operations to prevent races */
-+	filemap_invalidate_lock(vi->i_mapping);
-+	map_locked = true;
+ 				if (signal_pending(current))
+-					goto out;
++					goto signal_out;
  
- 	switch (mode & FALLOC_FL_MODE_MASK) {
- 	case FALLOC_FL_ALLOCATE_RANGE:
+ 				vcn += alloc_cnt;
+ 				try_alloc_cnt -= alloc_cnt;
+@@ -5730,7 +5730,7 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
+ 		up_write(&ni->runlist.lock);
+ 		mutex_unlock(&ni->mrec_lock);
+ 		if (err || signal_pending(current))
+-			goto out;
++			goto signal_out;
+ 
+ 		vcn += alloc_cnt;
+ 		try_alloc_cnt -= alloc_cnt;
+@@ -5756,4 +5756,8 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
+ 	mutex_unlock(&ni->mrec_lock);
+ out:
+ 	return err >= 0 ? 0 : err;
++signal_out:
++	if (!err)
++		err = -EINTR;
++	goto out;
+ }
 -- 
 2.25.1
 
