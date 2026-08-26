@@ -1,105 +1,123 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BFD3F825B
-	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 12:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DF041D106
+	for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 12:27:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787746178; cv=none; b=X3IlwhPVQWAEc+2JSISqX9wKUx6vTRTSQgGEV5ev6Kff+iLQti13FjeWjSkG2wqLJIe9ZHh296rxI3YqzqQI5DY6KlVsmFBSwZ5k626sI3awyZz3hWHl8gH98NYIQ/sFKA2B+O9ZX7kTQNZruoLZQjOJTCwUKAim8cfGM4fsUTg=
+	t=1787747281; cv=none; b=EwBf5le+84JdSQiA0KQ0BUDdiDWo0K91OmgnQmc3Djy11sNFPLQWoreZpJtxuVGMIJfs+JGgkwOPi1ChlMoE4vzw+a61V5PIxEQ7M43Y/yJ0clg3QgNou5HI9QpFkfnjJ1m6HW6/ukI2TYVP1YjuDhf6kKGEaewRIznJ67zHAvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787746178; c=relaxed/simple;
-	bh=tVESxrkysASDZtz8u5tIVzEav1NZ7JHJDUehOyzURc0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jRe4+jUrLE8BlZxz6gYh2RtUnC+CQUKFt0QFghuDRch8Ze0bOIVcjATx2cRR7Ivts4f+1h1dX0ZTcUYWUIFYNwCbWxZkQUMy+W1P8T5tWWQIZzbZkMAQqNpEAkkG/TWPFOoGXu3WnxKP0jAkphaNyuV9LYbvvaLHhEAxpICuR6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=WezzRXDS; arc=none smtp.client-ip=220.197.31.3
+	s=arc-20240116; t=1787747281; c=relaxed/simple;
+	bh=3q2rBVs86aGWdbyOrfsqHgDn+UlAr2tm2kY4ZHHDgRo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=D66KkCxpshuIjTquf1IMT+4qsN83WhT8NZAaOW5ULY10fuIIBpHJCKEJFhMTDB7rWXnxBmbs8sux7urtYKZ5BDyqxKuNiEELzxBQaj0gg0W3ZxAIJmyPtEi2EEJt5Dsd5SpRakNzpXt26vw2Q7Ll7/CC14l1M1wctbsKzO/ER18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Wf7oOgXn; arc=none smtp.client-ip=117.135.210.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="WezzRXDS"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Wf7oOgXn"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=OR27lAMvT0wF9I/E939+cWjWXgTuo5inFEVMKcGCh9s=;
-	b=WezzRXDSeSh2wfN+BaAktVBWAV8ueUi3u4Yx6PxD0fKKEV1GC8MOisuie2BxR4
-	onplNV34E0svtUPrFZprnyJZA5MozC3aA6JjyEVwOGIoPChP7/LGQVHXl6oRzdU9
-	6GlUdMiittci76FFpjSY0EkFn7XHdm7LqTE4WpTnyS5Mk=
-Received: from [IPV6:2409:8900:1ef9:dee:fd7d:3170:e603:8258] (unknown [])
-	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wCnD5Ri145qRTSASA--.60674S2;
-	Wed, 26 Aug 2026 20:09:08 +0800 (CST)
-Message-ID: <28cce6b3-60ea-4ff5-b5bd-ff5c11516b08@163.com>
-Date: Wed, 26 Aug 2026 20:09:03 +0800
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=kt
+	2kK9yQ4Wc1wTrmIy0zAfLAF65ecf5YAnNursAAmz8=; b=Wf7oOgXn8IKP9we+fX
+	i59H+IdavZWOpbkNxeGJ5IEy9CH9940bNnGr2Rt9t3DFEiHUCwA1CO9W+44Fh+Td
+	8l/XfJY8uQ1dZVQfn+NdnTyXdeHBDI62IdOZPaDVnC8cdon1Y/2G35XOc1DoDVpL
+	d8JWTpKb5Wpp4jXj0bqv//wTY=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzsmtp5 (Coremail) with SMTP id QCgvCgDHUCC4245q++wKOQ--.27428S3;
+	Wed, 26 Aug 2026 20:27:40 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	liubaolin12138@gmail.com,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v1 1/2] ntfs: report volume errors to fsnotify
+Date: Wed, 26 Aug 2026 20:27:33 +0800
+Message-ID: <20260826122734.2129830-2-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260826122734.2129830-1-liubaolin12138@163.com>
+References: <20260826122734.2129830-1-liubaolin12138@163.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ntfs: fix race between fallocate and mmap reads
-To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
- hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- zhongling0719@126.com, stable@vger.kernel.org
-References: <20260826054204.1364589-1-zenghongling@kylinos.cn>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260826054204.1364589-1-zenghongling@kylinos.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wCnD5Ri145qRTSASA--.60674S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CF15Wr17uF1kAw4DWrykZrb_yoW8ZF1xpr
-	ZIgF1rK34fXryjqF1kKw48uF1rWw4kW3y5Wr4Fq3WxuFn3tFn7Kw4jkrn5WFyxKF98Xr45
-	Xr12qrZrua42vaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTCJQUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gRNGGqO12TEVgAA3+
+X-CM-TRANSID:QCgvCgDHUCC4245q++wKOQ--.27428S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uw1xXryrtrW5WF17CFyrXrb_yoW8uw1xpF
+	WkCwn3KrWkJ3W7KwsIk3ySyF4Sga4kWr4jyr47Jw1Sqrn3tw1UtFs2y34F9F1I9rW8Zw4x
+	XF1Yq393urWUZrUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j7pnPUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6R1kL2qO27259wAA3z
 
+From: Baolin Liu <liubaolin@kylinos.cn>
 
+The ntfs driver reports volume corruption only to dmesg. Wire up the
+generic fserror infrastructure at NVolSetErrors(), the point where the
+driver concludes the volume metadata is inconsistent, so that an
+FS_ERROR event is emitted as well. This lets health monitoring daemons
+watching the mount with fanotify(FAN_FS_ERROR) learn about corruption
+without scraping kernel logs.
 
-在 2026/8/26 13:42, Hongling Zeng 写道:
-> The fallocate implementation only takes invalidate_lock for punch hole,
-> collapse range, and insert range operations. For standard allocation modes
-> (mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
-> 
-> During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
-> ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). This
-> creates a window where concurrent mmap page faults can read uninitialized
-> disk data.
-> 
-> Since mmap uses filemap_fault() which takes invalidate_lock in shared mode,
-> it can fault in pages during this window and expose old disk contents to
-> userspace. This is an information leak and data integrity issue.
-> 
-> Fix by taking invalidate_lock for all fallocate operations, not just for
-> punch/collapse/insert modes. This prevents concurrent page faults from
-> accessing unzeroed clusters during the allocation window.
-> 
-> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-> ---
->   fs/ntfs/file.c | 8 +++-----
->   1 file changed, 3 insertions(+), 5 deletions(-)
-> 
-> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-> index 88747217ba61..6958a1469fb0 100644
-> --- a/fs/ntfs/file.c
-> +++ b/fs/ntfs/file.c
-> @@ -1153,11 +1153,9 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
->   	}
->   
->   	inode_dio_wait(vi);
-> -	if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
-> -		    FALLOC_FL_INSERT_RANGE)) {
-> -		filemap_invalidate_lock(vi->i_mapping);
-> -		map_locked = true;
-> -	}
-> +	/* Take invalidate_lock for all fallocate operations to prevent races */
-> +	filemap_invalidate_lock(vi->i_mapping);
-> +	map_locked = true;
->   
->   	switch (mode & FALLOC_FL_MODE_MASK) {
->   	case FALLOC_FL_ALLOCATE_RANGE:
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+ fs/ntfs/super.c  |  8 ++++++++
+ fs/ntfs/volume.h | 14 +++++++++++++-
+ 2 files changed, 21 insertions(+), 1 deletion(-)
 
-I verified the race window exists and the fix looks correct.
-
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index cd8fa2c13370..5229eb27bb30 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -14,6 +14,7 @@
+ #include <linux/sched/mm.h>
+ #include <linux/fs_context.h>
+ #include <linux/fs_parser.h>
++#include <linux/fserror.h>
+ 
+ #include "sysctl.h"
+ #include "logfile.h"
+@@ -330,6 +331,13 @@ const struct option_t on_errors_arr[] = {
+ 	{ 0,			NULL }
+ };
+ 
++/* Mark the volume as corrupt and notify fanotify(FAN_FS_ERROR) listeners. */
++void NVolSetErrors(struct ntfs_volume *vol)
++{
++	set_bit(NV_Errors, &vol->flags);
++	fserror_report_metadata(vol->sb, -EFSCORRUPTED, GFP_ATOMIC);
++}
++
+ void ntfs_handle_error(struct super_block *sb)
+ {
+ 	struct ntfs_volume *vol = NTFS_SB(sb);
+diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
+index 65fd3908af26..cf1a75066157 100644
+--- a/fs/ntfs/volume.h
++++ b/fs/ntfs/volume.h
+@@ -218,7 +218,19 @@ static inline void NVolClear##flag(struct ntfs_volume *vol)	\
+ }
+ 
+ /* Emit the ntfs volume bitops functions. */
+-DEFINE_NVOL_BIT_OPS(Errors)
++static inline int NVolErrors(struct ntfs_volume *vol)
++{
++	return test_bit(NV_Errors, &vol->flags);
++}
++
++/* Out of line, it also reports the corruption to fsnotify. */
++void NVolSetErrors(struct ntfs_volume *vol);
++
++static inline void NVolClearErrors(struct ntfs_volume *vol)
++{
++	clear_bit(NV_Errors, &vol->flags);
++}
++
+ DEFINE_NVOL_BIT_OPS(ShowSystemFiles)
+ DEFINE_NVOL_BIT_OPS(CaseSensitive)
+ DEFINE_NVOL_BIT_OPS(LogFileEmpty)
+-- 
+2.51.0
 
