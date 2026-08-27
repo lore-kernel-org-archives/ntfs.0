@@ -1,120 +1,105 @@
-Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.8])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF260222599
-	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 03:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2BFB3803FD
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 03:16:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787800317; cv=none; b=l+bapjb/N7guHv4vfaeDJuL8q67w6pwwVsgZfmTViW/c/ce73kOV4mn6Djqw9tt0fHTOwFLlM+XiZa/AN86KtQFTrcVuqzSDOPl0qhC87JqdyuMvaH8AJI+OD90wGdN3jiNpoHn1yuNOWHLJzMBs/FEabEHYrDcb6mdetsqcA1Y=
+	t=1787800622; cv=none; b=l/tgH9EdrQUOHRdFs2pltGeFkN97EIuLAtz49xXgsu+GMVT0ShCfHlmGelxYu5nPyobSGi8fyjharkPdJIp8/ZoNrA/yTzkXCN2OYFzp7P6llgaXrAHYhJYUhXn6SzgCICp9Bkn4wnFMvayp0pZeAf/2OtWIVqZuqH2NBfRl4W0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787800317; c=relaxed/simple;
-	bh=KcwK/YhyJWaNmeTkEl/2KPAst9MSM1GXtF6RyPr0GtE=;
-	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
-	 In-Reply-To:Content-Type; b=IOSyxJVwDwFv3eKrYKkUSad0X4bN+wp0mgOrjgP77+Yk09w6ARmSNG+cUpjkofwfwmHXWCrpV+Nj0K0V3PpKIFnHaHJ5xT5QFfPUwj/6Hxcj8DseJBEngagEemF9IEk61HIB3/+qmq1eYMW2kePfOGVyJ+s3FWlCF9PeDl4QeSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=HP29rBTK; arc=none smtp.client-ip=117.135.210.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="HP29rBTK"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
-	Content-Type; bh=tRUgptt3/iOeaoL0OChJJ/UHDKz4DcTXArKL3r2EcPA=;
-	b=HP29rBTK16P1/n7OL0zPg7KzmODPZgRMOVNPxZo+SQdP1fwzy9rs1l1/RSr0gg
-	U/GjFuNKD1UjvxOEoO6/rOOB6dULSkPeI3rv/pj4di8OK68Lxh6rAAuRkH01nQK7
-	WoeqiLGa8Gj3lI+7II0BgSqvOuPqkV/hrtwnfPFKGwzQc=
-Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDnL8zoqo9q1iCbGg--.30864S2;
-	Thu, 27 Aug 2026 11:11:37 +0800 (CST)
-Message-ID: <6A8FAACE.1040601@126.com>
-Date: Thu, 27 Aug 2026 11:11:10 +0800
-From: Hongling Zeng <zhongling0719@126.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	s=arc-20240116; t=1787800622; c=relaxed/simple;
+	bh=1wGgYx6t9NA/s8wHsgVerN0LkkIJ/pt7uFDcTjQBdp8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GDzRUH0dulBbi/f8ffMpnQIve292GWgrotlJw+anpP9LpEAnMpkrxYmabj9SYTEGBDXrwJpWeJnFETgWyDdcXuqrY9MUeBobNe8UDZLVOw/1ll+cZweQLaMUQOHf3u7sTeqyExZqdPikSUQmg9hz6uvMwV2pr5D5zRJGcR7hEB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: bf442b3aa1c511f19a56ed5b684f684d-20260827
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:fafcaca3-d535-4338-8078-579238d04a9d,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:20a794283dbf81c279d112d6142dbe5d,BulkI
+	D:nil,BulkQuantity:0,SF:102|850|865|898,TC:nil,Content:0|15|50,EDM:-3,IP:n
+	il,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
+	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: bf442b3aa1c511f19a56ed5b684f684d-20260827
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 745407325; Thu, 27 Aug 2026 11:16:51 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	stable@vger.kernel.org,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v2] ntfs: fix race between fallocate and mmap reads
+Date: Thu, 27 Aug 2026 11:16:46 +0800
+Message-Id: <20260827031647.1605970-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-To: Hyunchul Lee <hyc.lee@gmail.com>, 
- Hongling Zeng <zenghongling@kylinos.cn>
-CC: linkinjeon@kernel.org, ntfs@lists.linux.dev, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] ntfs: fix race between fallocate and mmap reads
-References: <20260826054204.1364589-1-zenghongling@kylinos.cn> <CANFS6bbVZ3jZa+a8FTjz1w3RuPvFTgjfBh134J4a-9fK549UxQ@mail.gmail.com>
-In-Reply-To: <CANFS6bbVZ3jZa+a8FTjz1w3RuPvFTgjfBh134J4a-9fK549UxQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnL8zoqo9q1iCbGg--.30864S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KFWDCw4xZr18KF1kWF45KFg_yoW8KF1rpr
-	Z3KF15Kws3X34jvF1vg3y8uF1rW3ykWrW5WrWSq3WxuFnxtFn2gF4jkr1furyxKF9xJr4f
-	Xr1jqr9ruFy7ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jI0PfUUUUU=
-X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrgljNGqPqukN7gAA31
 
+The fallocate implementation only takes invalidate_lock for punch hole,
+collapse range, and insert range operations. For standard allocation modes
+(mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
 
-在 2026年08月27日 10:43, Hyunchul Lee 写道:
-> Hi Hongling,
->
-> 2026년 8월 26일 (수) 오후 2:42, Hongling Zeng <zenghongling@kylinos.cn>님이 작성:
->> The fallocate implementation only takes invalidate_lock for punch hole,
->> collapse range, and insert range operations. For standard allocation modes
->> (mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
->>
->> During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
->> ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). This
->> creates a window where concurrent mmap page faults can read uninitialized
->> disk data.
->>
->> Since mmap uses filemap_fault() which takes invalidate_lock in shared mode,
->> it can fault in pages during this window and expose old disk contents to
->> userspace. This is an information leak and data integrity issue.
->>
->> Fix by taking invalidate_lock for all fallocate operations, not just for
->> punch/collapse/insert modes. This prevents concurrent page faults from
->> accessing unzeroed clusters during the allocation window.
->>
->> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
->> ---
->>   fs/ntfs/file.c | 8 +++-----
->>   1 file changed, 3 insertions(+), 5 deletions(-)
->>
->> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
->> index 88747217ba61..6958a1469fb0 100644
->> --- a/fs/ntfs/file.c
->> +++ b/fs/ntfs/file.c
->> @@ -1153,11 +1153,9 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
->>          }
->>
->>          inode_dio_wait(vi);
->> -       if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
->> -                   FALLOC_FL_INSERT_RANGE)) {
->> -               filemap_invalidate_lock(vi->i_mapping);
->> -               map_locked = true;
->> -       }
->> +       /* Take invalidate_lock for all fallocate operations to prevent races */
->> +       filemap_invalidate_lock(vi->i_mapping);
->> +       map_locked = true;
-> map_locked can be removed.
-> Otherwise it looks good to me.
->
-> Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
+ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). This
+creates a window where concurrent mmap page faults can read uninitialized
+disk data.
 
-> |Hi Hyunchul,||||Thanks for reviewing.
->
-> You're right, since invalidate_lock is now taken unconditionally,
-> map_locked is no longer needed. I'll remove it in v2.
->
-> Thanks|
->
->>          switch (mode & FALLOC_FL_MODE_MASK) {
->>          case FALLOC_FL_ALLOCATE_RANGE:
->> --
->> 2.25.1
->>
->
-> --
-> Thanks,
-> Hyunchul
+Since mmap uses filemap_fault() which takes invalidate_lock in shared mode,
+it can fault in pages during this window and expose old disk contents to
+userspace. This is an information leak and data integrity issue.
+
+Fix by taking invalidate_lock for all fallocate operations, not just for
+punch/collapse/insert modes. This prevents concurrent page faults from
+accessing unzeroed clusters during the allocation window.
+
+Fixes: 495e90fa3348 ("ntfs: update attrib operations")
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+Change in v2:
+ -Remove now-unnecessary map_locked variable.
+---
+ fs/ntfs/file.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 88747217ba61..779baafa0319 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -1153,11 +1153,8 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
+ 	}
+ 
+ 	inode_dio_wait(vi);
+-	if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
+-		    FALLOC_FL_INSERT_RANGE)) {
+-		filemap_invalidate_lock(vi->i_mapping);
+-		map_locked = true;
+-	}
++	/* Take invalidate_lock for all fallocate operations to prevent races */
++	filemap_invalidate_lock(vi->i_mapping);
+ 
+ 	switch (mode & FALLOC_FL_MODE_MASK) {
+ 	case FALLOC_FL_ALLOCATE_RANGE:
+-- 
+2.25.1
 
