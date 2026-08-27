@@ -1,95 +1,81 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2B93112B2
-	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 06:50:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9007432E6F
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 12:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787813421; cv=none; b=QvuB3uUdD6iNWMYhGKyofxYdQ+UV/NXAs5YvLmQuSFL1JSaDEVFTLYTxZWffGEfGDMFlXHqoN4KR9TS0JednBHwu8IvUcrx2GBCvqlmcmpNTy7oKn6tCdFnb6LU6WW/4jcTHmybqx2bJuWpWn6iroRhe903kwNq2ccSOiGbb77M=
+	t=1787834942; cv=none; b=hlhNfAEL3toAfJ8DbFeG6VzqR6lyycl1y027D/FsX1KOGsWhzkDf/pJgLszlbV1Bt6LcqApl7in2hqFttWgWK+DfLYyisS1Sc1x0TTA2UyfWK/gWPQMKYjIsgJ44liHCoTzQ32cPmkWroeia6q/zVFq5h2XdZbMQaZevFLbJ4hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787813421; c=relaxed/simple;
-	bh=hv+xlhgHQqFoGGetKUqiilEVfE/MVrK3vbsngmt+m8c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kpI/f/aDRbw8v9M/+jRu49EVOguAUhkvpWhVkX5D7O+31f/4KqXXRCoSpNKu45gSncN8GGbS/yitAK6CiqOek56fD7EFsfPOuO4XC4R+yPmeWKD3II23bw2bjJ8y9PvH2BPQVf7NJ1wT7kJ+UQkL4Df9zuLjn1lyzIAqRInUo6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=FYuu7vE5; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1787834942; c=relaxed/simple;
+	bh=yKCPTwcn1Usks+ClmSapEiuKubRHc2NxhIPyl2cmL+o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p2vwlLqfVblhYM3HjdpCpeojZRWHpFMIJIS0dxsYK8g/E/uzm9rgLHCWH402/itX2PyC2Xb/X5Bf6/TRNwd/BtXh9H2eEl2MZoHimGHuhzPYYP+L3JzIuf78gkQZQbEhLXi/ekhRsAeyoYvYyKei7KjsyeVzRVIg+4RSE5hYgmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C31hv57S; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="FYuu7vE5"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=2tmet0Taqk062cGPdarBxbGdQBHmdXGdZ0eRNqncnmM=;
-	b=FYuu7vE5RqZnTufIev7meJpy3SbF1FlUCTT1lvWBNrj0eMXZxdKvRZZSO8yo45
-	AGnvg+TanTeQQYelffciyDm0YnS/HrtIKJCdekPfqnRK7jju2RnDnCMgESMbpAIq
-	WOMie9sIWPKlX4fjWtXvOnWUim2d3/QDhVgHy7stImKGM=
-Received: from [IPV6:2409:8900:1ef4:8f82:6a1b:f1a6:cbdd:11fe] (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgD3HrIX3o9q5yLmOQ--.48857S2;
-	Thu, 27 Aug 2026 14:50:01 +0800 (CST)
-Message-ID: <85040eb1-03d4-487b-b2ee-a8b9d44a63ce@163.com>
-Date: Thu, 27 Aug 2026 14:49:59 +0800
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C31hv57S"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA8B61F000E9
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 12:48:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1787834918;
+	bh=yKCPTwcn1Usks+ClmSapEiuKubRHc2NxhIPyl2cmL+o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=C31hv57SPL5r8e7nMPv15pa57vs8FnW2Sd4uglsbPGwXiKUmCP3spo513PwxeMvE4
+	 JEfqyMBwGHHrpcTgyp/ZQkN3pN+e/KKGCMwtttQ+mfCQBZ2BEUdj4tX71jXTTtP4VH
+	 BttFCbVnERdNZuex/ikHkgFh6YCDOqk5ifK+/sONMcRrtiolfMNI1XAQxXsWlAVKus
+	 +37AjakF5biwuQIxISr0DEl1XjDr6kYHPiuCsUF4l1EKNWrEnzFz5q3g0XZ9lSX4v6
+	 SCunAdQO++JpKIJSw/5Arbs0TpvMIUgEALWEKq9QVB6+s5ONOqBOrYBG5nhCMqYpno
+	 YPwqn19I3NCYQ==
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-6a601ba6870so522579a12.0
+        for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 05:48:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RozgzD9bx+AzZN031l4DZxu+P1SVwDUbF6nc6u8tfuGE5WAhrYQAxivUujqj0222uluXggM@lists.linux.dev
+X-Gm-Message-State: AFuF++nb4XPK9G7csk8gK89Itk8IxgRA+tzkAWXPCKoi9XZQzO+XumYO
+	I2L5PPrO9QGeRnhgBlJ6lhSbULgBaV7S2cYOQerRO3A/rmVthk/kyK5ktKk+z6LAbAoNKkj6wQB
+	3vYtWV2pP8aTUAWakejqsnHbpdLqxp8A=
+X-Received: by 2002:a17:906:eecb:b0:c24:82b9:361c with SMTP id
+ a640c23a62f3a-c250c3935b3mr1646579266b.17.1787834916600; Thu, 27 Aug 2026
+ 05:48:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/9] ntfs: assorted error path fixes
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- liubaolin12138@gmail.com, Baolin Liu <liubaolin@kylinos.cn>
-References: <20260821053238.1281310-1-liubaolin12138@163.com>
- <CAKYAXd8gPPzMuKxrwXAUyLC88=uUNbUK-EoRWKWrKwNxXcKH6Q@mail.gmail.com>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <CAKYAXd8gPPzMuKxrwXAUyLC88=uUNbUK-EoRWKWrKwNxXcKH6Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PygvCgD3HrIX3o9q5yLmOQ--.48857S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CFWDKF1ktrykKw1ktw1xAFb_yoW8Xw4kpr
-	WxtFyDKw4qvr17AF92y34UAay0v3y7Cry8Xw45Gw1Ivw15Gr1ftrWrtF1jqr95KryrCw42
-	qrWUu34fu3WUuaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U4v35UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hk8B2qP3hkYlgAA3k
+References: <6a8a9d9a.fdee0002.34cbe9.559f@mx.google.com>
+In-Reply-To: <6a8a9d9a.fdee0002.34cbe9.559f@mx.google.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Thu, 27 Aug 2026 21:48:24 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd-h8aUMgipB-3fXUpNnbO=u4dE7+NRRGQZ5OdHn-_xO0Q@mail.gmail.com>
+X-Gm-Features: AcwNN1WbE1-hlqOzH0kDbv7P2c5vowcHzUDu8iIZI140vB7ZZynzLyL04mRjB-I
+Message-ID: <CAKYAXd-h8aUMgipB-3fXUpNnbO=u4dE7+NRRGQZ5OdHn-_xO0Q@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: compute bi_sector in 512-byte units
+To: Dennis Tighe <dennis.tighe@gmail.com>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-在 2026/8/26 19:21, Namjae Jeon 写道:
-> On Fri, Aug 21, 2026 at 2:32 PM Baolin Liu <liubaolin12138@163.com> wrote:
->>
->> From: Baolin Liu <liubaolin@kylinos.cn>
->>
->> This series fixes a number of problems on error paths in the ntfs
->> driver: errors that are swallowed or collapsed so operations report
->> success or a wrong errno (patches 1-6), a kmap_local leak (patch 7),
->> and free cluster miscounting on failed frees (patches 8-9).
->>
->> Baolin Liu (9):
->>    ntfs: return DT_UNKNOWN on inode lookup failure in readdir
->>    ntfs: fail EA update when reading $EA_INFORMATION fails
->>    ntfs: propagate reparse index insertion failure
->>    ntfs: return -ERANGE for undersized xattr buffer
->>    ntfs: preserve error code in ntfs_resident_attr_record_add()
->>    ntfs: return real error from ntfs_non_resident_attr_record_add()
->>    ntfs: fix kmap_local leak in write_mft_record_nolock() error paths
->>    ntfs: only count successfully cleared runs when freeing clusters
->>    ntfs: skip free cluster decrement when rollback fails
-> 
-> Applied them except 0002 patch to #ntfs-next.
-> Could you please recreate 0002 patch based on the #ntfs-next branch?
-> 
-> Thanks.
-
-Hi Namjae,
-
-    The 0002 patch has been recreated on top of ntfs-next and sent as
-    "[PATCH v2] ntfs: leave HasEA flag untouched on setxattr failure".
-
-    Note that the subject changed: on ntfs-next, the -EIO return for a
-    failed $EA_INFORMATION read is already handled by 56cc42a7b387
-    ("ntfs: return errors from ntfs_attr_readall"), so only the HasEA
-    flag part of the original patch remains.
-
-Thanks,
-Baolin
-
+On Sun, Aug 23, 2026 at 4:13=E2=80=AFPM Dennis Tighe <dennis.tighe@gmail.co=
+m> wrote:
+>
+> bi_sector counts in 512 byte sectors and not in multiples of the
+> volume's sector size. Under "normal" circumstances (with 512 byte
+> sectors in NTFS) the current code works as is; however, when we have
+> a 4k sector size on the volume the current usage of NTFS_B_TO_SECTOR()
+> and ntfs_bytes_to_sector() end up converting to the number of 4k
+> sectors after mount.
+>
+> Reads work today on 4k volumes as bdev-io.c as performing the shift
+> correctly inline. With writes, we end up with significant silent disk
+> corruption on these volumes.
+>
+> This fixes changes to use the new ntfs_bytes_to_bio_sector() function
+> everywhere we're performing this calculation (including the existing
+> read path). For the change in inode.c it removes a dead code block
+> rather than updating.
+>
+> Fixes: 40796051991d ("ntfs: update in-memory, on-disk structures and head=
+ers")
+> Assisted-by: Claude:claude-opus-5
+> Signed-off-by: Dennis Tighe <dennis.tighe@gmail.com>
+Applied it to #ntfs-for-next.
+Thanks!
