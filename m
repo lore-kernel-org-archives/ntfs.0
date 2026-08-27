@@ -1,177 +1,139 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF4327AC57
-	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 04:33:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787805238; cv=none; b=Ig9xBnT1/cSzaS0tCpPN14W+AQf5LnKYGfiRR2e8LDnBm2Z1ELSuFP3TNGAicYNS27Zsh4iCw2uDvX0owwmV1p2Ph5p9dRc+QYXaLS62qonjyCjspTRE3fCfeO+n3wEdnGLzgItYEQDJAL3OwTQjaATshdq/Z9YktC3QuFRMcUs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787805238; c=relaxed/simple;
-	bh=1BH16QiWc0Qjb48YHhn9W5XUR+q9xRxcLUk2RYcQIi0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WIiSWjq5KCGNHY42wOU0HtM1CCmxlgxdWB1Gp7JTgpd0wm825zeI8NwUG3jmeGzQ5N0X7ElVJbs72UHniizyDGAUfKEsBQs4EuSs+duCi7zbq2tN52OQeV2N5s2wR2Q5l1BD6qPMNfGIwblopJmijXNCVsNaOAPrxGPhRlLZH/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=CxbT6Z72; arc=none smtp.client-ip=117.135.210.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929CA37E2F9
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 04:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.172
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1787805838; cv=pass; b=uU4CmKptDAXYFtAWcK541c4zJQ9w8TUsT2DbQuo5vnj60cnqbZyGnhKmS5mJGwpA6/4HiOwgvWGjIdETVsbMxJvMg9K/SnfNmN6+iuNSzvcYJOlzFPSO6cFFuJ7m1gtZf2j5cgymtYIsoD8GVi+46Cs/eKasTIg1NtzO3vK1cHs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1787805838; c=relaxed/simple;
+	bh=z6VPGWCw7rEpPhw2SbJhvUKlG9shXTh5n37bEXti6gE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rXdg5Hx2UhPr0Fs1F2YgrcrvFaaBLA+jTVKmYfCdidquBG5ScE08ktxlBi2rAns+HAt4nf3q/5Pw9b4rjANynK7syEwb81Jgsm765bwaMlSiHvYmcd/DigXLM3LhleN04McnyxPO2U3aPXixGpm8yuJ2FePvyb7rgujnqdPNLKA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XAsEyBJ2; arc=pass smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="CxbT6Z72"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=PRoXD4sZgycHw3w5/hnLgpayzzS06vs5edBN/I94MWc=;
-	b=CxbT6Z72WSbtkVnrJTNytTTxgQQdQXdSv+j1NOkIYbnVqwReA5n0r7zb507ScU
-	uZgqQg49YPRIQgd8bGPnfxGYR008ITLwLE8H6e7k6wLW0BvWxjILF5HyDkPZTS3Q
-	Yp3DJtakRQ85VpRXHsKhbfwrwC0zfqoJn++Oygjh5UrLA=
-Received: from [IPV6:2409:8900:1ef4:8f82:6a1b:f1a6:cbdd:11fe] (unknown [])
-	by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id _____wCnoe0dvo9q_WUwDw--.46122S2;
-	Thu, 27 Aug 2026 12:33:35 +0800 (CST)
-Message-ID: <6bf63800-e169-4ff7-baa2-52c4d42bb35e@163.com>
-Date: Thu, 27 Aug 2026 12:33:33 +0800
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XAsEyBJ2"
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-39c86945164so13926331fa.1
+        for <ntfs@lists.linux.dev>; Wed, 26 Aug 2026 21:43:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1787805834; cv=none;
+        d=google.com; s=arc-20260327;
+        b=AexHJGyFdX4CEMv7RLpdCaeBX9gzJSwIarlQZWYUc37rm+9JmB1Q6GMuKuS4V/ETlC
+         0frY6O/KPa1qp7zJtgE01x9wHwMj6bjD8ypvcNlb2e2KNqJjCtne86QshUnWaSjNfe/0
+         qH4iZmFeMCh1jX1VlsUoJHLcgQiP5jHxmbtYKjJMq9xSRp7aX3j2ezheyFt6rAsynfKA
+         zzAIScZ7QNXSxNUWIhEttBkhnheAFyGcOIt5rEABenIwmQbacmB52XJjVxNihZl/Jo2j
+         7NwVqyns2JHJN6sI+9rS0ZqFBcug5j+BO77vjePkzjfVZmFKVStIgZHjY0OlGVquJOru
+         IJjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=nhdZH4AQDOVKeQXrpMPQL9ICLmV8N8waJC5TxsBA0M8=;
+        fh=f97W3qK55wtwUAVaZtKaWYo64DucHzvCXlyv/H8WZHg=;
+        b=Eh7BN4c8oGTexETNr1HfVT1WxlDC/swRCubmCdMGeMJ0HufSJonVObR4MBQ2hpRAWB
+         HJQnkoesPiFMGFPEgV+DRj1CYNx04p+p87dq1mCCFx1fd/vDddGaoBLoFxhs1EkqGd7t
+         pGW+q3Ake4R90nlNW/Nowlnjn+yqz3T4Ns2VePOPHZsSAXEzJlojtI8lBbM3n5jXSzom
+         5GFy4ATS+YIxCX2IZMMU+oZVICYYFfu4d08iK/36f3+FX1XNBvYvLWyHS1PABGTn+x7b
+         gbHKEa5aRXcpttjpRw42nLvewTaYncJNW0aix0nyCWoXdcucfr1pMDuv2c5P4lPkdruV
+         V1pg==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1787805834; x=1788410634; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=nhdZH4AQDOVKeQXrpMPQL9ICLmV8N8waJC5TxsBA0M8=;
+        b=XAsEyBJ2mTxyC2cf6fcDOIUvjbFUbYTxC/0FH7Vt6VYA7Rit/PSCUEdSRU/2x8pKnx
+         YTYxXE7xHOUeT9+edhPWh9kFhRSmHJWBywkQiqCuQ7t3xVMiYWIxMPRExYNjRkF0UUYE
+         jJ5BOMxmpw4/X8+poFC/y8HQACAq0jwJ0Eoz3RfFd+rQqsToRzKc395TeQyq+CCN+k4q
+         onrgyD3gqWKZu4JfeLYauS50gKDi9gCoAuKLgqiYr9pkITXO2RxuV3/FSP+OTz1UzEAy
+         ziKiva9tLW4of/bsXYzSxfEgaQOQe7Wwla9in4BEA9GYwInDeatF1malFoTPQetvb+Bz
+         d+Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787805834; x=1788410634;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=nhdZH4AQDOVKeQXrpMPQL9ICLmV8N8waJC5TxsBA0M8=;
+        b=ITcjHOZehO3eODoX/pG/Vm3ZNyoNV1TmiwofBpXvYswAdpnMRN1jKwOOJnbIkym65H
+         XHQDKMriZP/OQUHnJpsXD+BBM7ISBFNP5V8Z09IL6CWx+JmGVBElreB8jIhC1miU+k38
+         CwNFykBuTfddcSDQlgab5zGBTEM9/uckTzyo9s5UwBGASstujHKjat/qTI+aSRmLh6jx
+         Y+UzzoRvFhvVWLb3TruP+HCKorbucjp7uus1BIjhbx4PRHMZM+Vg9RYqO9aDacyg6Y4q
+         Fh9uxR6O0cB70wyFe6WEPnGatqJb1KITTvWgf4Sl8bLuFFhpBsHabQIZF/inr0CIKCbE
+         ju9A==
+X-Forwarded-Encrypted: i=1; AHgh+Rr2cKlU8Kh0kfZUjAVe8e62TvMP+tzJlmfaH+IWOP+eJd5lzYwIEAjlJA99BYlf3gFD0/i0@lists.linux.dev
+X-Gm-Message-State: AFuF++nRM5KS/YoriBk3PyzgWiPGFYs90/nIFSdU12u16XkfqIm5tlw7
+	q6gZ9yQcoYpHV3pZ1JGs082uUb9s0AnHHiFymG4T/r2OZq98yZtCL/a941FoEemvRs9tsdehZBr
+	ZbvWeap7VLF8JlRjE3ttiNh9za38930ZTwQ==
+X-Gm-Gg: AR+sD12ZvUneYvaroUxZxampV/5WGeHXSoTGTK50i/bi6YVWO2Y3M5XSMoz3Flnj/mO
+	d7oXg0J8TdegLk5iksP3F/f01ALUkdc634ImQ5Ck1P9y2b6HYOd99l7PO2Umw6BtYeuV8O9uuHe
+	LW98xtDKeDyM/DsOZM3xhDAi8zJVfPBNp3CfQt1Vl9XAb9mGJUI4hiW29cp6InwCmMXZTOnRqCR
+	RCdXTUnFzNRaiC4fDSh+lxKnRvO3qdvUqB/kwvNphmXGa4HYCRS8bkrFjeGSoIWWU8+Ni7Equ9V
+	9hezeq1lJQiPwEcVfZLJhUSm2mBiQu4IOD7OuNHyk+UCaJ7F5fcjP2o=
+X-Received: by 2002:a2e:b8ca:0:b0:39c:9dbf:f7b3 with SMTP id
+ 38308e7fff4ca-3a1fd111a4fmr26214041fa.0.1787805834275; Wed, 26 Aug 2026
+ 21:43:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ntfs: fix race between fallocate and mmap reads
-To: Hongling Zeng <zhongling0719@126.com>,
- Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
- hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Baolin Liu <liubaolin@kylinos.cn>
 References: <20260827031647.1605970-1-zenghongling@kylinos.cn>
- <bd197da8-a8ec-40ad-a50d-dc579840d680@163.com> <6A8FB73D.30104@126.com>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <6A8FB73D.30104@126.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wCnoe0dvo9q_WUwDw--.46122S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxGw45tFyrtry7ArWkZFW5Wrg_yoWrGw1fpr
-	WqgF4jkr48XrWUuF1vgw4j9F1Fg340grW5urW3J3WIvrn8KFn2gF1UKr4xuryFyFZ3Jrs3
-	X3WUJrZruFyYv3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UaJPiUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwh81AGqPvh-OlwAA31
+ <bd197da8-a8ec-40ad-a50d-dc579840d680@163.com> <6A8FB73D.30104@126.com> <6bf63800-e169-4ff7-baa2-52c4d42bb35e@163.com>
+In-Reply-To: <6bf63800-e169-4ff7-baa2-52c4d42bb35e@163.com>
+From: Hyunchul Lee <hyc.lee@gmail.com>
+Date: Thu, 27 Aug 2026 13:43:42 +0900
+X-Gm-Features: AcwNN1Xdgma1ZvWQvIA8ZJD3CihsJ2geawtIGSe3EcuUDM2iz2mdfYi8kHS-uLg
+Message-ID: <CANFS6bYc88BcJFgQegg84DpDN4MHewowomCRAvL+2SxAO4L9aQ@mail.gmail.com>
+Subject: Re: [PATCH v2] ntfs: fix race between fallocate and mmap reads
+To: liubaolin <liubaolin12138@163.com>
+Cc: Hongling Zeng <zhongling0719@126.com>, Hongling Zeng <zenghongling@kylinos.cn>, 
+	linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org, Baolin Liu <liubaolin@kylinos.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+> > Hi  Baolin and Hyunchul
+> >   You're right =E2=80=94 that's exactly the unbalanced-unlock path we s=
+potted while
+> >    preparing v3, and option 2 is what v3 implements. The early exit now
+> > does
+> >    inode_unlock() + direct return, so every path reaching out: holds
+> >    invalidate_lock, which let us drop map_locked entirely:
+> >
+> >     inode_lock(vi);
+> >     if (NInoCompressed(...) ) {
+> >             inode_unlock(vi);
+> >             return -EOPNOTSUPP;
+> >     }
+> >     inode_dio_wait(vi);
+> >     filemap_invalidate_lock(vi->i_mapping);
+> >     ...
+> >     out:
+> >             filemap_invalidate_unlock(vi->i_mapping);
+> >     v3 with this cleanup is on its way / attached.
+> >
+> >   Would this v3 approach be OK with you?
+> >
+> >     Thanks,
+> >     Hongling
+>
+> Hi Hyunchul,
+>     I think this approach is good.Looking forward to your feedback.
+
+The approach looks fine to me as well.
+
+>
+> Thanks,
+> Baolin.
+>
+>
 
 
-
-在 2026/8/27 12:04, Hongling Zeng 写道:
-> 
-> 在 2026年08月27日 11:37, liubaolin 写道:
->>
->>
->> 在 2026/8/27 11:16, Hongling Zeng 写道:
->>> The fallocate implementation only takes invalidate_lock for punch hole,
->>> collapse range, and insert range operations. For standard allocation 
->>> modes
->>> (mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
->>>
->>> During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
->>> ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). 
->>> This
->>> creates a window where concurrent mmap page faults can read 
->>> uninitialized
->>> disk data.
->>>
->>> Since mmap uses filemap_fault() which takes invalidate_lock in shared 
->>> mode,
->>> it can fault in pages during this window and expose old disk contents to
->>> userspace. This is an information leak and data integrity issue.
->>>
->>> Fix by taking invalidate_lock for all fallocate operations, not just for
->>> punch/collapse/insert modes. This prevents concurrent page faults from
->>> accessing unzeroed clusters during the allocation window.
->>>
->>> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
->>> Cc: stable@vger.kernel.org
->>> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
->>> Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
->>> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
->>> ---
->>> Change in v2:
->>>   -Remove now-unnecessary map_locked variable.
->>> ---
->>>   fs/ntfs/file.c | 7 ++-----
->>>   1 file changed, 2 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
->>> index 88747217ba61..779baafa0319 100644
->>> --- a/fs/ntfs/file.c
->>> +++ b/fs/ntfs/file.c
->>> @@ -1153,11 +1153,8 @@ static long ntfs_fallocate(struct file *file, 
->>> int mode, loff_t offset, loff_t le
->>>       }
->>>         inode_dio_wait(vi);
->>> -    if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
->>> -            FALLOC_FL_INSERT_RANGE)) {
->>> -        filemap_invalidate_lock(vi->i_mapping);
->>> -        map_locked = true;
->>> -    }
->>> +    /* Take invalidate_lock for all fallocate operations to prevent 
->>> races */
->>> +    filemap_invalidate_lock(vi->i_mapping);
->>>         switch (mode & FALLOC_FL_MODE_MASK) {
->>>       case FALLOC_FL_ALLOCATE_RANGE:
->>
->> Hi Hyunchul and Hongling,
->>
->> I think map_locked might still be needed though.
->>
->> Before filemap_invalidate_lock() is taken, there's this check:
->>
->>         inode_lock(vi);
->>         if (NInoCompressed(ni) || NInoEncrypted(ni) || 
->> NInoWofCompressed(ni)) {
->>                 err = -EOPNOTSUPP;
->>                 goto out;
->>         }
->>
->>         inode_dio_wait(vi);
->>         filemap_invalidate_lock(vi->i_mapping);
->>
->> If that goto is taken, we reach the exit path without having locked.
->> Without map_locked, we'd call filemap_invalidate_unlock() on a lock
->> we never took.
->>
->> Would it make sense to either:
->> 1. Keep map_locked as a guard for the unlock, or
->> 2. Change that goto to inode_unlock() + direct return, so the shared
->>      exit path always holds the lock?
->>
->> I'd appreciate your thoughts on this.
->>
->> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
->>
->> Thanks,
->> Baolin.
-> Hi  Baolin and Hyunchul
->   You're right — that's exactly the unbalanced-unlock path we spotted while
->    preparing v3, and option 2 is what v3 implements. The early exit now 
-> does
->    inode_unlock() + direct return, so every path reaching out: holds
->    invalidate_lock, which let us drop map_locked entirely:
-> 
->     inode_lock(vi);
->     if (NInoCompressed(...) ) {
->             inode_unlock(vi);
->             return -EOPNOTSUPP;
->     }
->     inode_dio_wait(vi);
->     filemap_invalidate_lock(vi->i_mapping);
->     ...
->     out:
->             filemap_invalidate_unlock(vi->i_mapping);
->     v3 with this cleanup is on its way / attached.
-> 
->   Would this v3 approach be OK with you?
-> 
->     Thanks,
->     Hongling
-
-Hi Hyunchul,
-    I think this approach is good.Looking forward to your feedback.
-
+--=20
 Thanks,
-Baolin.
-
+Hyunchul
