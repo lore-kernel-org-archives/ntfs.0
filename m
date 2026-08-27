@@ -1,81 +1,76 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9007432E6F
-	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 12:48:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5DFB459AC6
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 12:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787834942; cv=none; b=hlhNfAEL3toAfJ8DbFeG6VzqR6lyycl1y027D/FsX1KOGsWhzkDf/pJgLszlbV1Bt6LcqApl7in2hqFttWgWK+DfLYyisS1Sc1x0TTA2UyfWK/gWPQMKYjIsgJ44liHCoTzQ32cPmkWroeia6q/zVFq5h2XdZbMQaZevFLbJ4hg=
+	t=1787835118; cv=none; b=IZ2m2j8hJFGD9khVcIyRDoJOFdtatqTNDLPkVQq9iqCduDRrjSk15+o+yJaQI/g8sphFwFrQAlnlyaPn1552ZXEby3ABNd9idlgP0r7Ilb6HnUzGSEyD3fyu2coJnWHlNylCFiSUFY3qB6Eyu/mJvfSq51xXBqXaIFPYFJ4+Yqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787834942; c=relaxed/simple;
-	bh=yKCPTwcn1Usks+ClmSapEiuKubRHc2NxhIPyl2cmL+o=;
+	s=arc-20240116; t=1787835118; c=relaxed/simple;
+	bh=v5jl+aCSpkkvQGNIYYVrCrKyR7mWn2LR3j2JbpKPgPM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p2vwlLqfVblhYM3HjdpCpeojZRWHpFMIJIS0dxsYK8g/E/uzm9rgLHCWH402/itX2PyC2Xb/X5Bf6/TRNwd/BtXh9H2eEl2MZoHimGHuhzPYYP+L3JzIuf78gkQZQbEhLXi/ekhRsAeyoYvYyKei7KjsyeVzRVIg+4RSE5hYgmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C31hv57S; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=LCOCXwuo8oqYKK/UvLoYOdZaikwy3k/LRoWfyt++gAU/DjQNiP4D4y+s1J4JEJ/rXuqtwbjnuoGKKXsDjFvnQKGqrznHQ5hQfSlfAMVA0l4ryp76tSvmx21f2XTBPzsRZAGeKgGb/J9ABvi+9ukkKiLr900XXL/VFMKFavaJM6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KtQTj6od; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C31hv57S"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA8B61F000E9
-	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 12:48:37 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KtQTj6od"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4F751F000E9
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 12:51:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1787834918;
-	bh=yKCPTwcn1Usks+ClmSapEiuKubRHc2NxhIPyl2cmL+o=;
+	s=k20260515; t=1787835095;
+	bh=v5jl+aCSpkkvQGNIYYVrCrKyR7mWn2LR3j2JbpKPgPM=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=C31hv57SPL5r8e7nMPv15pa57vs8FnW2Sd4uglsbPGwXiKUmCP3spo513PwxeMvE4
-	 JEfqyMBwGHHrpcTgyp/ZQkN3pN+e/KKGCMwtttQ+mfCQBZ2BEUdj4tX71jXTTtP4VH
-	 BttFCbVnERdNZuex/ikHkgFh6YCDOqk5ifK+/sONMcRrtiolfMNI1XAQxXsWlAVKus
-	 +37AjakF5biwuQIxISr0DEl1XjDr6kYHPiuCsUF4l1EKNWrEnzFz5q3g0XZ9lSX4v6
-	 SCunAdQO++JpKIJSw/5Arbs0TpvMIUgEALWEKq9QVB6+s5ONOqBOrYBG5nhCMqYpno
-	 YPwqn19I3NCYQ==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-6a601ba6870so522579a12.0
-        for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 05:48:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RozgzD9bx+AzZN031l4DZxu+P1SVwDUbF6nc6u8tfuGE5WAhrYQAxivUujqj0222uluXggM@lists.linux.dev
-X-Gm-Message-State: AFuF++nb4XPK9G7csk8gK89Itk8IxgRA+tzkAWXPCKoi9XZQzO+XumYO
-	I2L5PPrO9QGeRnhgBlJ6lhSbULgBaV7S2cYOQerRO3A/rmVthk/kyK5ktKk+z6LAbAoNKkj6wQB
-	3vYtWV2pP8aTUAWakejqsnHbpdLqxp8A=
-X-Received: by 2002:a17:906:eecb:b0:c24:82b9:361c with SMTP id
- a640c23a62f3a-c250c3935b3mr1646579266b.17.1787834916600; Thu, 27 Aug 2026
- 05:48:36 -0700 (PDT)
+	b=KtQTj6odrNbQo+tcT34S+sezcdJj2BTCjN3wknjvnntYyUiI90qbsBzeTMVewApK0
+	 c8DIsw4Wgzvso6nc6gmt81XPnusTt3oDL3rt0GekLCuVXJJ1SXDVS/feVGxFozA20T
+	 4r7wZbL3byPi4iq8xF3BNCVpz2xuHYpr7iUDBMmuOHMyQ4SETwJ7HOo3o8b3bCK/Jq
+	 K6rL04LtSK3xSpIuXCu4OukxiKEJDDD0ez3oHVPSK1jBGdTyAmETfiiWNPreyynodX
+	 3zV5mV/0E7KDRg0/mZm0M/5njbYkF2BydadedBDcenOEo0YZCX8+lBtKIDKV6cQfId
+	 QjY8sLiy1HAAw==
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-c20e70a0962so90215466b.2
+        for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 05:51:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RoQJDoha6crI63k99vc4t3yK/Pk83fqqeRq+5WLTWwthNezLMB1oNbq0MuI6JUxQQQuhgin@lists.linux.dev
+X-Gm-Message-State: AFuF++mDDSv5vdITTxGUhmHWOFEa4GQDPy9v932UqwWq86YZaUie8NAG
+	JgOXGEvOsHYbqEnot/qInFegyAYO1C42GSo7/tKeIyG5mRM8IhV51N18nlIn6wr1hAf4Urz3ujV
+	+DXZO6Rkiupref5q3/eHDysWYz3TRsNw=
+X-Received: by 2002:a17:906:2083:b0:c25:2a78:15ed with SMTP id
+ a640c23a62f3a-c252a782276mr972912466b.6.1787835094458; Thu, 27 Aug 2026
+ 05:51:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <6a8a9d9a.fdee0002.34cbe9.559f@mx.google.com>
-In-Reply-To: <6a8a9d9a.fdee0002.34cbe9.559f@mx.google.com>
+References: <20260824075935.170457-1-zenghongling@kylinos.cn>
+In-Reply-To: <20260824075935.170457-1-zenghongling@kylinos.cn>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 27 Aug 2026 21:48:24 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd-h8aUMgipB-3fXUpNnbO=u4dE7+NRRGQZ5OdHn-_xO0Q@mail.gmail.com>
-X-Gm-Features: AcwNN1WbE1-hlqOzH0kDbv7P2c5vowcHzUDu8iIZI140vB7ZZynzLyL04mRjB-I
-Message-ID: <CAKYAXd-h8aUMgipB-3fXUpNnbO=u4dE7+NRRGQZ5OdHn-_xO0Q@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: compute bi_sector in 512-byte units
-To: Dennis Tighe <dennis.tighe@gmail.com>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+Date: Thu, 27 Aug 2026 21:51:22 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd8ZW7oGWVkgdW04WH828EAM2RwKptUxmobWJ9q2STsCtg@mail.gmail.com>
+X-Gm-Features: AcwNN1VXPH_P87koasaLISpCwL-nDqmjfpElMWmTsmzod6L3siUJMK1CCNs9_5E
+Message-ID: <CAKYAXd8ZW7oGWVkgdW04WH828EAM2RwKptUxmobWJ9q2STsCtg@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: fix memmove overlap in ntfs_new_attr_flags
+To: Hongling Zeng <zenghongling@kylinos.cn>
+Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	zhongling0719@126.com, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Aug 23, 2026 at 4:13=E2=80=AFPM Dennis Tighe <dennis.tighe@gmail.co=
-m> wrote:
+On Mon, Aug 24, 2026 at 4:59=E2=80=AFPM Hongling Zeng <zenghongling@kylinos=
+.cn> wrote:
 >
-> bi_sector counts in 512 byte sectors and not in multiples of the
-> volume's sector size. Under "normal" circumstances (with 512 byte
-> sectors in NTFS) the current code works as is; however, when we have
-> a 4k sector size on the volume the current usage of NTFS_B_TO_SECTOR()
-> and ntfs_bytes_to_sector() end up converting to the number of 4k
-> sectors after mount.
+> When the record shrinks while the payload offsets increase (e.g., enablin=
+g
+> compression reduces padding, making arec_size < old_arec_size, but the he=
+ader
+> grows by 8 bytes), moving the name first can overwrite the old mapping_pa=
+irs
+> before they are copied. Move mapping_pairs first in this case.
 >
-> Reads work today on 4k volumes as bdev-io.c as performing the shift
-> correctly inline. With writes, we end up with significant silent disk
-> corruption on these volumes.
+> Since mp_ofs is derived from name_ofs, they always change in the same
+> direction. Checking name_ofs alone is sufficient.
 >
-> This fixes changes to use the new ntfs_bytes_to_bio_sector() function
-> everywhere we're performing this calculation (including the existing
-> read path). For the change in inode.c it removes a dead code block
-> rather than updating.
->
-> Fixes: 40796051991d ("ntfs: update in-memory, on-disk structures and head=
-ers")
-> Assisted-by: Claude:claude-opus-5
-> Signed-off-by: Dennis Tighe <dennis.tighe@gmail.com>
-Applied it to #ntfs-for-next.
+> Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+Applied it to #ntfs-next.
 Thanks!
