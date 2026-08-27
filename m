@@ -1,136 +1,100 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4311360EEE
-	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 06:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD263644BE
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 06:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787812212; cv=none; b=heyCqtTa2jBrq4h40uqbEHzj2laLyh62gDl3XGQxsxoQSkQCDEUllotux+MmCb14Yf7o2TPQUQjkUEnyWMHmkUWt9Lv7d6bVvhL5DECn24OJh/tGiZL4TBu7OrH7ESkJ7T1ndxKGAFWhn3oy6frDOQmraWvIdG5FwvAZQLNtcZ0=
+	t=1787813041; cv=none; b=Kyw6QDvfqgUNIvZ5albSGFHWIadTv2GnEfHBKr7qImnKfEk9F3r6aOtrhRcCbN4zPVQL4vzJveUtFMJAM+LIoo+26K6s0qyMVbXOGWTP1eYGhORnyXBiQ9c2N11WB6r6TS1K6k4XTDW24wTySg9Jn2dlDKFBAkHUawd8oDdkYGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787812212; c=relaxed/simple;
-	bh=m3WbQIPrdWCziVJvSWC8Vq44YHswCCx/eumheToekzw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hZCju0UMB9XIkPgCr7ARf7SfVdHY/U9ypdzmpFASA6BGsI4g5F4RzqbfQaj9L01nO6YSP94YggIZ2AW17XpDEJa3R5pnckdQ51RHUM5AG/xXMigtYIRxfkGYJHtrKwJfS9drxrYJeEK8jOXfxPYddc7gzphHyvA8AEGZ9msMfuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=kcejMatJ; arc=none smtp.client-ip=220.197.31.4
+	s=arc-20240116; t=1787813041; c=relaxed/simple;
+	bh=HywmGVnxKlAHZInwgVBJgLVgCYVuOmXDCv+c+JgZ0JM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NuV/i3dy6ZB9Q9hHFVQK2M+8CzJZ1FzkVxjTbciD7SAMKH5pnRfSe8xqP8Xk5HmNp68iWv8y3dSdi6iVpn4cMUjK3hfhjuE12hSlbc86vOHvjl3jYqf1FhErVxgRDBZZQmfvVTNZI77fJTzZucQZ/JfIL+HHVxZInIcNJZi6c/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=qV+WljVh; arc=none smtp.client-ip=220.197.31.2
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="kcejMatJ"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="qV+WljVh"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=scfv/9oh5mIQ0pvEmXn4Y3vBAXtwHdPlSlSWi9xNwsk=;
-	b=kcejMatJtyNWfUFxTJlXucWFo7xw1v44XFK3Vq4KuH6GULyDGy4OWVH98wKb8R
-	8U/JCZACMAtRVwrdjJlqhiDkcg/eP9hqhSUf/4UjSVTOGJ+85qN6OSrpww0Jawke
-	PO+rbAzwR3FfH25jDfJK29kmPfyhN5WrcJUlyhf4cZQn4=
-Received: from [IPV6:2409:8900:1ef4:8f82:6a1b:f1a6:cbdd:11fe] (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id PCgvCgB3T6Vb2Y9qEhKRMQ--.46745S2;
-	Thu, 27 Aug 2026 14:29:49 +0800 (CST)
-Message-ID: <5f458df2-3467-4c50-866b-4dea72836229@163.com>
-Date: Thu, 27 Aug 2026 14:29:47 +0800
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=zk
+	Al6G439mZlrQuDeRjXw0tGtyICJx0hovFj4l5wQOc=; b=qV+WljVhxpqYMO6Nbv
+	4MrX1Swa5SPBwNhqYcU15JzHa7Fe4ml92SAo7k9BHHJ6PF7qmKWnDC1NMyxqSriH
+	niLFCLg4nuHmnwebjD5Ni5UOrqdc3ZwcDPg9VcemQ6UiDD3EmFUth49Flb7TzMEw
+	bJfsOjLLPjaOvu80Eejr1JTRU=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id PSgvCgD3nwSY3I9qUB_9NA--.52121S2;
+	Thu, 27 Aug 2026 14:43:37 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	liubaolin12138@gmail.com,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v2] ntfs: leave HasEA flag untouched on setxattr failure
+Date: Thu, 27 Aug 2026 14:43:17 +0800
+Message-ID: <20260827064317.2252884-1-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ntfs: fix race between fallocate and mmap reads
-To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
- hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- zhongling0719@126.com, stable@vger.kernel.org,
- Baolin Liu <liubaolin@kylinos.cn>
-References: <20260827055844.1673890-1-zenghongling@kylinos.cn>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260827055844.1673890-1-zenghongling@kylinos.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PCgvCgB3T6Vb2Y9qEhKRMQ--.46745S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZFWxXw4Dtw1rurW7Gw4UJwb_yoW5Ar47pr
-	ZIgF45K34fZryUWFn5Kw409F15Wwn7W3y5urWfX3W8AF98KFnrKw1jkr4kuFyftF95Aws5
-	XF1UtrZrWa4av3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UaJPiUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwR4M1mqP2V4yOgAA3v
+X-CM-TRANSID:PSgvCgD3nwSY3I9qUB_9NA--.52121S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CFy5Cr43Aw1fGFy3WFykXwb_yoW8Xry8pr
+	93GF1UKw4jqr17CFykK3yqqa97Z3y7Jw40yry7Kw1Skw4Fqr4Yyw40k3W8W3yfKryfJa15
+	KF15ua9IyF10vaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jeBT5UUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RnbpmqP3JkAPgAA3T
 
+From: Baolin Liu <liubaolin@kylinos.cn>
 
+In ntfs_set_ea(), the exit path unconditionally updates the HasEA
+flag based on ea_info_qsize. When an error occurs before
+ea_info_qsize is updated, NInoClearHasEA() hides existing on-disk
+EAs until the inode is evicted.
 
-在 2026/8/27 13:58, Hongling Zeng 写道:
-> The fallocate implementation only takes invalidate_lock for punch hole,
-> collapse range, and insert range operations. For standard allocation modes
-> (mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
-> 
-> During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
-> ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). This
-> creates a window where concurrent mmap page faults can read uninitialized
-> disk data.
-> 
-> Since mmap uses filemap_fault() which takes invalidate_lock in shared mode,
-> it can fault in pages during this window and expose old disk contents to
-> userspace. This is an information leak and data integrity issue.
-> 
-> Fix by taking invalidate_lock for all fallocate operations, not just for
-> punch/collapse/insert modes. This prevents concurrent page faults from
-> accessing unzeroed clusters during the allocation window.
-> 
-> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-> Cc: stable@vger.kernel.org
-> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-> Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-> ---
-> Change in v3:
->   -Remove map_locked after fixing the pre-lock early exit.
-> ---
->   fs/ntfs/file.c | 15 +++++----------
->   1 file changed, 5 insertions(+), 10 deletions(-)
-> 
-> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-> index 88747217ba61..1969e4f444f7 100644
-> --- a/fs/ntfs/file.c
-> +++ b/fs/ntfs/file.c
-> @@ -1116,7 +1116,6 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
->   	struct ntfs_volume *vol = ni->vol;
->   	int err = 0;
->   	loff_t old_size;
-> -	bool map_locked = false;
->   
->   	if (mode & ~(NTFS_FALLOC_FL_SUPPORTED))
->   		return -EOPNOTSUPP;
-> @@ -1148,16 +1147,13 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
->   
->   	inode_lock(vi);
->   	if (NInoCompressed(ni) || NInoEncrypted(ni) || NInoWofCompressed(ni)) {
-> -		err = -EOPNOTSUPP;
-> -		goto out;
-> +		inode_unlock(vi);
-> +		return -EOPNOTSUPP;
->   	}
->   
->   	inode_dio_wait(vi);
-> -	if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
-> -		    FALLOC_FL_INSERT_RANGE)) {
-> -		filemap_invalidate_lock(vi->i_mapping);
-> -		map_locked = true;
-> -	}
-> +	/* Take invalidate_lock for all fallocate operations to prevent races */
-> +	filemap_invalidate_lock(vi->i_mapping);
->   
->   	switch (mode & FALLOC_FL_MODE_MASK) {
->   	case FALLOC_FL_ALLOCATE_RANGE:
-> @@ -1182,8 +1178,7 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
->   
->   	err = file_modified(file);
->   out:
-> -	if (map_locked)
-> -		filemap_invalidate_unlock(vi->i_mapping);
-> +	filemap_invalidate_unlock(vi->i_mapping);
->   	if (!err) {
->   		if (mode == 0 && NInoNonResident(ni) &&
->   		    offset > old_size) {
+Only update the flag on success.
 
+Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+v1 was posted as "[PATCH v1 2/9] ntfs: fail EA update when reading
+$EA_INFORMATION fails" in the "ntfs: assorted error path fixes" series.
 
-Looks good to me.
+Changes in v2:
+ - Rebased on ntfs-next.
+ - Dropped the -EIO return for a failed $EA_INFORMATION read, which is
+   already handled on ntfs-next by 56cc42a7b387 ("ntfs: return errors
+   from ntfs_attr_readall"). Only the HasEA flag part remains.
+ - Updated the subject to match the remaining change.
 
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+ fs/ntfs/ea.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index 9f0222c172d9..33ef4f4b439c 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -404,10 +404,12 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 		*packed_ea_size = p_ea_info->ea_length;
+ 	mark_mft_record_dirty(ni);
+ out:
+-	if (ea_info_qsize > 0)
+-		NInoSetHasEA(ni);
+-	else
+-		NInoClearHasEA(ni);
++	if (!err) {
++		if (ea_info_qsize > 0)
++			NInoSetHasEA(ni);
++		else
++			NInoClearHasEA(ni);
++	}
+ 
+ 	kvfree(ea_buf);
+ 	kvfree(old_ea_buf);
+-- 
+2.51.0
 
