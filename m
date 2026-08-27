@@ -1,100 +1,95 @@
 Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD263644BE
-	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 06:43:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2B93112B2
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 06:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787813041; cv=none; b=Kyw6QDvfqgUNIvZ5albSGFHWIadTv2GnEfHBKr7qImnKfEk9F3r6aOtrhRcCbN4zPVQL4vzJveUtFMJAM+LIoo+26K6s0qyMVbXOGWTP1eYGhORnyXBiQ9c2N11WB6r6TS1K6k4XTDW24wTySg9Jn2dlDKFBAkHUawd8oDdkYGw=
+	t=1787813421; cv=none; b=QvuB3uUdD6iNWMYhGKyofxYdQ+UV/NXAs5YvLmQuSFL1JSaDEVFTLYTxZWffGEfGDMFlXHqoN4KR9TS0JednBHwu8IvUcrx2GBCvqlmcmpNTy7oKn6tCdFnb6LU6WW/4jcTHmybqx2bJuWpWn6iroRhe903kwNq2ccSOiGbb77M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787813041; c=relaxed/simple;
-	bh=HywmGVnxKlAHZInwgVBJgLVgCYVuOmXDCv+c+JgZ0JM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NuV/i3dy6ZB9Q9hHFVQK2M+8CzJZ1FzkVxjTbciD7SAMKH5pnRfSe8xqP8Xk5HmNp68iWv8y3dSdi6iVpn4cMUjK3hfhjuE12hSlbc86vOHvjl3jYqf1FhErVxgRDBZZQmfvVTNZI77fJTzZucQZ/JfIL+HHVxZInIcNJZi6c/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=qV+WljVh; arc=none smtp.client-ip=220.197.31.2
+	s=arc-20240116; t=1787813421; c=relaxed/simple;
+	bh=hv+xlhgHQqFoGGetKUqiilEVfE/MVrK3vbsngmt+m8c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kpI/f/aDRbw8v9M/+jRu49EVOguAUhkvpWhVkX5D7O+31f/4KqXXRCoSpNKu45gSncN8GGbS/yitAK6CiqOek56fD7EFsfPOuO4XC4R+yPmeWKD3II23bw2bjJ8y9PvH2BPQVf7NJ1wT7kJ+UQkL4Df9zuLjn1lyzIAqRInUo6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=FYuu7vE5; arc=none smtp.client-ip=220.197.31.2
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="qV+WljVh"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="FYuu7vE5"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=zk
-	Al6G439mZlrQuDeRjXw0tGtyICJx0hovFj4l5wQOc=; b=qV+WljVhxpqYMO6Nbv
-	4MrX1Swa5SPBwNhqYcU15JzHa7Fe4ml92SAo7k9BHHJ6PF7qmKWnDC1NMyxqSriH
-	niLFCLg4nuHmnwebjD5Ni5UOrqdc3ZwcDPg9VcemQ6UiDD3EmFUth49Flb7TzMEw
-	bJfsOjLLPjaOvu80Eejr1JTRU=
-Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id PSgvCgD3nwSY3I9qUB_9NA--.52121S2;
-	Thu, 27 Aug 2026 14:43:37 +0800 (CST)
-From: Baolin Liu <liubaolin12138@163.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	liubaolin12138@gmail.com,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v2] ntfs: leave HasEA flag untouched on setxattr failure
-Date: Thu, 27 Aug 2026 14:43:17 +0800
-Message-ID: <20260827064317.2252884-1-liubaolin12138@163.com>
-X-Mailer: git-send-email 2.51.0
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=2tmet0Taqk062cGPdarBxbGdQBHmdXGdZ0eRNqncnmM=;
+	b=FYuu7vE5RqZnTufIev7meJpy3SbF1FlUCTT1lvWBNrj0eMXZxdKvRZZSO8yo45
+	AGnvg+TanTeQQYelffciyDm0YnS/HrtIKJCdekPfqnRK7jju2RnDnCMgESMbpAIq
+	WOMie9sIWPKlX4fjWtXvOnWUim2d3/QDhVgHy7stImKGM=
+Received: from [IPV6:2409:8900:1ef4:8f82:6a1b:f1a6:cbdd:11fe] (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgD3HrIX3o9q5yLmOQ--.48857S2;
+	Thu, 27 Aug 2026 14:50:01 +0800 (CST)
+Message-ID: <85040eb1-03d4-487b-b2ee-a8b9d44a63ce@163.com>
+Date: Thu, 27 Aug 2026 14:49:59 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/9] ntfs: assorted error path fixes
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ liubaolin12138@gmail.com, Baolin Liu <liubaolin@kylinos.cn>
+References: <20260821053238.1281310-1-liubaolin12138@163.com>
+ <CAKYAXd8gPPzMuKxrwXAUyLC88=uUNbUK-EoRWKWrKwNxXcKH6Q@mail.gmail.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <CAKYAXd8gPPzMuKxrwXAUyLC88=uUNbUK-EoRWKWrKwNxXcKH6Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PSgvCgD3nwSY3I9qUB_9NA--.52121S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CFy5Cr43Aw1fGFy3WFykXwb_yoW8Xry8pr
-	93GF1UKw4jqr17CFykK3yqqa97Z3y7Jw40yry7Kw1Skw4Fqr4Yyw40k3W8W3yfKryfJa15
-	KF15ua9IyF10vaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jeBT5UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RnbpmqP3JkAPgAA3T
+X-CM-TRANSID:PygvCgD3HrIX3o9q5yLmOQ--.48857S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CFWDKF1ktrykKw1ktw1xAFb_yoW8Xw4kpr
+	WxtFyDKw4qvr17AF92y34UAay0v3y7Cry8Xw45Gw1Ivw15Gr1ftrWrtF1jqr95KryrCw42
+	qrWUu34fu3WUuaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U4v35UUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hk8B2qP3hkYlgAA3k
 
-From: Baolin Liu <liubaolin@kylinos.cn>
 
-In ntfs_set_ea(), the exit path unconditionally updates the HasEA
-flag based on ea_info_qsize. When an error occurs before
-ea_info_qsize is updated, NInoClearHasEA() hides existing on-disk
-EAs until the inode is evicted.
 
-Only update the flag on success.
+在 2026/8/26 19:21, Namjae Jeon 写道:
+> On Fri, Aug 21, 2026 at 2:32 PM Baolin Liu <liubaolin12138@163.com> wrote:
+>>
+>> From: Baolin Liu <liubaolin@kylinos.cn>
+>>
+>> This series fixes a number of problems on error paths in the ntfs
+>> driver: errors that are swallowed or collapsed so operations report
+>> success or a wrong errno (patches 1-6), a kmap_local leak (patch 7),
+>> and free cluster miscounting on failed frees (patches 8-9).
+>>
+>> Baolin Liu (9):
+>>    ntfs: return DT_UNKNOWN on inode lookup failure in readdir
+>>    ntfs: fail EA update when reading $EA_INFORMATION fails
+>>    ntfs: propagate reparse index insertion failure
+>>    ntfs: return -ERANGE for undersized xattr buffer
+>>    ntfs: preserve error code in ntfs_resident_attr_record_add()
+>>    ntfs: return real error from ntfs_non_resident_attr_record_add()
+>>    ntfs: fix kmap_local leak in write_mft_record_nolock() error paths
+>>    ntfs: only count successfully cleared runs when freeing clusters
+>>    ntfs: skip free cluster decrement when rollback fails
+> 
+> Applied them except 0002 patch to #ntfs-next.
+> Could you please recreate 0002 patch based on the #ntfs-next branch?
+> 
+> Thanks.
 
-Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
----
-v1 was posted as "[PATCH v1 2/9] ntfs: fail EA update when reading
-$EA_INFORMATION fails" in the "ntfs: assorted error path fixes" series.
+Hi Namjae,
 
-Changes in v2:
- - Rebased on ntfs-next.
- - Dropped the -EIO return for a failed $EA_INFORMATION read, which is
-   already handled on ntfs-next by 56cc42a7b387 ("ntfs: return errors
-   from ntfs_attr_readall"). Only the HasEA flag part remains.
- - Updated the subject to match the remaining change.
+    The 0002 patch has been recreated on top of ntfs-next and sent as
+    "[PATCH v2] ntfs: leave HasEA flag untouched on setxattr failure".
 
- fs/ntfs/ea.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+    Note that the subject changed: on ntfs-next, the -EIO return for a
+    failed $EA_INFORMATION read is already handled by 56cc42a7b387
+    ("ntfs: return errors from ntfs_attr_readall"), so only the HasEA
+    flag part of the original patch remains.
 
-diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index 9f0222c172d9..33ef4f4b439c 100644
---- a/fs/ntfs/ea.c
-+++ b/fs/ntfs/ea.c
-@@ -404,10 +404,12 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
- 		*packed_ea_size = p_ea_info->ea_length;
- 	mark_mft_record_dirty(ni);
- out:
--	if (ea_info_qsize > 0)
--		NInoSetHasEA(ni);
--	else
--		NInoClearHasEA(ni);
-+	if (!err) {
-+		if (ea_info_qsize > 0)
-+			NInoSetHasEA(ni);
-+		else
-+			NInoClearHasEA(ni);
-+	}
- 
- 	kvfree(ea_buf);
- 	kvfree(old_ea_buf);
--- 
-2.51.0
+Thanks,
+Baolin
 
