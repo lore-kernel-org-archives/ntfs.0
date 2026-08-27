@@ -1,32 +1,32 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE2D385D86
-	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 04:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF4327AC57
+	for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 04:33:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787804259; cv=none; b=kdX5PJanRb4kzYC5/AaXsJ3SqDnqWCHS2YJBiXjfbLOVc0lohRUIr2fCfnE0HMbCyAd3hLU61P0odEo6VhJPZmIu/YdTV+aABIfVLZJBxrjAJnLKqOexjwXsaNwu//btoE/X66yVR7CwSmzGVs43uvF2Osol9UfxCPUPrMSTUjQ=
+	t=1787805238; cv=none; b=Ig9xBnT1/cSzaS0tCpPN14W+AQf5LnKYGfiRR2e8LDnBm2Z1ELSuFP3TNGAicYNS27Zsh4iCw2uDvX0owwmV1p2Ph5p9dRc+QYXaLS62qonjyCjspTRE3fCfeO+n3wEdnGLzgItYEQDJAL3OwTQjaATshdq/Z9YktC3QuFRMcUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787804259; c=relaxed/simple;
-	bh=DabkrjeINdJ1/NWCYp3fyBZBITERqCH3BISmGggnSy0=;
+	s=arc-20240116; t=1787805238; c=relaxed/simple;
+	bh=1BH16QiWc0Qjb48YHhn9W5XUR+q9xRxcLUk2RYcQIi0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lHZlby0zYJsMc5yv1qyXBZ/6ovtCGbgPvd9QRlEIe6HUCnL/NhszzlgxHe2hi+coCxc/o/nei4ISyd30VwYHBsuNbKkgSb7ZiNRqWA4tFzGyNBXndcxTIImAowKNWdnbTWKWGBcGKd8TxH1Lz0SNJWr+0n3omjnIpfDFzERuwCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=I9rSX58X; arc=none smtp.client-ip=220.197.31.4
+	 In-Reply-To:Content-Type; b=WIiSWjq5KCGNHY42wOU0HtM1CCmxlgxdWB1Gp7JTgpd0wm825zeI8NwUG3jmeGzQ5N0X7ElVJbs72UHniizyDGAUfKEsBQs4EuSs+duCi7zbq2tN52OQeV2N5s2wR2Q5l1BD6qPMNfGIwblopJmijXNCVsNaOAPrxGPhRlLZH/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=CxbT6Z72; arc=none smtp.client-ip=117.135.210.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="I9rSX58X"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="CxbT6Z72"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=tc/NaKKGBpM+izFIokJfEr1gtOU1x61CifjiB4xfVGs=;
-	b=I9rSX58XhZRg3PbuitIuYSdBGdIAb2aIa5GqGjyRy+mQETYM8V9UIgEhoDsikT
-	hARluEsqzdf3HsrCPzEymZtnz/nK/PEGP+dgghNRevs3vqP5Mrm/CdP6xwfUczrf
-	Wcs0vUNtCCXO9yIX7if4FQ7xw2xt8gmdkFebM5wYRn1CY=
+	Content-Type; bh=PRoXD4sZgycHw3w5/hnLgpayzzS06vs5edBN/I94MWc=;
+	b=CxbT6Z72WSbtkVnrJTNytTTxgQQdQXdSv+j1NOkIYbnVqwReA5n0r7zb507ScU
+	uZgqQg49YPRIQgd8bGPnfxGYR008ITLwLE8H6e7k6wLW0BvWxjILF5HyDkPZTS3Q
+	Yp3DJtakRQ85VpRXHsKhbfwrwC0zfqoJn++Oygjh5UrLA=
 Received: from [IPV6:2409:8900:1ef4:8f82:6a1b:f1a6:cbdd:11fe] (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id PigvCgDn3gVNuo9q_gFLPQ--.23413S2;
-	Thu, 27 Aug 2026 12:17:19 +0800 (CST)
-Message-ID: <9022d6dc-3746-4f37-91a1-dfc17fe04fef@163.com>
-Date: Thu, 27 Aug 2026 12:17:17 +0800
+	by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id _____wCnoe0dvo9q_WUwDw--.46122S2;
+	Thu, 27 Aug 2026 12:33:35 +0800 (CST)
+Message-ID: <6bf63800-e169-4ff7-baa2-52c4d42bb35e@163.com>
+Date: Thu, 27 Aug 2026 12:33:33 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -34,84 +34,144 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ntfs: handle signal interruption in fallocate
-To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+Subject: Re: [PATCH v2] ntfs: fix race between fallocate and mmap reads
+To: Hongling Zeng <zhongling0719@126.com>,
+ Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
  hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- zhongling0719@126.com, stable@vger.kernel.org
-References: <20260826055953.1372417-1-zenghongling@kylinos.cn>
+ stable@vger.kernel.org, Baolin Liu <liubaolin@kylinos.cn>
+References: <20260827031647.1605970-1-zenghongling@kylinos.cn>
+ <bd197da8-a8ec-40ad-a50d-dc579840d680@163.com> <6A8FB73D.30104@126.com>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260826055953.1372417-1-zenghongling@kylinos.cn>
+In-Reply-To: <6A8FB73D.30104@126.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PigvCgDn3gVNuo9q_gFLPQ--.23413S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Zw1DArW5Wr17Cw1kZF17trb_yoW8ZFy7pr
-	Wjkr90k3yfXr9rCrnxKw409a10934Sgr4UGrW0vw18ZanIq3WUGFyUtr10q3WftFykAw1U
-	XrWj9r47Z3y7Z3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRZFxbUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Q9AC2qPuk+3ygAA3A
+X-CM-TRANSID:_____wCnoe0dvo9q_WUwDw--.46122S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGw45tFyrtry7ArWkZFW5Wrg_yoWrGw1fpr
+	WqgF4jkr48XrWUuF1vgw4j9F1Fg340grW5urW3J3WIvrn8KFn2gF1UKr4xuryFyFZ3Jrs3
+	X3WUJrZruFyYv3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UaJPiUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwh81AGqPvh-OlwAA31
 
 
 
-在 2026/8/26 13:59, Hongling Zeng 写道:
-> The ntfs_attr_fallocate() function checks for pending signals during
-> allocation loops and exits early via 'out' label. However, when a signal
-> interrupts the operation with err == 0, the function returns 0 (success)
-> instead of -EINTR.
+在 2026/8/27 12:04, Hongling Zeng 写道:
 > 
-> The signal_pending() checks at the allocation loops jump to 'out' without
-> setting err = -EINTR, so the function returns success even when interrupted
-> by a signal.
+> 在 2026年08月27日 11:37, liubaolin 写道:
+>>
+>>
+>> 在 2026/8/27 11:16, Hongling Zeng 写道:
+>>> The fallocate implementation only takes invalidate_lock for punch hole,
+>>> collapse range, and insert range operations. For standard allocation 
+>>> modes
+>>> (mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
+>>>
+>>> During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
+>>> ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). 
+>>> This
+>>> creates a window where concurrent mmap page faults can read 
+>>> uninitialized
+>>> disk data.
+>>>
+>>> Since mmap uses filemap_fault() which takes invalidate_lock in shared 
+>>> mode,
+>>> it can fault in pages during this window and expose old disk contents to
+>>> userspace. This is an information leak and data integrity issue.
+>>>
+>>> Fix by taking invalidate_lock for all fallocate operations, not just for
+>>> punch/collapse/insert modes. This prevents concurrent page faults from
+>>> accessing unzeroed clusters during the allocation window.
+>>>
+>>> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
+>>> Cc: stable@vger.kernel.org
+>>> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+>>> Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+>>> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+>>> ---
+>>> Change in v2:
+>>>   -Remove now-unnecessary map_locked variable.
+>>> ---
+>>>   fs/ntfs/file.c | 7 ++-----
+>>>   1 file changed, 2 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+>>> index 88747217ba61..779baafa0319 100644
+>>> --- a/fs/ntfs/file.c
+>>> +++ b/fs/ntfs/file.c
+>>> @@ -1153,11 +1153,8 @@ static long ntfs_fallocate(struct file *file, 
+>>> int mode, loff_t offset, loff_t le
+>>>       }
+>>>         inode_dio_wait(vi);
+>>> -    if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
+>>> -            FALLOC_FL_INSERT_RANGE)) {
+>>> -        filemap_invalidate_lock(vi->i_mapping);
+>>> -        map_locked = true;
+>>> -    }
+>>> +    /* Take invalidate_lock for all fallocate operations to prevent 
+>>> races */
+>>> +    filemap_invalidate_lock(vi->i_mapping);
+>>>         switch (mode & FALLOC_FL_MODE_MASK) {
+>>>       case FALLOC_FL_ALLOCATE_RANGE:
+>>
+>> Hi Hyunchul and Hongling,
+>>
+>> I think map_locked might still be needed though.
+>>
+>> Before filemap_invalidate_lock() is taken, there's this check:
+>>
+>>         inode_lock(vi);
+>>         if (NInoCompressed(ni) || NInoEncrypted(ni) || 
+>> NInoWofCompressed(ni)) {
+>>                 err = -EOPNOTSUPP;
+>>                 goto out;
+>>         }
+>>
+>>         inode_dio_wait(vi);
+>>         filemap_invalidate_lock(vi->i_mapping);
+>>
+>> If that goto is taken, we reach the exit path without having locked.
+>> Without map_locked, we'd call filemap_invalidate_unlock() on a lock
+>> we never took.
+>>
+>> Would it make sense to either:
+>> 1. Keep map_locked as a guard for the unlock, or
+>> 2. Change that goto to inode_unlock() + direct return, so the shared
+>>      exit path always holds the lock?
+>>
+>> I'd appreciate your thoughts on this.
+>>
+>> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+>>
+>> Thanks,
+>> Baolin.
+> Hi  Baolin and Hyunchul
+>   You're right — that's exactly the unbalanced-unlock path we spotted while
+>    preparing v3, and option 2 is what v3 implements. The early exit now 
+> does
+>    inode_unlock() + direct return, so every path reaching out: holds
+>    invalidate_lock, which let us drop map_locked entirely:
 > 
-> Set err = -EINTR when jumping to the signal exit path, and only override
-> when no other error is pending. This ensures:
+>     inode_lock(vi);
+>     if (NInoCompressed(...) ) {
+>             inode_unlock(vi);
+>             return -EOPNOTSUPP;
+>     }
+>     inode_dio_wait(vi);
+>     filemap_invalidate_lock(vi->i_mapping);
+>     ...
+>     out:
+>             filemap_invalidate_unlock(vi->i_mapping);
+>     v3 with this cleanup is on its way / attached.
 > 
-> - Allocation interrupted by signal returns -EINTR
-> - Allocation that completed successfully before signal arrived returns 0
-> - Other errors are preserved and not overwritten by -EINTR
+>   Would this v3 approach be OK with you?
 > 
-> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-> ---
->   fs/ntfs/attrib.c | 8 ++++++--
->   1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-> index 60264833bb63..c898250f63a7 100644
-> --- a/fs/ntfs/attrib.c
-> +++ b/fs/ntfs/attrib.c
-> @@ -5709,7 +5709,7 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
->   				}
->   
->   				if (signal_pending(current))
-> -					goto out;
-> +					goto signal_out;
->   
->   				vcn += alloc_cnt;
->   				try_alloc_cnt -= alloc_cnt;
-> @@ -5730,7 +5730,7 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
->   		up_write(&ni->runlist.lock);
->   		mutex_unlock(&ni->mrec_lock);
->   		if (err || signal_pending(current))
-> -			goto out;
-> +			goto signal_out;
->   
->   		vcn += alloc_cnt;
->   		try_alloc_cnt -= alloc_cnt;
-> @@ -5756,4 +5756,8 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
->   	mutex_unlock(&ni->mrec_lock);
->   out:
->   	return err >= 0 ? 0 : err;
-> +signal_out:
-> +	if (!err)
-> +		err = -EINTR;
-> +	goto out;
->   }
+>     Thanks,
+>     Hongling
 
-Looks good to me. 
-  
+Hi Hyunchul,
+    I think this approach is good.Looking forward to your feedback.
 
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Thanks,
+Baolin.
 
