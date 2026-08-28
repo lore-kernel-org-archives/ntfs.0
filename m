@@ -1,37 +1,38 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7175C3ACA48
-	for <ntfs@lists.linux.dev>; Fri, 28 Aug 2026 06:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4883C4B71
+	for <ntfs@lists.linux.dev>; Fri, 28 Aug 2026 06:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787897781; cv=none; b=p7n5EFGpa9hy1EkwsFJdmAXCYQPjDo4Zfcg+CywzegyN20MHtuux1+qzs5WA1qaWlMRVYrGOxcbNBl1N5HaWiCALYaZyQLsra+XdftwOXkmT0jx75Ez7CmtJhMbjxz6I7KSD6mod3R7NrlLyk/0hIcQJ4Sv3H9ZOBNk34jO+ADc=
+	t=1787897781; cv=none; b=bbzlka2a5EjjipfefVBIXOldPhS9DEHQQ0lR9rciFVRIYaZv5V/jGUBhzw12PFvDDaOybOnveyIUmNkJ/UApOIoZqxpvlW5Lj7oF9T6+/eZzb9hp6TkgygrLVUJfjyPoalE/8cNeSLM93hSssgC6NOwcxu8E90MLbV6hNYEOyJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1787897781; c=relaxed/simple;
-	bh=DWJ30wLWoVajnNOPaxy/O0aOU7mPN/98OXXWAwisxiI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jj/RsQXF8k31hjPeDDJTA1zQzedoAjIyww7V1E7kOxTdYDBBLP7AsrQW4GtuNf+WldCgKB58GIt6qofnPbHmf7sNW6aE5vvVr7Koe2vn7KDPQ6R+x5YrmOhhmfi9Rk5JkaCXdzEJUQTy1MzviZAYnHhlBfhLTvDtiJD/lHU0Jfg=
+	bh=ivk4EpjbT7l4wfqHN29nL82xAGXLcKGpJoWO1LAemrc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=fupl4rvJCO1ech65k5n9IcFBMYkyL9C8Siev5HEHc648PNAwif86OCqPaFVwBihFE41MjNsoGWSy12r3mIikgliyCrn5MHNXXGWRf9QNRgtWvotCPEmL1ZxLTMIdF53RafQNAfOR9/SepXZ/BRT0wyKgqFSTqDhsbjmLgd/ctQY=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: f72ca04ea2a711f19a56ed5b684f684d-20260828
+X-UUID: f7878036a2a711f19a56ed5b684f684d-20260828
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:81e1f6fd-7911-45dd-8e47-bd7da3343c25,IP:0,U
+X-CID-O-INFO: VERSION:1.3.19,REQID:8728223b-14a0-4cc9-bbea-30d92b2ffa2c,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:ad210ab366befcb778d841f078b303ec,BulkI
-	D:nil,BulkQuantity:0,SF:102|850|865|898,TC:nil,Content:0|15|50,EDM:-3,IP:n
-	il,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
-	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:1c4637a6193b801e528a8545aa4929ed,BulkI
+	D:nil,BulkQuantity:0,SF:81|82|102|850|865|898,TC:nil,Content:0|15|50,EDM:-
+	3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,A
+	V:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
 X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: f72ca04ea2a711f19a56ed5b684f684d-20260828
+X-UUID: f7878036a2a711f19a56ed5b684f684d-20260828
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1622525588; Fri, 28 Aug 2026 14:16:11 +0800
+	with ESMTP id 208692169; Fri, 28 Aug 2026 14:16:12 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -40,10 +41,12 @@ Cc: ntfs@lists.linux.dev,
 	zhongling0719@126.com,
 	Hongling Zeng <zenghongling@kylinos.cn>,
 	stable@vger.kernel.org
-Subject: [PATCH 1/2] ntfs: take invalidate_lock in ntfs_setattr_size()
-Date: Fri, 28 Aug 2026 14:16:06 +0800
-Message-Id: <20260828061607.240845-1-zenghongling@kylinos.cn>
+Subject: [PATCH 2/2] ntfs: take invalidate_lock in ntfs_filemap_page_mkwrite()
+Date: Fri, 28 Aug 2026 14:16:07 +0800
+Message-Id: <20260828061607.240845-2-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260828061607.240845-1-zenghongling@kylinos.cn>
+References: <20260828061607.240845-1-zenghongling@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -52,58 +55,58 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-ntfs_setattr_size() updates i_size and resizes the on-disk attribute
-without holding mapping->invalidate_lock.  Page faults take the lock
-shared, so a fault racing the resize can resolve a VCN against the
-transient runlist state of ntfs_non_resident_attr_expand() and fail
-with a spurious SIGBUS, and can interleave with the size-change
-epilogue (truncate_pagecache(), i_size_write(),
-pagecache_isize_extended()).
+ntfs_filemap_page_mkwrite() calls iomap_page_mkwrite() without holding
+mapping->invalidate_lock, so a concurrent truncate or fallocate can be
+in the middle of invalidating pagecache and rewriting the runlist while
+the write fault maps blocks and dirties the folio.  This races with
+ntfs_attr_fallocate(), which merges clusters into the in-memory
+runlist, drops the runlist lock, and only afterwards zeroes the newly
+allocated clusters on disk; and with the punch-hole/insert/collapse
+paths that free clusters after truncating the cache.
 
-Take invalidate_lock exclusively around the whole resize after
-inode_dio_wait(), matching the fallocate path and other filesystems
-such as xfs, which wraps truncate in its mmaplock (= invalidate_lock).
+Per Documentation/filesystems/locking.rst, ->page_mkwrite() must ensure
+there are no truncate/invalidate races, "usually mapping->invalidate_lock
+is suitable for proper serialization".  xfs takes its mmaplock (= the
+invalidate_lock rwsem) shared in exactly this path.
+
+Take invalidate_lock shared around iomap_page_mkwrite().  The read-only
+fault path is already covered because filemap_fault() itself grabs
+invalidate_lock shared on instantiation/read paths; only page_mkwrite
+was bypassing it in this driver.
 
 Fixes: 9c87959601e8 ("ntfs: update file operations")
 Cc: stable@vger.kernel.org
 Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 ---
- fs/ntfs/file.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ fs/ntfs/file.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 1969e4f444f7..585ab2145797 100644
+index 585ab2145797..df5c9d79ed09 100644
 --- a/fs/ntfs/file.c
 +++ b/fs/ntfs/file.c
-@@ -270,18 +270,25 @@ static int ntfs_setattr_size(struct inode *vi, struct iattr *attr)
- 		return err;
+@@ -676,6 +676,7 @@ static ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ static vm_fault_t ntfs_filemap_page_mkwrite(struct vm_fault *vmf)
+ {
+ 	struct inode *inode = file_inode(vmf->vma->vm_file);
++	struct address_space *mapping = inode->i_mapping;
+ 	vm_fault_t ret;
  
- 	inode_dio_wait(vi);
-+
+ 	if (NInoWofCompressed(NTFS_I(inode)))
+@@ -684,7 +685,14 @@ static vm_fault_t ntfs_filemap_page_mkwrite(struct vm_fault *vmf)
+ 	sb_start_pagefault(inode->i_sb);
+ 	file_update_time(vmf->vma->vm_file);
+ 
 +	/*
-+	 * Serialize with page faults and pagecache instantiation so that
-+	 * readers cannot observe the size change until the attribute
-+	 * updates below have completed.
++	 * Serialize against truncate/fallocate which hold the lock
++	 * exclusively while invalidating pagecache and changing extents.
 +	 */
-+	filemap_invalidate_lock(vi->i_mapping);
- 	if (attr->ia_size > old_size) {
- 		truncate_pagecache(vi, old_size);
- 		i_size_write(vi, attr->ia_size);
- 		pagecache_isize_extended(vi, old_size, attr->ia_size);
--	} else
-+	} else {
- 		truncate_setsize(vi, attr->ia_size);
-+	}
- 
- 	err = ntfs_truncate_vfs(vi, attr->ia_size, old_size);
--	if (err) {
-+	if (err)
- 		i_size_write(vi, old_size);
--		return err;
--	}
-+	filemap_invalidate_unlock(vi->i_mapping);
- 
- 	return err;
++	filemap_invalidate_lock_shared(mapping);
+ 	ret = iomap_page_mkwrite(vmf, &ntfs_page_mkwrite_iomap_ops, NULL);
++	filemap_invalidate_unlock_shared(mapping);
++
+ 	sb_end_pagefault(inode->i_sb);
+ 	return ret;
  }
 -- 
 2.25.1
