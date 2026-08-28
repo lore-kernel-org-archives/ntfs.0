@@ -1,72 +1,49 @@
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B22F3A1D14
-	for <ntfs@lists.linux.dev>; Fri, 28 Aug 2026 04:58:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7175C3ACA48
+	for <ntfs@lists.linux.dev>; Fri, 28 Aug 2026 06:16:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1787893132; cv=none; b=ew343P/KCrM3cINdD4eg2JKYYfSzlEKTeC12MzSV2jprq0K5eIBUa3uUKlY8djJfLKkSfsax5TiMsv5ftJKJENSheYI0m1AlHZltYR03tB9KEwa7neqM6E5tkUsck8BtnhVE6lIZU9XE+Lwf8/Np9jwR2rf/+l/v1Cf8HHedg8c=
+	t=1787897781; cv=none; b=p7n5EFGpa9hy1EkwsFJdmAXCYQPjDo4Zfcg+CywzegyN20MHtuux1+qzs5WA1qaWlMRVYrGOxcbNBl1N5HaWiCALYaZyQLsra+XdftwOXkmT0jx75Ez7CmtJhMbjxz6I7KSD6mod3R7NrlLyk/0hIcQJ4Sv3H9ZOBNk34jO+ADc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1787893132; c=relaxed/simple;
-	bh=gcdiG4ir1yBGg2EXjYbybrNJaJ5DXEJHiTUBDcvtr8s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MvsWLzsXRtD5gUUV1Y/j3ZvcI+Qv4R0QHQOoNtd6vmMBvg7zp9gzqilJQ32OLqftjVmp6QgMFY6MCTw7RshSbIgAPFC0MM5mSWY/HyBaKG9P1ZdiaV6GIb/CqJS6//thZ9O1VNNgE2PBLEQkwFEBw84xY4tVxwtRmSadv4qUdww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PJn9iRNy; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PJn9iRNy"
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-84f3ab8750cso523792b3a.0
-        for <ntfs@lists.linux.dev>; Thu, 27 Aug 2026 21:58:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787893130; x=1788497930; darn=lists.linux.dev;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=a/D4eWMfr1fA9bjkfzPRYlY4jm44++uFB2UkDiGgqMk=;
-        b=PJn9iRNyOm1P+oEhUf/ku7ffDd8o7MCtWfrBvOkEo/hluezEelQ7m4Dc05iwpci/xi
-         Z5kL/A5It3Oyt1YmvS+42GX0awp02V/aL69gcvi8tpOHPq7sdn/H2aaWs+whV5oE1xtH
-         0gvnjtQDRoD5EKZ7eL8d2Vv4X05CtkEyvGWjWh52Cx8FSe+zrk5vErgrRfvmCNSfA/a1
-         thJ3QTTp1/9E4msYo1Q6MtR2bf+FYkFqFggAqa5PWrtCmE3T2eKKHYtOuBAfNwBIQyWO
-         fxCokJsCCEgAAnGoYB6K1BdZbPclMKkzvGLkftKyEhSyew/UNho/KsyxU5AFGz7rP0mP
-         uYMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787893130; x=1788497930;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=a/D4eWMfr1fA9bjkfzPRYlY4jm44++uFB2UkDiGgqMk=;
-        b=h344fAFe9LheSZOvmboQYG8h5X/Ds6jaXiLhp/OXbVdrwOCly3FKjJPTo8828Wi0Us
-         CsAbzZa+8E6XeeRMKLpBOl7Y/FyIlkFDBlVDOFhkM0pdQOHT2FyYI+V4+FD80g8SlI7R
-         +raCuBv0mcSQXOBVoNV/s9FATMEVio9zAszxlOSUCvxFhGLKdah4eoTQqDSgGgLbKpVM
-         D4m0Y2VEgQ7IV8xVQVjzvd2lKg9ZyeXGLs0gTlQzMtUbxSK7Crtqzt7Pb3MLH8pIlcnO
-         4rWinJHo83uojNgWekde6u+Ki3+zX6LMdQb6OWesi5QMkvnc1EpN7evTClM6vhfbWjv6
-         /kDQ==
-X-Gm-Message-State: AFuF++kISDlhgBsr5bsG/4nwyE6rP/eAMxwa28reseKqhOmDb6OIwLaA
-	07IevN4M7Gin3Wqe9Ew7RRUB1qWFZFwIdQy3l+QLVG9XZtmZ7/AfGoCO
-X-Gm-Gg: AR+sD13KUl1QAf1A5lt1TfXK7AOYLLvkIndLzG9Vgrzch/0mRvDxE8oeptEx/x67CLS
-	OoBD1z6m439ct90l5BWqVaGwi+kf4wUYucxZzE+UUMhmE31J/1oCBXezDGnNmbJ4Q6i0af2ODBZ
-	ucqCfGH0VcAEmz+IEBaK48uqoh/d51EfEZQHkvrLIzQIS8LJcJ7yMN1AjJJqZBYx+T175jvksza
-	4+zrxOAOnpo8bbaLD6WEhZid4AiY4bMBg5q64XG5ZNE4U/B40Fyyi06f1DNgGTnBKjypwdDcf7V
-	1bE4+/Vx63sP8vlGzj5p37DVISsgYvTVf7XqZhBXa4b40e2XgwcgPbBd/hJbCuo/VO2dIJAjJc6
-	OLKUQTKoxB6JjsSobLseVcYOTvsHx5TuQCyiM5FthlPZXm1U4CWLGveIRtHPPcUDqRxxsOpMl7P
-	2lng+Q+cHkL6/PXGE5S69L42fceszpsVbFSrrHxcrQrwLh2rkSddHPqv7bH5fMoHab5sV7Fg5R
-X-Received: by 2002:a05:6a00:f07:b0:848:42d0:bc91 with SMTP id d2e1a72fcca58-8562a7d99a6mr9045063b3a.12.1787893130087;
-        Thu, 27 Aug 2026 21:58:50 -0700 (PDT)
-Received: from osman.mioffice.cn ([43.224.245.178])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc1f36e8ee6sm168102a12.26.2026.08.27.21.58.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Aug 2026 21:58:49 -0700 (PDT)
-From: Zhan Xusheng <zhanxusheng1024@gmail.com>
-X-Google-Original-From: Zhan Xusheng <zhanxusheng@xiaomi.com>
+	s=arc-20240116; t=1787897781; c=relaxed/simple;
+	bh=DWJ30wLWoVajnNOPaxy/O0aOU7mPN/98OXXWAwisxiI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jj/RsQXF8k31hjPeDDJTA1zQzedoAjIyww7V1E7kOxTdYDBBLP7AsrQW4GtuNf+WldCgKB58GIt6qofnPbHmf7sNW6aE5vvVr7Koe2vn7KDPQ6R+x5YrmOhhmfi9Rk5JkaCXdzEJUQTy1MzviZAYnHhlBfhLTvDtiJD/lHU0Jfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: f72ca04ea2a711f19a56ed5b684f684d-20260828
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:81e1f6fd-7911-45dd-8e47-bd7da3343c25,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:ad210ab366befcb778d841f078b303ec,BulkI
+	D:nil,BulkQuantity:0,SF:102|850|865|898,TC:nil,Content:0|15|50,EDM:-3,IP:n
+	il,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
+	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: f72ca04ea2a711f19a56ed5b684f684d-20260828
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1622525588; Fri, 28 Aug 2026 14:16:11 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	zhanxusheng@xiaomi.com,
-	Zhan Xusheng <zhanxusheng1024@gmail.com>
-Subject: [PATCH] ntfs: read WOF chunks outside the decompression lock
-Date: Fri, 28 Aug 2026 12:58:43 +0800
-Message-ID: <20260828045843.1203490-1-zhanxusheng@xiaomi.com>
-X-Mailer: git-send-email 2.43.0
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH 1/2] ntfs: take invalidate_lock in ntfs_setattr_size()
+Date: Fri, 28 Aug 2026 14:16:06 +0800
+Message-Id: <20260828061607.240845-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -75,297 +52,59 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Zhan Xusheng <zhanxusheng1024@gmail.com>
+ntfs_setattr_size() updates i_size and resizes the on-disk attribute
+without holding mapping->invalidate_lock.  Page faults take the lock
+shared, so a fault racing the resize can resolve a VCN against the
+transient runlist state of ntfs_non_resident_attr_expand() and fail
+with a spurious SIGBUS, and can interleave with the size-change
+epilogue (truncate_pagecache(), i_size_write(),
+pagecache_isize_extended()).
 
-From: Zhan Xusheng <zhanxusheng@xiaomi.com>
+Take invalidate_lock exclusively around the whole resize after
+inode_dio_wait(), matching the fallocate path and other filesystems
+such as xfs, which wraps truncate in its mmaplock (= invalidate_lock).
 
-WOF decompression uses four module-global workspaces, one per compression
-format, each with a static mutex.  ntfs_read_wof_compressed_block() takes
-that mutex once and holds it across the whole chunk loop, so both block
-reads run inside it:
-
-  mutex_lock(ws->lock);
-  for each chunk {
-          parse_wof_chunk_table(..., ws->input, ...);   /* reads disk */
-          ntfs_read_wof_chunk(..., ws->input, ...);     /* reads disk */
-          decompress into ws->output;
-  }
-  mutex_unlock(ws->lock);
-
-Readers of system-compressed files then serialise system-wide on the disk
-waits, not just on the decompressor scratch the lock exists for.  One
-reader sleeping in submit_bio_wait() blocks all the rest.
-
-The waits dominate.  Reading an 8 MiB xpress4k file (2048 chunks at a 48%
-compressed ratio, so 2048 acquisitions and 4096 block reads) and timing
-ws->lock against the part of it spent in ntfs_bdev_read():
-
-  backing store                held     of that in I/O   held after
-  virtio, host page cache      348 ms   321 ms  (92%)    24.6 ms
-  virtio, throttled 100 MB/s   978 ms   948 ms  (96%)    36.6 ms
-
-The page-cache row is a lower bound, having no seek cost at all, and the
-share still grows with slower storage because only the wait scales while
-decompression stays near 26 ms.
-
-The reads are inside the lock only because they land in ws->input, a
-buffer shared through the workspace.  Nothing else requires it:
-parse_wof_chunk_table() and ntfs_read_wof_chunk() already take the buffer
-as a parameter and both set *chunk_mem to a pointer inside it, so a
-caller-owned buffer works unchanged.
-
-Allocate that buffer per call, do both reads without the lock, and take
-the lock only around decompression, which is the step needing ws->output
-and ws->scratch.  squashfs is arranged this way already: its
-squashfs_decompress() is handed a bio that has been read, and locks only
-for the CPU work.
-
-Block reads are unchanged in number, they just no longer run under the
-lock, and hold time stops tracking device speed.
-
-This also unnests two per-inode locks from the global one, runlist->lock
-taken by both reads and base_ni->mrec_lock taken for a resident stream.
-A resident chunk needs no I/O at all, yet used to queue behind a reader
-blocked in submit_bio_wait() and then take mrec_lock inside the global
-mutex.
-
-The buffer is 4608 bytes for xpress4k and at most 33280 for lzx32k.  This
-path already does GFP_NOFS allocations per call in ntfs_attr_iget(), and
-in ntfs_attr_get_search_ctx() for a resident stream, so one more does not
-change how it behaves under memory pressure.  The workspace keeps output
-and scratch, 4 KiB to 32 KiB and 6224 bytes (xpress) or 10240 (lzx), and
-its "already allocated" test moves from ws->input to ws->output.
-
-The lock is now taken per chunk rather than per call, which differs only
-for a folio spanning several chunks: a few more uncontended mutex
-operations in exchange for not holding it across the reads between them.
-
-Verified under QEMU against an uncompressed copy of the same data, on an
-8 MiB file and a 100000 byte one, the latter covering the tail chunk that
-is not a full comp_unit.
-
-Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
+Fixes: 9c87959601e8 ("ntfs: update file operations")
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 ---
- fs/ntfs/wof.c | 127 +++++++++++++++++++++++++++++++-------------------
- 1 file changed, 79 insertions(+), 48 deletions(-)
+ fs/ntfs/file.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/fs/ntfs/wof.c b/fs/ntfs/wof.c
-index 8f84c2212eee..9847259e5b1a 100644
---- a/fs/ntfs/wof.c
-+++ b/fs/ntfs/wof.c
-@@ -39,8 +39,6 @@ struct ntfs_wof_workspace {
- 	struct mutex *lock;
- 	const struct ntfs_codec_ops *codec;
- 	u32 comp_unit;
--	void *input;
--	size_t input_size;
- 	void *output;
- 	void *scratch;
- };
-@@ -97,30 +95,36 @@ static struct ntfs_wof_workspace *ntfs_wof_workspace(u8 block_size_bits)
- 	}
- }
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 1969e4f444f7..585ab2145797 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -270,18 +270,25 @@ static int ntfs_setattr_size(struct inode *vi, struct iattr *attr)
+ 		return err;
  
-+/*
-+ * Size of the buffer a chunk is read into.  A chunk is read straight off the
-+ * device, so the buffer has to hold @comp_unit bytes plus the leading partial
-+ * sector.
-+ */
-+static size_t ntfs_wof_input_size(const struct ntfs_wof_workspace *ws)
-+{
-+	return round_up((size_t)ws->comp_unit + 511, 512);
-+}
+ 	inode_dio_wait(vi);
 +
- static int ntfs_wof_workspace_prepare(struct ntfs_wof_workspace *ws)
- {
--	void *input, *output, *scratch;
-+	void *output, *scratch;
- 	size_t scratch_size;
++	/*
++	 * Serialize with page faults and pagecache instantiation so that
++	 * readers cannot observe the size change until the attribute
++	 * updates below have completed.
++	 */
++	filemap_invalidate_lock(vi->i_mapping);
+ 	if (attr->ia_size > old_size) {
+ 		truncate_pagecache(vi, old_size);
+ 		i_size_write(vi, attr->ia_size);
+ 		pagecache_isize_extended(vi, old_size, attr->ia_size);
+-	} else
++	} else {
+ 		truncate_setsize(vi, attr->ia_size);
++	}
  
--	if (ws->input)
-+	if (ws->output)
- 		return 0;
- 
--	ws->input_size = round_up((size_t)ws->comp_unit + 511, 512);
- 	scratch_size = ws->codec->scratch_size(ws->comp_unit);
- 	if (!scratch_size)
- 		return -EINVAL;
- 
--	input = kvmalloc(ws->input_size, GFP_NOFS);
- 	output = kvmalloc(ws->comp_unit, GFP_NOFS);
- 	scratch = kvzalloc(scratch_size, GFP_NOFS);
--	if (!input || !output || !scratch) {
--		kvfree(input);
-+	if (!output || !scratch) {
- 		kvfree(output);
- 		kvfree(scratch);
- 		return -ENOMEM;
- 	}
- 
--	ws->input = input;
- 	ws->output = output;
- 	ws->scratch = scratch;
- 	return 0;
-@@ -134,10 +138,8 @@ void ntfs_wof_free_workspaces(void)
- 		struct ntfs_wof_workspace *ws = ntfs_wof_workspaces[i];
- 
- 		mutex_lock(ws->lock);
--		kvfree(ws->input);
- 		kvfree(ws->output);
- 		kvfree(ws->scratch);
--		ws->input = NULL;
- 		ws->output = NULL;
- 		ws->scratch = NULL;
- 		mutex_unlock(ws->lock);
-@@ -602,6 +604,51 @@ static int ntfs_wof_try_direct(struct ntfs_wof_workspace *ws,
- 					     chunk_end, src, src_len, dst_len);
- }
- 
-+/*
-+ * Decompress one chunk into @folio.  Only this step needs the workspace, so it
-+ * is the only step that takes the workspace lock.
-+ */
-+static int ntfs_wof_decompress_chunk(struct ntfs_wof_workspace *ws,
-+				     struct ntfs_volume *vol,
-+				     struct address_space *mapping,
-+				     struct folio *folio, loff_t folio_start,
-+				     loff_t folio_end, u64 chunk_file_offset,
-+				     char *chunk_mem, u32 chunk_size,
-+				     u32 decomp_size)
-+{
-+	loff_t chunk_end = chunk_file_offset + decomp_size;
-+	loff_t copy_start, copy_end;
-+	int err;
-+
-+	mutex_lock(ws->lock);
-+	err = ntfs_wof_workspace_prepare(ws);
+ 	err = ntfs_truncate_vfs(vi, attr->ia_size, old_size);
+-	if (err) {
 +	if (err)
-+		goto out_unlock;
-+
-+	err = ntfs_wof_try_direct(ws, mapping, folio, chunk_file_offset,
-+				  chunk_end, chunk_mem, chunk_size,
-+				  decomp_size);
-+	if (err != -EAGAIN)
-+		goto out_unlock;
-+
-+	err = ntfs_wof_decode(ws, chunk_mem, chunk_size, ws->output,
-+			      decomp_size);
-+	if (err) {
-+		ntfs_error(vol->sb, "Decompression failed: %d", err);
-+		err = -EINVAL;
-+		goto out_unlock;
-+	}
-+
-+	copy_start = max_t(loff_t, folio_start, chunk_file_offset);
-+	copy_end = min_t(loff_t, folio_end, chunk_file_offset + decomp_size);
-+	memcpy_to_folio(folio, copy_start - folio_start,
-+			ws->output + copy_start - chunk_file_offset,
-+			copy_end - copy_start);
-+out_unlock:
-+	mutex_unlock(ws->lock);
-+	return err;
-+}
-+
- int ntfs_read_wof_compressed_block(struct folio *folio)
- {
- 	struct address_space *mapping = folio->mapping;
-@@ -613,6 +660,8 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
- 	loff_t folio_start = folio_pos(folio);
- 	loff_t folio_end = folio_next_pos(folio);
- 	char *chunk_mem;
-+	void *input;
-+	size_t input_size;
- 	u32 decomp_size;
- 	u64 chunk_count, chunk_idx, last_chunk, chunk_offset;
- 	int err = 0;
-@@ -652,10 +701,12 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
- 			goto out_iput;
- 	}
+ 		i_size_write(vi, old_size);
+-		return err;
+-	}
++	filemap_invalidate_unlock(vi->i_mapping);
  
--	mutex_lock(ws->lock);
--	err = ntfs_wof_workspace_prepare(ws);
--	if (err)
--		goto out_unlock_ws;
-+	input_size = ntfs_wof_input_size(ws);
-+	input = kvmalloc(input_size, GFP_NOFS);
-+	if (!input) {
-+		err = -ENOMEM;
-+		goto out_iput;
-+	}
- 
- 	chunk_idx = div_u64(folio_start, ws->comp_unit);
- 	last_chunk =
-@@ -663,55 +714,35 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
- 	chunk_count = DIV_ROUND_UP_ULL(i_size, ws->comp_unit);
- 	for (; chunk_idx <= last_chunk; chunk_idx++) {
- 		u32 chunk_size;
--		u64 chunk_file_offset;
--		loff_t chunk_end, copy_start, copy_end;
- 
- 		decomp_size = chunk_idx + 1 == chunk_count ?
- 				      i_size - chunk_idx * ws->comp_unit :
- 				      ws->comp_unit;
- 		err = parse_wof_chunk_table(ni, wof_ni, chunk_idx, chunk_count,
- 					    decomp_size, &chunk_offset,
--					    &chunk_size, ws->input,
--					    ws->input_size);
-+					    &chunk_size, input, input_size);
- 		if (err)
--			goto out_unlock_ws;
-+			goto out_free_input;
- 
- 		err = ntfs_read_wof_chunk(vol, wof_ni, chunk_offset, chunk_size,
--					  ws->input, ws->input_size,
--					  &chunk_mem);
-+					  input, input_size, &chunk_mem);
- 		if (err)
--			goto out_unlock_ws;
--
--		chunk_file_offset = chunk_idx * ws->comp_unit;
--		chunk_end = chunk_file_offset + decomp_size;
--		err = ntfs_wof_try_direct(ws, mapping, folio, chunk_file_offset,
--					  chunk_end, chunk_mem, chunk_size,
--					  decomp_size);
--		if (!err)
--			continue;
--		if (err != -EAGAIN)
--			goto out_unlock_ws;
-+			goto out_free_input;
- 
--		err = ntfs_wof_decode(ws, chunk_mem, chunk_size, ws->output,
--				      decomp_size);
--		if (err) {
--			ntfs_error(vol->sb, "Decompression failed: %d", err);
--			err = -EINVAL;
--			goto out_unlock_ws;
--		}
--		copy_start = max_t(loff_t, folio_start, chunk_file_offset);
--		copy_end = min_t(loff_t, folio_end,
--				 chunk_file_offset + decomp_size);
--		memcpy_to_folio(folio, copy_start - folio_start,
--				ws->output + copy_start - chunk_file_offset,
--				copy_end - copy_start);
-+		err = ntfs_wof_decompress_chunk(ws, vol, mapping, folio,
-+						folio_start, folio_end,
-+						chunk_idx * ws->comp_unit,
-+						chunk_mem, chunk_size,
-+						decomp_size);
-+		if (err)
-+			goto out_free_input;
- 	}
- 
- 	if (folio_end > i_size)
- 		folio_zero_segment(folio, i_size - folio_start,
- 				   folio_size(folio));
--out_unlock_ws:
--	mutex_unlock(ws->lock);
-+out_free_input:
-+	kvfree(input);
- out_iput:
- 	iput(wof_inode);
- out:
-
-base-commit: 1b78070aaef63512688aebfbc82365ef9d6660f1
+ 	return err;
+ }
 -- 
-2.43.0
+2.25.1
 
