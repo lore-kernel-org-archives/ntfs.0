@@ -1,99 +1,109 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09149346FA0
-	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 07:24:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177DD3D1716
+	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 08:22:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788161085; cv=none; b=YOIr8qKR9d5NW7SaQLc5MhKZd6YunyFf+vRpYsnSyGDcEq1q0eVRSHzUJLXxWqbx8E9WmoXSxFRcnNqlUkwYt3Q3mQQZbmjW9gWhEt16OeGSSlZUEWFtomatSXvBYc5Sd5z8JM/bxnUjrOOAvY2TmWCkA+gAbr6DDijCRRGvQxM=
+	t=1788164566; cv=none; b=D8EOrf6ExWvPLg05X9Aep7jAkT7X1ifYurDyOlRQJNdcV2zCumToPqItuOcPHX1Dravs0emDVWhm5ZQWqLqPuNqY2G2qs+7kLXabxCMok+KwqyR5MWD2oXMvg+oEN8ezBDWa/WZ7ge+W0rsu9ooUwQwDFQrPOOQuITrh/WwvbhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788161085; c=relaxed/simple;
-	bh=Dwak2X8ug1+O5w1ginv9rTPC6Vd6vCeMy0xItYVbPtQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m4LfCwedfK2z/mHGF1UZxC6wgLQ2po+D6chfwURhO7ICRG0DieOtDH2LK7PxAM/gU6LzWtSX6hjmn/WycTZDCgQ1v984gMObNscy1L8XCJyRBlfwJx3AlF2vdYTlY5YiGIreXrKHSJZ4ncSWcsCQQQF91s/VefTASxT+cdjOEI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WKz8Y7I/; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1788164566; c=relaxed/simple;
+	bh=bb+Hp2p16kPs9VM+7tdBbBf2++jtIlARQtFqzk/MH0Y=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=hwSYA4od6h3IZCPrrxBakw5n/dPBGju+8TAIjD9U0j3JoJnZ2DejIAdJeAOB/cjMIb/aMKVuDkduM37gPUTK5G1s52/zl7PwVM4jnMZGNqwGljC1IjQU/DlZIOIw16zPe6rVaolrDfKyFAIC1P54mrPC0Z5+JZzMVv+0Z2P4STU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=UFeurNDM; arc=none smtp.client-ip=117.135.210.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WKz8Y7I/"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE2AF1F00ACF
-	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 07:24:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788161083;
-	bh=V4tCMQDBO+Y0yv576KgJ9uC7rdHznojwiVTQ/LHcN8w=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=WKz8Y7I/WalnjVawpNSMCEZnu/Lwb3vOHK5eKkY96O8POEPww5fPPmNY/KStKBKKP
-	 P/Zbc+9LOYzp9WV2irVEBMgL9PNGr/Hf+5HwGE4E5zbUtrWJ1EC+joiTKWUShmat7Q
-	 2MxnivuN6fCOS2z2fe6P2lSH9fnwJL/eU0nyIZSwtW6qOBVhPPggeX4ZHkJA9RwiGD
-	 5I0Vi3eNj1AaIAEGBLD2xuzJ9YTB1RJhk4Nl1QtQMt0HJySnCVTR0L24bUHn9N+NKJ
-	 qbtBv3nGszl4kR4r4vf9eHM6/1/ONpa2KfqfGh8soOKgDhP5EWOUjdMQtDDgSxPIqY
-	 I2DUWqgJAQSCg==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-6a5ded53570so4420011a12.3
-        for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 00:24:43 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBzpHOZmZKdFx3nBwJoYD5cGtJwPkGeYhmTn+Cp66EFIsl7BiIt+9Ls8qnVLXQW1wej4Xf/C@lists.linux.dev
-X-Gm-Message-State: AFuF++lVqQ3tpWH+OiMaXsS8l3UkzW+6pckDJu6hZn//8ZX3GYDfQHW5
-	+WVjW8pzZI0IH9negdghDaxpYfYUuWNUVWxs6tEwh3lUb1/yX4C4LS6ekcReihznDP0rYXYZIp6
-	lMB8TZbKxqptLfkHmk1tqe44Gizan6bU=
-X-Received: by 2002:a05:6402:c44:b0:6a6:32fa:1e9a with SMTP id
- 4fb4d7f45d1cf-6a632fa1f2bmr5986166a12.18.1788161082357; Mon, 31 Aug 2026
- 00:24:42 -0700 (PDT)
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="UFeurNDM"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
+	Content-Type; bh=yIS/pOCtenWp42jqOVIMr1Jvngs/EfiHjWSp8tgJxbE=;
+	b=UFeurNDMrgblwNA0e6NCeAgNiVmbxQmab13qnDJ8TsYNZuXea4j4Etrdq4lmMs
+	xp6ZGKqU3nY2yK+5IENFkwmZd/EqzILXzCIu6vfv8BdfNx6fznN85sZfynUHQpQv
+	L07iufR2AiJuNmC+ZE+FWD8VMefKbMjeeSwWDKvZ/4fdg=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wBnR6O0OZVqfJsXGw--.43721S2;
+	Mon, 31 Aug 2026 16:22:12 +0800 (CST)
+Message-ID: <6A953998.9050802@126.com>
+Date: Mon, 31 Aug 2026 16:21:44 +0800
+From: Hongling Zeng <zhongling0719@126.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260828061607.240845-1-zenghongling@kylinos.cn> <20260828061607.240845-2-zenghongling@kylinos.cn>
-In-Reply-To: <20260828061607.240845-2-zenghongling@kylinos.cn>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Mon, 31 Aug 2026 16:24:29 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd_v3iw1N9PxDznpGRu4yE2atNG=7WPYM4Z2xNFq2tMx2g@mail.gmail.com>
-X-Gm-Features: AcwNN1UE3hrpbCfdKuNuk-KlWFB8oCsf6qM7Zhviul1R6n6HDA3WqghENaKoscc
-Message-ID: <CAKYAXd_v3iw1N9PxDznpGRu4yE2atNG=7WPYM4Z2xNFq2tMx2g@mail.gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>, 
+ Hongling Zeng <zenghongling@kylinos.cn>
+CC: hyc.lee@gmail.com, ntfs@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Subject: Re: [PATCH 2/2] ntfs: take invalidate_lock in ntfs_filemap_page_mkwrite()
-To: Hongling Zeng <zenghongling@kylinos.cn>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhongling0719@126.com, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+References: <20260828061607.240845-1-zenghongling@kylinos.cn> <20260828061607.240845-2-zenghongling@kylinos.cn> <CAKYAXd_v3iw1N9PxDznpGRu4yE2atNG=7WPYM4Z2xNFq2tMx2g@mail.gmail.com>
+In-Reply-To: <CAKYAXd_v3iw1N9PxDznpGRu4yE2atNG=7WPYM4Z2xNFq2tMx2g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wBnR6O0OZVqfJsXGw--.43721S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7KF15ZF43WF1xGr17uFyDJrb_yoW8urWkpr
+	Wakr48Xw17X3yUWFn7WF1DZFn5G3s7WrWUuryrW397ZasxAr1xKF1kKrWkXr4kJ3WkAw47
+	Xw4vqrWDWFyFq3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jbiSdUUUUU=
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrhR7TGqVObRrTwAA3b
 
->         if (NInoWofCompressed(NTFS_I(inode)))
-> @@ -684,7 +685,14 @@ static vm_fault_t ntfs_filemap_page_mkwrite(struct vm_fault *vmf)
->         sb_start_pagefault(inode->i_sb);
->         file_update_time(vmf->vma->vm_file);
+
+在 2026年08月31日 15:24, Namjae Jeon 写道:
+>>          if (NInoWofCompressed(NTFS_I(inode)))
+>> @@ -684,7 +685,14 @@ static vm_fault_t ntfs_filemap_page_mkwrite(struct vm_fault *vmf)
+>>          sb_start_pagefault(inode->i_sb);
+>>          file_update_time(vmf->vma->vm_file);
+>>
+>> +       /*
+>> +        * Serialize against truncate/fallocate which hold the lock
+>> +        * exclusively while invalidating pagecache and changing extents.
+>> +        */
+>> +       filemap_invalidate_lock_shared(mapping);
+>>          ret = iomap_page_mkwrite(vmf, &ntfs_page_mkwrite_iomap_ops, NULL);
+>> +       filemap_invalidate_unlock_shared(mapping);
+>> +
+> Please move filemap_invalidate_unlock() after truncate_pagecache() and
+> pagecache_isize_extended(). Otherwise, ntfs_filemap_page_mkwrite() can
+> race with the page-cache cleanup after fallocate extends the file.
 >
-> +       /*
-> +        * Serialize against truncate/fallocate which hold the lock
-> +        * exclusively while invalidating pagecache and changing extents.
-> +        */
-> +       filemap_invalidate_lock_shared(mapping);
->         ret = iomap_page_mkwrite(vmf, &ntfs_page_mkwrite_iomap_ops, NULL);
-> +       filemap_invalidate_unlock_shared(mapping);
+> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+> index 1969e4f444f7..a266105180a9 100644
+> --- a/fs/ntfs/file.c
+> +++ b/fs/ntfs/file.c
+> @@ -1178,13 +1178,15 @@ static long ntfs_fallocate(struct file *file,
+> int mode, loff_t offset, loff_t le
+>
+>          err = file_modified(file);
+>   out:
+> +       if (!err && mode == 0 && NInoNonResident(ni) &&
+> +           offset > old_size) {
+> +               truncate_pagecache(vi, old_size);
+> +               pagecache_isize_extended(vi, old_size, offset);
+> +       }
 > +
-Please move filemap_invalidate_unlock() after truncate_pagecache() and
-pagecache_isize_extended(). Otherwise, ntfs_filemap_page_mkwrite() can
-race with the page-cache cleanup after fallocate extends the file.
+>          filemap_invalidate_unlock(vi->i_mapping);
+> +
+>          if (!err) {
+> -               if (mode == 0 && NInoNonResident(ni) &&
+> -                   offset > old_size) {
+> -                       truncate_pagecache(vi, old_size);
+> -                       pagecache_isize_extended(vi, old_size, offset);
+> -               }
+>                  NInoSetFileNameDirty(ni);
+>                  inode_set_mtime_to_ts(vi, inode_set_ctime_current(vi));
+>                  mark_inode_dirty(vi);
+>
+   Thanks for the review!
 
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 1969e4f444f7..a266105180a9 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -1178,13 +1178,15 @@ static long ntfs_fallocate(struct file *file,
-int mode, loff_t offset, loff_t le
+   You're right. ntfs_fallocate() dropped invalidate_lock before calling
+   truncate_pagecache() and pagecache_isize_extended(), so a write fault
+   holding the lock shared could interleave with the page-cache cleanup
+   and have its folio discarded by truncate_inode_pages(), losing the
+   mmap write. Moving both calls inside the lock hold range fixes it.
 
-        err = file_modified(file);
- out:
-+       if (!err && mode == 0 && NInoNonResident(ni) &&
-+           offset > old_size) {
-+               truncate_pagecache(vi, old_size);
-+               pagecache_isize_extended(vi, old_size, offset);
-+       }
-+
-        filemap_invalidate_unlock(vi->i_mapping);
-+
-        if (!err) {
--               if (mode == 0 && NInoNonResident(ni) &&
--                   offset > old_size) {
--                       truncate_pagecache(vi, old_size);
--                       pagecache_isize_extended(vi, old_size, offset);
--               }
-                NInoSetFileNameDirty(ni);
-                inode_set_mtime_to_ts(vi, inode_set_ctime_current(vi));
-                mark_inode_dirty(vi);
+   I've posted v2 and addresses your comment.
+
