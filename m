@@ -1,150 +1,99 @@
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 087693BB131
-	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 06:39:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788158343; cv=pass; b=l6lVB0W0s/ODnAm7PnLJ+k2rYSvZQ0f65SOW9C2I9AAyqkp+TG/Cy8VSpTNXaFWPb4rNdaVAwGdtfONDNWLmFeozD6u6zVzX9yjy/3WeBxwHov++FQl9hRB1oRGUn53wI0K3fmb1ER9d8h4YD66B1NyyLkFVusmmRHwqQpzN0+Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788158343; c=relaxed/simple;
-	bh=WyFxXTxnrLGLJIPSIqsrO/ZcpicbyLFQnZGYq3EeUtk=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09149346FA0
+	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 07:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1788161085; cv=none; b=YOIr8qKR9d5NW7SaQLc5MhKZd6YunyFf+vRpYsnSyGDcEq1q0eVRSHzUJLXxWqbx8E9WmoXSxFRcnNqlUkwYt3Q3mQQZbmjW9gWhEt16OeGSSlZUEWFtomatSXvBYc5Sd5z8JM/bxnUjrOOAvY2TmWCkA+gAbr6DDijCRRGvQxM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1788161085; c=relaxed/simple;
+	bh=Dwak2X8ug1+O5w1ginv9rTPC6Vd6vCeMy0xItYVbPtQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X4/pAXHxhouM5Ok1bd7qxS4ybIFxdBLDD6zamhteCiR5mdfJE94OyF0LEJfLaTYwpsV6+lYLZb9jj1//LIWWxhS0aoPOnKk2FaOMFSDUZF58k+a/l5tzFkXPwMOfN44Y8KZzOkmHrgLOR2WxXhH5Cj9GlhREfpiI4TWihOeEEBM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TDCeAK4w; arc=pass smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	 To:Cc:Content-Type; b=m4LfCwedfK2z/mHGF1UZxC6wgLQ2po+D6chfwURhO7ICRG0DieOtDH2LK7PxAM/gU6LzWtSX6hjmn/WycTZDCgQ1v984gMObNscy1L8XCJyRBlfwJx3AlF2vdYTlY5YiGIreXrKHSJZ4ncSWcsCQQQF91s/VefTASxT+cdjOEI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WKz8Y7I/; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TDCeAK4w"
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5b4a95ab94fso4036566e87.0
-        for <ntfs@lists.linux.dev>; Sun, 30 Aug 2026 23:39:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1788158340; cv=none;
-        d=google.com; s=arc-20260327;
-        b=HHdU+A76Yd0TrjYC2pbWbrlmT0eAvg5c0NXDgAzV9UVDcEd8t/Tyee5xSQxbgOUwGj
-         AoVDev5ZXHOiDTFamdsieG6owq/mHztJ5T7zQEiLzGTn8EiWD8yusa0rbLaByLXq/B9t
-         Y4M3NoTnJj0ROaGdD/5lI8khXRvgj6jUj5b81rOjuvvk4P7Z/51BC7QJT8dZ9SzIa0Or
-         ZiI8GeSGecqICiTC0h4/RtRCcTi5HdohiGXu1nwlQp/Or1a/bkTOEkz/kur+KC8Li3cv
-         Hd3EDUHjnQpMxPgzK9V0GzqNJA7Ya21sAefD+50TxmblAuQdNnqy9Cg2TT3C/U6xFzhR
-         D93Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=LcRf9fmLOAPhyUnEka3JXX5kuV18LOZCrKI4V5sQVg0=;
-        fh=eCuByXraHnxsTUeZOEo1xCpR7lhDVJ6kC4oTOklx0IU=;
-        b=kJyovHnr0cVGw3u7WLqqC3shicw9MRisst6vq6tzUg/F/ebDJWqbfnC38ZCM2I/K4A
-         FXn+IFp8WlVOJf2GBw5VG1mdBx0mItdHvEHCNEOrumpMuAOetcxuxqW5TXZRI4tWzIr/
-         SWVQg8ZzRDwbnuCwANczGi4KTpkXh4rfCcFOrW8bNLVaZDX+xRnj1AHwUMRAfBF/do87
-         wkjRoT/IpbMdQOJa8/xpzUXYxbkUi5taSALFwXIHzEP57PO3mCOPnRGs3cmCCiJFmF33
-         nxaZDjvnp7rjqkwB+JrLDo0MN/g/IZkWUQEsViQuRAXH2Lp4CvPp9/9Mr9tCN6ZUCqjV
-         wvaQ==;
-        darn=lists.linux.dev
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1788158340; x=1788763140; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=LcRf9fmLOAPhyUnEka3JXX5kuV18LOZCrKI4V5sQVg0=;
-        b=TDCeAK4wBbY92hHE7f0056wECmuD2Qkk9WxLKr5FoHywKs9Z53ZpP4pCXXqdHVehOR
-         8PBAYmo8pbjkJWP2GzN/5KjD760mJlrgj8lSwhfJr5S/4Yi2to7oyVWnLrDH2kG/+vNa
-         lRmuxzzHLVbz9AyalksHxZ0j1im13mBglgSyp4oo7SujU72f0h+siule7JomjRfF2mdC
-         4By7EBQwROATadWwLivtIxwrl6sCk7QSHwDhT0/ZHsEzdeM91qzwwUZks1XlSTxN1KyN
-         scbEoYRSCynYuThSZXBQJsK9MIocwsqUrDZyHbcIOoBIAbPeTTnkwOX23sGYksIqmWcQ
-         7Y1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788158340; x=1788763140;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=LcRf9fmLOAPhyUnEka3JXX5kuV18LOZCrKI4V5sQVg0=;
-        b=sotT7VOJ8oc7Mim5Is5Jso45sPqRIeC498cH+K301bIfIdUx8BR2WO+s0wSB4dXYF7
-         YsKkRfAcdSJodGaQSsI3TbQ5sgHlYdccwA2eo52PQQtjwdErHGOmgcC/gyHAIakbQdzH
-         Ucc9WKMhMSP2QgCIeQJv3uXzSK2JUMDVSj79VZ+3fUI3NBCY/ex95BHT/x/AoBUewdva
-         TiuAu0XXe3uYglUUM8dwbtROFn+LjkUeZwV1SfTbD0v/nAjVEsyJVVcxCUx8eaUsnQc8
-         X5LRyc5taoZmXz1+aYfZvP1y+sgN0EY0gRffT5VrPcf7ATXIBQebrWRc3q2pyG03SsGl
-         boHQ==
-X-Forwarded-Encrypted: i=1; AKwUvByBQDQBZNh6DHmPgYSrjdeqOB5tpSAE3SDCQJ7woe6SpruKkOEHU1fKhE/hR0z20svAzxJo@lists.linux.dev
-X-Gm-Message-State: AFuF++mn2ExSAmLGvk34FUvjk+1uZaQbCHwjnfYfmt1CT/t6WqfAKRdV
-	0QIuDHn1172L3RkIzQICWAZP46zS5b8/DqmsrR04Y8LnCo0U+xn3fG+7uTuf+gbwedmLUCxLm8p
-	GyNPClr5tZbmhroK3Zd0V292BhlqsYqw=
-X-Gm-Gg: AYBFou2K9xHTh6JEtqsts1yOGelvpsRRXiSKjBMtv9IC7MDDEsVxQ47Oq0dHIw6Ni6r
-	N9UFQaE4ibO7xWicABGzIKQA0nPOYsD90iVmPh59BZpKHsRrdFN/qfAjjgIWat/GZYQAXMmBdX0
-	SAiTcj4Tb/oT1TqyYinwqEs2gRcuE9GEjW+0qnrC5S88ejFNzCHn2oZYCLLRoTJKcADnckufO78
-	t4kCKndszPVviahbH9ffGFPx9nRakup7ytdxE7tjmTEqYorzaP+JN6d19MuYr8BqDj1qDJb1j4T
-	ybZBrmiiXYFi12SnIIIDGAbSBIwvpaxKu7S/ZIhKL92C
-X-Received: by 2002:a05:6512:3d1e:b0:5b2:c068:3530 with SMTP id
- 2adb3069b0e04-5b5f616282cmr1297039e87.13.1788158339788; Sun, 30 Aug 2026
- 23:38:59 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WKz8Y7I/"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE2AF1F00ACF
+	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 07:24:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788161083;
+	bh=V4tCMQDBO+Y0yv576KgJ9uC7rdHznojwiVTQ/LHcN8w=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=WKz8Y7I/WalnjVawpNSMCEZnu/Lwb3vOHK5eKkY96O8POEPww5fPPmNY/KStKBKKP
+	 P/Zbc+9LOYzp9WV2irVEBMgL9PNGr/Hf+5HwGE4E5zbUtrWJ1EC+joiTKWUShmat7Q
+	 2MxnivuN6fCOS2z2fe6P2lSH9fnwJL/eU0nyIZSwtW6qOBVhPPggeX4ZHkJA9RwiGD
+	 5I0Vi3eNj1AaIAEGBLD2xuzJ9YTB1RJhk4Nl1QtQMt0HJySnCVTR0L24bUHn9N+NKJ
+	 qbtBv3nGszl4kR4r4vf9eHM6/1/ONpa2KfqfGh8soOKgDhP5EWOUjdMQtDDgSxPIqY
+	 I2DUWqgJAQSCg==
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-6a5ded53570so4420011a12.3
+        for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 00:24:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvBzpHOZmZKdFx3nBwJoYD5cGtJwPkGeYhmTn+Cp66EFIsl7BiIt+9Ls8qnVLXQW1wej4Xf/C@lists.linux.dev
+X-Gm-Message-State: AFuF++lVqQ3tpWH+OiMaXsS8l3UkzW+6pckDJu6hZn//8ZX3GYDfQHW5
+	+WVjW8pzZI0IH9negdghDaxpYfYUuWNUVWxs6tEwh3lUb1/yX4C4LS6ekcReihznDP0rYXYZIp6
+	lMB8TZbKxqptLfkHmk1tqe44Gizan6bU=
+X-Received: by 2002:a05:6402:c44:b0:6a6:32fa:1e9a with SMTP id
+ 4fb4d7f45d1cf-6a632fa1f2bmr5986166a12.18.1788161082357; Mon, 31 Aug 2026
+ 00:24:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260826122734.2129830-1-liubaolin12138@163.com> <20260826122734.2129830-2-liubaolin12138@163.com>
-In-Reply-To: <20260826122734.2129830-2-liubaolin12138@163.com>
-From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Mon, 31 Aug 2026 15:38:47 +0900
-X-Gm-Features: AcwNN1XIYNyCC_MFAJzGJp5h0Y1cJmsJQmPRtCCMs6JhV8AVEh2oRugaZInCA9o
-Message-ID: <CANFS6ba-=yXwSrA+NGnnZ84Yffmm-gNrAWEWpyjdC5fazWSXxw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] ntfs: report volume errors to fsnotify
-To: Baolin Liu <liubaolin12138@163.com>
-Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	liubaolin12138@gmail.com, Baolin Liu <liubaolin@kylinos.cn>
+References: <20260828061607.240845-1-zenghongling@kylinos.cn> <20260828061607.240845-2-zenghongling@kylinos.cn>
+In-Reply-To: <20260828061607.240845-2-zenghongling@kylinos.cn>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Mon, 31 Aug 2026 16:24:29 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd_v3iw1N9PxDznpGRu4yE2atNG=7WPYM4Z2xNFq2tMx2g@mail.gmail.com>
+X-Gm-Features: AcwNN1UE3hrpbCfdKuNuk-KlWFB8oCsf6qM7Zhviul1R6n6HDA3WqghENaKoscc
+Message-ID: <CAKYAXd_v3iw1N9PxDznpGRu4yE2atNG=7WPYM4Z2xNFq2tMx2g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ntfs: take invalidate_lock in ntfs_filemap_page_mkwrite()
+To: Hongling Zeng <zenghongling@kylinos.cn>
+Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	zhongling0719@126.com, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Baolin,
+>         if (NInoWofCompressed(NTFS_I(inode)))
+> @@ -684,7 +685,14 @@ static vm_fault_t ntfs_filemap_page_mkwrite(struct vm_fault *vmf)
+>         sb_start_pagefault(inode->i_sb);
+>         file_update_time(vmf->vma->vm_file);
+>
+> +       /*
+> +        * Serialize against truncate/fallocate which hold the lock
+> +        * exclusively while invalidating pagecache and changing extents.
+> +        */
+> +       filemap_invalidate_lock_shared(mapping);
+>         ret = iomap_page_mkwrite(vmf, &ntfs_page_mkwrite_iomap_ops, NULL);
+> +       filemap_invalidate_unlock_shared(mapping);
+> +
+Please move filemap_invalidate_unlock() after truncate_pagecache() and
+pagecache_isize_extended(). Otherwise, ntfs_filemap_page_mkwrite() can
+race with the page-cache cleanup after fallocate extends the file.
 
-2026=EB=85=84 8=EC=9B=94 26=EC=9D=BC (=EC=88=98) =EC=98=A4=ED=9B=84 9:28, B=
-aolin Liu <liubaolin12138@163.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
->
-> From: Baolin Liu <liubaolin@kylinos.cn>
->
-> The ntfs driver reports volume corruption only to dmesg. Wire up the
-> generic fserror infrastructure at NVolSetErrors(), the point where the
-> driver concludes the volume metadata is inconsistent, so that an
-> FS_ERROR event is emitted as well. This lets health monitoring daemons
-> watching the mount with fanotify(FAN_FS_ERROR) learn about corruption
-> without scraping kernel logs.
->
-> Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
-> ---
->  fs/ntfs/super.c  |  8 ++++++++
->  fs/ntfs/volume.h | 14 +++++++++++++-
->  2 files changed, 21 insertions(+), 1 deletion(-)
->
-> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-> index cd8fa2c13370..5229eb27bb30 100644
-> --- a/fs/ntfs/super.c
-> +++ b/fs/ntfs/super.c
-> @@ -14,6 +14,7 @@
->  #include <linux/sched/mm.h>
->  #include <linux/fs_context.h>
->  #include <linux/fs_parser.h>
-> +#include <linux/fserror.h>
->
->  #include "sysctl.h"
->  #include "logfile.h"
-> @@ -330,6 +331,13 @@ const struct option_t on_errors_arr[] =3D {
->         { 0,                    NULL }
->  };
->
-> +/* Mark the volume as corrupt and notify fanotify(FAN_FS_ERROR) listener=
-s. */
-> +void NVolSetErrors(struct ntfs_volume *vol)
-> +{
-> +       set_bit(NV_Errors, &vol->flags);
-> +       fserror_report_metadata(vol->sb, -EFSCORRUPTED, GFP_ATOMIC);
-> +}
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 1969e4f444f7..a266105180a9 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -1178,13 +1178,15 @@ static long ntfs_fallocate(struct file *file,
+int mode, loff_t offset, loff_t le
 
-NVolSetErrors() is also reached when some functions
-return -EIO. Could you preserve the original errno?
-
-And in some situations, fserror_report_file_metadata()
-can be useful instead of fserror_report_metadata().
-
---=20
-Thanks,
-Hyunchul
+        err = file_modified(file);
+ out:
++       if (!err && mode == 0 && NInoNonResident(ni) &&
++           offset > old_size) {
++               truncate_pagecache(vi, old_size);
++               pagecache_isize_extended(vi, old_size, offset);
++       }
++
+        filemap_invalidate_unlock(vi->i_mapping);
++
+        if (!err) {
+-               if (mode == 0 && NInoNonResident(ni) &&
+-                   offset > old_size) {
+-                       truncate_pagecache(vi, old_size);
+-                       pagecache_isize_extended(vi, old_size, offset);
+-               }
+                NInoSetFileNameDirty(ni);
+                inode_set_mtime_to_ts(vi, inode_set_ctime_current(vi));
+                mark_inode_dirty(vi);
