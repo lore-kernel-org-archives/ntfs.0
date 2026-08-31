@@ -1,80 +1,96 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out30-97.freemail.mail.aliyun.com (out30-97.freemail.mail.aliyun.com [115.124.30.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D236342515
-	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 10:49:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58AA400DFC
+	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 12:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.97
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788173356; cv=none; b=X482TQpLxzZ5UZitbhHFJQ/dreSH0idc/xPvQ8AWJd52JB0MHbBWRsppBrYltMSWyTwNAv5NB76dBloiZ5ppQgGM2+0dND+8apl/o1vlL0flfGIVTIeK0nE9GwYI7JnaeMsPVr8juKL3txgC5VpQeguW54V4HgwYgDc8GInK3rg=
+	t=1788179567; cv=none; b=TDPKl+VB7Sz7uNVEHFVZ2DhCNAg17an91lxwgExn/E8EyV28Kbv1l3ufFXfJuLM/81acj6Dr6v+1FWz3zSkWXQv9ubcO1p68cnF/DvWcUSGibaDgghviIlnsBGr6Q58P2ps7rR70upuvWvbe7e9PPfzRhqF/7mISLBGFeHVwqvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788173356; c=relaxed/simple;
-	bh=q4lRlkxjVlQPpUfAazgm5g8N5ftV2sYNskRkPa1rMxY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dzl4FGJqvEAiFh8wNRCWWguaIbaKfq4v3UobwEXS8pfjp3DFvI7RtYAC7Cs46Fe9euc86sA/chJnuoWmDRCrIEcgSLy+z6KGxEZEUhjkfzR1RpicRMz51dTrKNXM0PJ2SkLcz3b3wIbkxuYd/AwL03swYpQy5rV3rHoqaaI1+bE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NvexMi00; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1788179567; c=relaxed/simple;
+	bh=0iTP8H+ovE/Q0gNn8Cxe+FweOHnKpRIjv3V+bcPNU6U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EoBf3PcDpXO8bRJMFDDM+Svyf2nofJoV3wC425bRSH5OyxJ9N3iu5s3+ovPlehzTxZEe6tw98XETTA6q4uZDvC9cWSN1c4R/3D6GL5HkI27Rq8wzdSkL69btqggS2bRdAPoceRvPa4CoBriRc3TdhZpNbs0nneYhS4CDq80YBgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=Nb9/q9qh; arc=none smtp.client-ip=115.124.30.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NvexMi00"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 604F41F00ADB
-	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 10:49:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788173355;
-	bh=LJINlYBmvXYfyj4yqksAaH4IQHNOMyv1CAhYKzAduM0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=NvexMi00l3lg8KqZLaDKGv06VG8k8rtVUnRdj8Ewm6VjSGUaY/2KvTIYn/++uPQUs
-	 IVlnM3GnmYWSqERyMPX9bnXuRoIQuG0VrS/UWfEyht2E3Ae94PQL9J/Tg3Qi384xHf
-	 fA10XjeB2H3sPCD/ONdyy7fVK/hOt5hQ11IM+hkuRyhGjELupTt1QJZpUnpFqGykik
-	 9g6dVrsfB8QC8Zh1/UWavPtALP6eFbScGp2LOHYygObzE88kB+PpgP6kR5rKESF8Z5
-	 4NxHdC1L7Q1gCQnEcI1P5HzQPA6zc9gzC0e6Xji7uitmOsCyBX9pYqBlIRUf3tEjXV
-	 oQj5hLcZ/zIBw==
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-c2055573c8cso417572466b.3
-        for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 03:49:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rq6soXZIJzsIQfbdbNhPgRHMWArBvsprCdkzki/6RHIZJYEoquCjZMMmVQ3vm+Q2TGAn0CP@lists.linux.dev
-X-Gm-Message-State: AFuF++nN4IiQwGbZSBD2CoTsidVkp1OMJNAvrVbpRup5kBc9HW8/75TQ
-	+4tbXrhqQsXnyMHY2RQ+MSDiU+MyOFNJf0axNkEqcVfe2I24wkG007oeOLu3IJlGfnRCkx6CDoj
-	1PItE/4hbh/jk/Hkb8YjRMc6EmhrxnOQ=
-X-Received: by 2002:a17:907:7ba6:b0:c24:6445:d19 with SMTP id
- a640c23a62f3a-c25571647aemr1514345766b.17.1788173354001; Mon, 31 Aug 2026
- 03:49:14 -0700 (PDT)
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="Nb9/q9qh"
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux.alibaba.com; s=default;
+	t=1788179560; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	bh=d7kMVnx2LblB7BHqjw+a56gGYnnF9uAQgrmNwvR5plE=;
+	b=Nb9/q9qhl4SXbdamGvZNvj0mFm1vfuJL6OdDoNZzwsT+rIGCW2TkHectsNJ3K3+zbYyYEorsDZwS2GkCN/qq6AW7FrrJMBPj+Kmw4eIMNNyJigUQee5cOMjkMFDn8qOEqyqdK0CL/f0mXKp6rADgtffuR5t8xqoEhAv+gbxdz7o=
+X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R121e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam011083073210;MF=libaokun@linux.alibaba.com;NM=1;PH=DS;RN=18;SR=0;TI=SMTPD_---0X9yvEG1_1788179558;
+Received: from 30.221.129.244(mailfrom:libaokun@linux.alibaba.com fp:SMTPD_---0X9yvEG1_1788179558 cluster:ay36)
+          by smtp.aliyun-inc.com;
+          Mon, 31 Aug 2026 20:32:39 +0800
+Message-ID: <156326be-7d4a-4bdf-b0c0-030dc951af2e@linux.alibaba.com>
+Date: Mon, 31 Aug 2026 20:32:38 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260831083015.80396-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260831083015.80396-1-zenghongling@kylinos.cn>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Mon, 31 Aug 2026 19:49:00 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd-u_GJsRjJ6Yar6SFGrmjHkf9dtOXN3WyMm-VRP_Y-XAw@mail.gmail.com>
-X-Gm-Features: AcwNN1WR14mGOCcicpJsP9dof_zabIGOc67a1DtCHXACr9QEDzlQw5e9fKV-n9c
-Message-ID: <CAKYAXd-u_GJsRjJ6Yar6SFGrmjHkf9dtOXN3WyMm-VRP_Y-XAw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ntfs: take invalidate_lock in ntfs_setattr_size()
-To: Hongling Zeng <zenghongling@kylinos.cn>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhongling0719@126.com, stable@vger.kernel.org, 
-	Baolin Liu <liubaolin@kylinos.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/9] ext4: Remove uses of FGP_NOFS
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Cc: Christian Brauner <christian@brauner.io>, Jan Kara <jack@suse.cz>,
+ Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
+ Theodore Tso <tytso@mit.edu>, Trond Myklebust <trondmy@kernel.org>,
+ Anna Schumaker <anna@kernel.org>, Namjae Jeon <linkinjeon@kernel.org>,
+ Hyunchul Lee <hyc.lee@gmail.com>, Phillip Lougher <phillip@squashfs.org.uk>,
+ linux-erofs@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org, ntfs@lists.linux.dev,
+ linux-fsdevel@vger.kernel.org, linux-mm@kvack.org
+References: <20260830041901.2668-1-willy@infradead.org>
+ <20260830041901.2668-3-willy@infradead.org>
+Content-Language: en-US
+From: Baokun Li <libaokun@linux.alibaba.com>
+In-Reply-To: <20260830041901.2668-3-willy@infradead.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 31, 2026 at 5:30=E2=80=AFPM Hongling Zeng <zenghongling@kylinos=
-.cn> wrote:
+On 2026/8/30 12:18, Matthew Wilcox (Oracle) wrote:
+> Both of these locations are called while a transaction is in progress.
+> Starting a transaction uses memalloc_nofs_save(), so we are already
+> prevented from recursing into the filesystem and using GFP_NOFS was
+> unnecessary.
 >
-> ntfs_setattr_size() updates i_size and resizes the on-disk attribute
-> without holding mapping->invalidate_lock.  Page faults take the lock
-> shared, so a fault racing the resize can resolve a VCN against the
-> transient runlist state of ntfs_non_resident_attr_expand() and fail
-> with a spurious SIGBUS, and can interleave with the size-change
-> epilogue (truncate_pagecache(), i_size_write(),
-> pagecache_isize_extended()).
+> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+
+Looks good to me.
+
+Reviewed-by: Baokun Li <libaokun@linux.alibaba.com>
+
+> ---
+>  fs/ext4/inline.c | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 >
-> Take invalidate_lock exclusively around the whole resize after
-> inode_dio_wait(), matching the fallocate path and other filesystems
-> such as xfs, which wraps truncate in its mmaplock (=3D invalidate_lock).
->
-> Fixes: 9c87959601e8 ("ntfs: update file operations")
-> Cc: stable@vger.kernel.org
-> Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
-> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-Applied it to #ntfs-next.
-Thanks!
+> diff --git a/fs/ext4/inline.c b/fs/ext4/inline.c
+> index ceee69a66482..1884abb09614 100644
+> --- a/fs/ext4/inline.c
+> +++ b/fs/ext4/inline.c
+> @@ -601,9 +601,7 @@ static int ext4_convert_inline_data_to_extent(struct address_space *mapping,
+>  		goto out;
+>  	}
+>  
+> -	/* We cannot recurse into the filesystem as the transaction is already
+> -	 * started */
+> -	folio = __filemap_get_folio(mapping, 0, FGP_WRITEBEGIN | FGP_NOFS,
+> +	folio = __filemap_get_folio(mapping, 0, FGP_WRITEBEGIN,
+>  			mapping_gfp_mask(mapping));
+>  	if (IS_ERR(folio)) {
+>  		ret = PTR_ERR(folio);
+> @@ -734,7 +732,7 @@ int ext4_generic_write_inline_data(struct address_space *mapping,
+>  		goto out_release_bh;
+>  	}
+>  
+> -	folio = __filemap_get_folio(mapping, 0, FGP_WRITEBEGIN | FGP_NOFS,
+> +	folio = __filemap_get_folio(mapping, 0, FGP_WRITEBEGIN,
+>  					mapping_gfp_mask(mapping));
+>  	if (IS_ERR(folio)) {
+>  		ret = PTR_ERR(folio);
+
+
