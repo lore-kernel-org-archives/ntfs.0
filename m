@@ -1,38 +1,37 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562BA3C108C
-	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 08:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5E53C108C
+	for <ntfs@lists.linux.dev>; Mon, 31 Aug 2026 08:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788165032; cv=none; b=Zdcxh9CUABCtTYtQ+dgu9BbU6JVjjPHG20v6NV8wzDgofZJlkFt4Tr/YB8RCvU4flbYy4MEXy5teV1AOoF+5L85p3RbhrV1mnkWwdnksdfo5+z7gRupC8VaK6nG0MBxvDi+l1jQE/kSmoywT5IWYSJyJMz5Q0q7kiT0KfcLH628=
+	t=1788165189; cv=none; b=AmpyOXPZ93k4KJE7SeDNcGRDcig87RkOANTVAzjeShAZu18g/rJ/Dy8WhpviB6cG5xefx1DVdc1sQb51c82te4vSIPZN3vUe8ucwh+xUNQm2iGtXAvTc4S+nYQfGq2NfYlQfs+QhD5A1Q8dwM2js5uTMEsHgxFJuagAmDAnskaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788165032; c=relaxed/simple;
-	bh=Cs/FtVOHd4Hy/bH3NtIPuFxWw9rytXuKP7JMV4qPfvw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Th2XVi849BzEvfTzEnpU8bqBl0/CZtfMxfx5F5GsqFanXLmzstYGQEh76SJoueCNMUo5aM0KZTM1UcOSbKsbJBw3u49HUoww7tJckdHpErMIiPEu4Mle4RwdU5Jf6huNInKLM2IsuHQl2b/m72q5mqZ8zTX25Bv32UBrpjknWUI=
+	s=arc-20240116; t=1788165189; c=relaxed/simple;
+	bh=nIh5bjO9DOn8o0Ezblesw0ycVq4L1R7Le5AL9py8VmA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fU2w3ruzq/ZOTgkdSnLQI3RrGxBXwBzDDXqCJlMJ3sXQBznyJrlwNqH0HVZzEBiGxBJzmpxcRaShNJgd94VkWsG0yzbwrTAIIcboVM0/CQMY27FYtH/gR8g9ezLmnJo3QIIOGrrffggBtH2jm4nfBnvE6SXB3fWsrtTtD6aguY8=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 347101aaa51611f19a56ed5b684f684d-20260831
+X-UUID: 910ccc64a51611f19a56ed5b684f684d-20260831
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:11aa1790-5758-460d-bb13-c487a77e9fe2,IP:0,U
+X-CID-O-INFO: VERSION:1.3.19,REQID:4c413782-d5de-4e69-9490-3b1440934c25,IP:0,U
 	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
 	:release,TS:-5
-X-CID-META: VersionHash:7db8b62,CLOUDID:0512239b95e893dfc728865e2659f886,BulkI
-	D:nil,BulkQuantity:0,SF:81|82|102|850|865|898,TC:nil,Content:0|15|50,EDM:-
-	3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,A
-	V:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:8dbfa9f84f2fb54f35e67f86f0f5ffb8,BulkI
+	D:nil,BulkQuantity:0,SF:102|850|865|898,TC:nil,Content:0|15|50,EDM:-3,IP:n
+	il,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LE
+	S:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
 X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 347101aaa51611f19a56ed5b684f684d-20260831
+X-UUID: 910ccc64a51611f19a56ed5b684f684d-20260831
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1675361273; Mon, 31 Aug 2026 16:30:21 +0800
+	with ESMTP id 1995291466; Mon, 31 Aug 2026 16:32:56 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -42,12 +41,10 @@ Cc: ntfs@lists.linux.dev,
 	Hongling Zeng <zenghongling@kylinos.cn>,
 	stable@vger.kernel.org,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH] ntfs: take invalidate_lock in ntfs_filemap_page_mkwrite()
-Date: Mon, 31 Aug 2026 16:30:15 +0800
-Message-Id: <20260831083015.80396-2-zenghongling@kylinos.cn>
+Subject: [PATCH v2 2/2] ntfs: take invalidate_lock in ntfs_filemap_page_mkwrite()
+Date: Mon, 31 Aug 2026 16:32:52 +0800
+Message-Id: <20260831083252.80732-1-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260831083015.80396-1-zenghongling@kylinos.cn>
-References: <20260831083015.80396-1-zenghongling@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -77,12 +74,12 @@ was bypassing it in this driver.
 
 Fixes: 9c87959601e8 ("ntfs: update file operations")
 Cc: stable@vger.kernel.org
-Co-developed-by: Namjae Jeon <linkinjeon@kernel.org>
 Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Co-developed-by: Namjae Jeon <linkinjeon@kernel.org>
 Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 ---
-Change in v1:
+Change in v2:
  -Move truncate_pagecache() and pagecache_isize_extended() inside the
  invalidate_lock hold range in ntfs_fallocate(), per review comment
 ---
