@@ -1,81 +1,78 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1E33A83B1
-	for <ntfs@lists.linux.dev>; Tue,  1 Sep 2026 03:28:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C614CCDDA;
+	Tue,  1 Sep 2026 05:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788233290; cv=none; b=RjkDk2ub1Krz3TW9ws6tNErNw1yS/ESCIa3/9yydQ2oDcvswtt5osrDl0pY1mcuCqO2u+U0gdviOfsIEN2u3qdueONpf/EVvW/zSTGWQpPXAqhq785V7F91Tr7o5W3nw8V5qgGXEjx9isAAWL0e449TGYkPu8xfzYZu1zxmiC80=
+	t=1788242172; cv=none; b=T35RYxcdbItE1SgqAJzuFG9mde8FRRpgDrsr5QDhVwUjqpd8hUMCvPP/syGJNGwVlv7BBXMkSZJk6DtochVOs9gmVi+EbYkubLHOve8KFtfaKy0bHns1JCQFBVZL3+J/E8lv2LM9db7zJxFj2uLCB5dKctF0bVYbkSh/nNu/8L0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788233290; c=relaxed/simple;
-	bh=QZioVrLWeUyVUyYloc8aIm06vc9RflpbapOP01CvxPY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M199vDkclblkL3B/mFxO6sgE72t5odeJDHpdctMaqzAk4EQ9qmNx6xpbnMM450dPuNBzO7qCimMuR/Y14JoDDTkQ5CvuRs0qxuscx7kevoyBZoV8PeNX++88dJRB2JviRhIwzjAQ7k9saCrCa27PxIHYfLBZePQofj7fBSosIBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ecg9IgPO; arc=none smtp.client-ip=220.197.31.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1788242172; c=relaxed/simple;
+	bh=LkbQnBSJdNkMGaC3eCjTS5kmvOrXhJ6A+gBOsGc98mk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tKgNwpFSNpF2Ey6TLm9yQQjdwqqrYOLC16YzESheBmWScv2T2f4Q2EYP1I2b5+XfLrpF3Vn+Y9HL6GXSeChFxm4G6kujLHcUnzg10tf5QlxuDSqmNTp9eNeB+7xNtFn7u6pLGILmtpn/OkfKHH3hIXYBgGKvKyoi9azd7PqKZHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ou7BODbI; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ecg9IgPO"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=DvBF+g+vfubWpiR1obCyTgV1E3Z8DpYZyK/mPhq0djY=;
-	b=ecg9IgPOq19oJhizykRV9NisLcpzt2ujlLTsOC5R32Wq9rl71GCg1dIoZzj1fc
-	CAwJwseWdjS1wZAHRwyQFxsTxnBhXSNRYPMgxjDUoByKp1zEf1Wxq4yFYm+8mIQ5
-	sfkh1Qax4SINLnXVpZ6CGuY1ikjErRVKON+t7nDK7zyJQ=
-Received: from [IPV6:2409:8900:1ef4:8f82:70cd:c8db:75a7:b1e2] (unknown [])
-	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3b0sxRpZqy9YiTQ--.34582S2;
-	Tue, 01 Sep 2026 11:27:47 +0800 (CST)
-Message-ID: <583ee96d-a2ec-4489-b082-c4f836b075d7@163.com>
-Date: Tue, 1 Sep 2026 11:27:45 +0800
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ou7BODbI"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 494581F000E9;
+	Tue,  1 Sep 2026 05:56:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788242170;
+	bh=3Mnj837MmtIz++Lx3CjViaHZJuFNdZX481goDRHR5Jo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Ou7BODbIZicrSpeSM00EfOJQrJABefs9Kuf2EhFYV6gK2dq64CXKdSuL3RyZbLucK
+	 TPg17Tyz0+5ncdV6c1HL6WGWK3QRh4+wm6tY9EoV1ldMeb65SaokB3SYllaBh+BMU+
+	 k3fxxYQqKpob1eGKNeK6NERFb4+ExYOKE40Jru2B8rYntpuKlNuC0j8YO4qOVeoRfS
+	 0Gai2YDP4tJxaz3XlpWyH0B+gdt6KErKtSPMpBpFla9M4/VF7fFDFR9rb7sXCytJmv
+	 hvNVEuFK2QwrR66uR+fQsxbPPuwkUO9XsB0pubH/TfXp4lry7WXlo5qdiAM9FijGEM
+	 OmAyFu0d6q/4A==
+Date: Tue, 1 Sep 2026 13:55:42 +0800
+From: Gao Xiang <xiang@kernel.org>
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Cc: Christian Brauner <christian@brauner.io>, Jan Kara <jack@suse.cz>,
+	Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
+	Theodore Tso <tytso@mit.edu>, Trond Myklebust <trondmy@kernel.org>,
+	Anna Schumaker <anna@kernel.org>,
+	Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>,
+	Phillip Lougher <phillip@squashfs.org.uk>,
+	linux-erofs@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org,
+	ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org
+Subject: Re: [PATCH 3/9] erofs: Remove redundant FGP_NOFS
+Message-ID: <apZo3lDaDp3hQhRq@XiangdeMacBook-Pro.local>
+Mail-Followup-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+	Christian Brauner <christian@brauner.io>, Jan Kara <jack@suse.cz>,
+	Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
+	Theodore Tso <tytso@mit.edu>, Trond Myklebust <trondmy@kernel.org>,
+	Anna Schumaker <anna@kernel.org>,
+	Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>,
+	Phillip Lougher <phillip@squashfs.org.uk>,
+	linux-erofs@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org,
+	ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org
+References: <20260830041901.2668-1-willy@infradead.org>
+ <20260830041901.2668-4-willy@infradead.org>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ntfs: fix lost volume flag updates in set/clear helpers
-To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
- hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- zhongling0719@126.com, stable@vger.kernel.org
-References: <20260901024551.528056-1-zenghongling@kylinos.cn>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260901024551.528056-1-zenghongling@kylinos.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3b0sxRpZqy9YiTQ--.34582S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF17GF4fZFWUCw13CFWUXFb_yoW8JFy5pr
-	WxtFy7Kw4DAr1q9wn7Kr4Ivw4F9348Jr4fCryDt34UZFn8tr4xXF18t3WrXFn5tr92qw42
-	qFWjvFW7Ca1UuFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTKZAUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RPdqGqWRjPaPAAA3g
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260830041901.2668-4-willy@infradead.org>
 
-
-
-在 2026/9/1 10:45, Hongling Zeng 写道:
-> ntfs_set_volume_flags() and ntfs_clear_volume_flags() both read
-> vol->vol_flags outside any lock to compute the new value before handing
-> it to ntfs_write_volume_flags(), which only takes ni->mrec_lock around
-> the actual write. The read-modify-write is therefore not atomic, and two
-> concurrent callers can lose an update: ntfs_sync_fs() may derive a
-> "clean" value from vol->vol_flags while a writer concurrently records an
-> error and sets VOLUME_IS_DIRTY; the locked write then silently
-> overwrites the freshly-set dirty bit. The on-disk volume looks clean
-> despite the recorded errors, so chkdsk will not run on the next mount
-> and corrupted metadata can persist.
+On Sun, Aug 30, 2026 at 05:18:50AM +0100, Matthew Wilcox (Oracle) wrote:
+> The flags already include FGP_NOWAIT which prohibits all reclaim, not
+> just reclaiming from the filesystem.
 > 
-> Fix by moving the read-modify-write inside the mrec_lock: pass the bits
-> to set and to clear separately, and combine them with the current flag
-> state under the lock inside ntfs_write_volume_flags(). The set/clear
-> helpers pass only the bits to modify, not the complete flag state. The
-> bit manipulation is done on CPU-endian values, and the result is
-> converted back to little-endian before storing it. The wrappers keep
-> their signatures so callers are unchanged.
+> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 
-Looks good to me.
+Reviewed-by: Gao Xiang <xiang@kernel.org>
 
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-
-
+Thanks,
+Gao Xiang
