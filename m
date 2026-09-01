@@ -1,78 +1,179 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C614CCDDA;
-	Tue,  1 Sep 2026 05:56:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4DD4746BE
+	for <ntfs@lists.linux.dev>; Tue,  1 Sep 2026 09:15:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788242172; cv=none; b=T35RYxcdbItE1SgqAJzuFG9mde8FRRpgDrsr5QDhVwUjqpd8hUMCvPP/syGJNGwVlv7BBXMkSZJk6DtochVOs9gmVi+EbYkubLHOve8KFtfaKy0bHns1JCQFBVZL3+J/E8lv2LM9db7zJxFj2uLCB5dKctF0bVYbkSh/nNu/8L0=
+	t=1788254146; cv=none; b=XOk/w6xU5ZWYpKkgy6PQK4e0CTkZ/AdWSbES5QECbv6VYWybz0NyC0jDSrbI7tAyW/fb+G4Z42Bnw3lsx3HuEexoPDiQz8D5jeomi2yNjRGhG7xxI/TcWV17ZF0z3ImABMN8w7sfO+QQhxZgLRE6cDuQQ8lLNV5iZVJ81PFNIPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788242172; c=relaxed/simple;
-	bh=LkbQnBSJdNkMGaC3eCjTS5kmvOrXhJ6A+gBOsGc98mk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tKgNwpFSNpF2Ey6TLm9yQQjdwqqrYOLC16YzESheBmWScv2T2f4Q2EYP1I2b5+XfLrpF3Vn+Y9HL6GXSeChFxm4G6kujLHcUnzg10tf5QlxuDSqmNTp9eNeB+7xNtFn7u6pLGILmtpn/OkfKHH3hIXYBgGKvKyoi9azd7PqKZHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ou7BODbI; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1788254146; c=relaxed/simple;
+	bh=e+TnL+Hjy0zOw8pk2BwP+QadpoM/zU7FgWPSM7/hgec=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=R0gDFnIZI8ioGxZSKwHNrvjlQrwhoIi0SmP7vN+xDZBfrG04BauacV4+x0HPbCrtUenXx9Tayae4Fgl/SlhQ5jEW52Ei3Lm+sQbYRKlC6VtAKT2Te4rZ+t4B7GTPDWVi1eiz/ehjBng3/fyWLTz7Cv/z4Etwt/7iZc6W9YfPRA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ZB7FHVbY; arc=none smtp.client-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ou7BODbI"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 494581F000E9;
-	Tue,  1 Sep 2026 05:56:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788242170;
-	bh=3Mnj837MmtIz++Lx3CjViaHZJuFNdZX481goDRHR5Jo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Ou7BODbIZicrSpeSM00EfOJQrJABefs9Kuf2EhFYV6gK2dq64CXKdSuL3RyZbLucK
-	 TPg17Tyz0+5ncdV6c1HL6WGWK3QRh4+wm6tY9EoV1ldMeb65SaokB3SYllaBh+BMU+
-	 k3fxxYQqKpob1eGKNeK6NERFb4+ExYOKE40Jru2B8rYntpuKlNuC0j8YO4qOVeoRfS
-	 0Gai2YDP4tJxaz3XlpWyH0B+gdt6KErKtSPMpBpFla9M4/VF7fFDFR9rb7sXCytJmv
-	 hvNVEuFK2QwrR66uR+fQsxbPPuwkUO9XsB0pubH/TfXp4lry7WXlo5qdiAM9FijGEM
-	 OmAyFu0d6q/4A==
-Date: Tue, 1 Sep 2026 13:55:42 +0800
-From: Gao Xiang <xiang@kernel.org>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Cc: Christian Brauner <christian@brauner.io>, Jan Kara <jack@suse.cz>,
-	Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
-	Theodore Tso <tytso@mit.edu>, Trond Myklebust <trondmy@kernel.org>,
-	Anna Schumaker <anna@kernel.org>,
-	Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>,
-	Phillip Lougher <phillip@squashfs.org.uk>,
-	linux-erofs@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org,
-	ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org
-Subject: Re: [PATCH 3/9] erofs: Remove redundant FGP_NOFS
-Message-ID: <apZo3lDaDp3hQhRq@XiangdeMacBook-Pro.local>
-Mail-Followup-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>,
-	Christian Brauner <christian@brauner.io>, Jan Kara <jack@suse.cz>,
-	Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
-	Theodore Tso <tytso@mit.edu>, Trond Myklebust <trondmy@kernel.org>,
-	Anna Schumaker <anna@kernel.org>,
-	Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>,
-	Phillip Lougher <phillip@squashfs.org.uk>,
-	linux-erofs@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org,
-	ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org
-References: <20260830041901.2668-1-willy@infradead.org>
- <20260830041901.2668-4-willy@infradead.org>
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ZB7FHVbY"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=D2
+	QWu7eHZZMS4ZOhJkjuAzZd0y97wwL2svj4oicLWM0=; b=ZB7FHVbYGfNR8TlGBs
+	flKuFryg29AXBITQAKfiWRMynmh/KawQYX3FPkFOHKboTuY+WvRWjPSJcMIR7SXm
+	OU5HD5PCmMVr3j8imaisYaV3kc3ppXEGaaS4mcYTC77OSE21MW3HrOrWKksxA8j+
+	LCC1qkJpAkpevh81NLxIJaRPE=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wDXmJ6pl5ZqstwpQw--.142S3;
+	Tue, 01 Sep 2026 17:15:29 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	liubaolin12138@163.com,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH 1/2] ntfs: implement fileattr_get and fileattr_set
+Date: Tue,  1 Sep 2026 17:15:17 +0800
+Message-ID: <20260901091519.2885376-2-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260901091519.2885376-1-liubaolin12138@163.com>
+References: <20260901091519.2885376-1-liubaolin12138@163.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260830041901.2668-4-willy@infradead.org>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXmJ6pl5ZqstwpQw--.142S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxXF1Utw4UJw4DuFWkKw43GFg_yoWrXFy8pa
+	n3JFyrGw4fWry2g39akFWUu3WF9w1xXr4UZry7W34IyFnrtryxKryfKF1rCF1rtrZ5CrnF
+	gF1UtrWUCF13Zw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRY9aDUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwhFSHWqWl7FiZQAA3B
 
-On Sun, Aug 30, 2026 at 05:18:50AM +0100, Matthew Wilcox (Oracle) wrote:
-> The flags already include FGP_NOWAIT which prohibits all reclaim, not
-> just reclaiming from the filesystem.
-> 
-> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+From: Baolin Liu <liubaolin@kylinos.cn>
 
-Reviewed-by: Gao Xiang <xiang@kernel.org>
+Wire up the fileattr inode operations so that lsattr(1) and chattr(1)
+work on ntfs.
 
-Thanks,
-Gao Xiang
+fileattr_get reports the compressed and encrypted state of the attribute
+and the immutable and append-only flags, the same states ntfs_getattr()
+already reports through STATX_ATTR_*.
+
+fileattr_set accepts only FS_IMMUTABLE_FL and FS_APPEND_FL. Compression
+and encryption are rejected because changing them would require
+rewriting the attribute data. Both accepted flags go to inode->i_flags,
+so the VFS enforces them.
+
+Neither flag has an on-disk representation of its own, so a value set
+through fileattr_set only lives for the lifetime of the mount. Note also
+that S_IMMUTABLE is re-derived on every mount, from FILE_ATTR_SYSTEM when
+mounted with sys_immutable and unconditionally for system files, so
+clearing it on such a file does not survive a remount either.
+
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+ fs/ntfs/file.c | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ fs/ntfs/ntfs.h |  4 ++++
+ 2 files changed, 60 insertions(+)
+
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 1969e4f444f7..b7a0fb2d8229 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -15,6 +15,7 @@
+ #include <linux/posix_acl_xattr.h>
+ #include <linux/compat.h>
+ #include <linux/falloc.h>
++#include <linux/fileattr.h>
+ 
+ #include "lcnalloc.h"
+ #include "ntfs.h"
+@@ -135,6 +136,59 @@ static int ntfs_file_release(struct inode *vi, struct file *filp)
+ 	return 0;
+ }
+ 
++/*
++ * ntfs_fileattr_get - inode_operations::fileattr_get
++ * @dentry:	dentry to report the flags of
++ * @fa:		filled in with the flags of @dentry
++ */
++int ntfs_fileattr_get(struct dentry *dentry, struct file_kattr *fa)
++{
++	struct inode *vi = d_inode(dentry);
++	struct ntfs_inode *ni = NTFS_I(vi);
++	u32 flags = 0;
++
++	if (NInoCompressed(ni) || NInoWofCompressed(ni))
++		flags |= FS_COMPR_FL;
++	if (NInoEncrypted(ni))
++		flags |= FS_ENCRYPT_FL;
++	if (vi->i_flags & S_IMMUTABLE)
++		flags |= FS_IMMUTABLE_FL;
++	if (vi->i_flags & S_APPEND)
++		flags |= FS_APPEND_FL;
++
++	fileattr_fill_flags(fa, flags);
++	return 0;
++}
++
++/*
++ * ntfs_fileattr_set - inode_operations::fileattr_set
++ * @idmap:	idmap of the mount @dentry was found from
++ * @dentry:	dentry to set the flags of
++ * @fa:		flags to set
++ */
++int ntfs_fileattr_set(struct mnt_idmap *idmap, struct dentry *dentry,
++		      struct file_kattr *fa)
++{
++	struct inode *vi = d_inode(dentry);
++	unsigned int new_fl = 0;
++
++	if (fileattr_has_fsx(fa))
++		return -EOPNOTSUPP;
++	if (fa->flags & ~(FS_IMMUTABLE_FL | FS_APPEND_FL))
++		return -EOPNOTSUPP;
++
++	if (fa->flags & FS_IMMUTABLE_FL)
++		new_fl |= S_IMMUTABLE;
++	if (fa->flags & FS_APPEND_FL)
++		new_fl |= S_APPEND;
++
++	inode_set_flags(vi, new_fl, S_IMMUTABLE | S_APPEND);
++
++	inode_set_ctime_current(vi);
++	mark_inode_dirty(vi);
++	return 0;
++}
++
+ /*
+  * ntfs_file_fsync - sync a file to disk
+  * @filp:	file to be synced
+@@ -1215,6 +1269,8 @@ const struct file_operations ntfs_file_ops = {
+ const struct inode_operations ntfs_file_inode_ops = {
+ 	.setattr	= ntfs_setattr,
+ 	.getattr	= ntfs_getattr,
++	.fileattr_get	= ntfs_fileattr_get,
++	.fileattr_set	= ntfs_fileattr_set,
+ 	.listxattr	= ntfs_listxattr,
+ 	.get_acl	= ntfs_get_acl,
+ 	.set_acl	= ntfs_set_acl,
+diff --git a/fs/ntfs/ntfs.h b/fs/ntfs/ntfs.h
+index 45f77848a9cf..6a8d5c1aeedc 100644
+--- a/fs/ntfs/ntfs.h
++++ b/fs/ntfs/ntfs.h
+@@ -183,6 +183,10 @@ extern const struct inode_operations ntfs_dir_inode_ops;
+ extern const struct  file_operations ntfs_empty_file_ops;
+ extern const struct inode_operations ntfs_empty_inode_ops;
+ 
++extern int ntfs_fileattr_get(struct dentry *dentry, struct file_kattr *fa);
++extern int ntfs_fileattr_set(struct mnt_idmap *idmap, struct dentry *dentry,
++			     struct file_kattr *fa);
++
+ extern const struct export_operations ntfs_export_ops;
+ 
+ /*
+-- 
+2.51.0
+
