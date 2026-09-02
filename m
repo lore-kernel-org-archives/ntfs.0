@@ -1,54 +1,54 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6892E738F
-	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 01:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9334353A9F
+	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 01:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788312163; cv=none; b=Woi5TD6U4eV36zXZiGkYwsPhugchfrls8NC6kTsmKQgYq8vTYqS+ylgTCeC47a2OPhmGRo7f0bXUz9mumFeLyuXzVDIRpqhFiQ9M9KfmptR4nfQ+bWREMQN4MQc9ygbbFkPtboH+eLPGkYbGlhQ86OWVzbBnKmrKiMIzNVTQmjE=
+	t=1788313488; cv=none; b=Bx0R3Jv0qY+Qx0gQzd7onrZUxKi4dbqM9EzdICloRPL0XfXnfRrD3dr+EWeDXTBNt5RpAgdOX8xyHuYXphkXXxYuTTK6TLaFCsOridqsH/1avvTo3q1KQZENP5U3U4fWeJ5hwvmRWBg612IuXka9t4onYaDcL4XGTtoMLOYQ80Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788312163; c=relaxed/simple;
-	bh=yj0ghCrRDxJccOkYZ8+jq567DDQX3NLBqP+W9Grbvaw=;
+	s=arc-20240116; t=1788313488; c=relaxed/simple;
+	bh=6Tx2jbQpZb4pjjc18kFbL7eRyEbpEfeFJNctoP0lrd4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=smCPOgo7pf2/kLQ0RyETbXsd9aUNzrTfVYgqG+ATvBD+exlJat/41IP5lhu27irbULTpQpFouANX2r5o/3geNzlr4kqeBJpMvQ2/+ev1YJnXz/5nN2VZhm9dCz0yxBXH22l2iDHVSqHqpU0TaDSR7knWgvnGcoCBCX0YkD0yjBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EiKhDW8s; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=kOwjqfaXvY748OXMheDgqqiYAvon08tMZgUXOHXU7PDxIIcXOT9J/lhVhFO0b4RWpSnkmow8gBe2wYVC6CSZAccLCBBVo1Pd5eUZOkCCMyvQvap737w1U/DP/8ZmgbDCzwpUsvVbBahVgGBd+gRVAezje65NX0VDC7n3SJGreZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAg9LUfa; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EiKhDW8s"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 198A61F00A3F
-	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 01:22:42 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TAg9LUfa"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF1371F00A3D
+	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 01:44:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788312162;
-	bh=yj0ghCrRDxJccOkYZ8+jq567DDQX3NLBqP+W9Grbvaw=;
+	s=k20260515; t=1788313470;
+	bh=6Tx2jbQpZb4pjjc18kFbL7eRyEbpEfeFJNctoP0lrd4=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=EiKhDW8s/2zwV01oXmTT7rVoGPH0bP5TqGZUwWqrYubMOdCxKwj03r05rf+75jyWc
-	 MCPsm88Px9tVo9fkg97QGwf1J26dLVFLUp7MZCiqtvwqQ0nbiFre36eYCt3Dwvco34
-	 BuuFNKWj+T2m3Igofm9zEfcoiwKUCzamBYqZ8EOY01xJTJEP8U1TP2cSFXV8WPdHXd
-	 wl+vBbBpFeTwusVPrk+4jgAlBFbeudipFoQ3cTP1tQRuU0IhFhS2M0mlkTQxsMk52E
-	 JTSET59VRRzR5jkB1wqD/SCFFqbu1vVgztKqfLvvYj0HmI2Lg5FLXV8/d/BIIlPvE3
-	 gslvkV0A0xb9Q==
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-c2569aa5116so252307566b.0
-        for <ntfs@lists.linux.dev>; Tue, 01 Sep 2026 18:22:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rpx8ZXF9mGf/fg/39brwWEPyx9xWqbl2ClyTRRi9b/F98hj2xDUSpp2BrYWJSfo7Zzkz9r/@lists.linux.dev
-X-Gm-Message-State: AFuF++k2VhxqM0zE62EWUOEApPfxWsXvwLlq+3zTc/SA0YoXMQLgTKCO
-	6Dkaoo5DqZks4eIptEt1x5x9lmnpUHBi7bXIJjUWQJ0M+pcnJPjlcW9xidwffySZL+7SUBtZZMp
-	sudHY1700GAzTSIP8z/Eny2NuOvCKmzM=
-X-Received: by 2002:a17:907:7295:b0:c25:cb79:e4b5 with SMTP id
- a640c23a62f3a-c25d5c31e5cmr56186866b.3.1788312160667; Tue, 01 Sep 2026
- 18:22:40 -0700 (PDT)
+	b=TAg9LUfavjCxXYmSaTQBXXVfi92R0fWgrMJXzwwygZ1ACkvNaALDnuVvnyD4C9kMu
+	 Xzw2yjXk1p1zPdn3DOLlX3jDPN5Jc4Qjish7Hq8chYsZcqF4GfuUq/jPsYe0oemQ0i
+	 o7+L/fkVFF2E/5wbKmPg/IuUOmDvFoFjGX/KlrLP5W3m77943IaULkCCpqZIDDrB+k
+	 8XHHDGkOf5tWXkd+v2wswyBZms9wdiJ1AkERa0esQvMcEUkeVIS8koeM7Pix+4/O77
+	 vHnm5Sr1U1GZxaE1ruNf1Z0kfe6E7tv/RB9ZmMJiLXdK+S1vWhnMtnWJtfSJlfH3is
+	 KZqHflwPo0Ktg==
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-c25b661d37dso69816366b.0
+        for <ntfs@lists.linux.dev>; Tue, 01 Sep 2026 18:44:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RoEuDSiiKd4bkhi+uW4ah08VD4S8pu2CXHQ4P34yHz3Zr23DZp6IaQv8Y+y41Alm36VjSZD@lists.linux.dev
+X-Gm-Message-State: AFuF++n79fxZmeaiy00G20edjvupvgOghTbR3VghpZdgVMgq+oTIcGGb
+	MV3XaB0m8uOiJ0CC5tcNMI8AX9Ejmc32YYjd0BJ2j/I2Sci579mAeDlqTChMzhebrvM6yZfL+vq
+	3n+Kck4mHfKYwg3No9ucjvbj2bbDiWFA=
+X-Received: by 2002:a17:906:c150:b0:c25:afb6:2d91 with SMTP id
+ a640c23a62f3a-c25d527a4a2mr66915366b.2.1788313468566; Tue, 01 Sep 2026
+ 18:44:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260901091519.2885376-1-liubaolin12138@163.com> <20260901091519.2885376-2-liubaolin12138@163.com>
-In-Reply-To: <20260901091519.2885376-2-liubaolin12138@163.com>
+References: <20260901091519.2885376-1-liubaolin12138@163.com>
+In-Reply-To: <20260901091519.2885376-1-liubaolin12138@163.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Wed, 2 Sep 2026 10:22:28 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd94Hy-cEXAsfibh+B66774rg9wALwPWGfir91dqJWTtgg@mail.gmail.com>
-X-Gm-Features: AcwNN1XXbxe6Otml9DNYEiNpIrjpOc4y89piP6Y3dHvqDp6vejv__cFNFFaYBBQ
-Message-ID: <CAKYAXd94Hy-cEXAsfibh+B66774rg9wALwPWGfir91dqJWTtgg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ntfs: implement fileattr_get and fileattr_set
+Date: Wed, 2 Sep 2026 10:44:16 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd9HVhS8K3zXhcfUz1H09CDaqADpDzXt0dO9FV3Pa7Rs0Q@mail.gmail.com>
+X-Gm-Features: AcwNN1Vh8Eukc5_QZyUCoB7E93Huedt8u5opetwzz8vO6r48cbxPYRn2NqpDhxM
+Message-ID: <CAKYAXd9HVhS8K3zXhcfUz1H09CDaqADpDzXt0dO9FV3Pa7Rs0Q@mail.gmail.com>
+Subject: Re: [PATCH 0/2] ntfs: wire up the fileattr API
 To: Baolin Liu <liubaolin12138@163.com>
 Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
 	Baolin Liu <liubaolin@kylinos.cn>
@@ -60,24 +60,24 @@ wrote:
 >
 > From: Baolin Liu <liubaolin@kylinos.cn>
 >
-> Wire up the fileattr inode operations so that lsattr(1) and chattr(1)
-> work on ntfs.
+> This series implements fileattr_get and fileattr_set for ntfs so that
+> lsattr(1) and chattr(1) work on ntfs.
 >
-> fileattr_get reports the compressed and encrypted state of the attribute
-> and the immutable and append-only flags, the same states ntfs_getattr()
-> already reports through STATX_ATTR_*.
+> Patch 1 wires up the fileattr inode operations and implements support
+> for FS_IMMUTABLE_FL and FS_APPEND_FL. These flags map to inode->i_flags
+> (S_IMMUTABLE, S_APPEND), so the VFS enforces them. fileattr_get also
+> reports the compressed and encrypted state, which the driver already
+> exposes through STATX_ATTR_* in ntfs_getattr().
 >
-> fileattr_set accepts only FS_IMMUTABLE_FL and FS_APPEND_FL. Compression
-> and encryption are rejected because changing them would require
-> rewriting the attribute data. Both accepted flags go to inode->i_flags,
-> so the VFS enforces them.
+> Patch 2 adds FS_NODUMP_FL support, which dump(8) and other backup tools
+> use to mark files to skip. The flag is stored in a new ntfs_inode field
+> and reported through both fileattr_get (for lsattr) and ntfs_getattr()
+> (as STATX_ATTR_NODUMP, for statx), so the two interfaces stay consistent.
 >
-> Neither flag has an on-disk representation of its own, so a value set
-> through fileattr_set only lives for the lifetime of the mount. Note also
-> that S_IMMUTABLE is re-derived on every mount, from FILE_ATTR_SYSTEM when
-> mounted with sys_immutable and unconditionally for system files, so
-> clearing it on such a file does not survive a remount either.
-NTFS forces S_IMMUTABLE on system metadata files such as $MFT, but
-this patch allows userspace to clear that protection. The patch should
-reject clearing immutable for these files and for files made immutable
-by the sys_immutable mount option.
+> All three accepted flags (immutable, append-only, nodump) are kept in
+> memory and do not survive a remount, matching ntfs3 behavior.
+This patch-set does not persist these flags on disk. So, the settings
+survive only while the corresponding inode remains cached. inode
+reclaim caused by memory pressure or drop_caches can discard them
+before unmount. Could you find a way to persist immutable, append, and
+nodump in metadata without causing compatibility issues?
