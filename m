@@ -1,32 +1,32 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BC63264F4
-	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 06:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327CB31987D
+	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 06:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788330272; cv=none; b=OXWhsvxRKe1YM+C/neS9HWw+LsdJoBT8QSoFdAGHoKiKiK/7ZJHmKt9R7s1iTdlUmzAZPq2baIzOoceLJkWvxHCd3fFwJe7I1lc/ug8Od2sxYgWuUQ2hOtJZaybZw5WRF0sslY7cPtOut3xVe6KfiklFxnjcRkapLwHm16VvHT0=
+	t=1788331514; cv=none; b=upD+JW/8t1s55AUO5jN71OwnkH5/AeQaCMhu3vCsGcsHMi+vefJ4lhl3avFuKmGR7/9kdMzjjn5YedsfCjR0HoZSfHF/UrA4aAJooMsY5iRrd8x6VykDR/NMmpXHElktDfxQJSitx//fyz1cGZo2EVnZBQtynQI/uCEh80YJeUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788330272; c=relaxed/simple;
-	bh=brng0bRiT5cu3/DYRbYdWoiHwfhUS4jDWa0VC9+jKSk=;
+	s=arc-20240116; t=1788331514; c=relaxed/simple;
+	bh=GgAdxwkkk41/uwfxZ2ES24qbG6JzfhzWY0JMutbCZhI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qNSd0s1/VT8fH/nJgGTfzU5VMIUIr5UcPH5Z2O5zp0ZqRGJ6Q7rbX3i0MNbnlyrUZT6fAnBdoP9EQnNRXA3vVxKaB+3QdIvAWdYul7kiOa9HIpm8qmks/aq3iiZ+fUStYUyK8H5IxZ//7qMH/+/ZXPLBnNk2l9DRzFEttkQh7bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=OMQYCV5z; arc=none smtp.client-ip=220.197.31.5
+	 In-Reply-To:Content-Type; b=OpWpBXvWGr59yayd90UgDMU1TApN5gerJoymYC5VBHSqdeAX8SngMQMI/IzkngdERI45Epi2+BaszdpWn2mfnTbk+PG1cxjWpjIrLWkYTtObx1E1r+uOzbFEp4MusdLD6p3PqcyhbfG0kZNrZ3cT5rR0LndRmtSYwPCcY4kA0d8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=DkzbRBjg; arc=none smtp.client-ip=220.197.31.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="OMQYCV5z"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="DkzbRBjg"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=cpnqEjO6iI7zgkL8DSulCWgeDzfK9i3xYT6V2zEnq1M=;
-	b=OMQYCV5z/B6MLTTf0EI3q0dECQ2wBjYcbS5GgaubhZOuM7B23Om01mb3atiUSX
-	Nm3Z+POl+FE/WetP/d8eNmwrhwywBP7XJZxGaDlh1gSIqjde0WGoHmzXwIjA3GpT
-	8+cIf9YhlhktW8YMYM00YEOF2uqlKhLFryol/FGde+fcw=
+	Content-Type; bh=kctKcD064GAsrzHHvliOKYeQjxpgDbB8xDJ1Z98T0a0=;
+	b=DkzbRBjgKf8RJniAcZJzQ17MMAiFWjANM7c4qouvhuYoKUT2oFsFH4G62jjbrg
+	HpEmiN3bJOZOq9ftbBtR7qEycM2Ic6COTn9HIdX/fqWPZ6hSHl5nmAGxWCU/DhuJ
+	n9PvbXg26F8jvIX90wEcj2GB2Zd5L8gZQnI28xVC3spZ8=
 Received: from [IPV6:2409:8900:1ef4:8f82:6ff7:7c40:6535:9660] (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgCXPysIwZdq0qoYPg--.10717S2;
-	Wed, 02 Sep 2026 14:24:11 +0800 (CST)
-Message-ID: <ccf7802c-45d8-4113-8994-50346427ee08@163.com>
-Date: Wed, 2 Sep 2026 14:24:08 +0800
+	by gzsmtp3 (Coremail) with SMTP id PigvCgCHaADdxZdqkh3MQQ--.55522S2;
+	Wed, 02 Sep 2026 14:44:47 +0800 (CST)
+Message-ID: <9105aa5d-7390-490a-8336-5dba6b97895b@163.com>
+Date: Wed, 2 Sep 2026 14:44:45 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -34,83 +34,63 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] fs/ntfs: fix -Wmaybe-uninitialized warning in
- ntfs_ioctl_fitrim
-To: huhai <15815827059@163.com>, linkinjeon@kernel.org, hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, huhai <huhai@kylinos.cn>
-References: <20260902032006.173174-1-15815827059@163.com>
+Subject: Re: [PATCH 1/2] ntfs: implement fileattr_get and fileattr_set
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Baolin Liu <liubaolin@kylinos.cn>
+References: <20260901091519.2885376-1-liubaolin12138@163.com>
+ <20260901091519.2885376-2-liubaolin12138@163.com>
+ <CAKYAXd94Hy-cEXAsfibh+B66774rg9wALwPWGfir91dqJWTtgg@mail.gmail.com>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260902032006.173174-1-15815827059@163.com>
+In-Reply-To: <CAKYAXd94Hy-cEXAsfibh+B66774rg9wALwPWGfir91dqJWTtgg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PygvCgCXPysIwZdq0qoYPg--.10717S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZF48Zr13Kr48tFyUuFykXwb_yoW5Gr47pF
-	9xuw1kKrW8ZrWjg34qyw45Zry0qwnrW392vr95Ww17XFWfKrykKFn0gw40krs7trWDKa1x
-	KFy293y5Ww1DZaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U24iUUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwgvyvWqXwQu-gwAA3N
+X-CM-TRANSID:PigvCgCHaADdxZdqkh3MQQ--.55522S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7tF1Uury8CFykCryUJryxZrb_yoW8Xw1UpF
+	WrGayxKFs7Cry7G3s29w13WayFqw18Xr45ZryqgryxC3ZxC342vryxKr13uFWqyr1fAw12
+	qFyjqa47AF1YvrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRS_MhUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6R8p82qXxd8bPQAA3t
 
 
 
-在 2026/9/2 11:20, huhai 写道:
-> From: huhai <huhai@kylinos.cn>
-> 
-> With CONFIG_KASAN, CONFIG_WERROR and -Wmaybe-uninitialized enabled,
-> GCC 16.2 reports that range may be used uninitialized in
-> ntfs_ioctl_fitrim():
-> 
->    CC [M]  fs/ntfs/file.o
-> In file included from ./include/asm-generic/rwonce.h:26,
->                   from ./arch/arm64/include/asm/rwonce.h:81,
->                   from ./include/linux/compiler.h:369,
->                   from ./arch/arm64/include/asm/current.h:5,
->                   from ./include/linux/sched.h:12,
->                   from ./include/linux/writeback.h:8,
->                   from fs/ntfs/file.c:9:
-> In function 'instrument_copy_from_user_before',
->      inlined from '_inline_copy_from_user' at ./include/linux/uaccess.h:184:2,
->      inlined from 'copy_from_user' at ./include/linux/uaccess.h:222:9,
->      inlined from 'ntfs_ioctl_fitrim' at fs/ntfs/file.c:845:6,
->      inlined from 'ntfs_ioctl' at fs/ntfs/file.c:876:10:
-> ./include/linux/kasan-checks.h:38:27: error: 'range' may be used uninitialized [-Werror=maybe-uninitialized]
->     38 | #define kasan_check_write __kasan_check_write
-> ./include/linux/instrumented.h:146:9: note: in expansion of macro 'kasan_check_write'
->    146 |         kasan_check_write(to, n);
->        |         ^~~~~~~~~~~~~~~~~
-> ./include/linux/kasan-checks.h: In function 'ntfs_ioctl':
-> ./include/linux/kasan-checks.h:20:6: note: by argument 1 of type 'const volatile void *' to '__kasan_check_write' declared here
->     20 | bool __kasan_check_write(const volatile void *p, unsigned int size);
->        |      ^~~~~~~~~~~~~~~~~~~
-> fs/ntfs/file.c:833:29: note: 'range' declared here
->    833 |         struct fstrim_range range;
->        |                             ^~~~~
-> 
-> copy_from_user() initializes the entire structure on success, but GCC fails
-> to recognize this after the KASAN checks are inlined. Zero-initialize range
-> to avoid the false positive.
-> 
-> Assisted-by: Codex:gpt-5.6-sol
-> Signed-off-by: huhai <huhai@kylinos.cn>
-> ---
->   fs/ntfs/file.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-> index 88747217ba61..9bc979af4031 100644
-> --- a/fs/ntfs/file.c
-> +++ b/fs/ntfs/file.c
-> @@ -830,7 +830,7 @@ static int ntfs_ioctl_set_volume_label(struct file *filp, unsigned long arg)
->   static int ntfs_ioctl_fitrim(struct ntfs_volume *vol, unsigned long arg)
->   {
->   	struct fstrim_range __user *user_range;
-> -	struct fstrim_range range;
-> +	struct fstrim_range range = {};
->   	struct block_device *dev;
->   	int err;
->   
+在 2026/9/2 09:22, Namjae Jeon 写道:
+> On Tue, Sep 1, 2026 at 6:15 PM Baolin Liu <liubaolin12138@163.com> wrote:
+>>
+>> From: Baolin Liu <liubaolin@kylinos.cn>
+>>
+>> Wire up the fileattr inode operations so that lsattr(1) and chattr(1)
+>> work on ntfs.
+>>
+>> fileattr_get reports the compressed and encrypted state of the attribute
+>> and the immutable and append-only flags, the same states ntfs_getattr()
+>> already reports through STATX_ATTR_*.
+>>
+>> fileattr_set accepts only FS_IMMUTABLE_FL and FS_APPEND_FL. Compression
+>> and encryption are rejected because changing them would require
+>> rewriting the attribute data. Both accepted flags go to inode->i_flags,
+>> so the VFS enforces them.
+>>
+>> Neither flag has an on-disk representation of its own, so a value set
+>> through fileattr_set only lives for the lifetime of the mount. Note also
+>> that S_IMMUTABLE is re-derived on every mount, from FILE_ATTR_SYSTEM when
+>> mounted with sys_immutable and unconditionally for system files, so
+>> clearing it on such a file does not survive a remount either.
+> NTFS forces S_IMMUTABLE on system metadata files such as $MFT, but
+> this patch allows userspace to clear that protection. The patch should
+> reject clearing immutable for these files and for files made immutable
+> by the sys_immutable mount option.
 
-Looks good to me.
+Hi Namjae,
 
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+   You are right, that is a hole. The driver forces S_IMMUTABLE on those
+   files for a reason and userspace should not be able to clear it.
+
+   I will add the check and send a v2.
+
+   Thanks for the review.
+
+Thanks,
+Baolin
 
