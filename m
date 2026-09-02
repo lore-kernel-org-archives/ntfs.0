@@ -1,107 +1,100 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C5713B293
-	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 03:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D822386C3D
+	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 06:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788319251; cv=none; b=tte0nWJepF3QqquB9ljwBzTw3xi19MMCeMSrTTbCBrs9gw0xQu7uE4NmEN1kWmhw/sOXmxUsneQeHPzhiUMMsfZgUPMGxypH8V6ok/ihuTMq0cPi1Fb100NYIuw4bDDsVoPHv1bNvNlioTd4rnm8Xs0cvdGgnN35WFfYMRNJYYA=
+	t=1788329577; cv=none; b=locp+XlGDysSlmTyDBqRtP/v8YFhnm653rDZ0HVI3cppoab9qPZfa5mF6rVeNVC7zZwJjR9IqVRq/KbrgqRgBysQMc29dCkHALZinpGqN3wWkQs+elHMUkvki2Q2LAPYQW8awrs2Yjufl3Vq08skWpXuhe1Vtyp/4UqK17abDO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788319251; c=relaxed/simple;
-	bh=8jM3Bnlq+ZwJkZJE7XrGSEXsI/6OTQMH6QvyUVuXDhM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PEwBWap/78r8SufWOA19IMvff0pZXHG7lq5gOptVNIVA86Mb92zRTqA2kSGxD8Ta4IsQYmAgxT5thfp9uI00hBDEdrIAD4mLh49zE7R+ZeOW8jEfaRYQS8e/C5GKywDNWPwO8WsQdtx9jUMBA3HTIRspzfzJY3yiVla1xKlyRJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ZHEDFN3Z; arc=none smtp.client-ip=117.135.210.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1788329577; c=relaxed/simple;
+	bh=NnIANPNQGbdroDQw4v1tOHD/Kw8SzVZIE6CHbITMjS4=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=OyAeZ63sf/zOaiyyyZHk+cOR5xE857w4rcpTA6eVOOop/Is8IClUwZMoyuz+L84x+jrzXlPtlXg0lkff0EUTWu3mKb3nD42M5EeGMu/hl4kq00g7hCmyGX3CBiyW2Q4c23jd2DBR28e4Tfyu4bxqEH5rfiBFuSwnOf+kcugu2jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=YQYCb4tY; arc=none smtp.client-ip=220.197.31.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ZHEDFN3Z"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=b7
-	Mvq2k8jDZP3d/dYIjerGnXM6zK00UAj6IA1ui2GZo=; b=ZHEDFN3ZWIt9V1octL
-	7fpekTlJTS0TF4wZIBgB9Bpe3VpDpZKKerGs9m2QasEEGFLi+qvPfoxTk/0rKaMQ
-	gY3H+A0ycLjaTGD6EKfvHf4LjFRp66TlyrUT8rI5GwRPvApr5g38A8xuQdjE3tsT
-	60tYCAbMovEJpET+StZEEqq2w=
-Received: from ubuntu.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id _____wB3Jy3ylZdqApQfAA--.3300S2;
-	Wed, 02 Sep 2026 11:20:22 +0800 (CST)
-From: huhai <15815827059@163.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	huhai <huhai@kylinos.cn>
-Subject: [PATCH] fs/ntfs: fix -Wmaybe-uninitialized warning in ntfs_ioctl_fitrim
-Date: Wed,  2 Sep 2026 11:20:06 +0800
-Message-Id: <20260902032006.173174-1-15815827059@163.com>
-X-Mailer: git-send-email 2.40.1
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="YQYCb4tY"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
+	Content-Type; bh=ESV5D09ZSJvDJBytxBulfATFOx0Z5MmtTMqiLjuVkug=;
+	b=YQYCb4tYnMdrP5lWU8AkYbjeYdvolPdAUDCNwsrL/7SdR7wcA28IXenHhKwxIL
+	+OcXoEQoo1GhDXlMRC7K8ZYWhQdAvAKIpSIiyC9Ks5L+idUcy3MsmBan6fUWsZzD
+	9B8y4J6bMxq1OkraLoJ77nU/eCCI7Opl8Q2Uv8YMY4474=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wD3t1hWvpdq7CsiAA--.27068S2;
+	Wed, 02 Sep 2026 14:12:39 +0800 (CST)
+Message-ID: <6A97BE39.8090301@126.com>
+Date: Wed, 02 Sep 2026 14:12:09 +0800
+From: Hongling Zeng <zhongling0719@126.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
+To: Namjae Jeon <linkinjeon@kernel.org>, 
+ Hongling Zeng <zenghongling@kylinos.cn>
+CC: hyc.lee@gmail.com, ntfs@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] ntfs: fix lost volume flag updates in set/clear helpers
+References: <20260901024551.528056-1-zenghongling@kylinos.cn> <CAKYAXd8dotRFBu18HOZGr6AJn4EfTwj=ZtfwheCTy0H7tbLfFA@mail.gmail.com>
+In-Reply-To: <CAKYAXd8dotRFBu18HOZGr6AJn4EfTwj=ZtfwheCTy0H7tbLfFA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wB3Jy3ylZdqApQfAA--.3300S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7uw15Zw1kAF4fJw13Jr43Jrb_yoW8Kw17pa
-	sxuwn3KrWUWrWjg34qyw43Zry0qwnrW3y0vr95Ww17XFWfKrykGFn0gw4Fkrn2yFWDKa4x
-	KFy7W3y5Gw1DZw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UEg4hUUUUU=
-X-CM-SenderInfo: rprvmiivyslimvzbiqqrwthudrp/xtbC8BYjqGqXlfaxEwAA3R
+X-CM-TRANSID:_____wD3t1hWvpdq7CsiAA--.27068S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Kw15WryktryftrWrKrWxWFg_yoW8Cw43pr
+	s3trn7KayqyFy7WwsFvayIyryFga4xJr4YkrW5Gw40yw1Ykr10qFyxtw1fuayqyr9xJw47
+	JFWjy3yru348ur7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jI0PfUUUUU=
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrhdFFmqXvlcS2wAA33
 
-From: huhai <huhai@kylinos.cn>
 
-With CONFIG_KASAN, CONFIG_WERROR and -Wmaybe-uninitialized enabled,
-GCC 16.2 reports that range may be used uninitialized in
-ntfs_ioctl_fitrim():
+在 2026年09月02日 09:06, Namjae Jeon 写道:
+> On Tue, Sep 1, 2026 at 11:46 AM Hongling Zeng <zenghongling@kylinos.cn> wrote:
+>> ntfs_set_volume_flags() and ntfs_clear_volume_flags() both read
+>> vol->vol_flags outside any lock to compute the new value before handing
+>> it to ntfs_write_volume_flags(), which only takes ni->mrec_lock around
+>> the actual write. The read-modify-write is therefore not atomic, and two
+>> concurrent callers can lose an update: ntfs_sync_fs() may derive a
+>> "clean" value from vol->vol_flags while a writer concurrently records an
+>> error and sets VOLUME_IS_DIRTY; the locked write then silently
+>> overwrites the freshly-set dirty bit. The on-disk volume looks clean
+>> despite the recorded errors, so chkdsk will not run on the next mount
+>> and corrupted metadata can persist.
+> This patch description explicitly identifies ntfs_sync_fs() as the
+> problematic caller, but there still remains a racy issue after
+> applying this patch.
+>
+> static int ntfs_sync_fs(struct super_block *sb, int wait)
+> {
+> ...
+>          if (!NVolErrors(vol) &&
+>              ntfs_clear_volume_flags(vol, VOLUME_IS_DIRTY)) {
+>                  ntfs_warning(sb, "Failed to clear dirty bit in volume
+> information flags.  Run chkdsk.");
+>                  err = -EIO;
+>          }
+>
+> Sync thread                         Writer thread
+> -----------                                -------------
+> 1. NVolErrors() == false
+>                                               2. Set VOLUME_IS_DIRTY
+> under mrec_lock
+>                                               3. NVolSetErrors()
+> 4. ntfs_clear_volume_flags()
+>
+> The volume can be left marked clean on disk despite the recorded
+> error... Can you update this patch to fix this issue as well?
+|You're right. My current patch fixes the lost update in the set/clear
+helpers, but ntfs_sync_fs() still has a TOCTOU race between NVolErrors()
+and clearing VOLUME_IS_DIRTY.
 
-  CC [M]  fs/ntfs/file.o
-In file included from ./include/asm-generic/rwonce.h:26,
-                 from ./arch/arm64/include/asm/rwonce.h:81,
-                 from ./include/linux/compiler.h:369,
-                 from ./arch/arm64/include/asm/current.h:5,
-                 from ./include/linux/sched.h:12,
-                 from ./include/linux/writeback.h:8,
-                 from fs/ntfs/file.c:9:
-In function 'instrument_copy_from_user_before',
-    inlined from '_inline_copy_from_user' at ./include/linux/uaccess.h:184:2,
-    inlined from 'copy_from_user' at ./include/linux/uaccess.h:222:9,
-    inlined from 'ntfs_ioctl_fitrim' at fs/ntfs/file.c:845:6,
-    inlined from 'ntfs_ioctl' at fs/ntfs/file.c:876:10:
-./include/linux/kasan-checks.h:38:27: error: 'range' may be used uninitialized [-Werror=maybe-uninitialized]
-   38 | #define kasan_check_write __kasan_check_write
-./include/linux/instrumented.h:146:9: note: in expansion of macro 'kasan_check_write'
-  146 |         kasan_check_write(to, n);
-      |         ^~~~~~~~~~~~~~~~~
-./include/linux/kasan-checks.h: In function 'ntfs_ioctl':
-./include/linux/kasan-checks.h:20:6: note: by argument 1 of type 'const volatile void *' to '__kasan_check_write' declared here
-   20 | bool __kasan_check_write(const volatile void *p, unsigned int size);
-      |      ^~~~~~~~~~~~~~~~~~~
-fs/ntfs/file.c:833:29: note: 'range' declared here
-  833 |         struct fstrim_range range;
-      |                             ^~~~~
+I'll update the patch to make the error check and dirty-bit clear happen
+under the same mrec_lock, so the sync path won't clear the bit after a
+concurrent error update.
 
-copy_from_user() initializes the entire structure on success, but GCC fails
-to recognize this after the KASAN checks are inlined. Zero-initialize range
-to avoid the false positive.
-
-Assisted-by: Codex:gpt-5.6-sol
-Signed-off-by: huhai <huhai@kylinos.cn>
----
- fs/ntfs/file.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 88747217ba61..9bc979af4031 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -830,7 +830,7 @@ static int ntfs_ioctl_set_volume_label(struct file *filp, unsigned long arg)
- static int ntfs_ioctl_fitrim(struct ntfs_volume *vol, unsigned long arg)
- {
- 	struct fstrim_range __user *user_range;
--	struct fstrim_range range;
-+	struct fstrim_range range = {};
- 	struct block_device *dev;
- 	int err;
- 
--- 
-2.40.1
+Thanks |
 
