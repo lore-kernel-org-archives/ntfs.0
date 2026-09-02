@@ -1,94 +1,83 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E8832AADB
-	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 01:06:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6892E738F
+	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 01:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788311217; cv=none; b=V54kcoCYNpnaJSzsfrAYryZ8kCFtuhP0Yf9peOtKasniofDbwgcZMVluvh8OQma+aLnSifrMMbqvA2Pk8PsPoqUCD/OYeRQaY5f9DP/03VZoBeJPncA3QC39aMiRQ2NvXk9BN6OJmDTj6Wo8gj6ndHUHTrnT0JVfZEd137jGEYI=
+	t=1788312163; cv=none; b=Woi5TD6U4eV36zXZiGkYwsPhugchfrls8NC6kTsmKQgYq8vTYqS+ylgTCeC47a2OPhmGRo7f0bXUz9mumFeLyuXzVDIRpqhFiQ9M9KfmptR4nfQ+bWREMQN4MQc9ygbbFkPtboH+eLPGkYbGlhQ86OWVzbBnKmrKiMIzNVTQmjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788311217; c=relaxed/simple;
-	bh=vktDnoMVFzqEI8/NuzDTqrkKE4xBRWOvevvNYuiuevA=;
+	s=arc-20240116; t=1788312163; c=relaxed/simple;
+	bh=yj0ghCrRDxJccOkYZ8+jq567DDQX3NLBqP+W9Grbvaw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fAsizfjmPQFSHYPmc9KDWSILUwwFC2ET9jlmL94f5CfIJutXrY3dCJcIE8f6/Fy3u0ZY7HT4Zc5koLYnGS93CSBlPiZAtgrhUCkB3YYFVPVnKKCExuILYldN0z0QtCRjw73Cl2utA4oaZP0cWd0fc1bk3nhWkYupvcJ+op8K9Ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cfv8s1nQ; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=smCPOgo7pf2/kLQ0RyETbXsd9aUNzrTfVYgqG+ATvBD+exlJat/41IP5lhu27irbULTpQpFouANX2r5o/3geNzlr4kqeBJpMvQ2/+ev1YJnXz/5nN2VZhm9dCz0yxBXH22l2iDHVSqHqpU0TaDSR7knWgvnGcoCBCX0YkD0yjBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EiKhDW8s; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cfv8s1nQ"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD5211F00A3A
-	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 01:06:55 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EiKhDW8s"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 198A61F00A3F
+	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 01:22:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788311215;
-	bh=jqxk0sZkbZ9KoV7KU3DYdNlHYVVbXm+ovykDBW729c0=;
+	s=k20260515; t=1788312162;
+	bh=yj0ghCrRDxJccOkYZ8+jq567DDQX3NLBqP+W9Grbvaw=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=Cfv8s1nQmSOHyIjCVh2jJHpah3IOvRXpnGyy0XrKcsqgl+scBQ3ZyPRwttmaclP2I
-	 60H/vaZx7ciy1EM2vKa2QWyyNWhqgokORlD2WmGA4dAvrA5yElo40+Xztr8PqsIdNu
-	 wHsdwxfYRD4mv74kAqVJY8BKWxUNUkO69WrWg3/exvRWXU3zdJTch3Idox8xjCyYD+
-	 hDeSoNwFoyqifOkaHVYfjL4uVy/OegzM8reguVMqzgZ6+AtomF/E74Ip34suu1pOJm
-	 e6WjrdANVW85YeHtmAZjblRZ1hMhWMyzIKJzaqULcVvwdWEg4DnEpVm+/nmVhw6a9w
-	 SN2s4cBcZCGzw==
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-c253425b253so55565766b.1
-        for <ntfs@lists.linux.dev>; Tue, 01 Sep 2026 18:06:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RpKaClIXWla1l3hdtY18+2fMrBgaq4VUXkynLIy9lU2Vpksn6CP8KM1/7BKXSYqKPvAMd8G@lists.linux.dev
-X-Gm-Message-State: AFuF++nJHcfgfxUJZxd0sEte4YAjrsdAatNnLBkG6KFU2FxM1bl85Uvk
-	dmZ5aoNqkeIpBb+WA1Ql42nQgEjLwlnT7B9AZRnLRS49P2gdvv9kHfpn5teJ8vMFPFOyaPs5S6q
-	Hxq5k/H3z2xRdNNpTvKMssAKB/uqxPME=
-X-Received: by 2002:a17:907:94cd:b0:c25:5d2:acf0 with SMTP id
- a640c23a62f3a-c25d5274bdemr64308366b.8.1788311214539; Tue, 01 Sep 2026
- 18:06:54 -0700 (PDT)
+	b=EiKhDW8s/2zwV01oXmTT7rVoGPH0bP5TqGZUwWqrYubMOdCxKwj03r05rf+75jyWc
+	 MCPsm88Px9tVo9fkg97QGwf1J26dLVFLUp7MZCiqtvwqQ0nbiFre36eYCt3Dwvco34
+	 BuuFNKWj+T2m3Igofm9zEfcoiwKUCzamBYqZ8EOY01xJTJEP8U1TP2cSFXV8WPdHXd
+	 wl+vBbBpFeTwusVPrk+4jgAlBFbeudipFoQ3cTP1tQRuU0IhFhS2M0mlkTQxsMk52E
+	 JTSET59VRRzR5jkB1wqD/SCFFqbu1vVgztKqfLvvYj0HmI2Lg5FLXV8/d/BIIlPvE3
+	 gslvkV0A0xb9Q==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-c2569aa5116so252307566b.0
+        for <ntfs@lists.linux.dev>; Tue, 01 Sep 2026 18:22:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+Rpx8ZXF9mGf/fg/39brwWEPyx9xWqbl2ClyTRRi9b/F98hj2xDUSpp2BrYWJSfo7Zzkz9r/@lists.linux.dev
+X-Gm-Message-State: AFuF++k2VhxqM0zE62EWUOEApPfxWsXvwLlq+3zTc/SA0YoXMQLgTKCO
+	6Dkaoo5DqZks4eIptEt1x5x9lmnpUHBi7bXIJjUWQJ0M+pcnJPjlcW9xidwffySZL+7SUBtZZMp
+	sudHY1700GAzTSIP8z/Eny2NuOvCKmzM=
+X-Received: by 2002:a17:907:7295:b0:c25:cb79:e4b5 with SMTP id
+ a640c23a62f3a-c25d5c31e5cmr56186866b.3.1788312160667; Tue, 01 Sep 2026
+ 18:22:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260901024551.528056-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260901024551.528056-1-zenghongling@kylinos.cn>
+References: <20260901091519.2885376-1-liubaolin12138@163.com> <20260901091519.2885376-2-liubaolin12138@163.com>
+In-Reply-To: <20260901091519.2885376-2-liubaolin12138@163.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Wed, 2 Sep 2026 10:06:38 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8dotRFBu18HOZGr6AJn4EfTwj=ZtfwheCTy0H7tbLfFA@mail.gmail.com>
-X-Gm-Features: AcwNN1VIQF3MFhyiXi3o0liM2BjTlHAmpqB7BC2cSPaiZbZ7-OBH0vpghrk95IQ
-Message-ID: <CAKYAXd8dotRFBu18HOZGr6AJn4EfTwj=ZtfwheCTy0H7tbLfFA@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: fix lost volume flag updates in set/clear helpers
-To: Hongling Zeng <zenghongling@kylinos.cn>
+Date: Wed, 2 Sep 2026 10:22:28 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd94Hy-cEXAsfibh+B66774rg9wALwPWGfir91dqJWTtgg@mail.gmail.com>
+X-Gm-Features: AcwNN1XXbxe6Otml9DNYEiNpIrjpOc4y89piP6Y3dHvqDp6vejv__cFNFFaYBBQ
+Message-ID: <CAKYAXd94Hy-cEXAsfibh+B66774rg9wALwPWGfir91dqJWTtgg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ntfs: implement fileattr_get and fileattr_set
+To: Baolin Liu <liubaolin12138@163.com>
 Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhongling0719@126.com, stable@vger.kernel.org
+	Baolin Liu <liubaolin@kylinos.cn>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 1, 2026 at 11:46=E2=80=AFAM Hongling Zeng <zenghongling@kylinos=
-.cn> wrote:
+On Tue, Sep 1, 2026 at 6:15=E2=80=AFPM Baolin Liu <liubaolin12138@163.com> =
+wrote:
 >
-> ntfs_set_volume_flags() and ntfs_clear_volume_flags() both read
-> vol->vol_flags outside any lock to compute the new value before handing
-> it to ntfs_write_volume_flags(), which only takes ni->mrec_lock around
-> the actual write. The read-modify-write is therefore not atomic, and two
-> concurrent callers can lose an update: ntfs_sync_fs() may derive a
-> "clean" value from vol->vol_flags while a writer concurrently records an
-> error and sets VOLUME_IS_DIRTY; the locked write then silently
-> overwrites the freshly-set dirty bit. The on-disk volume looks clean
-> despite the recorded errors, so chkdsk will not run on the next mount
-> and corrupted metadata can persist.
-This patch description explicitly identifies ntfs_sync_fs() as the
-problematic caller, but there still remains a racy issue after
-applying this patch.
-
-static int ntfs_sync_fs(struct super_block *sb, int wait)
-{
-...
-        if (!NVolErrors(vol) &&
-            ntfs_clear_volume_flags(vol, VOLUME_IS_DIRTY)) {
-                ntfs_warning(sb, "Failed to clear dirty bit in volume
-information flags.  Run chkdsk.");
-                err =3D -EIO;
-        }
-
-Sync thread                         Writer thread
------------                                -------------
-1. NVolErrors() =3D=3D false
-                                             2. Set VOLUME_IS_DIRTY
-under mrec_lock
-                                             3. NVolSetErrors()
-4. ntfs_clear_volume_flags()
-
-The volume can be left marked clean on disk despite the recorded
-error... Can you update this patch to fix this issue as well?
+> From: Baolin Liu <liubaolin@kylinos.cn>
+>
+> Wire up the fileattr inode operations so that lsattr(1) and chattr(1)
+> work on ntfs.
+>
+> fileattr_get reports the compressed and encrypted state of the attribute
+> and the immutable and append-only flags, the same states ntfs_getattr()
+> already reports through STATX_ATTR_*.
+>
+> fileattr_set accepts only FS_IMMUTABLE_FL and FS_APPEND_FL. Compression
+> and encryption are rejected because changing them would require
+> rewriting the attribute data. Both accepted flags go to inode->i_flags,
+> so the VFS enforces them.
+>
+> Neither flag has an on-disk representation of its own, so a value set
+> through fileattr_set only lives for the lifetime of the mount. Note also
+> that S_IMMUTABLE is re-derived on every mount, from FILE_ATTR_SYSTEM when
+> mounted with sys_immutable and unconditionally for system files, so
+> clearing it on such a file does not survive a remount either.
+NTFS forces S_IMMUTABLE on system metadata files such as $MFT, but
+this patch allows userspace to clear that protection. The patch should
+reject clearing immutable for these files and for files made immutable
+by the sys_immutable mount option.
