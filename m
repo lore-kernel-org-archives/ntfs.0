@@ -1,32 +1,32 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327CB31987D
-	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 06:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1C334E74B
+	for <ntfs@lists.linux.dev>; Wed,  2 Sep 2026 07:25:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788331514; cv=none; b=upD+JW/8t1s55AUO5jN71OwnkH5/AeQaCMhu3vCsGcsHMi+vefJ4lhl3avFuKmGR7/9kdMzjjn5YedsfCjR0HoZSfHF/UrA4aAJooMsY5iRrd8x6VykDR/NMmpXHElktDfxQJSitx//fyz1cGZo2EVnZBQtynQI/uCEh80YJeUI=
+	t=1788333933; cv=none; b=JiJVf/s7jZRhMfNBRjFWXdzSJk4H/ix3C7w4T48TBUg5Zl1NKHCU33u0IUK06nk4dxNI9Kr5rz9lB+M94OZGU+FRhT+XIX/XE1MnHb1CZ0he0+KfhLjrTsbqfNWX/9gkKmd+ciYiiZ29s1i3FWdj5tcVEsewHh2rZRAVSvFgVAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788331514; c=relaxed/simple;
-	bh=GgAdxwkkk41/uwfxZ2ES24qbG6JzfhzWY0JMutbCZhI=;
+	s=arc-20240116; t=1788333933; c=relaxed/simple;
+	bh=1kyjJzJsqCNQLjbE3g7LS91/5bkXy5o0ON/3ocZUiCQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OpWpBXvWGr59yayd90UgDMU1TApN5gerJoymYC5VBHSqdeAX8SngMQMI/IzkngdERI45Epi2+BaszdpWn2mfnTbk+PG1cxjWpjIrLWkYTtObx1E1r+uOzbFEp4MusdLD6p3PqcyhbfG0kZNrZ3cT5rR0LndRmtSYwPCcY4kA0d8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=DkzbRBjg; arc=none smtp.client-ip=220.197.31.4
+	 In-Reply-To:Content-Type; b=FJOQlnHdcYz6DB80AsLpH/5gxunf6MABeA3fiWxqUgqlAOsj0xKsjAlP8pEpGbDY7ux5OSOsbrEyta00YQzbbCX2QGJaiAm8hkOmn0II0SMdhUiJ71tRVO7pCvkpHmZm7ES7fF1mr/rkNzK9lqBK0ddnD2PrI0w5TL0VuelXe84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=DPcbOCsp; arc=none smtp.client-ip=220.197.31.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="DkzbRBjg"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="DPcbOCsp"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=kctKcD064GAsrzHHvliOKYeQjxpgDbB8xDJ1Z98T0a0=;
-	b=DkzbRBjgKf8RJniAcZJzQ17MMAiFWjANM7c4qouvhuYoKUT2oFsFH4G62jjbrg
-	HpEmiN3bJOZOq9ftbBtR7qEycM2Ic6COTn9HIdX/fqWPZ6hSHl5nmAGxWCU/DhuJ
-	n9PvbXg26F8jvIX90wEcj2GB2Zd5L8gZQnI28xVC3spZ8=
+	Content-Type; bh=0UfuVQ2WNzTY+vKZ2LkipVxTd6VYZ1BWKXSjviu1fl4=;
+	b=DPcbOCspxTArS7UGbEr2I9SY90qOyyQxh/O6tungu9faWKzVVriS5Ad51qlS8P
+	pYg+cy3m1L0JEAoAWX0ZjNNjTKB33eWQSI+vwquzgdXssh+Ffl5aFe2fzbaFcFOr
+	mDUdp54U+tqMPHUbP773/j99XkMMlz72WXGNQVWeTJt8E=
 Received: from [IPV6:2409:8900:1ef4:8f82:6ff7:7c40:6535:9660] (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id PigvCgCHaADdxZdqkh3MQQ--.55522S2;
-	Wed, 02 Sep 2026 14:44:47 +0800 (CST)
-Message-ID: <9105aa5d-7390-490a-8336-5dba6b97895b@163.com>
-Date: Wed, 2 Sep 2026 14:44:45 +0800
+	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wD3t+dWz5dqzCI3AA--.209S2;
+	Wed, 02 Sep 2026 15:25:17 +0800 (CST)
+Message-ID: <2736dac8-8939-46db-99fb-08723fe1cf1a@163.com>
+Date: Wed, 2 Sep 2026 15:25:10 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -35,59 +35,87 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] ntfs: implement fileattr_get and fileattr_set
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- Baolin Liu <liubaolin@kylinos.cn>
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Baolin Liu <liubaolin@kylinos.cn>
 References: <20260901091519.2885376-1-liubaolin12138@163.com>
  <20260901091519.2885376-2-liubaolin12138@163.com>
- <CAKYAXd94Hy-cEXAsfibh+B66774rg9wALwPWGfir91dqJWTtgg@mail.gmail.com>
+ <CANFS6bbVu2mrQXtKJfokDA=6ajReH9Xmm9OA1zVDzQhafHy0mA@mail.gmail.com>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <CAKYAXd94Hy-cEXAsfibh+B66774rg9wALwPWGfir91dqJWTtgg@mail.gmail.com>
+In-Reply-To: <CANFS6bbVu2mrQXtKJfokDA=6ajReH9Xmm9OA1zVDzQhafHy0mA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PigvCgCHaADdxZdqkh3MQQ--.55522S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tF1Uury8CFykCryUJryxZrb_yoW8Xw1UpF
-	WrGayxKFs7Cry7G3s29w13WayFqw18Xr45ZryqgryxC3ZxC342vryxKr13uFWqyr1fAw12
-	qFyjqa47AF1YvrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRS_MhUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6R8p82qXxd8bPQAA3t
+X-CM-TRANSID:_____wD3t+dWz5dqzCI3AA--.209S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7WFyrZrWrKr18ur1rur1UAwb_yoW8Ww1kpF
+	Z5t3WxKayxJFyUCFyxZr4UWa1Ivr17JrWUArW7Ga4YyF9Ikr18K34SgF45CFyrCr4kCr12
+	9FyUtrsxKFnayrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zR-18dUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwh2LVmqXz11XWQAA3j
 
 
 
-在 2026/9/2 09:22, Namjae Jeon 写道:
-> On Tue, Sep 1, 2026 at 6:15 PM Baolin Liu <liubaolin12138@163.com> wrote:
->>
->> From: Baolin Liu <liubaolin@kylinos.cn>
->>
->> Wire up the fileattr inode operations so that lsattr(1) and chattr(1)
->> work on ntfs.
->>
->> fileattr_get reports the compressed and encrypted state of the attribute
->> and the immutable and append-only flags, the same states ntfs_getattr()
->> already reports through STATX_ATTR_*.
->>
->> fileattr_set accepts only FS_IMMUTABLE_FL and FS_APPEND_FL. Compression
->> and encryption are rejected because changing them would require
->> rewriting the attribute data. Both accepted flags go to inode->i_flags,
->> so the VFS enforces them.
->>
->> Neither flag has an on-disk representation of its own, so a value set
->> through fileattr_set only lives for the lifetime of the mount. Note also
->> that S_IMMUTABLE is re-derived on every mount, from FILE_ATTR_SYSTEM when
->> mounted with sys_immutable and unconditionally for system files, so
->> clearing it on such a file does not survive a remount either.
-> NTFS forces S_IMMUTABLE on system metadata files such as $MFT, but
-> this patch allows userspace to clear that protection. The patch should
-> reject clearing immutable for these files and for files made immutable
-> by the sys_immutable mount option.
+在 2026/9/2 10:00, Hyunchul Lee 写道:
+> Hi Baolin,
+> 
+>> +/*
+>> + * ntfs_fileattr_get - inode_operations::fileattr_get
+>> + * @dentry:    dentry to report the flags of
+>> + * @fa:                filled in with the flags of @dentry
+>> + */
+>> +int ntfs_fileattr_get(struct dentry *dentry, struct file_kattr *fa)
+>> +{
+>> +       struct inode *vi = d_inode(dentry);
+>> +       struct ntfs_inode *ni = NTFS_I(vi);
+>> +       u32 flags = 0;
+>> +
+>> +       if (NInoCompressed(ni) || NInoWofCompressed(ni))
+>> +               flags |= FS_COMPR_FL;
+>> +       if (NInoEncrypted(ni))
+>> +               flags |= FS_ENCRYPT_FL;
+>> +       if (vi->i_flags & S_IMMUTABLE)
+>> +               flags |= FS_IMMUTABLE_FL;
+>> +       if (vi->i_flags & S_APPEND)
+>> +               flags |= FS_APPEND_FL;
+> 
+> It would be better to set FS_CASEFOLD_FL as well.
+> 
+>> +int ntfs_fileattr_set(struct mnt_idmap *idmap, struct dentry *dentry,
+>> +                     struct file_kattr *fa)
+>> +{
+>> +       struct inode *vi = d_inode(dentry);
+>> +       unsigned int new_fl = 0;
+>> +
+>> +       if (fileattr_has_fsx(fa))
+>> +               return -EOPNOTSUPP;
+>> +       if (fa->flags & ~(FS_IMMUTABLE_FL | FS_APPEND_FL))
+>> +               return -EOPNOTSUPP;
+> 
+>> +
+>> +       if (fa->flags & FS_IMMUTABLE_FL)
+>> +               new_fl |= S_IMMUTABLE;
+>> +       if (fa->flags & FS_APPEND_FL)
+>> +               new_fl |= S_APPEND;
+>> +
+>> +       inode_set_flags(vi, new_fl, S_IMMUTABLE | S_APPEND);
+>> +
+>> +       inode_set_ctime_current(vi);
+>> +       mark_inode_dirty(vi);
+>> +       return 0;
+>> +}
+> 
+> Currently, these flags are not written to disk.
+> I think that we should store them to disk or
+> reject them.
+> 
 
-Hi Namjae,
+Hi Hyunchul,
 
-   You are right, that is a hole. The driver forces S_IMMUTABLE on those
-   files for a reason and userspace should not be able to clear it.
+   I will add FS_CASEFOLD_FL.
 
-   I will add the check and send a v2.
+   You are right about persistence. Namjae also pointed out that inode
+   reclaim can drop these flags before an unmount. I will look into storing
+   them on disk.
 
    Thanks for the review.
 
