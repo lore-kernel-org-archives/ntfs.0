@@ -1,413 +1,198 @@
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+Received: from MEUPR01CU001.outbound.protection.outlook.com (mail-australiasoutheastazolkn19010002.outbound.protection.outlook.com [52.103.73.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09EF73932DA
-	for <ntfs@lists.linux.dev>; Thu,  3 Sep 2026 07:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788422098; cv=none; b=rUeQnJ3hPu6hh83IohQHIc9vA+Pzsh2gVzdPE5Cf4PDpYtLA7GIIlgsZ7+/SCf8gYSOfFVM3H7ljduCDtbZ69xrgEWjAli2CH7Vi5S+E5dGXI9g1V0P3ppN3QJuvMuSmwIwsW3MBAsV/S/6pTDhBtQGWGq4roUZACn3t9Ua6nQk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788422098; c=relaxed/simple;
-	bh=JXoELwjo14GAP2dkxVE/DaWh/EwK5zieHV2NnB81+Ew=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pG14VaYaEqaLID4huK5ajF5paMUgl2FPtvHSv0+2IqssEd9XH4rJwTDHim0UXoilHeVgqPJNtElt+GfWYJLVyJ7GpafzuHLVqX8NXjMLztuM4Q5FXLoQJiDmTHoytIUZ+WYGuEwBMfRz4TmoJkTn+w0LZUYI+sdsWuZfImWazbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: ba34f51ea76c11f19a56ed5b684f684d-20260903
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:220084e2-9d8e-46ab-bd12-8290486fc279,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:9818e56b21b1d98647ce7ccb5367c4d1,BulkI
-	D:nil,BulkQuantity:0,SF:81|82|102|136|850|865|898,TC:nil,Content:0|15|50,E
-	DM:-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:
-	0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: ba34f51ea76c11f19a56ed5b684f684d-20260903
-X-User: zenghongling@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <zenghongling@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1536840337; Thu, 03 Sep 2026 15:54:44 +0800
-From: Hongling Zeng <zenghongling@kylinos.cn>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>,
-	stable@vger.kernel.org
-Subject: [PATCH v2 3/3] ntfs: convert runtime error paths to mark volume dirty after recording errors
-Date: Thu,  3 Sep 2026 15:54:38 +0800
-Message-Id: <20260903075438.306793-3-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260903075438.306793-1-zenghongling@kylinos.cn>
-References: <20260903075438.306793-1-zenghongling@kylinos.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F26D4A841F
+	for <ntfs@lists.linux.dev>; Thu,  3 Sep 2026 12:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.73.2
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1788439463; cv=fail; b=BRJwiE1rO7FksZHGiUDWCE1N7Z4O0Ra1DO3z2pzqushAYL9Z4KaVImIt6IdJ33p8dLV4D2KSMoYb73ITW0EQK+3GtKOooKxtFPJMLFyagpIjKiZ7rotkffCCtygWt+kFnySudJkxCCENrALilNRQ6/NqHW2hIXVPllIMRhmYAtA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1788439463; c=relaxed/simple;
+	bh=eA2SL0BcKUmOrHrAWWTa3PCs4AL+FZZCcwJC3YHUUkA=;
+	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=RIh0UD/51y5O3J5dqEyfNp/b7qfGcPICWwr/xDfkue3+js6/ynyvxEBtFGi/ME8QBzoqG5MuST/u9+JhgWKVqgcCaaODyYxKnTaPcDOZD2GinhQi7vlO8JCHX/YiLyCdU+DfFZmfECLITkub2hlASsz4pJ2OX3L/0ZhIr/rorQw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=hXdxXAGR; arc=fail smtp.client-ip=52.103.73.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="hXdxXAGR"
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cyi4ZkQ4cYx8cCLoy3z6ztlx8j9kg7ZTzn63+19OBQaU7ZLxLw1u0HyIEDZ5SOjBLRcBqYvZbwmsJiNmyIgx9b/oo45kJTAETu9jBPBVcKYFaTLatCIoOoBerUJK+7NaLOuLnUxaFP2Y4qmS/BWN1ydlbc89YxVfkbgpSN4lCUaXAWS0lU4WZeaT4/RKTCSeAwb6fi67mQpIr/5ARP1l42haCOT8NYHtfoNRcMo/z4V/N62wKfyVfZPHQIgtv+1Z9uP5WVkvwUawrv0W3IIaz17X4Ugel5HFWtc8DMep9K3kMoyv/B/8/ky5q8BpcgtnES2iQrKqtX0N5nnP1iahKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eA2SL0BcKUmOrHrAWWTa3PCs4AL+FZZCcwJC3YHUUkA=;
+ b=n6WGKms8XngPGqtTHDa/yFLm94VXrxfFZXL+y92TqvtrvePMQfUufQXwx+xOPEAt6xLsZT33nd6dFvLtMnJ9YtS6oxEyCyqS18ZrpxQZdWeX51RMpy3w57gw+/fMqf5DN864mQZDp+Mu3ES9TBFL63iWtoXcgTDlyQn1HU0JAmwwusXo51WdY1Sf5uvKQ3GQNSHcGsIR5wN0mr9E1291ZLCtEah/wlWoEKRmjQ/TLw2B64T8gz7qld4xIMIXhV9nWKkS1fmOq7bNjpzS2fbw7iCe3/1Phj105k3fCTcssfNDQ3AusxjVUJogdHN/NWdcTO3j4WUNfkivV5zJhku2BQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eA2SL0BcKUmOrHrAWWTa3PCs4AL+FZZCcwJC3YHUUkA=;
+ b=hXdxXAGRDYL7oDvQm1Og7CkyFSxKTB8wTbDJnWRXwHBILZ7Z6jDKb4Ov3XrAMBMGLQj6HiY+5pPCXP5MzQw9p0O17VFjTCExOJL/iSLa/k6p6unfbMDiv8NQg2O9Cvhhi0UM1D5tgyq39p1R8iT5jScrLA+W5RhvngMpFf7SzTBHkEHCxRFot1+Fhky7nfBBKE+imH0LS5zMdAuESme0dpwxTQgFIr16HQLoNqFeVVq+o9+A47g59tkUzioXqA2r8jS4mBo//uYEnygwhFxziuKpvz2TtrG6Z75jafZz8h1a/0bRPftbn6Wzr1OVGsVBGF8GofqkchNT06i2fNMXdg==
+Received: from SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM (2603:10c6:10:24c::11)
+ by SY7P300MB0055.AUSP300.PROD.OUTLOOK.COM (2603:10c6:10:238::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Thu, 3 Sep
+ 2026 12:44:16 +0000
+Received: from SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM
+ ([fe80::1c6a:c02f:24a4:eec0]) by SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM
+ ([fe80::1c6a:c02f:24a4:eec0%6]) with mapi id 15.21.0360.008; Thu, 3 Sep 2026
+ 12:44:16 +0000
+From: =?gb2312?B?1uwgzOy6xg==?= <zhutianhao75@hotmail.com>
+To: "linkinjeon@kernel.org" <linkinjeon@kernel.org>, "hyc.lee@gmail.com"
+	<hyc.lee@gmail.com>
+CC: "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	=?gb2312?B?1uwgzOy6xg==?= <zhutianhao75@hotmail.com>
+Subject: [PATCH] ntfs: fix sector conversion on 4Kn devices
+Thread-Topic: [PATCH] ntfs: fix sector conversion on 4Kn devices
+Thread-Index: AQHdO56ejJyAklp2tUCGikkzN+n1yw==
+Date: Thu, 3 Sep 2026 12:44:15 +0000
+Message-ID:
+ <SY0P300MB0312121B2DA3A618B0632D3BDEB62@SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SY0P300MB0312:EE_|SY7P300MB0055:EE_
+x-ms-office365-filtering-correlation-id: 30fe29a5-10a9-487b-c7ae-08df09b9107f
+x-ms-exchange-slblob-mailprops:
+ 7qh87CJt6y1mqZO6407WRLxlypE3k+ejQwbSTxP0P7pJmOt8ytz7iGkHdm1rtl9D+1bsus7VhYwbkizWKWL9zur8qHHAySedsyh9BSncYOlJH6D4UHXOVvjRDkt+lzoK0emOpInuAMper2YV/VfSDIBKSvhVmaaGSYfJ4AsJaTN+kolwwaH2mHPAJ+EMVP24mx6p2t106BwJUqp3Hwq5+aInnIoOAsdmj6w4kqUo9hF1TS+3Lg8crm8l476h39vVWIr4r3HrKAqG8FzNQJp/Ohc5c542TbW7KG6jxj3lIxTBfMPeYIN9ugb/hHqMRA1UUdGgSqsstbdZiQ10cN5LPmhD7YVM+O+ERnY8n3MNN0wktwIR0eX3EigfXEWCjOmu1ZZP2yjUrzsiCXgltrMmS1FX6DMWjFwnuTdZUVeDQqq6dcv2TqUtHN0vXIbvf2nEStK2qEkwTWlRy6prQLvjEE36GMlyA0i4fLlhPZAErn91wn2fPOp0cEhF1FBdkKFAT9BGUPx5nokjKIHytz/ZB1dvKKQSZl0maC6DfaIDHErZOeEKwH6Ox1fjYXK2Am4MZpSGUxe8N7OEE10HAzXqBNhqEWpwXX2kCiRbc/gdrjB1AExH175ay+KlS5GZfNSnrIf/qH19fWIVlGIdb/IILGgSOod+BODVToNDZqbaSrW8v78IQNeOVkv76zhVUCxfC5zvn8Ka39Zfg8enCz4gt471hCEXPqdcjDeFay44v3Esg1ytoKtw7846kePGpuQ3
+x-microsoft-antispam:
+ BCL:0;ARA:14566002|24021099003|22091999003|41001999006|24121999003|22141099003|8062599012|15030799006|8060799015|19110799012|31061999003|39105399006|15080799012|4140399003|6050399003|40105399003|26121999007|2607281247196008|3430499035|102099032|440099028|3412199025|1710799026;
+x-microsoft-antispam-message-info:
+ =?gb2312?B?eEFOZW5IbGpzTUd3dUVnUWZTbmZ5L3Z4R1p2YUc1RlFoQ3ZIOG9KVTlQbldC?=
+ =?gb2312?B?ZC81c2J2djJQTnFGMU5qcHVucTF0NE5zVmkweDlUQ2hXQnB3dkJha1hxaUxX?=
+ =?gb2312?B?RU94VS9tUVJSbFVEb0JrdFV1OXAwMWlzMVBURkJVc0JFOEllS1ZnY2FkU3Bl?=
+ =?gb2312?B?ZTBMNE1SYzIvR2lJU01PYmxZY2lIalF1M3c0N1huQTIyZVRhSFh4eTMyZlRy?=
+ =?gb2312?B?ckZ4elhUMjE5WHRIYVoyY0l1MjF5OW9HOUR2QTB0VzFTdFE2Yk5yRngrQmFx?=
+ =?gb2312?B?Q2lodDZjTGZQZnRudUduOHJuL2RMekRxa0JPVmliS0VQZ3pybmY5WEF2WHI0?=
+ =?gb2312?B?bWI3c2k3ZWdzWGJTYmpTMGhRemlYeXNpckF1cjdvSlUrQkVHK3VKTW1wb2JX?=
+ =?gb2312?B?cG4wWVUzdVliUUxnSWtVWHdMYWdUQ1RFZ09hK2hnSHlqcUJsTHpkZWNLa1h1?=
+ =?gb2312?B?NGdCek1SelN5MGJ3Z0hCQXROTHQvdVJENUdJOEpnYnMySFFJclNuajNoQk1O?=
+ =?gb2312?B?emkwN0ZFZGJrR2ZGREF2aDJJSGRmZjRBbXp6WXpkSGkrWVQzSmJaZ1FWVkhu?=
+ =?gb2312?B?QWk3OWVWYm9SOFlPekJncmcxZzJZMEhnMFQ0RS9la3FFMWh5cVp5SXBpdVhE?=
+ =?gb2312?B?VGVWdjRNL1UzT0pDRFlidHFDQkZLSkk2R3VXWVc3OVovVGNQazZkYlkwTFow?=
+ =?gb2312?B?Z0RyM1lFNnBjY2ZZWDk2RDZaaGo0VFBuUnZEZDNPcnNET1F6Z2dzTWVySUl3?=
+ =?gb2312?B?dUxQMUdTUUwyTDhGQU1kMFBQNVNhTW5ZRlNUVVVUWFBQdnp2ZEdYSUhibGw4?=
+ =?gb2312?B?RGZTQ01YcWQ2VjBPai9IRU1OZGxTNmJNRFhRaXlqek5TaytEYnM3ekVXbW1K?=
+ =?gb2312?B?cnFMYUpQMy9JcEljRUtCcE91MVpZa0xkVjQ2NzVoc2MrNlp3eW44Y0tFUzNG?=
+ =?gb2312?B?ajVKNGt1RG1LNXpZZUo1QXQzSVVYajlDK2dOYWZqbTZFaVljWlRnZ3ZwT0pn?=
+ =?gb2312?B?SHJRbFFpMmxMcXJ6S0ZyRVhVQ0VqaUtneGppOHBldmJnWnhDN29nZnM5OTVT?=
+ =?gb2312?B?SjZ1a29lWjJEUFlGTFZGOG9HQ1JxZERvMUcyejBGRHlRall6OW9TRmJZWStE?=
+ =?gb2312?B?bktmSEJOTzlpTXB5QXp4Q3FIenE3bSticXZ1OWs1SzF2WVBQeEVGWmt0Tk9p?=
+ =?gb2312?B?dFFEcGlnZGVmZ2QwVlFnVFIwazRmZzFZNkJhdlhYUUFmL0w4a1Izb3Z4WE9H?=
+ =?gb2312?B?SnNtczl6Q2lNTEQ1M0VIZ3NLZWQ0N0Q5OHVpVDFibGc3SmpudGtHMlBnaW13?=
+ =?gb2312?B?ZlVxUE54RVZHaXFhTURIRkFtMktQN1N2KzdmbG9laTJRYm45YVZGWmt5czNB?=
+ =?gb2312?B?U0ZqQ0I1S1JmeEU0aVB3aDF5NkJTN3dVajQ5STdwa2Q2VFJ0MGF3SENHTGFm?=
+ =?gb2312?B?YnNudDZyTndVL3l1QzFLTnZ6TmZPdllwQkY3SUVvS0piWWpzRUFLT0V0M1ZZ?=
+ =?gb2312?B?VlgrYi82MEhUZzhIVE9ML1hyU2dpZzlydXFBSjI3dDlBaElzeHczNkxuZEw4?=
+ =?gb2312?B?ekp3UT09?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?gb2312?B?S3JMU1hZUTFQMDJUUGFOdXJRQm1rUHVMT3JVMFV0emlaakxCNHRtRDVFQ3l4?=
+ =?gb2312?B?cXNzellPWjltSko3b1pTTkFOczltSmdCVVBmclBLMGNDVGd4UEJQQmJ1andk?=
+ =?gb2312?B?UWk3N2xtUXJiWDZ3ZnU3T0pkZjZpTU8zN2pKR2cwb0gzcUJZVFJtSDNuamNl?=
+ =?gb2312?B?U1hEaDhBSC9YdEhUY0VmMjdnN0FTOXMxejgxREVEencxaUp4ZGFFdjYrdkVz?=
+ =?gb2312?B?UW9jNFFtZWYwUm05MHdFNFB3UG5oNmFvWmpUaXl6TG5qcFRVQnNPTWpYc3ZO?=
+ =?gb2312?B?T1R6Z09tL0ZQV0RjQVo0Mk1IdXNiTU9RTHBoY0J1QytOYjFKT0lPSFIxU0lC?=
+ =?gb2312?B?TVRnTGZWTnIxamphTWhMS0dJT05qSm4xbnltZk93YWJYaUFkeHlYZ1lFZ0l6?=
+ =?gb2312?B?NWptZWpqNVRIbDQwOU8yZHFQaU1tUENVMkIweFd6bGgvbXd2V1NpN1RWMzl2?=
+ =?gb2312?B?c1FOQXpqYW9TeElyK0c5cE5WeVZxMlZOaGdnaEtMaklzRHlzYVJIQkh2L1kz?=
+ =?gb2312?B?QWlVOGt4bjc4VGVhbjl1c2NpbDN6QjR0WHJpTW4wZzhVL2xBWSthYjdBUlVG?=
+ =?gb2312?B?bWZyeDd5ZzN1UjB5Zm1DUDFSR2ZhQUJRZUF5K1pGZGlIZVppWjdHejdnT3Jv?=
+ =?gb2312?B?Tk1uem1TWE1CbTVBOWJEbUlqOGRpaDRJVGkxOEd4emtwVGxhQmN5dGpBdnFS?=
+ =?gb2312?B?SzhpenhnQ3ZkM0hpekQ1Q1VsN3BMVVlpNzY3SHJFWW9vZVN5TkxDOTBNaGtS?=
+ =?gb2312?B?RExSMkRqU3NBWjRjT1VBYmpOZzJCbE1jUkRrRUZ5bzBvT2JHeGNjTWowR3JM?=
+ =?gb2312?B?bWhodVE3ejBNNFNvczA5STZrdFNLZnBQV0JwK3J5RnQ2dkNXcmN2cFY4N3BS?=
+ =?gb2312?B?MHRyNjN2SjFBN2VLNEo5djNCaTI5blVlclNlNXYwMHhiZVlHRUZTc0VMTVB5?=
+ =?gb2312?B?aUIvMC9CYkwvbUJ3cUlUMTczUVVJSnBXVXVabWp0djdjZVpjQWEySnFnbnhQ?=
+ =?gb2312?B?SVZUak94bEsydHJNQ3hoZ05Ed2RLbG5wYi9xZXdvMGRwVHhqVy9BbEZLb0ZP?=
+ =?gb2312?B?dUN5YlM0N3A3NmMxMmZRa1dsSU9taGZUQ2xoVDhNYjZIejZTUWhwcFdocURw?=
+ =?gb2312?B?a1Zxb1hmd25iSTBlYXpsR2w5MTBpdExOUmZjNkc2clU2K3hKRDVMZkxkM25a?=
+ =?gb2312?B?YzM4VkV4RGFDS1VMVW1Ja3pWV2NxOHorL1dPWElHY2FGY3FaUXJSSy9kdjBG?=
+ =?gb2312?B?RTFreVpvdkpncHBHSnROaThkTHl5RHR6YnRtcWwxZFYyc0xBSzQyclNIQURL?=
+ =?gb2312?B?STlDTGZOdkkwM3hya25PNWl4ZkRBeDlmRDBqbVRIQ0lvVW9pRUlxSmZ2VDhR?=
+ =?gb2312?B?Rkdka3BIc2FoZTdJQ0tYZFErWFRKUnpLR3RqWGc4RlJoSW9mNUVqQTdUdTVT?=
+ =?gb2312?B?T0JxN2ZtQ2w5K2VyaWhDcVQwRmJNdTVsTkkrMjJ2aUIwa0VUOU1WMWFKVHN5?=
+ =?gb2312?B?ZXVPTWpkdS9pMEI0SGNzb003MU12UWE3VmRzbDhhRytMVkNsRmdGUFVkMXo5?=
+ =?gb2312?B?RXBUTWJMZGpQdElYY2V5ZG42VkxEMHp1WUl1U3c2b3pOSGtEOGppa0JzTTJy?=
+ =?gb2312?B?S2xlamNFMGpGa2FRbkFnemRaRU5TVkpnTGZ6cDNyMzNpcXhrZEZFZkJOMVU1?=
+ =?gb2312?B?WldjS2VDMGI3bWd3UW9MdGZlazJ0Q2FWRTUwamg4Tnl4N2xlakxLM2FHTDRi?=
+ =?gb2312?B?TitLVTdoeENLVmdyNnlnQjhRRnJ2TnRiRWVrUGFMSXBwR2JkRUVwQ04rRnZq?=
+ =?gb2312?B?V0VZZEs2NWIrYUhHeFNSS0tHSUlsYkNjbTBFTDk5Sm1kR0Q4RHFTM1RFYTUw?=
+ =?gb2312?B?dmU0cVJ4NHd0Q291cFNRakhXeFZ0ZWQ4L1dYUmo2bHRFZlVGS2MvcHRqT0pn?=
+ =?gb2312?Q?bOL7lk61s3GJynpEyaGvQA2uMPDBDzws?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: sct-15-20-9412-4-msonline-outlook-4606f.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30fe29a5-10a9-487b-c7ae-08df09b9107f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2026 12:44:16.0074
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY7P300MB0055
 
-Follow-up to the helper introduction: the runtime metadata-corruption
-paths in mft.c, lcnalloc.c, bitmap.c and inode.c still record the error
-flag with a bare NVolSetErrors(), leaving the same window in which
-ntfs_sync_fs() can acquire ni->mrec_lock, find NVolErrors() unset, and
-persist the volume as clean before the erroring thread records its
-error.
-
-Convert the call sites that can run concurrently with sync and hold no
-mrec_lock:
-
- - the mft record allocation and $MFT data/$BITMAP extend rollback
-   paths (mft.c), which hold the runlist, mftbmp and lcnbmp locks;
-
- - the cluster allocation/free rollback paths (lcnalloc.c), which
-   hold vol->lcnbmp_lock;
-
- - the bitmap rollback failure path (bitmap.c), which holds no
-   relevant lock;
-
- - the inode read and writeback failure paths (inode.c), which run
-   under I_NEW or with the mrec_lock already released at err_out.
-
-Blocking on the $Volume mrec_lock from those paths is safe: it is a
-leaf lock, its critical sections never acquire the locks the callers
-hold, and it carries its own lockdep class so the validator does not
-report an inversion against the shared mrec_lock class.
-
-The remaining call sites keep calling NVolSetErrors() directly, now
-with comments explaining why:
-
- - the mft record writeback paths (write_mft_record_nolock() and
-   ntfs_write_mft_block()) can run with a caller's mrec_lock held,
-   which for the $Volume inode itself would self-deadlock the helper;
-
- - the ntfs_attr_lookup() failure paths (ntfs_attr_find(),
-   ntfs_external_attr_find() and the ntfs_attr_make_non_resident()
-   rollback) run with the caller's mrec_lock held for the same
-   reason.
-
-Cc: stable@vger.kernel.org
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
----
- fs/ntfs/attrib.c   | 18 ++++++++++++++-
- fs/ntfs/bitmap.c   |  2 +-
- fs/ntfs/inode.c    |  8 +++----
- fs/ntfs/lcnalloc.c |  4 ++--
- fs/ntfs/mft.c      | 55 ++++++++++++++++++++++++++++------------------
- 5 files changed, 58 insertions(+), 29 deletions(-)
-
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 60264833bb63..5965a67b5971 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -964,6 +964,11 @@ static int ntfs_attr_find(const __le32 type, const __le16 *name,
- 	}
- 	ntfs_error(vol->sb, "mft %#llx, type %#x is corrupt. Run chkdsk.",
- 		   (long long)ctx->ntfs_ino->mft_no, le32_to_cpu(type));
-+	/*
-+	 * ntfs_attr_lookup() runs with the caller's mrec_lock held, so the
-+	 * dirty bit cannot be written here (it would self-deadlock for the
-+	 * $Volume inode); record the error flag only.
-+	 */
- 	NVolSetErrors(vol);
- 	return -EIO;
- }
-@@ -1501,8 +1506,14 @@ static int ntfs_external_attr_find(const __le32 type,
- 		err = -EIO;
- 	}
- 
--	if (err != -ENOMEM)
-+	if (err != -ENOMEM) {
-+		/*
-+		 * ntfs_attr_lookup() runs with the caller's mrec_lock
-+		 * held, so the dirty bit cannot be written here; record
-+		 * the error flag only.
-+		 */
- 		NVolSetErrors(vol);
-+	}
- 	return err;
- not_found:
- 	/*
-@@ -2236,6 +2247,11 @@ int ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size)
- 		if (ntfs_cluster_free_from_rl(vol, rl) < 0) {
- 			ntfs_error(vol->sb,
- 				"Failed to release allocated cluster(s) in error code path.  Run chkdsk to recover the lost cluster(s).");
-+			/*
-+			 * The caller may hold the mrec_lock of the inode
-+			 * being modified, so the dirty bit cannot be
-+			 * written here; record the error flag only.
-+			 */
- 			NVolSetErrors(vol);
- 		}
- 		kvfree(rl);
-diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
-index b1436b3151b9..6120cb301665 100644
---- a/fs/ntfs/bitmap.c
-+++ b/fs/ntfs/bitmap.c
-@@ -284,7 +284,7 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
- 		ntfs_error(vi->i_sb,
- 			"Failed to map subsequent page (error %i) and rollback failed (error %i). Aborting and leaving inconsistent metadata. Unmount and run chkdsk.",
- 			err, pos);
--		NVolSetErrors(NTFS_SB(vi->i_sb));
-+		ntfs_mark_volume_dirty_with_error(NTFS_SB(vi->i_sb));
- 	}
- 	return err;
- }
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 32edb4045178..0288f6a101dc 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -1245,7 +1245,7 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 		ntfs_error(vol->sb,
- 			"Failed with error code %i.  Marking corrupt inode 0x%llx as bad.  Run chkdsk.",
- 			err, ni->mft_no);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	return err;
- }
-@@ -1473,7 +1473,7 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
- 			err, ni->mft_no, ni->type, ni->name_len,
- 			base_ni->mft_no);
- 	if (err != -ENOENT && err != -ENOMEM)
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	return err;
- }
- 
-@@ -1725,7 +1725,7 @@ static int ntfs_read_locked_index_inode(struct inode *base_vi, struct inode *vi)
- 		"Failed with error code %i while reading index inode (mft_no 0x%llx, name_len %i.",
- 		err, ni->mft_no, ni->name_len);
- 	if (err != -EOPNOTSUPP && err != -ENOMEM)
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	return err;
- }
- 
-@@ -2883,7 +2883,7 @@ int __ntfs_write_inode(struct inode *vi, int sync)
- 		mark_inode_dirty(vi);
- 	else {
- 		ntfs_error(vi->i_sb, "Failed (error %i):  Run chkdsk.", -err);
--		NVolSetErrors(ni->vol);
-+		ntfs_mark_volume_dirty_with_error(ni->vol);
- 	}
- 	if (need_iput)
- 		iput(vi);
-diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
-index aa2e017a4384..dd6854f16136 100644
---- a/fs/ntfs/lcnalloc.c
-+++ b/fs/ntfs/lcnalloc.c
-@@ -763,7 +763,7 @@ switch_to_data1_zone:		search_zone = 2;
- 			ntfs_error(vol->sb,
- 				"Failed to rollback (error %i). Leaving inconsistent metadata! Unmount and run chkdsk.",
- 				err2);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		/* Free the runlist. */
- 		kvfree(rl);
-@@ -1044,7 +1044,7 @@ s64 __ntfs_cluster_free(struct ntfs_inode *ni, const s64 start_vcn, s64 count,
- 		ntfs_error(vol->sb,
- 			"Failed to rollback (error %i).  Leaving inconsistent metadata!  Unmount and run chkdsk.",
- 			(int)delta);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	ntfs_dec_free_clusters(vol, delta);
- 	up_write(&vol->lcnbmp_lock);
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 984a0827f9ac..d8791d7b9678 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -657,8 +657,15 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
- 			"Not enough memory to write mft record. Redirtying so the write is retried later.");
- 		mark_mft_record_dirty(ni);
- 		err = 0;
--	} else
-+	} else {
-+		/*
-+		 * The writeback path can run with the caller's mrec_lock
-+		 * held, so the dirty bit cannot be written here (it would
-+		 * self-deadlock for the $Volume inode); record the error
-+		 * flag only.
-+		 */
- 		NVolSetErrors(vol);
-+	}
- 	return err;
- }
- 
-@@ -1150,7 +1157,7 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 			if (ntfs_cluster_free_from_rl(vol, rl2)) {
- 				ntfs_error(vol->sb, "Failed to deallocate allocated cluster.%s",
- 						es);
--				NVolSetErrors(vol);
-+				ntfs_mark_volume_dirty_with_error(vol);
- 			}
- 			kvfree(rl2);
- 			return PTR_ERR(rl);
-@@ -1285,7 +1292,7 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 		 * The only thing that is now wrong is ->allocated_size of the
- 		 * base attribute extent which chkdsk should be able to fix.
- 		 */
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 		return ret;
- 	}
- 	a = ctx->attr;
-@@ -1306,7 +1313,7 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 	down_write(&vol->lcnbmp_lock);
- 	if (ntfs_bitmap_clear_bit(vol->lcnbmp_ino, lcn)) {
- 		ntfs_error(vol->sb, "Failed to free allocated cluster.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	} else
- 		ntfs_inc_free_clusters(vol, 1);
- 	up_write(&vol->lcnbmp_lock);
-@@ -1317,16 +1324,16 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 				a->data.non_resident.mapping_pairs_offset),
- 				rl2, ll, -1, NULL, NULL, NULL)) {
- 			ntfs_error(vol->sb, "Failed to restore mapping pairs array.%s", es);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
- 			ntfs_error(vol->sb, "Failed to restore attribute record.%s", es);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		mark_mft_record_dirty(ctx->ntfs_ino);
- 	} else if (status.mp_extended && ntfs_attr_update_mapping_pairs(mftbmp_ni, 0)) {
- 		ntfs_error(vol->sb, "Failed to restore mapping pairs.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
-@@ -1420,20 +1427,20 @@ static int ntfs_mft_bitmap_extend_initialized_nolock(struct ntfs_volume *vol)
- 	mrec = map_mft_record(mft_ni);
- 	if (IS_ERR(mrec)) {
- 		ntfs_error(vol->sb, "Failed to map mft record.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 		return ret;
- 	}
- 	ctx = ntfs_attr_get_search_ctx(mft_ni, mrec);
- 	if (unlikely(!ctx)) {
- 		ntfs_error(vol->sb, "Failed to get search context.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 		goto unm_err_out;
- 	}
- 	if (ntfs_attr_lookup(mftbmp_ni->type, mftbmp_ni->name,
- 			mftbmp_ni->name_len, CASE_SENSITIVE, 0, NULL, 0, ctx)) {
- 		ntfs_error(vol->sb,
- 			"Failed to find first attribute extent of mft bitmap attribute.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- put_err_out:
- 		ntfs_attr_put_search_ctx(ctx);
- unm_err_out:
-@@ -1587,7 +1594,7 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- 		if (ntfs_cluster_free_from_rl(vol, rl2)) {
- 			ntfs_error(vol->sb,
- 				"Failed to deallocate clusters from the mft data attribute.%s", es);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		kvfree(rl2);
- 		return PTR_ERR(rl);
-@@ -1721,7 +1728,7 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- 		 * The only thing that is now wrong is ->allocated_size of the
- 		 * base attribute extent which chkdsk should be able to fix.
- 		 */
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 		return ret;
- 	}
- 	ctx->attr->data.non_resident.highest_vcn =
-@@ -1729,17 +1736,17 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- undo_alloc:
- 	if (ntfs_cluster_free(mft_ni, old_last_vcn, -1, ctx) < 0) {
- 		ntfs_error(vol->sb, "Failed to free clusters from mft data attribute.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 
- 	if (ntfs_rl_truncate_nolock(vol, &mft_ni->runlist, old_last_vcn)) {
- 		ntfs_error(vol->sb, "Failed to truncate mft data attribute runlist.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	if (mp_extended && ntfs_attr_update_mapping_pairs(mft_ni, 0)) {
- 		ntfs_error(vol->sb, "Failed to restore mapping pairs.%s",
- 			   es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	if (ctx) {
- 		a = ctx->attr;
-@@ -1750,16 +1757,16 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- 					a->data.non_resident.mapping_pairs_offset),
- 				rl2, ll, -1, NULL, NULL, NULL)) {
- 				ntfs_error(vol->sb, "Failed to restore mapping pairs array.%s", es);
--				NVolSetErrors(vol);
-+				ntfs_mark_volume_dirty_with_error(vol);
- 			}
- 			if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
- 				ntfs_error(vol->sb, "Failed to restore attribute record.%s", es);
--				NVolSetErrors(vol);
-+				ntfs_mark_volume_dirty_with_error(vol);
- 			}
- 			mark_mft_record_dirty(ctx->ntfs_ino);
- 		} else if (IS_ERR(ctx->mrec)) {
- 			ntfs_error(vol->sb, "Failed to restore attribute search context.%s", es);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		ntfs_attr_put_search_ctx(ctx);
- 	}
-@@ -2322,7 +2329,7 @@ int ntfs_mft_record_alloc(struct ntfs_volume *vol, const int mode,
- 			folio_unlock(folio);
- 			kunmap_local(m);
- 			folio_put(folio);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 			goto search_free_rec;
- 		}
- 		/*
-@@ -2475,7 +2482,7 @@ int ntfs_mft_record_alloc(struct ntfs_volume *vol, const int mode,
- undo_mftbmp_alloc_nolock:
- 	if (ntfs_bitmap_clear_bit(vol->mftbmp_ino, bit)) {
- 		ntfs_error(vol->sb, "Failed to clear bit in mft bitmap.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	if (!base_ni || base_ni->mft_no != FILE_MFT)
- 		up_write(&vol->mftbmp_lock);
-@@ -2815,8 +2822,14 @@ static int ntfs_write_mft_block(struct folio *folio, struct writeback_control *w
- 			iput(ref_inos[nr_ref_inos]);
- 	}
- 
--	if (unlikely(err && err != -ENOMEM))
-+	if (unlikely(err && err != -ENOMEM)) {
-+		/*
-+		 * The writeback path can run with a caller's mrec_lock
-+		 * held, so the dirty bit cannot be written here; record
-+		 * the error flag only.
-+		 */
- 		NVolSetErrors(vol);
-+	}
- 	if (likely(!err))
- 		ntfs_debug("Done.");
- 	return err;
--- 
-2.25.1
-
+VGhlIE5URlMgZHJpdmVyIHdhcyBjb252ZXJ0aW5nIGJ5dGUgb2Zmc2V0cyB0byBiaW8gc2VjdG9y
+IG51bWJlcnMgdXNpbmcKdGhlIGZpbGVzeXN0ZW0gYmxvY2sgc2l6ZSAoc2ItPnNfYmxvY2tzaXpl
+X2JpdHMpLiAgSG93ZXZlciwgYmxvY2sgbGF5ZXIKc2VjdG9yIG51bWJlcnMgLSBiaW8tPmJpX2l0
+ZXIuYmlfc2VjdG9yIGFuZCBzZWN0b3JfdCAtIGFyZSBhbHdheXMgaW4KdW5pdHMgb2YgNTEyIGJ5
+dGVzLCBpbmRlcGVuZGVudCBvZiB0aGUgZmlsZXN5c3RlbSBibG9jayBzaXplLgoKT24gYSBkZXZp
+Y2Ugd2l0aCBhIDQwOTYgYnl0ZSBsb2dpY2FsIGJsb2NrIHNpemUgKDRLbiksIHNiX21pbl9ibG9j
+a3NpemUoKQpsaWZ0cyBzX2Jsb2Nrc2l6ZSB0byA0MDk2LCBzbyBldmVyeSBNRlQgd3JpdGViYWNr
+IGJpbyBidWlsdCBieQpudGZzX3N5bmNfbWZ0X21pcnJvcigpLCB3cml0ZV9tZnRfcmVjb3JkX25v
+bG9jaygpIGFuZApudGZzX21mdF93cml0ZXBhZ2VzKCkgZW5kZWQgdXAgd2l0aCBhIHNlY3RvciBu
+dW1iZXIgZWlnaHQgdGltZXMgdG9vCnNtYWxsLiAgVGhlIHJlc3VsdGluZyBMQkEgaXMgbm90IG9u
+bHkgd3JvbmcsIGl0IGlzIHVzdWFsbHkgbm90IGEKbXVsdGlwbGUgb2YgdGhlIGxvZ2ljYWwgYmxv
+Y2sgc2l6ZSBlaXRoZXIsIGFuZCBzb21lIGNvbnRyb2xsZXJzIHJlamVjdAp0aGUgd3JpdGUgb3V0
+cmlnaHQsIGUuZy46CgogIG50ZnM6IChkZXZpY2UgbnZtZTBuMXAzKTogbnRmc19zeW5jX21mdF9t
+aXJyb3IoKTogSS9PIGVycm9yIHdoaWxlCiAgd3JpdGluZyBtZnQgbWlycm9yIHJlY29yZCAweDMh
+CiAgbnRmczogKGRldmljZSBudm1lMG4xcDMpOiB3cml0ZV9tZnRfcmVjb3JkX25vbG9jaygpOiBJ
+L08gZXJyb3Igd2hpbGUKICB3cml0aW5nIG1mdCByZWNvcmQgMHgzISAgTWFya2luZyBiYXNlIGlu
+b2RlIGFzIGJhZC4KClJlcHJvZHVjZWQgb24gYW4gQXBwbGUgU1NEIEFQMDI1NkogKDRLbikgd2l0
+aCBhIHZvbHVtZSB1c2luZyA0MDk2IGJ5dGUKc2VjdG9ycywgNDA5NiBieXRlIGNsdXN0ZXJzIGFu
+ZCBjbHVzdGVyc19wZXJfbWZ0X3JlY29yZCA9IDE7IGFmdGVyIHRoZQpmaXggYSAxMyBNQiBmaWxl
+IHdyaXR0ZW4gdG8gdGhlIHZvbHVtZSBpcyBieXRlLWZvci1ieXRlIGlkZW50aWNhbAphZnRlciBh
+IHVtb3VudC9tb3VudCBjeWNsZS4KCkZpeGVzOiA0MDc5NjA1MTk5MWQgKCJudGZzOiB1cGRhdGUg
+aW4tbWVtb3J5LCBvbi1kaXNrIHN0cnVjdHVyZXMgYW5kIGhlYWRlcnMiKQpTaWduZWQtb2ZmLWJ5
+OiBaaHUgVGlhbmhhbyA8emh1dGlhbmhhbzc1QGhvdG1haWwuY29tPgotLS0KIGZzL250ZnMvbnRm
+cy5oIHwgMTUgKysrKysrKysrKysrLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygr
+KSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9mcy9udGZzL250ZnMuaCBiL2ZzL250ZnMv
+bnRmcy5oCmluZGV4IGRmNWE3NWQ1MDZmNi4uYjY2Y2U2MmY2N2M5IDEwMDY0NAotLS0gYS9mcy9u
+dGZzL250ZnMuaAorKysgYi9mcy9udGZzL250ZnMuaApAQCAtMjAsNiArMjAsNyBAQAogI2luY2x1
+ZGUgPGxpbnV4L3NtcC5oPgogI2luY2x1ZGUgPGxpbnV4L3BhZ2VtYXAuaD4KICNpbmNsdWRlIDxs
+aW51eC91aWRnaWQuaD4KKyNpbmNsdWRlIDxsaW51eC9ibGtkZXYuaD4gICAgICAvKiBGb3IgU0VD
+VE9SX1NISUZULiAqLwogCiAjaW5jbHVkZSAidm9sdW1lLmgiCiAjaW5jbHVkZSAibGF5b3V0Lmgi
+CkBAIC03MSw3ICs3MiwxMSBAQAogI2RlZmluZSBOVEZTX0NMVV9UT19QT0ZTKHZvbCwgY2x1KSAo
+KCh1NjQpKGNsdSkgPDwgKHZvbCktPmNsdXN0ZXJfc2l6ZV9iaXRzKSAmIFwKIAkJCQkgICAgflBB
+R0VfTUFTSykKIAotI2RlZmluZSBOVEZTX0JfVE9fU0VDVE9SKHZvbCwgYikgKChiKSA+PiAoKHZv
+bCktPnNiKS0+c19ibG9ja3NpemVfYml0cykKKy8qCisgKiBiaW8tPmJpX2l0ZXIuYmlfc2VjdG9y
+IGFuZCBzZWN0b3JfdCBhcmUgYWx3YXlzIGluIDUxMi1ieXRlIHNlY3RvcnMsIGV2ZW4KKyAqIHdo
+ZW4gdGhlIGZpbGVzeXN0ZW0gYmxvY2sgc2l6ZSBpcyBsYXJnZXIgKGZvciBleGFtcGxlIDRLaUIp
+LgorICovCisjZGVmaW5lIE5URlNfQl9UT19TRUNUT1Iodm9sLCBiKSBudGZzX2J5dGVzX3RvX3Nl
+Y3Rvcih2b2wsIGIpCiAKIGVudW0gewogCU5URlNfQkxPQ0tfU0laRQkJPSA1MTIsCkBAIC0xNTQs
+MTEgKzE1OSwxNSBAQCBzdGF0aWMgaW5saW5lIHU2NCBudGZzX2NsdXN0ZXJfdG9fcG9mZihjb25z
+dCBzdHJ1Y3QgbnRmc192b2x1bWUgKnZvbCwKIAlyZXR1cm4gKGNsdSA8PCB2b2wtPmNsdXN0ZXJf
+c2l6ZV9iaXRzKSAmIH5QQUdFX01BU0s7CiB9CiAKLS8qIENvbnZlcnQgYnl0ZSBvZmZzZXQgdG8g
+c2VjdG9yIChibG9jaykgbnVtYmVyLiAqLworLyogQ29udmVydCBieXRlIG9mZnNldCB0byBhIGJs
+b2NrIGxheWVyIHNlY3RvciBudW1iZXIuICBUaG9zZSBhcmUgYWx3YXlzIGluCisgKiB1bml0cyBv
+ZiA1MTIgYnl0ZXMsIG5ldmVyIGluIHVuaXRzIG9mIHNiLT5zX2Jsb2Nrc2l6ZSwgd2hpY2ggaXMg
+cmFpc2VkIHRvCisgKiB0aGUgZGV2aWNlIGxvZ2ljYWwgYmxvY2sgc2l6ZSBvbiA0S24gZGV2aWNl
+cy4KKyAqLwogc3RhdGljIGlubGluZSBzZWN0b3JfdCBudGZzX2J5dGVzX3RvX3NlY3Rvcihjb25z
+dCBzdHJ1Y3QgbnRmc192b2x1bWUgKnZvbCwKIAkJdTY0IGJ5dGVzKQogewotCXJldHVybiBieXRl
+cyA+PiB2b2wtPnNiLT5zX2Jsb2Nrc2l6ZV9iaXRzOworCSh2b2lkKXZvbDsKKwlyZXR1cm4gYnl0
+ZXMgPj4gU0VDVE9SX1NISUZUOwogfQogCiAvKiBHbG9iYWwgdmFyaWFibGVzLiAqLwotLSAKMi41
+MS4wCg==
