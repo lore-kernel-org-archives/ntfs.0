@@ -1,410 +1,233 @@
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A976C331A6E
-	for <ntfs@lists.linux.dev>; Thu,  3 Sep 2026 02:19:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05017345EDF
+	for <ntfs@lists.linux.dev>; Thu,  3 Sep 2026 02:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788401984; cv=none; b=iEmuNxWoePcwucRZMd41AJeD2HX6FFEHQKQ9wWenIl0miOP5ReupG3UnNmuO1sDjLmOQEys9fGInG2lk8e6V9K4CdMd2OI+7809mVbdSMhGwC0Uafq6wFHEtuY3W1LL+yw6Z+ymEV+klX5VeNsQgHU0opFQgg36vpq/qRR4N/Nk=
+	t=1788402289; cv=none; b=RdRmzSF43Kn02iu05vj+1w2uBUo8v36Heve+J7aTv1uFKlrI66B5r7bykaUqbKQHU/xtM6qT2MfWAIkTOVHGJXy3hFZS/xdl2iJoBmoSki6pTWQlOV3PMipzWONqFfYd5EtKq7SfVEdKZoZWuT/2XhtTKFctrvgkqY3BkeuHcWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788401984; c=relaxed/simple;
-	bh=l95jmmcfhzQfEJKuA3pP0qktxF71eyIcVOtj/grVNAE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bmkQCqc2LNFDLo/nezhrV8WMcLFw9cDKmKw/kb4UkqQoLM9jhxT3pl/V4/5E4c0NFf2AAOX2d+tyxYjMrwrZE4dF6YwIY1BI5VtbE7cwFD7z6EF0fwy6l+9plLtq9dPKmsKXfiJUE2PaL1MPvXyZror0t9GFoHAmPL8YoBt0EuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: e8ccbd1ea73d11f19a56ed5b684f684d-20260903
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:92905f81-4450-4ec2-82e1-080a45c38498,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:09f9f6664c5c5694674354c2a2158787,BulkI
-	D:nil,BulkQuantity:0,SF:81|82|102|136|850|865|898,TC:nil,Content:0|15|50,E
-	DM:-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:
-	0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: e8ccbd1ea73d11f19a56ed5b684f684d-20260903
-X-User: zenghongling@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <zenghongling@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1833782011; Thu, 03 Sep 2026 10:19:36 +0800
-From: Hongling Zeng <zenghongling@kylinos.cn>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>,
-	stable@vger.kernel.org
-Subject: [PATCH 3/3] ntfs: convert runtime error paths to mark volume dirty after recording errors
-Date: Thu,  3 Sep 2026 10:19:30 +0800
-Message-Id: <20260903021930.201169-3-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260903021930.201169-1-zenghongling@kylinos.cn>
-References: <20260903021930.201169-1-zenghongling@kylinos.cn>
+	s=arc-20240116; t=1788402289; c=relaxed/simple;
+	bh=orE0wMKRPcRDEqhAW65slXxrkNG5MR+Z2iVAwYqD1kM=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=WRjULNAub+bM1O/RLlJCaQHvNHUBnTdUi65q5OS3fdQ5p1NkZj6ToezvgQBpk/R0WP5VLOK3EQjGFnby0DSuFGHCYsNdDJHuUWtH3f9W9T8dWlg83Z6BE4uQqEvwo2GzmYsPxuX+W9JPIeLcS1rAdC+kk4mYTEsdxtoq7OKLr+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=bSObvlIX; arc=none smtp.client-ip=220.197.31.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="bSObvlIX"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
+	Content-Type; bh=54IXZroYKkcxKQKMPsI/ne/eA/BH5mAcEDtq0IKVRAE=;
+	b=bSObvlIXYTiYTJWqn+OGIdfRn8FuRe9PqrU4HIPhYDOZjkpDkKtWDQgWcv6UxL
+	hbCJO1JHvom1Kz4SsQEOrmoQ/fq2/fTvBEVCNL0wPAKWnAruqCKxeAJZbw9aXKFA
+	iXsPgaTEBTttpz68/8lHClex7BYbAXoPqsSr5JaYVgxLc=
+Received: from localhost.localdomain (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PykvCgD331622ZhqT6sGGw--.16149S2;
+	Thu, 03 Sep 2026 10:21:42 +0800 (CST)
+Message-ID: <6A98D99B.5020504@126.com>
+Date: Thu, 03 Sep 2026 10:21:15 +0800
+From: Hongling Zeng <zhongling0719@126.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
+To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org, 
+ hyc.lee@gmail.com
+CC: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org
+Subject: Re: [PATCH 1/3] ntfs: fix volume flag update races
+References: <20260903021930.201169-1-zenghongling@kylinos.cn>
+In-Reply-To: <20260903021930.201169-1-zenghongling@kylinos.cn>
+Content-Type: text/plain; charset=gbk; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PykvCgD331622ZhqT6sGGw--.16149S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3GFWUCryrGFW5ur1xtr1kKrg_yoW3WFyfpr
+	sayF9xKa1qyr17Wws7K3yIga1S9348Gr48Cry7Jw1av3sxtryUXF18K3WrAFnYyr97Ar1x
+	XFWjyrW5uw1UZF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jI0PfUUUUU=
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrhZkNWqY2bYjCgAA3d
 
-Follow-up to the helper introduction: the runtime metadata-corruption
-paths in mft.c, lcnalloc.c, bitmap.c and inode.c still record the error
-flag with a bare NVolSetErrors(), leaving the same window in which
-ntfs_sync_fs() can acquire ni->mrec_lock, find NVolErrors() unset, and
-persist the volume as clean before the erroring thread records its
-error.
+Hi,
+Sorry for the many versions of this patch.
 
-Convert the call sites that can run concurrently with sync and hold no
-mrec_lock, so the helper can take the $Volume inode's mrec_lock to
-persist VOLUME_IS_DIRTY:
+The ntfs_sync_fs() race you pointed out is fixed in patch 1/3: 
+NVolErrors() is checked and VOLUME_IS_DIRTY is cleared inside the same 
+mrec_lock critical section, so every interleaving with a concurrent 
+error path
+leaves the volume dirty on disk.
 
- - the mft record allocation and $MFT data/$BITMAP extend rollback
-   paths (mft.c), which hold the runlist, mftbmp and lcnbmp locks,
-   all outer to the $Volume mrec_lock;
+Patches 2/3 and 3/3 close the writer-side window: the runtime error 
+paths now record NVolErrors() before taking the mrec_lock to persist 
+VOLUME_IS_DIRTY, so a clear path running afterwards sees the flag under 
+the lock
+and leaves the dirty bit alone.
 
- - the cluster allocation/free rollback paths (lcnalloc.c), which
-   hold vol->lcnbmp_lock;
+Looking forward to your review and feedback.
 
- - the bitmap rollback failure path (bitmap.c), which holds no
-   relevant lock;
+Thanks,
+Hongling
 
- - the inode read and writeback failure paths (inode.c), which run
-   under I_NEW or with the mrec_lock already released at err_out.
-
-The remaining call sites keep calling NVolSetErrors() directly, now
-with comments explaining why:
-
- - the mft record writeback paths (write_mft_record_nolock() and
-   ntfs_write_mft_block()) can run with a caller's mrec_lock held,
-   which for the $Volume inode itself would self-deadlock the helper;
-
- - the ntfs_attr_lookup() failure paths (ntfs_attr_find(),
-   ntfs_external_attr_find() and the ntfs_attr_make_non_resident()
-   rollback) run with the caller's mrec_lock held for the same
-   reason.
-
-Cc: stable@vger.kernel.org
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
----
- fs/ntfs/attrib.c   | 18 ++++++++++++++-
- fs/ntfs/bitmap.c   |  2 +-
- fs/ntfs/inode.c    |  8 +++----
- fs/ntfs/lcnalloc.c |  4 ++--
- fs/ntfs/mft.c      | 55 ++++++++++++++++++++++++++++------------------
- 5 files changed, 58 insertions(+), 29 deletions(-)
-
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 60264833bb63..5965a67b5971 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -964,6 +964,11 @@ static int ntfs_attr_find(const __le32 type, const __le16 *name,
- 	}
- 	ntfs_error(vol->sb, "mft %#llx, type %#x is corrupt. Run chkdsk.",
- 		   (long long)ctx->ntfs_ino->mft_no, le32_to_cpu(type));
-+	/*
-+	 * ntfs_attr_lookup() runs with the caller's mrec_lock held, so the
-+	 * dirty bit cannot be written here (it would self-deadlock for the
-+	 * $Volume inode); record the error flag only.
-+	 */
- 	NVolSetErrors(vol);
- 	return -EIO;
- }
-@@ -1501,8 +1506,14 @@ static int ntfs_external_attr_find(const __le32 type,
- 		err = -EIO;
- 	}
- 
--	if (err != -ENOMEM)
-+	if (err != -ENOMEM) {
-+		/*
-+		 * ntfs_attr_lookup() runs with the caller's mrec_lock
-+		 * held, so the dirty bit cannot be written here; record
-+		 * the error flag only.
-+		 */
- 		NVolSetErrors(vol);
-+	}
- 	return err;
- not_found:
- 	/*
-@@ -2236,6 +2247,11 @@ int ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size)
- 		if (ntfs_cluster_free_from_rl(vol, rl) < 0) {
- 			ntfs_error(vol->sb,
- 				"Failed to release allocated cluster(s) in error code path.  Run chkdsk to recover the lost cluster(s).");
-+			/*
-+			 * The caller may hold the mrec_lock of the inode
-+			 * being modified, so the dirty bit cannot be
-+			 * written here; record the error flag only.
-+			 */
- 			NVolSetErrors(vol);
- 		}
- 		kvfree(rl);
-diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
-index b1436b3151b9..6120cb301665 100644
---- a/fs/ntfs/bitmap.c
-+++ b/fs/ntfs/bitmap.c
-@@ -284,7 +284,7 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
- 		ntfs_error(vi->i_sb,
- 			"Failed to map subsequent page (error %i) and rollback failed (error %i). Aborting and leaving inconsistent metadata. Unmount and run chkdsk.",
- 			err, pos);
--		NVolSetErrors(NTFS_SB(vi->i_sb));
-+		ntfs_mark_volume_dirty_with_error(NTFS_SB(vi->i_sb));
- 	}
- 	return err;
- }
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 32edb4045178..0288f6a101dc 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -1245,7 +1245,7 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 		ntfs_error(vol->sb,
- 			"Failed with error code %i.  Marking corrupt inode 0x%llx as bad.  Run chkdsk.",
- 			err, ni->mft_no);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	return err;
- }
-@@ -1473,7 +1473,7 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
- 			err, ni->mft_no, ni->type, ni->name_len,
- 			base_ni->mft_no);
- 	if (err != -ENOENT && err != -ENOMEM)
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	return err;
- }
- 
-@@ -1725,7 +1725,7 @@ static int ntfs_read_locked_index_inode(struct inode *base_vi, struct inode *vi)
- 		"Failed with error code %i while reading index inode (mft_no 0x%llx, name_len %i.",
- 		err, ni->mft_no, ni->name_len);
- 	if (err != -EOPNOTSUPP && err != -ENOMEM)
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	return err;
- }
- 
-@@ -2883,7 +2883,7 @@ int __ntfs_write_inode(struct inode *vi, int sync)
- 		mark_inode_dirty(vi);
- 	else {
- 		ntfs_error(vi->i_sb, "Failed (error %i):  Run chkdsk.", -err);
--		NVolSetErrors(ni->vol);
-+		ntfs_mark_volume_dirty_with_error(ni->vol);
- 	}
- 	if (need_iput)
- 		iput(vi);
-diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
-index aa2e017a4384..dd6854f16136 100644
---- a/fs/ntfs/lcnalloc.c
-+++ b/fs/ntfs/lcnalloc.c
-@@ -763,7 +763,7 @@ switch_to_data1_zone:		search_zone = 2;
- 			ntfs_error(vol->sb,
- 				"Failed to rollback (error %i). Leaving inconsistent metadata! Unmount and run chkdsk.",
- 				err2);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		/* Free the runlist. */
- 		kvfree(rl);
-@@ -1044,7 +1044,7 @@ s64 __ntfs_cluster_free(struct ntfs_inode *ni, const s64 start_vcn, s64 count,
- 		ntfs_error(vol->sb,
- 			"Failed to rollback (error %i).  Leaving inconsistent metadata!  Unmount and run chkdsk.",
- 			(int)delta);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	ntfs_dec_free_clusters(vol, delta);
- 	up_write(&vol->lcnbmp_lock);
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 984a0827f9ac..d8791d7b9678 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -657,8 +657,15 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
- 			"Not enough memory to write mft record. Redirtying so the write is retried later.");
- 		mark_mft_record_dirty(ni);
- 		err = 0;
--	} else
-+	} else {
-+		/*
-+		 * The writeback path can run with the caller's mrec_lock
-+		 * held, so the dirty bit cannot be written here (it would
-+		 * self-deadlock for the $Volume inode); record the error
-+		 * flag only.
-+		 */
- 		NVolSetErrors(vol);
-+	}
- 	return err;
- }
- 
-@@ -1150,7 +1157,7 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 			if (ntfs_cluster_free_from_rl(vol, rl2)) {
- 				ntfs_error(vol->sb, "Failed to deallocate allocated cluster.%s",
- 						es);
--				NVolSetErrors(vol);
-+				ntfs_mark_volume_dirty_with_error(vol);
- 			}
- 			kvfree(rl2);
- 			return PTR_ERR(rl);
-@@ -1285,7 +1292,7 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 		 * The only thing that is now wrong is ->allocated_size of the
- 		 * base attribute extent which chkdsk should be able to fix.
- 		 */
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 		return ret;
- 	}
- 	a = ctx->attr;
-@@ -1306,7 +1313,7 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 	down_write(&vol->lcnbmp_lock);
- 	if (ntfs_bitmap_clear_bit(vol->lcnbmp_ino, lcn)) {
- 		ntfs_error(vol->sb, "Failed to free allocated cluster.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	} else
- 		ntfs_inc_free_clusters(vol, 1);
- 	up_write(&vol->lcnbmp_lock);
-@@ -1317,16 +1324,16 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 				a->data.non_resident.mapping_pairs_offset),
- 				rl2, ll, -1, NULL, NULL, NULL)) {
- 			ntfs_error(vol->sb, "Failed to restore mapping pairs array.%s", es);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
- 			ntfs_error(vol->sb, "Failed to restore attribute record.%s", es);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		mark_mft_record_dirty(ctx->ntfs_ino);
- 	} else if (status.mp_extended && ntfs_attr_update_mapping_pairs(mftbmp_ni, 0)) {
- 		ntfs_error(vol->sb, "Failed to restore mapping pairs.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
-@@ -1420,20 +1427,20 @@ static int ntfs_mft_bitmap_extend_initialized_nolock(struct ntfs_volume *vol)
- 	mrec = map_mft_record(mft_ni);
- 	if (IS_ERR(mrec)) {
- 		ntfs_error(vol->sb, "Failed to map mft record.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 		return ret;
- 	}
- 	ctx = ntfs_attr_get_search_ctx(mft_ni, mrec);
- 	if (unlikely(!ctx)) {
- 		ntfs_error(vol->sb, "Failed to get search context.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 		goto unm_err_out;
- 	}
- 	if (ntfs_attr_lookup(mftbmp_ni->type, mftbmp_ni->name,
- 			mftbmp_ni->name_len, CASE_SENSITIVE, 0, NULL, 0, ctx)) {
- 		ntfs_error(vol->sb,
- 			"Failed to find first attribute extent of mft bitmap attribute.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- put_err_out:
- 		ntfs_attr_put_search_ctx(ctx);
- unm_err_out:
-@@ -1587,7 +1594,7 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- 		if (ntfs_cluster_free_from_rl(vol, rl2)) {
- 			ntfs_error(vol->sb,
- 				"Failed to deallocate clusters from the mft data attribute.%s", es);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		kvfree(rl2);
- 		return PTR_ERR(rl);
-@@ -1721,7 +1728,7 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- 		 * The only thing that is now wrong is ->allocated_size of the
- 		 * base attribute extent which chkdsk should be able to fix.
- 		 */
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 		return ret;
- 	}
- 	ctx->attr->data.non_resident.highest_vcn =
-@@ -1729,17 +1736,17 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- undo_alloc:
- 	if (ntfs_cluster_free(mft_ni, old_last_vcn, -1, ctx) < 0) {
- 		ntfs_error(vol->sb, "Failed to free clusters from mft data attribute.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 
- 	if (ntfs_rl_truncate_nolock(vol, &mft_ni->runlist, old_last_vcn)) {
- 		ntfs_error(vol->sb, "Failed to truncate mft data attribute runlist.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	if (mp_extended && ntfs_attr_update_mapping_pairs(mft_ni, 0)) {
- 		ntfs_error(vol->sb, "Failed to restore mapping pairs.%s",
- 			   es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	if (ctx) {
- 		a = ctx->attr;
-@@ -1750,16 +1757,16 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- 					a->data.non_resident.mapping_pairs_offset),
- 				rl2, ll, -1, NULL, NULL, NULL)) {
- 				ntfs_error(vol->sb, "Failed to restore mapping pairs array.%s", es);
--				NVolSetErrors(vol);
-+				ntfs_mark_volume_dirty_with_error(vol);
- 			}
- 			if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
- 				ntfs_error(vol->sb, "Failed to restore attribute record.%s", es);
--				NVolSetErrors(vol);
-+				ntfs_mark_volume_dirty_with_error(vol);
- 			}
- 			mark_mft_record_dirty(ctx->ntfs_ino);
- 		} else if (IS_ERR(ctx->mrec)) {
- 			ntfs_error(vol->sb, "Failed to restore attribute search context.%s", es);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 		}
- 		ntfs_attr_put_search_ctx(ctx);
- 	}
-@@ -2322,7 +2329,7 @@ int ntfs_mft_record_alloc(struct ntfs_volume *vol, const int mode,
- 			folio_unlock(folio);
- 			kunmap_local(m);
- 			folio_put(folio);
--			NVolSetErrors(vol);
-+			ntfs_mark_volume_dirty_with_error(vol);
- 			goto search_free_rec;
- 		}
- 		/*
-@@ -2475,7 +2482,7 @@ int ntfs_mft_record_alloc(struct ntfs_volume *vol, const int mode,
- undo_mftbmp_alloc_nolock:
- 	if (ntfs_bitmap_clear_bit(vol->mftbmp_ino, bit)) {
- 		ntfs_error(vol->sb, "Failed to clear bit in mft bitmap.%s", es);
--		NVolSetErrors(vol);
-+		ntfs_mark_volume_dirty_with_error(vol);
- 	}
- 	if (!base_ni || base_ni->mft_no != FILE_MFT)
- 		up_write(&vol->mftbmp_lock);
-@@ -2815,8 +2822,14 @@ static int ntfs_write_mft_block(struct folio *folio, struct writeback_control *w
- 			iput(ref_inos[nr_ref_inos]);
- 	}
- 
--	if (unlikely(err && err != -ENOMEM))
-+	if (unlikely(err && err != -ENOMEM)) {
-+		/*
-+		 * The writeback path can run with a caller's mrec_lock
-+		 * held, so the dirty bit cannot be written here; record
-+		 * the error flag only.
-+		 */
- 		NVolSetErrors(vol);
-+	}
- 	if (likely(!err))
- 		ntfs_debug("Done.");
- 	return err;
--- 
-2.25.1
+在 2026年09月03日 10:19, Hongling Zeng 写道:
+> ntfs_set_volume_flags() and ntfs_clear_volume_flags() both read
+> vol->vol_flags outside any lock to compute the new value before handing
+> it to ntfs_write_volume_flags(), which only takes ni->mrec_lock around
+> the actual write. The read-modify-write is therefore not atomic, and two
+> concurrent callers can lose an update: ntfs_sync_fs() may derive a
+> "clean" value from vol->vol_flags while a writer concurrently records an
+> error and sets VOLUME_IS_DIRTY; the locked write then silently
+> overwrites the freshly-set dirty bit. The on-disk volume looks clean
+> despite the recorded errors, so chkdsk will not run on the next mount
+> and corrupted metadata can persist.
+>
+> Fix by moving the read-modify-write inside the mrec_lock: pass the bits
+> to set and to clear separately, and combine them with the current flag
+> state under the lock inside ntfs_write_volume_flags(). The set/clear
+> helpers pass only the bits to modify, not the complete flag state. The
+> bit manipulation is done on CPU-endian values, and the result is
+> converted back to little-endian before storing it. The wrappers keep
+> their signatures so callers are unchanged.
+>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+> ---
+> - Also fix the ntfs_sync_fs() race by checking NVolErrors() and clearing
+>    VOLUME_IS_DIRTY under ni->mrec_lock.
+> - Keep ntfs_set_volume_flags() and ntfs_clear_volume_flags() semantics
+>    unchanged.
+> - Do not tie setting VOLUME_IS_DIRTY to NVolSetErrors() in the generic
+>    set helper.
+> ---
+>   fs/ntfs/super.c | 62 +++++++++++++++++++++++++++++++++++--------------
+>   1 file changed, 45 insertions(+), 17 deletions(-)
+>
+> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+> index a1813093222b..a7977b95b967 100644
+> --- a/fs/ntfs/super.c
+> +++ b/fs/ntfs/super.c
+> @@ -353,31 +353,45 @@ void ntfs_handle_error(struct super_block *sb)
+>   }
+>   
+>   /*
+> - * ntfs_write_volume_flags - write new flags to the volume information flags
+> + * ntfs_write_volume_flags - apply flag changes to the volume information flags
+>    * @vol:	ntfs volume on which to modify the flags
+> - * @flags:	new flags value for the volume information flags
+> + * @set_bits:	bits to set in the volume information flags
+> + * @clear_bits:	bits to clear in the volume information flags
+>    *
+>    * Internal function.  You probably want to use ntfs_{set,clear}_volume_flags()
+>    * instead (see below).
+>    *
+> - * Replace the volume information flags on the volume @vol with the value
+> - * supplied in @flags.  Note, this overwrites the volume information flags, so
+> - * make sure to combine the flags you want to modify with the old flags and use
+> - * the result when calling ntfs_write_volume_flags().
+> + * Combine @set_bits and @clear_bits with the current in-memory flag state and
+> + * write the result back.  The set/clear helpers pass only the bits to modify,
+> + * not the complete flag state.  The read-modify-write happens under
+> + * ni->mrec_lock so that concurrent set/clear operations cannot lose updates.
+> + * All bit manipulation is done on CPU-endian values, and the result is
+> + * converted back to little-endian before storing it.
+>    *
+>    * Return 0 on success and -errno on error.
+>    */
+> -static int ntfs_write_volume_flags(struct ntfs_volume *vol, const __le16 flags)
+> +static int ntfs_write_volume_flags(struct ntfs_volume *vol,
+> +		const __le16 set_bits, const __le16 clear_bits,
+> +		const bool skip_if_errors)
+>   {
+>   	struct ntfs_inode *ni = NTFS_I(vol->vol_ino);
+>   	struct volume_information *vi;
+>   	struct ntfs_attr_search_ctx *ctx;
+> +	u16 flags;
+>   	int err;
+>   
+> -	ntfs_debug("Entering, old flags = 0x%x, new flags = 0x%x.",
+> -			le16_to_cpu(vol->vol_flags), le16_to_cpu(flags));
+>   	mutex_lock(&ni->mrec_lock);
+> -	if (vol->vol_flags == flags)
+> +
+> +	if (skip_if_errors && NVolErrors(vol))
+> +		goto done;
+> +
+> +	flags = le16_to_cpu(vol->vol_flags);
+> +	flags |= le16_to_cpu(set_bits) & le16_to_cpu(VOLUME_FLAGS_MASK);
+> +	flags &= ~(le16_to_cpu(clear_bits) & le16_to_cpu(VOLUME_FLAGS_MASK));
+> +	ntfs_debug("Entering, old flags = 0x%x, new flags = 0x%x.",
+> +			le16_to_cpu(vol->vol_flags), flags);
+> +
+> +	if (le16_to_cpu(vol->vol_flags) == flags)
+>   		goto done;
+>   
+>   	ctx = ntfs_attr_get_search_ctx(ni, NULL);
+> @@ -393,7 +407,7 @@ static int ntfs_write_volume_flags(struct ntfs_volume *vol, const __le16 flags)
+>   
+>   	vi = (struct volume_information *)((u8 *)ctx->attr +
+>   			le16_to_cpu(ctx->attr->data.resident.value_offset));
+> -	vol->vol_flags = vi->flags = flags;
+> +	vol->vol_flags = vi->flags = cpu_to_le16(flags);
+>   	mark_mft_record_dirty(ctx->ntfs_ino);
+>   	ntfs_attr_put_search_ctx(ctx);
+>   done:
+> @@ -414,13 +428,14 @@ static int ntfs_write_volume_flags(struct ntfs_volume *vol, const __le16 flags)
+>    * @flags:	flags to set on the volume
+>    *
+>    * Set the bits in @flags in the volume information flags on the volume @vol.
+> + * The bits are combined with the current flag state under the lock in
+> + * ntfs_write_volume_flags(), so concurrent updates are not lost.
+>    *
+>    * Return 0 on success and -errno on error.
+>    */
+>   int ntfs_set_volume_flags(struct ntfs_volume *vol, __le16 flags)
+>   {
+> -	flags &= VOLUME_FLAGS_MASK;
+> -	return ntfs_write_volume_flags(vol, vol->vol_flags | flags);
+> +	return ntfs_write_volume_flags(vol, flags, 0, false);
+>   }
+>   
+>   /*
+> @@ -429,14 +444,27 @@ int ntfs_set_volume_flags(struct ntfs_volume *vol, __le16 flags)
+>    * @flags:	flags to clear on the volume
+>    *
+>    * Clear the bits in @flags in the volume information flags on the volume @vol.
+> + * The bits are combined with the current flag state under the lock in
+> + * ntfs_write_volume_flags(), so concurrent updates are not lost.
+>    *
+>    * Return 0 on success and -errno on error.
+>    */
+>   int ntfs_clear_volume_flags(struct ntfs_volume *vol, __le16 flags)
+>   {
+> -	flags &= VOLUME_FLAGS_MASK;
+> -	flags = vol->vol_flags & cpu_to_le16(~le16_to_cpu(flags));
+> -	return ntfs_write_volume_flags(vol, flags);
+> +	return ntfs_write_volume_flags(vol, 0, flags, false);
+> +}
+> +
+> +/*
+> + * ntfs_clear_volume_dirty_if_no_errors - clear dirty bit if no errors exist
+> + * @vol:	ntfs volume whose dirty bit should be cleared
+> + *
+> + * Check NVolErrors() and clear VOLUME_IS_DIRTY under the same mrec_lock so
+> + * ntfs_sync_fs() cannot clear the dirty bit after a concurrent error has been
+> + * recorded.
+> + */
+> +static int ntfs_clear_volume_dirty_if_no_errors(struct ntfs_volume *vol)
+> +{
+> +	return ntfs_write_volume_flags(vol, 0, VOLUME_IS_DIRTY, true);
+>   }
+>   
+>   int ntfs_write_volume_label(struct ntfs_volume *vol, char *label)
+> @@ -1862,7 +1890,7 @@ static int ntfs_sync_fs(struct super_block *sb, int wait)
+>   		return 0;
+>   
+>   	/* If there are some dirty buffers in the bdev inode */
+> -	if (ntfs_clear_volume_flags(vol, VOLUME_IS_DIRTY)) {
+> +	if (ntfs_clear_volume_dirty_if_no_errors(vol)) {
+>   		ntfs_warning(sb, "Failed to clear dirty bit in volume information flags.  Run chkdsk.");
+>   		err = -EIO;
+>   	}
 
