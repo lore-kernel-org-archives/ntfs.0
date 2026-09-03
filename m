@@ -1,70 +1,136 @@
-Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58FA4BB5D2
-	for <ntfs@lists.linux.dev>; Thu,  3 Sep 2026 14:45:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.9.28.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FAB2D12F3
+	for <ntfs@lists.linux.dev>; Thu,  3 Sep 2026 23:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788446754; cv=none; b=chXCpcIzuHmxre0Wy2zvsRsCpNV65SNCMeRQzyjlJyaX2I+fzptfPVACmPh6ySrQqQ9ZDukv0KvFBVPgNdLLLH/EuxldOuoGVtFY0d2bOA5NvCBbXifInJGTUGUuWm9FGqaoFStKqnl54b5jDMqO4pUFcGIneq9NihgMGfpNMAM=
+	t=1788478679; cv=none; b=sKuio2IoP2qNMn5yF5+uDiNLS9BoGiSk9lSSwYOagB5GLwv1W3rb5hhTgVYy5fXnAMsMV8RJ7R3Fp6wRqQHyI9HUVCy8EsVL8ec8YssLBdPgb8LvyXAZzg6osM5TrICizJ9QytmTPKO1slhC01kC7nkfKtovWJgRvzu7yqvqtlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788446754; c=relaxed/simple;
-	bh=/T7YqONCo5eBXsKvF/epQygH07trT6370ALQnDdAp40=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PsdOIl5yQYuisSd3V6sgIhIPKOjpvyvbpauqj21Ln1ENpH0U231T1buEGu7668un1GbY0gkNvmZQ61EODQ7DmMAJySS0t4UqsMZDblTYBEx9CPQXcCVF0eAAzGBiGDssb0oFQLldvM0zfa6uqRAipbnFm8QEPXtxP8OCXiZA9Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mit.edu; spf=pass smtp.mailfrom=mit.edu; dkim=pass (2048-bit key) header.d=mit.edu header.i=@mit.edu header.b=QJesqE4T; arc=none smtp.client-ip=18.9.28.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mit.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mit.edu
+	s=arc-20240116; t=1788478679; c=relaxed/simple;
+	bh=R22rTRS8i9oV4XQC8K1yvIUDAkDqyALkPaWr3zupxq4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jfIG69f24uhnjpSA1P2kkqr/ey0kDLQkj/VlKSzKR8y4QtSDs59MAxzsGHqu3ZOeZ94n3LJ9BBKjxqFiZgnJtqrcVOTte7BwRuLuGrSVVyapHqquAf3FORGJTC381YHtmlBk302G7Fm2nEnW8yZijb2EA9C5F9/Tq5wn5oHJNUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=pWFcCily; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mit.edu header.i=@mit.edu header.b="QJesqE4T"
-Received: from macsyma.thunk.org (pool-108-26-156-67.bstnma.fios.verizon.net [108.26.156.67])
-	(authenticated bits=0)
-        (User authenticated as tytso@ATHENA.MIT.EDU)
-	by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 683EjLMF011651
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 3 Sep 2026 10:45:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mit.edu; s=outgoing;
-	t=1788446726; bh=qHs/hYcfdCQ1ysGE+hmGWWr3Mk+We3imbSb6wYOC52U=;
-	h=Date:From:Subject:Message-ID:MIME-Version:Content-Type;
-	b=QJesqE4TZVDMmqCP0gYnKzQVE38G5Sj1uHY8Px+6ZarWBBRuhH1Fwb1CRJ5tJPRFV
-	 tmOiLD28kscOP8nUwRZQsNO/wuT4KMKK12aCBaWLHnxjUqbgUTwmyQBvTJ2mBkZ+88
-	 /QN2pl7raeA9OfyGDIqrh4LXvngd7aOvgPf+U75IMT4tmP+CjfZpnKL3Ym4RgOG14t
-	 k28ord6f1XO1MU81Az2eIi9VgraAJBU9HpcZgM1M3J0UIfdl859jwgeG0NbUVpFB/V
-	 7p2L8VgjrjdYi/84CLpjr044H60KgLgzIYRVIAI7c/vwX2bDYIxq9mAEVxUhO4HVWN
-	 LYHu+Y27eWAuA==
-Received: by macsyma.thunk.org (Postfix, from userid 15806)
-	id BA709132623E; Thu,  3 Sep 2026 10:44:20 -0400 (EDT)
-Date: Thu, 3 Sep 2026 10:44:20 -0400
-From: "Theodore Tso" <tytso@mit.edu>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Cc: Christian Brauner <christian@brauner.io>, Jan Kara <jack@suse.cz>,
-        Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
-        Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
-        Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>,
-        Phillip Lougher <phillip@squashfs.org.uk>,
-        linux-erofs@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org,
-        ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org,
-        linux-mm@kvack.org
-Subject: Re: [PATCH 2/9] ext4: Remove uses of FGP_NOFS
-Message-ID: <apmHuRN-r4gfWnTX@mit.edu>
-References: <20260830041901.2668-1-willy@infradead.org>
- <20260830041901.2668-3-willy@infradead.org>
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="pWFcCily"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=uRpUrzAIFjYym95kQ3qVHTU3gGRgeQr9wo+Qelo0Hjc=;
+	b=pWFcCilySSzrWE5DcN5ZIZXHpOigjdlHbNYqTIiaIB72O3hB7rEf8i/iYnBFLX
+	9Aklbalm3VEUoGdI6bLw/iXde1Ziqr5kD7T8wi8u/t4a7ufU8fVHxO2JdDF5dYUl
+	q45qENWwO6rUNgj8jTX8fN3bDQDZKFHvM7+I7in+G/xxE=
+Received: from [IPV6:2409:8900:1a96:d5f:519a:bd19:ff78:1325] (unknown [])
+	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wBX1h7ABJpqwN2yAQ--.239S2;
+	Fri, 04 Sep 2026 07:37:39 +0800 (CST)
+Message-ID: <c43b2ea8-e80f-4f63-8b07-4c3f5b845edb@163.com>
+Date: Fri, 4 Sep 2026 07:37:35 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260830041901.2668-3-willy@infradead.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] ntfs: fix volume flag update races
+To: Hongling Zeng <zhongling0719@126.com>,
+ Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20260903012104.185926-1-zenghongling@kylinos.cn>
+ <d576d6d6-e378-4124-817a-f019c09c391e@163.com> <6A99158E.2040006@126.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <6A99158E.2040006@126.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wBX1h7ABJpqwN2yAQ--.239S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxXrWfZr1DtFyUCrWfCr45KFg_yoW5Cr47pF
+	Wa9rnrWw4kKF4Ikr1vya1fWryFgFWxAF43KryrGw4xXwn8AF17XFW3Ka1FqrykCryfKwnI
+	qr40y398u3W7AFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTKZAUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QNyPWqaBMP1hAAA3j
 
-On Sun, Aug 30, 2026 at 05:18:49AM -0500, Matthew Wilcox (Oracle) wrote:
-> Both of these locations are called while a transaction is in progress.
-> Starting a transaction uses memalloc_nofs_save(), so we are already
-> prevented from recursing into the filesystem and using GFP_NOFS was
-> unnecessary.
+
+
+在 2026/9/3 14:37, Hongling Zeng 写道:
+> Thanks for the careful reading
 > 
-> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+> These two sites cannot actually race ntfs_sync_fs(): ntfs_reconfigure() 
+> (via do_remount()) and ntfs_put_super() (via generic_shutdown_super()) 
+> both run with sb->s_umount
+> held for write, while the sync(2)/syncfs(2) paths only take it for read 
+> through iterate_supers(). So the check and the clear inside 
+> ntfs_clear_volume_flags() are
+> effectively a single non-interleavable pair with respect to sync — the 
+> window is not merely narrow but structurally closed.
+> 
+> We deliberately keep ntfs_clear_volume_dirty_if_no_errors() for the 
+> paths that can genuinely race sync (currently only ntfs_sync_fs() 
+> itself), so converting these two would
+> blur that line rather than improve consistency.
 
-Acked-by: Theodore Ts'o <tytso@mit.edu>
+Hi Hongling,
+
+    Thank you for the explanation.
+    However, I believe we may be discussing different races.
+    Your explanation addresses why ntfs_reconfigure()/ntfs_put_super() 
+cannot run concurrently with ntfs_sync_fs().
+    My concern is whether these paths can race with an NTFS writer/error 
+path while checking NVolErrors(vol) and clearing VOLUME_IS_DIRTY.
+
+   For ntfs_put_super(), I agree that no change is needed.
+   It runs only during the final filesystem shutdown, when ordinary 
+userspace writers and related I/O can no longer run concurrently with it.
+
+   For a normal read-only remount, reconfigure_super() calls 
+sb_prepare_remount_readonly(). This blocks new mount writers and checks 
+for existing writers; if writers are present, the remount does not 
+proceed. Therefore, the normal remount-ro path does not have the 
+concurrency issue I was concerned about.
+
+   However, an emergency/forced remount uses SB_FORCE and skips 
+sb_prepare_remount_readonly(), calling only sb_start_ro_state_change(). 
+This does not wait for writers that have already entered the filesystem. 
+Such writers use sb->s_writers and do not need to acquire s_umount.
+The following sequence is therefore possible:
+NTFS writer                         forced remount
+   -----------                         -------------
+   file_start_write()
+   Enter the NTFS write path
+   Set or prepare to set VOLUME_IS_DIRTY
+   Pause
+                                       Acquire s_umount for writing
+                                       SB_FORCE
+                                       sb_start_ro_state_change()
+                                       ntfs_reconfigure()
+                                         sync_filesystem()
+                                         NVolErrors() == false
+                                         Clear VOLUME_IS_DIRTY
+                                       Set SB_RDONLY
+   Resume the writer
+   Continue modifying metadata
+   An error occurs
+   NVolSetErrors(vol)
+
+The final state may be:
+   NVolErrors(vol) == true
+   VOLUME_IS_DIRTY == false
+
+   Therefore, the s_umount locking relationship only rules out 
+concurrency with ntfs_sync_fs(); it does not rule out concurrency 
+between a forced/emergency remount and an NTFS writer that is already in 
+progress.
+
+   Please consider whether this case also needs to be handled. If you 
+agree with my analysis, I suggest adding a follow-up patch to address 
+this race.
+   This is my current understanding of the issue. I welcome further 
+discussion, and please feel free to correct me if any part of my 
+analysis is inaccurate.
+
+Thanks,
+Baolin.
+
