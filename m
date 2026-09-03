@@ -1,103 +1,199 @@
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E04A40099A
-	for <ntfs@lists.linux.dev>; Thu,  3 Sep 2026 07:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E360841F35C
+	for <ntfs@lists.linux.dev>; Thu,  3 Sep 2026 07:54:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788420059; cv=none; b=VIK9m6FamPX6uVVZh9LCVpmwHEtBI87NQSBuHTrbaVb7CxuJZs0z9xiLdNBXWTkmyn2YY5mOeqv3cFEnvtk6PgdbeoKwihzkOSHVj5xAhjPEBG4RTBRpyaMEWjR9b9nZuBlHB8Wz+tc59zNjqsUmVx4SIDlOOB7earDVkBRUvrw=
+	t=1788422096; cv=none; b=QmXs7PPfGGs7Af2Odjc6gWXzTO1cMh5Fz25M3x2BLG0j8nT5diIkTTbo+k/9gL9W/48/7Q2RVu+YZjuhwR+Jy2nC6bd9CnUQ99IV+puIcDbaQIosoSNlLncQQCc9b6e6l+prX1nSV0Q90JTSVWgwp6fIBSKciIU0xJle7xyED4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788420059; c=relaxed/simple;
-	bh=qFjH69aIOXVUvqEcGK9+jou3rZnCCwOEc0IbWE4Dqq4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VF8qkIxx/DMwnsQFyTI8HIRmbE8CBnHOPxqiQ7zeSGP7Nx6VITe5UPBJa+BqN/WEfWGWvqQQ1MiYIcjW+wqHjwB1eqpjK5DcU+HcfXQbQir3t0uIkVL0VFAsg6psmyhFWK0vfAjLSgWXELXyN6S+GIfPIP1khazaDnJWEY/7T9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U9r2NNMm; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U9r2NNMm"
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2cfbbdfa60bso23352405ad.3
-        for <ntfs@lists.linux.dev>; Thu, 03 Sep 2026 00:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1788420055; x=1789024855; darn=lists.linux.dev;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=UXuvqUj271LNrSs8P9g/osNAjtXzcTBNi1YQmbZCrTw=;
-        b=U9r2NNMmBUF3jwevtAPj8f2mS9OfspTxAeUm3XLVTlZEQBZc0At5wJYIeIH3gOS5tg
-         kA7VXPBNNtIyzZKrZnRLisqbk56oAMkPs/YdfLTK6GgYEQcBCb4PNtmEFcKBfir5Hw3W
-         ct2aAotvNU8rw6nhP5sXQeMMaD+K+Q38tPlfVQ7ftAwiRQl3Ueb+d2FW9driMZsfN3jW
-         NhrXLdN4jXAKs+6cf1C8L4RYNM0dxt+/XrehxA2WCDXqF/vPFD1mAN4zv5zAs1chqbmT
-         GThGLc3zVXMxxFkw+ElUH6XNjgcJ3NlEHXkuZELQ2So5E/06OYzaEfscxzCTf5tOdQr0
-         WH5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788420055; x=1789024855;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=UXuvqUj271LNrSs8P9g/osNAjtXzcTBNi1YQmbZCrTw=;
-        b=rkLqoIISfIN6CQ/EX5XpS3HZXa/zpOYrfRCdB1Hq6zg2FWFy7T/Qv8NxVz+DawGTwJ
-         8gMicfVELGjlyQMGejLtcN2tDwcNRkMnZutR6rfcER/wXxKNSEXovykp0hYPYzW9iPA+
-         AtU20wFBxhrEGrxfrirK4k7r5P70nqhXHcjL0mDIPwO8gOEX2K2oLzIW9C6qZarmdxJ3
-         60Rp/vQoFbaVUGoTw2BOMvCviu//q8mFzEy9vkuGOa4QSTqNsf6gJxuKsqsSPPssf+FM
-         sjgbh7amUmP/vGslhHJCwUYIvm+DEz+xySiP8bYYpR5lKVln5ZeBpCJPAsATZ/aLlCsR
-         IBdw==
-X-Forwarded-Encrypted: i=1; AKwUvBwiVpCCbmsJi/4qkLRqJ1DrannSMdGG1jFoKipVFtDd3uz/mHv+uGW4+t17LirwWdOLKeGE@lists.linux.dev
-X-Gm-Message-State: AFuF++nyOO93Ypz5EauUpFSQBqUjnXW73Sth5Gh8nlgIcOSiMuqZsgzA
-	W12dKvE6K7dtHK5apWADEO4fHJyFEd/afb5oBcFDFviT1FNvApm+wTte
-X-Gm-Gg: AYBFou23lMEZFpspt7R9tr6FMgXiN/f+UxYQ4ZTUyGi0XgblGbNh+LLyETO4FDxf5x3
-	db4Mxm6Q274u+1m2VEzaZQFd19hPlogW/MQkss61VFmPr6yaQGTcty6C31NmzCNnK9e3+krwbyg
-	BPCwflxdHT65VlyhUc1aH1iTf9srJchbgSbETntO8a+Nr2akfOSGLNySFyFJs9X60GnRhm1XpAV
-	0uJAarvUij29i41h13VPvMWerEKoY0jzCcmWVKcNtQCfsGpRzMx+S0IjmUekz3iLUycdpg6uDH4
-	RiqQOgY1Zs0reS6cwEtbhG9dP4dpB/T/47u+UWV1z9onbueX1T0kpn/q6GnrThXLN+5SLVKuFdN
-	Y5StUodLCw/ybEoKbP9nfFzkj6mXcg8978xM8xEClLXS1IVkopCJtdPMo9G0TPoIgqtzCtP5l1c
-	jflxR+evLk9oTK1rriLg77vZK1mTZ4znkzv2WatY0qzo+OpGofqceez7oVIE/pUg==
-X-Received: by 2002:a17:90b:2d4f:b0:37f:e1b6:4c7d with SMTP id 98e67ed59e1d1-39aedf1aec2mr16333499a91.6.1788420054696;
-        Thu, 03 Sep 2026 00:20:54 -0700 (PDT)
-Received: from localhost ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-39ae8f1cf6dsm2534325a91.3.2026.09.03.00.20.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2026 00:20:54 -0700 (PDT)
-Date: Thu, 3 Sep 2026 16:20:51 +0900
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: liubaolin <liubaolin12138@163.com>
-Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Baolin Liu <liubaolin@kylinos.cn>
-Subject: Re: [PATCH 2/5] ntfs: return -ENOMEM from
- ntfs_inode_attach_all_extents()
-Message-ID: <apkf0-ab_1tkAiha@hyunchul-PC02>
-References: <20260902073249.3035977-1-liubaolin12138@163.com>
- <20260902073249.3035977-3-liubaolin12138@163.com>
- <apkE3nzoVd0raTde@hyunchul-PC02>
- <4c2bdc40-2d2d-49a4-8821-410b4a7382c8@163.com>
+	s=arc-20240116; t=1788422096; c=relaxed/simple;
+	bh=aX1V6/Vf49zCxLk0qjqYwyFQGUoFQFsAs2MfTn/CB3I=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=B1W5SJCDijDvy+ePhHoXEr2WRGyCldTi6RaeJCN+8CWT1zQrGbKcuNUqbj9M9DT+LQx6Voycmr1ocsM6MZkVHqEsZ94sVGd8HvE8pwcO4nLFAKF0bdZruzQlUFYkEGp82LL6JgbNfAeRXyYYI+6nC4TvrSV5aAdsoQkSDFRhfdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: b9c09750a76c11f19a56ed5b684f684d-20260903
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:701721f6-5a94-48dd-965d-55a3b168d771,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:3f1299b84efbc4b4c71b09b315255d74,BulkI
+	D:nil,BulkQuantity:0,SF:81|82|102|136|850|865|898,TC:nil,Content:0|15|50,E
+	DM:-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:
+	0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: b9c09750a76c11f19a56ed5b684f684d-20260903
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1247535226; Thu, 03 Sep 2026 15:54:43 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH v2 2/3] ntfs: add helper to record error flag before setting volume dirty bit
+Date: Thu,  3 Sep 2026 15:54:37 +0800
+Message-Id: <20260903075438.306793-2-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260903075438.306793-1-zenghongling@kylinos.cn>
+References: <20260903075438.306793-1-zenghongling@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <4c2bdc40-2d2d-49a4-8821-410b4a7382c8@163.com>
+Content-Transfer-Encoding: 8bit
 
-> Hi Hyunchul,
-> 
->    Thanks for the review.
-> 
->    I'll fix both issues you mentioned in v2 and send it soon.
+The runtime metadata-corruption paths in fs/ntfs record the error flag
+with a bare NVolSetErrors() and separately rely on ntfs_set_volume_flags()
+or nothing at all to persist VOLUME_IS_DIRTY.  Since the clear side
+(ntfs_sync_fs() via ntfs_clear_volume_dirty_if_no_errors()) evaluates
+NVolErrors() under ni->mrec_lock, a writer that records the error flag
+after the lock has been checked leaves a window in which the volume ends
+up persisted as clean despite the recorded error, so chkdsk will not run
+on the next mount and corrupted metadata can persist.
 
-And the other patches look good to me, so feel free to add my
-Reviewed-by tag to them.
+Introduce ntfs_mark_volume_dirty_with_error(), which records the error
+flag before the locked dirty-bit write: the mutex acquire/release in
+ntfs_write_volume_flags() then provides the ordering, as any clear path
+running after us can only evaluate NVolErrors() under the lock once the
+flag is set.
 
-Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+On a read-only mount or before the $Volume inode has been loaded, the
+helper only records the in-memory error state because the dirty bit
+cannot be persisted.  On a writable volume it waits for the lock instead
+of silently dropping the dirty-bit update, and propagates any write
+error to the caller.
 
-> 
-> Thanks,
-> Baolin
-> 
-> 
+Waiting is safe: the $Volume mrec_lock is a leaf lock.  Its critical
+sections only look up and update the resident volume information
+attribute and never acquire the locks the callers hold (lcnbmp_lock,
+runlist locks), so no lock cycle exists.  To make that explicit to the
+lock validator, give the $Volume inode its own mrec_lock class, the
+same way $MFTMirr already gets one; otherwise the lockdep class shared
+with regular file inodes would report an inversion for the
+lcnbmp_lock -> $Volume mrec_lock ordering that the helper introduces,
+even though no deadlock is possible.
 
+Mount and remount paths remain serialized by sb->s_umount and keep
+using NVolSetErrors() directly, since they do not race with
+ntfs_sync_fs() and may not be allowed to write the volume: before
+$Volume is loaded, with a read-only opened bdev, or on a hibernated
+volume, which we must not write to at all.  The same applies to the
+ntfs_attr_lookup() failure paths and the mft record writeback paths,
+which hold a caller's mrec_lock and would self-deadlock the helper on
+the $Volume inode.
+
+Converting the runtime metadata-corruption call sites in mft.c,
+lcnalloc.c, bitmap.c, inode.c and attrib.c to use the helper is done
+in the next patch.
+
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+ fs/ntfs/ntfs.h  |  1 +
+ fs/ntfs/super.c | 51 ++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 51 insertions(+), 1 deletion(-)
+
+diff --git a/fs/ntfs/ntfs.h b/fs/ntfs/ntfs.h
+index df5a75d506f6..63d7900b6dba 100644
+--- a/fs/ntfs/ntfs.h
++++ b/fs/ntfs/ntfs.h
+@@ -222,6 +222,7 @@ struct option_t {
+ extern const struct option_t on_errors_arr[];
+ int ntfs_set_volume_flags(struct ntfs_volume *vol, __le16 flags);
+ int ntfs_clear_volume_flags(struct ntfs_volume *vol, __le16 flags);
++int ntfs_mark_volume_dirty_with_error(struct ntfs_volume *vol);
+ int ntfs_write_volume_label(struct ntfs_volume *vol, char *label);
+ 
+ /* From fs/ntfs/mst.c */
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index a7977b95b967..64f8d4469af3 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -454,6 +454,45 @@ int ntfs_clear_volume_flags(struct ntfs_volume *vol, __le16 flags)
+ 	return ntfs_write_volume_flags(vol, 0, flags, false);
+ }
+ 
++/*
++ * ntfs_mark_volume_dirty_with_error - record an error and mark volume dirty
++ * @vol:	ntfs volume on which an error has been recorded
++ *
++ * To be called when runtime metadata corruption is detected so that chkdsk
++ * runs on the next mount.  NVolErrors() is recorded first, so the in-memory
++ * error state is kept even when the dirty bit cannot be persisted; the
++ * mutex acquire/release in ntfs_write_volume_flags() then provides the
++ * ordering against ntfs_clear_volume_dirty_if_no_errors(), which checks
++ * the flag under the same lock.
++ *
++ * On a read-only mount or before the $Volume inode has been loaded, it
++ * only records the in-memory error state because the dirty bit cannot be
++ * persisted.  On a writable volume it waits for the lock instead of
++ * silently dropping the dirty-bit update, and propagates any write error
++ * to the caller.
++ *
++ * Only for runtime error paths that can race sync and hold no mrec_lock.
++ * The $Volume mrec_lock is a leaf lock: its critical sections never
++ * acquire the locks those paths hold (lcnbmp_lock, runlist locks), so
++ * blocking here cannot deadlock.  Do not call while holding the $Volume
++ * mrec_lock itself (ntfs_attr_lookup() failure and mft writeback paths),
++ * on mount/remount paths (serialized by sb->s_umount, keep using
++ * NVolSetErrors()), or on volumes we must not write to, such as
++ * hibernated ones.
++ *
++ * Return 0 on success and -errno on error.
++ */
++int ntfs_mark_volume_dirty_with_error(struct ntfs_volume *vol)
++{
++	NVolSetErrors(vol);
++
++	/* Nothing to persist on a read-only or still-mounting volume. */
++	if (!vol->vol_ino || sb_rdonly(vol->sb))
++		return 0;
++
++	return ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
++}
++
+ /*
+  * ntfs_clear_volume_dirty_if_no_errors - clear dirty bit if no errors exist
+  * @vol:	ntfs volume whose dirty bit should be cleared
+@@ -918,7 +957,8 @@ static void ntfs_setup_allocators(struct ntfs_volume *vol)
+ }
+ 
+ static struct lock_class_key mftmirr_runlist_lock_key,
+-			     mftmirr_mrec_lock_key;
++			     mftmirr_mrec_lock_key,
++			     volume_mrec_lock_key;
+ /*
+  * load_and_init_mft_mirror - load and setup the mft mirror inode for a volume
+  * @vol:	ntfs super block describing device whose mft mirror to load
+@@ -1502,6 +1542,15 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 		ntfs_error(sb, "Failed to load $Volume.");
+ 		goto iput_lcnbmp_err_out;
+ 	}
++	/*
++	 * Give the $Volume inode its own mrec_lock class: the error paths
++	 * take it while holding locks (lcnbmp_lock, runlist locks) that
++	 * nest inside mrec_lock elsewhere in the driver, and the lock
++	 * validator would otherwise see that as an inversion even though
++	 * the $Volume critical sections never acquire those locks.
++	 */
++	lockdep_set_class(&NTFS_I(vol->vol_ino)->mrec_lock,
++			  &volume_mrec_lock_key);
+ 	m = map_mft_record(NTFS_I(vol->vol_ino));
+ 	if (IS_ERR(m)) {
+ iput_volume_failed:
 -- 
-Thanks,
-Hyunchul
+2.25.1
+
