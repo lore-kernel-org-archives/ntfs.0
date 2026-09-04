@@ -1,29 +1,29 @@
 Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7E1371076
-	for <ntfs@lists.linux.dev>; Fri,  4 Sep 2026 12:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27FD53016E7
+	for <ntfs@lists.linux.dev>; Fri,  4 Sep 2026 13:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788526775; cv=none; b=Ee3jEnt8bxptM6A0pefh/7t85dgIz078xwQWP5mWH5RcvyQPusJ5+rBvA8MSmnkv5w9ClDjTyqUiSKQ+rjXkaNDt1YChWWQr10y8QairbNc1koRIHBrBu385KPciTjrv7665iw69RwnYf9Xb5X0D2xuTFYc/VRwubdy6Uj0nRss=
+	t=1788527256; cv=none; b=NqlT43/xq9KLcv2yevEBD+TfhxdwWib/009RmrYSPUurYzyLrBD+VIn/h9ztUfCICHvH8cXtiSPl1MVjMuR3IHqHQrqPWKc+zKjRUJaWXDPY3ESUbcu69BIv3XKk5xmAmdjYUIvNdfkpvk2F7D8Fohx8VQCDXqzu/HkvFtq3J5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788526775; c=relaxed/simple;
-	bh=nlMVCE1t2bkEV15cI8L1VA/eNndTTswCQwpa05OO4sQ=;
+	s=arc-20240116; t=1788527256; c=relaxed/simple;
+	bh=82UbyFFlSFDA5JHo18dWlRG5YWp1dckC2lUkBScJn5A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k0oTzAHah6PjCpVUkhXU5zw1x58M7gGN9v0VHLvH1KH4Ty5wjEWOx5mGZEZrJu0Jsqve0I3zv9n7M0uKbiS4pEq7J4E5XNPoEOBEt/4MNzecGvdBxKfv7T00HBi7mO771AScqgEVtSbje9TNWEFtsDQNtLuTjrcDS9sj4n6GWD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=c0e2uK/H; arc=none smtp.client-ip=117.135.210.5
+	 In-Reply-To:Content-Type; b=g59QdeSfymQmCPU7xVDm3sJ57VSwOyAz5BWsVymA51uOdeA+rxcHoiaVLnTDBMgjHCX/nxx5SvrwdKRvI2kLdJdn5zIwcFBoHq9UJbZpaGpJyCOn0y03Zdes3UmIC2Nuxc+3+ophSQFkU6+x3n8H/r3RO9hF3fcAjzCmYULq3WE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=e9sR93uD; arc=none smtp.client-ip=117.135.210.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="c0e2uK/H"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="e9sR93uD"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=zQ0o6HRrCnbcFEH6btw7jK4O9z4+p5Q2liG2jydd9w8=;
-	b=c0e2uK/HOEqvD+uvcDTovL+MCcNx6b1HJKNWbkN+wYAnsFbFeFYWyfnpOXpKGF
-	qsM/YlVlvy1Dvl78P9Ia7Ku72XLSfV+2dXY4nxW6ya+FGiinmY6LKFbVHmko49Tx
-	mV958m3sVcKLfzGQ72J391jdmuEJqY+ANnieM65U5GIt8=
-Message-ID: <2d528913-a787-47ce-aa57-661fddaab4bc@163.com>
-Date: Fri, 4 Sep 2026 20:59:06 +0800
+	Content-Type; bh=0q4XESU1G2VpQXiZhaiUsWjnfo84cCwLJnuMdevvSKQ=;
+	b=e9sR93uDopeN3vHvpralLJomR0DDccMVXEa8j+QA7pDYIivnyfj+QhSyPM0/ag
+	29tec7MNkRgXIuyzgAUzv7upgOQ5orOIAmSxnU3W/sRu+D4XTQKbF2MGWbob+Tu0
+	Q/v+KQ8HSFdeSnhgrgUySr6InUpQhGxk7iV555oBlH3WU=
+Message-ID: <ff64e1c3-8c08-4d60-8429-c5c3f4810e77@163.com>
+Date: Fri, 4 Sep 2026 21:07:07 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -44,12 +44,12 @@ From: liubaolin <liubaolin12138@163.com>
 In-Reply-To: <20260903075438.306793-3-zenghongling@kylinos.cn>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PSgvCgBnkPeawJpqhyd0Og--.59176S2
-X-Coremail-Antispam: 1Uf129KBjvAXoW3KFWkZw47CF4kZr47Kr4fGrg_yoW8Xr4Dto
-	WSkr1qyw48W3W5Aayqv3Z3Aasxua98Cw48Jr4rCr4DZ3ZFqryqg3y3Ga13uay2ga15Krs2
-	9r1kJw4rZFWfJFy5n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUeYFCUUUUU
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6huXYmqawJvYJAAA3T
+X-CM-TRANSID:PigvCgCHMwN7wppqgOWwQw--.63894S2
+X-Coremail-Antispam: 1Uf129KBjvAXoW3KFWkZw45WF1DGw1fWw4fGrg_yoW8XF4DWo
+	WFkr1qyw40ga45Aayqv3Z5Aasxua98Cw4kJr4rCr4kZ3ZFqryj93y3Gw43uayaga15Krs2
+	9rykJw4rZFZ3JFyUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUnZXoDUUUU
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRwR22qawny-7QAA3L
 
 
 
@@ -117,6 +117,55 @@ X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6huXYmqawJvYJAAA3T
 > +	 * $Volume inode); record the error flag only.
 > +	 */
 >   	NVolSetErrors(vol);
+
+Hi Hongling,
+    I understand why ntfs_mark_volume_dirty_with_error() cannot be 
+called directly here: if the caller is holding the $Volume inode's 
+mrec_lock, the helper would deadlock trying to acquire the same lock again.
+
+   However, keeping the bare NVolSetErrors() does not seem to resolve 
+the dirty-bit issue.  If the caller is holding a regular inode's 
+mrec_lock, it is different from $Volume->mrec_lock, so the following 
+sequence is still possible:
+
+   ntfs_sync_fs()                    error path
+   --------------                    ----------
+   acquire $Volume->mrec_lock        hold a regular inode's mrec_lock
+   observe NVolErrors() == false
+                                     detect metadata corruption
+                                     set NVolErrors()
+                                     do not set VOLUME_IS_DIRTY
+   clear VOLUME_IS_DIRTY
+   release $Volume->mrec_lock
+
+   If the caller is holding $Volume->mrec_lock itself, the sequence 
+above cannot occur concurrently, but the operations may still be ordered 
+as follows:
+
+   ntfs_sync_fs()                    $Volume error path
+   --------------                    ------------------
+   acquire $Volume->mrec_lock
+   observe NVolErrors() == false
+   clear VOLUME_IS_DIRTY
+   release $Volume->mrec_lock
+                                     acquire $Volume->mrec_lock
+                                     detect metadata corruption
+                                     set NVolErrors()
+                                     do not set VOLUME_IS_DIRTY
+                                     release $Volume->mrec_lock
+
+   In either case, only the in-memory NVolErrors() flag may be set while 
+the on-disk VOLUME_IS_DIRTY bit remains clear.
+
+   The other runtime error paths in this patch that retain a bare 
+NVolSetErrors() because they may hold an mrec_lock appear to have the 
+same issue.  The new comments explain why the helper cannot be called 
+directly, but these paths still do not set the on-disk dirty bit again.
+
+Thanks,
+Baolin.
+
+
 >   	return -EIO;
 >   }
 > @@ -1501,8 +1506,14 @@ static int ntfs_external_attr_find(const __le32 type,
@@ -157,45 +206,6 @@ X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6huXYmqawJvYJAAA3T
 >   			err, pos);
 > -		NVolSetErrors(NTFS_SB(vi->i_sb));
 > +		ntfs_mark_volume_dirty_with_error(NTFS_SB(vi->i_sb));
-
-Hi Hongling,
-   There may still be a case where the dirty bit is not persisted.  This 
-call site invokes ntfs_error() before 
-ntfs_mark_volume_dirty_with_error().  When errors=remount-ro is in
-   use, ntfs_error() sets SB_RDONLY through the following path:
-
-   ntfs_error()
-     -> ntfs_handle_error()
-       -> sb->s_flags |= SB_RDONLY
-
-   Therefore, when ntfs_mark_volume_dirty_with_error() is called,
-NVolErrors() is set first, but sb_rdonly() is already true.  The helper 
-returns without writing VOLUME_IS_DIRTY to disk.
-
-   For example, the following sequence still appears possible:
-
-   ntfs_sync_fs()                    error path
-   --------------                    ----------
-   acquire $Volume mrec_lock
-   observe NVolErrors() == false
-                                     ntfs_error()
-                                       -> set SB_RDONLY
-                                     set NVolErrors()
-                                     sb_rdonly() == true
-                                     skip the dirty-bit update
-   clear VOLUME_IS_DIRTY
-   release $Volume mrec_lock
-
-   This leaves NVolErrors() set while the on-disk VOLUME_IS_DIRTY bit 
-has been cleared.
-
-   The same issue should apply to the other call sites in this patch 
-that invoke ntfs_error() before ntfs_mark_volume_dirty_with_error().
-   Should the dirty bit be persisted before setting SB_RDONLY?
-
-Thanks,
-Baolin.
-
 >   	}
 >   	return err;
 >   }
