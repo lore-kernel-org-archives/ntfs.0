@@ -1,42 +1,39 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4652D396572
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA713C4172
 	for <ntfs@lists.linux.dev>; Fri,  4 Sep 2026 09:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788512498; cv=none; b=PyaHr6WTe0C660Y1x20zsf8lIS76s5u3tIOEXDT12TEsOIKY9MMwntaTK41E7Fmjos6tvK7N6TzNLchCaanvr76xXSipu0mTUjo6oKGTLAMBm6aUy//BYWfjcB3DWDukSUvBr1b82OxX2Aus53hdRf3UxV65odWFwJ/mGR6Dlbc=
+	t=1788512499; cv=none; b=ACF5Sdngo77T6bEf8X6N5uCmr0/1laAgbEQfx5673mhccOwqsVD8Mvh3ZiQWUlaIL6mWwUVNiRAutorj88QMz7kS31tMfvuprlS1p3dUZFI0WgivnJZJ+TYCtZ0IJbSATZfecOsIZP9Ycnno8+FDVNf5DVZd10j5w3aEAuHx2+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788512498; c=relaxed/simple;
-	bh=XvmavsoJmOgyfPZTxe5J2j71CO/TgRB5fQg2I13JxsY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jdT729Od9sF7v5NYSB8NvjGO+3B+udgrD61cU9uuG8QPWGtB6WrcFjfOHbzCmQhIj8FDoy6fBrFM1wX/T5kOwSjNAjQItVfdmomwFfSqB8qdGuEAJnFZ8n8n2hWL50sdTHQAlHdDzlFcxfMBpmlHGfQ70M2h07XzzzgiDOfm2ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ercQMa44; arc=none smtp.client-ip=220.197.31.5
+	s=arc-20240116; t=1788512499; c=relaxed/simple;
+	bh=B1SA4x2HJ9PgE14PaEnX0hd7BnztFbOnzEbOVeP9V7c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=X1nhL5P69nOMR/EitwFkrvPrKRNwXtUROKI5icrO/H7JubE7FMB8ugmZRd23vjhxMIB1yPwcwJvh042Xa5cRD5Agm7mHV9HAJnQLF7cRHpRKThojwhRON2gr34ZXhVZGSTmZ3pnOw5Xj7/Ug+5iPCbHFkG6rPHl7PDzfFpAhqFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=gVAApm5X; arc=none smtp.client-ip=117.135.210.3
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ercQMa44"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="gVAApm5X"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=ot
-	RPBiSqb37i9cnfixkQcyeOL3goWcSLLuXbif4W6OU=; b=ercQMa44OW5iXdQj2H
-	0hvhZ7qmvJZrbl0W+UxqM1v1+9XLRXY/AQPXFvtdozLnZf4QhzAGGyagc8hzG+oJ
-	B8I+Mv/phAx24CRvbQjpTCNVTKBGMVeqCG9RBtF8wMCe0KiOcuNzgTfQY/nuLx9N
-	uCPv6dQEcOnNqr200TOIJ+iWE=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=m7
+	lJyr9ZcjOr+g95OJhkQRTUO4dnvLiehplKxsu+0ss=; b=gVAApm5XAzEOvzmtYM
+	zpZYRV8a9IXAXv+l7c6qZBeo7VcgO7E302zo06yWkhPe1g0xJa6ZIB2/clMiLnGM
+	1Cg5NTcRiGg6V7l21Jw3QF+D2VLcTQPLqiA5ZhB/Y2x7fLByVbphGiFrtgigGBJz
+	TV0J0o57gO9e20or/8oypevU0=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wAHU97ViJpqDNWCAg--.41284S6;
-	Fri, 04 Sep 2026 17:01:24 +0800 (CST)
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wAHU97ViJpqDNWCAg--.41284S2;
+	Fri, 04 Sep 2026 17:01:11 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v2 4/5] ntfs: propagate the map_mft_record() error in ntfs_attrlist_entry_add()
-Date: Fri,  4 Sep 2026 17:00:53 +0800
-Message-ID: <20260904090054.3365538-5-liubaolin12138@163.com>
+Subject: [PATCH v2 0/5] ntfs: fix incorrect error codes returned to callers
+Date: Fri,  4 Sep 2026 17:00:49 +0800
+Message-ID: <20260904090054.3365538-1-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260904090054.3365538-1-liubaolin12138@163.com>
-References: <20260904090054.3365538-1-liubaolin12138@163.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -44,45 +41,63 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wAHU97ViJpqDNWCAg--.41284S6
-X-Coremail-Antispam: 1Uf129KBjvJXoW7GFy3tr45uF48ZF48AF4DCFg_yoW8Jr4Upa
-	sxAwnrK3WfZr47trs2kay8Aa4v9FWDW3yjvr90934Ivw1rtw40ga4YgFyIqr1FkFW8Jw45
-	Zr4DWrW3JFW3u3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jjD73UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwQWcZ2qaiOX90gAA3N
+X-CM-TRANSID:_____wAHU97ViJpqDNWCAg--.41284S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJrW8Kr1rGrWfJrWxCrWUXFb_yoW8tFW7pF
+	9xCrn3tr4kJ34IkFZYvay7Aw1S9F93J3y7tr1qgw1Iva45Xr1UXr18K3W09rWSkrWrJw1U
+	Xr40gan3CFy7ZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jnfHUUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwReYY2qaiNf8FgAA3o
 
 From: Baolin Liu <liubaolin@kylinos.cn>
 
-ntfs_attrlist_entry_add() replaces the map_mft_record() error with -EIO,
-so an -ENOMEM allocation failure is reported as an I/O error. Both
-callers pass the value on to ntfs_attr_add(), which no longer collapses
-it since commit 8efe00b098b5 ("ntfs: preserve error code in
-ntfs_resident_attr_record_add()").
+Changes in v2:
+- Patch 2: Fixed ntfs_extent_inode_open() to use ERR_PTR() instead of NULL,
+  so it can properly propagate error codes (suggested by maintainer).
+  Updated ntfs_inode_attach_all_extents() to use IS_ERR()/PTR_ERR() to
+  preserve the actual error code from ntfs_extent_inode_open().
+- Patches 1, 3, 4, 5: No code changes, added Reviewed-by tag from Hyunchul Lee
 
-Return PTR_ERR(ni_mrec) instead. Also fix the debug message.
+Five places in fs/ntfs/ return the wrong error code: a real errno is
+replaced by -1 or by a hardcoded substitute, so callers and userspace see
+something unrelated to what actually went wrong. The fixes are
+independent of each other.
 
-Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
-Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
----
- fs/ntfs/attrlist.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Patch 1 is different from the rest: there the error is not just
+mislabelled, it is not seen as an error at all. -1 is what a normal
+comparison returns for "collates before", so ntfs_ie_lookup() acts on it
+as a tree-descent hint, and a malformed entry in $Reparse/$R or $ObjId/$O
+is silently treated as a lookup miss instead of being reported.
 
-diff --git a/fs/ntfs/attrlist.c b/fs/ntfs/attrlist.c
-index be3086d34338..a1c00e426e80 100644
---- a/fs/ntfs/attrlist.c
-+++ b/fs/ntfs/attrlist.c
-@@ -139,8 +139,8 @@ int ntfs_attrlist_entry_add(struct ntfs_inode *ni, struct attr_record *attr)
- 
- 	ni_mrec = map_mft_record(ni);
- 	if (IS_ERR(ni_mrec)) {
--		ntfs_debug("Invalid arguments.\n");
--		return -EIO;
-+		ntfs_debug("Failed to map mft record.\n");
-+		return PTR_ERR(ni_mrec);
- 	}
- 
- 	mref = MK_LE_MREF(ni->mft_no, le16_to_cpu(ni_mrec->sequence_number));
--- 
+Patch 2 fixes ntfs_extent_inode_open() which had two bugs: it treated
+map_mft_record() failure as success, and returned NULL for all errors
+(losing error information). Now it returns ERR_PTR() with the actual
+error code (-EIO, -ENOMEM, -EINVAL).
+
+Patch 3 fixes a -1 return in inode.c that reaches userspace as EPERM.
+It loses ENOSPC among others, so a full volume misreports create(),
+mkdir() and link().
+
+Patches 4 and 5 restore errors that are already available as an ERR_PTR.
+Both collapse -ENOMEM into something else, so an allocation failure is
+misreported.
+
+No control flow is changed; every callee already returned these codes.
+
+Based on ntfs-next (0fecc393f206).
+
+Baolin Liu (5):
+  ntfs: return -EINVAL from ntfs_collate_ntofs_ulongs() on bad length
+  ntfs: fix error handling in ntfs_extent_inode_open and propagate errors
+  ntfs: preserve the truncate error in ntfs_enlarge_attribute()
+  ntfs: propagate the map_mft_record() error in ntfs_attrlist_entry_add()
+  ntfs: propagate the ntfs_attr_iget() error in update_reparse_data()
+
+ fs/ntfs/attrlist.c |  4 ++--
+ fs/ntfs/collate.c  |  2 +-
+ fs/ntfs/inode.c    | 28 ++++++++++++++++++----------
+ fs/ntfs/reparse.c  |  2 +-
+ 4 files changed, 22 insertions(+), 14 deletions(-)
+
+--
 2.51.0
 
