@@ -1,222 +1,182 @@
-Received: from SY2PR01CU004.outbound.protection.outlook.com (mail-australiaeastazolkn19011063.outbound.protection.outlook.com [52.103.72.63])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196314A13BF
-	for <ntfs@lists.linux.dev>; Sat,  5 Sep 2026 12:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.72.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788611718; cv=fail; b=scrIU+ONnU2CHVj7HhQO8Wim/F74d2sncYY1wJhR4jHx6xYw+QcQFjZlQkluEDb79qk5VCsSvJTpJmQx7xPTCREaDOGChz+yPVL4lWNPBitJypa8jdYNy9wIpjmQZ+d4+FNuJpKEGNCYOK+Po59NaNfWMm/jqhTEnAgahSJ0R4w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788611718; c=relaxed/simple;
-	bh=zWUFDQv968p/bm5eXNyoZN99h36wKfeKVwiqzFTVODk=;
-	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=J7QH/nNtkKPmJOZTBJqqUMokfZyjJjjERajnthL8azulnpsJYqHKKZTXI/2Fa0xo8/R6Vk+96NZOIjB8xASNlWkM3/Av+cUTzQ59WgiPne71N58slpTRYRW3fW5FtnjPMtLXyyppaiwXkEkI9w/DcegvuBdXuiALX47Im+k7bu0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=lYhHu0lx; arc=fail smtp.client-ip=52.103.72.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96DDF27F72C
+	for <ntfs@lists.linux.dev>; Sat,  5 Sep 2026 14:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1788617343; cv=none; b=PUMeSv2vYAQPU1MlZGXKRBXAgsqWf5xhqeNXvGTpzriNe7Bt7Lvclyb2QAnoWx+3Vj+HHxn9LotvjuLn68D+L5W4TlskBW14S5zpSYJWTTchxgXja6SZPnCow8XYR4KxFa/udVCoOCppyj6dCQLPscV6uoD1USsnWufiqfzi8lI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1788617343; c=relaxed/simple;
+	bh=XFkaaKEWY64wtPrc5AzlfuAzqKxMuoThga6wWScNrjk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uWj6DxL8UQYWVUaqYhY4VTC0JcrrcrCDIEsWBYk1aDL1JqzSuiB0/yuyZfgTVAh4GcEKLz2rWKl+i9bH4SL0SJHjGRrRzmQVMA+gtFhiW2zXo7iPFI0VCs6mv3uFNoHLYoVifFkawFK/RFT1yQtcBAd524CFAWvkxbkHl2fnlKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=basIqN/9; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="lYhHu0lx"
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wo2r4ZMwRZfNXZYITZVVl2Wq3vCiHW7lkH+MeoJl9Dz8OJiETLEFYvooPnastifQJf+uT5ilcPBWxs0BFVGpiCrl/ENnJDK5IgP+N5f1cz/aSzRXDb5tZaO10sSzVU9kqWa7zobOEdmz6OZA4C8qk/ATFEZ8W6j5hNHLTkN3hlmhyViwiH4z1EDqXOTZINUkpANS/t7///ptLEem0qBjJBElMOAJac+SCzANpSY248q1XI3otccLb7yT73a+woeoiqzFk9gQb+6PG40pdpNMbbPhHzUO59/b+OKL/K6S0d8b4nu+OpChjx3tzgs3nXOe5Vvvm5+xkz0OzIeO7B2skg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zWUFDQv968p/bm5eXNyoZN99h36wKfeKVwiqzFTVODk=;
- b=ExY6vmzmwMELgJ9KdcSDuLMl+hEEAHdQCVJmTJu/FM6/7w/3SYQPsXYqPjOqBePhwtLk0E6Ozzy89w6klJdHwhlmH3XM+6balZxoJhN79TPf1cAsBzf84WoS7EuruCd3eQveNUI40eMrsyK8gR0X02FxGzwdZMvt2YMWFHytgq/rIKFo0fESc9ckF7xmlAsUFQxcfiTr0mQ8c1vQqCSopPINUhr5ZNVb0/0U06bYraFUdby5+cTMihhRNIoiq3BDvNjQQC5okZGpz+g8idPofoipTnuFmVzds1928oBB2Rb1DP/hv/VLvG0roLLr4Y1FBvG0uiVgDR31y0sHSGKk2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zWUFDQv968p/bm5eXNyoZN99h36wKfeKVwiqzFTVODk=;
- b=lYhHu0lxyCEAmaJvyXwvYhAK2tZ/5/7jZ8e112NtzCXLdONXkIVImSOkb74DMjZXTDpQq6oPMP23NEQwKd9kiYz6rZwyzACHBu5MTltu3eexYlIo+Ef7ZIngoRsifqP4qL8VLm4WgKyZrLngqhnRHSwl2cLEReACOpUTcIUQu68gt2NCFhEVBHRmT+TRzJtlV4ZfcAHFHaQGsBv2WjgYH+jYOUdsPmlQqroOfboOwEdcv88Wj7sbOQ+/bBgD9XjT/ciKh2v0+GKJ7dV9O/uSxMLZ+cuEt1rAe35GSirGVftWGejcTTmxPdfKnpx2vzgpwAHeODEaIS7ewIUS6KptZw==
-Received: from SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM (2603:10c6:10:24c::11)
- by SY3PPF4A3113B3A.AUSP300.PROD.OUTLOOK.COM (2603:10c6:18::492) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.13; Sat, 5 Sep
- 2026 12:35:08 +0000
-Received: from SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM
- ([fe80::1c6a:c02f:24a4:eec0]) by SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM
- ([fe80::1c6a:c02f:24a4:eec0%6]) with mapi id 15.21.0382.014; Sat, 5 Sep 2026
- 12:35:08 +0000
-From: =?gb2312?B?1uwgzOy6xg==?= <zhutianhao75@hotmail.com>
-To: "linkinjeon@kernel.org" <linkinjeon@kernel.org>, "hyc.lee@gmail.com"
-	<hyc.lee@gmail.com>
-CC: "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ntfs: fix $MFTMirr write offset for MFT record sizes larger
- than PAGE_SIZE
-Thread-Topic: [PATCH] ntfs: fix $MFTMirr write offset for MFT record sizes
- larger than PAGE_SIZE
-Thread-Index: AQHdPTIkqh0iE9s+jEiq2UfLG+SmRQ==
-Date: Sat, 5 Sep 2026 12:35:08 +0000
-Message-ID:
- <SY0P300MB031263862D7FD47834F1E87FDEB42@SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SY0P300MB0312:EE_|SY3PPF4A3113B3A:EE_
-x-ms-office365-filtering-correlation-id: e65869ac-98dd-485c-1924-08df0b4a1f04
-x-microsoft-antispam:
- BCL:0;ARA:14566002|24021099003|15030799006|51005399006|31061999003|15080799012|22091999003|41001999006|24121999003|8062599012|8060799015|19110799012|12121999013|4040399003|40105399003|26121999007|3430499035|2607281247196008|102099032|3412199025|440099028;
-x-microsoft-antispam-message-info:
- =?gb2312?B?TDZwZ0pXUGhoOEZVMzRXUDlmQUVhSDUvcytFQkpwb1R5YTlaNTdwU29wbmp4?=
- =?gb2312?B?amhYb0tjNGhrU2RqcWhjclpvVFJJMEtGVi9DMTVvemZ6V0N0SlhXSTdVeEQw?=
- =?gb2312?B?Y0d2dFlXRytyOGJNMkZOZE1EajBBM0hEb1REa1U0RlVaRHNEclJGRUtLakpT?=
- =?gb2312?B?cE1aUXJzOWwrTjlDQWpybHBFVmU3ckhudThxZzhtK290dk9UcjQ4bGI2M2Vi?=
- =?gb2312?B?UjB6VXdjSE96UDJxNkhNZ1NrV0trQmR2M1dNTEozYkFIWnltRkdoWmZ0eXVU?=
- =?gb2312?B?c3J5RGphTytRK1NHQjR0aGxHdDg0T2VKTkxKdVdKWUNTNVNweE5VTkVXMDUw?=
- =?gb2312?B?NXBDWTVLeVl1ekxSME5ZeFBiMUQ5WEVQbGl5L29MeHYzNjk1VSswSzY3ZDNw?=
- =?gb2312?B?VWxjTE5RZ3JEL1B4R2dEaFZQdFhKWCtFaGdrc29hTFpaL2V2bjM0VFFTTEZz?=
- =?gb2312?B?VTRGMTRhMFpzYUV2Q3I1NE9IUWMvRzc2TFhXNTJEd1llY2ZqZk9VRWJRUDJC?=
- =?gb2312?B?WVg0dFlUTnhaQVhCWXNxVDBPVGc5WHF6eHJmc2dmSytHZENuczJOdENpOGN3?=
- =?gb2312?B?TjZGOGNaWFpacXp6LytJMy9idUJ5MTNkU21BRGthakdmbmRVOFpSYi90TXQ0?=
- =?gb2312?B?OVJXcnFWSVU2RjFzQjRmSC9mR3gwT010THFCczM4ZGV3TjFmWnc1ZENzU2pC?=
- =?gb2312?B?bzZQY1BONG4xREs5R25rbFpLa0lxUi80QXJZRWRiWndobTMzZjhMOE5odThu?=
- =?gb2312?B?YitUNTI4OERUN3hPNXdRZU4yeFFESXNIQWpYTXFNNE8wZXNKOE5xMGtCaGpT?=
- =?gb2312?B?T1ZWakRGQ0hxVWUzVnRCZzlKYVB0YkpKbGhtNEpBdjYrbzJiWnAzaVZqMVEy?=
- =?gb2312?B?eFZ3L21xV09PcjJnd3pjTWxtUXNzQ3hGUEE3U2FGVWhMVlVGdHBUVlJuQUFL?=
- =?gb2312?B?SEdEUXd1M0d1TStyaWhPeFhFRXJ1Q2tNdkdCS1ZoWHhTOWpCMk05amNuRGNU?=
- =?gb2312?B?Sm1uQ053ZUpGVUpqd0VzRjh6Y3dJa0lzNzBaTnFveStnb2ZSTWw4dnhYQVR5?=
- =?gb2312?B?bDFpNnV6UDRhd1E1aTlycmYzK25oTHdZK01LcnQ3cmlNejd1ViszKzYzeE11?=
- =?gb2312?B?cjNjdjgrNmMzSmEzSnkzQWx2TnE1M1hXNEMyMXprZlRSQjUvdm1JL2xYNlVV?=
- =?gb2312?B?SDNXTWJQT2h2RDhBQVNDUHY5YS9iZEI1UThPOWJqQVEvajl4bEo5eklMOENw?=
- =?gb2312?B?KysvK21TZmZXbityY0dZckxweldabFBXbitXRkNSTjRYcWRobi9yZ3FYY1d1?=
- =?gb2312?B?T0RZZUdCUTFETjR5SVRDWDh1bmpHWjdGdS9kRnJZVCs1N1RaWUt5cTV3Vy9N?=
- =?gb2312?B?a1FwYTM1bkV0M3dqZ0QyK2RtclBBb3dpNXJTdHBtdmpHYmp0Mmo1Y1EwQWha?=
- =?gb2312?B?ZnRrM0ZoZ29BTlNvY2FaSVFvYmZ2Q2FiQm56SzgyUXBUVWg1MnZQUlpKcFFz?=
- =?gb2312?Q?6yBH6m91+hX3PBOWnuf6sPXgSdm?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?gb2312?B?Z3BlZ3VqOUJSWUNOSHBubFMwWVRtYUl4V1BvVjRDaXNjN3NmL092ZzcwSHlp?=
- =?gb2312?B?Z2I5V3JGUTZFdnZhYytBVGtYNmNBbDFWeW9qeE1nQ2R6aUR1ajh5b2JDVURF?=
- =?gb2312?B?Z1dETnRxUWZONlFXNjVwcldibUNnRmNZYnJtMUN4NTRJK0xaRkh2bzlPNkRz?=
- =?gb2312?B?QTFiK1kyNkYrc0FCQ0R4VStSWTJlaVBuMWxidkVqK1VsNWlmWlZ1S3lNYU5o?=
- =?gb2312?B?TEpmKzBobEVzMXFnbGFJYTlwTTJMZGYxT2dBYVE2S1U2Uys2V3drd1VFczhj?=
- =?gb2312?B?QUgzdGMyUWtIQmNSU2VGdnI3OTFlb3hrVFZEVUFjanFCT29Wa1VnbUxYUmNS?=
- =?gb2312?B?dXF0SjlHZHpWSGNuR2pCYUkwa3k3S0FJeGtmYWNmUXlXeXZNamhrMWNMSkNx?=
- =?gb2312?B?aHFkWkI3QXBiZTJuUy9Rb0oxaHdBa3FvKy9nQ0p4cmxkZlR2S3FvMG9kZXFu?=
- =?gb2312?B?S1FFTXB0K2M5a210NjZZdmh6OXFWUmpwYytOeGxmNndaUmZZS0t0Z2xsemQr?=
- =?gb2312?B?MzJjcExTTEU0eDA2c2dhVi8wMjhPUVc1TGQ4TUxtdUtGUElsMURsbGZ5aFow?=
- =?gb2312?B?ZnhoVUNQYm5EcVROVVVpNWZ0d1d5dHMyekxlMldRTUVhQUZ3YytuTm1sczB1?=
- =?gb2312?B?WjBxdDFIc2ROc3A2WVpqbGk0NUtGaXF1eWdWTHNpZEY2TTkvWlJLeFF6Z0kv?=
- =?gb2312?B?bVZMSEs0U2tCZDRHdUk0dERwemdnOFFUMU51UW5kRmQ3WldPNGRsTGlRVThw?=
- =?gb2312?B?UjdVWnpjbzZaVWp6T0R0aTFWQyszSFkzRmNDOFZDOWRxeGRENDlQYWpsd1U3?=
- =?gb2312?B?ZDlkbnZNV2VJOWRxU09rVUtvOFluaXU2aEU0L2tqYytrdjE3Z3VRM05TcWhk?=
- =?gb2312?B?Ui91N1p1ZUFOaUJqUzdhNGVRWkx0QUYxTitEVExKcXR1SmZnYXR2a2pTY3dz?=
- =?gb2312?B?ZlJLUUhGUThSMkg0MHVlRmVEbTVDdXVkdWFnTksxZzFHYWI1bkZvZGxOSmQ3?=
- =?gb2312?B?dnNEYWZCYmViR2RzL2YwVXhzdlc2Qm8zRk1TMkY4Qm1wc2JEVERXQzhoYTFp?=
- =?gb2312?B?d3NBc2RRL2ttcFA2dTRPUDE3a1dEdmZVUFpxUkJTR1dLakRkbGdMcFNyOEJw?=
- =?gb2312?B?YWJ2YmJQRkZvNUxFdDRzMzVDVUZQTzdTSEVxSkRoK0dFUkEraHhRWDNtYnFX?=
- =?gb2312?B?cXFUUzZzYzd3UEIxeURzem5QdWZFdjVHS0tBU0lTdnR2UThpNU5qYWJpRGk4?=
- =?gb2312?B?SlE5OVczWVpZUFEyTEN4VDJhNlkvSy8wZE56VWg1eUlISkV2VDErZDlyRG0v?=
- =?gb2312?B?THNqclFiakU0QWFJaTM3L0s0SzVMVStVV0J4b1FpL2RjNDBBTHpBRE1mVmtW?=
- =?gb2312?B?MDV5VWhGWkl5NkdPVUVJeFMzNjJvdm9PYWUzN1dTNFg5VFZBcStaU0o5T1FQ?=
- =?gb2312?B?YndTNmc2b2N3RTRHMTNUTUFHRVkycnVXSGJmeXBvL0NiOERQUUVOa1dzdTZi?=
- =?gb2312?B?Z2Fxd0RtRUlyUWlPb0ZkR0lFMWpDTjNpYnBQbWJwYW1oU3cyYy9xNXVDcUp0?=
- =?gb2312?B?VjQ3QzVYYXhFM0VHNHpNVWR2bWpZejNnZUUyZ1lLSzRTYklZMFBITnJkaXlQ?=
- =?gb2312?B?ZmRFY2J5ZkJzR3lKS3l6SGRUNWdVRWVkY2NQOThwNlZyczUyT2N6aWhhVzhz?=
- =?gb2312?B?YWdJSDRPSkZ0YW5kcDdLKzNBcWRCODM4WjJHR1o0UW03bTQ5WSt0eWxrQUFO?=
- =?gb2312?B?c3FJWnJXQVhmdWUvOW03RFptMnRrd0I0SitaRzN6UjA3SWNQakl6ejhEVjVq?=
- =?gb2312?B?d0RVd1VNVllRekI2UWZDMVNZbUp6eDdSQzZtS2taMWNvcUNNTC9rUFk1ME16?=
- =?gb2312?Q?k+THJHF6INtBK?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="basIqN/9"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=SPojwjLkaMA11kPJdNiZJMswWTdi4XubYxdhDNobZx8=;
+	b=basIqN/98SNEhXlYaqmMWAGO7yRqPkJnb+Nu+hFAuIm6gSpwiTA1Kj5t+0Vqah
+	ibNHPXeQMRNqPTPN9OgB0TjaFsf/sLzn6O78FyizZ+BpsRwVYS3i3BaXK1xR9yRh
+	ooKwQ6OTKJdP3deS+eyyMubRlD3YjjY1OqvjBt52Ymg8g=
+Received: from [IPV6:2409:8907:9f4b:3fe:b252:b6b3:7eed:98b6] (unknown [])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3n41sIpxqpVCYAw--.59650S2;
+	Sat, 05 Sep 2026 22:08:45 +0800 (CST)
+Message-ID: <39a9c42b-7e47-4d3b-b3c2-6eb05af41ce0@163.com>
+Date: Sat, 5 Sep 2026 22:08:44 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-9412-4-msonline-outlook-4606f.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: e65869ac-98dd-485c-1924-08df0b4a1f04
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2026 12:35:08.5702
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY3PPF4A3113B3A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ntfs: fix $MFTMirr write offset for MFT record sizes
+ larger than PAGE_SIZE
+To: =?UTF-8?B?5pyxIOWkqea1qQ==?= <zhutianhao75@hotmail.com>,
+ "linkinjeon@kernel.org" <linkinjeon@kernel.org>,
+ "hyc.lee@gmail.com" <hyc.lee@gmail.com>
+Cc: "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <SY0P300MB031263862D7FD47834F1E87FDEB42@SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <SY0P300MB031263862D7FD47834F1E87FDEB42@SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3n41sIpxqpVCYAw--.59650S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZF15tw48Xw4UZFy5Jr1DWrg_yoW7Jw1kpF
+	9xK3s3Jr4ktr9rC39Fga1Iga48X393JFyUWFW7Gr1xCFsYq34kWF4Ut3yruFyFyr4Yywn7
+	X3WkGrnxWFyDAaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2zuZUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6g1lMGqcIm2jbwAA3H
 
-V2hlbiBjb21taXQgMTE1MzgwZjlhMmY5ICgibnRmczogdXBkYXRlIG1mdCBvcGVyYXRpb25zIikg
-cmVmYWN0b3JlZCB0aGUKTUZUIGNvZGUgdG8gdXNlIGZvbGlvcywgaXQgYXNzdW1lZCAkTUZUTWly
-ciBpcyBhbGxvY2F0ZWQgY29udGlndW91c2x5LAp3aGljaCBpcyBpbmRlZWQgd2hhdCBta2ZzIGFy
-cmFuZ2VzLiAgSG93ZXZlciwgdGhlIGZvbGlvIHJld3JpdGUga2VwdCBhCmxlZnRvdmVyIGZyb20g
-dGhlIG9sZCBidWZmZXItaGVhZC9ydW5saXN0IGJhc2VkIGltcGxlbWVudGF0aW9uOgp2b2wtPmNs
-dXN0ZXJfc2l6ZV9tYXNrIGlzIHN0aWxsIGFwcGxpZWQgdG8gdGhlIG1pcnJvciB3cml0ZSBvZmZz
-ZXQuCkluIGZhY3QgaXQgaXMgbm8gbG9uZ2VyIG5lZWRlZCAtLSBhbmQgaW4gc29tZSBjb25maWd1
-cmF0aW9ucyBpdCBpcwphY3RpdmVseSB3cm9uZy4KCkZvciBleGFtcGxlLCBvbiB0aGUgYnVpbHQt
-aW4gNEtuIFNTRCAoQXBwbGUgU1NEIEFQMDI1NkopIG9mIGEKTWFjQm9va1BybzE0LDEgd2l0aCA0
-MDk2LWJ5dGUgTUZUIHJlY29yZHMsIG1pcnJvciByZWNvcmQgMyBpcyBzdGlsbAp3cml0dGVuIHRv
-IHRoZSBsb2NhdGlvbiBvZiByZWNvcmQgMC4gICRNRlRNaXJyIHRoZXJlZm9yZSBnZXRzIG91dCBv
-ZgpzeW5jIHdpdGggJE1GVCBhbmQgdGhlIGZvbGxvd2luZyB3YXJuaW5nIGlzIHByaW50ZWQgb24g
-cmVtb3VudDoKCgludGZzOiAoZGV2aWNlIG52bWUwbjFwMyk6IGNoZWNrX21mdF9taXJyb3IoKTog
-JE1GVCBhbmQgJE1GVE1pcnIKCSAgICAgIHJlY29yZCAwIGRvIG5vdCBtYXRjaC4gIFJ1biBjaGtk
-c2suCgpGaXggaXQgYnkgYWx3YXlzIGFkZGluZyB0aGUgZm9saW8gb2Zmc2V0IChmb2xpby0+aW5k
-ZXggPDwgUEFHRV9TSElGVCkKdG8gdGhlIGJhc2UgTENOIGFkZHJlc3MgaW5zdGVhZCBvZiBhcHBs
-eWluZyB0aGUgY2x1c3Rlcl9zaXplX21hc2sKdHJ1bmNhdGlvbi4gIFRoaXMgaXMgdGhlIHN0YW5k
-YXJkIGZpbGUtb2Zmc2V0IGNhbGN1bGF0aW9uIGFuZCBpcwpjb3JyZWN0IGZvciBldmVyeSBjb21i
-aW5hdGlvbiBvZiBjbHVzdGVyIHNpemUsIHBhZ2Ugc2l6ZSBhbmQgTUZUCnJlY29yZCBzaXplLCBw
-cm92aWRlZCAkTUZUTWlyciBkYXRhIGlzIGNvbnRpZ3VvdXMgZnJvbSBtZnRtaXJyX2xjbgood2hp
-Y2ggbWtmcyBhbHdheXMgYXJyYW5nZXMpLgoKV2hpbGUgaGVyZSwgdmVyaWZ5IHRoYXQgdGhlIGZv
-bGlvIHJldHVybmVkIGJ5IHJlYWRfbWFwcGluZ19mb2xpbygpIGlzCmxhcmdlIGVub3VnaCB0byBo
-b2xkIHRoZSB3aG9sZSBtaXJyb3IgcmVjb3JkIChmb2xpb19vZnMgKwptZnRfcmVjb3JkX3NpemUg
-PD0gZm9saW9fc2l6ZShmb2xpbykpLCBndWFyZGluZyBhZ2FpbnN0IHJlY29yZHMgdGhhdApzdHJh
-ZGRsZSBhIGZvbGlvIGJvdW5kYXJ5IHdoZW4gbWZ0X3JlY29yZF9zaXplIGV4Y2VlZHMgUEFHRV9T
-SVpFLAphbHRob3VnaCB0aGlzIGNhbm5vdCBoYXBwZW4gaW4gcHJhY3RpY2UuCgpUZXN0ZWQgb24g
-dGhlIHZvbHVtZSBhYm92ZTogYmVmb3JlIHRoZSBjaGFuZ2UgbWlycm9yIHJlY29yZHMgMS0zIGFy
-ZQphbGwgd3JpdHRlbiB0byByZWNvcmQgMCdzIHNlY3RvcjsgYWZ0ZXIgdGhlIGNoYW5nZSB0aGUg
-d3JpdGUtYmFjawpwcm9iZSByZXBvcnRzOgoKCW50ZnM6IE5URlNEQkcgcHJlIG1mdF9ubz0weDMg
-Zm9saW9faWR4PTB4MyBvZnM9MHgwIG1mdG1pcnJfbGNuPTB4MjU0MGM1IGNsdV9iaXRzPTEyIHJl
-Y19iaXRzPTEyIFBBR0VfU0hJRlQ9MTIgc2VjdD0weDEyYTA2NDAKCW50ZnM6IE5URlNEQkcgcHJl
-IG1mdF9ubz0weDAgZm9saW9faWR4PTB4MCBvZnM9MHgwIG1mdG1pcnJfbGNuPTB4MjU0MGM1IGNs
-dV9iaXRzPTEyIHJlY19iaXRzPTEyIFBBR0VfU0hJRlQ9MTIgc2VjdD0weDEyYTA2MjgKCndoaWNo
-IG1hdGNoZXMgdGhlIGV4cGVjdGVkIHNlY3RvcnMgY29tcHV0ZWQgYXM6CgoJKE5URlNfQ0xVX1RP
-X0IobWZ0bWlycl9sY24pICsgKGZvbGlvLT5pbmRleCA8PCBQQUdFX1NISUZUKSkgPj4gU0VDVE9S
-X1NISUZUCgoJcmVjb3JkIDA6ICgweDI1NDBjNSA8PCAxMikgKyAweDAwMDAgPSAweDI1NDBjNTAw
-MCA+PiA5ID0gMHgxMmEwNjI4CglyZWNvcmQgMzogKDB4MjU0MGM1IDw8IDEyKSArIDB4MzAwMCA9
-IDB4MjU0MGM4MDAwID4+IDkgPSAweDEyYTA2NDAKCkEgMTMgTUIgZmlsZSB3cml0ZSBzdWNjZWVk
-cyBvbiB0aGlzIHZvbHVtZSBhbmQgdGhlIGZpbGUgaXMgYnl0ZS1mb3ItYnl0ZQppZGVudGljYWwg
-YWZ0ZXIgYSB1bW91bnQvbW91bnQgY3ljbGUuCgpGaXhlczogMTE1MzgwZjlhMmY5ICgibnRmczog
-dXBkYXRlIG1mdCBvcGVyYXRpb25zIikKQXNzaXN0ZWQtYnk6IFVPUy1BSQpBc3Npc3RlZC1ieTog
-Q29kZUJ1ZGR5Okh5NCBwcmV2aWV3ClNpZ25lZC1vZmYtYnk6IFpodSBUaWFuaGFvIDx6aHV0aWFu
-aGFvNzVAaG90bWFpbC5jb20+Ci0tLQogZnMvbnRmcy9tZnQuYyB8IDI2ICsrKysrKysrKysrKysr
-KystLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRp
-b25zKC0pCgpkaWZmIC0tZ2l0IGEvZnMvbnRmcy9tZnQuYyBiL2ZzL250ZnMvbWZ0LmMKaW5kZXgg
-N2U1OGM5OWYxNzI4Li5hNjJiMWQ0MTY5N2MgMTAwNjQ0Ci0tLSBhL2ZzL250ZnMvbWZ0LmMKKysr
-IGIvZnMvbnRmcy9tZnQuYwpAQCAtNDYyLDcgKzQ2Miw3IEBAIGludCBudGZzX3N5bmNfbWZ0X21p
-cnJvcihzdHJ1Y3QgbnRmc192b2x1bWUgKnZvbCwgY29uc3QgdTY0IG1mdF9ubywKIHsKIAl1OCAq
-a21pcnI7CiAJc3RydWN0IGZvbGlvICpmb2xpbzsKLQl1bnNpZ25lZCBpbnQgZm9saW9fb2ZzLCBs
-Y25fZm9saW9fb2ZmID0gMDsKKwl1bnNpZ25lZCBpbnQgZm9saW9fb2ZzOwogCWludCBlcnIgPSAw
-OwogCXN0cnVjdCBiaW8gKmJpbzsKIApAQCAtNDgyLDI1ICs0ODIsMzEgQEAgaW50IG50ZnNfc3lu
-Y19tZnRfbWlycm9yKHN0cnVjdCBudGZzX3ZvbHVtZSAqdm9sLCBjb25zdCB1NjQgbWZ0X25vLAog
-CQlnb3RvIGVycl9vdXQ7CiAJfQogCisJLyogT2Zmc2V0IG9mIHRoZSBtZnQgbWlycm9yIHJlY29y
-ZCBpbnNpZGUgdGhlIGZvbGlvLiAqLworCWZvbGlvX29mcyA9IE5URlNfTUZUX05SX1RPX1BPRlMo
-dm9sLCBtZnRfbm8pOworCisJLyogVGhlIG1pcnJvciByZWNvcmQgbXVzdCBmaXQgZW50aXJlbHkg
-d2l0aGluIHRoaXMgZm9saW8uICovCisJaWYgKGZvbGlvX29mcyArIHZvbC0+bWZ0X3JlY29yZF9z
-aXplID4gZm9saW9fc2l6ZShmb2xpbykpIHsKKwkJbnRmc19lcnJvcih2b2wtPnNiLCAiTWZ0IG1p
-cnJvciByZWNvcmQgMHglbGx4IGRvZXMgbm90IGZpdCBpbiBmb2xpby4iLAorCQkJICAgbWZ0X25v
-KTsKKwkJZm9saW9fcHV0KGZvbGlvKTsKKwkJZXJyID0gLUVJTzsKKwkJZ290byBlcnJfb3V0Owor
-CX0KKwogCWZvbGlvX2xvY2soZm9saW8pOwogCWZvbGlvX2NsZWFyX3VwdG9kYXRlKGZvbGlvKTsK
-LQkvKiBPZmZzZXQgb2YgdGhlIG1mdCBtaXJyb3IgcmVjb3JkIGluc2lkZSB0aGUgcGFnZS4gKi8K
-LQlmb2xpb19vZnMgPSBOVEZTX01GVF9OUl9UT19QT0ZTKHZvbCwgbWZ0X25vKTsKLQkvKiBUaGUg
-YWRkcmVzcyBpbiB0aGUgcGFnZSBvZiB0aGUgbWlycm9yIGNvcHkgb2YgdGhlIG1mdCByZWNvcmQg
-QG0uICovCisJLyogVGhlIGFkZHJlc3MgaW4gdGhlIGZvbGlvIG9mIHRoZSBtaXJyb3IgY29weSBv
-ZiB0aGUgbWZ0IHJlY29yZCBAbS4gKi8KIAlrbWlyciA9IGttYXBfbG9jYWxfZm9saW8oZm9saW8s
-IDApICsgZm9saW9fb2ZzOwogCS8qIENvcHkgdGhlIG1zdCBwcm90ZWN0ZWQgbWZ0IHJlY29yZCB0
-byB0aGUgbWlycm9yLiAqLwogCW1lbWNweShrbWlyciwgbSwgdm9sLT5tZnRfcmVjb3JkX3NpemUp
-OwogCWt1bm1hcF9sb2NhbChrbWlycik7CiAKLQlpZiAodm9sLT5jbHVzdGVyX3NpemVfYml0cyA+
-IFBBR0VfU0hJRlQpIHsKLQkJbGNuX2ZvbGlvX29mZiA9IGZvbGlvLT5pbmRleCA8PCBQQUdFX1NI
-SUZUOwotCQlsY25fZm9saW9fb2ZmICY9IHZvbC0+Y2x1c3Rlcl9zaXplX21hc2s7Ci0JfQotCiAJ
-YmlvID0gYmlvX2FsbG9jKHZvbC0+c2ItPnNfYmRldiwgMSwgUkVRX09QX1dSSVRFLCBHRlBfTk9J
-Tyk7CiAJYmlvLT5iaV9pdGVyLmJpX3NlY3RvciA9CiAJCW50ZnNfYnl0ZXNfdG9fYmlvX3NlY3Rv
-cihOVEZTX0NMVV9UT19CKHZvbCwgdm9sLT5tZnRtaXJyX2xjbikgKwotCQkJCQkgbGNuX2ZvbGlv
-X29mZiArIGZvbGlvX29mcyk7CisJCQkJCSAoKHU2NClmb2xpby0+aW5kZXggPDwgUEFHRV9TSElG
-VCkgKworCQkJCQkgZm9saW9fb2ZzKTsKIAogCWlmIChiaW9fYWRkX2ZvbGlvKGJpbywgZm9saW8s
-IHZvbC0+bWZ0X3JlY29yZF9zaXplLCBmb2xpb19vZnMpKQogCQllcnIgPSBzdWJtaXRfYmlvX3dh
-aXQoYmlvKTsKLS0gCjIuNTEuMAo=
+
+
+在 2026/9/5 20:35, 朱 天浩 写道:
+> When commit 115380f9a2f9 ("ntfs: update mft operations") refactored the
+> MFT code to use folios, it assumed $MFTMirr is allocated contiguously,
+> which is indeed what mkfs arranges.  However, the folio rewrite kept a
+> leftover from the old buffer-head/runlist based implementation:
+> vol->cluster_size_mask is still applied to the mirror write offset.
+> In fact it is no longer needed -- and in some configurations it is
+> actively wrong.
+> 
+> For example, on the built-in 4Kn SSD (Apple SSD AP0256J) of a
+> MacBookPro14,1 with 4096-byte MFT records, mirror record 3 is still
+> written to the location of record 0.  $MFTMirr therefore gets out of
+> sync with $MFT and the following warning is printed on remount:
+> 
+> 	ntfs: (device nvme0n1p3): check_mft_mirror(): $MFT and $MFTMirr
+> 	      record 0 do not match.  Run chkdsk.
+> 
+> Fix it by always adding the folio offset (folio->index << PAGE_SHIFT)
+> to the base LCN address instead of applying the cluster_size_mask
+> truncation.  This is the standard file-offset calculation and is
+> correct for every combination of cluster size, page size and MFT
+> record size, provided $MFTMirr data is contiguous from mftmirr_lcn
+> (which mkfs always arranges).
+> 
+> While here, verify that the folio returned by read_mapping_folio() is
+> large enough to hold the whole mirror record (folio_ofs +
+> mft_record_size <= folio_size(folio)), guarding against records that
+> straddle a folio boundary when mft_record_size exceeds PAGE_SIZE,
+> although this cannot happen in practice.
+> 
+> Tested on the volume above: before the change mirror records 1-3 are
+> all written to record 0's sector; after the change the write-back
+> probe reports:
+> 
+> 	ntfs: NTFSDBG pre mft_no=0x3 folio_idx=0x3 ofs=0x0 mftmirr_lcn=0x2540c5 clu_bits=12 rec_bits=12 PAGE_SHIFT=12 sect=0x12a0640
+> 	ntfs: NTFSDBG pre mft_no=0x0 folio_idx=0x0 ofs=0x0 mftmirr_lcn=0x2540c5 clu_bits=12 rec_bits=12 PAGE_SHIFT=12 sect=0x12a0628
+> 
+> which matches the expected sectors computed as:
+> 
+> 	(NTFS_CLU_TO_B(mftmirr_lcn) + (folio->index << PAGE_SHIFT)) >> SECTOR_SHIFT
+> 
+> 	record 0: (0x2540c5 << 12) + 0x0000 = 0x2540c5000 >> 9 = 0x12a0628
+> 	record 3: (0x2540c5 << 12) + 0x3000 = 0x2540c8000 >> 9 = 0x12a0640
+> 
+> A 13 MB file write succeeds on this volume and the file is byte-for-byte
+> identical after a umount/mount cycle.
+> 
+> Fixes: 115380f9a2f9 ("ntfs: update mft operations")
+> Assisted-by: UOS-AI
+> Assisted-by: CodeBuddy:Hy4 preview
+> Signed-off-by: Zhu Tianhao <zhutianhao75@hotmail.com>
+> ---
+>   fs/ntfs/mft.c | 26 ++++++++++++++++----------
+>   1 file changed, 16 insertions(+), 10 deletions(-)
+> 
+> diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
+> index 7e58c99f1728..a62b1d41697c 100644
+> --- a/fs/ntfs/mft.c
+> +++ b/fs/ntfs/mft.c
+> @@ -462,7 +462,7 @@ int ntfs_sync_mft_mirror(struct ntfs_volume *vol, const u64 mft_no,
+>   {
+>   	u8 *kmirr;
+>   	struct folio *folio;
+> -	unsigned int folio_ofs, lcn_folio_off = 0;
+> +	unsigned int folio_ofs;
+>   	int err = 0;
+>   	struct bio *bio;
+>   
+> @@ -482,25 +482,31 @@ int ntfs_sync_mft_mirror(struct ntfs_volume *vol, const u64 mft_no,
+>   		goto err_out;
+>   	}
+>   
+> +	/* Offset of the mft mirror record inside the folio. */
+> +	folio_ofs = NTFS_MFT_NR_TO_POFS(vol, mft_no);
+> +
+> +	/* The mirror record must fit entirely within this folio. */
+> +	if (folio_ofs + vol->mft_record_size > folio_size(folio)) {
+> +		ntfs_error(vol->sb, "Mft mirror record 0x%llx does not fit in folio.",
+> +			   mft_no);
+> +		folio_put(folio);
+> +		err = -EIO;
+> +		goto err_out;
+> +	}
+> +
+>   	folio_lock(folio);
+>   	folio_clear_uptodate(folio);
+> -	/* Offset of the mft mirror record inside the page. */
+> -	folio_ofs = NTFS_MFT_NR_TO_POFS(vol, mft_no);
+> -	/* The address in the page of the mirror copy of the mft record @m. */
+> +	/* The address in the folio of the mirror copy of the mft record @m. */
+>   	kmirr = kmap_local_folio(folio, 0) + folio_ofs;
+>   	/* Copy the mst protected mft record to the mirror. */
+>   	memcpy(kmirr, m, vol->mft_record_size);
+>   	kunmap_local(kmirr);
+>   
+> -	if (vol->cluster_size_bits > PAGE_SHIFT) {
+> -		lcn_folio_off = folio->index << PAGE_SHIFT;
+> -		lcn_folio_off &= vol->cluster_size_mask;
+> -	}
+> -
+>   	bio = bio_alloc(vol->sb->s_bdev, 1, REQ_OP_WRITE, GFP_NOIO);
+>   	bio->bi_iter.bi_sector =
+>   		ntfs_bytes_to_bio_sector(NTFS_CLU_TO_B(vol, vol->mftmirr_lcn) +
+> -					 lcn_folio_off + folio_ofs);
+> +					 ((u64)folio->index << PAGE_SHIFT) +
+> +					 folio_ofs);
+>   
+>   	if (bio_add_folio(bio, folio, vol->mft_record_size, folio_ofs))
+>   		err = submit_bio_wait(bio);
+
+Hi Tianhao,
+   Thanks for submitting this patch.
+   You identified a real issue where the write offset for $MFTMirr 
+records can be calculated incorrectly on some configurations, which may 
+leave $MFTMirr inconsistent with $MFT.
+
+   I have reviewed the patch carefully, and I believe the proposed fix 
+is  effective.
+
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+
+Thanks,
+Baolin.
+
