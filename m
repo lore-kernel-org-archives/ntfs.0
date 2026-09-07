@@ -1,200 +1,131 @@
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14F744238C
-	for <ntfs@lists.linux.dev>; Mon,  7 Sep 2026 08:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014F845A288
+	for <ntfs@lists.linux.dev>; Mon,  7 Sep 2026 09:52:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.44
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788771282; cv=pass; b=TgOGFGJe+R5hLmi/0rh4JAV+PNGH3j15SiIU6kdpXiR5EPPfCau9V83w4fe/1WbYEOcYOGSl9IhQTnndFsX4WsWncA+8xnFeymIZ6x8xME4PEaD0yIc6w9QE5wfTeXIOWwGtk56rnunRRzdAudezkqHg2Xo2QytTTJhGnLDDpc8=
+	t=1788774736; cv=pass; b=cR24V3bvpyrduCCFwpqoVKSgRVtSMWSZBsxX8h3cI1Imz8h7Rmt6j88HmhQKOl8ZEHFlzltMpCrCXFTLC1bEtP0znEUo3d3wNR+YzTGG9a+7bd9BW3+48QKHlmRU5KsH1G1GXqPsEE0h5wFlu1dq2zKT4mNwnVfH2WM632YDHLU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788771282; c=relaxed/simple;
-	bh=QXjMseea1+MUk12KuF/7jXKNO6pgSq+LEwZGSetRuqY=;
+	s=arc-20240116; t=1788774736; c=relaxed/simple;
+	bh=3xW3efaKmi9Dz9Vb0WuWLDIqg0HD53iZMVu4vjA+zeQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VSRcr94dTKbM2V+kW9L4C9X2xW52FgQNuGEq4UXhdp2uk9jsaDb9yvnAUTaRikHMyh5937+ecnOIUAzfZlJlYDZmXNIutvXt4pxDxrUD4xblXalFIHxc6axg1X9SSl5xIKqEo8Ai/OTeGXnGubeQFbg4TeUq5EtLsgxm1ddDXdg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XHYCJ4IA; arc=pass smtp.client-ip=209.85.167.43
+	 To:Cc:Content-Type; b=sbs2hb+zwkRkyoQeLwV0KiDrU+qpEL2aJ9Y5ybZOoJ22Pvovo90Jp/IpYMjK9vgrdfi089KDUg+CD0PMv4aJeMgt1Rapt2TcA5PAx9DOspNQTGqG5Va4lVZWwI/0+9bjJpTjuIYBom431JvxJ15DPhFiet2S+0d43E/DrRDo2LM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Okv+e10H; arc=pass smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XHYCJ4IA"
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5b5e18f0439so2954263e87.2
-        for <ntfs@lists.linux.dev>; Mon, 07 Sep 2026 01:54:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1788771279; cv=none;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Okv+e10H"
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5b75858b4e5so541359e87.2
+        for <ntfs@lists.linux.dev>; Mon, 07 Sep 2026 02:52:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1788774726; cv=none;
         d=google.com; s=arc-20260327;
-        b=lcibtc4OSq25UoNHYY/lCunzOtPfP5dbvoXbZF5CcwIq6wFO1kTiux+iwYQIdY7xIZ
-         BhemDez1eeL/pGimPi+g+uPAGBMs1QvXeN8ppO20HHb6dm299Fm019v0nJGA7/lnNSYh
-         r56fCW9umj/N+MVRF/eR8EZp8u8Tz883v35KVYmNueOCZCNcRvK0uPnBrqlAwC6E9IV6
-         UkaoPkDOVnZOjuY7ajocgNs3dTo62hTwMpAbU1wOHd9WszLpNfEeaJF2oC5YlDFOuZjR
-         HJDp6Dkc71MBTM4Y+zPFDzNunfbOXy5Q5A/ARrBU3wkJg0zBvJybzJUiuAEz5EpROWg2
-         Qd6A==
+        b=K17k/NeTcNyUmGZjuLsKB7ZaSop9aUAyMKyWf/L5fzrljQId7ZYGcCFpGCKCxlPc9/
+         IsM+bhnuyUki6lHRUMqjHDcA6uLKG8da9EI0hTLk7y9VWovcRsgO6x6gzFYGpFH72JAw
+         BUWXJAIafv1Q3UsmHD2YeAXLARzPpndacpDnK4IhcsrI2GNwOI9WGgAYktTYt7zdHc8J
+         yuQMKsaaLawYmfJL4dBxbu7v/JbD6f9nxmyrajS1YB7A/IG9Qi3r6arKgqfPzhpyQnRa
+         K8PfyhyNzldPHcQN1AcELUwAtHSsAkj8GTMPLvgeTLM1c6oLm9XjrLys2v8cNJlpYril
+         OdhA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=Mb38/XyezgCTk/KQzy3RRuSB7soXICP+oM6KFosVqh8=;
-        fh=w44sfZC871xfQhiNeTOAkocu6t9uBjH9ZDBj+fZ1Jjc=;
-        b=QzI0jnAFA/9TZu+xryk39NAgGZlB9s1GVkAs2x8mqctG27v5LAA2+Qlend/53fY289
-         nQ87pms+O6QfFBff8ofeAeZ14pWRygiOq++R+kJWjrd4JPPAdl7B7s7pblP2GHs2XRSg
-         ZM8sRfXJTn/zhL3ElAi8135fnSo4JUAhRuGcV20Jg14ozDVVt1ROIeNRiw0iygkpF1Ei
-         3ZT5OrFniQV0DUNwQgkCXUc+SPEMEkif2fGEGFPBYPrEfO6YIDSLyr+FdED5zIoo6IYq
-         kMwq/zQGpjWj1vodNvoFtUlnrIGzutYLTXPRwAQFlIRxeRnFs3z2DWjtS+6wIRy1vU/B
-         qNOQ==;
+        bh=LZBjOJo7EwsCWCLDF7JfKkzJJNA5g3AFjMG4w1eSnQA=;
+        fh=4GpLNtuw+KB3Y72pe/qZcIEJFBTtU3sJx5SPOSlqlJo=;
+        b=a4AYxWFvWoWN1UqhayTjnNlnPVc6e+9d+hj3prY3VjoQR3pLlPHvXl65W4r3pKEu3v
+         KWPOIhSv0S8R9p1uRWoNXgdh/X/QxxECaY38GuNFi/OuUEQS4fj7p4DokdFg2p/X9aTC
+         RQBdzUCsgS/t1L6vuzts0CzlgNnuyvLJk4bH1sLVYiMAhdcWJ3yTQAeufI/1R2t+wSy7
+         DtDjhm4hYGHGrt3iLfyYMJMZ+UDyKZt0pfHMOR2uv84768kNkrRGU9rLYOU/QLRKATeL
+         yT9P0kzLYK/Esar+ofw6B8KS5Yji+ZmHXeIs8RhWc/PuJTAJCdZUm5XyiFg9tJ1DzoMX
+         IFqg==;
         darn=lists.linux.dev
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1788771279; x=1789376079; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1788774726; x=1789379526; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=Mb38/XyezgCTk/KQzy3RRuSB7soXICP+oM6KFosVqh8=;
-        b=XHYCJ4IANknOQWc/7AF9MPStTxEN0mvOipK++jukZjmVTszf930VFovaPvGst+0W7f
-         +eQIuh7n8txvcLr64UuqXsaHQGI1lBiwpe75VU9hHU4/cPqvsj751Yjs8oBqMRLqpwPW
-         ingG+J3iYv1UQ7VFta8x1SFTjsLtbB5Cbs05nYeDfOEjwHqfd4HZ9TZewT0k/KpBw6gg
-         fpXewVVRUgJy36Pfj0I55mao6nqNHn4MZa1dBvp3yiQrbFAOzgCLAj8KD1S293bCbStP
-         Y3dG9c/9YUXu/e581WdaGogc0D/y51UT5Wdi3mo2vfDXv7hVKGW0+FOAy4uVh7O/aMWl
-         D5Yw==
+        bh=LZBjOJo7EwsCWCLDF7JfKkzJJNA5g3AFjMG4w1eSnQA=;
+        b=Okv+e10HtJqjOHkY2LJztqvUDxpEpvuj5hqBfRG6bRCF/91FArgTklEAxeNRdXjQgf
+         S4yJUku1LRS3gEfQRgxDOVaOkWPbaoAa6kS+fF0UKpc1D1+pqVjEYKHJ0v62p/RFfjIr
+         U0drFdUPaHI0/uEkRl8zH9QjWR9GLfGUj901T+vvTAm/CG6+U3YvsISdcIYRAPUaYWwN
+         Sce99g6qO5weKcfouK7h3oj771XN7I3Qus4Niieh4HPTtD+f10mIDMYyK0t1tg7rEVQz
+         x1pKHyknW8/hLc6v1+TBX2PoJSVGOumFevHo59iiqGHKmGh6Rg32Ex3vHiS0Ab0ebhkg
+         2sZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788771279; x=1789376079;
+        d=1e100.net; s=20251104; t=1788774726; x=1789379526;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Mb38/XyezgCTk/KQzy3RRuSB7soXICP+oM6KFosVqh8=;
-        b=AVkzRtXTpWEZKaHE41XiBblYODX5rn0yNzvu4RYU6lgRrlCHZAVA8dhCiWBh9cw0HJ
-         G9SXWxOv2HjAXY2EYuJMLdQG1CzWBiztMpbq5PusIo4NhynX1EbP5mwnzUYZT9+HpnV3
-         7Hh08eiIUSbBBmRdGp4hyg/qe9rwFj0oluZ3VbidBFJpm97oGDiUvsvAd53kpI0NSfjJ
-         s/ClzqNYt59UlTtgYBA1VqAz878wR3VQxI/LmT9exEql3vRYMstxYBLvMuCRhpnY0UNT
-         dBQ8AVKPI+8UWBkp9Hj4Y/lSDjgRoQ/L+en+7SpuOGjxdRY7OuTmtGkNwNlyMqikTn7D
-         DwPw==
-X-Forwarded-Encrypted: i=1; AKwUvBzM4RmeSe53+OlWuyG6S61fHnEynMwV9ogzZhNKqps/Ef2jpkpX/e9R7LswOPlG6ud8Vg/Q@lists.linux.dev
-X-Gm-Message-State: AFuF++kiTlk6p9IK2qPpYDgPbxfUrIUDyvaJyWUbxm3sCKnQI1b34h+f
-	mHuJtvucagO/nu0apEzx5Om+BCjiwxl+TJX8fp7XMqLZAZdRz88D/WK6jezWsFsu6ihYyxfioyb
-	nvosYuMcQxy3eGJmye/2dxVWBQLiF2hk=
-X-Gm-Gg: AYBFou0K1wN0ntQQiB26b5m55P29A2D31Cg0PqrgCeO3vvHiBdvnvgFSrAvQ26sTyBb
-	nw8zktmwziamNKAgaiacNxMSyiUbzUGo6GTt1njqvqc2nyLIIXB4pHP6mvwej4NXQZsFft3by57
-	y03nvxFpEwwZwWtD4lLhu5Klore0Tvn4fdubVFwT+vpk/ktetocK3172K9ADcEGcDhEiBHXoBlx
-	2coC6gLziW9Exwcd7yxUnVIQP4OMpmXmFeCxKK/3J17bjMzngmIfSILBo28nLWMRqA8zY/a6kcx
-	iKT+vSVdFm4hof3BMoLNu0uWo0CKVHHOyNM3NdWfTmtEQ2XpJ7WAlDE=
-X-Received: by 2002:a05:6512:110d:b0:5b6:183b:d208 with SMTP id
- 2adb3069b0e04-5b6183bd373mr2958460e87.47.1788771278685; Mon, 07 Sep 2026
- 01:54:38 -0700 (PDT)
+        bh=LZBjOJo7EwsCWCLDF7JfKkzJJNA5g3AFjMG4w1eSnQA=;
+        b=SnuJC7HFUsxMSF6tnEhnBvVvNH18ZSn/oIwp+a/DfqAMIOyeoBbBOkLTXDqlqcWDyS
+         OIMXZ807Oh6jK6ftJ4GX/3dFBLS1q0UCqsr5m02/cl5FyVltRQ9DXPstHL6Cjbx82J3U
+         bThrp0oxDSBnFKlMy2t5TW6kIBB3Lbn8mNo6nwbMvSWhlbYIoLmiybGZmzLgo3XcQbdF
+         EW1bjsg7i6fejoHGhtG1nG1F7COs1bDA0B3TFNIeOvAD0Lp9Pt45zlbzd2OeaHLcoCqc
+         aiyzVV1gE6xLgb84LSBTGYakvop273ns4Rv7c/wYhWK7P61kFOgoRDEx8XflbXTLbjn8
+         KqgA==
+X-Forwarded-Encrypted: i=1; AKwUvBwhNCeWPao6dJ2vIsmEMWwEaPyg5QCBH/72gY46rurkTvJheEiJKb+ikc5TUARWq+Oxlwke@lists.linux.dev
+X-Gm-Message-State: AFuF++mcY5KUdOg2biefNYW4qIUcL+X6Of+n2sSuLiZu6kcv6HG7M/U0
+	Bk0ZzhiNvUWK/dS+40t8KgA12+5G2MvOTnwT6QJhPukEa7LlVEyhjSYh2zzhnGLskDXpQq1RHYm
+	AajW+5Zfx02D20qOj1rwHdROfshKsYf0=
+X-Gm-Gg: AYBFou0Ivp3AGU5xviSJ8IkOCSaaN54ifxIywo4WS/Vfei/g8rjgbgcSt14ZniIvEOA
+	YDfJaMd82RGbHlQ54PT1YrUnYoIihAylW15NxsGffNLFze1/uZT34jl0CeN+fDPHFDNTo31Iy9q
+	oHYSapTGtJplCgTEKMgfGeXTjEM85/bxav47oaWP8Ap1mqPEoKPE6hOqzOZbgzU0gfFkq2slDQf
+	wvqZM67vo9YrFXQMMYwrlbf7XNyhGnLMtdRN9xbW503JVRE8WJ6DA/82+uWLIJyV7l4Xfhw0AZa
+	1AYAQOyuXvQAhKNtIbSoQaKs+oh3Ud2hRNoZGjfA69eX
+X-Received: by 2002:a05:6512:3c97:b0:5b5:e2e3:4dd3 with SMTP id
+ 2adb3069b0e04-5b616f325f9mr5904093e87.20.1788774726258; Mon, 07 Sep 2026
+ 02:52:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <SY0P300MB031263862D7FD47834F1E87FDEB42@SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM>
-In-Reply-To: <SY0P300MB031263862D7FD47834F1E87FDEB42@SY0P300MB0312.AUSP300.PROD.OUTLOOK.COM>
+References: <20260907035726.37123-1-zenghongling@kylinos.cn>
+In-Reply-To: <20260907035726.37123-1-zenghongling@kylinos.cn>
 From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Mon, 7 Sep 2026 17:54:27 +0900
-X-Gm-Features: AcwNN1UQCOdsyH-zzjbRhn94C4SAU2WskgBGWC7pBgQzD2sd-mp-ikPeShGlfhM
-Message-ID: <CANFS6baT-+_u+c99qThd7jekqXZ3BW5utLPERLa_X3FE7XiBNw@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: fix $MFTMirr write offset for MFT record sizes
- larger than PAGE_SIZE
-To: =?UTF-8?B?5pyxIOWkqea1qQ==?= <zhutianhao75@hotmail.com>
-Cc: "linkinjeon@kernel.org" <linkinjeon@kernel.org>, "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date: Mon, 7 Sep 2026 18:51:54 +0900
+X-Gm-Features: AcwNN1W35E_APW41_zojqmd7aUw8N6t-AJaJP8-EqtmOcwckOy784z6QuVWrJKM
+Message-ID: <CANFS6ba6VqnDTXeUzBPDEKTzVK7kMHLk-sitncT-oGToVQ0J6A@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: use fatal_signal_pending() for fallocate
+ interruption checks
+To: Hongling Zeng <zenghongling@kylinos.cn>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	zhongling0719@126.com, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Tianhao,
+2026=EB=85=84 9=EC=9B=94 7=EC=9D=BC (=EC=9B=94) =EC=98=A4=ED=9B=84 12:57, H=
+ongling Zeng <zenghongling@kylinos.cn>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1=
+:
+>
+> The fallocate implementation uses signal checks to let a long allocation
+> loop abort early.  However, signal_pending() also returns true for
+> TIF_NOTIFY_SIGNAL, which io_uring uses to deliver task_work completions
+> to the submitting task.
+>
+> generic/616 is an io_uring fsx soak test that issues fsx-style
+> read/write requests through io_uring and calls fallocate() directly in
+> between.  A pending io_uring task_work notification can therefore make
+> signal_pending() true inside ntfs_attr_fallocate() even though no real
+> signal was delivered.
+>
+> That caused the previous signal-interruption patch to return -EINTR for
+> an io_uring notification, which fsx treats as a fatal failure.  Switch
+> both checks to fatal_signal_pending() so only fatal signals interrupt
+> the allocation loop.  A real fatal signal still returns -EINTR, and any
+> other error still takes precedence.
+>
+> Fixes: 4dc8f4ee2d46 ("ntfs: handle signal interruption in fallocate")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 
-2026=EB=85=84 9=EC=9B=94 5=EC=9D=BC (=ED=86=A0) =EC=98=A4=ED=9B=84 9:35, =
-=E6=9C=B1 =E5=A4=A9=E6=B5=A9 <zhutianhao75@hotmail.com>=EB=8B=98=EC=9D=B4 =
-=EC=9E=91=EC=84=B1:
->
-> When commit 115380f9a2f9 ("ntfs: update mft operations") refactored the
-> MFT code to use folios, it assumed $MFTMirr is allocated contiguously,
-> which is indeed what mkfs arranges.  However, the folio rewrite kept a
-> leftover from the old buffer-head/runlist based implementation:
-> vol->cluster_size_mask is still applied to the mirror write offset.
-> In fact it is no longer needed -- and in some configurations it is
-> actively wrong.
->
-> For example, on the built-in 4Kn SSD (Apple SSD AP0256J) of a
-> MacBookPro14,1 with 4096-byte MFT records, mirror record 3 is still
-> written to the location of record 0.  $MFTMirr therefore gets out of
-> sync with $MFT and the following warning is printed on remount:
->
->         ntfs: (device nvme0n1p3): check_mft_mirror(): $MFT and $MFTMirr
->               record 0 do not match.  Run chkdsk.
->
-> Fix it by always adding the folio offset (folio->index << PAGE_SHIFT)
-> to the base LCN address instead of applying the cluster_size_mask
-> truncation.  This is the standard file-offset calculation and is
-> correct for every combination of cluster size, page size and MFT
-> record size, provided $MFTMirr data is contiguous from mftmirr_lcn
-> (which mkfs always arranges).
->
-> While here, verify that the folio returned by read_mapping_folio() is
-> large enough to hold the whole mirror record (folio_ofs +
-> mft_record_size <=3D folio_size(folio)), guarding against records that
-> straddle a folio boundary when mft_record_size exceeds PAGE_SIZE,
-> although this cannot happen in practice.
->
-> Tested on the volume above: before the change mirror records 1-3 are
-> all written to record 0's sector; after the change the write-back
-> probe reports:
->
->         ntfs: NTFSDBG pre mft_no=3D0x3 folio_idx=3D0x3 ofs=3D0x0 mftmirr_=
-lcn=3D0x2540c5 clu_bits=3D12 rec_bits=3D12 PAGE_SHIFT=3D12 sect=3D0x12a0640
->         ntfs: NTFSDBG pre mft_no=3D0x0 folio_idx=3D0x0 ofs=3D0x0 mftmirr_=
-lcn=3D0x2540c5 clu_bits=3D12 rec_bits=3D12 PAGE_SHIFT=3D12 sect=3D0x12a0628
->
-> which matches the expected sectors computed as:
->
->         (NTFS_CLU_TO_B(mftmirr_lcn) + (folio->index << PAGE_SHIFT)) >> SE=
-CTOR_SHIFT
->
->         record 0: (0x2540c5 << 12) + 0x0000 =3D 0x2540c5000 >> 9 =3D 0x12=
-a0628
->         record 3: (0x2540c5 << 12) + 0x3000 =3D 0x2540c8000 >> 9 =3D 0x12=
-a0640
->
-> A 13 MB file write succeeds on this volume and the file is byte-for-byte
-> identical after a umount/mount cycle.
->
-> Fixes: 115380f9a2f9 ("ntfs: update mft operations")
-> Assisted-by: UOS-AI
-> Assisted-by: CodeBuddy:Hy4 preview
-> Signed-off-by: Zhu Tianhao <zhutianhao75@hotmail.com>
-> ---
->  fs/ntfs/mft.c | 26 ++++++++++++++++----------
->  1 file changed, 16 insertions(+), 10 deletions(-)
->
-> diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-> index 7e58c99f1728..a62b1d41697c 100644
-> --- a/fs/ntfs/mft.c
-> +++ b/fs/ntfs/mft.c
-> @@ -462,7 +462,7 @@ int ntfs_sync_mft_mirror(struct ntfs_volume *vol, con=
-st u64 mft_no,
->  {
->         u8 *kmirr;
->         struct folio *folio;
-> -       unsigned int folio_ofs, lcn_folio_off =3D 0;
-> +       unsigned int folio_ofs;
->         int err =3D 0;
->         struct bio *bio;
->
-> @@ -482,25 +482,31 @@ int ntfs_sync_mft_mirror(struct ntfs_volume *vol, c=
-onst u64 mft_no,
->                 goto err_out;
->         }
->
-> +       /* Offset of the mft mirror record inside the folio. */
-> +       folio_ofs =3D NTFS_MFT_NR_TO_POFS(vol, mft_no);
-> +
-> +       /* The mirror record must fit entirely within this folio. */
-> +       if (folio_ofs + vol->mft_record_size > folio_size(folio)) {
-> +               ntfs_error(vol->sb, "Mft mirror record 0x%llx does not fi=
-t in folio.",
-> +                          mft_no);
-> +               folio_put(folio);
-> +               err =3D -EIO;
-> +               goto err_out;
-> +       }
+Looks good to me.
 
-vol->mft_record_size < PAGE_SIZE is guaranteed by ntfs_fill_super().
-Is this check necessary?
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
+
+--
 Thanks,
 Hyunchul
