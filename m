@@ -1,66 +1,82 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43ACB50C295
-	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 09:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0635E51120E
+	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 09:42:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788860538; cv=none; b=kIWT3pbs2oLDe4bM4l1Ui8aUCMXWV7pjJ/tOcU6WLtTQesoristt5/l9iOWD2LxnHK7gBID1KXtmdENGjsvuFzgMzqpUuap8YDNymRk7gdHS1pFmdEjEdcZHJ1gVqzAWDYcBxzKbTkr7ooW4P2Dl8W0Lf5fAWVmummsv0OfEvi0=
+	t=1788860561; cv=none; b=SET0H+l24Bog4wBX2DEqb2yb5K0mbaSpRNec6WWF0sb6yGiIEjBGqRP0FUcdGxO7A6BA1iBsJ2IsNenduInX3NxRJ1IZXk3DilKGIo5cIUAzH/isDpqN0CmdHWsOq71qVtFdQFyueX3qoh6oangYZj+hT1ZyAA0b8JFWqvuXMBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788860538; c=relaxed/simple;
-	bh=4mrNDgy6AMSKjtPprwZWZ7OJTzobbZjA2LIfx+rptdk=;
+	s=arc-20240116; t=1788860561; c=relaxed/simple;
+	bh=ECKmHDFTCaWZUO3ZEsJrVyI/tYLtMTumWVWPVhpHgk8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cewxFa81ghH0NhmnGI88yHobN4YJjVCkyljZhdT6sP8GCq01LEVE4+ERuAhT+2bHrje8ZfFdAxIwNep8g9xIOFYPmEVzwZs8gYWhboKpzIZjc2HIDXmt10DLk69r0vKK79i8kyXmbor5AhDHwBUrjoyfqBJp7CeRxQzWNlW+Mg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FF531F00A3A
-	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 09:42:17 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-c263110a8cdso351136266b.3
-        for <ntfs@lists.linux.dev>; Tue, 08 Sep 2026 02:42:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBw/hR8/N1O1ylB+N0hzi2qsJlZu4YcslGYkUBHrp967OAClXa3WQx++4rkC4mttBYz48/b7@lists.linux.dev
-X-Gm-Message-State: AFuF++kASm8K8rLc49wWQdsFd8BkjNjA+cScWVG/WYUN1fcVtKWuawIt
-	DfQvWda5OfEecN9iU2ryYHhtgkDzpj/Z7M3/5Uy+ayJaypDtYl/T5YmY9cgYHAhHUgHa/UKXDp+
-	UEDqA+JBwydRMd8Dc96tL+qc0vR3gC5I=
-X-Received: by 2002:a17:907:c5c5:b0:c26:19e3:e983 with SMTP id
- a640c23a62f3a-c2619e3ef06mr929376466b.35.1788860533346; Tue, 08 Sep 2026
- 02:42:13 -0700 (PDT)
+	 To:Cc:Content-Type; b=p8ueVZlDjUxvsrRhNGfmCcsGu7enPfHVP62dlxpvasPlBwGo4DDT4kc7ZGiWakITnyygpsaneM0P/IaoNL3MfYYypZUjlPFK8XbzV1FnVcPToiCQjAP+Fg1MqXtMbPTUDCTPL1GGmHJLERbsZwRqMZ5GVdBmCSKgKs5UEOB1e8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lo5DnKym; arc=none smtp.client-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lo5DnKym"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA9D21F00AC4
+	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 09:42:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788860559;
+	bh=gGeu9eNrhSalqK3WcJ+GEtqcT6zYbbo4PWNmHxnBjsM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=lo5DnKymRknyNdkFvFsCi9sKz7+JGIfci5aTtfKrggQRuxDUIAR/Y7NxaPuFos8yV
+	 QZ9c8v7U6QYubDABShaFDCrgNdUqyzBuhnBHOOiutc6BkoWGKhvHty2yTHpSuEDaPw
+	 0dZAMWZER0uNo0eN4VlKP3jH3kyfsDw91pllNvQzCqxefC+rKUosLbGfPDZmg5Oevo
+	 Fek5NDRkyLZ8madmMMsuzZ9IcMIYNfYdcL8Twi6ezwYs5MgXx08/cjt3hU9i8sxUnx
+	 ECaIqaT8RZzd2ae9yBDrlhA29esQcTlRXu6HsFXxA74g9KmxtjbVb3GiP2xjFhVDno
+	 CjlWgbOENb8Xg==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-c1c52d920b8so554204166b.2
+        for <ntfs@lists.linux.dev>; Tue, 08 Sep 2026 02:42:39 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvBxdT3WAtdLpm73fGm2SfVjKjlJiGf/nI3YntuWL/CYKsbh8g8D9cBlwN2c/E/4CnHwaASGl@lists.linux.dev
+X-Gm-Message-State: AFuF++k/0XXbRbvdiQyEyOsf1baFnFSCBFbBtuDhSBnFsXAhR3AD7p7w
+	K1tF56Un0ywk4AwxsbHmPvlFm/M9CTXoA64fdWYvH7X6dJ1iIygfb1he+VfWxcC9khLYDicw3H+
+	OKK+BKyU/BTEkn6WMYhoc0PLu157WqqY=
+X-Received: by 2002:a17:906:6a06:b0:c27:420b:7c91 with SMTP id
+ a640c23a62f3a-c27420ba148mr546895366b.45.1788860558416; Tue, 08 Sep 2026
+ 02:42:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260907070852.291323-1-zenghongling@kylinos.cn> <20260907070852.291323-4-zenghongling@kylinos.cn>
-In-Reply-To: <20260907070852.291323-4-zenghongling@kylinos.cn>
+References: <20260907035726.37123-1-zenghongling@kylinos.cn>
+In-Reply-To: <20260907035726.37123-1-zenghongling@kylinos.cn>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Tue, 8 Sep 2026 18:42:00 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd9gJLgGkMfnZHoXAYibn3f8N2JnRkTB8rtvw9-ag-OJNQ@mail.gmail.com>
-X-Gm-Features: AcwNN1W9IzQSzR6_c1WN9casCEjIBxK59Aqdd_IE_CafvM5McrSP169ltZY9jNI
-Message-ID: <CAKYAXd9gJLgGkMfnZHoXAYibn3f8N2JnRkTB8rtvw9-ag-OJNQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] ntfs: NULL vol->vol_ino in the load_system_files()
- error teardown
+Date: Tue, 8 Sep 2026 18:42:25 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd-GOecc9SF-HUemarO+tG6COWONoqL+_r5CJJLg+7jOng@mail.gmail.com>
+X-Gm-Features: AcwNN1XiYkiKCzRplIbTTRph9qTTCQz9v-eFlxSGSTq6f7-uceSPdYx5Tv4sWqM
+Message-ID: <CAKYAXd-GOecc9SF-HUemarO+tG6COWONoqL+_r5CJJLg+7jOng@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: use fatal_signal_pending() for fallocate
+ interruption checks
 To: Hongling Zeng <zenghongling@kylinos.cn>
 Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
 	zhongling0719@126.com, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 7, 2026 at 4:09=E2=80=AFPM Hongling Zeng <zenghongling@kylinos.=
-cn> wrote:
+On Mon, Sep 7, 2026 at 12:57=E2=80=AFPM Hongling Zeng <zenghongling@kylinos=
+.cn> wrote:
 >
-> The error unwind of load_system_files() drops vol->vol_ino on two
-> paths but leaves the stale pointer in place while it keeps iput()ing
-> the remaining system inodes ($Bitmap, $MFT bitmap, $MFTMirr; $MFT
-> itself is dropped by the caller, ntfs_fill_super()).  A third path
-> carried an iput() that can never execute: it sits inside the
-> IS_ERR(vol->vol_ino) branch guarded by !IS_ERR(vol->vol_ino), and is
-> removed along with the stale pointers.  Nothing in the teardown
-> dereferences vol_ino today, so this is pure hygiene, but a stale
-> pointer to a freed inode surviving the unwind is a trap for any
-> future code walking the volume during teardown.
+> The fallocate implementation uses signal checks to let a long allocation
+> loop abort early.  However, signal_pending() also returns true for
+> TIF_NOTIFY_SIGNAL, which io_uring uses to deliver task_work completions
+> to the submitting task.
 >
-> ntfs_put_super() and the ntfs_fill_super() error path already NULL it
-> after their iput(); do the same here.
+> generic/616 is an io_uring fsx soak test that issues fsx-style
+> read/write requests through io_uring and calls fallocate() directly in
+> between.  A pending io_uring task_work notification can therefore make
+> signal_pending() true inside ntfs_attr_fallocate() even though no real
+> signal was delivered.
 >
+> That caused the previous signal-interruption patch to return -EINTR for
+> an io_uring notification, which fsx treats as a fatal failure.  Switch
+> both checks to fatal_signal_pending() so only fatal signals interrupt
+> the allocation loop.  A real fatal signal still returns -EINTR, and any
+> other error still takes precedence.
+>
+> Fixes: 4dc8f4ee2d46 ("ntfs: handle signal interruption in fallocate")
 > Cc: stable@vger.kernel.org
 > Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 Applied it to #ntfs-next.
