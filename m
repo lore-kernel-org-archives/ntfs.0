@@ -1,114 +1,90 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047E42E62B4
-	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 05:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91FD239E9AD
+	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 07:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788847146; cv=none; b=cn7P8Jzfp7oRTgarw5a62QV/CYKqfBfqANGq/YRIIdSWEALCUj3EiEgiOa8Jsohi/DY/IPKCpSkQvimxmwuoXLhnylTdMRL7uY9VVlpGgWXN/Ivn570LTlJWfa96Jjqa+LCjrRRdOwo00BTTTCxxa/Jr1bChPquXjCPqZhkyn1M=
+	t=1788852108; cv=none; b=OTRyMUr8LlzRuBjHJENOacNV8hIvlgwtW2XTEhymhfDFHVopDNvVVzp1orMP/3px4UkFTVpXW1JgHVASaWvmb2+RM+gY6Sw0v/kKt6zBBCgHJsNLgrsZSrXU877e7l9xppdQLi8ABT7nL5hj+EucTYXQdKQbITd6ymY/FLmQ3uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788847146; c=relaxed/simple;
-	bh=ZvXZNmeBH+8sKOxLRg55Za4YPfPmuz/3PFgEzmI3ILg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aF2jxiGD+u5f02oHCcXhGz0VSqe+y0kmJFA9dlYZb6F398ebylQXS2aREGlJF8P+4dCJGzZkfJ2I2ML+vbCqZWNqXD5bN9WnOlqLdtTlsTkAOCaGXCnaKC/VSj98EEUn3D5euPLeciAHp0Tya1F+Q3aEY2/FCo76vtQzVTF1u4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Zq8c1b9h; arc=none smtp.client-ip=220.197.31.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1788852108; c=relaxed/simple;
+	bh=yk3fex8l90OWAJYTeqEGFpT9btixLVx91j8gQTCXlSY=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=Y85afh8n3ruR8HTkVet6l+YAK45bZtBTYtYWD8Ieh0/f5kFhVNIR87NxPL603FQCwX3CEWLvVwNPJLEtny46gORlUAD19xSNG6FLWaXgZuRvialsewRMRJMA3RDcKAffgsdtY5f2KwvqSicPhAMnozlIytWwUXo+CmJulbfel3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=Y+7Tp6ui; arc=none smtp.client-ip=117.135.210.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Zq8c1b9h"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=tpCCPTQ6ugJb0wP1EWw7FqjFUJCQjqk1iP0NUIcqb5I=;
-	b=Zq8c1b9hRkp6VmgfnVXFO4/286ECGeidPvzhoUGgeoqkEKGUS0nXw6TsWM4CJ8
-	qI/nFpg6VaxW7CiVYf93FLaGc3uyRiSGm5xYIw3q87Y2mFjGz2RLbx1w2isbL5hH
-	hHMjS97Z5/ZfH4bPxfir07634rVI0cxyGDjEx/+NBi6Bc=
-Received: from [IPV6:2409:8900:1e93:d74:46a:b98a:2b32:6a19] (unknown [])
-	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wD3P+IWpJ9qePyBBQ--.64697S2;
-	Tue, 08 Sep 2026 13:58:47 +0800 (CST)
-Message-ID: <dbb85dc4-70fb-4f99-90ab-7028d59c869c@163.com>
-Date: Tue, 8 Sep 2026 13:58:46 +0800
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="Y+7Tp6ui"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
+	Content-Type; bh=UkOwMntL7PWD2GuegVBQRCB+yMtgYRenC1HnEsW7qtI=;
+	b=Y+7Tp6uiMMU1D2K1MsJnujLm6dPSwUqo4hnIM8nZvAKc0fVwaMTFJ17mixhwLU
+	w/h58FYfczCfLNDBa0W8ZHAvi6R/lhtZhKHYnGdGvm/AtadTHadv+4ffjcydzsS2
+	wtCyYWXSdPWQFV2yXToTWteyzD3EeoIHviG69/wfqafL8=
+Received: from localhost.localdomain (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id PSkvCgC314Fyt59qx_ufGQ--.9752S2;
+	Tue, 08 Sep 2026 15:21:22 +0800 (CST)
+Message-ID: <6A9FB756.1010302@126.com>
+Date: Tue, 08 Sep 2026 15:20:54 +0800
+From: Hongling Zeng <zhongling0719@126.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ntfs: remove unreachable code in
- load_and_init_attrdef/upcase
-To: Jiangshan Yi <yijiangshan@kylinos.cn>, linkinjeon@kernel.org,
- hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 13667453960@163.com
-References: <20260907101623.671477-1-yijiangshan@kylinos.cn>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260907101623.671477-1-yijiangshan@kylinos.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Namjae Jeon <linkinjeon@kernel.org>, 
+ Hongling Zeng <zenghongling@kylinos.cn>
+CC: hyc.lee@gmail.com, ntfs@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] ntfs: sync the volume dirty bit with the recorded
+ error state
+References: <20260907070852.291323-1-zenghongling@kylinos.cn> <20260907070852.291323-3-zenghongling@kylinos.cn> <CAKYAXd9Hs1aEe_Tx4QwaKVUWM9RSrkAcO9Q7naMQWxg_2G0vAg@mail.gmail.com>
+In-Reply-To: <CAKYAXd9Hs1aEe_Tx4QwaKVUWM9RSrkAcO9Q7naMQWxg_2G0vAg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3P+IWpJ9qePyBBQ--.64697S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tF1UKr1ruFW8ur1fuFWUtwb_yoW8ArWUpr
-	Z29r4xK3yrAw15KF92ka1vq3W5ur1DGrW8G3sYg3yxXws2y3WkGr4rtw18uay8XrykZa48
-	XFsxt3yfGayqv37anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U7nY7UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Rewe2qfpBdIagAA3R
+X-CM-TRANSID:PSkvCgC314Fyt59qx_ufGQ--.9752S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJF15Zw1ftFWktw4DtFy7ZFb_yoW8Wr1Dpa
+	yDKwsrKFs7tw1Iva4xAFW3Jrnavr92ka17Ar9xtwsxXr90gr1FqFySg34YgFWIkryFyan7
+	ZFWjyF95uw47AaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jI1v3UUUUU=
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBoROMXWqft3OrggAA37
 
 
+在 2026年09月08日 12:10, Namjae Jeon 写道:
+>> @@ -1621,6 +1666,11 @@ static bool load_system_files(struct ntfs_volume *vol)
+>>                          ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+>>                  }
+>>                  NVolSetErrors(vol);
+>> +               /*
+>> +                * Remember it for the lifetime of the mount: see
+>> +                * ntfs_sync_volume_dirty_state().
+>> +                */
+>> +               NVolSetHibernated(vol);
+> Could you explain why NVolSetHibernated(vol) is called for non-zero
+> return from check_windows_hibernation_status() ?
+Hi:
+   A non-zero return does not only mean "definitely hibernated": > 0
+   means hibernation was established or assumed (the documented
+   "treated as if Windows is suspended" default), while < 0 means the
+   check itself failed, so hibernation could not be ruled out.
 
-在 2026/9/7 18:16, Jiangshan Yi 写道:
-> Both load_and_init_attrdef() and load_and_init_upcase() open a system
-> inode with ntfs_iget() and, on error, run:
-> 
-> 	if (IS_ERR(ino)) {
-> 		if (!IS_ERR(ino))
-> 			iput(ino);
-> 		goto failed;
-> 	}
-> 
-> The inner guard is the exact negation of the outer one, so
-> iput(ino) is dead code.  Drop the unreachable branch and collapse
-> the error check to a single statement.
-> 
-> No functional change.
-> 
-> Signed-off-by: Jiangshan Yi <yijiangshan@kylinos.cn>
-> ---
->   fs/ntfs/super.c | 10 ++--------
->   1 file changed, 2 insertions(+), 8 deletions(-)
-> 
-> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-> index 60d43339c590..1b916deb7acc 100644
-> --- a/fs/ntfs/super.c
-> +++ b/fs/ntfs/super.c
-> @@ -1235,11 +1235,8 @@ static bool load_and_init_attrdef(struct ntfs_volume *vol)
->   	ntfs_debug("Entering.");
->   	/* Read attrdef table and setup vol->attrdef and vol->attrdef_size. */
->   	ino = ntfs_iget(sb, FILE_AttrDef);
-> -	if (IS_ERR(ino)) {
-> -		if (!IS_ERR(ino))
-> -			iput(ino);
-> +	if (IS_ERR(ino))
->   		goto failed;
-> -	}
->   	NInoSetSparseDisabled(NTFS_I(ino));
->   	/* FILE_AttrDef must hold at least one entry and fit inside 31 bits. */
->   	i_size = i_size_read(ino);
-> @@ -1301,11 +1298,8 @@ static bool load_and_init_upcase(struct ntfs_volume *vol)
->   	ntfs_debug("Entering.");
->   	/* Read upcase table and setup vol->upcase and vol->upcase_len. */
->   	ino = ntfs_iget(sb, FILE_UpCase);
-> -	if (IS_ERR(ino)) {
-> -		if (!IS_ERR(ino))
-> -			iput(ino);
-> +	if (IS_ERR(ino))
->   		goto upcase_failed;
-> -	}
->   	/*
->   	 * The upcase size must not be above 64k Unicode characters, must not
->   	 * be zero and must be a multiple of sizeof(__le16).
+   NV_Hibernated is a conservative write gate, not a positive claim: it
+   keeps ntfs_sync_volume_dirty_state() from writing the $Volume record
+   on this mount. It has to cover the whole branch because this series
+   changes what NVolErrors() means for writes: it used to suppress the
+   flags write, and now the on-disk dirty bit is derived from it on
+   read-write mounts. Without the separate gate, an rw mount of a
+   hibernated volume (errors=continue) would gain a filesystem-internal
+   $Volume write on the first sync_fs() or at unmount - exactly what
+   the hibernation check exists to prevent.
 
+   err < 0 is included for the same reason, only more so: when the
+   check cannot complete, we cannot prove the volume is safe to write.
+   Gating wrongly costs an untouched dirty bit; not gating wrongly
+   costs Windows resuming on a modified image.
 
-
-Looks good to me.
-
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Thanks!
 
