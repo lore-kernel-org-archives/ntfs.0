@@ -1,90 +1,119 @@
-Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.6])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91FD239E9AD
-	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 07:21:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622F4483BC2
+	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 08:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788852108; cv=none; b=OTRyMUr8LlzRuBjHJENOacNV8hIvlgwtW2XTEhymhfDFHVopDNvVVzp1orMP/3px4UkFTVpXW1JgHVASaWvmb2+RM+gY6Sw0v/kKt6zBBCgHJsNLgrsZSrXU877e7l9xppdQLi8ABT7nL5hj+EucTYXQdKQbITd6ymY/FLmQ3uA=
+	t=1788856297; cv=none; b=ajmmQh93sLi7Zd4jtyZDAqZzp0cdE4yGTamEGIufnHxI1ocg2pCTA1+GKIrJpeRyHu90AIS1zCinlrTa4v7KgukUA5DuzGst9+wzYFw9yHadQkpwvOMR9jKlP/e7rALwCNTl6yv/IcJIAQ8W6ZjCIcL4Iwes38KvZJQkJngJ2r4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788852108; c=relaxed/simple;
-	bh=yk3fex8l90OWAJYTeqEGFpT9btixLVx91j8gQTCXlSY=;
-	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
-	 In-Reply-To:Content-Type; b=Y85afh8n3ruR8HTkVet6l+YAK45bZtBTYtYWD8Ieh0/f5kFhVNIR87NxPL603FQCwX3CEWLvVwNPJLEtny46gORlUAD19xSNG6FLWaXgZuRvialsewRMRJMA3RDcKAffgsdtY5f2KwvqSicPhAMnozlIytWwUXo+CmJulbfel3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=Y+7Tp6ui; arc=none smtp.client-ip=117.135.210.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+	s=arc-20240116; t=1788856297; c=relaxed/simple;
+	bh=N6r459gQKIAKQol6L5vGfE54Mg7w3uk9uZDKEmmRf50=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dRnJ9vb5VM3OhoXUU6M/xDq7Re53NTxs1zp0YKzwsa6McSCoT7KmYHaRoAOEMw7EbHMgu2wsdnsFUrhXVe3OLCgi1EP1LVYIrIho6OcFmB3t0qHGQI8BirPm49VQYP8JfN/hdnIlvoyhaCjZ+riZpOFCRWzkpcQXxaHChJMsnDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=f6yu1a/J; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="Y+7Tp6ui"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
-	Content-Type; bh=UkOwMntL7PWD2GuegVBQRCB+yMtgYRenC1HnEsW7qtI=;
-	b=Y+7Tp6uiMMU1D2K1MsJnujLm6dPSwUqo4hnIM8nZvAKc0fVwaMTFJ17mixhwLU
-	w/h58FYfczCfLNDBa0W8ZHAvi6R/lhtZhKHYnGdGvm/AtadTHadv+4ffjcydzsS2
-	wtCyYWXSdPWQFV2yXToTWteyzD3EeoIHviG69/wfqafL8=
-Received: from localhost.localdomain (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id PSkvCgC314Fyt59qx_ufGQ--.9752S2;
-	Tue, 08 Sep 2026 15:21:22 +0800 (CST)
-Message-ID: <6A9FB756.1010302@126.com>
-Date: Tue, 08 Sep 2026 15:20:54 +0800
-From: Hongling Zeng <zhongling0719@126.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="f6yu1a/J"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=FxrQjmdnNKvzk2HS7CE6p6YLx2A/uJBnU99tPj+pSlc=;
+	b=f6yu1a/J5xa1J1mDe0c0z+Nff64MwAZsMGBkAgHsqzc5I1U+ntISfSdEPojs2G
+	ZmP8LJjCx1wkT0B5aQfB+U/abw9MQpTIb/iwy+G9Dr2My2EiiGs0vipiQEyGMpd2
+	BXr0mUsvE6GDYeCCgHXuQfNeALNNPwF+m0DOw1cHXL2h8=
+Received: from [IPV6:2409:8900:1e93:d74:11d3:93db:9b15:f204] (unknown [])
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3v0jTx59qOPunBQ--.23780S2;
+	Tue, 08 Sep 2026 16:31:16 +0800 (CST)
+Message-ID: <4a46d66d-6c15-4b45-be8b-0d98d3472659@163.com>
+Date: Tue, 8 Sep 2026 16:31:15 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-To: Namjae Jeon <linkinjeon@kernel.org>, 
- Hongling Zeng <zenghongling@kylinos.cn>
-CC: hyc.lee@gmail.com, ntfs@lists.linux.dev, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] ntfs: sync the volume dirty bit with the recorded
- error state
-References: <20260907070852.291323-1-zenghongling@kylinos.cn> <20260907070852.291323-3-zenghongling@kylinos.cn> <CAKYAXd9Hs1aEe_Tx4QwaKVUWM9RSrkAcO9Q7naMQWxg_2G0vAg@mail.gmail.com>
-In-Reply-To: <CAKYAXd9Hs1aEe_Tx4QwaKVUWM9RSrkAcO9Q7naMQWxg_2G0vAg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] ntfs: wire up the fileattr API
+To: Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Baolin Liu <liubaolin@kylinos.cn>
+References: <20260901091519.2885376-1-liubaolin12138@163.com>
+ <CAKYAXd9HVhS8K3zXhcfUz1H09CDaqADpDzXt0dO9FV3Pa7Rs0Q@mail.gmail.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <CAKYAXd9HVhS8K3zXhcfUz1H09CDaqADpDzXt0dO9FV3Pa7Rs0Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PSkvCgC314Fyt59qx_ufGQ--.9752S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJF15Zw1ftFWktw4DtFy7ZFb_yoW8Wr1Dpa
-	yDKwsrKFs7tw1Iva4xAFW3Jrnavr92ka17Ar9xtwsxXr90gr1FqFySg34YgFWIkryFyan7
-	ZFWjyF95uw47AaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jI1v3UUUUU=
-X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBoROMXWqft3OrggAA37
+X-CM-TRANSID:_____wD3v0jTx59qOPunBQ--.23780S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxur17trW5ZFyrJF4rXr47urg_yoW5GFW8pa
+	93GFW7Kan7XrW3C392vF4jgay0vw48ZFW5ZryqgryxAF98X342vr97K3WY9rn7Jr17Aw1j
+	qFWjgrZrXan8Z3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2zuZUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RWpdGqfx9U-3QAA3k
 
 
-在 2026年09月08日 12:10, Namjae Jeon 写道:
->> @@ -1621,6 +1666,11 @@ static bool load_system_files(struct ntfs_volume *vol)
->>                          ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
->>                  }
->>                  NVolSetErrors(vol);
->> +               /*
->> +                * Remember it for the lifetime of the mount: see
->> +                * ntfs_sync_volume_dirty_state().
->> +                */
->> +               NVolSetHibernated(vol);
-> Could you explain why NVolSetHibernated(vol) is called for non-zero
-> return from check_windows_hibernation_status() ?
-Hi:
-   A non-zero return does not only mean "definitely hibernated": > 0
-   means hibernation was established or assumed (the documented
-   "treated as if Windows is suspended" default), while < 0 means the
-   check itself failed, so hibernation could not be ruled out.
 
-   NV_Hibernated is a conservative write gate, not a positive claim: it
-   keeps ntfs_sync_volume_dirty_state() from writing the $Volume record
-   on this mount. It has to cover the whole branch because this series
-   changes what NVolErrors() means for writes: it used to suppress the
-   flags write, and now the on-disk dirty bit is derived from it on
-   read-write mounts. Without the separate gate, an rw mount of a
-   hibernated volume (errors=continue) would gain a filesystem-internal
-   $Volume write on the first sync_fs() or at unmount - exactly what
-   the hibernation check exists to prevent.
+在 2026/9/2 09:44, Namjae Jeon 写道:
+> On Tue, Sep 1, 2026 at 6:15 PM Baolin Liu <liubaolin12138@163.com> wrote:
+>>
+>> From: Baolin Liu <liubaolin@kylinos.cn>
+>>
+>> This series implements fileattr_get and fileattr_set for ntfs so that
+>> lsattr(1) and chattr(1) work on ntfs.
+>>
+>> Patch 1 wires up the fileattr inode operations and implements support
+>> for FS_IMMUTABLE_FL and FS_APPEND_FL. These flags map to inode->i_flags
+>> (S_IMMUTABLE, S_APPEND), so the VFS enforces them. fileattr_get also
+>> reports the compressed and encrypted state, which the driver already
+>> exposes through STATX_ATTR_* in ntfs_getattr().
+>>
+>> Patch 2 adds FS_NODUMP_FL support, which dump(8) and other backup tools
+>> use to mark files to skip. The flag is stored in a new ntfs_inode field
+>> and reported through both fileattr_get (for lsattr) and ntfs_getattr()
+>> (as STATX_ATTR_NODUMP, for statx), so the two interfaces stay consistent.
+>>
+>> All three accepted flags (immutable, append-only, nodump) are kept in
+>> memory and do not survive a remount, matching ntfs3 behavior.
+> This patch-set does not persist these flags on disk. So, the settings
+> survive only while the corresponding inode remains cached. inode
+> reclaim caused by memory pressure or drop_caches can discard them
+> before unmount. Could you find a way to persist immutable, append, and
+> nodump in metadata without causing compatibility issues?
 
-   err < 0 is included for the same reason, only more so: when the
-   check cannot complete, we cannot prove the volume is safe to write.
-   Gating wrongly costs an untouched dirty bit; not gating wrongly
-   costs Windows resuming on a modified image.
+Hi Namjae,Hyunchul,
 
-Thanks!
+   Regarding the persistence concern, I propose storing the 
+Linux-specific flags in one private EA entry in the file's existing NTFS 
+$EA attribute:
+
+     EA name:  $LXFLAGS
+     EA value: a 32-bit little-endian bitmask
+
+     bit 0: immutable
+     bit 1: append-only
+     bit 2: nodump
+
+   The three flags are boolean states, so one bit is sufficient for each 
+of them. Using one 32-bit value also leaves room for future expansion.
+
+   This would add an EA entry named $LXFLAGS to the existing $EA 
+attribute;it would not introduce a new NTFS attribute type. The driver 
+already uses the standard $EA/$EA_INFORMATION mechanism for $LXUID, 
+$LXGID, $LXMOD and $LXDEV, so this approach would reuse the existing 
+on-disk mechanism.
+
+   The inode loading path would restore the flags from $LXFLAGS, and 
+fileattr_set() would update the entry. The entry would be removed when 
+all three flags are cleared. This would allow the flags to survive inode 
+reclaim, drop_caches, unmount/remount, and reboot.
+
+   This approach would not require changes to mkntfs or to the NTFS 
+filesystem format.
+
+   Would this approach be acceptable? If so, I will implement it and 
+submit a new revision as soon as possible.
+
+Thanks,
+Baolin.
 
