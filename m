@@ -1,41 +1,48 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D19F4F0531
-	for <ntfs@lists.linux.dev>; Tue,  8 Sep 2026 09:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5300A2EDD58
+	for <ntfs@lists.linux.dev>; Wed,  9 Sep 2026 02:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1788860696; cv=none; b=dFpl6dDg/f6jenvNYlzV5hXLze8hiQki3DWEw5FQUQWEQ9ZrJmjMK6XvC/a6TZtUTn2hXbtEbwb0BP9OcwJq4Pq3QYTg/2PZE9muF+QTYDkQcaXmVAcGX0USbgHJIZlqT1CyOR12a5HrcxcSGZlYiQKATS7GBlOJdpVS2ZW5sgc=
+	t=1788920828; cv=none; b=mtEvEWb2w8Lr49CE5HvGEJtjy9VJq4cJSsiAatakWzkouyZ/6147IlmHjEGdNdCRkO7zEtuV6xVucQoLRs0dNEuavFO0yOJ+BI8Q+4obQgh5NSK/RY4UWRTxNlLvXN59KxshuTD5YQlRr6gp+g1NzqTMAfHoyZNkn2TKbAjz1YQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1788860696; c=relaxed/simple;
-	bh=wTsFvbgaD8DnFcwak9FMpZXtX2YbgEtFe3e/Y6XdGWo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OH+WkcsFFLBkfGYYMXqx5su0DX2ZK2IR3W8+/WT5AyGukljZQayal1lLKD0I6t9McLjtLtSgeDzg6XG7mmndOVY4t+FBP4P6Fzhcm6QSclwWuXZgobD6Z7e3QkWSgyVI/t8vv16S7a6kbDprG8abdMoQf+LTFLQo4cu8luv/Z0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KWLwYF33; arc=none smtp.client-ip=100.103.45.18
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KWLwYF33"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 598731F00A3F;
-	Tue,  8 Sep 2026 09:44:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788860694;
-	bh=QBnIfJ3TDuW59JwJ6SeNuPGlyXqurPJqnuQpwdLkt5I=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=KWLwYF33ks0I505P5gCb00DxPQ3IxBk/8Lrs9YzYxP+Xq/9ZgHWi8nLIE51vEwXKo
-	 j6tOoHe7AzPCFt+KYm6wV8HGfaFK5u1pALh5+XWSUVKj2/y4Ntf5Mx9xHVq5jX4Yai
-	 5fOx5yxDahmebXr7fA07FmprH9/eXqKe1XFQKO0dxYyZyJw7CiSx2Fe+QEic4YZpht
-	 NFJ6DyEMD342s1501JXn9xkVmp34baOg2p726jyj/ipY+hWxMKLlSYDPfoSS6Lp9GI
-	 h6TpgZQcotMYYus6f6FVuFMgcLMuQfoIabrzHduzw+Okx/m47Tuc7T2PB4Nz6g/3QQ
-	 Zf2B4jeKII/kQ==
-From: Namjae Jeon <linkinjeon@kernel.org>
-To: hyc.lee@gmail.com
+	s=arc-20240116; t=1788920828; c=relaxed/simple;
+	bh=t2PYUULZ+uEhhMGCDNMzJ0R2MUolQAljaKiftS91Exo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WF8dFDgCDN6AGBqsMbSEVvMuyX7TwSc7bxOz8ZmpaIWJw3SzmUZI0gNh9tyw2HvJWf6xieFs51xXuCO94yv5t5B1i08GT/pI6+nTeJR9GUX1twJ5M21BccDbc9O9vpxnF9m403le75He9zFkz71o0rckYX5rsKosixCRH/jV2qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: edad3144abf511f19a56ed5b684f684d-20260909
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:232698a1-6414-4a97-afa6-c87feb81cbd0,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:46879101ef1d8d82d17d64d2f26c9274,BulkI
+	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
+	-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,O
+	SA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: edad3144abf511f19a56ed5b684f684d-20260909
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1889758940; Wed, 09 Sep 2026 10:26:56 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
-	Namjae Jeon <linkinjeon@kernel.org>
-Subject: [PATCH] ntfs: unhash failed inode reads
-Date: Tue,  8 Sep 2026 18:44:16 +0900
-Message-Id: <20260908094416.10534-8-linkinjeon@kernel.org>
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>
+Subject: [PATCH v4 0/4] ntfs: fix volume flag update races and persist the recorded error state
+Date: Wed,  9 Sep 2026 10:26:48 +0800
+Message-Id: <20260909022652.798691-1-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260908094416.10534-1-linkinjeon@kernel.org>
-References: <20260908094416.10534-1-linkinjeon@kernel.org>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -44,58 +51,110 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Remove a newly allocated inode from the inode hash before discarding it.
-NTFS may set i_nlink before a later initialization step fails, in which
-case iput alone can retain the incomplete inode in the cache.
+Hi all,
 
-Fixes: bf6be898fbc5 ("ntfs: discard inodes that fail initialization")
-Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
----
- fs/ntfs/inode.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+v4 of the series, incorporating Baolin Wang's review of v3.  The 3/3
+hygiene patch ("ntfs: NULL vol->vol_ino in the load_system_files()
+error teardown") has been applied separately, so this respin carries
+the remaining work as four patches.  1/4 and 3/4 are unchanged from v3
+(formerly 1/3 and 2/3); 2/4 and 4/4 are new and close the two races
+Baolin spotted.
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 5f0201610e2d..cc0e3271a85d 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -170,9 +170,10 @@ struct inode *ntfs_iget(struct super_block *sb, u64 mft_no)
- 	/* If this is a freshly allocated inode, need to read it now. */
- 	if (inode_state_read_once(vi) & I_NEW) {
- 		err = ntfs_read_locked_inode(vi);
--		if (err)
-+		if (err) {
-+			remove_inode_hash(vi);
- 			discard_new_inode(vi);
--		else
-+		} else
- 			unlock_new_inode(vi);
- 	}
- 	/*
-@@ -232,9 +233,10 @@ struct inode *ntfs_attr_iget(struct inode *base_vi, __le32 type,
- 	/* If this is a freshly allocated inode, need to read it now. */
- 	if (inode_state_read_once(vi) & I_NEW) {
- 		err = ntfs_read_locked_attr_inode(base_vi, vi);
--		if (err)
-+		if (err) {
-+			remove_inode_hash(vi);
- 			discard_new_inode(vi);
--		else
-+		} else
- 			unlock_new_inode(vi);
- 	}
- 	/*
-@@ -288,9 +290,10 @@ struct inode *ntfs_index_iget(struct inode *base_vi, __le16 *name,
- 	/* If this is a freshly allocated inode, need to read it now. */
- 	if (inode_state_read_once(vi) & I_NEW) {
- 		err = ntfs_read_locked_index_inode(base_vi, vi);
--		if (err)
-+		if (err) {
-+			remove_inode_hash(vi);
- 			discard_new_inode(vi);
--		else
-+		} else
- 			unlock_new_inode(vi);
- 	}
- 	/*
--- 
-2.25.1
+Changes since v3:
+
+  2/4 (new): the callers in file.c and namei.c checked VOLUME_IS_DIRTY
+      without any lock before calling ntfs_set_volume_flags(), so the
+      check could race with the ntfs_sync_fs() clear and leave the
+      volume clean on disk despite a metadata modification.  They now
+      call ntfs_set_volume_flags() unconditionally; with the
+      unchanged-value check under the mrec_lock from 1/4 this is a
+      cheap no-op in the write itself when the bit is already set, at
+      the cost of taking the lock on every call - see 2/4's commit
+      message for why that cannot be avoided.
+
+  4/4 (new): ntfs_put_super() persisted the dirty state before the
+      just-in-case mftmirr/mft commits and the final write_inode_now(),
+      which can themselves record NVolErrors(); errors from those
+      points would leave the volume unmounted with a clean on-disk
+      dirty bit, contradicting the "cannot unmount clean" guarantee.
+      The persistence now happens after the last of them, with the
+      iput(vol->vol_ino) moved to the end of ntfs_put_super() so
+      vol->vol_ino is still available.
+
+To recap the discussion that shaped v3:
+
+The original patch (now 1/4) fixed the lost-update race where
+ntfs_set_volume_flags() and ntfs_clear_volume_flags() computed the new
+value from vol->vol_flags outside any lock.  The review correctly
+pointed out that a race remained in ntfs_sync_fs(): it checked
+NVolErrors() outside the critical section, so a concurrent error path
+could still record an error after the check and before the clear, and
+the volume would end up persisted as clean despite the recorded error.
+1/4 fixes both: the read-modify-write and the NVolErrors()-checked
+clearing of VOLUME_IS_DIRTY happen inside the same mrec_lock critical
+section.
+
+3/4 closes the writer-side half of the window: the runtime
+metadata-corruption paths in fs/ntfs recorded only the in-memory
+NVolErrors() flag and never persisted VOLUME_IS_DIRTY at all, so a
+volume could unmount with a clean on-disk flag despite recorded
+corruption.  Persisting from the error paths themselves is not an
+option: they run under a wide variety of ntfs locks (runlist locks,
+vol->lcnbmp_lock, vol->mftbmp_lock, mrec_locks) while the dirty-bit
+write needs the $Volume mrec_lock and can take the $MFT runlist lock,
+which self-deadlocks or forms ABBA cycles.  Instead, 3/4 makes
+persistence a property of the lock-free sync contexts: the new
+ntfs_sync_volume_dirty_state() sets VOLUME_IS_DIRTY when NVolErrors()
+is recorded and clears it otherwise, evaluating the error flag under
+the $Volume mrec_lock.  It is called from ntfs_sync_fs(), the
+remount-to-read-only path and ntfs_put_super(), with NV_Hibernated
+gating so a hibernated volume is never written by these paths.  The
+guarantee is eventual rather than instantaneous (a crash between the
+error record and the next persistence point remains a window); with
+4/4, ntfs_put_super() persists after the last commit that can record
+errors, so a volume that is read-write at unmount time cannot unmount
+clean.
+
+One housekeeping note: this series was rebased onto the current ntfs
+tree after the first posting failed to apply there.  Dennis Tighe's
+"ntfs: do not mark the volume clean in sync_fs when errors were
+recorded" landed in the meantime and fixed part of the same sync_fs
+problem this series addresses; 3/4 supersedes that fix with the
+ntfs_sync_volume_dirty_state() helper, which guards the clear in every
+persistence context, not just sync_fs.  No conflict with its intent.
+
+Patch layout:
+
+  1/4 ntfs: fix volume flag update races
+      Move the read-modify-write of vol->vol_flags inside the
+      $Volume mrec_lock; ntfs_sync_fs() clears the dirty bit under
+      the lock with the NVolErrors() check.
+
+  2/4 ntfs: set the volume dirty bit unconditionally on metadata
+      changes
+      Drop the racy caller-side VOLUME_IS_DIRTY checks in file.c and
+      namei.c; the locked unchanged-value check makes the unconditional
+      call skip the write when the bit is already set.
+
+  3/4 ntfs: sync the volume dirty bit with the recorded error state
+      New ntfs_sync_volume_dirty_state(), called from the lock-free
+      sync contexts (sync_fs / remount-ro / put_super); NV_Hibernated
+      gating.
+
+  4/4 ntfs: persist the dirty state after the final put_super()
+      commits
+      Move the persistence after the last commits that can record
+      errors, with the iput(vol->vol_ino) moved to the end.
+
+Thanks,
+Hongling Zeng (4):
+  ntfs: fix volume flag update races
+  ntfs: set the volume dirty bit unconditionally on metadata changes
+  ntfs: sync the volume dirty bit with the recorded error state
+  ntfs: persist the dirty state after the final put_super() commits
+
+ fs/ntfs/file.c   |  14 ++--
+ fs/ntfs/namei.c  |  24 +++----
+ fs/ntfs/super.c  | 140 +++++++++++++++++++++++++++++++------------
+ fs/ntfs/volume.h |   4 ++
+ 4 files changed, 130 insertions(+), 52 deletions(-)
