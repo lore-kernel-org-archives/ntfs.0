@@ -1,25 +1,25 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43AD3B8948
-	for <ntfs@lists.linux.dev>; Thu, 10 Sep 2026 06:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07072399361
+	for <ntfs@lists.linux.dev>; Thu, 10 Sep 2026 07:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789020550; cv=none; b=WTvl9K15dldxSuyHvYE3skDrVF8MaR1W6MVq0AkdQwQOrWVtNAOAaXcjy2G+9J1qzVG9PYx/jFe0bimJckFXmn+PBon5XEurKHFg2sUfDIPwkzkea/Zpp/c6Eu7XokAvxuyKSCl3M9au/DuD/RtqEB5wBJ9MVqjc6S4tHUWMFjs=
+	t=1789024893; cv=none; b=lKVOoDNEYMOQxJLLeVXvGsOFR9t60+PJ2O3kvNZEnfie2z/kC+U8z2ie8CFhShTsh2VV7ViXv+OePH1i424q1y/Y/9465yfV4+Cv9KnrdyM555wpd9t6A9HAFMZe1/lJFVU7sRh9WNCFLjO4yEhn8gS9SDTgDRs4Xu1dcX+1gM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789020550; c=relaxed/simple;
+	s=arc-20240116; t=1789024893; c=relaxed/simple;
 	bh=1eLOnwow/djpmHX7VdGdO1rAK4zqVtvR3BsezklmFPM=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eofr0lXLv+ohff9pulon4wmj7j7hMOAbfkV0NE1DSSh/gO8OImbHUsQz6hLVlQrGVZuMcDjF3M5V8sclTI0/HYSI626eoTccpoLmxHHSVloMDSWDi1onNrZ7Y0uA64yfB3XCLHsn9R3cu+C1nn61EQwCHdDWhAHh0Wr10cuHNso=
+	 MIME-Version; b=stswgPWee1O/hCGmsCpFvnEOhso5rd21a+edc+vQEiouy5tZ130HW+hXKI0vcwFHjEmG+6bsg27LGs9uQ0E6FgNfvEKMxTb/jddyjHIYylHkGdYseqxTXnVlzxREmlqJEpSWLbEs2nekdK0LeEfxAyuNWbGl6sM+R4fszlk8pZk=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 194e73b0acde11f19a56ed5b684f684d-20260910
+X-UUID: 39bd6372ace811f19a56ed5b684f684d-20260910
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:1fba7cec-b3fd-4b98-86e2-b471f77c4043,IP:0,U
+X-CID-O-INFO: VERSION:1.3.19,REQID:e0fb364a-a7c5-4624-8b71-ee25e3b8f4ce,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:7a276f440987b426b6cc69c9ee45f6d4,BulkI
+X-CID-META: VersionHash:7db8b62,CLOUDID:6c1e94256ddb9a2be2c724992303760f,BulkI
 	D:nil,BulkQuantity:0,SF:81|82|102|136|850|865|898,TC:nil,Content:0|15|50|9
 	9,EDM:-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,O
 	SI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -27,12 +27,12 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 194e73b0acde11f19a56ed5b684f684d-20260910
+X-UUID: 39bd6372ace811f19a56ed5b684f684d-20260910
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 275124331; Thu, 10 Sep 2026 14:08:53 +0800
+	with ESMTP id 720985643; Thu, 10 Sep 2026 15:21:22 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -41,12 +41,12 @@ Cc: ntfs@lists.linux.dev,
 	zhongling0719@126.com,
 	Hongling Zeng <zenghongling@kylinos.cn>,
 	stable@vger.kernel.org
-Subject: [PATCH v7 1/4] ntfs: fix volume flag update races
-Date: Thu, 10 Sep 2026 14:08:46 +0800
-Message-Id: <20260910060849.1817072-2-zenghongling@kylinos.cn>
+Subject: [PATCH v8 1/4] ntfs: fix volume flag update races
+Date: Thu, 10 Sep 2026 15:21:13 +0800
+Message-Id: <20260910072116.1851446-2-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260910060849.1817072-1-zenghongling@kylinos.cn>
-References: <20260910060849.1817072-1-zenghongling@kylinos.cn>
+In-Reply-To: <20260910072116.1851446-1-zenghongling@kylinos.cn>
+References: <20260910072116.1851446-1-zenghongling@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
