@@ -1,29 +1,29 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8B33C585C
-	for <ntfs@lists.linux.dev>; Sun, 13 Sep 2026 06:44:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EEB32D7C7
+	for <ntfs@lists.linux.dev>; Sun, 13 Sep 2026 08:31:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789281868; cv=none; b=EFz4OUYUUmTtDmbCRthxyntMaYAIgycJq0CqjF6efWGCV03wNxSqf97hUugBaYw0xy9VSUkad4MEX2CCcyKoakCZIPWjspnWBv2k7WT8QLxrA585rGhEpMosOs+pJrSivfHGv0aOwUdFwu1D+nenMEbbxLsj8sPWeDqnfhlK3bk=
+	t=1789288320; cv=none; b=MM3uC/BT2jXd2r0Dh4LeeGlu1c0Hg+TSNwwH/Lr+ou9klzlm/dtDTBqsGJLBybhMQesyNeksW7Tnz8hf6m4fgkPojGRFZuob3RfDb+hFPsEgnbyQ+aiyU8PCKKcwJ3ZBCggSR9+xzWwaI8hXP1gi6ttrRezxr12dHFceLYE8mjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789281868; c=relaxed/simple;
-	bh=F71b0YXkH0orA176Jf84Hl12bHZNisAaLsX4N9ogBmI=;
+	s=arc-20240116; t=1789288320; c=relaxed/simple;
+	bh=ca2utnnX+Y8ZEYCh36nAYGG+AA5aAxBPEc2YY+527xg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qxb5ycXwN5GOP8N3l/4RKxxZjL8HEAhDFGdAMc6l87gCkroD1HHWLN7Qlpm9fTiFwAa3vfsEkg3VrIveh0V4wC0nTRnACy3v8FxA3K2rxe7ArkuEmHIrGOQwHP9Ya0MWo8PCkgTBQ390BQNkIy20ANdKB0SESJK5Gn99N7brreY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=NzdtYejp; arc=none smtp.client-ip=220.197.31.5
+	 In-Reply-To:Content-Type; b=Nx0hIKNpGtQaiohypgy8ucgHE3x1H8/UPtfkWBx/Tzt6xxXB6D+h4CKi4rAUBPtZ8yS1JioTmhTJr1YgJG5mEzNk0AeXoj65xbdHIgM9W4zYQH0nwxlV87+B2y10NuGgQ9ml9jEIM3qI0CCeDTmLUjtIkHJOio4qbprAsjJVvl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=p9dyxLWf; arc=none smtp.client-ip=220.197.31.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="NzdtYejp"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="p9dyxLWf"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=NhOir7VaKoIP/RMXm2rj5hE0nYOxBq0o4KeHp0NJ7eU=;
-	b=NzdtYejpX5fQOkPZm2gyDVJUsbVAVQ4rKIrqtLo8gWc7LIUS4S7zxmbolz8amr
-	jGks4XkwbGrRc/eILep1xTxFM+4CIXnxdYnH+ZGkul86IPJtcvwDIOZeDYnxIhIl
-	4keG5mR8KfybpfmtWakTQyDfORdKCT1IGvm1KA6lIxIno=
-Message-ID: <e2299a1b-0e32-4c0e-98c3-78ebd02a4825@163.com>
-Date: Sun, 13 Sep 2026 14:43:58 +0800
+	Content-Type; bh=EhKP3q7j5/PeKZlGCYhZp7NN0HKYU1247v3yj1hxhpA=;
+	b=p9dyxLWfUvGRClUVj7yDZOAvpedDY9/IOVsLUmg2fh78IDMm5yrlcKf/FbUGsE
+	ALMTgSCfaAx8FzKrHrEkOVd/RSlkrcv1q3/l2/zzUBU3c2wmzNzqDaEyDqXDFBW3
+	4F95OSRYXUlVHFqLjjhncB3uqVXLRu195Gqx9Iuvjvp2E=
+Message-ID: <b15c039b-5acd-4be4-88a1-50d4495fdf2d@163.com>
+Date: Sun, 13 Sep 2026 16:31:30 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -31,90 +31,233 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] ntfs: fix lookup of POSIX names with Windows-invalid
- characters
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- Baolin Liu <liubaolin@kylinos.cn>
-References: <20260913010236.17541-1-liubaolin12138@163.com>
- <6cdf40b3-1910-45f9-a3f0-2c41782ab267@163.com>
- <CAKYAXd9CoXPV3LrXwzhtdgjuBbyc8Y9K-eiv54_YZiNhW18Rhw@mail.gmail.com>
+Subject: Re: [PATCH v9 2/4] ntfs: set the volume dirty bit unconditionally on
+ metadata changes
+To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ zhongling0719@126.com, Baolin Liu <liubaolin@kylinos.cn>,
+ stable@vger.kernel.org
+References: <20260911020908.2376222-1-zenghongling@kylinos.cn>
+ <20260911020908.2376222-3-zenghongling@kylinos.cn>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <CAKYAXd9CoXPV3LrXwzhtdgjuBbyc8Y9K-eiv54_YZiNhW18Rhw@mail.gmail.com>
+In-Reply-To: <20260911020908.2376222-3-zenghongling@kylinos.cn>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PSgvCgDn7wsuRqZqAIfCPw--.39294S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WF48CF1DGr1kCF43Gr48WFg_yoW8Kr48pa
-	yfG3ZIyFsrJr13tF92vr1IyrWSvrykXry3JFn5KrW3KwnYgw1fKrn29r4jga47Wrnagw12
-	vw4xK3sIqr45uaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zR-yCAUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwg-gq2qmRi8B-gAA3c
+X-CM-TRANSID:_____wC338tiX6ZqhkmmAQ--.27316S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3AF4fKF4xZw4kGw4fZFyxXwb_yoW3AFyDpr
+	saya1ak3ykJry7Wwn2qF4rZryFv34UGr48CrWrK3Wavwn5tr48XFn2g3WS9a4Fyr93Cw4v
+	qF45Kr45uw17ZrUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UsqXLUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gM0-mqmX2OaQgAA3L
 
 
 
-在 2026/9/13 10:53, Namjae Jeon 写道:
->> Hi Namjae and Hyunchul,
-> Hi Baolin,
->>
->>     Hyunchul, I noticed that the patch you posted in GitHub issue #87 had
->> not yet been sent to the mailing list, so I assumed you might not have
->> had time to send it.
->>
->>     I am helping submit your patch. I preserved your authorship and
->> Signed-off-by line, and added only my Tested-by trailer:
->>
->>       Tested-by: Baolin Liu <liubaolin@kylinos.cn>
-> Thanks for the test and sending the patch to the list instead of Hyunchul!
->>
->>     I applied the patch on top of commit 9a05b5715cfa("ntfs: remove
->> unreachable code in load_and_init_attrdef/upcase"),which was the latest
->> commit on the ntfs-next branch when I performed the tests.
->>
->>     After applying the patch, I successfully built a kernel with the
->> legacy NTFS driver built in. I then booted this kernel in QEMU and
->> tested it using an NTFS test image.
->>
->>     In a small directory, I tested the following filenames:
->>       1. The complete filename reported in issue #87
->>       2. question?mark
->>       3. asterisk*mark
->>       4. less<than
->>       5. greater>than
->>       6. double"quote
->>
->>     For each filename, I created the file, ran sync, dropped the
->> page,inode, and dentry caches, read the file again to verify lookup
->> after reload, deleted it, and confirmed that it no longer existed.
->>
->>     I also created 1000 filler files to exercise the large-directory
->> lookup path. In that directory, middle?entry was created, read
->> successfully after dropping the caches, and deleted successfully.
->>
->>     All the tests above passed. The kernel log contained
->> neither"Collation error" nor "Delete failed".
-> Thanks, I will check it.
->>
->>     Namjae and Hyunchul, if you need any assistance with further work, I
->> would be very happy to help.
-> Thank you very much for your active participation in NTFS development!
+在 2026/9/11 10:09, Hongling Zeng 写道:
+> The callers in file.c and namei.c skip ntfs_set_volume_flags() when
+> the in-memory vol_flags already show VOLUME_IS_DIRTY, but that check
+> runs without any lock: if it observes the bit set and ntfs_sync_fs()
+> clears it under the mrec_lock before the caller's metadata update
+> completes, the set is skipped and the volume can end up clean on disk
+> despite the modification, so chkdsk will not run on the next mount.
 > 
-> Can you work 64bit cluster support for ntfs if you have the room?
-> Since this is not urgent, please feel free to work on it without
-> feeling pressured.
+> Drop the caller-side checks and call ntfs_set_volume_flags()
+> unconditionally: ntfs_write_volume_flags() already skips the write
+> under the mrec_lock when the combined value is unchanged.  That
+> unconditional call costs one mrec_lock acquisition per metadata
+> operation even in the already-dirty steady state; it cannot be
+> avoided, because deciding to skip the call without the lock is itself
+> what allows a concurrent ntfs_sync_fs() clear to lose the set.
 > 
-> Thanks!
+> The IOCB_NOWAIT path in ntfs_file_write_iter() goes through the same
+> sleeping call: a RWF_NOWAIT write can block in the marking, as it
+> already could before this change whenever the volume appeared clean.
+> Giving that path a non-blocking variant is left as follow-up work.
+> The callers keep the pre-existing behavior of proceeding when the
+> marking fails, so the dirty bit remains best-effort.
+> 
+> This closes the variant where the set is skipped outright.  A clear
+> for a concurrent, error-free sync can still land between the set and
+> the end of the metadata operation; that mark-at-start lifecycle is
+> pre-existing and is not changed by this patch.
+> 
+> Reported-by: Baolin Liu <liubaolin@kylinos.cn>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+> ---
+>   fs/ntfs/file.c  | 20 +++++++++++---------
+>   fs/ntfs/namei.c | 24 ++++++++----------------
+>   2 files changed, 19 insertions(+), 25 deletions(-)
+> 
+> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+> index 007d1614b9ac..cfc7b36b7dff 100644
+> --- a/fs/ntfs/file.c
+> +++ b/fs/ntfs/file.c
+> @@ -325,8 +325,7 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
+>   		goto out;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	if (ia_valid & ATTR_SIZE) {
+>   		err = ntfs_setattr_size(vi, attr);
+> @@ -620,8 +619,13 @@ static ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		goto out_lock;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	/*
+> +	 * The volume must be marked dirty before the modification is made,
+> +	 * without an unlocked check of the in-memory flag: ntfs_sync_fs()
+> +	 * can clear the bit concurrently and the modification would then
+> +	 * land on a volume that is clean on disk.
+> +	 */
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
 
-Hi Namjae,
+Hi Hongling,
+   The added call removes the unlocked check, but it does not close the 
+writer/sync lifecycle race. ntfs_set_volume_flags() protects only the 
+read-modify-write of the $Volume record while mrec_lock is held, and 
+releases the lock before ntfs_file_write_iter() enters the actual write 
+path (ntfs_file_buffered_write() or the direct-I/O path) that modifies 
+file data and related MFT metadata.
 
-   Thank you for your kind words and for suggesting this work.
+   For example, the following execution is still possible:
 
-   Yes, I would be happy to work on 64-bit cluster support for NTFS. I 
-will first investigate how to implement it, and then develop and test 
-the changes based on the latest ntfs-next branch.
+   Writer                                      ntfs_sync_fs()
+   ------                                      ------------
+   ntfs_set_volume_flags()
+       acquire $Volume mrec_lock
+       set VOLUME_IS_DIRTY
+       update $Volume record
+       release $Volume mrec_lock
 
-   I will keep you updated on my progress.
+                                                acquire $Volume mrec_lock
+                                            observe NVolErrors() == false
+                                                clear VOLUME_IS_DIRTY
+                                                release $Volume mrec_lock
+                                                commit clean volume flags
 
-Best regards,
+   continue ntfs_file_write_iter()
+   enter ntfs_file_buffered_write()
+   or the direct-I/O write path
+   modify file data and related MFT metadata
+   commit dirty pages/MFT records
+
+   Thus, the metadata modification can still reach disk after 
+ntfs_sync_fs() has persisted a clean on-disk dirty bit. The mrec_lock 
+serializes only individual $Volume flag updates; it does not cover the 
+subsequent write operation. Therefore, the guarantee described in the 
+comment above is incomplete, and the same race applies to the other 
+unconditional dirty-bit calls added by this patch.
+
+Thanks,
 Baolin.
+
+>   
+>   	pos = iocb->ki_pos;
+>   	count = ret;
+> @@ -1153,11 +1157,9 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
+>   			return err;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY)) {
+> -		err = ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> -		if (err)
+> -			return err;
+> -	}
+> +	err = ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	if (err)
+> +		return err;
+>   
+>   	old_size = i_size_read(vi);
+>   
+> diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+> index fdf52fac4329..3e0adb9a0ea4 100644
+> --- a/fs/ntfs/namei.c
+> +++ b/fs/ntfs/namei.c
+> @@ -757,8 +757,7 @@ static int ntfs_create(struct mnt_idmap *idmap, struct inode *dir,
+>   		return err;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	ni = __ntfs_create(idmap, dir, uname, uname_len, S_IFREG | mode, 0, NULL, 0);
+>   	kmem_cache_free(ntfs_name_cache, uname);
+> @@ -1032,8 +1031,7 @@ static int ntfs_unlink(struct inode *dir, struct dentry *dentry)
+>   		return err;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	err = ntfs_delete(ni, NTFS_I(dir), uname, uname_len, true);
+>   	if (err)
+> @@ -1076,8 +1074,7 @@ static struct dentry *ntfs_mkdir(struct mnt_idmap *idmap, struct inode *dir,
+>   		return ERR_PTR(err);
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	ni = __ntfs_create(idmap, dir, uname, uname_len, mode, 0, NULL, 0);
+>   	kmem_cache_free(ntfs_name_cache, uname);
+> @@ -1118,8 +1115,7 @@ static int ntfs_rmdir(struct inode *dir, struct dentry *dentry)
+>   		return err;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	err = ntfs_delete(ni, NTFS_I(dir), uname, uname_len, true);
+>   	if (err)
+> @@ -1305,8 +1301,7 @@ static int ntfs_rename(struct mnt_idmap *idmap, struct inode *old_dir,
+>   		new_dir_first = is_subdir(new_dentry->d_parent,
+>   					  old_dentry->d_parent);
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	mutex_lock_nested(&old_ni->mrec_lock, NTFS_INODE_MUTEX_NORMAL);
+>   	if (new_ni)
+> @@ -1429,8 +1424,7 @@ static int ntfs_symlink(struct mnt_idmap *idmap, struct inode *dir,
+>   		goto out;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	ni = __ntfs_create(idmap, dir, usrc, usrc_len, S_IFLNK | 0777, 0,
+>   			   symname, symlen);
+> @@ -1474,8 +1468,7 @@ static int ntfs_mknod(struct mnt_idmap *idmap, struct inode *dir,
+>   		return err;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	switch (mode & S_IFMT) {
+>   	case S_IFCHR:
+> @@ -1521,8 +1514,7 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
+>   		return -ENOMEM;
+>   	}
+>   
+> -	if (!(vol->vol_flags & VOLUME_IS_DIRTY))
+> -		ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+> +	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+>   
+>   	ihold(vi);
+>   	mutex_lock_nested(&ni->mrec_lock, NTFS_INODE_MUTEX_NORMAL);
 
