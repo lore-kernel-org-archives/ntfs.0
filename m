@@ -1,127 +1,96 @@
-Received: from hades.hexcom.net (hades.hexcom.net [94.130.240.252])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B2A3C3C11
-	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 10:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.130.240.252
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F5146AEFE
+	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 12:58:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789383215; cv=none; b=oTKH+5xe/PNq8AQHY8GwI+LtxB5pQ2Bmr4wqd9bfWUyd0B3+gkLDDmi6dt3mU3haIKqk/R07zNTchtXFjz7dH6sMCDUt7ZXfoo5umEGg8YfBiTLyrUlFpCsB9pKWD1MOmpYowV08ReKE2kI9xg3b31mO5U9UYNTcbdx2pKnK0Zk=
+	t=1789390705; cv=none; b=QN0Nar1t/3IuEljBfMG0AutH30lcd7ADEwDwYnKxhLqF/ugiIy0cPrtnhpMfim+CIrkOMkXWxtXizgjuxyPlzcbkNWmrTDYCADDmVVEtuOuBA8Bv/+CjHuKyeI3YYmTg5cb+CfacKPRTUJ8MS+M4mpY181gg1qz552f+8gxNNKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789383215; c=relaxed/simple;
-	bh=IKdD78RFhZ5hhFukaEem6WSbf++Mco63dETWNBPRqzo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Yg3KtfienXpQaoRs/axtgFz6E9MHRetjNcYK+lwRMuhGCROXx8hvPRL34vKHJchLe4lhqaiGExj34pAU1y1wqn7X6gt7QOl8NccKXvP62VeiEDv/5oZUewLy/jykDKKwh8m0Q7j3EuUR2aP0h9XHE0597gg1PZAOh+UKiBIM7Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesolowski.eu.org; spf=pass smtp.mailfrom=wesolowski.eu.org; arc=none smtp.client-ip=94.130.240.252
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesolowski.eu.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesolowski.eu.org
-Received: from [78.30.104.81] (helo=PI.tailc0d925.ts.net)
-	by hades.hexcom.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <marek@wesolowski.eu.org>)
-	id 1x64JQ-00BLfL-PL;
-	Mon, 14 Sep 2026 12:53:24 +0200
-From: =?UTF-8?q?Marek=20Weso=C5=82owski?= <marek@wesolowski.eu.org>
-To: ntfs@lists.linux.dev
-Cc: Baolin Liu <liubaolin12138@163.com>,
-	Hyunchul Lee <hyc.lee@gmail.com>,
-	Namjae Jeon <linkinjeon@kernel.org>
-Subject: [PATCH v2] ntfs: fix directory lookup on large-page systems
-Date: Mon, 14 Sep 2026 12:53:04 +0200
-Message-ID: <20260914105304.16086-1-marek@wesolowski.eu.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <38b0d495-30bb-4eda-b535-7dd67df90f05@163.com>
-References: <38b0d495-30bb-4eda-b535-7dd67df90f05@163.com>
+	s=arc-20240116; t=1789390705; c=relaxed/simple;
+	bh=CpKvQ4emW+umPkGi15cFYXg+oN6reK+kuKqDepTCRac=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AvTXH4oVlnOF+ok7kh6VYUYBkPqDuS57RrxJe2GVSid3FPOeluhZp55onQprHoWuUC1gy1OP93dUh5VuLBOK30CTDvdNWgZS7vWD3rLqowUTKoILG0FXZJ2HRdR658OT6cJlCJsSFuWxTH2qYzzkwDxgrLvDTVMW4GugzjB49HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5HlJmQ3; arc=none smtp.client-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5HlJmQ3"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C06081F00898
+	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 12:58:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1789390703;
+	bh=T2t4zkNzOccBCNEzMIDTSA66YSwDdOoXBfFK4NOudFA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=H5HlJmQ3KNTXDEmkPra8bx3ssxJadSvgpm1bRxv/bsJb/pMG/6pYcWVXjPIHaui1v
+	 W2fNrr6U7wC09G0YP1HjUR0hNMPdO0pFv3TOpTPi12vi7g6N0cE4MHlNHYVjMeEUIU
+	 h8Ua+K+Mh4TRjErclqkyyLXiOzsq3V5fCA5Q5R/k/6RYJaxfSJVniMBFOmCz8p4GwA
+	 eH9qzrTZDnYRd7ExX6NArTkuZ5rR5tWlxesWLume8mY0ywbJ041vjvqL246ir1+obk
+	 SnCrb7ptMC8xQ/Kz8uFPRm0vw7sXHeOQK2Hb/YKLPSgb9g4BVh+IY5ilr6gERULNsf
+	 NAJ7/nMdAyJEw==
+Received: by mail-ej2-f12.google.com with SMTP id a640c23a62f3a-c254f55efebso306291466b.1
+        for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 05:58:23 -0700 (PDT)
+X-Gm-Message-State: AFuF++k7a71fpdckXRXbtu8crh9VPF2TM7VOP4SUE+o6LSzgAleNUysD
+	uAM1eYqGc2ET75oE2LnC9QaHuOK+ODVXOiU0BE4JEhbnZyR9U0LOx6/yD5QIqdJYtRT3ZxXzdkR
+	vO8omXtiEsZV+4anQgBVxkz/tgbebZNA=
+X-Received: by 2002:a17:906:618a:b0:c29:45ce:85ad with SMTP id
+ a640c23a62f3a-c29b84c9a53mr146506466b.1.1789390702370; Mon, 14 Sep 2026
+ 05:58:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-YourOrg-MailScanner-Information: Please contact the ISP for more information
-X-YourOrg-MailScanner-ID: 1x64JQ-00BLfL-PL
-X-YourOrg-MailScanner: Found to be clean
-X-YourOrg-MailScanner-SpamCheck: 
-X-YourOrg-MailScanner-From: marek@wesolowski.eu.org
-X-Authenticated-Id: marek@wesolowski.eu.org
+References: <20260913-topic-4kn-lkml-v2-0-2bc455e81635@gmail.com>
+In-Reply-To: <20260913-topic-4kn-lkml-v2-0-2bc455e81635@gmail.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Mon, 14 Sep 2026 21:58:10 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd-fWBJSYJaLvn0s9xUjS+sje7=bcOnSSaTnTVPJVGB8+w@mail.gmail.com>
+X-Gm-Features: AcwNN1UTBczIGJ7xMttSCz9ot4Ql70GStDDL8ccZtJmJdzlG2xNaHREV4C6Gljw
+Message-ID: <CAKYAXd-fWBJSYJaLvn0s9xUjS+sje7=bcOnSSaTnTVPJVGB8+w@mail.gmail.com>
+Subject: Re: [PATCH v2 00/10] ntfs: support 4K-native devices with smaller MFT records
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-ntfs_lookup_inode_by_name() copies PAGE_SIZE bytes from the index
-allocation mapping and applies MST fixups to that entire buffer before
-selecting the requested INDX block.
-
-When PAGE_SIZE is larger than the NTFS index block size, the USA count
-belongs to the smaller INDX block. post_read_mst_fixup() therefore treats
-the PAGE_SIZE call as not applicable and leaves the update sequence words
-in place. A directory entry crossing a sector boundary can then be returned
-by readdir but missed by lookup.
-
-Select the INDX block first, apply the fixup using its actual block size,
-and propagate fixup failures before validating the block.
-
-Return -EIO when post_read_mst_fixup() detects an incomplete multi sector
-transfer, since this indicates an on-disk metadata integrity error.
-
-Reproduced on arm64 with 16 KiB pages and 4 KiB NTFS index blocks. The
-affected entry was visible in readdir but stat returned ENOENT. Both exact
-and case-insensitive lookup succeed after this change.
-
-Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-Signed-off-by: Marek Wesołowski <marek@wesolowski.eu.org>
----
-Changes in v2:
-- Rebased onto the current kernel.org ntfs-next branch at 8809c3f29555.
-- Updated the Fixes tag as requested.
-
- fs/ntfs/dir.c | 5 ++++-
- fs/ntfs/mst.c | 4 ++--
- 2 files changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
-index 2d594cb..caf640d 100644
---- a/fs/ntfs/dir.c
-+++ b/fs/ntfs/dir.c
-@@ -331,7 +331,6 @@ descend_into_child_node:
- 	}
- 
- 	memcpy_from_folio(kaddr, folio, 0, PAGE_SIZE);
--	post_read_mst_fixup((struct ntfs_record *)kaddr, PAGE_SIZE);
- 	folio_unlock(folio);
- 	folio_put(folio);
- fast_descend_into_child_node:
-@@ -352,6 +351,10 @@ fast_descend_into_child_node:
- 			   vcn, dir_ni->mft_no);
- 		goto unm_err_out;
- 	}
-+	err = post_read_mst_fixup((struct ntfs_record *)ia,
-+				  dir_ni->itype.index.block_size);
-+	if (err)
-+		goto unm_err_out;
- 	err = ntfs_index_block_inconsistent(vol, ia,
- 					    dir_ni->itype.index.block_size,
- 					    vcn, COLLATION_FILE_NAME,
-diff --git a/fs/ntfs/mst.c b/fs/ntfs/mst.c
-index 7f9faad..cc63634 100644
---- a/fs/ntfs/mst.c
-+++ b/fs/ntfs/mst.c
-@@ -19,7 +19,7 @@
-  * magic of the ntfs record header being processed with "BAAD" (in memory only!)
-  * and abort processing.
-  *
-- * Return 0 on success and -EINVAL on error ("BAAD" magic will be present).
-+ * Return 0 on success and -EIO on error ("BAAD" magic will be present).
-  *
-  * NOTE: We consider the absence / invalidity of an update sequence array to
-  * mean that the structure is not protected at all and hence doesn't need to
-@@ -71,7 +71,7 @@ int post_read_mst_fixup(struct ntfs_record *b, const u32 size)
- 			 * Note that magic_BAAD is already converted to le32.
- 			 */
- 			b->magic = magic_BAAD;
--			return -EINVAL;
-+			return -EIO;
- 		}
- 		data_pos += NTFS_BLOCK_SIZE / sizeof(u16);
- 	}
-base-commit: 8809c3f29555f9d1e66fe015080a8d4979d91eaa
--- 
-2.47.3
+On Sun, Sep 13, 2026 at 1:21=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> wr=
+ote:
+>
+> Make MFT writeback safe on native 4Kn devices when MFT records are
+> smaller than the device I/O unit.
+>
+> Validate MFT I/O geometry, map and submit containing I/O units, and
+> coordinate direct writes with generic folio writeback. When a write
+> covers multiple MFT records, preserve the unchanged contents of
+> neighboring records in the containing I/O unit. Keep the completion
+> behavior requested by each direct-write caller, while requiring
+> synchronous completion before releasing an MFT bitmap entry.
+>
+> ---
+> Changes in v2:
+>   * Fix compilation error in Patch 3.
+>   * Keep valid but unsupported MFT geometries read-only and reject
+>     read-write remounts.
+>   * Document the sync-dependent -ENOMEM return from write_mft_record().
+>   * Add Patch 9, which trigger page_mkwrite after native 4Kn partial-EOF
+>     size extensions.
+>   * Add Patch 10, which wait for attribute folio writeback before copying
+>     a new non-resident attribute.
+>
+> To: Namjae Jeon <linkinjeon@kernel.org>
+> Cc: ntfs@lists.linux.dev
+>
+> ---
+> Hyunchul Lee (10):
+>       ntfs: read MFT writeback bounds under size_lock
+>       ntfs: validate the MFT I/O geometry
+>       ntfs: write MFT mirror data in mapped I/O units
+>       ntfs: serialize raw MFT updates against folio writeback
+>       ntfs: track direct MFT writes until BIO completion
+>       ntfs: write MFT folios through mapped I/O units
+>       ntfs: write MFT records through containing I/O units
+>       ntfs: use sync flag for direct MFT writes
+>       ntfs: trigger page_mkwrite for native 4Kn size extension
+>       ntfs: wait for attribute folio writeback before update
+Please rebase this series onto the latest ntfs-next and resend it.
+Thanks!
