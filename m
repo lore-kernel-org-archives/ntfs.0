@@ -1,400 +1,222 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8345D3E7BCC
-	for <ntfs@lists.linux.dev>; Sun, 13 Sep 2026 13:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238522DCF57
+	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 01:52:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789307234; cv=none; b=EysKNJODeHEea27Y4AdgtzhEfTjn3VUJDRx8wWH2jck45+9KrF2HiJHLltR2RsrkRzpvSjp5cjkH3APNLKTFj1bpLHOpH9Dui5labg9Ek1UnO/q6wKUQwtrB9CN06fH1ds4KAs2p5RVBskOClAuu8Pzv5YK8SrZdGY4kDbMliyE=
+	t=1789350772; cv=none; b=qtS9zBLt95yCY5PQCgqKNPkXcptHQu6Uk88eSTfjpeC9K26+tCUIe5F9Gg3mVLn3Wh0oOL0tA0Szxn4GomyGhZjtXcVLqV8jZ0DylZFo61j8A7BwkmyjEQ+gG3MAqG389lnsmAOiEubjyMzACNWCsS3wt9ttMd4Qb2ADDYchB5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789307234; c=relaxed/simple;
-	bh=vKHGqNbZr3VHadp6mIYicoe0gb09lth0hEIzVxUMVk4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d8QgWaCcdOUPPOg6VnZMkraeLO5gONgwdGWLOCKyahMlTlx0WHk4Q4dwt9WRnimwgHi7KtWCbDoY0b4Rfzb/cbnkB7uyWHkK5/9QeKGVYfsULyA5oYzAOfsaMKjnblzc9sTfRL9r4f5f+gXxl0BSuQfsWsQFaid4w3m59hfE7EU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=B0Id+Nb8; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1789350772; c=relaxed/simple;
+	bh=8DXe+BDql6d8cv2UmLY1zjZYsUGCvgo9if4IANZsfPw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=dJ9NjjeNGbCRDpl/SVDTi+0M2rdCvoTzB5BpaosLBvni+LAM2bebgQxso/MT5kGe9OhT9kMUNHxES7HYZKsA3veDcw4vl2n2+FJglERZn7SkqKJ4S5hdZvbkdpbEReKOFFjY0rl2yFzUXad53guM2so7VxdHk/5cVI0Ke/opagU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=go3OT6Id; arc=none smtp.client-ip=220.197.31.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="B0Id+Nb8"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=KrC9UM04WeLmGV4AVsItSPFNigY7hsSQQPp0oL8tF60=;
-	b=B0Id+Nb8S4MlnFAK6ndSLcAEFOhEiwzw/8hLAu/09G5aCG0ItG7lXy5tMEjFxp
-	p3o515aCDcVNs+Veam2VbsY6mZAFAo7p3ue/e1UnAING8t5tIL5Zu1frD70kMBcA
-	eYgk0ev9OXQzd9K8WvWqeaQea7SjconjggDDA5Qs8djeI=
-Message-ID: <5fbd935a-b62e-4081-b8b6-01c8f0af064c@163.com>
-Date: Sun, 13 Sep 2026 21:46:45 +0800
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="go3OT6Id"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=8DXe+BDql6d8cv2UmLY1zjZYsUGCvgo9if4IANZsfPw=; b=g
+	o3OT6IdZ0zRHJc85frlkVyREfj1ogHVSHNrEZwAAaUydlKU7J28styQYPTwmmCYU
+	Gl0ph/ji9HXSX+MSdVejMEPlTMMuZuoVFJWbMCRy68zanwUPsiShL922mSZNDKT3
+	cmkhosITFvyAe3FJVEh/GnEtvgIkhxqTVZPs/HHf+g=
+Date: Mon, 14 Sep 2026 09:52:19 +0800 (CST)
+From: dd  <zhongling0719@126.com>
+To: liubaolin <liubaolin12138@163.com>
+Cc: "Hongling Zeng" <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+	hyc.lee@gmail.com, ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org, "Baolin Liu" <liubaolin@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: Re:Re: [PATCH v9 2/4] ntfs: set the volume dirty bit
+ unconditionally on metadata changes
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260511(2e539873) Copyright (c) 2002-2026 www.mailtech.cn 126com
+In-Reply-To: <b15c039b-5acd-4be4-88a1-50d4495fdf2d@163.com>
+References: <20260911020908.2376222-1-zenghongling@kylinos.cn>
+ <20260911020908.2376222-3-zenghongling@kylinos.cn>
+ <b15c039b-5acd-4be4-88a1-50d4495fdf2d@163.com>
+X-NTES-SC: AL_Qu2TC/+ev08o7yKebOkWk00RgOk9WsG1vfQi24NQP500pC7d0x0PW2NtEWn68c2ONjqDlhaxQQBX++93fLVkX7OrMo3fzX9tBlADJSqSOAXu
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=GBK
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/4] ntfs: sync the volume dirty bit with the recorded
- error state
-To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
- hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- zhongling0719@126.com, stable@vger.kernel.org
-References: <20260911020908.2376222-1-zenghongling@kylinos.cn>
- <20260911020908.2376222-4-zenghongling@kylinos.cn>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260911020908.2376222-4-zenghongling@kylinos.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3H2BGqaZqF+zqAQ--.27031S2
-X-Coremail-Antispam: 1Uf129KBjvAXoW3Kw4ktFyrCryxXFWrJw1xAFb_yoW8Wr1xCo
-	W0kFyqvw4xKwnrAayvywn3Cw4S9a909F4fXF45Gr1DZ34qgw4UC347Wws8WFZrGa15Kr1U
-	C34xJanYqFW8tFyxn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUejgxUUUUU
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6ge-imqmqUcXsAAA3d
+Message-ID: <787beadf.1528.1a09d9d7d4c.Coremail.zhongling0719@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:bCkvCgDnj35TU6dqVUw_AA--.28231W
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrhNtPmqnU1OvuAAA30
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-
-
-在 2026/9/11 10:09, Hongling Zeng 写道:
-> The runtime metadata-corruption paths in fs/ntfs only record the
-> in-memory NVolErrors() flag; whether VOLUME_IS_DIRTY ever reaches disk
-> depends on ntfs_set_volume_flags() being called by some other path,
-> which for most error sites never happens.  A volume can therefore
-> unmount with a clean on-disk flag despite recorded corruption, and
-> chkdsk will not run on the next mount.
-> 
-> Persisting the dirty bit from the error paths themselves does not work:
-> they run under a wide variety of ntfs locks, and the dirty-bit write
-> takes the $Volume mrec_lock and maps the $Volume mft record, which on
-> an $MFT page-cache miss takes the $MFT runlist lock for writing.  That
-> is enough to self-deadlock or form ABBA cycles from several of them:
-> the $MFT extend undo paths hold the $MFT runlist lock and then take
-> vol->lcnbmp_lock inside ntfs_cluster_free(); the cluster allocation and
-> free rollback paths hold vol->lcnbmp_lock; and the whole mft record
-> allocation tree is reachable from ntfs_write_volume_label()'s
-> attribute-list maintenance while it holds the $Volume mrec_lock itself.
-> 
-> Instead, make the persistence a property of the sync paths, which run
-> without ntfs locks held.  The new ntfs_sync_volume_dirty_state() sets
-> VOLUME_IS_DIRTY when NVolErrors() is recorded and clears it otherwise,
-> evaluating the error flag under the $Volume mrec_lock.  It is called
-> from ntfs_sync_fs(), from the remount-to-read-only path of
-> ntfs_reconfigure(), and from ntfs_put_super(), which previously
-> evaluated NVolErrors() outside the lock before clearing the dirty bit
-> unconditionally, and which now also persists the dirty bit for volumes
-> with recorded errors so they unmount with chkdsk scheduled.  The
-> ntfs_clear_volume_flags() wrapper, whose last callers this patch
-> replaces, has no users left and is removed.
-> 
-> The guarantee this provides is eventual, not instantaneous: the error
-> paths record NVolErrors() with a lock-free set_bit(), so a persistence
-> point that evaluates the flag just before an error is recorded can
-> still leave the on-disk bit clean until the next one.  This is sound
-> because NVolErrors() is sticky for the lifetime of the mount and every
-> persistence point re-derives the on-disk bit from it; the last one,
-> ntfs_put_super(), runs after evict_inodes() on a quiesced filesystem,
-> so a volume that is read-write at unmount time cannot unmount clean.
-> A volume that is already read-only when the error is recorded
-> (errors=remount-ro flips the superblock on the first error, as does an
-> earlier remount-ro) has no persistence point left and keeps whatever
-> on-disk bit it had; that behaviour is unchanged.  The residual window
-> is a crash between the error and the next persistence point.
-> 
-> The persistence paths never write a hibernated volume: resuming Windows
-> from a modified image corrupts it.  Record the mount-time hibernation
-> verdict in the new NV_Hibernated volume flag and make
-> ntfs_sync_volume_dirty_state() a no-op while it is set, so the dirty
-> bit is left exactly as it is on disk and only the in-memory error
-> state is kept.  Without this, an rw mount of a hibernated volume with
-> the default errors=continue would gain a filesystem-internal write on
-> the first sync, remount or unmount.  Other writes to such a mount,
-> like the mount-time logfile emptying, are pre-existing and unchanged.
-> 
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-> ---
->   fs/ntfs/ntfs.h   |   1 -
->   fs/ntfs/super.c  | 129 ++++++++++++++++++++++++++++++++---------------
->   fs/ntfs/volume.h |   4 ++
->   3 files changed, 93 insertions(+), 41 deletions(-)
-> 
-> diff --git a/fs/ntfs/ntfs.h b/fs/ntfs/ntfs.h
-> index 45f77848a9cf..a5cd5493c501 100644
-> --- a/fs/ntfs/ntfs.h
-> +++ b/fs/ntfs/ntfs.h
-> @@ -219,7 +219,6 @@ struct option_t {
->   };
->   extern const struct option_t on_errors_arr[];
->   int ntfs_set_volume_flags(struct ntfs_volume *vol, __le16 flags);
-> -int ntfs_clear_volume_flags(struct ntfs_volume *vol, __le16 flags);
->   int ntfs_write_volume_label(struct ntfs_volume *vol, char *label);
->   
->   /* From fs/ntfs/mst.c */
-> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-> index 6ba19986a598..733565953302 100644
-> --- a/fs/ntfs/super.c
-> +++ b/fs/ntfs/super.c
-> @@ -262,6 +262,8 @@ static int ntfs_parse_param(struct fs_context *fc, struct fs_parameter *param)
->   	return 0;
->   }
->   
-> +static int ntfs_sync_volume_dirty_state(struct ntfs_volume *vol);
-> +
->   static int ntfs_reconfigure(struct fs_context *fc)
->   {
->   	struct super_block *sb = fc->root->d_sb;
-> @@ -312,10 +314,24 @@ static int ntfs_reconfigure(struct fs_context *fc)
->   		}
->   	} else if (!sb_rdonly(sb) && (fc->sb_flags & SB_RDONLY)) {
->   		/* Remounting read-only. */
-> -		if (!NVolErrors(vol)) {
-> -			if (ntfs_clear_volume_flags(vol, VOLUME_IS_DIRTY))
-> -				ntfs_warning(sb,
-> -					"Failed to clear dirty bit in volume information flags.  Run chkdsk.");
-> +		/*
-> +		 * With errors recorded the dirty bit is set rather than
-> +		 * cleared, and it is committed right away: the VFS does
-> +		 * not sync the filesystem during a remount, and once the
-> +		 * remount succeeds no further persistence point exists -
-> +		 * ntfs_sync_fs() is only ever invoked for read-write
-> +		 * superblocks (all its VFS callers skip read-only ones)
-> +		 * and ntfs_put_super() skips them, so the only remaining
-> +		 * write would be the evict-time commit at unmount, which
-> +		 * a crash never reaches.  An error recorded only after
-> +		 * the remount is still never persisted.
-> +		 */
-> +		if (ntfs_sync_volume_dirty_state(vol)) {
-> +			ntfs_warning(sb,
-> +				"Failed to update dirty bit in volume information flags.  Run chkdsk.");
-> +		} else if (NInoDirty(NTFS_I(vol->vol_ino))) {
-> +			ntfs_commit_inode(vol->vol_ino);
-> +			blkdev_issue_flush(sb->s_bdev);
-
-Hi Hongling,
-    The comment says that the dirty state must be committed immediately 
-during remount-to-read-only because no later ntfs_sync_fs() persistence 
-point is available. However, this code does not verify that this 
-immediate persistence actually succeeds.
-
-   ntfs_commit_inode() is a void wrapper, so failures while writing the 
-$Volume record or updating $MFTMirr can only be observed indirectly 
-through NVolErrors(), but that state is not checked after the commit. In 
-addition, the return value of blkdev_issue_flush() is ignored.
-
-   As a result, remount can complete successfully even though 
-VOLUME_IS_DIRTY was not durably written to stable storage. A crash after 
-the remount may then leave the volume clean on disk, despite the 
-comment’s stated requirement that the dirty state be committed 
-immediately. Please detect and handle errors from the complete $Volume 
-commit and block-device flush sequence before treating the dirty-state 
-update as successful.
-
-Thanks,
-Baolin.
-
->   		}
->   	}
->   
-> @@ -357,9 +373,10 @@ void ntfs_handle_error(struct super_block *sb)
->    * @vol:	ntfs volume on which to modify the flags
->    * @set_bits:	bits to set in the volume information flags
->    * @clear_bits:	bits to clear in the volume information flags
-> + * @dirty_if_errors:	force VOLUME_IS_DIRTY on when NVolErrors() is set
->    *
->    * Internal function.  You probably want to use ntfs_{set,clear}_volume_flags()
-> - * instead (see below).
-> + * or ntfs_sync_volume_dirty_state() instead (see below).
->    *
->    * Combine @set_bits and @clear_bits with the current in-memory flag state and
->    * write the result back.  The set/clear helpers pass only the bits to modify,
-> @@ -368,11 +385,18 @@ void ntfs_handle_error(struct super_block *sb)
->    * All bit manipulation is done on CPU-endian values, and the result is
->    * converted back to little-endian before storing it.
->    *
-> + * When @dirty_if_errors is true and errors have been recorded on @vol,
-> + * VOLUME_IS_DIRTY is forced on after the requested changes.  NVolErrors() is
-> + * evaluated under the same mrec_lock, which orders this against other
-> + * locked flag updates; the runtime error paths themselves record the flag
-> + * lock-free, so see ntfs_sync_volume_dirty_state() for the guarantee this
-> + * provides against them.
-> + *
->    * Return 0 on success and -errno on error.
->    */
->   static int ntfs_write_volume_flags(struct ntfs_volume *vol,
->   		const __le16 set_bits, const __le16 clear_bits,
-> -		const bool skip_if_errors)
-> +		const bool dirty_if_errors)
->   {
->   	struct ntfs_inode *ni = NTFS_I(vol->vol_ino);
->   	struct volume_information *vi;
-> @@ -382,12 +406,11 @@ static int ntfs_write_volume_flags(struct ntfs_volume *vol,
->   
->   	mutex_lock(&ni->mrec_lock);
->   
-> -	if (skip_if_errors && NVolErrors(vol))
-> -		goto done;
-> -
->   	flags = le16_to_cpu(vol->vol_flags);
->   	flags |= le16_to_cpu(set_bits) & le16_to_cpu(VOLUME_FLAGS_MASK);
->   	flags &= ~(le16_to_cpu(clear_bits) & le16_to_cpu(VOLUME_FLAGS_MASK));
-> +	if (dirty_if_errors && NVolErrors(vol))
-> +		flags |= le16_to_cpu(VOLUME_IS_DIRTY);
->   	ntfs_debug("Entering, old flags = 0x%x, new flags = 0x%x.",
->   			le16_to_cpu(vol->vol_flags), flags);
->   
-> @@ -439,31 +462,43 @@ int ntfs_set_volume_flags(struct ntfs_volume *vol, __le16 flags)
->   }
->   
->   /*
-> - * ntfs_clear_volume_flags - clear bits in the volume information flags
-> - * @vol:	ntfs volume on which to modify the flags
-> - * @flags:	flags to clear on the volume
-> + * ntfs_sync_volume_dirty_state - persist the dirty bit per the error state
-> + * @vol:	ntfs volume whose dirty bit to persist
->    *
-> - * Clear the bits in @flags in the volume information flags on the volume @vol.
-> - * The bits are combined with the current flag state under the lock in
-> - * ntfs_write_volume_flags(), so concurrent updates are not lost.
-> + * Set VOLUME_IS_DIRTY if errors have been recorded on @vol and clear it
-> + * otherwise, under the $Volume mrec_lock.
->    *
-> - * Return 0 on success and -errno on error.
-> - */
-> -int ntfs_clear_volume_flags(struct ntfs_volume *vol, __le16 flags)
-> -{
-> -	return ntfs_write_volume_flags(vol, 0, flags, false);
-> -}
-> -
-> -/*
-> - * ntfs_clear_volume_dirty_if_no_errors - clear dirty bit if no errors exist
-> - * @vol:	ntfs volume whose dirty bit should be cleared
-> + * The guarantee this provides is eventual, not instantaneous: the runtime
-> + * error paths record NVolErrors() with a lock-free set_bit(), so a
-> + * persistence point that evaluates the flag just before an error is
-> + * recorded can still leave the on-disk bit clean.  This is sound because
-> + * NVolErrors() is sticky (nothing clears it for the lifetime of the mount)
-> + * and every persistence point re-derives the on-disk bit from it; the
-> + * last one, ntfs_put_super(), runs after evict_inodes() on a quiesced
-> + * filesystem, so a volume that is read-write at unmount time cannot
-> + * unmount clean.  A volume that is already read-only when the error is
-> + * recorded (errors=remount-ro flips the superblock on the first error,
-> + * as does an earlier remount-ro) has no persistence point left and
-> + * keeps whatever on-disk bit it had; that behaviour is unchanged.  The
-> + * residual window is a crash between the error and the next
-> + * persistence point.
-> + *
-> + * This is the single point that persists the in-memory error state to disk.
-> + * The runtime error paths only record NVolErrors() because they run under a
-> + * variety of ntfs locks the dirty-bit write cannot be taken under (runlist
-> + * locks, vol->lcnbmp_lock, vol->mftbmp_lock, mrec_locks); the first
-> + * ntfs_sync_fs(), a remount, or the unmount then persists the flag here.
-> + *
-> + * A hibernated volume is not written from these persistence paths:
-> + * resuming Windows from a modified image corrupts it, so the dirty bit
-> + * is left as it is on disk and only the in-memory error state is kept.
->    *
-> - * Check NVolErrors() and clear VOLUME_IS_DIRTY under the same mrec_lock so
-> - * ntfs_sync_fs() cannot clear the dirty bit after a concurrent error has been
-> - * recorded.
-> + * Return 0 on success and -errno on error.
->    */
-> -static int ntfs_clear_volume_dirty_if_no_errors(struct ntfs_volume *vol)
-> +static int ntfs_sync_volume_dirty_state(struct ntfs_volume *vol)
->   {
-> +	if (NVolHibernated(vol))
-> +		return 0;
->   	return ntfs_write_volume_flags(vol, 0, VOLUME_IS_DIRTY, true);
->   }
->   
-> @@ -1615,6 +1650,11 @@ static bool load_system_files(struct ntfs_volume *vol)
->   			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
->   		}
->   		NVolSetErrors(vol);
-> +		/*
-> +		 * Remember it for the lifetime of the mount: see
-> +		 * ntfs_sync_volume_dirty_state().
-> +		 */
-> +		NVolSetHibernated(vol);
->   	}
->   
->   	/* If (still) a read-write mount, empty the logfile. */
-> @@ -1772,22 +1812,31 @@ static void ntfs_put_super(struct super_block *sb)
->   	ntfs_commit_inode(vol->mft_ino);
->   
->   	/*
-> -	 * If a read-write mount and no volume errors have occurred, mark the
-> -	 * volume clean.  Also, re-commit all affected inodes.
-> +	 * If a read-write mount, persist the error state in the volume flags:
-> +	 * mark the volume clean if no volume errors have occurred, and make
-> +	 * sure VOLUME_IS_DIRTY is on disk if any have, so chkdsk runs on the
-> +	 * next mount.  Also, re-commit all affected inodes.
->   	 */
->   	if (!sb_rdonly(sb)) {
-> +		if (ntfs_sync_volume_dirty_state(vol)) {
-> +			ntfs_warning(sb,
-> +				"Failed to sync dirty bit in volume information flags.  Run chkdsk.");
-> +		} else if (NVolErrors(vol)) {
-> +			/*
-> +			 * The dirty bit is on disk now; only warn when the
-> +			 * sync actually succeeded, or this message would
-> +			 * contradict the one above.
-> +			 */
-> +			ntfs_warning(sb,
-> +				"Volume has errors.  Leaving volume marked dirty.  Run chkdsk.");
-> +		}
-> +		/* Commits the updated volume flags if they were written. */
-> +		ntfs_commit_inode(vol->vol_ino);
->   		if (!NVolErrors(vol)) {
-> -			if (ntfs_clear_volume_flags(vol, VOLUME_IS_DIRTY))
-> -				ntfs_warning(sb,
-> -					"Failed to clear dirty bit in volume information flags.  Run chkdsk.");
-> -			ntfs_commit_inode(vol->vol_ino);
->   			ntfs_commit_inode(vol->root_ino);
->   			if (vol->mftmirr_ino)
->   				ntfs_commit_inode(vol->mftmirr_ino);
->   			ntfs_commit_inode(vol->mft_ino);
-> -		} else {
-> -			ntfs_warning(sb,
-> -				"Volume has errors.  Leaving volume marked dirty.  Run chkdsk.");
->   		}
->   	}
->   
-> @@ -1886,8 +1935,8 @@ static int ntfs_sync_fs(struct super_block *sb, int wait)
->   		return 0;
->   
->   	/* If there are some dirty buffers in the bdev inode */
-> -	if (ntfs_clear_volume_dirty_if_no_errors(vol)) {
-> -		ntfs_warning(sb, "Failed to clear dirty bit in volume information flags.  Run chkdsk.");
-> +	if (ntfs_sync_volume_dirty_state(vol)) {
-> +		ntfs_warning(sb, "Failed to sync dirty bit in volume information flags.  Run chkdsk.");
->   		err = -EIO;
->   	}
->   	sync_inodes_sb(sb);
-> diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
-> index bc85a9592245..c7cd27b6dc1a 100644
-> --- a/fs/ntfs/volume.h
-> +++ b/fs/ntfs/volume.h
-> @@ -181,6 +181,8 @@ struct ntfs_volume {
->    *				Windows-reserved names (CON, AUX, NUL, COM1,
->    *				LPT1, etc.) or invalid characters.
->    *
-> + * NV_Hibernated		Windows is hibernated on the volume; the sync
-> + *				paths must not write the volume flags.
->    * NV_Discard			Issue discard/TRIM commands for freed clusters.
->    * NV_DisableSparse		Disable creation of sparse regions.
->    * NV_NativeSymlinkRel		Translate absolute Windows reparse targets (native_symlink=rel).
-> @@ -199,6 +201,7 @@ enum {
->   	NV_ShowHiddenFiles,
->   	NV_HideDotFiles,
->   	NV_CheckWindowsNames,
-> +	NV_Hibernated,
->   	NV_Discard,
->   	NV_DisableSparse,
->   	NV_NativeSymlinkRel,
-> @@ -237,6 +240,7 @@ DEFINE_NVOL_BIT_OPS(SysImmutable)
->   DEFINE_NVOL_BIT_OPS(ShowHiddenFiles)
->   DEFINE_NVOL_BIT_OPS(HideDotFiles)
->   DEFINE_NVOL_BIT_OPS(CheckWindowsNames)
-> +DEFINE_NVOL_BIT_OPS(Hibernated)
->   DEFINE_NVOL_BIT_OPS(Discard)
->   DEFINE_NVOL_BIT_OPS(DisableSparse)
->   DEFINE_NVOL_BIT_OPS(NativeSymlinkRel)
-
+CgpBdCAyMDI2LTA5LTEzIDE2OjMxOjMwLCAibGl1YmFvbGluIiA8bGl1YmFvbGluMTIxMzhAMTYz
+LmNvbT4gd3JvdGU6Cj4KPgo+1NogMjAyNi85LzExIDEwOjA5LCBIb25nbGluZyBaZW5nINC0tcA6
+Cj4+IFRoZSBjYWxsZXJzIGluIGZpbGUuYyBhbmQgbmFtZWkuYyBza2lwIG50ZnNfc2V0X3ZvbHVt
+ZV9mbGFncygpIHdoZW4KPj4gdGhlIGluLW1lbW9yeSB2b2xfZmxhZ3MgYWxyZWFkeSBzaG93IFZP
+TFVNRV9JU19ESVJUWSwgYnV0IHRoYXQgY2hlY2sKPj4gcnVucyB3aXRob3V0IGFueSBsb2NrOiBp
+ZiBpdCBvYnNlcnZlcyB0aGUgYml0IHNldCBhbmQgbnRmc19zeW5jX2ZzKCkKPj4gY2xlYXJzIGl0
+IHVuZGVyIHRoZSBtcmVjX2xvY2sgYmVmb3JlIHRoZSBjYWxsZXIncyBtZXRhZGF0YSB1cGRhdGUK
+Pj4gY29tcGxldGVzLCB0aGUgc2V0IGlzIHNraXBwZWQgYW5kIHRoZSB2b2x1bWUgY2FuIGVuZCB1
+cCBjbGVhbiBvbiBkaXNrCj4+IGRlc3BpdGUgdGhlIG1vZGlmaWNhdGlvbiwgc28gY2hrZHNrIHdp
+bGwgbm90IHJ1biBvbiB0aGUgbmV4dCBtb3VudC4KPj4gCj4+IERyb3AgdGhlIGNhbGxlci1zaWRl
+IGNoZWNrcyBhbmQgY2FsbCBudGZzX3NldF92b2x1bWVfZmxhZ3MoKQo+PiB1bmNvbmRpdGlvbmFs
+bHk6IG50ZnNfd3JpdGVfdm9sdW1lX2ZsYWdzKCkgYWxyZWFkeSBza2lwcyB0aGUgd3JpdGUKPj4g
+dW5kZXIgdGhlIG1yZWNfbG9jayB3aGVuIHRoZSBjb21iaW5lZCB2YWx1ZSBpcyB1bmNoYW5nZWQu
+ICBUaGF0Cj4+IHVuY29uZGl0aW9uYWwgY2FsbCBjb3N0cyBvbmUgbXJlY19sb2NrIGFjcXVpc2l0
+aW9uIHBlciBtZXRhZGF0YQo+PiBvcGVyYXRpb24gZXZlbiBpbiB0aGUgYWxyZWFkeS1kaXJ0eSBz
+dGVhZHkgc3RhdGU7IGl0IGNhbm5vdCBiZQo+PiBhdm9pZGVkLCBiZWNhdXNlIGRlY2lkaW5nIHRv
+IHNraXAgdGhlIGNhbGwgd2l0aG91dCB0aGUgbG9jayBpcyBpdHNlbGYKPj4gd2hhdCBhbGxvd3Mg
+YSBjb25jdXJyZW50IG50ZnNfc3luY19mcygpIGNsZWFyIHRvIGxvc2UgdGhlIHNldC4KPj4gCj4+
+IFRoZSBJT0NCX05PV0FJVCBwYXRoIGluIG50ZnNfZmlsZV93cml0ZV9pdGVyKCkgZ29lcyB0aHJv
+dWdoIHRoZSBzYW1lCj4+IHNsZWVwaW5nIGNhbGw6IGEgUldGX05PV0FJVCB3cml0ZSBjYW4gYmxv
+Y2sgaW4gdGhlIG1hcmtpbmcsIGFzIGl0Cj4+IGFscmVhZHkgY291bGQgYmVmb3JlIHRoaXMgY2hh
+bmdlIHdoZW5ldmVyIHRoZSB2b2x1bWUgYXBwZWFyZWQgY2xlYW4uCj4+IEdpdmluZyB0aGF0IHBh
+dGggYSBub24tYmxvY2tpbmcgdmFyaWFudCBpcyBsZWZ0IGFzIGZvbGxvdy11cCB3b3JrLgo+PiBU
+aGUgY2FsbGVycyBrZWVwIHRoZSBwcmUtZXhpc3RpbmcgYmVoYXZpb3Igb2YgcHJvY2VlZGluZyB3
+aGVuIHRoZQo+PiBtYXJraW5nIGZhaWxzLCBzbyB0aGUgZGlydHkgYml0IHJlbWFpbnMgYmVzdC1l
+ZmZvcnQuCj4+IAo+PiBUaGlzIGNsb3NlcyB0aGUgdmFyaWFudCB3aGVyZSB0aGUgc2V0IGlzIHNr
+aXBwZWQgb3V0cmlnaHQuICBBIGNsZWFyCj4+IGZvciBhIGNvbmN1cnJlbnQsIGVycm9yLWZyZWUg
+c3luYyBjYW4gc3RpbGwgbGFuZCBiZXR3ZWVuIHRoZSBzZXQgYW5kCj4+IHRoZSBlbmQgb2YgdGhl
+IG1ldGFkYXRhIG9wZXJhdGlvbjsgdGhhdCBtYXJrLWF0LXN0YXJ0IGxpZmVjeWNsZSBpcwo+PiBw
+cmUtZXhpc3RpbmcgYW5kIGlzIG5vdCBjaGFuZ2VkIGJ5IHRoaXMgcGF0Y2guCj4+IAo+PiBSZXBv
+cnRlZC1ieTogQmFvbGluIExpdSA8bGl1YmFvbGluQGt5bGlub3MuY24+Cj4+IENjOiBzdGFibGVA
+dmdlci5rZXJuZWwub3JnCj4+IFNpZ25lZC1vZmYtYnk6IEhvbmdsaW5nIFplbmcgPHplbmdob25n
+bGluZ0BreWxpbm9zLmNuPgo+PiAtLS0KPj4gICBmcy9udGZzL2ZpbGUuYyAgfCAyMCArKysrKysr
+KysrKy0tLS0tLS0tLQo+PiAgIGZzL250ZnMvbmFtZWkuYyB8IDI0ICsrKysrKysrLS0tLS0tLS0t
+LS0tLS0tLQo+PiAgIDIgZmlsZXMgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKSwgMjUgZGVsZXRp
+b25zKC0pCj4+IAo+PiBkaWZmIC0tZ2l0IGEvZnMvbnRmcy9maWxlLmMgYi9mcy9udGZzL2ZpbGUu
+Ywo+PiBpbmRleCAwMDdkMTYxNGI5YWMuLmNmYzdiMzZiN2RmZiAxMDA2NDQKPj4gLS0tIGEvZnMv
+bnRmcy9maWxlLmMKPj4gKysrIGIvZnMvbnRmcy9maWxlLmMKPj4gQEAgLTMyNSw4ICszMjUsNyBA
+QCBpbnQgbnRmc19zZXRhdHRyKHN0cnVjdCBtbnRfaWRtYXAgKmlkbWFwLCBzdHJ1Y3QgZGVudHJ5
+ICpkZW50cnksCj4+ICAgCQlnb3RvIG91dDsKPj4gICAJfQo+PiAgIAo+PiAtCWlmICghKHZvbC0+
+dm9sX2ZsYWdzICYgVk9MVU1FX0lTX0RJUlRZKSkKPj4gLQkJbnRmc19zZXRfdm9sdW1lX2ZsYWdz
+KHZvbCwgVk9MVU1FX0lTX0RJUlRZKTsKPj4gKwludGZzX3NldF92b2x1bWVfZmxhZ3Modm9sLCBW
+T0xVTUVfSVNfRElSVFkpOwo+PiAgIAo+PiAgIAlpZiAoaWFfdmFsaWQgJiBBVFRSX1NJWkUpIHsK
+Pj4gICAJCWVyciA9IG50ZnNfc2V0YXR0cl9zaXplKHZpLCBhdHRyKTsKPj4gQEAgLTYyMCw4ICs2
+MTksMTMgQEAgc3RhdGljIHNzaXplX3QgbnRmc19maWxlX3dyaXRlX2l0ZXIoc3RydWN0IGtpb2Ni
+ICppb2NiLCBzdHJ1Y3QgaW92X2l0ZXIgKmZyb20pCj4+ICAgCQlnb3RvIG91dF9sb2NrOwo+PiAg
+IAl9Cj4+ICAgCj4+IC0JaWYgKCEodm9sLT52b2xfZmxhZ3MgJiBWT0xVTUVfSVNfRElSVFkpKQo+
+PiAtCQludGZzX3NldF92b2x1bWVfZmxhZ3Modm9sLCBWT0xVTUVfSVNfRElSVFkpOwo+PiArCS8q
+Cj4+ICsJICogVGhlIHZvbHVtZSBtdXN0IGJlIG1hcmtlZCBkaXJ0eSBiZWZvcmUgdGhlIG1vZGlm
+aWNhdGlvbiBpcyBtYWRlLAo+PiArCSAqIHdpdGhvdXQgYW4gdW5sb2NrZWQgY2hlY2sgb2YgdGhl
+IGluLW1lbW9yeSBmbGFnOiBudGZzX3N5bmNfZnMoKQo+PiArCSAqIGNhbiBjbGVhciB0aGUgYml0
+IGNvbmN1cnJlbnRseSBhbmQgdGhlIG1vZGlmaWNhdGlvbiB3b3VsZCB0aGVuCj4+ICsJICogbGFu
+ZCBvbiBhIHZvbHVtZSB0aGF0IGlzIGNsZWFuIG9uIGRpc2suCj4+ICsJICovCj4+ICsJbnRmc19z
+ZXRfdm9sdW1lX2ZsYWdzKHZvbCwgVk9MVU1FX0lTX0RJUlRZKTsKPgo+SGkgSG9uZ2xpbmcsCj4g
+ICBUaGUgYWRkZWQgY2FsbCByZW1vdmVzIHRoZSB1bmxvY2tlZCBjaGVjaywgYnV0IGl0IGRvZXMg
+bm90IGNsb3NlIHRoZSAKPndyaXRlci9zeW5jIGxpZmVjeWNsZSByYWNlLiBudGZzX3NldF92b2x1
+bWVfZmxhZ3MoKSBwcm90ZWN0cyBvbmx5IHRoZSAKPnJlYWQtbW9kaWZ5LXdyaXRlIG9mIHRoZSAk
+Vm9sdW1lIHJlY29yZCB3aGlsZSBtcmVjX2xvY2sgaXMgaGVsZCwgYW5kIAo+cmVsZWFzZXMgdGhl
+IGxvY2sgYmVmb3JlIG50ZnNfZmlsZV93cml0ZV9pdGVyKCkgZW50ZXJzIHRoZSBhY3R1YWwgd3Jp
+dGUgCj5wYXRoIChudGZzX2ZpbGVfYnVmZmVyZWRfd3JpdGUoKSBvciB0aGUgZGlyZWN0LUkvTyBw
+YXRoKSB0aGF0IG1vZGlmaWVzIAo+ZmlsZSBkYXRhIGFuZCByZWxhdGVkIE1GVCBtZXRhZGF0YS4K
+Pgo+ICAgRm9yIGV4YW1wbGUsIHRoZSBmb2xsb3dpbmcgZXhlY3V0aW9uIGlzIHN0aWxsIHBvc3Np
+YmxlOgo+Cj4gICBXcml0ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG50
+ZnNfc3luY19mcygpCj4gICAtLS0tLS0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIC0tLS0tLS0tLS0tLQo+ICAgbnRmc19zZXRfdm9sdW1lX2ZsYWdzKCkKPiAgICAgICBhY3F1
+aXJlICRWb2x1bWUgbXJlY19sb2NrCj4gICAgICAgc2V0IFZPTFVNRV9JU19ESVJUWQo+ICAgICAg
+IHVwZGF0ZSAkVm9sdW1lIHJlY29yZAo+ICAgICAgIHJlbGVhc2UgJFZvbHVtZSBtcmVjX2xvY2sK
+Pgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYWNxdWly
+ZSAkVm9sdW1lIG1yZWNfbG9jawo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBvYnNlcnZlIE5Wb2xFcnJvcnMoKSA9PSBmYWxzZQo+ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xlYXIgVk9MVU1FX0lTX0RJUlRZCj4gICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWxlYXNlICRWb2x1
+bWUgbXJlY19sb2NrCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBjb21taXQgY2xlYW4gdm9sdW1lIGZsYWdzCj4KPiAgIGNvbnRpbnVlIG50ZnNfZmlsZV93
+cml0ZV9pdGVyKCkKPiAgIGVudGVyIG50ZnNfZmlsZV9idWZmZXJlZF93cml0ZSgpCj4gICBvciB0
+aGUgZGlyZWN0LUkvTyB3cml0ZSBwYXRoCj4gICBtb2RpZnkgZmlsZSBkYXRhIGFuZCByZWxhdGVk
+IE1GVCBtZXRhZGF0YQo+ICAgY29tbWl0IGRpcnR5IHBhZ2VzL01GVCByZWNvcmRzCj4KPiAgIFRo
+dXMsIHRoZSBtZXRhZGF0YSBtb2RpZmljYXRpb24gY2FuIHN0aWxsIHJlYWNoIGRpc2sgYWZ0ZXIg
+Cj5udGZzX3N5bmNfZnMoKSBoYXMgcGVyc2lzdGVkIGEgY2xlYW4gb24tZGlzayBkaXJ0eSBiaXQu
+IFRoZSBtcmVjX2xvY2sgCj5zZXJpYWxpemVzIG9ubHkgaW5kaXZpZHVhbCAkVm9sdW1lIGZsYWcg
+dXBkYXRlczsgaXQgZG9lcyBub3QgY292ZXIgdGhlIAo+c3Vic2VxdWVudCB3cml0ZSBvcGVyYXRp
+b24uIFRoZXJlZm9yZSwgdGhlIGd1YXJhbnRlZSBkZXNjcmliZWQgaW4gdGhlIAo+Y29tbWVudCBh
+Ym92ZSBpcyBpbmNvbXBsZXRlLCBhbmQgdGhlIHNhbWUgcmFjZSBhcHBsaWVzIHRvIHRoZSBvdGhl
+ciAKPnVuY29uZGl0aW9uYWwgZGlydHktYml0IGNhbGxzIGFkZGVkIGJ5IHRoaXMgcGF0Y2guCj4K
+PlRoYW5rcywKPkJhb2xpbi4KPgo+PiAgCkhpIEJhb2xpbiwKCiAgVGhhbmtzIGZvciB0aGUgcmV2
+aWV3LiBZb3UncmUgcmlnaHQ6IHRoZSBwYXRjaCBkb2VzIG5vdCBzZXJpYWxpemUgdGhlCiAgZGly
+dHktYml0IHVwZGF0ZSB3aXRoIHRoZSB3aG9sZSBtZXRhZGF0YSBvcGVyYXRpb24uCgogIHY5IDIv
+NCBvbmx5IGNsb3NlcyB0aGUgc2tpcHBlZC1zZXQgdmFyaWFudC4gVGhlIHVubG9ja2VkIGNoZWNr
+IGNvdWxkIHNraXAKICBudGZzX3NldF92b2x1bWVfZmxhZ3MoKSBlbnRpcmVseTsgdGhlIHVuY29u
+ZGl0aW9uYWwgY2FsbCBhbHdheXMgYXR0ZW1wdHMKICB0aGUgdXBkYXRlIHVuZGVyIHRoZSAkVm9s
+dW1lIG1yZWNfbG9jay4gVGhlIHJlbWFpbmluZyBtYXJrLWF0LXN0YXJ0IHdpbmRvdwogIGlzIHBy
+ZS1leGlzdGluZyBhbmQgaXMgYWxyZWFkeSBkb2N1bWVudGVkIGluIHRoZSBsYXN0IHBhcmFncmFw
+aCBvZiB0aGUKICBjb21taXQgbWVzc2FnZS4KCiAgVGhlIG50ZnNfZmlsZV93cml0ZV9pdGVyKCkg
+Y29tbWVudCBkZXNjcmliZXMgdGhlIGZhaWx1cmUgbW9kZSBvZiB0aGUKICByZW1vdmVkIHVubG9j
+a2VkIGNoZWNrLCBub3QgYSBsaWZlY3ljbGUgZ3VhcmFudGVlLCBidXQgSSBhZ3JlZSBpdCByZWFk
+cwogIGxpa2Ugb25lLiBJJ2xsIHBvc3QgYSBmb2xsb3ctdXAgcGF0Y2ggYWdhaW5zdCBudGZzLW5l
+eHQgdGhhdCBzdG9wcwogIG50ZnNfc3luY19mcygpIGZyb20gY2xlYXJpbmcgVk9MVU1FX0lTX0RJ
+UlRZIHdoaWxlIHRoZSB2b2x1bWUgaXMgbW91bnRlZAogIHJlYWQtd3JpdGUuIFRoZSBiaXQgaXMg
+dGhlbiBvbmx5IGNsZWFyZWQgYXQgYSBjbGVhbiB1bm1vdW50IGZyb20KICBudGZzX3B1dF9zdXBl
+cigpLCBhZnRlciBpbm9kZSBldmljdGlvbi4gVGhpcyBhdm9pZHMgaG9sZGluZyB0aGUgJFZvbHVt
+ZQogIG1yZWNfbG9jayBhY3Jvc3Mgd3JpdGUgb3BlcmF0aW9ucywgYXQgdGhlIGNvc3Qgb2YgYSBw
+b3NzaWJsZSBleHRyYSBjaGtkc2sKICBpZiB0aGUgbWFjaGluZSBjcmFzaGVzIGJldHdlZW4gYSBz
+eW5jIGFuZCB0aGUgdW5tb3VudC4KCiAgVGhhbmtzLAogIEhvbmdsaW5nCiAKPj4gICAJcG9zID0g
+aW9jYi0+a2lfcG9zOwo+PiAgIAljb3VudCA9IHJldDsKPj4gQEAgLTExNTMsMTEgKzExNTcsOSBA
+QCBzdGF0aWMgbG9uZyBudGZzX2ZhbGxvY2F0ZShzdHJ1Y3QgZmlsZSAqZmlsZSwgaW50IG1vZGUs
+IGxvZmZfdCBvZmZzZXQsIGxvZmZfdCBsZQo+PiAgIAkJCXJldHVybiBlcnI7Cj4+ICAgCX0KPj4g
+ICAKPj4gLQlpZiAoISh2b2wtPnZvbF9mbGFncyAmIFZPTFVNRV9JU19ESVJUWSkpIHsKPj4gLQkJ
+ZXJyID0gbnRmc19zZXRfdm9sdW1lX2ZsYWdzKHZvbCwgVk9MVU1FX0lTX0RJUlRZKTsKPj4gLQkJ
+aWYgKGVycikKPj4gLQkJCXJldHVybiBlcnI7Cj4+IC0JfQo+PiArCWVyciA9IG50ZnNfc2V0X3Zv
+bHVtZV9mbGFncyh2b2wsIFZPTFVNRV9JU19ESVJUWSk7Cj4+ICsJaWYgKGVycikKPj4gKwkJcmV0
+dXJuIGVycjsKPj4gICAKPj4gICAJb2xkX3NpemUgPSBpX3NpemVfcmVhZCh2aSk7Cj4+ICAgCj4+
+IGRpZmYgLS1naXQgYS9mcy9udGZzL25hbWVpLmMgYi9mcy9udGZzL25hbWVpLmMKPj4gaW5kZXgg
+ZmRmNTJmYWM0MzI5Li4zZTBhZGI5YTBlYTQgMTAwNjQ0Cj4+IC0tLSBhL2ZzL250ZnMvbmFtZWku
+Ywo+PiArKysgYi9mcy9udGZzL25hbWVpLmMKPj4gQEAgLTc1Nyw4ICs3NTcsNyBAQCBzdGF0aWMg
+aW50IG50ZnNfY3JlYXRlKHN0cnVjdCBtbnRfaWRtYXAgKmlkbWFwLCBzdHJ1Y3QgaW5vZGUgKmRp
+ciwKPj4gICAJCXJldHVybiBlcnI7Cj4+ICAgCX0KPj4gICAKPj4gLQlpZiAoISh2b2wtPnZvbF9m
+bGFncyAmIFZPTFVNRV9JU19ESVJUWSkpCj4+IC0JCW50ZnNfc2V0X3ZvbHVtZV9mbGFncyh2b2ws
+IFZPTFVNRV9JU19ESVJUWSk7Cj4+ICsJbnRmc19zZXRfdm9sdW1lX2ZsYWdzKHZvbCwgVk9MVU1F
+X0lTX0RJUlRZKTsKPj4gICAKPj4gICAJbmkgPSBfX250ZnNfY3JlYXRlKGlkbWFwLCBkaXIsIHVu
+YW1lLCB1bmFtZV9sZW4sIFNfSUZSRUcgfCBtb2RlLCAwLCBOVUxMLCAwKTsKPj4gICAJa21lbV9j
+YWNoZV9mcmVlKG50ZnNfbmFtZV9jYWNoZSwgdW5hbWUpOwo+PiBAQCAtMTAzMiw4ICsxMDMxLDcg
+QEAgc3RhdGljIGludCBudGZzX3VubGluayhzdHJ1Y3QgaW5vZGUgKmRpciwgc3RydWN0IGRlbnRy
+eSAqZGVudHJ5KQo+PiAgIAkJcmV0dXJuIGVycjsKPj4gICAJfQo+PiAgIAo+PiAtCWlmICghKHZv
+bC0+dm9sX2ZsYWdzICYgVk9MVU1FX0lTX0RJUlRZKSkKPj4gLQkJbnRmc19zZXRfdm9sdW1lX2Zs
+YWdzKHZvbCwgVk9MVU1FX0lTX0RJUlRZKTsKPj4gKwludGZzX3NldF92b2x1bWVfZmxhZ3Modm9s
+LCBWT0xVTUVfSVNfRElSVFkpOwo+PiAgIAo+PiAgIAllcnIgPSBudGZzX2RlbGV0ZShuaSwgTlRG
+U19JKGRpciksIHVuYW1lLCB1bmFtZV9sZW4sIHRydWUpOwo+PiAgIAlpZiAoZXJyKQo+PiBAQCAt
+MTA3Niw4ICsxMDc0LDcgQEAgc3RhdGljIHN0cnVjdCBkZW50cnkgKm50ZnNfbWtkaXIoc3RydWN0
+IG1udF9pZG1hcCAqaWRtYXAsIHN0cnVjdCBpbm9kZSAqZGlyLAo+PiAgIAkJcmV0dXJuIEVSUl9Q
+VFIoZXJyKTsKPj4gICAJfQo+PiAgIAo+PiAtCWlmICghKHZvbC0+dm9sX2ZsYWdzICYgVk9MVU1F
+X0lTX0RJUlRZKSkKPj4gLQkJbnRmc19zZXRfdm9sdW1lX2ZsYWdzKHZvbCwgVk9MVU1FX0lTX0RJ
+UlRZKTsKPj4gKwludGZzX3NldF92b2x1bWVfZmxhZ3Modm9sLCBWT0xVTUVfSVNfRElSVFkpOwo+
+PiAgIAo+PiAgIAluaSA9IF9fbnRmc19jcmVhdGUoaWRtYXAsIGRpciwgdW5hbWUsIHVuYW1lX2xl
+biwgbW9kZSwgMCwgTlVMTCwgMCk7Cj4+ICAgCWttZW1fY2FjaGVfZnJlZShudGZzX25hbWVfY2Fj
+aGUsIHVuYW1lKTsKPj4gQEAgLTExMTgsOCArMTExNSw3IEBAIHN0YXRpYyBpbnQgbnRmc19ybWRp
+cihzdHJ1Y3QgaW5vZGUgKmRpciwgc3RydWN0IGRlbnRyeSAqZGVudHJ5KQo+PiAgIAkJcmV0dXJu
+IGVycjsKPj4gICAJfQo+PiAgIAo+PiAtCWlmICghKHZvbC0+dm9sX2ZsYWdzICYgVk9MVU1FX0lT
+X0RJUlRZKSkKPj4gLQkJbnRmc19zZXRfdm9sdW1lX2ZsYWdzKHZvbCwgVk9MVU1FX0lTX0RJUlRZ
+KTsKPj4gKwludGZzX3NldF92b2x1bWVfZmxhZ3Modm9sLCBWT0xVTUVfSVNfRElSVFkpOwo+PiAg
+IAo+PiAgIAllcnIgPSBudGZzX2RlbGV0ZShuaSwgTlRGU19JKGRpciksIHVuYW1lLCB1bmFtZV9s
+ZW4sIHRydWUpOwo+PiAgIAlpZiAoZXJyKQo+PiBAQCAtMTMwNSw4ICsxMzAxLDcgQEAgc3RhdGlj
+IGludCBudGZzX3JlbmFtZShzdHJ1Y3QgbW50X2lkbWFwICppZG1hcCwgc3RydWN0IGlub2RlICpv
+bGRfZGlyLAo+PiAgIAkJbmV3X2Rpcl9maXJzdCA9IGlzX3N1YmRpcihuZXdfZGVudHJ5LT5kX3Bh
+cmVudCwKPj4gICAJCQkJCSAgb2xkX2RlbnRyeS0+ZF9wYXJlbnQpOwo+PiAgIAo+PiAtCWlmICgh
+KHZvbC0+dm9sX2ZsYWdzICYgVk9MVU1FX0lTX0RJUlRZKSkKPj4gLQkJbnRmc19zZXRfdm9sdW1l
+X2ZsYWdzKHZvbCwgVk9MVU1FX0lTX0RJUlRZKTsKPj4gKwludGZzX3NldF92b2x1bWVfZmxhZ3Mo
+dm9sLCBWT0xVTUVfSVNfRElSVFkpOwo+PiAgIAo+PiAgIAltdXRleF9sb2NrX25lc3RlZCgmb2xk
+X25pLT5tcmVjX2xvY2ssIE5URlNfSU5PREVfTVVURVhfTk9STUFMKTsKPj4gICAJaWYgKG5ld19u
+aSkKPj4gQEAgLTE0MjksOCArMTQyNCw3IEBAIHN0YXRpYyBpbnQgbnRmc19zeW1saW5rKHN0cnVj
+dCBtbnRfaWRtYXAgKmlkbWFwLCBzdHJ1Y3QgaW5vZGUgKmRpciwKPj4gICAJCWdvdG8gb3V0Owo+
+PiAgIAl9Cj4+ICAgCj4+IC0JaWYgKCEodm9sLT52b2xfZmxhZ3MgJiBWT0xVTUVfSVNfRElSVFkp
+KQo+PiAtCQludGZzX3NldF92b2x1bWVfZmxhZ3Modm9sLCBWT0xVTUVfSVNfRElSVFkpOwo+PiAr
+CW50ZnNfc2V0X3ZvbHVtZV9mbGFncyh2b2wsIFZPTFVNRV9JU19ESVJUWSk7Cj4+ICAgCj4+ICAg
+CW5pID0gX19udGZzX2NyZWF0ZShpZG1hcCwgZGlyLCB1c3JjLCB1c3JjX2xlbiwgU19JRkxOSyB8
+IDA3NzcsIDAsCj4+ICAgCQkJICAgc3ltbmFtZSwgc3ltbGVuKTsKPj4gQEAgLTE0NzQsOCArMTQ2
+OCw3IEBAIHN0YXRpYyBpbnQgbnRmc19ta25vZChzdHJ1Y3QgbW50X2lkbWFwICppZG1hcCwgc3Ry
+dWN0IGlub2RlICpkaXIsCj4+ICAgCQlyZXR1cm4gZXJyOwo+PiAgIAl9Cj4+ICAgCj4+IC0JaWYg
+KCEodm9sLT52b2xfZmxhZ3MgJiBWT0xVTUVfSVNfRElSVFkpKQo+PiAtCQludGZzX3NldF92b2x1
+bWVfZmxhZ3Modm9sLCBWT0xVTUVfSVNfRElSVFkpOwo+PiArCW50ZnNfc2V0X3ZvbHVtZV9mbGFn
+cyh2b2wsIFZPTFVNRV9JU19ESVJUWSk7Cj4+ICAgCj4+ICAgCXN3aXRjaCAobW9kZSAmIFNfSUZN
+VCkgewo+PiAgIAljYXNlIFNfSUZDSFI6Cj4+IEBAIC0xNTIxLDggKzE1MTQsNyBAQCBzdGF0aWMg
+aW50IG50ZnNfbGluayhzdHJ1Y3QgZGVudHJ5ICpvbGRfZGVudHJ5LCBzdHJ1Y3QgaW5vZGUgKmRp
+ciwKPj4gICAJCXJldHVybiAtRU5PTUVNOwo+PiAgIAl9Cj4+ICAgCj4+IC0JaWYgKCEodm9sLT52
+b2xfZmxhZ3MgJiBWT0xVTUVfSVNfRElSVFkpKQo+PiAtCQludGZzX3NldF92b2x1bWVfZmxhZ3Mo
+dm9sLCBWT0xVTUVfSVNfRElSVFkpOwo+PiArCW50ZnNfc2V0X3ZvbHVtZV9mbGFncyh2b2wsIFZP
+TFVNRV9JU19ESVJUWSk7Cj4+ICAgCj4+ICAgCWlob2xkKHZpKTsKPj4gICAJbXV0ZXhfbG9ja19u
+ZXN0ZWQoJm5pLT5tcmVjX2xvY2ssIE5URlNfSU5PREVfTVVURVhfTk9STUFMKTsKCg==
