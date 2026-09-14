@@ -1,48 +1,53 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49CEE27FD43
-	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 05:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F246E351C0B
+	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 05:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789364983; cv=none; b=BWeFUMq0TDu1NkRHGu08UDLA5qYcM30+YYparsIZRriyBtq13VMXncMnKnvKTsL1cm0egdGKDKbk9eM7yv7vV84W29Y7yVKhTwz0TpIP0xZIX2+eDYtZop/ZDbjMpj/nRDt+h3O1o22GcDYW0j/n6vexR5gb3aY1kgy/4Hgu2sk=
+	t=1789364983; cv=none; b=D6VdB6VdrR7tZECAyhyd3+R0nVOPv313lmFQUR2RaYSMfgle1mtiWmAa7TOzNgVSvIHOIvGftYVrmIp0mQnSSOd3SdwHc5hUkW7ZE1jXN80ZLDTd3Bv/NPzzWOkjVNUmBl4A6ecwi1NxAXHa3OG/BpDMqBdSNqjnMqdmewrYXKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1789364983; c=relaxed/simple;
-	bh=XaQ5iHNLoAotdAWe/ZTPVH5Ot4VrpEFRSZkl2rRVoRY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=P783L0z6LzYxYH4/2oQxXCiJ0C6YmEqm0SnG6rMXkX3l+mRDB/T5e5IMRMDSJvra6I9vcatreQRZ9lIYldx8/EKJQcy1Mm38j7j1vIhLqDQKX590Rp30D2r8ZkVFKqfpAOdU4JCd2+xP5kfxkuteMDfvE3kgPqhlS+1KpZTHaGk=
+	bh=xChlXecKLbkvgCzgn8vqQ0fkcsQHkoGwqkq+MFIKsoA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=K0ZCH2eiylS7d3gu6Bl79AiUfAM7zJ+ZBaSwg0T0RYYkvnUHnA3crg1BPQ9qARtDQkOuogbo52pfInbFTSq8HJ6rAw/ncPQ0kL1PSAAV+3lVzKK0yxd281xpu7S58+OsxnM3Cfs7Xi3E8SkRKnIDBv9ftdS3STlKp89Rz3A5FRY=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 0e35349eb00011f19a56ed5b684f684d-20260914
+X-UUID: 10d89696b00011f19a56ed5b684f684d-20260914
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:4d89011c-5503-4e48-9175-ccfbe6a37ec0,IP:0,U
+X-CID-O-INFO: VERSION:1.3.19,REQID:5d415c7a-d7fb-4c00-91e1-61ca17bbd0f5,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:d37673151fb0105cc92bbcad96967829,BulkI
-	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
-	-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,O
-	SA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:6ef593a8e4f9c954b41404b7337df4c9,BulkI
+	D:nil,BulkQuantity:0,SF:81|82|102|850|865|898,TC:nil,Content:0|15|50|99,ED
+	M:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:
+	0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
 X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 0e35349eb00011f19a56ed5b684f684d-20260914
+X-UUID: 10d89696b00011f19a56ed5b684f684d-20260914
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 230106171; Mon, 14 Sep 2026 13:49:31 +0800
+	with ESMTP id 267740798; Mon, 14 Sep 2026 13:49:35 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>
-Subject: [PATCH v11 0/6] ntfs: fix volume flag races and persist the recorded error state
-Date: Mon, 14 Sep 2026 13:49:20 +0800
-Message-Id: <20260914054926.78808-1-zenghongling@kylinos.cn>
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	Baolin Liu <liubaolin@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH v11 5/6] ntfs: do not clear the volume dirty bit during sync
+Date: Mon, 14 Sep 2026 13:49:25 +0800
+Message-Id: <20260914054926.78808-6-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260914054926.78808-1-zenghongling@kylinos.cn>
+References: <20260914054926.78808-1-zenghongling@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -51,46 +56,96 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The fs/ntfs runtime metadata-corruption paths only record the in-memory
-NVolErrors() flag, and the caller-side dirty-bit marking races with
-ntfs_sync_fs(): a volume can end up with a clean on-disk dirty flag
-despite modification or recorded corruption, so chkdsk never runs on
-the next mount.  Based on ntfs/ntfs-next (9a05b5715cfa).
+ntfs_sync_fs() clears VOLUME_IS_DIRTY while the volume is still mounted
+read-write, so a sync running concurrently with an in-flight metadata
+modification can clear and persist a bit that was just set: the
+modification then lands on a volume that is clean on disk, and a crash
+does not run chkdsk.  Closing this from the writer side would mean
+holding the $Volume mrec_lock across the whole operation.
 
- 1/4 makes the volume flag read-modify-write atomic under the
-    $Volume mrec_lock;
- 2/4 marks the volume dirty unconditionally on metadata changes,
-    dropping the racy caller-side checks in file.c and namei.c;
- 3/4 derives the on-disk dirty bit from the recorded error state at
-    the persistence points (sync_fs, remount-ro, put_super) and never
-    writes a hibernated volume;
- 4/4 persists the dirty state after the final put_super() commits so
-    late errors cannot unmount clean.
+Drop the ntfs_sync_fs() persistence point and leave the clearing to the
+remount-to-read-only path, which the VFS reaches only after
+sb_prepare_remount_readonly() has drained in-flight writers, and to
+ntfs_put_super(), which runs after evict_inodes() on a quiesced
+filesystem.  A mounted read-write volume now keeps the dirty bit until
+it is dismounted cleanly, which matches the NTFS semantics; the cost is
+a needless chkdsk if the machine crashes between a sync and the unmount.
 
-Changes in v11:
+Also report sync_blockdev() and blkdev_issue_flush() failures instead
+of discarding them: a failed cache flush is real, and
+__sync_filesystem() propagates it to syncfs() callers.
 
-- Add 5/6: Stop clearing VOLUME_IS_DIRTY during sync. The bit is now
-  cleared only on remount to read-only or clean unmount, preventing a
-  crash during metadata updates from bypassing chkdsk. Verified in QEMU.
+The marking comment in ntfs_file_write_iter() is updated to match: the
+dirty bit is only cleared at the quiescent transitions, under the same
+$Volume mrec_lock the marking takes.
 
-- Add 6/6: Check commit and flush errors during remount and unmount.
-  Re-check NInoDirty() after __ntfs_write_inode(). A failed remount is
-  rejected so unmount can retry; unmount failures are reported as warnings.
+Reported-by: Baolin Liu <liubaolin@kylinos.cn>
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+ fs/ntfs/file.c  |  7 ++++---
+ fs/ntfs/super.c | 22 +++++++++++++---------
+ 2 files changed, 17 insertions(+), 12 deletions(-)
 
-
-Hongling Zeng (4):
-  ntfs: fix volume flag update races
-  ntfs: set the volume dirty bit unconditionally on metadata changes
-  ntfs: sync the volume dirty bit with the recorded error state
-  ntfs: persist the dirty state after the final put_super() commits
-
- fs/ntfs/file.c   |  20 ++---
- fs/ntfs/namei.c  |  24 ++----
- fs/ntfs/ntfs.h   |   1 -
- fs/ntfs/super.c  | 191 ++++++++++++++++++++++++++++++++++++-----------
- fs/ntfs/volume.h |   4 +
- 5 files changed, 171 insertions(+), 69 deletions(-)
-
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index cfc7b36b7dff..99a2c7a5cf81 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -621,9 +621,10 @@ static ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ 
+ 	/*
+ 	 * The volume must be marked dirty before the modification is made,
+-	 * without an unlocked check of the in-memory flag: ntfs_sync_fs()
+-	 * can clear the bit concurrently and the modification would then
+-	 * land on a volume that is clean on disk.
++	 * without an unlocked check of the in-memory flag: the dirty bit
++	 * is only cleared at the quiescent transitions, under the same
++	 * $Volume mrec_lock this call takes, so an unlocked skip could
++	 * lose the set to one of them.
+ 	 */
+ 	ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
+ 
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 3574c224fe28..f155f16b252d 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -486,8 +486,8 @@ int ntfs_set_volume_flags(struct ntfs_volume *vol, __le16 flags)
+  * This is the single point that persists the in-memory error state to disk.
+  * The runtime error paths only record NVolErrors() because they run under a
+  * variety of ntfs locks the dirty-bit write cannot be taken under (runlist
+- * locks, vol->lcnbmp_lock, vol->mftbmp_lock, mrec_locks); the first
+- * ntfs_sync_fs(), a remount, or the unmount then persists the flag here.
++ * locks, vol->lcnbmp_lock, vol->mftbmp_lock, mrec_locks); a remount to
++ * read-only, or the unmount, then persists the flag here.
+  *
+  * A hibernated volume is not written from these persistence paths:
+  * resuming Windows from a modified image corrupts it, so the dirty bit
+@@ -1963,14 +1963,18 @@ static int ntfs_sync_fs(struct super_block *sb, int wait)
+ 	if (!wait)
+ 		return 0;
+ 
+-	/* If there are some dirty buffers in the bdev inode */
+-	if (ntfs_sync_volume_dirty_state(vol)) {
+-		ntfs_warning(sb, "Failed to sync dirty bit in volume information flags.  Run chkdsk.");
+-		err = -EIO;
+-	}
++	/*
++	 * The volume dirty bit is deliberately not cleared here: a sync
++	 * running concurrently with an in-flight modification could clear
++	 * and persist a bit that was just set, leaving the modification
++	 * on a volume that is clean on disk.  The bit is only cleared
++	 * and persisted at quiescent state transitions: remounting
++	 * read-only and clean unmount.
++	 */
+ 	sync_inodes_sb(sb);
+-	sync_blockdev(sb->s_bdev);
+-	blkdev_issue_flush(sb->s_bdev);
++	err = sync_blockdev(sb->s_bdev);
++	if (!err)
++		err = blkdev_issue_flush(sb->s_bdev);
+ 	return err;
+ }
+ 
 -- 
 2.25.1
 
