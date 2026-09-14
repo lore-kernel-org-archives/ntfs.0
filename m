@@ -1,101 +1,212 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D0A283FDC
-	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 04:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9561737F01B
+	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 05:49:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789359382; cv=none; b=IBkg8TW6i2zQ9XDabdz3obz0V2Ur1mbGy+f8QuKQyY+v4m0gFxu0rAzDxSule+uSWrjpUlcorSxRUMXYdJmru+OEPDnl+Dr7yOw1Uzb128LbjvworPZMpjX0m3wfKxDX7I3ULAKlMyZpwO4t/hPgo85d8IrgNa7xiapI1A+teTg=
+	t=1789364982; cv=none; b=m1ha8eXCNuzgUyN1zmjJsHdVucVfYa251tAuiBPy64HbXWyebgAchWct43VwXSOpbqV3+3G/In9xP9hgpUV/lRcpEXxCSegYU3yLUYNFxu+EP4X+3Oxw7jyBwaKCprMAEob2SpITtuTRVDzT1IVC6O3GHda4GDSrJUMgAdhUlr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789359382; c=relaxed/simple;
-	bh=QzVrZoukw7WTuOu3cgNefcnDjFp6nTct084mVJfLnnc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UQywwvSJrXTHTDDxo3FdlSaPgLiPwROxK4zk3p7Ai2uLHdxzOevlGsS5kBrDL2W1YLbFKrqhHV+c9YPFRHS2IF3exDXMFaxVGQyfLwYnl8RuYTuH9j27L9A2IMNvxHYEDstKnVclvvbn46xMI4/rSPp5MX258cg/Ja+mxLQACx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=N7dUSa0B; arc=none smtp.client-ip=117.135.210.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="N7dUSa0B"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=Xrx0krtMKGlJL4nzoC0zRjMGy+yB3MCiq7DW8qKGnTs=;
-	b=N7dUSa0B0kUwwTcMPbU9Wvbk8PYuXoyLpJHjLkQq3KjnCY3/71MT19EqlCyuR9
-	GU5d5V9aumU0e0feiSi6OwpsAcF9CA67BHkywDNrhUsbL8aTyx2SKoYd4y03G4ss
-	1oqgsdFPXxs1chF90Di/lTTvM0QVFSahttBY/gwpQPckU=
-Received: from [IPV6:2409:8900:1e93:14fb:a085:adb4:61d:add9] (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wB3OQsFdadqn7o9Ag--.17275S2;
-	Mon, 14 Sep 2026 12:16:07 +0800 (CST)
-Message-ID: <2ee32e03-e39e-4dd1-be1e-13d3b68f5683@163.com>
-Date: Mon, 14 Sep 2026 12:16:05 +0800
+	s=arc-20240116; t=1789364982; c=relaxed/simple;
+	bh=1eLOnwow/djpmHX7VdGdO1rAK4zqVtvR3BsezklmFPM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=dSHgR9+sfmkmZNuFkB8CUvok1k1w8a1YQmtmjL7FXz4jIvmlUUFS4tI+8DdTJoRPisJ9PNyFnx1Aiek3OODmvkdbNkwL6KvAuMQ10Nj8PBdpYGFTbxEJNB/Dlh5T7/5aHC5cc7u+e5c0ldLRKb2l8QB9ipLPZUfimFM3km81KaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 0e973cdeb00011f19a56ed5b684f684d-20260914
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:9d8a02c0-9260-4933-827c-b4698088e522,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:071d2da1b0cfd34bcf5343e86be42af5,BulkI
+	D:nil,BulkQuantity:0,SF:81|82|102|136|850|865|898,TC:nil,Content:0|15|50|9
+	9,EDM:-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,O
+	SI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 0e973cdeb00011f19a56ed5b684f684d-20260914
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 561642727; Mon, 14 Sep 2026 13:49:31 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH v11 1/6] ntfs: fix volume flag update races
+Date: Mon, 14 Sep 2026 13:49:21 +0800
+Message-Id: <20260914054926.78808-2-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260914054926.78808-1-zenghongling@kylinos.cn>
+References: <20260914054926.78808-1-zenghongling@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ntfs: mount hibernated volumes read-only regardless of
- errors=
-To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
- hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- zhongling0719@126.com, stable@vger.kernel.org
-References: <20260914034202.52011-1-zenghongling@kylinos.cn>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260914034202.52011-1-zenghongling@kylinos.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wB3OQsFdadqn7o9Ag--.17275S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF17XFWrJr1rtw1DKr4kJFb_yoW8Ar18pF
-	9rCrnrKr18tw1j93Z7CFW8t3WF93s2ka1DKr1UAF47Zr4kJw1agas0gw1fuFWI9ryaqr4I
-	qF40krWfWFW7AFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTKZAUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gfirWqndQcpCAAA38
 
+ntfs_set_volume_flags() and ntfs_clear_volume_flags() both read
+vol->vol_flags outside any lock to compute the new value before handing
+it to ntfs_write_volume_flags(), which only takes ni->mrec_lock around
+the actual write. The read-modify-write is therefore not atomic, and two
+concurrent callers can lose an update: ntfs_sync_fs() may derive a
+"clean" value from vol->vol_flags while a writer concurrently records an
+error and sets VOLUME_IS_DIRTY; the locked write then silently
+overwrites the freshly-set dirty bit. The on-disk volume looks clean
+despite the recorded errors, so chkdsk will not run on the next mount
+and corrupted metadata can persist.
 
+Fix by moving the read-modify-write inside the mrec_lock: pass the bits
+to set and to clear separately, and combine them with the current flag
+state under the lock inside ntfs_write_volume_flags(). The set/clear
+helpers pass only the bits to modify, not the complete flag state. The
+bit manipulation is done on CPU-endian values, and the result is
+converted back to little-endian before storing it. The wrappers keep
+their signatures so callers are unchanged.
 
-在 2026/9/14 11:42, Hongling Zeng 写道:
-> The hibernation check in load_system_files() only converts the
-> superblock to read-only under errors=remount-ro.  With the default
-> errors=continue (and with errors=panic), a hibernated volume is
-> mounted read-write and the mount-time $LogFile emptying writes to it,
-> although a hibernated volume must not be written to at all.
-> 
-> Drop the on_errors term so that a hibernated volume, or a volume whose
-> hibernation state cannot be determined, always mounts read-only.
-> NVolErrors() is still recorded, so ntfs_reconfigure() keeps refusing
-> remounts to read-write, and the $LogFile emptying is skipped by its
-> !sb_rdonly() check.
-> 
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-> ---
->   fs/ntfs/super.c | 9 +++++++--
->   1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-> index 2d4132aa39d3..fd7e5dbd1115 100644
-> --- a/fs/ntfs/super.c
-> +++ b/fs/ntfs/super.c
-> @@ -1660,8 +1660,13 @@ static bool load_system_files(struct ntfs_volume *vol)
->   		const char *es1;
->   
->   		es1 = err < 0 ? es1a : es1b;
-> -		/* If a read-write mount, convert it to a read-only mount. */
-> -		if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
-> +		/*
-> +		 * A Windows hibernation image is not a filesystem error, so
-> +		 * this is a safety interlock rather than something the
-> +		 * errors= policy may downgrade: always convert a read-write
-> +		 * mount to read-only.
-> +		 */
-> +		if (!sb_rdonly(sb)) {
->   			sb->s_flags |= SB_RDONLY;
->   			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
->   		}
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+ fs/ntfs/super.c | 63 +++++++++++++++++++++++++++++++++++--------------
+ 1 file changed, 45 insertions(+), 18 deletions(-)
 
-Looks good to me.
-
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index f4a73e45773d..6ba19986a598 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -353,31 +353,45 @@ void ntfs_handle_error(struct super_block *sb)
+ }
+ 
+ /*
+- * ntfs_write_volume_flags - write new flags to the volume information flags
++ * ntfs_write_volume_flags - apply flag changes to the volume information flags
+  * @vol:	ntfs volume on which to modify the flags
+- * @flags:	new flags value for the volume information flags
++ * @set_bits:	bits to set in the volume information flags
++ * @clear_bits:	bits to clear in the volume information flags
+  *
+  * Internal function.  You probably want to use ntfs_{set,clear}_volume_flags()
+  * instead (see below).
+  *
+- * Replace the volume information flags on the volume @vol with the value
+- * supplied in @flags.  Note, this overwrites the volume information flags, so
+- * make sure to combine the flags you want to modify with the old flags and use
+- * the result when calling ntfs_write_volume_flags().
++ * Combine @set_bits and @clear_bits with the current in-memory flag state and
++ * write the result back.  The set/clear helpers pass only the bits to modify,
++ * not the complete flag state.  The read-modify-write happens under
++ * ni->mrec_lock so that concurrent set/clear operations cannot lose updates.
++ * All bit manipulation is done on CPU-endian values, and the result is
++ * converted back to little-endian before storing it.
+  *
+  * Return 0 on success and -errno on error.
+  */
+-static int ntfs_write_volume_flags(struct ntfs_volume *vol, const __le16 flags)
++static int ntfs_write_volume_flags(struct ntfs_volume *vol,
++		const __le16 set_bits, const __le16 clear_bits,
++		const bool skip_if_errors)
+ {
+ 	struct ntfs_inode *ni = NTFS_I(vol->vol_ino);
+ 	struct volume_information *vi;
+ 	struct ntfs_attr_search_ctx *ctx;
++	u16 flags;
+ 	int err;
+ 
+-	ntfs_debug("Entering, old flags = 0x%x, new flags = 0x%x.",
+-			le16_to_cpu(vol->vol_flags), le16_to_cpu(flags));
+ 	mutex_lock(&ni->mrec_lock);
+-	if (vol->vol_flags == flags)
++
++	if (skip_if_errors && NVolErrors(vol))
++		goto done;
++
++	flags = le16_to_cpu(vol->vol_flags);
++	flags |= le16_to_cpu(set_bits) & le16_to_cpu(VOLUME_FLAGS_MASK);
++	flags &= ~(le16_to_cpu(clear_bits) & le16_to_cpu(VOLUME_FLAGS_MASK));
++	ntfs_debug("Entering, old flags = 0x%x, new flags = 0x%x.",
++			le16_to_cpu(vol->vol_flags), flags);
++
++	if (le16_to_cpu(vol->vol_flags) == flags)
+ 		goto done;
+ 
+ 	ctx = ntfs_attr_get_search_ctx(ni, NULL);
+@@ -393,7 +407,7 @@ static int ntfs_write_volume_flags(struct ntfs_volume *vol, const __le16 flags)
+ 
+ 	vi = (struct volume_information *)((u8 *)ctx->attr +
+ 			le16_to_cpu(ctx->attr->data.resident.value_offset));
+-	vol->vol_flags = vi->flags = flags;
++	vol->vol_flags = vi->flags = cpu_to_le16(flags);
+ 	mark_mft_record_dirty(ctx->ntfs_ino);
+ 	ntfs_attr_put_search_ctx(ctx);
+ done:
+@@ -414,13 +428,14 @@ static int ntfs_write_volume_flags(struct ntfs_volume *vol, const __le16 flags)
+  * @flags:	flags to set on the volume
+  *
+  * Set the bits in @flags in the volume information flags on the volume @vol.
++ * The bits are combined with the current flag state under the lock in
++ * ntfs_write_volume_flags(), so concurrent updates are not lost.
+  *
+  * Return 0 on success and -errno on error.
+  */
+ int ntfs_set_volume_flags(struct ntfs_volume *vol, __le16 flags)
+ {
+-	flags &= VOLUME_FLAGS_MASK;
+-	return ntfs_write_volume_flags(vol, vol->vol_flags | flags);
++	return ntfs_write_volume_flags(vol, flags, 0, false);
+ }
+ 
+ /*
+@@ -429,14 +444,27 @@ int ntfs_set_volume_flags(struct ntfs_volume *vol, __le16 flags)
+  * @flags:	flags to clear on the volume
+  *
+  * Clear the bits in @flags in the volume information flags on the volume @vol.
++ * The bits are combined with the current flag state under the lock in
++ * ntfs_write_volume_flags(), so concurrent updates are not lost.
+  *
+  * Return 0 on success and -errno on error.
+  */
+ int ntfs_clear_volume_flags(struct ntfs_volume *vol, __le16 flags)
+ {
+-	flags &= VOLUME_FLAGS_MASK;
+-	flags = vol->vol_flags & cpu_to_le16(~le16_to_cpu(flags));
+-	return ntfs_write_volume_flags(vol, flags);
++	return ntfs_write_volume_flags(vol, 0, flags, false);
++}
++
++/*
++ * ntfs_clear_volume_dirty_if_no_errors - clear dirty bit if no errors exist
++ * @vol:	ntfs volume whose dirty bit should be cleared
++ *
++ * Check NVolErrors() and clear VOLUME_IS_DIRTY under the same mrec_lock so
++ * ntfs_sync_fs() cannot clear the dirty bit after a concurrent error has been
++ * recorded.
++ */
++static int ntfs_clear_volume_dirty_if_no_errors(struct ntfs_volume *vol)
++{
++	return ntfs_write_volume_flags(vol, 0, VOLUME_IS_DIRTY, true);
+ }
+ 
+ int ntfs_write_volume_label(struct ntfs_volume *vol, char *label)
+@@ -1858,8 +1886,7 @@ static int ntfs_sync_fs(struct super_block *sb, int wait)
+ 		return 0;
+ 
+ 	/* If there are some dirty buffers in the bdev inode */
+-	if (!NVolErrors(vol) &&
+-	    ntfs_clear_volume_flags(vol, VOLUME_IS_DIRTY)) {
++	if (ntfs_clear_volume_dirty_if_no_errors(vol)) {
+ 		ntfs_warning(sb, "Failed to clear dirty bit in volume information flags.  Run chkdsk.");
+ 		err = -EIO;
+ 	}
+-- 
+2.25.1
 
