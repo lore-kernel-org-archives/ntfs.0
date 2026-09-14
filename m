@@ -1,72 +1,72 @@
-Received: from mail-pj2-f12.google.com (mail-pj2-f12.google.com [74.125.227.140])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6534A2078
-	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 15:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.140
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6750492525
+	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 15:22:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789399335; cv=none; b=S3Aa/gWb5z6pJBFJOKn1MnmaVv3TWmIxJ17CUUH6xlBcwv7gjkyycZTe62Z228B2ZTXA4uTllcRID/gliocxmQGt1s2SwXIPatUlU984CEB/z4thp8C+p7EZcKTixOCuQPrMBaxmJzWOuaVAFLmCivyDrK+nrm4G/S44At77qW4=
+	t=1789399339; cv=none; b=Q7hwvsGe9MpDVqXW8jK+fjNIMGKJ8gHOwuyhBZ9JZtdgImDikxkewrVaNgq4Yf0JpX5N29xMm2wlheksgKU90SGGYLaNqEZrqPp0Y13dJJs6zhFgdc2afEmXRIu9A8bV8jPoFLRLOFU3gnd9ewgmRw7wCW5Qwpbrap8qMrGk2dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789399335; c=relaxed/simple;
-	bh=4mCd96zwH3IsMJU4wWdSF9IpqMtC6pkVBNNia17qRZw=;
+	s=arc-20240116; t=1789399339; c=relaxed/simple;
+	bh=o92tqS4mko0jF9HcedzAh7fXKWcscGVql+i5mfsUPAk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RcDAABtTjfgPT8lPaD2zm+3W0dcxMTsAnR8Xvpk1Eu6Gk9ZLtgyAoof1oUTjrwvQZZvxMWrKoSAuasc3FU7RFzynP9jVKJ3iDYNBvWKBRB66d/1PJaqUkQjF1sS4F7UOVnBzMyzMkA/byl9ITa56iSs6azzSc8aAueCMx8GNF98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gC5d3+kl; arc=none smtp.client-ip=74.125.227.140
+	 MIME-Version:Content-Type; b=Kzk6sZJCdYxj1Nv0qNjSaehnWLp/XsGm9wKjHfVqFJwNFpiFU/mmFs0FXHMSHX7/YxWiJvwKh19gn2S5JCi1rPKicaxqwogo/WNhjW+5IjIBvP8UFMnctJwmBhVTQJyrMGXONu/r/xSYn9X5cEYESdXVdhhR2RrRdqLs71dRbsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X+UqdR+r; arc=none smtp.client-ip=209.85.215.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gC5d3+kl"
-Received: by mail-pj2-f12.google.com with SMTP id 98e67ed59e1d1-39b350c69b4so1784234a91.2
-        for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 08:22:13 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X+UqdR+r"
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-cc4d03f95dfso1965701a12.2
+        for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 08:22:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789399333; x=1790004133; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1789399337; x=1790004137; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=XB7NjisC+848C1/agi/aSuj/fy/fJeYSh61sQdlT/Zs=;
-        b=gC5d3+klLU7/dXNSaAO+IQZRPj9UN7hbJ0AmUDilanDDcQQRbarrCLawL8wsYGJGHE
-         iY+o7cM51vcnlfs3ZPhk+x95B00Acc2iLryi/Gb/xjvLvv1YqZC290xyolXcUB3xWmpE
-         0H2krx3X6PT8qAzdgmodYdX/ciqRZlFoklKcwUAIMGudrqj0ZpR+BKx+bRhDzH0PGiWy
-         pPYCtG/2atMNjRma86Pd/JxsjSoabha4iWLMNJUbQ0en2aqLG6g8+oSbqor4A6PyNGBC
-         uwIV2pbW/AYa9EjodXKZXpFIV6sVjCrzRP8pwnOdtTtpUKGzQ9UiuvxcsX4bUPtVwB/c
-         fSMg==
+        bh=yE7miFzl5G9cW8ZjD3bCIcAAuf/FxDYpg/rR4bJiBQQ=;
+        b=X+UqdR+rx7fOVef9iq9w01l+DiijbnOp3Pb8/fTsBNc+wEGx9l/CfJqtf5bbZEhOKl
+         wpAcoL6Q3MpZh55FmFurB84XOvqv0T/qlLa6CR8VamjwiMN67xvYcwBDE+R9+Fsfc0PA
+         GORfFp89o3Qw3MCq2CIKbRXo8as201Wi+Wr/XscufntpXvEzimqTKOwLZ9chuy6XV+3u
+         Z5KToFIByPFaPUaC9FrF/u4vcv7zZWzdsqdsMUoTVyKZZZrTVE1BfkqjTHZ05IzBMxsM
+         epsm/uSB5Lofi+3VO5epkfsoi6Wh19fUaMmDPQlyXmVmoP77/3TrxzDSQk/0+I5jK80O
+         s2ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1789399333; x=1790004133;
+        d=1e100.net; s=20251104; t=1789399337; x=1790004137;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=XB7NjisC+848C1/agi/aSuj/fy/fJeYSh61sQdlT/Zs=;
-        b=fs7fkn+Zs7HzkFa79n/Gso+Hc3lDAjUZzunD9KtZGi6K8Dfx+lhBdkcUD4nVamYyT5
-         di4mZXhrE2yidBFOw4k40d1bcNU+56iZRIty+alCvU7521APDo60CcGIPsLnBa3wrB4Q
-         64vFsg8OLZbSf4OqIzPWrJ3uK93POSDtWB1NgnOeAmz5Y0Gn35KLeeGhGMKYiSKrBjsA
-         u/sWvjnZNZ+ArqoUTpv8QYXObDzAgrYB0eGoDgJmZm7sXI5ZkhYw//arDHkdEa5ETfkh
-         O/NhCYJ3IckBp98JK7Gr+lDBgp7EOx1tmWJXWuFTF0mQgULFWfR6aipXa36l4TPvsFT9
-         BrMg==
-X-Forwarded-Encrypted: i=1; AKwUvBy5XAcAo3qSQPfgyrfFuBgrLsMuuUXB5q0wLgCKOh2Q7HPsn9NKgAG+iWhzFAq7SnrbWDGK@lists.linux.dev
-X-Gm-Message-State: AFuF++mwoBeZwD2XInjSZ6Qu4jmBehtPcHRBjl9v12sP3BBMnKwiG/YS
-	2X6xV1jMp+c8RgC2+UgmJOuNT7RSZO6oAcALYO5I4z/BOfPGM4JI1fU5NO+5pA==
-X-Gm-Gg: AYBFou1MoABi6ShIaWSaZ9xW3/ykc8qY2Wviq4zDQRTAMoIk1MiYxm3z57RDYS/3Rvb
-	CMjT6fOlh1ylqCzYWFkvMkhB4xWUnAdt6Wh/wfv/+SMpqd8235Q7lvKR610cYMCAWaI0CxRdqEB
-	6f5neLkTec7nZzeUueaoQSbjaYDiTf/eKeI9YXJT37znfwqU8ritwdgjHagD/wlW2siDVxHdauq
-	ZoEDib2N8IN693S+1OmGZmeSdP0waccuWYqcCWYWcZ61jwOLguqHDNSVwtUAlQ9E42nHxqHN4Zy
-	5dy+YL0Bb644nC0JqovJ7k7k7gfpqx6JvM90LPdw8hFHOQ0/V3IwG/RnDvkGEeNGtbp5H06suKV
-	ozmFRWjFiOlZ+RDeoJ++64WqELB5h02FfYt7dn6dBTzS3w9DqPrq2bHXFtedqbij8SnMmAST9ef
-	tenFVJLvPGWCWp4xhSUYHmrq+nZhaw8Z3c96Syzc6VcCfoqWSMpHuxMCsFFiFmBOjE9CRGCDhrV
-	+apO2xt+Yk62NuRgmIx99E=
-X-Received: by 2002:a17:90b:3c05:b0:39d:ec16:46ae with SMTP id 98e67ed59e1d1-39deff7281dmr4746081a91.5.1789399332932;
-        Mon, 14 Sep 2026 08:22:12 -0700 (PDT)
+        bh=yE7miFzl5G9cW8ZjD3bCIcAAuf/FxDYpg/rR4bJiBQQ=;
+        b=NjjcY/jInBsRQF+tHgo1SM04BKmKFH/+ZJ/QGSoJ0bEuyySJspjLnUKDhWYZ/apfrC
+         XnpNoC63exgJy01CVdjrTMz6sQ7DB0Mdk6HJ+2bP81JaaTdTD5rIrHOD2CPkuVRT9bdW
+         ipdEvZ6/flLnUD69BXS9rR2lJwh2uhen+MMTSwP4V3Drg6CZgu7MadmYnn3yBFMNLkG+
+         PQUdX1oOxZ5cZDZTxsvRG1wKFY0QZqdaUEDNB0aG61YEZTdrryiXPEHHRCHhFwfArzrh
+         G5Lvdflf257VmgOKaqQLmXKhP+T27A2W+Po1D33xV7Rlcku0gojBqgh04h7EyC3SXOuB
+         Pm5Q==
+X-Forwarded-Encrypted: i=1; AKwUvBylGZ6PfCNYGroHrUYkGW/LDOoOysE+PPi0I8CIAI2UZYtbkHhyJXN7R58Rwh1Ggplh+WoI@lists.linux.dev
+X-Gm-Message-State: AFuF++mql3+eFHDX1n39QQxYgQaNGfQoaoLmS2lsgAa5KxK2IWHqKOdc
+	2goD+FIoJWb8ZA3Vt5d29vaRRz0DtC4Wi4kqws01qDm4Y9+54QWjxKE5hYynjA==
+X-Gm-Gg: AYBFou1r9q+7JKUaRVfiux/PdHh0D5Yj0gQgrGu0BGY4QOGy/Px7dkFWb8+skTnQ4UU
+	Wbg57HrimxGUmOg87PtYWHNWioBlWvo4V7v1WuPFC25pqwOoK7wOpFS6My0vsugWYgw31IMJffx
+	LDOYKzxt2uaftkWvOrgg7DhhI87QIN6Kpc8zIhr7hicNFAdDdGUiiWEsSeGbF7xpdKFNshZLWG2
+	K+sTo/dUKFpOci5vmM0z7dlNMEI61ce1jUHOZDRbisBJG+3h3ts5eTgxyokCfpnadLq4+S8Wv2w
+	ffLEnJP1CNBJmQdFCQXo19lbYIM0lbB3SUAsH34hWN/ASPYunprxDUQDDEq+dRStOcBHaF8B8Iy
+	82nuf48B1kcrc7ay+jZorscFcGNW038r/5U+jEsQ2XgYf5w9D4UdqEPPYt6zCLyJU+w9AF6Q/0S
+	mYEyYYHxAlZfVQ+DDiRAACvOKbZ4TjOzKCOEtRwxZF0UQdb8vzltlsjgrIXSLPI17G6TegXP5zs
+	3cHo7H7w2Cip2K32HhEHPU=
+X-Received: by 2002:a17:90b:510f:b0:380:21b7:e727 with SMTP id 98e67ed59e1d1-39dec08deacmr6280888a91.14.1789399336794;
+        Mon, 14 Sep 2026 08:22:16 -0700 (PDT)
 Received: from hyunchul-PC01.tail461a24.ts.net ([125.177.232.58])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-39dfd6cd982sm31667a91.0.2026.09.14.08.22.10
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-39dfd6cd982sm31667a91.0.2026.09.14.08.22.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2026 08:22:12 -0700 (PDT)
+        Mon, 14 Sep 2026 08:22:15 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev
-Subject: [PATCH v3 07/10] ntfs: write MFT records through containing I/O units
-Date: Tue, 15 Sep 2026 00:21:36 +0900
-Message-ID: <20260915-topic-4kn-lkml-v3-7-447cfa17f780@gmail.com>
+Subject: [PATCH v3 08/10] ntfs: use sync flag for direct MFT writes
+Date: Tue, 15 Sep 2026 00:21:37 +0900
+Message-ID: <20260915-topic-4kn-lkml-v3-8-447cfa17f780@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260915-topic-4kn-lkml-v3-0-447cfa17f780@gmail.com>
 References: <20260915-topic-4kn-lkml-v3-0-447cfa17f780@gmail.com>
@@ -78,167 +78,106 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1789399242; l=6075; i=hyc.lee@gmail.com; s=20260727; h=from:subject:message-id; bh=4mCd96zwH3IsMJU4wWdSF9IpqMtC6pkVBNNia17qRZw=; b=Wc1WfB/NpwiIJ4g3jnqmLE2fGNqRjy2yocVAFG32J+TCkAnc0kafFdCaE3x0SpWM1U+4VVOty lV9afFG9TH4BoF39uYxyuf9KcEXznwOvg60+/BodDuhdn3d2Miz+y3c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1789399242; l=4171; i=hyc.lee@gmail.com; s=20260727; h=from:subject:message-id; bh=o92tqS4mko0jF9HcedzAh7fXKWcscGVql+i5mfsUPAk=; b=Zgu4/0TznGf6BbHlMgmWCis3zKHey23HvDsZLWbKmEFnzf5UQxEKWq9znbb0bzZ9DpX+67HOT oPz4gs5VrusDneZKHyzOw11GVpV4RSadJT28b/dcUdwSYd8W7JherUr
 X-Developer-Key: i=hyc.lee@gmail.com; a=ed25519; pk=XjFN8PRLk/ZCdNmwABbNomUbzLtXDFRX8iJkKn3fgGc=
 Content-Transfer-Encoding: 8bit
 
-Use the configured MFT I/O unit for direct writes, mirror updates, and
-generic folio writeback. On native 4Kn devices, multiple MFT records can
-share a device block, so submit complete containing units while preserving
-unselected neighboring records.
+Use the supplied sync flag for direct MFT writes instead of forcing
+containing-unit writes to complete synchronously.
 
-Track selected records separately from records owned by direct inode
-writeback, and retain the existing runlist and cluster-boundary checks.
-Force direct MFT writes to complete synchronously when the I/O unit is
-larger than an individual record. the following patch restores
-caller-controlled completion.
+Pass sync=1 from ntfs_mft_record_free() so the MFT bitmap entry is not
+released until the record write completes. Other direct-write callers keep
+the completion mode requested by their caller.
+
+The folio lock serializes write preparation, and PG_writeback keeps the
+whole unit stable until all chained BIOs complete, so asynchronous
+containing-unit writes remain safe.
 
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
- fs/ntfs/mft.c | 61 +++++++++++++++++++++++++++++++++++++++++++----------------
- 1 file changed, 45 insertions(+), 16 deletions(-)
+ fs/ntfs/mft.c | 17 ++++++++++-------
+ fs/ntfs/mft.h | 14 ++++++++------
+ 2 files changed, 18 insertions(+), 13 deletions(-)
 
 diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 786c8f837a9e..667f8dcd9f57 100644
+index 667f8dcd9f57..c565bec49c7d 100644
 --- a/fs/ntfs/mft.c
 +++ b/fs/ntfs/mft.c
-@@ -596,13 +596,18 @@ static int ntfs_sync_mft_mirror_unit(struct ntfs_volume *vol,
- static int ntfs_sync_mft_mirror_record(struct ntfs_volume *vol,
- 				       struct folio *source, const u64 mft_no)
+@@ -670,9 +670,13 @@ static int ntfs_prepare_mft_record_io_units(struct ntfs_inode *ni,
+  *
+  * We only write the mft record if the ntfs inode @ni is dirty.
+  *
+- * On success, clean the mft record and return 0.
+- * On error (specifically ENOMEM), we redirty the record so it can be retried.
+- * For other errors, we mark the volume with errors.
++ * On success, clean the mft record and return 0.  On ENOMEM, redirty the
++ * record so it can be retried.  Asynchronous callers return success after
++ * redirtying while synchronous callers receive the error.  For other errors,
++ * mark the volume with errors.
++ *
++ * If @sync is false, PG_writeback keeps the folio stable and serializes later
++ * writers until the I/O completes.
+  */
+ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int sync)
  {
-+	u64 mirror_file_ofs = (u64)mft_no * vol->mft_record_size;
- 	struct ntfs_mft_io_unit unit = {
- 		.folio_ofs = NTFS_MFT_NR_TO_POFS(vol, mft_no),
- 		.len = vol->mft_record_size,
- 	};
- 
--	return ntfs_sync_mft_mirror_unit(vol, source,
--					 (u64)mft_no * vol->mft_record_size, &unit);
-+	mirror_file_ofs =
-+		round_down(mirror_file_ofs, (u64)vol->mft_io_unit_size);
-+	unit.folio_ofs = round_down(unit.folio_ofs, vol->mft_io_unit_size);
-+	unit.len = vol->mft_io_unit_size;
-+
-+	return ntfs_sync_mft_mirror_unit(vol, source, mirror_file_ofs, &unit);
- }
- 
- static int ntfs_prepare_mft_record_io_units(struct ntfs_inode *ni,
-@@ -622,6 +627,18 @@ static int ntfs_prepare_mft_record_io_units(struct ntfs_inode *ni,
- 			return -EIO;
- 
- 	cluster_ofs = ntfs_bytes_to_cluster_off(vol, record_byte);
-+	if (vol->mft_io_unit_size > vol->mft_record_size) {
-+		cluster_ofs = round_down(cluster_ofs, vol->mft_io_unit_size);
-+		disk_byte = NTFS_CLU_TO_B(vol, ni->mft_lcn[0]) + cluster_ofs;
-+		units[0] = (struct ntfs_mft_io_unit){
-+			.sector = ntfs_bytes_to_bio_sector(disk_byte),
-+			.folio_ofs = round_down(ni->folio_ofs,
-+						vol->mft_io_unit_size),
-+			.len = vol->mft_io_unit_size,
-+		};
-+		return 1;
-+	}
-+
- 	disk_byte = NTFS_CLU_TO_B(vol, ni->mft_lcn[0]) + cluster_ofs;
- 	units[0] = (struct ntfs_mft_io_unit){
- 		.sector = ntfs_bytes_to_bio_sector(disk_byte),
-@@ -675,6 +692,8 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
+@@ -692,8 +696,6 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
  	WARN_ON(NInoAttr(ni));
  	WARN_ON(!folio_test_locked(folio));
  
-+	if (vol->mft_io_unit_size > vol->mft_record_size)
-+		sync = 1;
+-	if (vol->mft_io_unit_size > vol->mft_record_size)
+-		sync = 1;
  	if (folio_test_writeback(folio))
  		folio_wait_writeback(folio);
  
-@@ -3062,7 +3081,7 @@ static int ntfs_map_mft_io_for_folio(struct ntfs_inode *ni, u64 folio_byte,
- 
- static int ntfs_prepare_mft_folio_units(struct ntfs_inode *ni, u64 folio_byte,
- 					u64 file_limit,
--					const unsigned long *record_writable,
-+					const unsigned long *record_selected,
- 					struct ntfs_mft_io_unit *units,
- 					unsigned int *nr_units,
- 					unsigned int max_units, bool *defer)
-@@ -3074,28 +3093,37 @@ static int ntfs_prepare_mft_folio_units(struct ntfs_inode *ni, u64 folio_byte,
- 	while (unit_byte < folio_end && unit_byte < file_limit) {
- 		struct ntfs_mft_io_unit unit;
- 		u64 record_byte;
--		u64 cluster_end = ntfs_cluster_to_bytes(
--			vol, ntfs_bytes_to_cluster(vol, unit_byte) + 1);
--		u64 record_end =
--			round_down(unit_byte, (u64)vol->mft_record_size) +
--			vol->mft_record_size;
--		u64 unit_end = min3(record_end, cluster_end, folio_end);
--		bool writable = true;
-+		u64 unit_end;
-+		u64 io_unit_end;
-+		u64 cluster_end;
-+		bool selected = false;
- 		int err;
- 
-+		io_unit_end =
-+			round_down(unit_byte, (u64)vol->mft_io_unit_size) +
-+			vol->mft_io_unit_size;
-+		cluster_end = ntfs_cluster_to_bytes(
-+			vol, ntfs_bytes_to_cluster(vol, unit_byte) + 1);
-+		unit_end = min3(io_unit_end, cluster_end, folio_end);
-+
- 		record_byte = round_down(unit_byte, (u64)vol->mft_record_size);
- 		while (record_byte < min(unit_end, file_limit)) {
- 			unsigned int record;
- 
- 			record = (record_byte - folio_byte) /
- 				 vol->mft_record_size;
--			if (!test_bit(record, record_writable)) {
--				writable = false;
-+			if (test_bit(record, record_selected)) {
-+				selected = true;
- 				break;
- 			}
- 			record_byte += vol->mft_record_size;
- 		}
--		if (!writable)
-+		/*
-+		 * Direct inode writeback owns unselected records.  Their folio
-+		 * images are stable while this folio is locked, so a containing
-+		 * unit can preserve them when writing a selected record.
-+		 */
-+		if (!selected)
- 			goto next;
- 
- 		unit = (struct ntfs_mft_io_unit){
-@@ -3152,7 +3180,7 @@ static int ntfs_write_mft_block(struct folio *folio, struct writeback_control *w
- 	struct bio *parent = NULL, *child = NULL;
- 	struct ntfs_mft_write_ctx *ctx = NULL;
- 	u8 *kaddr = NULL;
--	DECLARE_BITMAP(record_writable, PAGE_SIZE / NTFS_BLOCK_SIZE) = {};
-+	DECLARE_BITMAP(record_selected, PAGE_SIZE / NTFS_BLOCK_SIZE) = {};
- 	u64 folio_byte, file_limit, folio_end, mirror_size;
- 	unsigned int nr_records, nr_units = 0, max_units;
- 	unsigned int nr_locked_nis = 0, nr_ref_inos = 0;
-@@ -3220,11 +3248,11 @@ static int ntfs_write_mft_block(struct folio *folio, struct writeback_control *w
- 			    tni->ext.base_ntfs_ino == NTFS_I(vol->mft_ino))
- 				continue;
- 		}
--		__set_bit(record, record_writable);
-+		__set_bit(record, record_selected);
- 	}
- 
- 	err = ntfs_prepare_mft_folio_units(ni, folio_byte, file_limit,
--					   record_writable, units, &nr_units,
-+					   record_selected, units, &nr_units,
- 					   max_units, &defer);
+@@ -803,7 +805,8 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
+ 		ntfs_error(vol->sb,
+ 			"Not enough memory to write mft record. Redirtying so the write is retried later.");
+ 		mark_mft_record_dirty(ni);
+-		err = 0;
++		if (!sync)
++			err = 0;
+ 	} else
+ 		NVolSetErrors(vol);
+ 	return err;
+@@ -2958,7 +2961,7 @@ int ntfs_mft_record_free(struct ntfs_volume *vol, struct ntfs_inode *ni)
+ 	 * record to be freed is guaranteed to do it already.
+ 	 */
+ 	NInoSetDirty(ni);
+-	err = write_mft_record(ni, ni_mrec, 0);
++	err = write_mft_record(ni, ni_mrec, 1);
  	if (err)
- 		goto out_noio;
-@@ -3308,6 +3336,7 @@ static int ntfs_write_mft_block(struct folio *folio, struct writeback_control *w
- 	submit_bio(parent);
- 	ntfs_release_mft_write_refs(locked_nis, nr_locked_nis, ref_inos,
- 				    nr_ref_inos);
-+
- 	return 0;
+ 		goto sync_rollback;
  
- out_noio:
+diff --git a/fs/ntfs/mft.h b/fs/ntfs/mft.h
+index 28a79bf4c1c6..d2a31205e08c 100644
+--- a/fs/ntfs/mft.h
++++ b/fs/ntfs/mft.h
+@@ -53,17 +53,19 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
+  * @sync:	if true, wait for i/o completion
+  *
+  * This is just a wrapper for write_mft_record_nolock() (see mft.c), which
+- * locks the folio for the duration of the write.  The folio lock prevents
+- * races between writing the mft record via the dirty inode code paths and via
+- * page cache writeback or between neighbouring mft records residing in the
+- * same folio.
++ * locks the folio while preparing the write.  write_mft_record_nolock() waits
++ * for prior folio writeback before modifying the folio and keeps PG_writeback
++ * set until the submitted I/O completes.  Together these serialize dirty
++ * inode writes, page cache writeback, and neighbouring mft record writes in
++ * the same folio.
+  *
+  * Locking the page also serializes us against ->read_folio() if the page is not
+  * uptodate.
+  *
+  * On success, clean the mft record and return 0.  On allocation failure,
+- * redirty the record for retry and return 0.  On other errors, return -errno
+- * and mark the volume with errors.
++ * redirty the record for retry.  Asynchronous callers return 0 after
++ * redirtying, while synchronous callers receive -ENOMEM.  On other errors,
++ * return -errno and mark the volume with errors.
+  */
+ static inline int write_mft_record(struct ntfs_inode *ni, struct mft_record *m, int sync)
+ {
 
 -- 
 2.43.0
