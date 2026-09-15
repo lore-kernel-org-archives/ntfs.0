@@ -1,78 +1,132 @@
-Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.6])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C9A3168E6
-	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 01:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1C82C0F8C
+	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 01:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789434506; cv=none; b=Z9x5+bGDgh5dHsRvNF0ye5csw8xKKWlv8sO7V8HnCNCPRkcpRvEem3E+5oxRXSvMfCWnmqpAgvOzFbUo7uxGAxcf5F5EPULvWK1Y1mtG7fJleshrOtZ5RwQcslNR/O4GwyH4kUDfU4pm2AhZQjcpcKeVircq+asYiBTlubN3Ykk=
+	t=1789435838; cv=none; b=UKM6qDdfvJ+R5ihWJDfzt6fWCidrc5wS7WRrByJvHboQoBuprcFxbKar+xeavqKMSYyj3NSNbBhh9UhxAoN82gWPS4PDWlJtzMWX3b2RacDZXnDVNjwgYHWsukcS00V6rCS23x2m95QKvoPaIpfOxCjsvjJhbgDN+wzMPI45TBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789434506; c=relaxed/simple;
-	bh=3Tt86Q/NpMlOsDp9916VWkURqNPqTTY/kDBFF4LcTNU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=uts4miwaUcyol16O7lHIc9LqsFrZLWfZ4ROMSnqCggQiBHqDav3ca5yoZJIk8/4xSu2XmuLFxbFdGJPI3uoxVK/NSVBCEjUoYLZ7pHxKUkbLARU3rridKy1xuu9paOT1uAIbVtgWvq5/9MQEK+w3koR2pAIbYK2odW3IyOHrjeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=baegioPv; arc=none smtp.client-ip=220.197.31.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="baegioPv"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=3Tt86Q/NpMlOsDp9916VWkURqNPqTTY/kDBFF4LcTNU=; b=b
-	aegioPvrCuh4QYCmrJjFuS4y55Nv565CR0BDDQbY+nqLt1GposUKlGATAu3U+DMy
-	5q/Bst2GJz1UI9hv9jjtPH+N+/+FYpQJcrhrpkdsR0QDPSntQ1d/c+gn1QU7ynNO
-	BMwPLObRXYDXkfDAHc83QcH27B1DkrCcUiUJA0ED4M=
-Date: Tue, 15 Sep 2026 09:05:41 +0800 (CST)
-From: dd  <zhongling0719@126.com>
-To: "Namjae Jeon" <linkinjeon@kernel.org>
-Cc: "Hongling Zeng" <zenghongling@kylinos.cn>, hyc.lee@gmail.com,
-	ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1789435838; c=relaxed/simple;
+	bh=/I50m7a4WKXHFAuWsniE8i9HRfMHSni30uWQ4dIoWCg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nDj4zTDGnhTi8nmat7Hd2gAZ3AXWnZdfq/mELyZBpDwNjj3sWlu0r8se7cmPALE4fLHZzULE9oQqfg40B1cwKjJcdxyPgIVOfXBmpCGOLSLTOtjz9kPw9sEUc2GNTDQGTVYSs/F3vowpXrmt1r9MZZXmhyzXz3c5eVo16bG10UU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 08bb06d8b0a511f19a56ed5b684f684d-20260915
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:ef20ea7d-ff72-4a5d-8c3c-1432955eebab,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:7db8b62,CLOUDID:6e3aac37ac13965ee18af95cb41b4e8f,BulkI
+	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
+	-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,O
+	SA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 08bb06d8b0a511f19a56ed5b684f684d-20260915
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 62298538; Tue, 15 Sep 2026 09:30:28 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>,
 	stable@vger.kernel.org
-Subject: Re:Re: [PATCH] ntfs: mount hibernated volumes read-only regardless
- of errors=
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
- 20260511(2e539873) Copyright (c) 2002-2026 www.mailtech.cn 126com
-In-Reply-To: <CAKYAXd9EFNkofkj1tEg1vs5+1ohs1exYx6mys78X8852x8w6Yg@mail.gmail.com>
-References: <20260914034202.52011-1-zenghongling@kylinos.cn>
- <CAKYAXd9EFNkofkj1tEg1vs5+1ohs1exYx6mys78X8852x8w6Yg@mail.gmail.com>
-X-NTES-SC: AL_Qu2TC/iYu0sv5yKfbOkWk00RgOk9WsG1vfQi24NQP500ly728SsKQVxoP37pze6IFy6zkCWzdid8y9xQVLVEVZqwQ+uP74z4sdUYKtVXqNu0
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+Subject: [PATCH v2] ntfs: mount hibernated volumes read-only regardless of errors=
+Date: Tue, 15 Sep 2026 09:30:25 +0800
+Message-Id: <20260915013025.584481-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Message-ID: <5d8908a0.a55.1a0a29927aa.Coremail.zhongling0719@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:dikvCgD3H5rlmahq_zpAAA--.55880W
-X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrgVkNWqomeVBpwAA3i
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Transfer-Encoding: 8bit
 
-CgrlnKggMjAyNi0wOS0xNCAyMTo1OToxMO+8jCJOYW1qYWUgSmVvbiIgPGxpbmtpbmplb25Aa2Vy
-bmVsLm9yZz4g5YaZ6YGT77yaCj5PbiBNb24sIFNlcCAxNCwgMjAyNiBhdCAxMjo0MuKAr1BNIEhv
-bmdsaW5nIFplbmcgPHplbmdob25nbGluZ0BreWxpbm9zLmNuPiB3cm90ZToKPj4KPj4gVGhlIGhp
-YmVybmF0aW9uIGNoZWNrIGluIGxvYWRfc3lzdGVtX2ZpbGVzKCkgb25seSBjb252ZXJ0cyB0aGUK
-Pj4gc3VwZXJibG9jayB0byByZWFkLW9ubHkgdW5kZXIgZXJyb3JzPXJlbW91bnQtcm8uICBXaXRo
-IHRoZSBkZWZhdWx0Cj4+IGVycm9ycz1jb250aW51ZSAoYW5kIHdpdGggZXJyb3JzPXBhbmljKSwg
-YSBoaWJlcm5hdGVkIHZvbHVtZSBpcwo+PiBtb3VudGVkIHJlYWQtd3JpdGUgYW5kIHRoZSBtb3Vu
-dC10aW1lICRMb2dGaWxlIGVtcHR5aW5nIHdyaXRlcyB0byBpdCwKPj4gYWx0aG91Z2ggYSBoaWJl
-cm5hdGVkIHZvbHVtZSBtdXN0IG5vdCBiZSB3cml0dGVuIHRvIGF0IGFsbC4KPj4KPj4gRHJvcCB0
-aGUgb25fZXJyb3JzIHRlcm0gc28gdGhhdCBhIGhpYmVybmF0ZWQgdm9sdW1lLCBvciBhIHZvbHVt
-ZSB3aG9zZQo+PiBoaWJlcm5hdGlvbiBzdGF0ZSBjYW5ub3QgYmUgZGV0ZXJtaW5lZCwgYWx3YXlz
-IG1vdW50cyByZWFkLW9ubHkuCj4+IE5Wb2xFcnJvcnMoKSBpcyBzdGlsbCByZWNvcmRlZCwgc28g
-bnRmc19yZWNvbmZpZ3VyZSgpIGtlZXBzIHJlZnVzaW5nCj4+IHJlbW91bnRzIHRvIHJlYWQtd3Jp
-dGUsIGFuZCB0aGUgJExvZ0ZpbGUgZW1wdHlpbmcgaXMgc2tpcHBlZCBieSBpdHMKPj4gIXNiX3Jk
-b25seSgpIGNoZWNrLgo+Y2hlY2tfd2luZG93c19oaWJlcm5hdGlvbl9zdGF0dXMoKSBjYWxscyBu
-dGZzX2Vycm9yKCkgYmVmb3JlIFNCX1JET05MWQo+aXMgc2V0LiBXaXRoIGVycm9ycz1wYW5pYywg
-dGhpcyBwYW5pY3MgYmVmb3JlIHJlYWNoaW5nIHRoZSBuZXcKPnJlYWQtb25seSBmYWxsYmFjay4u
-LgogIFRoYW5rcyBmb3IgY2F0Y2hpbmcgdGhpcy4gUmlnaHQgLS0gdGhvc2UgZXJyb3IgcGF0aHMg
-Y2FsbCBudGZzX2Vycm9yKCkKICBiZWZvcmUgU0JfUkRPTkxZIGlzIHNldCwgc28gZXJyb3JzPXBh
-bmljIGNhbiBmaXJlIGluc2lkZQogIGNoZWNrX3dpbmRvd3NfaGliZXJuYXRpb25fc3RhdHVzKCku
-CgogIEkgd2lsbCByZW1vdmUgdGhlIGludGVybmFsIG50ZnNfZXJyb3IoKSBjYWxscyBpbiB2Mjsg
-dGhlIGNhbGxlciBhbHJlYWR5CiAgcmVwb3J0cyAiRmFpbGVkIHRvIGRldGVybWluZSBpZiBXaW5k
-b3dzIGlzIGhpYmVybmF0ZWQuIiBmb3IgZXZlcnkKICBlcnIgPCAwIGNhc2UuIE5Wb2xFcnJvcnMo
-KSBpcyBzdGlsbCByZWNvcmRlZCwgc28gbnRmc19yZWNvbmZpZ3VyZSgpCiAga2VlcHMgcmVqZWN0
-aW5nIHJlbW91bnRzIHRvIHJlYWQtd3JpdGUuCgogIFRoYW5rcywKICBIb25nbGluZwoK
+The hibernation check in load_system_files() only converts the
+superblock to read-only under errors=remount-ro.  With the default
+errors=continue (and with errors=panic), a hibernated volume is
+mounted read-write and the mount-time $LogFile emptying writes to it,
+although a hibernated volume must not be written to at all.
+
+Drop the on_errors term so that a hibernated volume, or a volume whose
+hibernation state cannot be determined, always mounts read-only.
+NVolErrors() is still recorded, so ntfs_reconfigure() keeps refusing
+remounts to read-write, and the $LogFile emptying is skipped by its
+!sb_rdonly() check.
+
+Also downgrade the ntfs_error() calls inside
+check_windows_hibernation_status() to ntfs_debug(): they ran before
+SB_RDONLY was set, so errors=panic could panic inside the helper
+before the read-only conversion was reached.  The caller already
+reports "Failed to determine if Windows is hibernated." for these
+cases, so nothing is lost.
+
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+Changes in v2:
+ -Remove the internal ntfs_error() calls
+---
+ fs/ntfs/super.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 2d4132aa39d3..93a3679585c2 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -1242,7 +1242,7 @@ static int check_windows_hibernation_status(struct ntfs_volume *vol)
+ 			return 0;
+ 		}
+ 		/* A real error occurred. */
+-		ntfs_error(vol->sb, "Failed to find inode number for hiberfil.sys.");
++		ntfs_debug("Failed to find inode number for hiberfil.sys.");
+ 		return ret;
+ 	}
+ 	/* Get the inode. */
+@@ -1250,7 +1250,7 @@ static int check_windows_hibernation_status(struct ntfs_volume *vol)
+ 	if (IS_ERR(vi)) {
+ 		if (!IS_ERR(vi))
+ 			iput(vi);
+-		ntfs_error(vol->sb, "Failed to load hiberfil.sys.");
++		ntfs_debug("Failed to load hiberfil.sys.");
+ 		return IS_ERR(vi) ? PTR_ERR(vi) : -EIO;
+ 	}
+ 	if (unlikely(i_size_read(vi) < NTFS_HIBERFIL_HEADER_SIZE)) {
+@@ -1261,7 +1261,7 @@ static int check_windows_hibernation_status(struct ntfs_volume *vol)
+ 
+ 	folio = read_mapping_folio(vi->i_mapping, 0, NULL);
+ 	if (IS_ERR(folio)) {
+-		ntfs_error(vol->sb, "Failed to read from hiberfil.sys.");
++		ntfs_debug("Failed to read from hiberfil.sys.");
+ 		ret = PTR_ERR(folio);
+ 		goto iput_out;
+ 	}
+@@ -1660,8 +1660,13 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 		const char *es1;
+ 
+ 		es1 = err < 0 ? es1a : es1b;
+-		/* If a read-write mount, convert it to a read-only mount. */
+-		if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
++		/*
++		 * A Windows hibernation image is not a filesystem error, so
++		 * this is a safety interlock rather than something the
++		 * errors= policy may downgrade: always convert a read-write
++		 * mount to read-only.
++		 */
++		if (!sb_rdonly(sb)) {
+ 			sb->s_flags |= SB_RDONLY;
+ 			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+ 		}
+-- 
+2.25.1
+
