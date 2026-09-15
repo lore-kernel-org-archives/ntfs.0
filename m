@@ -1,142 +1,105 @@
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A03395266
-	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 06:27:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585E827A47F
+	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 06:53:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789453676; cv=none; b=XzYlhypa8575DOJzi+F/9WUev/aKgoPHIjAyXJTJE5J3yrpvJiXtWsBNRRP84qHXh4/IWU4PEFlMtNZvl1bj8F7QPBY9gtex3f5+oeSY0MkjC6+N9AD7DLukjGKpPn4tKEa1xd4t8Do49zVneyhLHA4Q7fde0jSIK40/cpG+y3E=
+	t=1789455227; cv=none; b=JBRFoZsHo0tR7JYg6UboipweDucj6Z5IvI3Tb6eOwN5tOopMFW0snU/kLdi9mK5lsV1FPUfs/fb3jTi+Q4yP01XD74w0+i2S6a+aiECHRJ3Wvr742RI1VDVjPkFxYakHtiKevqT3WEhqgd0tEEIJedwkcHI8lbCYVN3s3QAzXMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789453676; c=relaxed/simple;
-	bh=WuuFf66TxP3n1fzw5My1UK/g0RXcIfCaHBR8Tp5vAOY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=q8cvb/XM6pDtaCivcVinFU19uJ4oXF70kpOuIcvhsu/cS/om7c0xJ8gXrrV3WGE+t2S+tBKxIFkhKnIiwmk5+KTYb0+DrcBqfHWh8gUDRSAJdreei1Ecf0YP62PQCTPZ8CtZV/VjLUDenSQxn0pcQBrHedMxTk1GHqButRITA6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 914843acb0ce11f19a56ed5b684f684d-20260915
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:2b899ef7-552d-4ed6-a91f-7038c6514241,IP:0,U
-	RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:7db8b62,CLOUDID:f8ce0e2c8f9bd22f04ddc29178029257,BulkI
-	D:nil,BulkQuantity:0,SF:81|82|102|136|850|865|898,TC:nil,Content:0|15|50|9
-	9,EDM:2|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
-	I:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 914843acb0ce11f19a56ed5b684f684d-20260915
-X-User: zenghongling@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <zenghongling@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1400450853; Tue, 15 Sep 2026 14:27:47 +0800
-From: Hongling Zeng <zenghongling@kylinos.cn>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>,
-	stable@vger.kernel.org
-Subject: [PATCH 2/2] ntfs: roll back the in-memory attributes if the metadata update fails
-Date: Tue, 15 Sep 2026 14:27:42 +0800
-Message-Id: <20260915062742.750092-2-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260915062742.750092-1-zenghongling@kylinos.cn>
-References: <20260915062742.750092-1-zenghongling@kylinos.cn>
+	s=arc-20240116; t=1789455227; c=relaxed/simple;
+	bh=W+VTZlbEEDdrw77z+kwtZgySeGpiY0lXE0J3jrAT01M=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=aE/2krwje1trzV4RoFdpA39zU9/sPRmexs5jr0H8NVCJXz+sxHcF8/ugL+NEmDwdl8xViZcWPMLCXap9KMqFdD43mMj57KR6ZOY6qoRFYLso2iKexzhLvdHZoQxDM/n1nPJhNEuAAnzKdzVu1mZIsx9GqZ4uPci51wapKXa339A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=GwHlrbR5; arc=none smtp.client-ip=117.135.210.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="GwHlrbR5"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=W+VTZlbEEDdrw77z+kwtZgySeGpiY0lXE0J3jrAT01M=; b=G
+	wHlrbR5xA8pJm0QuxQairSFZPw7h/yjCjG4N2MyDnrRgFOtDu0M+Cobuj5sMGhVI
+	acUweA41ZY55eOth2UDcZ2WiRWJiZBp7q9LEaqmyk6bkfK9N2V7YQYyNiuB/h+rl
+	5mLY8P2w2iheX2BU/qO27xsOLjlfXAw3tw7fTMIVJs=
+Date: Tue, 15 Sep 2026 14:53:29 +0800 (CST)
+From: dd  <zhongling0719@126.com>
+To: "Hyunchul Lee" <hyc.lee@gmail.com>
+Cc: "Hongling Zeng" <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+	ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re:Re: [PATCH v11 0/6] ntfs: fix volume flag races and persist the
+ recorded error state
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260511(2e539873) Copyright (c) 2002-2026 www.mailtech.cn 126com
+In-Reply-To: <CANFS6bZi+Nsrieh1M1sxwc7SPyjy8xx9KJcfUQdctsUrYrQedQ@mail.gmail.com>
+References: <20260914054926.78808-1-zenghongling@kylinos.cn>
+ <CANFS6bZi+Nsrieh1M1sxwc7SPyjy8xx9KJcfUQdctsUrYrQedQ@mail.gmail.com>
+X-NTES-SC: AL_Qu2TC/ieukor7ymcZukWk00RgOk9WsG1vfQi24NQP500ly728SsKQVxoP37pze6IFy6zkCWzdid8y9xQVLVEVZrd4FEEonY9QKRpjtW3I13V
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-ID: <162ea4b2.489f.1a0a3d795e2.Coremail.zhongling0719@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:dikvCgD3V9Jq66hqu5NAAA--.14806W
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrwnZqmqo62my5QAA3C
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-ntfs_setattr() copies the new attributes into the VFS inode with
-setattr_copy() and only then writes them to disk: the POSIX ACL update
-and the ntfs_ea_set_wsl_inode() call that stores the uid, gid and mode
-in the metadata EAs.  When one of those fails, the error is returned
-but the in-memory inode keeps the new, uncommitted attributes, so
-memory and disk diverge until the inode is written back or evicted.
-
-Remember the old mode, uid, gid and the FILE_ATTR_READONLY bit and
-restore them before returning the error.  This is best effort: the
-ctime update is left in place, ntfs_ea_set_wsl_inode() may have
-completed some of the EAs before failing, and a failed ACL update may
-leave the cached ACL divergent.  The error is still reported.
-
-Fixes: 9c87959601e8 ("ntfs: update file operations")
-Cc: stable@vger.kernel.org
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
----
- fs/ntfs/file.c | 28 ++++++++++++++++++++++++++--
- 1 file changed, 26 insertions(+), 2 deletions(-)
-
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 1417a76788ed..524b33c0e97f 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -325,6 +325,10 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
- 	unsigned int ia_valid = attr->ia_valid;
- 	struct ntfs_inode *ni = NTFS_I(vi);
- 	struct ntfs_volume *vol = ni->vol;
-+	umode_t old_mode;
-+	kuid_t old_uid;
-+	kgid_t old_gid;
-+	typeof(ni->flags) old_flags;
- 
- 	if (NVolShutdown(vol))
- 		return -EIO;
-@@ -351,12 +355,17 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
- 		ia_valid |= ATTR_MTIME | ATTR_CTIME;
- 	}
- 
-+	old_mode = vi->i_mode;
-+	old_uid = vi->i_uid;
-+	old_gid = vi->i_gid;
-+	old_flags = ni->flags & FILE_ATTR_READONLY;
-+
- 	setattr_copy(idmap, vi, attr);
- 
- 	if (vol->sb->s_flags & SB_POSIXACL && !S_ISLNK(vi->i_mode)) {
- 		err = posix_acl_chmod(idmap, dentry, vi->i_mode);
- 		if (err)
--			goto out;
-+			goto out_restore;
- 	}
- 
- 	if (0222 & vi->i_mode)
-@@ -378,11 +387,26 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
- 		err = ntfs_ea_set_wsl_inode(vi, 0, NULL, flags);
- 		mutex_unlock(&ni->mrec_lock);
- 		if (err)
--			goto out;
-+			goto out_restore;
- 
- 	}
- 
- 	mark_inode_dirty(vi);
-+	goto out;
-+
-+out_restore:
-+	/*
-+	 * The on-disk metadata update failed: put the in-memory
-+	 * attributes back so that the inode does not keep the new,
-+	 * uncommitted values.  This is best effort: the ctime update is
-+	 * left in place, ntfs_ea_set_wsl_inode() may have completed some
-+	 * of the EAs before failing, and a failed ACL update may leave
-+	 * the cached ACL divergent.
-+	 */
-+	vi->i_mode = old_mode;
-+	vi->i_uid = old_uid;
-+	vi->i_gid = old_gid;
-+	ni->flags = (ni->flags & ~FILE_ATTR_READONLY) | old_flags;
- out:
- 	return err;
- }
--- 
-2.25.1
-
+CgpBdCAyMDI2LTA5LTE1IDEzOjQ4OjA1LCAiSHl1bmNodWwgTGVlIiA8aHljLmxlZUBnbWFpbC5j
+b20+IHdyb3RlOgo+SGkgSG9uZ2xpbmcsCj4KPlRoYW5rIHlvdSwgYW5kIHRoaXMgcGF0Y2ggc2V0
+IGxvb2tzIGdvb2QgdG8gbWUuCj4KPkFzIGEgZm9sbG93IHVwLCBpdCB3b3VsZCBiZSB1c2VmdWwg
+dG8gZGlzY3VzcyBtYWtpbmcgdm9sdW1lIGRpcnR5Cj53aGVuIGFuIFJXIG1vdW50IGlzIGVzdGFi
+bGlzaGVkIGFuZCBjbGVhcmluZyBpdCBvbmx5IGFmdGVyIGEgY2xlYW4KPnVubW91bnQuCj4KPlRo
+ZSBjdXJyZW50IGltcGxlbWVudGF0aW9uIHN0aWxsIGhhcyBhIHdpbmRvdyB3aGVyZSBtZXRhZGF0
+YQo+Y2hhbmdlcyBtYXkgYmUgd3JpdHRlbiB3aGlsZSB0aGUgb24tZGlzayB2b2x1bWUgZmxhZyBp
+cyBzdGlsbAo+Y2xlYW4sIGFuZCBhbHNvIGRvZXMgbm90IGNsZWFyIHRoZSBkaXJ0eSB2b2x1bWUg
+Zm9yIHN5bmMoMikuCj4KSGkgSHl1bmNodWwsCgpUaGFuayB5b3UgZm9yIHRoZSByZXZpZXcgYW5k
+IGZvciBjb25maXJtaW5nIHRoYXQgdGhlIHBhdGNoIHNldCBsb29rcwpnb29kLgoKSSBhZ3JlZSB0
+aGF0IG1hcmtpbmcgdGhlIHZvbHVtZSBkaXJ0eSB3aGVuIGVzdGFibGlzaGluZyBhbiBSVyBtb3Vu
+dCwKYW5kIGNsZWFyaW5nIGl0IG9ubHkgYWZ0ZXIgYSBjbGVhbiB1bm1vdW50LCB3b3VsZCBjbG9z
+ZSB0aGUgcmVtYWluaW5nCndpbmRvdyBiZWZvcmUgdGhlIGZpcnN0IG1ldGFkYXRhIHVwZGF0ZS4g
+SSBhbHNvIGFncmVlIHRoYXQgc3luYygyKQpzaG91bGQgbm90IGNsZWFyIHRoZSB2b2x1bWUgZGly
+dHkgZmxhZywgc2luY2UgdGhlIGZpbGVzeXN0ZW0gcmVtYWlucwp3cml0YWJsZSBhZnRlciBzeW5j
+IGNvbXBsZXRlcy4KCkkgd2lsbCBmb2xsb3cgdXAgd2l0aCBhIHNlcGFyYXRlIHBhdGNoL2Rpc2N1
+c3Npb24gZm9yIHRoaXMgYmVoYXZpb3IuCgpUaGFua3MsCkhvbmdsaW5nCj4yMDI264WEIDnsm5Qg
+MTTsnbwgKOyblCkg7Jik7ZuEIDI6NDksIEhvbmdsaW5nIFplbmcgPHplbmdob25nbGluZ0BreWxp
+bm9zLmNuPuuLmOydtCDsnpHshLE6Cj4+Cj4+IFRoZSBmcy9udGZzIHJ1bnRpbWUgbWV0YWRhdGEt
+Y29ycnVwdGlvbiBwYXRocyBvbmx5IHJlY29yZCB0aGUgaW4tbWVtb3J5Cj4+IE5Wb2xFcnJvcnMo
+KSBmbGFnLCBhbmQgdGhlIGNhbGxlci1zaWRlIGRpcnR5LWJpdCBtYXJraW5nIHJhY2VzIHdpdGgK
+Pj4gbnRmc19zeW5jX2ZzKCk6IGEgdm9sdW1lIGNhbiBlbmQgdXAgd2l0aCBhIGNsZWFuIG9uLWRp
+c2sgZGlydHkgZmxhZwo+PiBkZXNwaXRlIG1vZGlmaWNhdGlvbiBvciByZWNvcmRlZCBjb3JydXB0
+aW9uLCBzbyBjaGtkc2sgbmV2ZXIgcnVucyBvbgo+PiB0aGUgbmV4dCBtb3VudC4gIEJhc2VkIG9u
+IG50ZnMvbnRmcy1uZXh0ICg5YTA1YjU3MTVjZmEpLgo+Pgo+PiAgMS80IG1ha2VzIHRoZSB2b2x1
+bWUgZmxhZyByZWFkLW1vZGlmeS13cml0ZSBhdG9taWMgdW5kZXIgdGhlCj4+ICAgICAkVm9sdW1l
+IG1yZWNfbG9jazsKPj4gIDIvNCBtYXJrcyB0aGUgdm9sdW1lIGRpcnR5IHVuY29uZGl0aW9uYWxs
+eSBvbiBtZXRhZGF0YSBjaGFuZ2VzLAo+PiAgICAgZHJvcHBpbmcgdGhlIHJhY3kgY2FsbGVyLXNp
+ZGUgY2hlY2tzIGluIGZpbGUuYyBhbmQgbmFtZWkuYzsKPj4gIDMvNCBkZXJpdmVzIHRoZSBvbi1k
+aXNrIGRpcnR5IGJpdCBmcm9tIHRoZSByZWNvcmRlZCBlcnJvciBzdGF0ZSBhdAo+PiAgICAgdGhl
+IHBlcnNpc3RlbmNlIHBvaW50cyAoc3luY19mcywgcmVtb3VudC1ybywgcHV0X3N1cGVyKSBhbmQg
+bmV2ZXIKPj4gICAgIHdyaXRlcyBhIGhpYmVybmF0ZWQgdm9sdW1lOwo+PiAgNC80IHBlcnNpc3Rz
+IHRoZSBkaXJ0eSBzdGF0ZSBhZnRlciB0aGUgZmluYWwgcHV0X3N1cGVyKCkgY29tbWl0cyBzbwo+
+PiAgICAgbGF0ZSBlcnJvcnMgY2Fubm90IHVubW91bnQgY2xlYW4uCj4+Cj4+IENoYW5nZXMgaW4g
+djExOgo+Pgo+PiAtIEFkZCA1LzY6IFN0b3AgY2xlYXJpbmcgVk9MVU1FX0lTX0RJUlRZIGR1cmlu
+ZyBzeW5jLiBUaGUgYml0IGlzIG5vdwo+PiAgIGNsZWFyZWQgb25seSBvbiByZW1vdW50IHRvIHJl
+YWQtb25seSBvciBjbGVhbiB1bm1vdW50LCBwcmV2ZW50aW5nIGEKPj4gICBjcmFzaCBkdXJpbmcg
+bWV0YWRhdGEgdXBkYXRlcyBmcm9tIGJ5cGFzc2luZyBjaGtkc2suIFZlcmlmaWVkIGluIFFFTVUu
+Cj4+Cj4+IC0gQWRkIDYvNjogQ2hlY2sgY29tbWl0IGFuZCBmbHVzaCBlcnJvcnMgZHVyaW5nIHJl
+bW91bnQgYW5kIHVubW91bnQuCj4+ICAgUmUtY2hlY2sgTklub0RpcnR5KCkgYWZ0ZXIgX19udGZz
+X3dyaXRlX2lub2RlKCkuIEEgZmFpbGVkIHJlbW91bnQgaXMKPj4gICByZWplY3RlZCBzbyB1bm1v
+dW50IGNhbiByZXRyeTsgdW5tb3VudCBmYWlsdXJlcyBhcmUgcmVwb3J0ZWQgYXMgd2FybmluZ3Mu
+Cj4+Cj4+Cj4+IEhvbmdsaW5nIFplbmcgKDQpOgo+PiAgIG50ZnM6IGZpeCB2b2x1bWUgZmxhZyB1
+cGRhdGUgcmFjZXMKPj4gICBudGZzOiBzZXQgdGhlIHZvbHVtZSBkaXJ0eSBiaXQgdW5jb25kaXRp
+b25hbGx5IG9uIG1ldGFkYXRhIGNoYW5nZXMKPj4gICBudGZzOiBzeW5jIHRoZSB2b2x1bWUgZGly
+dHkgYml0IHdpdGggdGhlIHJlY29yZGVkIGVycm9yIHN0YXRlCj4+ICAgbnRmczogcGVyc2lzdCB0
+aGUgZGlydHkgc3RhdGUgYWZ0ZXIgdGhlIGZpbmFsIHB1dF9zdXBlcigpIGNvbW1pdHMKPj4KPj4g
+IGZzL250ZnMvZmlsZS5jICAgfCAgMjAgKystLS0KPj4gIGZzL250ZnMvbmFtZWkuYyAgfCAgMjQg
+KystLS0tCj4+ICBmcy9udGZzL250ZnMuaCAgIHwgICAxIC0KPj4gIGZzL250ZnMvc3VwZXIuYyAg
+fCAxOTEgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0KPj4g
+IGZzL250ZnMvdm9sdW1lLmggfCAgIDQgKwo+PiAgNSBmaWxlcyBjaGFuZ2VkLCAxNzEgaW5zZXJ0
+aW9ucygrKSwgNjkgZGVsZXRpb25zKC0pCj4+Cj4+IC0tCj4+IDIuMjUuMQo+Pgo+Cj4KPi0tIAo+
+VGhhbmtzLAo+SHl1bmNodWwK
