@@ -1,32 +1,32 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740853093DB
-	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 09:04:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A757476CF4
+	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 09:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789463051; cv=none; b=OneC97FM6LyfUKMocUtXpAx9BYTYQRpHNKsRFFU5Q9guKR1Vw3Ybx7xoIfRrHt8PgKLZO77q6bI79PMvS77rwvybscj9OCAuW4TSHKRZYcHGnzwABcJuGta3SqJh4KfHDDxbFgHemHGlcfm/e1rqYNhvSZJjS5qY8W9bgBIFfs8=
+	t=1789464865; cv=none; b=SZC05kzZ22j1j7H47V/k5MgsMkoOldDDlgVuWl+USdUr3ARN5cD/UlGEyETuSbN6cM69kVQSNkjb41nQZCGYZjJHaC27RO78Uh+3X8222/KrYDmnsVbtjD84kon3vuC+L7wXeaBwl+fK4dRxzCktW/G6ByaGW8gZ09Np2qaLvFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789463051; c=relaxed/simple;
-	bh=+6uT7KNWLXumr1rJCVeTkwseFAk+gExUoCACPXn3dOc=;
+	s=arc-20240116; t=1789464865; c=relaxed/simple;
+	bh=o9KaS8KBJ72/Au0ekLL9/EQYMdStMVO+l/jzmtDKFKs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k2SoZ/OFcpTr7aBng6DLFnWuAAzc7Ua33iCrWSyJ9iMDEbZ+Ko4G1yZlLqeYpDx5Vhhtxhiwk4l4C0NO4pqjV9+qFGSGE9DwPzG0SEMQvyGfLKoC5mt1m4XoOZ8kQSRCR65yh9m38gOjxh7BlsMHTsHi0IsJxOKnjazIQGyjB8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=MaQi80NC; arc=none smtp.client-ip=117.135.210.3
+	 In-Reply-To:Content-Type; b=QUqrQ01z93wYeOMFAtlNyDggEP43HWvZWt+FcP6De2GjRUgHzs5fISfbX72oMMD+MlL4+My/k9DD1UDQN+tMhVzr8RqorkPAkb3L7HPjBW/w0UbjikHV+lrbTwOMKxiQRDqi3D65bbLMa2yE+0LbMfBMLZtYGa/rR6o3UMVfXr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=GNkh54Ux; arc=none smtp.client-ip=117.135.210.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="MaQi80NC"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="GNkh54Ux"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=AY9gGrGJChwpWbeE4EQDvCCMwlEMRC+X8dbiirpVAMo=;
-	b=MaQi80NC+fWVacnAkEOyz5QAodcVBrcNHfDkBzM59uLfx7cP3KkB2XKoDHZtwb
-	GgDahk5dJsqgWnKJ0VfehClIXSe5ODcmh3INEfxyupA51yaN+TD3p13vsJYzaTzs
-	JYsKwF7oJ+BoHwUswWSDwLwXCjXRqH0C+qFLTBge05T9s=
+	Content-Type; bh=szx1QknHx3Zsu0Y2nXgVQcYYi0bvPJR5aNFYcqUE6Qk=;
+	b=GNkh54UxJbnASO8hwg2cXjFLO9Sbo2DLi5vmv/TsD7RpNS6o9zysiMyb83/ezG
+	clqVlfhXrS+hTTm18IzTmz2ySM0mLUkYV3Q/Fa++JZAgXO1ypJ8nFdxXi5dWWgtE
+	oyaRk3bGSY/suGnHYnwlWz5pq/kN7QnIQJLC9Y6a50zIQ=
 Received: from [IPV6:2409:8900:21a7:a33a:233e:9c3e:6224:4649] (unknown [])
-	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wCn6kzwCalq_3fhAg--.21S2;
-	Tue, 15 Sep 2026 17:03:49 +0800 (CST)
-Message-ID: <a615a9b3-3d33-45bf-b317-3cffc61244ab@163.com>
-Date: Tue, 15 Sep 2026 17:03:44 +0800
+	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wD3X8MGEalqV7w+Aw--.63106S2;
+	Tue, 15 Sep 2026 17:34:00 +0800 (CST)
+Message-ID: <84bf7c04-fb14-42f3-9c0a-5924db576ac3@163.com>
+Date: Tue, 15 Sep 2026 17:33:57 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -34,99 +34,130 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ntfs: write back the truncated range before dropping
- it
+Subject: Re: [PATCH 2/2] ntfs: roll back the in-memory attributes if the
+ metadata update fails
 To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
  hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
  zhongling0719@126.com, stable@vger.kernel.org
 References: <20260915062742.750092-1-zenghongling@kylinos.cn>
+ <20260915062742.750092-2-zenghongling@kylinos.cn>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260915062742.750092-1-zenghongling@kylinos.cn>
+In-Reply-To: <20260915062742.750092-2-zenghongling@kylinos.cn>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wCn6kzwCalq_3fhAg--.21S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJw4xWry7ZF1kJr1DGryxAFb_yoW5WF1Dpr
-	WakFy5tr4DG3ZrJrnxua1rZ3WF93yfZ3yUuFyUWFsFkFn5Gr1xKFyYg3yvg39Yyrn5Jw4Y
-	qr4DXFZ3WrW8Ar7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+X-CM-TRANSID:_____wD3X8MGEalqV7w+Aw--.63106S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCrykZryrAr43JFyfur17Wrg_yoWrGr45pF
+	Z3CFyrK398X3srKrnayr4UWa1S9w1xuryUJryaq3WIy3ZIgwnrKrWSg3y29FW8tryDCw10
+	qa1Ut3y5uryUZrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
 	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U6xRgUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6haET2qpCfbwJAAA3f
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QhLFmqpEQj1+wAA3o
 
 
 
 在 2026/9/15 14:27, Hongling Zeng 写道:
-> On a truncate, ntfs_setattr_size() drops the page cache beyond the new
-> size with truncate_setsize() and only then updates the attribute on
-> disk.  If that update fails, the size is reverted and the data beyond
-> the new size becomes visible again -- but the pages were already
-> dropped, and dirty data in them is lost, even though the truncate, the
-> operation the user asked for, never happened.
+> ntfs_setattr() copies the new attributes into the VFS inode with
+> setattr_copy() and only then writes them to disk: the POSIX ACL update
+> and the ntfs_ea_set_wsl_inode() call that stores the uid, gid and mode
+> in the metadata EAs.  When one of those fails, the error is returned
+> but the in-memory inode keeps the new, uncommitted attributes, so
+> memory and disk diverge until the inode is written back or evicted.
 > 
-> Write the range back before dropping it.  If the writeback fails, fail
-> the truncate with that error and keep the page cache intact; if the
-> on-disk truncation fails afterwards, the reverted size can be re-read
-> from disk.
+> Remember the old mode, uid, gid and the FILE_ATTR_READONLY bit and
+> restore them before returning the error.  This is best effort: the
+> ctime update is left in place, ntfs_ea_set_wsl_inode() may have
+> completed some of the EAs before failing, and a failed ACL update may
+> leave the cached ACL divergent.  The error is still reported.
 > 
 > Fixes: 9c87959601e8 ("ntfs: update file operations")
 > Cc: stable@vger.kernel.org
 > Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 > ---
->   fs/ntfs/file.c | 15 +++++++++++++++
->   1 file changed, 15 insertions(+)
+>   fs/ntfs/file.c | 28 ++++++++++++++++++++++++++--
+>   1 file changed, 26 insertions(+), 2 deletions(-)
 > 
 > diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-> index 007d1614b9ac..1417a76788ed 100644
+> index 1417a76788ed..524b33c0e97f 100644
 > --- a/fs/ntfs/file.c
 > +++ b/fs/ntfs/file.c
-> @@ -283,12 +283,27 @@ static int ntfs_setattr_size(struct inode *vi, struct iattr *attr)
->   		i_size_write(vi, attr->ia_size);
->   		pagecache_isize_extended(vi, old_size, attr->ia_size);
->   	} else {
-> +		/*
-> +		 * The on-disk truncation below can fail, in which case
-> +		 * the size is reverted and the data beyond the new size
-> +		 * becomes visible again.  Write that range back first:
-> +		 * truncate_setsize() drops those pages and dirty data
-> +		 * cannot be recovered afterwards.
-> +		 */
-> +		if (attr->ia_size < old_size) {
-> +			err = filemap_write_and_wait_range(vi->i_mapping,
-> +					attr->ia_size, old_size - 1);
-> +			if (err)
-> +				goto out_unlock;
-> +		}
-> +
->   		truncate_setsize(vi, attr->ia_size);
+> @@ -325,6 +325,10 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
+>   	unsigned int ia_valid = attr->ia_valid;
+>   	struct ntfs_inode *ni = NTFS_I(vi);
+>   	struct ntfs_volume *vol = ni->vol;
+> +	umode_t old_mode;
+> +	kuid_t old_uid;
+> +	kgid_t old_gid;
+> +	typeof(ni->flags) old_flags;
+>   
+>   	if (NVolShutdown(vol))
+>   		return -EIO;
+> @@ -351,12 +355,17 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
+>   		ia_valid |= ATTR_MTIME | ATTR_CTIME;
 >   	}
 >   
->   	err = ntfs_truncate_vfs(vi, attr->ia_size, old_size);
->   	if (err)
->   		i_size_write(vi, old_size);
-> +out_unlock:
->   	filemap_invalidate_unlock(vi->i_mapping);
+> +	old_mode = vi->i_mode;
+> +	old_uid = vi->i_uid;
+> +	old_gid = vi->i_gid;
+> +	old_flags = ni->flags & FILE_ATTR_READONLY;
+> +
+>   	setattr_copy(idmap, vi, attr);
 >   
->   	return err;
+>   	if (vol->sb->s_flags & SB_POSIXACL && !S_ISLNK(vi->i_mode)) {
+>   		err = posix_acl_chmod(idmap, dentry, vi->i_mode);
+>   		if (err)
+> -			goto out;
+> +			goto out_restore;
+>   	}
+>   
+>   	if (0222 & vi->i_mode)
+> @@ -378,11 +387,26 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
+>   		err = ntfs_ea_set_wsl_inode(vi, 0, NULL, flags);
+>   		mutex_unlock(&ni->mrec_lock);
+>   		if (err)
+> -			goto out;
+> +			goto out_restore;
+>   
 
 Hi Hongling,
-   Thanks for the patch.  This fixes the page-aligned truncate case.
+    Thanks for the patch.  Restoring the in-memory attributes addresses 
+the failure case where no on-disk update has been committed.
+   However, ntfs_ea_set_wsl_inode() updates $LXUID, $LXGID and $LXMOD 
+independently, so it can fail after partially updating the on-disk 
+metadata.  In that case, restoring all VFS attributes to their old 
+values can itself create an inconsistency with the disk state.  The ACL 
+path has a similar issue if the ACL update succeeds before the later EA 
+update fails.
 
-   However, this does not fully preserve the original data for a 
-non-page-aligned truncate.  For example, with 4 KiB pages, consider 
-truncating an 8 KiB file to 3000 bytes.  The writeback added by this 
-patch preserves bytes 3000..8191 on disk, but truncate_setsize() 
-eventually calls truncate_inode_partial_folio(), which zeroes bytes 
-3000..4095 in the folio containing the new EOF while leaving that folio 
-in the page cache.
-   If ntfs_truncate_vfs() then fails, restoring only i_size makes 
-3000..4095 visible again, but the EOF folio is still uptodate. Reads can 
-therefore return the cached zeros instead of refaulting the original 
-data from disk.
-
-   The error path also needs to restore the folio containing the new 
-EOF, or invalidate it so that it is refaulted from disk, with mmap 
-writers taken into account.
+   This requires transactional updates of the related EAs with atomic 
+failure handling.  Maintainer Namjae is currently working on the NTFS 
+journal support, which should provide the necessary transactional 
+infrastructure.
+   Could this patch be deferred until that journal work is available, so 
+that the attribute updates and their rollback can be handled atomically?
 
 Thanks,
 Baolin.
+
+>   	}
+>   
+>   	mark_inode_dirty(vi);
+> +	goto out;
+> +
+> +out_restore:
+> +	/*
+> +	 * The on-disk metadata update failed: put the in-memory
+> +	 * attributes back so that the inode does not keep the new,
+> +	 * uncommitted values.  This is best effort: the ctime update is
+> +	 * left in place, ntfs_ea_set_wsl_inode() may have completed some
+> +	 * of the EAs before failing, and a failed ACL update may leave
+> +	 * the cached ACL divergent.
+> +	 */
+> +	vi->i_mode = old_mode;
+> +	vi->i_uid = old_uid;
+> +	vi->i_gid = old_gid;
+> +	ni->flags = (ni->flags & ~FILE_ATTR_READONLY) | old_flags;
+>   out:
+>   	return err;
+>   }
 
