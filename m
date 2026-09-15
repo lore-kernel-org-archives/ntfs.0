@@ -1,138 +1,110 @@
-Received: from hades.hexcom.net (hades.hexcom.net [94.130.240.252])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D953290B7
-	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 07:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.130.240.252
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BCD476CF5
+	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 08:33:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789458469; cv=none; b=gWhns7awMccCN/js2GDGrYkieaKoYlLnutWKctcBzrB4u6rRT8URmcB9dJwF/TGFWNLRPSpksVAlxHgWFYZCbj4xQSH4lt1k5I/ESlcjZkM5VAenGvcT2MGZ0Sy5llauJLQpaM/qAO9I9zWoZuD+urpW+07hFNgJTQdAlj0Eh5Q=
+	t=1789461188; cv=none; b=KOS1b/JuX8Cel9+zydRrsExMs3JZzqSbwhKzk5mWohvVSYv8PfH17AKKujmMw5nZp+EhOn3MZcqcN2q0gAz/IFsRIaKYwowvCzghUDspSR0GP7T6c1Jbasj58t9PxJ7dII18sapavriJS9ympOhYJFtLyRdzCwN/XrgNVQclrI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789458469; c=relaxed/simple;
-	bh=w7Jx7VXtwY8gQG8K5eWnWC2gUCvVin0t05NWi3I7aBs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Vx4aGeoNcEjwyShzI1Mof3MjuNc+EKWJ/c0jhLAbshQ5lgUHdPk24AP8s6JTTFl87FTeWGDLQA+EnWvO+NpRc3792gSr/aLM9kJKsa+wvBJ8fQvZH7g041tor3DTtHgpXIs6G8JyT6PUqrKROyedEXLh54LB0rv11Rav4ZY1V3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesolowski.eu.org; spf=pass smtp.mailfrom=wesolowski.eu.org; arc=none smtp.client-ip=94.130.240.252
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesolowski.eu.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesolowski.eu.org
-Received: from [78.30.104.81] (helo=PI.tailc0d925.ts.net)
-	by hades.hexcom.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <marek@wesolowski.eu.org>)
-	id 1x6NtB-003l8A-1P;
-	Tue, 15 Sep 2026 09:47:37 +0200
-From: =?UTF-8?q?Marek=20Weso=C5=82owski?= <marek@wesolowski.eu.org>
-To: ntfs@lists.linux.dev
-Cc: Baolin Liu <liubaolin12138@163.com>,
-	Hyunchul Lee <hyc.lee@gmail.com>,
-	Namjae Jeon <linkinjeon@kernel.org>
-Subject: [PATCH v3] ntfs: fix directory lookup on large-page systems
-Date: Tue, 15 Sep 2026 09:47:22 +0200
-Message-ID: <20260915074722.27533-1-marek@wesolowski.eu.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <81955f5b-ee97-4856-bb77-bffc739a8f5d@163.com>
-References: <81955f5b-ee97-4856-bb77-bffc739a8f5d@163.com>
+	s=arc-20240116; t=1789461188; c=relaxed/simple;
+	bh=i7/7ap1qDbWwLmNiKmhnwLiuOjmEbfQukj8qbjMfwzQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=u5kmz9uArS3cwxR1i1HTEidrfm6/Rgl6h6nPaa2S/Ia0qqOFvxyKtW7n/9W1EfbshglO76BBWAvq/5iJ3tCQIO7TiJvkkATiccQzxoVZVlqGSdXi702NNwoA5paqtFKN7Rlr3Kr0N31k3/YcZhdoGcWDvkoIhEC2RVILtOX6wtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 0e3d7c0eb0e011f19a56ed5b684f684d-20260915
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:ed6baaae-3be3-479c-833c-994c6d4dbdff,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:8f5d9d8bb805b62a3d7119d99f07950e,BulkI
+	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
+	-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,O
+	SA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 0e3d7c0eb0e011f19a56ed5b684f684d-20260915
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 997502701; Tue, 15 Sep 2026 16:32:58 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>
+Subject: [PATCH v13 0/7] ntfs: fix volume flag races and persist the recorded error state
+Date: Tue, 15 Sep 2026 16:32:45 +0800
+Message-Id: <20260915083252.812126-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-YourOrg-MailScanner-Information: Please contact the ISP for more information
-X-YourOrg-MailScanner-ID: 1x6NtB-003l8A-1P
-X-YourOrg-MailScanner: Found to be clean
-X-YourOrg-MailScanner-SpamCheck: 
-X-YourOrg-MailScanner-From: marek@wesolowski.eu.org
-X-Authenticated-Id: marek@wesolowski.eu.org
 
-ntfs_lookup_inode_by_name() copies PAGE_SIZE bytes from the index
-allocation mapping and applies MST fixups to that entire buffer before
-selecting the requested INDX block.
+Hi all,
 
-When PAGE_SIZE is larger than the NTFS index block size, the USA count
-belongs to the smaller INDX block. post_read_mst_fixup() therefore treats
-the PAGE_SIZE call as not applicable and leaves the update sequence words
-in place. A directory entry crossing a sector boundary can then be returned
-by readdir but missed by lookup.
+The fs/ntfs runtime metadata-corruption paths only record the in-memory
+NVolErrors() flag, and the dirty-bit persistence used to race with
+ntfs_sync_fs(): a volume could end up with a clean on-disk dirty flag
+despite modification or recorded corruption, so chkdsk would not run on
+the next mount.  This series fixes that.
 
-Select the INDX block first, apply the fixup using its actual block size,
-and propagate fixup failures before validating the block. Report fixup
-failures through ntfs_error() so the configured errors= policy is applied.
+   1/6 makes the volume flag read-modify-write atomic under the
+      $Volume mrec_lock;
+   2/6 marks the volume dirty unconditionally on metadata changes,
+      dropping the racy caller-side checks in file.c and namei.c;
+   3/6 derives the on-disk dirty bit from the recorded error state at
+      the persistence points (sync_fs, remount-ro, put_super) and never
+      writes a hibernated volume;
+   4/6 persists the dirty state after the final put_super() commits so
+      late errors cannot unmount clean;
+   5/6 stops ntfs_sync_fs() from clearing VOLUME_IS_DIRTY: the clearing
+      moves to the quiescent transitions, a recorded error state is
+      still persisted at sync time, and sync now reports writeback and
+      flush errors instead of discarding them;
+   6/6 checks the dirty-state commit on remount and unmount.
+   7/7 ntfs: fail remount on sync errors and keep the dirty bit on
+      SB_FORCE
 
-Return -EIO when post_read_mst_fixup() detects an incomplete multi sector
-transfer, since this indicates an on-disk metadata integrity error.
+Changes in this revision, from the review:
 
-Reproduced on arm64 with 16 KiB pages and 4 KiB NTFS index blocks. The
-affected entry was visible in readdir but stat returned ENOENT. Both exact
-and case-insensitive lookup succeed after this change.
+  - 5/6: with the clearing gone from the sync path, a recorded error
+    state is persisted without ever clearing the bit, and
+    sync_blockdev() and blkdev_issue_flush() are both called with the
+    first error returned.
 
-Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-Signed-off-by: Marek Wesołowski <marek@wesolowski.eu.org>
----
-Changes in v3:
-- Rebased onto the current kernel.org ntfs-next branch at 65829d51fa81.
-- Report MST fixup failures through ntfs_error() so the configured
-  errors= policy is applied.
+  - The IOCB_NOWAIT behavior and the per-operation $Volume mrec_lock
+    acquisition are outside the scope of this series.  The series keeps
+    the unconditional ntfs_set_volume_flags() call to preserve the
+    ordering that marks the volume dirty before the metadata
+    modification; a RWF_NOWAIT write still blocks in the marking when
+    the volume looks clean, as it already did on the base.  The
+    non-blocking and contended-lock handling (mutex_trylock, GFP_NOWAIT)
+    will be addressed in a separate follow-up patch.
 
-Changes in v2:
-- Rebased onto the kernel.org ntfs-next branch.
-- Updated the Fixes tag as requested.
+Hongling Zeng (4):
+  ntfs: fix volume flag update races
+  ntfs: set the volume dirty bit unconditionally on metadata changes
+  ntfs: sync the volume dirty bit with the recorded error state
+  ntfs: persist the dirty state after the final put_super() commits
 
- fs/ntfs/dir.c | 9 ++++++++-
- fs/ntfs/mst.c | 4 ++--
- 2 files changed, 10 insertions(+), 3 deletions(-)
+ fs/ntfs/file.c   |  20 ++---
+ fs/ntfs/namei.c  |  24 ++----
+ fs/ntfs/ntfs.h   |   1 -
+ fs/ntfs/super.c  | 191 ++++++++++++++++++++++++++++++++++++-----------
+ fs/ntfs/volume.h |   4 +
+ 5 files changed, 171 insertions(+), 69 deletions(-)
 
-diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
-index 2d594cb..af2f648 100644
---- a/fs/ntfs/dir.c
-+++ b/fs/ntfs/dir.c
-@@ -331,7 +331,6 @@ descend_into_child_node:
- 	}
- 
- 	memcpy_from_folio(kaddr, folio, 0, PAGE_SIZE);
--	post_read_mst_fixup((struct ntfs_record *)kaddr, PAGE_SIZE);
- 	folio_unlock(folio);
- 	folio_put(folio);
- fast_descend_into_child_node:
-@@ -352,6 +351,14 @@ fast_descend_into_child_node:
- 			   vcn, dir_ni->mft_no);
- 		goto unm_err_out;
- 	}
-+	err = post_read_mst_fixup((struct ntfs_record *)ia,
-+				  dir_ni->itype.index.block_size);
-+	if (err) {
-+		ntfs_error(sb,
-+			   "MST fixup failed for index block vcn %lld in directory inode 0x%llx.",
-+			   vcn, dir_ni->mft_no);
-+		goto unm_err_out;
-+	}
- 	err = ntfs_index_block_inconsistent(vol, ia,
- 					    dir_ni->itype.index.block_size,
- 					    vcn, COLLATION_FILE_NAME,
-diff --git a/fs/ntfs/mst.c b/fs/ntfs/mst.c
-index 7f9faad..cc63634 100644
---- a/fs/ntfs/mst.c
-+++ b/fs/ntfs/mst.c
-@@ -19,7 +19,7 @@
-  * magic of the ntfs record header being processed with "BAAD" (in memory only!)
-  * and abort processing.
-  *
-- * Return 0 on success and -EINVAL on error ("BAAD" magic will be present).
-+ * Return 0 on success and -EIO on error ("BAAD" magic will be present).
-  *
-  * NOTE: We consider the absence / invalidity of an update sequence array to
-  * mean that the structure is not protected at all and hence doesn't need to
-@@ -71,7 +71,7 @@ int post_read_mst_fixup(struct ntfs_record *b, const u32 size)
- 			 * Note that magic_BAAD is already converted to le32.
- 			 */
- 			b->magic = magic_BAAD;
--			return -EINVAL;
-+			return -EIO;
- 		}
- 		data_pos += NTFS_BLOCK_SIZE / sizeof(u16);
- 	}
-
-base-commit: 65829d51fa811ebcbf082c1e5d0cbecad2f9a836
 -- 
-2.47.3
+2.25.1
+
