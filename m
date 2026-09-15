@@ -1,84 +1,78 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893C43630B3
-	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 23:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C9A3168E6
+	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 01:08:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789429237; cv=none; b=PVcof0hidwjNeilNWYr8NCpKyIbh4Qr+GpsM4KrpUPW8c+Qec8x7plmWm4gw7mjCc7WzgVe8U59cCfGiA+d1r3ZeahdhAQoEbC5xonmukh9QmP1Rp7QGrXQZhLs/RqM0ApVWPQ52ywHJh8zAsNzVrCZiIgJsmTR4SuJx+4+V4HA=
+	t=1789434506; cv=none; b=Z9x5+bGDgh5dHsRvNF0ye5csw8xKKWlv8sO7V8HnCNCPRkcpRvEem3E+5oxRXSvMfCWnmqpAgvOzFbUo7uxGAxcf5F5EPULvWK1Y1mtG7fJleshrOtZ5RwQcslNR/O4GwyH4kUDfU4pm2AhZQjcpcKeVircq+asYiBTlubN3Ykk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789429237; c=relaxed/simple;
-	bh=mQA10aYsOEP8iIaXuNBGBc5gLNsFdb0tp4I0tLQ4MRs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gyfe86W/3OhMoD1A9dWmXYcZPXirsXZizVmrE/kHV0OXMZiBmIR7Z+dhynC1xNQVITPkROtDrcdhAgKDguelzBKuQQWJD7pjfGOKhPpQZQxKcMje1RKKFaH+Jx8w2N2FbcoSc82sUlRyuI7tZpvWM/dyOkxEEvmKbe/X7SnAHrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M27W9tWr; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1789434506; c=relaxed/simple;
+	bh=3Tt86Q/NpMlOsDp9916VWkURqNPqTTY/kDBFF4LcTNU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=uts4miwaUcyol16O7lHIc9LqsFrZLWfZ4ROMSnqCggQiBHqDav3ca5yoZJIk8/4xSu2XmuLFxbFdGJPI3uoxVK/NSVBCEjUoYLZ7pHxKUkbLARU3rridKy1xuu9paOT1uAIbVtgWvq5/9MQEK+w3koR2pAIbYK2odW3IyOHrjeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=baegioPv; arc=none smtp.client-ip=220.197.31.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M27W9tWr"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 211321F00893
-	for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 23:40:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789429236;
-	bh=liBqBbhKk9zqZy2dq2M0aeZH+K42pgabEGh7x8JOI7o=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=M27W9tWrGrMsDjOoDwe8BB5t8UlGDSX0yu0m5C32qoIH0gC/Acj9c9I8uGi/QuIzG
-	 Opa0mFYaXxbSaG/cKAj1ueMD95CJh3R2kJwGZS67OaZmKvTJNQ3u7tIQiWbjYRHL9W
-	 Nb2YrM0Y4yUg7y2Ahhf6ZO5z4hKfIxCyoBM9zstUoX10OuoPNMxoAgDlo+bB315HDS
-	 /7GQyw9EoMl2SmOn2EOLw/14Z4lB2g7K3SaT2/zYq1e6D+ue2oiiTbw9v2TcngLari
-	 OL6gfKosJBPuE6xR/iUFBxds5tW2Q0b++J4WcGZ1vhiCKbgb6h3evZ9AYPM2PIRrB0
-	 Dfi0xfFEUu2PA==
-Received: by mail-yx2-f12.google.com with SMTP id 00721157ae682-85d43da99e9so21642047b3.0
-        for <ntfs@lists.linux.dev>; Mon, 14 Sep 2026 16:40:36 -0700 (PDT)
-X-Gm-Message-State: AFuF++kLBp9fDcRABxfOYjMHdjJCEuKYJbWX6PxkGU84pV9GStprGwZJ
-	5ACV2vfp5eHPRji4checnHKi75KnnvwXsSFy6SUzjKzWifTfJ8bKbJtwLQpPYqsZx8CwnNiaVr9
-	VUPsqeNdFG56mzbaq5+V142xMXMePYfs=
-X-Received: by 2002:a05:690c:397:b0:85a:89f3:f53 with SMTP id
- 00721157ae682-88d2068cf44mr15259417b3.24.1789429234169; Mon, 14 Sep 2026
- 16:40:34 -0700 (PDT)
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="baegioPv"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=3Tt86Q/NpMlOsDp9916VWkURqNPqTTY/kDBFF4LcTNU=; b=b
+	aegioPvrCuh4QYCmrJjFuS4y55Nv565CR0BDDQbY+nqLt1GposUKlGATAu3U+DMy
+	5q/Bst2GJz1UI9hv9jjtPH+N+/+FYpQJcrhrpkdsR0QDPSntQ1d/c+gn1QU7ynNO
+	BMwPLObRXYDXkfDAHc83QcH27B1DkrCcUiUJA0ED4M=
+Date: Tue, 15 Sep 2026 09:05:41 +0800 (CST)
+From: dd  <zhongling0719@126.com>
+To: "Namjae Jeon" <linkinjeon@kernel.org>
+Cc: "Hongling Zeng" <zenghongling@kylinos.cn>, hyc.lee@gmail.com,
+	ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re:Re: [PATCH] ntfs: mount hibernated volumes read-only regardless
+ of errors=
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260511(2e539873) Copyright (c) 2002-2026 www.mailtech.cn 126com
+In-Reply-To: <CAKYAXd9EFNkofkj1tEg1vs5+1ohs1exYx6mys78X8852x8w6Yg@mail.gmail.com>
+References: <20260914034202.52011-1-zenghongling@kylinos.cn>
+ <CAKYAXd9EFNkofkj1tEg1vs5+1ohs1exYx6mys78X8852x8w6Yg@mail.gmail.com>
+X-NTES-SC: AL_Qu2TC/iYu0sv5yKfbOkWk00RgOk9WsG1vfQi24NQP500ly728SsKQVxoP37pze6IFy6zkCWzdid8y9xQVLVEVZqwQ+uP74z4sdUYKtVXqNu0
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260915-up-generic650-v1-1-d98825ead540@gmail.com>
-In-Reply-To: <20260915-up-generic650-v1-1-d98825ead540@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Tue, 15 Sep 2026 08:40:20 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd-gtdztQPov0JhTmA6f7=zoAqeNWR65LKRkrT1SLQ+8EA@mail.gmail.com>
-X-Gm-Features: AcwNN1VZXXqBWE-BRBh9wu8LqploVG2Isu9AaALG8Jkgx5cPKMOEMSdHDLHfdyg
-Message-ID: <CAKYAXd-gtdztQPov0JhTmA6f7=zoAqeNWR65LKRkrT1SLQ+8EA@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: avoid truncate and writeback deadlock
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-ID: <5d8908a0.a55.1a0a29927aa.Coremail.zhongling0719@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:dikvCgD3H5rlmahq_zpAAA--.55880W
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrgVkNWqomeVBpwAA3i
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Tue, Sep 15, 2026 at 12:19=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> w=
-rote:
->
-> ntfs_non_resident_attr_shrink() drops page-cache folios after freeing
-> clusters and truncating the runlist. The VFS truncate path calls it with
-> mrec_lock held. A folio writeback can need the same lock to resolve its
-> iomap mapping, so truncate can wait for writeback while writeback waits
-> for mrec_lock.
->
-> A hung-task call stack:
->
->     truncate: mrec_lock -> truncate_inode_pages() -> folio lock/writeback
->
->     writeback: folio lock/writeback -> ntfs_write_iomap_begin() ->
->                mrec_lock
->
-> ntfs_setattr_size() already calls truncate_setsize() before
-> ntfs_truncate_vfs() acquires mrec_lock. Reuse that page-cache truncation
-> in the VFS path and skip the duplicate truncation under mrec_lock. Keep
-> the cleanup for internal attribute callers, which do not call
-> truncate_setsize(). This avoids synchronously flushing the whole
-> discarded tail while preserving page-cache correctness.
->
-> Fixes: 4e646ecd4475 ("ntfs: drop stale page-cache when shrinking a non-re=
-sident attr")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
-Applied it to #ntfs-next.
-Thanks!
+CgrlnKggMjAyNi0wOS0xNCAyMTo1OToxMO+8jCJOYW1qYWUgSmVvbiIgPGxpbmtpbmplb25Aa2Vy
+bmVsLm9yZz4g5YaZ6YGT77yaCj5PbiBNb24sIFNlcCAxNCwgMjAyNiBhdCAxMjo0MuKAr1BNIEhv
+bmdsaW5nIFplbmcgPHplbmdob25nbGluZ0BreWxpbm9zLmNuPiB3cm90ZToKPj4KPj4gVGhlIGhp
+YmVybmF0aW9uIGNoZWNrIGluIGxvYWRfc3lzdGVtX2ZpbGVzKCkgb25seSBjb252ZXJ0cyB0aGUK
+Pj4gc3VwZXJibG9jayB0byByZWFkLW9ubHkgdW5kZXIgZXJyb3JzPXJlbW91bnQtcm8uICBXaXRo
+IHRoZSBkZWZhdWx0Cj4+IGVycm9ycz1jb250aW51ZSAoYW5kIHdpdGggZXJyb3JzPXBhbmljKSwg
+YSBoaWJlcm5hdGVkIHZvbHVtZSBpcwo+PiBtb3VudGVkIHJlYWQtd3JpdGUgYW5kIHRoZSBtb3Vu
+dC10aW1lICRMb2dGaWxlIGVtcHR5aW5nIHdyaXRlcyB0byBpdCwKPj4gYWx0aG91Z2ggYSBoaWJl
+cm5hdGVkIHZvbHVtZSBtdXN0IG5vdCBiZSB3cml0dGVuIHRvIGF0IGFsbC4KPj4KPj4gRHJvcCB0
+aGUgb25fZXJyb3JzIHRlcm0gc28gdGhhdCBhIGhpYmVybmF0ZWQgdm9sdW1lLCBvciBhIHZvbHVt
+ZSB3aG9zZQo+PiBoaWJlcm5hdGlvbiBzdGF0ZSBjYW5ub3QgYmUgZGV0ZXJtaW5lZCwgYWx3YXlz
+IG1vdW50cyByZWFkLW9ubHkuCj4+IE5Wb2xFcnJvcnMoKSBpcyBzdGlsbCByZWNvcmRlZCwgc28g
+bnRmc19yZWNvbmZpZ3VyZSgpIGtlZXBzIHJlZnVzaW5nCj4+IHJlbW91bnRzIHRvIHJlYWQtd3Jp
+dGUsIGFuZCB0aGUgJExvZ0ZpbGUgZW1wdHlpbmcgaXMgc2tpcHBlZCBieSBpdHMKPj4gIXNiX3Jk
+b25seSgpIGNoZWNrLgo+Y2hlY2tfd2luZG93c19oaWJlcm5hdGlvbl9zdGF0dXMoKSBjYWxscyBu
+dGZzX2Vycm9yKCkgYmVmb3JlIFNCX1JET05MWQo+aXMgc2V0LiBXaXRoIGVycm9ycz1wYW5pYywg
+dGhpcyBwYW5pY3MgYmVmb3JlIHJlYWNoaW5nIHRoZSBuZXcKPnJlYWQtb25seSBmYWxsYmFjay4u
+LgogIFRoYW5rcyBmb3IgY2F0Y2hpbmcgdGhpcy4gUmlnaHQgLS0gdGhvc2UgZXJyb3IgcGF0aHMg
+Y2FsbCBudGZzX2Vycm9yKCkKICBiZWZvcmUgU0JfUkRPTkxZIGlzIHNldCwgc28gZXJyb3JzPXBh
+bmljIGNhbiBmaXJlIGluc2lkZQogIGNoZWNrX3dpbmRvd3NfaGliZXJuYXRpb25fc3RhdHVzKCku
+CgogIEkgd2lsbCByZW1vdmUgdGhlIGludGVybmFsIG50ZnNfZXJyb3IoKSBjYWxscyBpbiB2Mjsg
+dGhlIGNhbGxlciBhbHJlYWR5CiAgcmVwb3J0cyAiRmFpbGVkIHRvIGRldGVybWluZSBpZiBXaW5k
+b3dzIGlzIGhpYmVybmF0ZWQuIiBmb3IgZXZlcnkKICBlcnIgPCAwIGNhc2UuIE5Wb2xFcnJvcnMo
+KSBpcyBzdGlsbCByZWNvcmRlZCwgc28gbnRmc19yZWNvbmZpZ3VyZSgpCiAga2VlcHMgcmVqZWN0
+aW5nIHJlbW91bnRzIHRvIHJlYWQtd3JpdGUuCgogIFRoYW5rcywKICBIb25nbGluZwoK
