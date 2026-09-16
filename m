@@ -1,151 +1,170 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0AF34BEE44
-	for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 09:44:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789465479; cv=none; b=Skq9V/LB6qVYs3DpXONXHrvOFvbgbGKUU8QjVPubY1HK5/8kmRI3OfSVrqRUF8gvwCegsQqyMxrc9jwdTf1tJnr+S36UWogMEg9FVN6EMF4ofTuQtmS0aygCD4SODgC2lWqDc94YFwEJX7uSRxQtMCWECmSk482VrDiWIdY32pQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789465479; c=relaxed/simple;
-	bh=ZRUYkSO1sVmgPKy7vRmA2LLLgk4+SVyD2PaX3Z/T1Bc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dlnNi4dardmZ2v7sphx/40O95tHPgEpVwKHH4Yb6BvIeLTG4wt2/Ppvk9ydb9MRTqchCCJm8YzHs2lXFv0j+15erpJP6kcs8b9/XfBouDbKf8Q3XmA/DogymFA0S1yZPgN1aYCqlrNr2YoQKr4NY1m+KuEn5O3MPNBOnky8gXUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=P0ino6T/; arc=none smtp.client-ip=117.135.210.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66076372B50
+	for <ntfs@lists.linux.dev>; Wed, 16 Sep 2026 00:42:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.180
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1789519357; cv=pass; b=TjvvPRqIRFrC2Aguj1SsN5rNWvpPxzZdmgGW0k/XYF3r4a60Cjxw8GkGDN+gaVtaw9r06rGSueHBgcpeaKf3eFGng/z9e5ATPf2XoVCyoj9sBir9EtlPZ53ZO5Xo/Gc0x3Fh6z36OhciMxV5IPVhukY04T+dJagGJPUp8JFeaMg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1789519357; c=relaxed/simple;
+	bh=PbG364MPVENhjhJYeI43ydcf+vQglhNA+/tpam14g5c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jLhJfw+704PI0VeKpAjZn8xUNmu82ytXfYq2K4LlnXMCIdOmEjU9EHKVnErOTHt6BsoBR/3wPROp7x1atYYhT2ROSdOYmd3oVokomyjBdmeSeUUMnTzP96mMMF6oquqIb0Kh28AF+0BwJ6ueIOe3CR5akWIQz1yUzD3iQ5m0OdU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nAcb80fn; arc=pass smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="P0ino6T/"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=z7EHtk758Zec5kMDtkiPwaeDIuKMOBgxIrGj+6BkGcg=;
-	b=P0ino6T/W+U/bTAZ8DTJch2eKEDrS6tjdL4MzscWgg3Tl47QHBVbxQZClbe42z
-	RBUNsEvIg3VGZEus6BHy7L8DfEK5HtaGl//6fOC38Pg89vQ/I/KsjRUy+hpAvHx0
-	CPvFN/wxB3ykokZLfCm9OuQRAjqd0xOih0A78kUXufbsc=
-Received: from [IPV6:2409:8900:21a7:a33a:233e:9c3e:6224:4649] (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id PSgvCgAXu_92E6lqc6MPQQ--.17021S2;
-	Tue, 15 Sep 2026 17:44:22 +0800 (CST)
-Message-ID: <fd6194ed-a4c6-49ed-babf-28e4a8869d1f@163.com>
-Date: Tue, 15 Sep 2026 17:44:22 +0800
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nAcb80fn"
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-3a49a40209dso9322691fa.0
+        for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 17:42:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789519344; cv=none;
+        d=google.com; s=arc-20260327;
+        b=IE2e5qQYWRREQapLu2mL90uC87oHQNXhmMTB0kw1NsngayBLaHdNaZHaFaZIoolP1H
+         naSquuzVNMuOp9YBTyDmJU14QH8nxtfaMtqoehhyr3xgwz+qkwBmR3mWj1QbrwplZJAr
+         fPtvrMAAXEwceA5DERY0pFfr2gaks6NwBFS9Eic0uv7azuCygmwqKVyYIdXZW2I7Q/nF
+         9xavwQUX4DLrVRTzwhudRsG7gqCRpYsAkH8tMyosCMPVVoDpaDT+C97rkws60A2E6lis
+         ePV3RPvGbV/IE5hv0XD1y6y1fyU0qD6d52767mxuMP7emOACwpWWo6Yd4uyeQ+KhA9XQ
+         zd+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=cqDbGCTIpau7yhm3u68hmiwG3pOJLS1rBW2yPgr/yNE=;
+        fh=PM2Ak4Vz4H50WPziM7hyIHmvfcKxUyOih0rtoKrG8yc=;
+        b=lW04hsdPhG4TzkY5gztim6cPZsN/Cc9RUTBO90UMFkvtX98OZhvJRVQ/9Afz5SRIiZ
+         kiRYHH1EuiIVuQ8x4wakf7v05CGbGCTdvQMSiERgKSHkfurIz45EzHbBZ0qUomAVxyky
+         hAzF/BIZnch8/+Spl8JvxSL5TruTeAtErA+dZPrY+0yl8TCo0fQyKBmkcCEIXtyu/HNA
+         QlcRfIBays/MYP8dbLLANMtMcYm1MTNqH5+Dhh/vq4FDEoJwb0YAnwwPd42WSEwEGg1M
+         6ZlB7mYH9aVykUXKYsWiTvaild9Nz6faBd1zhnC3l9v1zzsa98hX/9IR/u5eBA3qKSxs
+         PiGQ==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789519344; x=1790124144; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=cqDbGCTIpau7yhm3u68hmiwG3pOJLS1rBW2yPgr/yNE=;
+        b=nAcb80fnA9fod2xhv7B9F2nkE3e76kSmxOn5geHmlBmVQWmlU55TsdPgOXts5BP+sP
+         5Rw9E1oyR3C8rWGkSBs4re6wAtGHD6lSRQV0PRnkI4UxMwwQWJE1vtzxcCJ10gghxN+N
+         fambCXpy5/eMWJC6fhinrymgi4wESNqDk73X4xqavXXqYQx6eflHVRl/xQoqPEcxtyRB
+         cR/pTVJmVpXFTISuVXyjmJuxJu0Q6ucbpz8asYdC5gMc+/j32dXZQzBV91yYtzjnOVVT
+         Gr5VARw0CoOPg0NHQbQszCIyqjrEij5L36mh3hswbKhdWvbHw9GKnxD6HeI59SJNzsJh
+         hiKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789519344; x=1790124144;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=cqDbGCTIpau7yhm3u68hmiwG3pOJLS1rBW2yPgr/yNE=;
+        b=qExcAyfCsYc1HMGjONkl4o2n8M7eUhG8taNV4ZPmjNUhWUBJUt7suurdRuZdficLDu
+         Ffo2PjaRKp9wqwC9Al/DOz21RALFp+cCHdS2CIgXmfpf7bJBMwfIQODZEs7PMjr8C1Wq
+         sWfRdosAGtqndC28qwBTZYxUEhBXSxXq+v5yHcWEZXDB2fqm+lFNKQdorn2h8GGFqilX
+         7KJoiMMkIdFq8JVQ5AF4KleG2jNgdhS8ywGBFHnFegK3ejXQpVydFglMDnpXIvSGGafl
+         tPnYslgdjK4yArafIfx+N5k4/u16qqFMKaiLA7RepVv+3/PY8w247gcZSJrBEMORd6QN
+         cbvA==
+X-Forwarded-Encrypted: i=1; AKwUvBwpnV0rt1sz7eIs5AjFNS1w4A0+mdY5tbf1XUtRyGb2dRgAp1tdlbCO0q5HdmzGE4SIi+PV@lists.linux.dev
+X-Gm-Message-State: AFuF++m+6sNedMGuUqzHLdLYQuQwyyvWpAhzjCPx+9Ob/pG7S2e/qeqs
+	DnhfM9ANNW1fsOKXGDFmREum1wihvlrVqmbcEgypeR30L1VcH0BVicj7mq72gz8e/DL2Jy7aBc2
+	YLMRvULTy0i5AGN/yt80vLJZpsp0Qv+Q=
+X-Gm-Gg: AYBFou1eLlmbQS4kpMIHAXMz+Te1ZTuBgfQDiQ59w6YVWxWVzv8merMxDQFUahL5Q1u
+	Qo1Op+cvYFk7aH1+0o1zmy99nzMLSLr0i7Tg1Aj9yYGOJoLj+vlEuTPWq8+TepCelbaxQ4jAKrU
+	V+n6XJkTTaeVR4cdxtilhfqPhdCNDBJc4amxqSjjHDBux0eFfl0wnG5ekgWybAbvYOb17NNZGls
+	Y/jmZBIUm/ifTtIhTwnVpA3wYXeYg//eRv2eXjxzgxwwfO3TXwn3cJm2Vsm4UnFMNYrQpnibh/t
+	rAMAiWn5TwZwoLybDKH/LEN15P2rWzgiKJbTed76jWeWNmE50Pd09tU=
+X-Received: by 2002:a05:6512:3a95:b0:5b5:e8d6:8870 with SMTP id
+ 2adb3069b0e04-5b8b2a4e2c0mr1448356e87.1.1789519343344; Tue, 15 Sep 2026
+ 17:42:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ntfs: fix directory lookup on large-page systems
-To: =?UTF-8?Q?Marek_Weso=C5=82owski?= <marek@wesolowski.eu.org>,
- ntfs@lists.linux.dev
-Cc: Hyunchul Lee <hyc.lee@gmail.com>, Namjae Jeon <linkinjeon@kernel.org>
-References: <81955f5b-ee97-4856-bb77-bffc739a8f5d@163.com>
- <20260915074722.27533-1-marek@wesolowski.eu.org>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260915074722.27533-1-marek@wesolowski.eu.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PSgvCgAXu_92E6lqc6MPQQ--.17021S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxGrWktryxZF4kKr17Cr17Wrg_yoW5Kr4fpF
-	sxuanakwsrt342grsFgF42qayxu34xCF47KrZ8Jw1fJw4fKwn7ur1Utw1rXry8tFZ8A34D
-	X3WxWFWDua4UZrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U038OUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRfmsWqpE3fGTgAA3u
+References: <20260915083252.812126-1-zenghongling@kylinos.cn>
+In-Reply-To: <20260915083252.812126-1-zenghongling@kylinos.cn>
+From: Hyunchul Lee <hyc.lee@gmail.com>
+Date: Wed, 16 Sep 2026 09:42:10 +0900
+X-Gm-Features: AcwNN1WK_IUeViOVCbm_pYd3k-reY-hb0BsKmeEqIXZ3EebRYR8Fe7soTkcW8yM
+Message-ID: <CANFS6bZAR-=acwiqtM8iWGzCHaTTKquKMdqbDfS6ebFGxa6Uag@mail.gmail.com>
+Subject: Re: [PATCH v13 0/7] ntfs: fix volume flag races and persist the
+ recorded error state
+To: Hongling Zeng <zenghongling@kylinos.cn>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	zhongling0719@126.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This patch set looks good to me.
+
+For whole series:
+
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+
+2026=EB=85=84 9=EC=9B=94 15=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=84 5:33, H=
+ongling Zeng <zenghongling@kylinos.cn>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1=
+:
+>
+> Hi all,
+>
+> The fs/ntfs runtime metadata-corruption paths only record the in-memory
+> NVolErrors() flag, and the dirty-bit persistence used to race with
+> ntfs_sync_fs(): a volume could end up with a clean on-disk dirty flag
+> despite modification or recorded corruption, so chkdsk would not run on
+> the next mount.  This series fixes that.
+>
+>    1/6 makes the volume flag read-modify-write atomic under the
+>       $Volume mrec_lock;
+>    2/6 marks the volume dirty unconditionally on metadata changes,
+>       dropping the racy caller-side checks in file.c and namei.c;
+>    3/6 derives the on-disk dirty bit from the recorded error state at
+>       the persistence points (sync_fs, remount-ro, put_super) and never
+>       writes a hibernated volume;
+>    4/6 persists the dirty state after the final put_super() commits so
+>       late errors cannot unmount clean;
+>    5/6 stops ntfs_sync_fs() from clearing VOLUME_IS_DIRTY: the clearing
+>       moves to the quiescent transitions, a recorded error state is
+>       still persisted at sync time, and sync now reports writeback and
+>       flush errors instead of discarding them;
+>    6/6 checks the dirty-state commit on remount and unmount.
+>    7/7 ntfs: fail remount on sync errors and keep the dirty bit on
+>       SB_FORCE
+>
+> Changes in this revision, from the review:
+>
+>   - 5/6: with the clearing gone from the sync path, a recorded error
+>     state is persisted without ever clearing the bit, and
+>     sync_blockdev() and blkdev_issue_flush() are both called with the
+>     first error returned.
+>
+>   - The IOCB_NOWAIT behavior and the per-operation $Volume mrec_lock
+>     acquisition are outside the scope of this series.  The series keeps
+>     the unconditional ntfs_set_volume_flags() call to preserve the
+>     ordering that marks the volume dirty before the metadata
+>     modification; a RWF_NOWAIT write still blocks in the marking when
+>     the volume looks clean, as it already did on the base.  The
+>     non-blocking and contended-lock handling (mutex_trylock, GFP_NOWAIT)
+>     will be addressed in a separate follow-up patch.
+>
+> Hongling Zeng (4):
+>   ntfs: fix volume flag update races
+>   ntfs: set the volume dirty bit unconditionally on metadata changes
+>   ntfs: sync the volume dirty bit with the recorded error state
+>   ntfs: persist the dirty state after the final put_super() commits
+>
+>  fs/ntfs/file.c   |  20 ++---
+>  fs/ntfs/namei.c  |  24 ++----
+>  fs/ntfs/ntfs.h   |   1 -
+>  fs/ntfs/super.c  | 191 ++++++++++++++++++++++++++++++++++++-----------
+>  fs/ntfs/volume.h |   4 +
+>  5 files changed, 171 insertions(+), 69 deletions(-)
+>
+> --
+> 2.25.1
+>
 
 
-
-在 2026/9/15 15:47, Marek Wesołowski 写道:
-> ntfs_lookup_inode_by_name() copies PAGE_SIZE bytes from the index
-> allocation mapping and applies MST fixups to that entire buffer before
-> selecting the requested INDX block.
-> 
-> When PAGE_SIZE is larger than the NTFS index block size, the USA count
-> belongs to the smaller INDX block. post_read_mst_fixup() therefore treats
-> the PAGE_SIZE call as not applicable and leaves the update sequence words
-> in place. A directory entry crossing a sector boundary can then be returned
-> by readdir but missed by lookup.
-> 
-> Select the INDX block first, apply the fixup using its actual block size,
-> and propagate fixup failures before validating the block. Report fixup
-> failures through ntfs_error() so the configured errors= policy is applied.
-> 
-> Return -EIO when post_read_mst_fixup() detects an incomplete multi sector
-> transfer, since this indicates an on-disk metadata integrity error.
-> 
-> Reproduced on arm64 with 16 KiB pages and 4 KiB NTFS index blocks. The
-> affected entry was visible in readdir but stat returned ENOENT. Both exact
-> and case-insensitive lookup succeed after this change.
-> 
-> Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-> Signed-off-by: Marek Wesołowski <marek@wesolowski.eu.org>
-> ---
-> Changes in v3:
-> - Rebased onto the current kernel.org ntfs-next branch at 65829d51fa81.
-> - Report MST fixup failures through ntfs_error() so the configured
->    errors= policy is applied.
-> 
-> Changes in v2:
-> - Rebased onto the kernel.org ntfs-next branch.
-> - Updated the Fixes tag as requested.
-> 
->   fs/ntfs/dir.c | 9 ++++++++-
->   fs/ntfs/mst.c | 4 ++--
->   2 files changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
-> index 2d594cb..af2f648 100644
-> --- a/fs/ntfs/dir.c
-> +++ b/fs/ntfs/dir.c
-> @@ -331,7 +331,6 @@ descend_into_child_node:
->   	}
->   
->   	memcpy_from_folio(kaddr, folio, 0, PAGE_SIZE);
-> -	post_read_mst_fixup((struct ntfs_record *)kaddr, PAGE_SIZE);
->   	folio_unlock(folio);
->   	folio_put(folio);
->   fast_descend_into_child_node:
-> @@ -352,6 +351,14 @@ fast_descend_into_child_node:
->   			   vcn, dir_ni->mft_no);
->   		goto unm_err_out;
->   	}
-> +	err = post_read_mst_fixup((struct ntfs_record *)ia,
-> +				  dir_ni->itype.index.block_size);
-> +	if (err) {
-> +		ntfs_error(sb,
-> +			   "MST fixup failed for index block vcn %lld in directory inode 0x%llx.",
-> +			   vcn, dir_ni->mft_no);
-> +		goto unm_err_out;
-> +	}
->   	err = ntfs_index_block_inconsistent(vol, ia,
->   					    dir_ni->itype.index.block_size,
->   					    vcn, COLLATION_FILE_NAME,
-> diff --git a/fs/ntfs/mst.c b/fs/ntfs/mst.c
-> index 7f9faad..cc63634 100644
-> --- a/fs/ntfs/mst.c
-> +++ b/fs/ntfs/mst.c
-> @@ -19,7 +19,7 @@
->    * magic of the ntfs record header being processed with "BAAD" (in memory only!)
->    * and abort processing.
->    *
-> - * Return 0 on success and -EINVAL on error ("BAAD" magic will be present).
-> + * Return 0 on success and -EIO on error ("BAAD" magic will be present).
->    *
->    * NOTE: We consider the absence / invalidity of an update sequence array to
->    * mean that the structure is not protected at all and hence doesn't need to
-> @@ -71,7 +71,7 @@ int post_read_mst_fixup(struct ntfs_record *b, const u32 size)
->   			 * Note that magic_BAAD is already converted to le32.
->   			 */
->   			b->magic = magic_BAAD;
-> -			return -EINVAL;
-> +			return -EIO;
->   		}
->   		data_pos += NTFS_BLOCK_SIZE / sizeof(u16);
->   	}
-> 
-> base-commit: 65829d51fa811ebcbf082c1e5d0cbecad2f9a836
-
-
-Looks good to me.
-
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-
+--=20
+Thanks,
+Hyunchul
