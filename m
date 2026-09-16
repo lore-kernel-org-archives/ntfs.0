@@ -1,72 +1,72 @@
-Received: from mail-pj2-f12.google.com (mail-pj2-f12.google.com [74.125.227.140])
+Received: from mail-pj2-f13.google.com (mail-pj2-f13.google.com [74.125.227.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4922DDF6C
-	for <ntfs@lists.linux.dev>; Wed, 16 Sep 2026 01:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.140
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0177DF6C
+	for <ntfs@lists.linux.dev>; Wed, 16 Sep 2026 01:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789520650; cv=none; b=Edxg61X6AnmV399fW5K6B8+J+XM5KDYnOgsRE+BeitxpABZ+qZkRKD1y0LW/fGwwtaskt+OrMHp0Gcwb+b02RIJelebslIZEvRc6M65yFd5pYQQgS4sWKx1oL4unC9ufhv7T2sAiHfYVJpZscMa9yegqifZhqTPeEPsRnyYyI6I=
+	t=1789520652; cv=none; b=Bu+6oTDZHSnHf45D+3kcQAsEEmSWw7du0zs8KZ/SPK1g9e7X68LCeM0N6+mATnMWcUugNcnoAh7SeUwml03qPRMBhj4d9n0T/A2cITEA4uZ4aBoc2XC6eTFiCdXwV1HaCrYfipuTE12/FfA/CaDUrnH4RNUCNt6TW3/iaggUaTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789520650; c=relaxed/simple;
-	bh=UkXwDzkT/wQG7OMUrFXV3fZm2SjRZv67S0OHydtLSgY=;
+	s=arc-20240116; t=1789520652; c=relaxed/simple;
+	bh=mB/EBMg6kiq6v7Dg0fmBPd6Z46drhNpsR5NhnwsFCTM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PtqDSp3Ob+l41njXuLLXTaflRB3j+UunWDQqbchoRLseLSaRL7ygrs9nxhL3fwnrblrQ78+asXI1skmBMBN2CwBW+EFkMtFoxOmItj2Esr3a1YzSoi4H+sU7no853f0x/KPlsyQp54O/lJ6zALPdvig4MXnFCm+b2/AyJSOpl/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R4pfKwSo; arc=none smtp.client-ip=74.125.227.140
+	 MIME-Version:Content-Type; b=rb0eIm9bfMqTl4RbDKVKVIKslOPxHvVybcWLQctSI0uyFoG7WRVxcqk4g77V6pi/8+HmGsYyufOgul0XxRDr5H2/4S7Jj/jOMJgG4x9lXCzL9+GOdWq6+XhU+ia7xB8x0iRbgenVDffz6dVLdo2JWr9WthzPXM51mriyfZiNj3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M5siOMaF; arc=none smtp.client-ip=74.125.227.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R4pfKwSo"
-Received: by mail-pj2-f12.google.com with SMTP id d9443c01a7336-2d747eb79f6so2576665ad.0
-        for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 18:04:09 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M5siOMaF"
+Received: by mail-pj2-f13.google.com with SMTP id 98e67ed59e1d1-396cccbba91so252913a91.1
+        for <ntfs@lists.linux.dev>; Tue, 15 Sep 2026 18:04:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789520648; x=1790125448; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1789520651; x=1790125451; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=eFRZ+VcH3lNsAENm0BrQXOR44hjjlhknow9YekmfEOk=;
-        b=R4pfKwSoppLbkKnBEypwB/ThUy4o4QwCL6Q/Rn3Hk3axOyMvSOilyfEfZtGQrbSWLr
-         TJ9bp0h6jJg9mG3tC7D+XSzjWSnl/RwuZ642TwoGCSXxn9rj7MT9yMsxrdLSvj0ejQJG
-         0wiVMhRkXF26vJsLvMtSkCMRvywPg2t2gclfgV3IxfiuwijUZsKc6KEEZo37Tjn8dEuf
-         ufcj+3JK99iB8I4ClgL3PFLFOU/4J5r/n/vIjg58m8zP3pkJWSCxuyWzpQrbWNB1eIQu
-         NH8Iv/Pdgiel7iREMQW2AV0/gRCTNNZyXnNXoHdeXX4Z40O+WkM0OqXNhYk3xUoq5l+n
-         I5gg==
+        bh=mblwnipFVZSuGuasA1Nq2GJAf9Ibd6m6JONC1FfkUxc=;
+        b=M5siOMaFK/8keupSWnLe+GOOVQ0w6cpHmcR+5jfeEJmGrIOi2XQIf1Yyfau7TMDg/K
+         2NUgAsHCzySmVuxgpMAyWk2u3gsQrEjcb9d6OtwCsjZ4B30614zSai2W3rN79ZAahBVY
+         xqCUTonaOuTx8xVtiSF8r9FoY3Fek3EtgU8WCNfjehtrSnOOCa8DyLcj1przmmOZH8kc
+         9cmSbkk0nEN2AS832vJxHsJTBNyiEUmDvvWyWKpn/3PzvouGMMJSSBwrEhGfhUKym4lb
+         UlFdpYD6mpTk0+kyVo43xEAcuvp2f5v8/ty16rwS43M+UM4nKLCzFL3bNOEy7tUYRErb
+         GqEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789520648; x=1790125448;
+        d=1e100.net; s=20260707; t=1789520651; x=1790125451;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=eFRZ+VcH3lNsAENm0BrQXOR44hjjlhknow9YekmfEOk=;
-        b=x1KFQ3vCZqAbzW+Fz5nN5SErpO5zu/6TbYG3D67MH5N/C5XfWnbqezr7Pw1Z6xYS+H
-         +DqreRHBoOp6BxQ4DLiNIV0zaUEQ/pIdgJPk44li8Oj9TC1Hibkj0eM335JXxzbw/zp7
-         jYRsmsicKvaQpaX7uAoosUcO40yTQSinopEt6a9NP2Ihal+Meokqfp/Q7NroVdoZh/Mf
-         rc2m1T2KT8QJnEpn2PU+BxsyJR7ObzCcn0a6kUk1ZG3bLBi/jc2eFTC2r7hqWsAsvhwt
-         EPX0WbFUHTVIDG3dEUacHCsqsEXT1tzY+qvbp5ZFJlA9SitR7QY6WavZhpT+/5yJZiDv
-         L33g==
-X-Forwarded-Encrypted: i=1; AKwUvBx+76425A8Anw5TyDAbQ8KnjYpR8ssVQinf/x9irFlmpVqFndNF/CseVtl7xl16GQz0CH3L@lists.linux.dev
-X-Gm-Message-State: AFuF++nk09htnY/lnGTSy5jJUWkJwSKgwCjL4Pw1+qIkbX8KbszAxD4A
-	E65gIaIVhMuB63jJ1sXsJ+RCW2ryuwFTC1qQPPICZuO6YMyUXhjJUoAOY1RLrg==
-X-Gm-Gg: AYBFou1zvzk8aRTR12z/1vTyNZSAtb+gu1tUw760N/bnRg2WNzZjXh3B448uz9LUy+d
-	eB2MqtH0T0/IA2rh+x9tGzyUkF/YasQmiiBuVE46t1pR/YRlsNn+4zEhZqSWoC3CTZrwVN3TfBF
-	Dmi4YjsJiCyy4LWM85QPj6/AbBHyY3xMZQpfc8mVTBcZfp7YEI1VMb2gy898MndFS2p2oiCWM3s
-	7Ez6wnzx9boU7GoV9/4r+pG/44iS+CAxZ3kPBZWVVud4dk4dkbihHnQyvVywYQC4jd0qDyPRqGr
-	7mnRR7N6vsg9JnFBEFCJyOtfN3Y+yGvaMt+tPKM5TPGN18LKjT2cGc/vdMxcTyOTwbQlpAw4UAV
-	UPCBy9t694BdTmHaUie/ciBriTNYjQf/lQWZuI1281jzPeLyQCugN80L5sK9mY1wA0UKP1jOJeO
-	qPiJ28cseT9+RRLU2TCRx/Xy4geGgr3ulGNMP1JVbk+kz8AnpnGtBM4ECyUVYSii+pT1kMA46VC
-	1D5UBM=
-X-Received: by 2002:a17:903:22c2:b0:2d9:3083:a3ac with SMTP id d9443c01a7336-2dd8e52c3aamr10362805ad.15.1789520648525;
-        Tue, 15 Sep 2026 18:04:08 -0700 (PDT)
+        bh=mblwnipFVZSuGuasA1Nq2GJAf9Ibd6m6JONC1FfkUxc=;
+        b=dlHcQT137e+gIp5tTrxXhbgd78t3bThsPYg69ngphjenfIdf+9HkUD3+9YTiMARKM5
+         SqHdneKfrD07InDEngIAbRBoLB4hNnVeEOo6hv55WT+7l0pCjx3SHWukU1ACEHis7R+E
+         jbhsiInW76zz2MKIs2EbqFDUZZfM+OcBRna1OHkF+sKqFGOEio2IAQgredzoWOji6uRu
+         AVgLr/CF6hJTH5i/UNDWpDDVG8QJTCrXdes9O3BR/Hw0atE75DpoXen4BQPr9cYcDzZl
+         5CYtFzE0ewgBfxEm9/vi8PAJSWAV54q5Kgdxnu7rEY5mOO+h1lK+9OsfB7hxYGh7PO49
+         /ZFQ==
+X-Forwarded-Encrypted: i=1; AKwUvBw+IRsjMAfcosmBFaZ1ZYNBawU7iGIMnfUj1zTmHFx5/siOEHTFjC/N8jpqj8LaDyNgKdjm@lists.linux.dev
+X-Gm-Message-State: AFuF++kkO+d1xnUeVa5ErK8z+uc4Skkq1PMcTp0KoeUWgUoj2gIz63uA
+	pcU2fWNBcVw9pw3Nm1lPnhPXRjuge6nVi/4inBNjBLAD00OtrFVMtm/G
+X-Gm-Gg: AYBFou0bxbrBkyKfQFRMlUPIvfysPTg0zLr0zwlgjjoLh2zPuF3e9vIduukHo+wN2FC
+	kL0CQKjKr33HKM99nlSijklv7ISOw8w049Ro+/ro1zp5oRWVc29xnHaVBeAZmePONiBkVvYhst8
+	zJn9zjNiY3OGyk493H0GK0vaRhQbPhGs9H1v4gg1XlEJVbs0VbWMBJ2fHXms54P5CC1lCMVV3Gn
+	PzXkuYsfqK/Q+NEHTbWAThr7d5AiuY6/W36hJSbov/P86gkCpcirL7z0SyL/UcGbT/2r4zP8Lc2
+	GtvTphjoHlvMVgg2ruH9BsFqohrV6+75kK/1jHkHhChHKX+Qyx1JueuYivQLHTB2SNFb9HUg2wV
+	r3zGs8tqcQBVfm0lfCaRlqus21pxIw9ZrxyXFLjnjYSxQSIU0VTniYEd8diNY7w7QwXoxyPiOnE
+	42vZx/FgPa0Mdr2d3Sa/btzGv5u+5uf0oc3W0PMZBlSjAonVQe59O6r1KNyhmLt6s+j2V4NEBfb
+	W4YiA==
+X-Received: by 2002:a17:90b:2645:b0:398:9be9:ab92 with SMTP id 98e67ed59e1d1-39e1e5777famr1481664a91.23.1789520650979;
+        Tue, 15 Sep 2026 18:04:10 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2dd89d8fff3sm2880995ad.8.2026.09.15.18.04.06
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2dd89d8fff3sm2880995ad.8.2026.09.15.18.04.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2026 18:04:07 -0700 (PDT)
+        Tue, 15 Sep 2026 18:04:10 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev
-Subject: [PATCH v4 08/10] ntfs: use sync flag for direct MFT writes
-Date: Wed, 16 Sep 2026 10:03:20 +0900
-Message-ID: <20260916-topic-4kn-lkml-v4-8-4f8a574ba3fb@gmail.com>
+Subject: [PATCH v4 09/10] ntfs: trigger page_mkwrite for native 4Kn size extension
+Date: Wed, 16 Sep 2026 10:03:21 +0900
+Message-ID: <20260916-topic-4kn-lkml-v4-9-4f8a574ba3fb@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260916-topic-4kn-lkml-v4-0-4f8a574ba3fb@gmail.com>
 References: <20260916-topic-4kn-lkml-v4-0-4f8a574ba3fb@gmail.com>
@@ -78,118 +78,115 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4171; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=UkXwDzkT/wQG7OMUrFXV3fZm2SjRZv67S0OHydtLSgY=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqqeq3S+sZpgclLuWKRgpRec8HFFjbtptkz020p
- e8vUui4186JAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaqnqtwAKCRA08jD6945I
- 0xSZD/4kz6MaZKSRR5o1A9m0RvuqdVcwtzZDfaUr6EDuCc6RegUjAi1uX7u6/yaj8A4W1LBXLcu
- G89gCyDJA98jvraHcrYBJl8z+X3ktEOAYwrUrDCdiFAJ27sRdHBcJJkiN7wp6D98G3edybQUTEy
- A/AUZQ1HBu1JDOqKjHFZ0niCKx6x6Tyoz5m6HficT4cKwewyoiRgit43B+7J+eOR7BsXbt46uRs
- K1gUo1AVfc/KGax4uWd4KGwKJdIjkaY6IEb83yaWXJq0OxfICnqSt1SkVvQJfisHESnhnbf75fQ
- FDigOyGcWSlVxhNHmzhka5uckomxxEW9bo38f4DYTi2e+xAQ1g0dPfQAOAWJMjqzUEc5DuLpUhf
- 5yFh7LY2ZnzAMxIOqYPHyjvaeU9znqcAFlTSW8784vNroRKo3cZY4mODCR2MbQ9vSOuYC2Oe4IK
- QPOWQ8DGl1CWsnTnIQ00SqCRVPHVIYXt/Ksm3OfHJfvZsHm3rNiqRtW2f7ZA+GVGEia4Pql0lJC
- Gm4lcuFWm+geekKLvPV9vJ/1Hc8N1PAGD3n8EmvgDP/bbA1Nemgd5qVmDYkzalraD3LL7tddeQ+
- 7VNWF7NgskZ5ZdVxPucW72LQyFw1Svqa1tgRQfWWUzkTgdDSb+2f7FvxxslA8wWP4Umnf+sPRxl 4CfGIt5kDgx2tDw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3412; i=hyc.lee@gmail.com;
+ h=from:subject:message-id; bh=mB/EBMg6kiq6v7Dg0fmBPd6Z46drhNpsR5NhnwsFCTM=;
+ b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqqeq3rflMt/AGPzBZZupap8tpn9RZzCW3F1SK3
+ 5mrua8IKBKJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaqnqtwAKCRA08jD6945I
+ 087ZD/9Gu1LcAZtq0ZVIWifTddPnmqU+lP7ZZtBuXYBr1FtZYmVTteuC93xzmSVExJkPqpcbyce
+ OJJgPrb9a3bq6TXrFj2HLpbdzjK6iLctcprwf37l+uQrITSLR6IZm3Dy5WmqNEApweMypY6f+2H
+ 43kLaph9dINnaiYXMuQnjsmNlvCVkHIHVGi33kgdMeXO7VMKpH/ZCzm2I0MHhUydS2xker6RB1j
+ hvdFw5fnEWxvZmRKpHYuqboH01HxVfyes9I5tjUzxhAJ6ESxYSVgbjwupPpaGQ8sJKie2hy/Luo
+ yz5wNYXeJMI/cQEzLMWk3G6R0+PXaono7xPlvu+AdaZRDbxcSOxy6le++9GgkPBrOUgq2XOvPJq
+ JsT4br56ekxDskEREYXtuiGcZ4BhBeZrlQGaRNVTlH8koVNl421dON2TMDNl6FXeoPxgU0eAB5U
+ KhBJ8CfKG1lZTAgtwQpckkjT/uotHXzHLvwULcF7TxZ8UbMxJ1P9Q4+ARFbcJGb3U764GvAp6gc
+ cZhDIw7oGLxSovwJGP0N2h9iZzSxLgbiq9C2pogFko2DfD5UDVE+ssZlcTrjyv30e+0LBps0wpa
+ zznFXXubrH+WYpNNOZkSgyf1cREgOM0pVnGLI4657hIPhq83Ut7Iw0iHqMOAZ9yGsdqIwcGT8Mx 8JWu8bAfZD/Uw9Q==
 X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
 Content-Transfer-Encoding: 8bit
 
-Use the supplied sync flag for direct MFT writes instead of forcing
-containing-unit writes to complete synchronously.
+On native 4Kn volumes, pagecache_isize_extended() can leave a writable
+mapping for a partial old-EOF page. A subsequent shared mmap write can
+then bypass ntfs_filemap_page_mkwrite(), leaving NTFS initialized_size at
+the old EOF.
 
-Pass sync=1 from ntfs_mft_record_free() so the MFT bitmap entry is not
-released until the record write completes. Other direct-write callers keep
-the completion mode requested by their caller.
-
-The folio lock serializes write preparation, and PG_writeback keeps the
-whole unit stable until all chained BIOs complete, so asynchronous
-containing-unit writes remain safe.
+Invalidate the partial old-EOF page after size extension, independent of
+the filesystem block size, so the next mmap write enters the NTFS
+page_mkwrite path. Apply the same helper to zero-fill fallocate
+extensions and compare the actual new size after the operation so
+extensions overlapping the old EOF are handled as well.
 
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
- fs/ntfs/mft.c | 17 ++++++++++-------
- fs/ntfs/mft.h | 14 ++++++++------
- 2 files changed, 18 insertions(+), 13 deletions(-)
+ fs/ntfs/file.c | 33 +++++++++++++++++++++++++--------
+ 1 file changed, 25 insertions(+), 8 deletions(-)
 
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 6379c7b39bff..1e606f65a342 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -671,9 +671,13 @@ static int ntfs_prepare_mft_record_io_units(struct ntfs_inode *ni,
-  *
-  * We only write the mft record if the ntfs inode @ni is dirty.
-  *
-- * On success, clean the mft record and return 0.
-- * On error (specifically ENOMEM), we redirty the record so it can be retried.
-- * For other errors, we mark the volume with errors.
-+ * On success, clean the mft record and return 0.  On ENOMEM, redirty the
-+ * record so it can be retried.  Asynchronous callers return success after
-+ * redirtying while synchronous callers receive the error.  For other errors,
-+ * mark the volume with errors.
-+ *
-+ * If @sync is false, PG_writeback keeps the folio stable and serializes later
-+ * writers until the I/O completes.
-  */
- int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int sync)
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 007d1614b9ac..7c7cbd16e944 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -252,6 +252,22 @@ static int ntfs_file_fsync(struct file *filp, loff_t start, loff_t end,
+ 	return ret;
+ }
+ 
++static void ntfs_pagecache_extend(struct inode *vi, loff_t from, loff_t to)
++{
++	pagecache_isize_extended(vi, from, to);
++
++	/*
++	 * NTFS initialized_size is byte-granular, so a partial old-EOF page
++	 * must stay write-protected until page_mkwrite() updates it. The
++	 * generic helper skips this when the block size is at least a page,
++	 * the extension ends before the rounded block boundary, or that
++	 * boundary is page-aligned.
++	 */
++	if (from < to && from & (PAGE_SIZE - 1))
++		unmap_mapping_range(vi->i_mapping, round_down(from, PAGE_SIZE),
++				    PAGE_SIZE, 0);
++}
++
+ static int ntfs_setattr_size(struct inode *vi, struct iattr *attr)
  {
-@@ -693,8 +697,6 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
- 	WARN_ON(NInoAttr(ni));
- 	WARN_ON(!folio_test_locked(folio));
+ 	struct ntfs_inode *ni = NTFS_I(vi);
+@@ -281,7 +297,7 @@ static int ntfs_setattr_size(struct inode *vi, struct iattr *attr)
+ 	if (attr->ia_size > old_size) {
+ 		truncate_pagecache(vi, old_size);
+ 		i_size_write(vi, attr->ia_size);
+-		pagecache_isize_extended(vi, old_size, attr->ia_size);
++		ntfs_pagecache_extend(vi, old_size, attr->ia_size);
+ 	} else {
+ 		truncate_setsize(vi, attr->ia_size);
+ 	}
+@@ -1131,7 +1147,7 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
+ 	struct ntfs_inode *ni = NTFS_I(vi);
+ 	struct ntfs_volume *vol = ni->vol;
+ 	int err = 0;
+-	loff_t old_size;
++	loff_t old_size, new_size;
  
--	if (vol->mft_io_unit_size > vol->mft_record_size)
--		sync = 1;
- 	if (folio_test_writeback(folio))
- 		folio_wait_writeback(folio);
+ 	if (mode & ~(NTFS_FALLOC_FL_SUPPORTED))
+ 		return -EOPNOTSUPP;
+@@ -1159,13 +1175,12 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
+ 			return err;
+ 	}
  
-@@ -804,7 +806,8 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
- 		ntfs_error(vol->sb,
- 			"Not enough memory to write mft record. Redirtying so the write is retried later.");
- 		mark_mft_record_dirty(ni);
--		err = 0;
-+		if (!sync)
-+			err = 0;
- 	} else
- 		NVolSetErrors(vol);
- 	return err;
-@@ -2959,7 +2962,7 @@ int ntfs_mft_record_free(struct ntfs_volume *vol, struct ntfs_inode *ni)
- 	 * record to be freed is guaranteed to do it already.
- 	 */
- 	NInoSetDirty(ni);
--	err = write_mft_record(ni, ni_mrec, 0);
-+	err = write_mft_record(ni, ni_mrec, 1);
- 	if (err)
- 		goto sync_rollback;
+-	old_size = i_size_read(vi);
+-
+ 	inode_lock(vi);
+ 	if (NInoCompressed(ni) || NInoEncrypted(ni) || NInoWofCompressed(ni)) {
+ 		inode_unlock(vi);
+ 		return -EOPNOTSUPP;
+ 	}
++	old_size = i_size_read(vi);
  
-diff --git a/fs/ntfs/mft.h b/fs/ntfs/mft.h
-index 28a79bf4c1c6..d2a31205e08c 100644
---- a/fs/ntfs/mft.h
-+++ b/fs/ntfs/mft.h
-@@ -53,17 +53,19 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
-  * @sync:	if true, wait for i/o completion
-  *
-  * This is just a wrapper for write_mft_record_nolock() (see mft.c), which
-- * locks the folio for the duration of the write.  The folio lock prevents
-- * races between writing the mft record via the dirty inode code paths and via
-- * page cache writeback or between neighbouring mft records residing in the
-- * same folio.
-+ * locks the folio while preparing the write.  write_mft_record_nolock() waits
-+ * for prior folio writeback before modifying the folio and keeps PG_writeback
-+ * set until the submitted I/O completes.  Together these serialize dirty
-+ * inode writes, page cache writeback, and neighbouring mft record writes in
-+ * the same folio.
-  *
-  * Locking the page also serializes us against ->read_folio() if the page is not
-  * uptodate.
-  *
-  * On success, clean the mft record and return 0.  On allocation failure,
-- * redirty the record for retry and return 0.  On other errors, return -errno
-- * and mark the volume with errors.
-+ * redirty the record for retry.  Asynchronous callers return 0 after
-+ * redirtying, while synchronous callers receive -ENOMEM.  On other errors,
-+ * return -errno and mark the volume with errors.
-  */
- static inline int write_mft_record(struct ntfs_inode *ni, struct mft_record *m, int sync)
- {
+ 	inode_dio_wait(vi);
+ 	/* Take invalidate_lock for all fallocate operations to prevent races */
+@@ -1194,10 +1209,12 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
+ 
+ 	err = file_modified(file);
+ out:
+-	if (!err && mode == 0 && NInoNonResident(ni) &&
+-	    offset > old_size) {
+-		truncate_pagecache(vi, old_size);
+-		pagecache_isize_extended(vi, old_size, offset);
++	if (!err && mode == 0 && NInoNonResident(ni)) {
++		new_size = i_size_read(vi);
++		if (new_size > old_size) {
++			truncate_pagecache(vi, old_size);
++			ntfs_pagecache_extend(vi, old_size, new_size);
++		}
+ 	}
+ 
+ 	filemap_invalidate_unlock(vi->i_mapping);
 
 -- 
 2.43.0
