@@ -1,32 +1,32 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806004B1CF8
-	for <ntfs@lists.linux.dev>; Wed, 16 Sep 2026 23:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67949302155
+	for <ntfs@lists.linux.dev>; Thu, 17 Sep 2026 04:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789602557; cv=none; b=jktdBau84mQ3UDe7LgQZbhVie13VDJ1DNL946Ou8GtDcuMSXNHGtN5b6Afx/6KFYul3N6Ftt5Wt3DyELINI+/bn5ZWln1Qb+DQi8SUoLRKTLUMKyDzxdUfU13iG9j7sPsOXriWvq/sX6gmmcrkVhOHnWaNFzXrB2RQp6cN88vIY=
+	t=1789618939; cv=none; b=Lr293Dh1v1zs9IaKFMBrGvfRaEwjPA+T6wumyYxeksKBF0G1Vsb8dVlCVkbgLlOO6v3p1DIqCwGNuaGmMhvQ5E5asV1QpZJjeqD++Nc6AXviRfkIKolY37NHURGoLtaAUzE4W1mefVFttcESyAjRzf/kYAUxSnQQp2zjqRDzYS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789602557; c=relaxed/simple;
-	bh=3VICl/PljwfMNqlFD4r491TYryV5qL4xLUt/1jbDk4U=;
+	s=arc-20240116; t=1789618939; c=relaxed/simple;
+	bh=1fK5MtmOWDFH/FcgfwNq+jQUvUAwSVHapAqSkHBHWZs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K+ir9c7E/Y8N8IFm0KfKkgQXLiGqTlsPjn0QvCtGssdZyhdMN1dD2vatRIkGH9RNXzIKvf15KbLIgZDWfKMmYg1HfwvIBwhk7d7h2eG3M3gvjRQJRrflkJu3UGoqhLjPtD3HcyJ8ezYRI2B5xYMJcqRZyPlZceGu/e0LbodqJ9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Z7WHNe1r; arc=none smtp.client-ip=220.197.31.4
+	 In-Reply-To:Content-Type; b=D0zr7Xc1T1JtAUKCuW+dXjSY2ySYFuhCmeJLhr37pAcy8d7oKNA5/M4yXcpSSSc4Dn+IE1qF2tbLtHoSo2cCATVsEv8ogIKFJZCRk+lK8De2XhvHtCJpc3xZsWzus+py091nRmdfHMI/o7zAKNzbtJYlHBCTk7TAHeceC5xeOBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=nfy06BVu; arc=none smtp.client-ip=220.197.31.3
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Z7WHNe1r"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="nfy06BVu"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=AkC4/63UwswKlo+NGzzlx9i4qj+7xSP0MGqUjBcBcKI=;
-	b=Z7WHNe1rSzhkp+MnDOMQkuJs1Hd6r6FUPltsUOVYnwxgdUzafeo1Ys+E6Px8fa
-	YTljf77xn1JgpTuWP49DejPXgYnRlOvjjmB/HrWf64axGoE+cr2Uod1qrs7DwXHC
-	lfUf6xEKPJ1WOVJTzzoCmrqFiWTWmhuJZSRpbtlWCTEMw=
-Received: from [IPV6:2409:8900:21a7:a33a:b45d:31d1:c098:7d46] (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wD3F_rmKqtqlwSDBA--.51140S2;
-	Thu, 17 Sep 2026 07:48:56 +0800 (CST)
-Message-ID: <a2280318-0604-4318-a3b6-01cd4a72d781@163.com>
-Date: Thu, 17 Sep 2026 07:48:54 +0800
+	Content-Type; bh=g3XJZr0bBAmjOsLLoXDbQLrl5Q9yQ0n598oUSVXwZq0=;
+	b=nfy06BVujwOHDCcbgVosR0L/IuIHUVnlLUpnjtPjCuaCaetUrhkvsxpkMtzLVk
+	Py9hFCR7m7+ejDSBVJtwm1OJgpNn6d44Pr8m0zyuuCaKHRD6zxArWSs9PGQBz4x6
+	MT5+UGMUjCyHiZ1K20miRIdex5P7ySL/s8Xeo8xb9KyLY=
+Received: from [IPV6:2409:8900:1e93:14fb:69bd:c53b:3beb:e380] (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgC3RCHlaqtqrpxfSA--.64386S2;
+	Thu, 17 Sep 2026 12:21:59 +0800 (CST)
+Message-ID: <545e6e4c-d897-4248-a2c0-bbbe6f4fef45@163.com>
+Date: Thu, 17 Sep 2026 12:21:57 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -34,104 +34,74 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ntfs: mount hibernated volumes read-only regardless of
- errors=
-To: Namjae Jeon <linkinjeon@kernel.org>,
- Hongling Zeng <zenghongling@kylinos.cn>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- zhongling0719@126.com, stable@vger.kernel.org
-References: <20260915023820.621797-1-zenghongling@kylinos.cn>
- <CAKYAXd-Pz0WCKNyOdoxKyfgE_rx7GVDRmtidfjsx-x0C-AA1RA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] ntfs: report attribute errors to fsnotify
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Baolin Liu <liubaolin@kylinos.cn>
+References: <20260916022345.1151836-1-liubaolin12138@163.com>
+ <20260916022345.1151836-3-liubaolin12138@163.com>
+ <aqpHhxKx_xiSoZZQ@hyunchul-PC02>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <CAKYAXd-Pz0WCKNyOdoxKyfgE_rx7GVDRmtidfjsx-x0C-AA1RA@mail.gmail.com>
+In-Reply-To: <aqpHhxKx_xiSoZZQ@hyunchul-PC02>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3F_rmKqtqlwSDBA--.51140S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxXw1DAF1Dur1fAr4DXF45trb_yoW5Kw47pF
-	9rKw4Dtr4kKr1akrn2vay0q3WFkr93Aa1UGrn5CF47A3s5KF13trWfKw1a9F4SkrW5ta1x
-	XF409343Wa1DZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UaYLPUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6ghKFWqrKujH-wAA3G
+X-CM-TRANSID:PygvCgC3RCHlaqtqrpxfSA--.64386S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Cw45ZFWUJF4fKFy3JFykuFg_yoW8Ww1kpF
+	WxGa97K397t347Wr1qk3yjva42vryIgrWjqry5Gw13Can8Krn7tF4xKwn5uF4FkryrKrZF
+	qr4jka9rZrWUZrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2kskUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwQdZJGqraudB8QAA3H
 
 
 
-在 2026/9/16 19:57, Namjae Jeon 写道:
-> On Tue, Sep 15, 2026 at 11:38 AM Hongling Zeng <zenghongling@kylinos.cn> wrote:
->>
->> The hibernation check in load_system_files() only converts the
->> superblock to read-only under errors=remount-ro.  With the default
->> errors=continue (and with errors=panic), a hibernated volume is
->> mounted read-write and the mount-time $LogFile emptying writes to it,
->> although a hibernated volume must not be written to at all.
->>
->> Drop the on_errors term so that a hibernated volume, or a volume whose
->> hibernation state cannot be determined, always mounts read-only.
->> NVolErrors() is still recorded, so ntfs_reconfigure() keeps refusing
->> remounts to read-write, and the $LogFile emptying is skipped by its
->> !sb_rdonly() check.
->>
->> Also change the ntfs_error() calls inside
->> check_windows_hibernation_status() to ntfs_warning(): they run before
->> SB_RDONLY is set, so errors=panic could panic there, while the warnings
->> preserve diagnostics for already read-only mounts.  The read-only
->> fallback message is logged unconditionally: with SB_RDONLY set, or on
->> an already read-only mount, ntfs_error() cannot panic, and the reason
->> for NVolErrors() stays visible.
-> errors=panic can still panic before the read-only fallback.
-> ntfs_lookup_inode_by_name() and ntfs_iget() in
-> check_windows_hibernation_status() can call ntfs_error() internally.
-
-Hi Namjae and Hongling,
-
-   Namjae,thank you for catching this, and sorry I missed those internal 
-ntfs_error() calls in my earlier review.
-
-   Changing the ntfs_error() calls in the shared lookup and 
-inode-loading helpers to ntfs_warning() would affect other callers as 
-well, so I would prefer to avoid that.
-
-   Would it make sense to temporarily set SB_RDONLY before calling 
-check_windows_hibernation_status()?
-Since ntfs_handle_error() returns immediately for a read-only 
-superblock, this would prevent the nested calls from triggering 
-errors=panic, while preserving the existing error diagnostics. With this 
-approach, the direct ntfs_error() calls in the hibernation check could 
-also remain unchanged.load_system_files() is only called during the 
-initial mount, before the filesystem is exposed to userspace.
-
-The basic idea would be:
-
-   bool temporary_ro = false;
-
-   if (!sb_rdonly(sb)) {
-   	sb->s_flags |= SB_RDONLY;
-   	temporary_ro = true;
-   }
-
-   err = check_windows_hibernation_status(vol);
-
-   if (temporary_ro && !err && !NVolErrors(vol))
-   	sb->s_flags &= ~SB_RDONLY;
-
-   If Windows is hibernated or the check fails, we would leave the 
-volume read-only, call NVolSetErrors(vol), and log the fallback message 
-unconditionally. A volume that was already read-only before the check 
-would remain read-only.
-
-   The reason for adding !NVolErrors(vol) is that 
-ntfs_read_locked_inode() can continue after an error looking up 
-AT_EA_INFORMATION. The underlying code may have already reported a 
-metadata error and set NVolErrors(), while the hibernation check can 
-still return zero. Checking !err alone could therefore restore 
-read-write access despite the detected error. This additional condition 
-is conservative: it would also keep volumes with previously recorded 
-errors read-only, and that case would need a corresponding diagnostic.
-
-   Namjae and Hongling,I would appreciate your thoughts on this 
-approach, particularly on the condition for restoring read-write access.
-   If you both agree that this approach is reasonable, Hongling, could 
-you please update your patch based on this approach and send a new version?
+在 2026/9/16 15:38, Hyunchul Lee 写道:
+> Hi Baolin,
+> 
+>>   folio_err_out:
+>> @@ -3720,7 +3737,8 @@ static int ntfs_attr_update_meta(struct attr_record *a, struct ntfs_inode *ni,
+>>   static int __ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni,
+>>   					    s64 from_vcn,
+>>   					    struct ntfs_inode *locked_ni,
+>> -					    bool defer_attrlist)
+>> +					    bool defer_attrlist,
+>> +					    bool *error_reported)
+>>   {
+>>   	struct ntfs_attr_search_ctx *ctx;
+>>   	struct ntfs_inode *base_ni;
+>> @@ -4086,8 +4104,11 @@ static int __ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni,
+>>   	return 0;
+>>   
+>>   put_err_out:
+>> -	if (ctx)
+>> +	if (ctx) {
+>> +		if (error_reported && ctx->error_reported)
+>> +			*error_reported = true;
+>>   		ntfs_attr_put_search_ctx(ctx);
+>> +	}
+>>   	return err;
+>>   }
+> 
+> __ntfs_attr_update_mapping_pairs() does:
+> 
+>    ntfs_attr_put_search_ctx(ctx);
+>    ctx = NULL
+> 
+> Therefore any later mapping or other errors can therefore lose report
+> state and duplicate reports. And The error_reported boolean only tell
+> us that some lower-level path has already emitted an error. Consequently
+> a report can incorrectly suppress a separate report for a later rollback
+> or resotre failure, even though that failure represents an independant
+> filesystem integrity problem.
+> 
+> Instead of carrying error_reported, would it be simpler to report each
+> error at its detection point and let fanofify merge repeated error
+> events? or would there be any alternatives?
+> 
+Hi Hyunchul,
+   Thanks for the feedback. I agree that reporting errors at their 
+detection points and relying on fanotify's event merging is simpler. 
+I'll update the series accordingly and send v3.
 
 Thanks,
 Baolin.
