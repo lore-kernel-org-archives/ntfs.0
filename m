@@ -1,70 +1,71 @@
-Received: from mail-pj2-f13.google.com (mail-pj2-f13.google.com [74.125.227.141])
+Received: from mail-pj2-f43.google.com (mail-pj2-f43.google.com [74.125.227.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6102B4B1CE0
-	for <ntfs@lists.linux.dev>; Thu, 17 Sep 2026 23:44:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0109B304976
+	for <ntfs@lists.linux.dev>; Fri, 18 Sep 2026 00:19:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789688670; cv=none; b=YBIwzLoap8adLQ854RkyLa6pdCXM0zeSw/570KnyTDVPN1y4VhnMMFobMcTFSDK0SF1DqfW6Br5Oxo/og6OEcQNn6lxmKsTGn96iTB6TE5II0O4q60mYOpK1K3l5JKJenuCHEG3gEmtrIQjbfj+ix7rUnko69Tx34XeEa+IQBCA=
+	t=1789690745; cv=none; b=Uv+qNb6xECrPtevBxCWuQtMPXf1tyPIcHDtGSDO91cyCt9V4sWq/eXhJhq0kbH+Lce46afmmTNiXR8FkISZViYk5Wn30ePwbytJ53oLB8hDrNh3kzoLi1gkLOK85Xt/9v93QyRZPCgPwjdwfJc2Q0pp2gYYUU1CwrAtI+Di7n0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789688670; c=relaxed/simple;
-	bh=WS0J1yLSbAuVdC5y42i7TWMsWDLvSpJv6nvpFOXlltc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PG0mIFQi92gMkdxF/pRNXk/MldjN9MlyUyvXpBu17wzgnVVKrc82+1FHj0jlaYhhnmOlvuNJ5fQrzP6gpGkOSEBzxOlsdiJajR7PUCp7pufMI6osXCVCR6OLfSdIX/VU2SJqwuPX+BdJOkKz9Bke6oWLy+tDZZYSI6VzcjQMXrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rqo0PGtf; arc=none smtp.client-ip=74.125.227.141
+	s=arc-20240116; t=1789690745; c=relaxed/simple;
+	bh=EJrrArdFExXLBT8+oFTwhGLYUlQwTK9HPYXyg36A5W0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J1QP2fT3yyefFooHozeu1dr6+gbNfLovgABgc4QmFvNhjDFQosSJz4vivG4pk1qRVzlvqmVKs5IA5WYO+K4E9KS6iGyM1x5NCSuKMSQiz+tqtVaziUWbuFag18I+V5mCexUWzpEKZwyKp1E/ZSPuF4+xCyFBLh0Q3UyjObBY/lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nd46Ezbd; arc=none smtp.client-ip=74.125.227.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="rqo0PGtf"
-Received: by mail-pj2-f13.google.com with SMTP id d9443c01a7336-2dd53691be5so1281775ad.1
-        for <ntfs@lists.linux.dev>; Thu, 17 Sep 2026 16:44:28 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nd46Ezbd"
+Received: by mail-pj2-f43.google.com with SMTP id 98e67ed59e1d1-396ccc02279so158539a91.1
+        for <ntfs@lists.linux.dev>; Thu, 17 Sep 2026 17:19:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789688667; x=1790293467; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1789690743; x=1790295543; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:message-id:date
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=+XR1n9oQCUN1SNWpgYcfT0i0kDZv+VNTvvaG0v4HP1s=;
-        b=rqo0PGtfyK/uYHMShZ1jd8mC0MMYVp15f+Fx4JuOGWwXVYj1XIgg3WBzRngBVJsTTD
-         EFLPZXZoWjackFQyqsAf+NPkXilZLthi7d8lcU7dwazBT+iHPQ0sPdWoK1kUcoK46Pol
-         P9nAS6ut9DogKa6ZElt4+8ym3JdhLa9VTMhqaQMceWF+F23qGDlcpY4IJ7TVKvi9+FgF
-         gzzWP2NRBMTrtNQWSOxS+9Lw0bCnNpj2V3EcW8HKKnwyKiBiStzf0WXYeiygFlTk3gTT
-         cirWUPm7L7arLnTbTCoNCw0RkGGG5nQk/0ozlmGLin85Xa/RJR8rhKq+WQqW9XQlimh0
-         b/LA==
+        bh=I2kWwQAwLBzsFj5hWGDDv4FZQROuRodSEcqUKRJ0GFE=;
+        b=nd46EzbdIWCOma1xgEJ+RA1kV2HT1ld6CL1qg7YvFimmzopwC07H+3PcQ6EPrLgOFx
+         wjUjJcUzH3LVAvMoqf7j68grR+89BmuiH/1Hqm+wYUv4pcPoOCi5Fi/E4ALrPIa+Ap2L
+         7I4iTDg0FPg7CuVsMEysAjgOy71X3ezPPAdRv/UukoUfe9laXcg7D/R5ZrWuqsvPENUh
+         p1vs1s+ko340LgpRMAQSV25sxl7oiIyLl8qM5FFJrBLVw4i2SjyMnv7mL//Txb6tNW0g
+         jG1Y7pKttHg9rURqPAJvJZIxumHREBvtxg1zqI9UL3tqHQ1Ew4Tnim+AAEPXYD1fjTsK
+         mHXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789688667; x=1790293467;
+        d=1e100.net; s=20260707; t=1789690743; x=1790295543;
         h=content-transfer-encoding:content-type:mime-version:message-id:date
          :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=+XR1n9oQCUN1SNWpgYcfT0i0kDZv+VNTvvaG0v4HP1s=;
-        b=iVXfOHtgENujXt3gk1zIr4lGT8u+hkdkd0PtmxzkF29SwvOITHinohrCcBtbhxXwkp
-         rM6/OAOncwIV6zU7980oBQpYKJ3rtnNQfrMQgUGdCXVL5HjWU1rb0MEeiz/p1p9apv5k
-         bMZdtXjfozfteG3oeBYqBPJe3et508tDdZ2l9I8Ov764qk7xgIEz9ii34r6xBhf7HdCA
-         rsNIp7E3txEdRi0e6jGhOqPy1dOyo7IkYQeGr3YcsDp1Yw0YX9YdrzQkRXOWR4tsKbfa
-         wrK/kODQj/3iWrdizFKxrXQ4P2hTACLNJ7bNiQODrbezizhRfd4VnG9SMz6xcWPNt5pV
-         4hVg==
-X-Forwarded-Encrypted: i=1; AKwUvBxa2MlcrPkNhkiGe0+3OpitJ9JrznEh+NmF7xHiJaEMX5+P2fmOuw4yds3RRcX8fetyMnlw@lists.linux.dev
-X-Gm-Message-State: AFuF++mKXsyMbaMKR702zU5L3rkkrzZ7xk5/4SF4gSEMP20kayruGS41
-	iLBKocZVuXE4BMy71h5wQi3ISKCMqe3GVnZ+fFh9eUqvbs94Alkqm5Dk2ksSWA==
-X-Gm-Gg: AYBFou1TS+wOyFPnj29OWgygKbUd/FkRSXP1OoGfsqJbenveqtBFl4cgJaVS8vEXOHQ
-	pvqRs1bR8qXdiaXJo5rnUzeqZR10UJ5fjHjiWpAzufehIawKeRZMNXbWZDZtOxWFJXwnT0lY4i3
-	PtG0f6OZND2hoPapX2E1CKVwZtg3HLs6c6fSx3u8Fpal3waNSjcqwNpYv3McU6jMjGp5galCfQT
-	uwrSoCtOX46H8XfbbEghMijGHLA/fTf3SVT2Jv94d22Mw5E1DtAJxMq077D/1k5TAHuWLuR8LUm
-	znXamHCVReIoQ8W/+6k3LD6OJAvFcn+Fjok1fzt6qXZ8Lkbzb+W77VpAxqGnWUt9KV/s/abbLaT
-	TigakNUQp13dhh65m6WK6O+pH8PPwk5sgcMCY02rrNZpO8iN4crblIcYIEa1HzO6oP0ZQOK4fd8
-	PrW9+BdjzHvpoY2wAMttkrcAgwJlJp16/Tg0OiWhHeHVwm6jXdCUlVc+7EJI2gwzLyjFh9LZ0Gq
-	yY2/sXh4YUwzEud7Q==
-X-Received: by 2002:a17:903:3c43:b0:2d1:134:b86e with SMTP id d9443c01a7336-2ddb1acac1dmr17740565ad.2.1789688667430;
-        Thu, 17 Sep 2026 16:44:27 -0700 (PDT)
+        bh=I2kWwQAwLBzsFj5hWGDDv4FZQROuRodSEcqUKRJ0GFE=;
+        b=HEn2Hzn/EmZT66Sp8+oGSOq6oAkgGiKJ4+L8BHWn58lXe70+kKx6qHMOWkYy9nK5zh
+         UiAkG+B1a8OMyKsXI3Bi9zOllfZdzjSDzMBZ/MaknBqaYS4NCEMYObtQN5CtJ9c8b/37
+         LMRhsYm6zIZwW8J7fgEsPPa1jE9CYlYEV3nOJjkLTRD/D/u6eM7c2M9kHxiSVoUt1Mx7
+         sV6nMLSCWDuIroQ6cbj6efzN0c9nK5WirtEj41lwM0HX2hKLM2b0dY9wJQJp2RAGxN7V
+         KyzpDxBnhUh7ZXaHhneDTyj3MAXbujovXrddOwSv+LpSoV3TmvyqqgTeO8bni0qwo5hM
+         7eKQ==
+X-Forwarded-Encrypted: i=1; AKwUvBxATl4oIOYiQ/SUtNz6ADSFavgWUXpSeMCm7ti9blBl0VbBymsYdiTmFSlGNRk3myT2IkuI@lists.linux.dev
+X-Gm-Message-State: AFuF++lqOmF0N00/AQzdqBYyg8j2PHvVzVcHxx/snzlDbitFgT3AgTTa
+	QRSi+iWxuX/QzfgtsGBcilvBwAWgCok7j9Ook2bExZhz/MIX0anXaLGO
+X-Gm-Gg: AYBFou1PUydIZLEi2x+4wn202A1ysccI9MIU/5IraulMnMvSJ0W1QMiB4XhjgJyvATW
+	UmT0l2fv4dlfjtLzeVQodCsBQJ4y5JdvzcxAnlJcYV748MQZtne9Qp/kr/2klW5OEmkpFq9ao5Y
+	x4pl/NyyhLtEvE7Qv2PIqoQrPlVBjrHeVQoNm1g1j8UtnFPmBlTnSQlVwQBDQAWQAmiz3YwWTxa
+	XI/IkFzreM0FvNai9HXdoy+afPDyOZl30uZtTlOCGvJ9Bks0OPFNi5uztralSC92SwCVq0aU8cV
+	Ej1O3uxLaJ+TF5RVWnLLiy/onxtSwcvsazTZ8ISQNgY1V2Mw9Hler3ibqGyVjhsdAxozWo1CZvY
+	rdX/7hFyjxQuazLSJlbJdTCWNkW0p/xkYI7YiHxa2s7KiY+pcNPHzVebULzfoRkcHANOEmJHhuo
+	maOcux3Zq5nhASvrN2dgRWZQbgfebbtNZWqvcos4Z+Ac3FvFr8CoB4eumVGyewmOcZJ8aY7bN5W
+	HOXgw==
+X-Received: by 2002:a17:90b:314c:b0:398:bacb:1137 with SMTP id 98e67ed59e1d1-39e54e78990mr1569333a91.19.1789690743163;
+        Thu, 17 Sep 2026 17:19:03 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2dd89e96cccsm32927865ad.22.2026.09.17.16.44.24
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-39e5a3e3fc9sm82896a91.3.2026.09.17.17.19.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2026 16:44:25 -0700 (PDT)
+        Thu, 17 Sep 2026 17:19:02 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
-	ntfs@lists.linux.dev
-Subject: [PATCH] ntfs: fix incorrect VCN units for index blocks in large clusters
-Date: Fri, 18 Sep 2026 08:43:25 +0900
-Message-ID: <20260918-fix-c8k-index-v1-1-b65c8c68b0d4@gmail.com>
+	ntfs@lists.linux.dev,
+	stable@vger.kernel.org
+Subject: [PATCH v2] ntfs: fix incorrect VCN units for index blocks in large clusters
+Date: Fri, 18 Sep 2026 09:18:53 +0900
+Message-ID: <20260918-fix-c8k-index-v2-1-7c7c5d0b78ac@gmail.com>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
@@ -74,19 +75,19 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5344; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=WS0J1yLSbAuVdC5y42i7TWMsWDLvSpJv6nvpFOXlltc=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqrHsBgCVmbX1+OoeWcFZx8Ain09AXFLaxkwkXy
- LiNrKi6/iWJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaqx7AQAKCRA08jD6945I
- 01FpEACunvhT3wMZVveduwnPu1EP5TH14G1VSH1AJ1/xzlyQevuzXI7DhPWoOi++h6aPfdy72yS
- VTGHY8zu/c/oAswxOAkFKbcDreI44zeNvEGRHvHVZzIjYyMiIG3UxE4m5NplujrXwofFSX88ruR
- upN39+vV96XW7+GQgS6lK+/qf7CLcqvX2S513GCWXBIM8Q+rsgXlCNhrCEGvNCyOU7mL4UWAzsU
- Srp1HoaurH/NNoHtZUx6LeaCxoEKUp3XfYQFhRk6tWLYRlqK+iqRhF4q9bgdqPq2fhFs7ERkTYd
- /h7KqbaEswabbcAG5HPQYBcvO9/37Pz8U3g0JYwVl+CfjPPpjPVnckAntu493DXygUaVIYnKN/x
- sN+DspSn7/qK0fdfXGxh0ePg8b8snhPMgELXvYHRtSiV17AfssfqLPAtRZCrEh8txV+YooFGku+
- G+LcKqOrgibr5n0NheNIE3T2b3UFR405bDivDIUhSPWFNVO/5kcdsjnJrAt14aSPco0oaRCa897
- /ezaDtHhWGO1hK47V5loE93iyfNv0Dp4uQBETWEk3iWf3oB0PmVOpNpcXyJ2HgcfCu3sfyAacJA
- q4BkW31J6X61X456A2EPA91w+aqAamszimgneM8t0xyRQJ5pjjQdgMwRboHM7dcyC1ONZcey2UN cueqyUhXoudH7SA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5496; i=hyc.lee@gmail.com;
+ h=from:subject:message-id; bh=EJrrArdFExXLBT8+oFTwhGLYUlQwTK9HPYXyg36A5W0=;
+ b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqrINgl2wwa4UzxKQMku92Ac0pJ87ebWS1MPcgN
+ ajyPnxS5Y6JAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCaqyDYAAKCRA08jD6945I
+ 0yMbD/44DFJaM5UVpnDxbPRCz1mhldc0s3QWb1VtnsQe9R0YZ0ByXJd5POOP134m3OseE4TMvII
+ 9p5NzvmdfAo2F5DFAUlaryzK0EJWa4Tqgc8xeRu5fqMA5jds/40RXuw6XCY6oMTiL67zauCVw2J
+ Xa6mD3mpV4VhMl4a+M9gtJV8TGf1ki6A7zBrLFX56iUz4wN5AP97MrBFpDHG03e4LLUpimJ0f67
+ CW4WDZXwbjqeRDYMHmL8I9JsCFRbBQX2Vt+MABwa0E5VeZKvWWVQTHpIh+Yyzjqo4+bBjSWHBxS
+ R6qXY7H928g945IajW99GwotjQ4/qoxdaHDkqYfriGOECut7YGOAjxJoDMaBLpWrnuFY8rIapdq
+ geHC4UDFWP9YX/5NkStjiCizYOFK6fn24jsI1UBxH7vaEzobhUj6YeSoBtRBb5Blnmmvu7kBcI1
+ 9kWfJQA9VfTQAUq4zB9AZaSfRKpsZFloyCrfyaNSN5UbRBqi+ZBd3D7C7DhxEXjWlruALczoZqE
+ UYLKMqQsRYdh/vm6N2dLd5f2rowNsedye3kzGgk1mqF61I5maL8WdHtWmW8WNGiFr3KDPd0WvpR
+ XwmGohBjhLwuKstdf3IZCShnkRRb18a3DqUINuETNV2zO65ovAn+itfPgT3j5BCvFf3c9ns1rOS gl3YZWVf8xS/Z7g==
 X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
 Content-Transfer-Encoding: 8bit
 
@@ -98,7 +99,12 @@ are located correctly.
 Verified on a Windows-created 4Kn/32KB-cluster NTFS volume that when the
 index block is smaller than the cluster, the VCN unit is 512 bytes.
 
+Fixes: 27d5cd2d940b ("ntfs: fix directory lookup on large-page systems")
+Cc: stable@vger.kernel.org
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
+---
+Changes in v2:
+  - Add a Fixes and Cc tags
 ---
  fs/ntfs/index.c  | 2 +-
  fs/ntfs/index.h  | 2 +-
