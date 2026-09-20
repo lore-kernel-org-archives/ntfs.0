@@ -1,97 +1,160 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A437313D51E
-	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 02:22:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB793C4555
+	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 02:39:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789870972; cv=none; b=tCh+LFPuzu6cohX1Ic/kjjl7Gz4ClibTWfTtOk5wqNxp9Gz6OnqNTc5wsjQyJxWZONWfB0D2BdvVqM9kItaooAkOpKkhSrqrdZNVSESM5dUcNYxOT4JH0hVGrkU3m3zUJK3BaLTLy0NAA4kpK37LLalnIRi6e+9ZX75+8bph/e8=
+	t=1789871972; cv=none; b=YDdF8wy+CIdlosjSLj9d8TPtShv1j3eJKZkgcH1XZZEv4jzqSaUbuOcxAaF1FRa12CMEOo87XTp5iJFMr9q2qyGnavKAvYdMDaWD2MDo/epBqPRnEqIjcm1FZik5ZYX6zWvbcbY6RHSC2rQb9hX1xs+2WqV8EbdqNZZ/Yj7osjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789870972; c=relaxed/simple;
-	bh=JOK7FjkiYXohPxKuNBSDz+mzxNkPFvd9J60oJOyDBJ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=USyC9KnvVkaoTotKLpFMZI0yRU5mpZ8++9c2n7au1glsI4RLa6oAXqXNOt0ixPCk7xLk7x6/dCUcifh21FZCv7qsU+J74fh72y44YrFrV2f1OAJZZsVj4WbUROt1QSA3WyQU/f92F7/Ryj8twz+Wvzb0o/vdUNgDgygwvl2sKJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=jEmaIZLF; arc=none smtp.client-ip=117.135.210.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="jEmaIZLF"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=sjJCJy6SZQd+O1oCl6cHN5Rw/06qP84qJhedDUIegcA=;
-	b=jEmaIZLF4b8e+PLGTGSELerMKpbohYWECs96zwaR3FkBz6CQFcScTazELzoiSv
-	udv62VBaCI7Pcmrtdq20fzK4svj1t5RV5GoZ0wsXj7eZEX1KgXiGVsBCreLz91DP
-	q88EXCHhTRmkECquqA2vokTC8YXvB+UJBUKDyjHhpcz+4=
-Received: from [IPV6:2409:8900:21a7:a33a:42f2:d8a4:b22b:be57] (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wDX_7VNQ69qurPKBg--.41784S2;
-	Sun, 20 Sep 2026 10:22:07 +0800 (CST)
-Message-ID: <403a1327-c784-42c6-88e6-24ff692f386e@163.com>
-Date: Sun, 20 Sep 2026 10:22:04 +0800
+	s=arc-20240116; t=1789871972; c=relaxed/simple;
+	bh=GCsAjX7R52Y2q8IvLXpU3GYW2cvTKh7EKXfmh1yWEPk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Pr3fd8ItQ6PSDl+n5yp6KYVouGITN9qpGtQaLtTNReVy9YyHecwT1KvOx6klzZGwToZewn87jG8qqQmM0YFRW8gl8VfIv6OjImYH82UcL117aE8A2gbKaTkvEEMVRuUOO7u0HyB4xW9lf1Rr4wuRAVypr0PmP3vBMAQ0YVgddRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 7b50f8e2b49c11f19a56ed5b684f684d-20260920
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:3ee9096d-b447-4d39-a64a-9a7b0de0730e,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:7db8b62,CLOUDID:520877f7efa71a7e04ec182b30ba4bc6,BulkI
+	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
+	-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,O
+	SA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 7b50f8e2b49c11f19a56ed5b684f684d-20260920
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1947193105; Sun, 20 Sep 2026 10:39:20 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH v4] ntfs: mount hibernated volumes read-only regardless of errors=
+Date: Sun, 20 Sep 2026 10:39:14 +0800
+Message-Id: <20260920023914.21881-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: integer wrap in ntfs load_attribute_list_mount() can cause buffer
- overflow
-To: rtm@csail.mit.edu, Namjae Jeon <linkinjeon@kernel.org>,
- Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev
-References: <37528.1789849355@localhost>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <37528.1789849355@localhost>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDX_7VNQ69qurPKBg--.41784S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWrZF45uryfGr43CrWDAry3twb_yoW8JF1fpF
-	Z8Ka45tr43XF4jy3429F4rXa4Sqryv93W5t3WUG3yxXw45KwnxXrsrtanFq34v93Z7Xr1a
-	qF15Wry3u3WDZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UjFAXUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6g9qNWqvQ09dKgAA3E
 
+The hibernation check in load_system_files() only converts the
+superblock to read-only under errors=remount-ro.  With the default
+errors=continue (and with errors=panic), a hibernated volume is
+mounted read-write and the mount-time $LogFile emptying writes to it,
+although a hibernated volume must not be written to at all.
 
+Drop the on_errors term so that a hibernated volume, or a volume whose
+hibernation state cannot be determined, always mounts read-only.
+NVolErrors() is still recorded, so ntfs_reconfigure() keeps refusing
+remounts to read-write, and the $LogFile emptying is skipped by its
+!sb_rdonly() check.
 
-在 2026/9/20 04:22, rtm@csail.mit.edu 写道:
-> In this code in fs/ntfs/inode.c load_attribute_list_mount():
-> 
->                  rl_byte_off = ntfs_cluster_to_bytes(vol, lcn);
->                  rl_byte_len = ntfs_cluster_to_bytes(vol, rl->length);
-> 
->                  if (al + rl_byte_len > al_end)
->                          rl_byte_len = al_end - al;
-> 
->                  err = ntfs_bdev_read(sb->s_bdev, al, rl_byte_off,
->                                     round_up(rl_byte_len, SECTOR_SIZE));
-> 
-> rl->length is read from the NTFS disk image. If it is large enough,
-> then "al + ll_byte_len" will wrap around to a small value, and the
-> "if" statement won't prevent ntfs_bdev_read() from reading more data
-> than there is space in al.
-> 
-> Robert Morris
-> rtm@mit.edu
+The check itself must not apply the errors= policy either: it runs
+before SB_RDONLY is set, and ntfs_lookup_inode_by_name() and
+ntfs_iget() call ntfs_error() internally on corruption or I/O errors,
+which under errors=panic would panic the machine before the read-only
+fallback has made its decision.  Run the check with the super block
+temporarily marked read-only, which makes ntfs_handle_error() ignore
+any ntfs_error() issued on this path; the super block is not
+published yet at this point, so the temporary flag is not visible
+elsewhere.
 
-Hi Robert,
-   Thanks for reporting this. You're right: the pointer addition can 
-wrap around and bypass the bounds check.
+Restore read-write access only if the check succeeded and no errors
+were recorded earlier during the mount, e.g. when loading the LogFile,
+so that a volume with recorded errors stays read-only, matching what
+ntfs_reconfigure() enforces for remounts, and a message is logged for
+that case.
 
-   I think we could fix this by comparing the run length against the 
-remaining buffer space, like this:
+Fixes: 6251f0b0de7d ("ntfs: update super block operations")
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+Change in v4:
+ -Rework the errors=panic handling per review feedback.
+---
+ fs/ntfs/super.c | 36 ++++++++++++++++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 4 deletions(-)
 
-   -		if (al + rl_byte_len > al_end)
-   +		if (rl_byte_len > al_end - al)
-    			rl_byte_len = al_end - al;
-
-   Does this approach look reasonable to you?
-   If so, would you be interested in submitting a patch? If you don't 
-have time, I can arrange for an engineer on our team to submit it and 
-credit you with a Reported-by tag.
-
-   I look forward to hearing your thoughts and discussing this further.
-
-Thanks,
-Baolin.
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index f4a73e45773d..473c76d2962f 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -1398,6 +1398,7 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 	struct ntfs_attr_search_ctx *ctx;
+ 	struct restart_page_header *rp;
+ 	int err;
++	bool temporary_ro = false;
+ 
+ 	ntfs_debug("Entering.");
+ 	/* Get mft mirror inode compare the contents of $MFT and $MFTMirr. */
+@@ -1572,8 +1573,20 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 	 * NVolErrors() without setting the dirty volume flag and mount
+ 	 * read-only.  This will prevent read-write remounting and it will also
+ 	 * prevent all writes.
++	 *
++	 * The check runs with the super block temporarily marked read-only, so
++	 * that ntfs_error() calls issued internally by ntfs_lookup_inode_by_name()
++	 * and ntfs_iget() cannot trigger errors=panic before the read-only
++	 * fallback has run.  The super block is not published yet, so the flag
++	 * is not visible elsewhere.
+ 	 */
++	if (!sb_rdonly(sb)) {
++		sb->s_flags |= SB_RDONLY;
++		temporary_ro = true;
++	}
+ 	err = check_windows_hibernation_status(vol);
++	if (temporary_ro && !err && !NVolErrors(vol))
++		sb->s_flags &= ~SB_RDONLY;
+ 	if (unlikely(err)) {
+ 		static const char *es1a = "Failed to determine if Windows is hibernated";
+ 		static const char *es1b = "Windows is hibernated";
+@@ -1581,12 +1594,27 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 		const char *es1;
+ 
+ 		es1 = err < 0 ? es1a : es1b;
+-		/* If a read-write mount, convert it to a read-only mount. */
+-		if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
++		/*
++		 * A Windows hibernation image is not a filesystem error, so
++		 * this is a safety interlock rather than something the
++		 * errors= policy may downgrade: always convert a read-write
++		 * mount to read-only.
++		 */
++		if (!sb_rdonly(sb))
+ 			sb->s_flags |= SB_RDONLY;
+-			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+-		}
++
++		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+ 		NVolSetErrors(vol);
++	} else if (unlikely(temporary_ro && sb_rdonly(sb))) {
++		static const char *es1 = "Errors were recorded during mount";
++		static const char *es2 = ".  Run chkdsk.";
++
++		/*
++		 * Errors were recorded during the check or earlier, e.g. when
++		 * loading the LogFile.  Stay read-only, like ntfs_reconfigure()
++		 * does for volumes with recorded errors.
++		 */
++		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+ 	}
+ 
+ 	/* If (still) a read-write mount, empty the logfile. */
+-- 
+2.25.1
 
