@@ -1,30 +1,29 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327D43655C2
-	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 08:32:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86EA3B8948
+	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 08:32:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789893147; cv=none; b=nHJ1suvT2xUIZSSquilBhhA3oNYU4ybKXseoCfUoUtO60a45SWwQdCft2ZO14hrts1S4rhgT80fAKWb4s8ivN27qQl7nyFS5cc0f+Vq3ZwJ0fzXPloHt3tjBhOT292EybOfyGYHbmdTx/8PuOzFuUkwVvB2GFMrLhaWBECPNPto=
+	t=1789893154; cv=none; b=rnppBkl18V1JUUuVMGIsFiHJ7qaGzSJroJoIjiu10S1PCCniP7jj6CN1raHJiVKp+/UjVx1SFFP9uhgTeNgxXM728oAp/6DQ9ImG5oroANFr7tnqprFytJZgsZ1wG5K4jJGEHDYktsda0Ro9/ZIJ5CS6JN1Nq1v/B48hP1g2X3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789893147; c=relaxed/simple;
-	bh=KnWBpetLSIW2NcgHc/qdOhtbAgG7QeEht7w12H7gtoE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aKkGj3IPEdPpptKtHBs8VAKxE41hA9Q3MsaSIqXVElONAAVyQ2bOKdVLH92c/+QmXsfW8eLoI23v8a/lbAan1nymDTo4ntgElYR8rLmzTj1WSbtEGkik0WqAA2T+dCnl7ycBkoHb+XXx8WIlVv/GZhfeQpjs2F7O+pWfkT/SmCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=f8DpYe5L; arc=none smtp.client-ip=117.135.210.4
+	s=arc-20240116; t=1789893154; c=relaxed/simple;
+	bh=/CkXgnNuVYXJThs5XNYx5qmLIfoSFEMgjKeRhd6Yvlg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fT/lN5Y8eejZ91oAuEVYP6PXSaePDc/EDTLZnkFDeVq5cGO6I7e2W1EGyAmMesO4255aLRZAvN+/91ouAIvkyZ9JM7GEd80dgvNDyOAHSCU88ghkOETwHW+1GNxFhR9JsT5535fa3H2NsJYky0U/BNrrY4/LX4N3wJMQcadzwHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=DBE696aT; arc=none smtp.client-ip=117.135.210.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="f8DpYe5L"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="DBE696aT"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=zt
-	QZCB9KQWbq+msDaiN3rOMomM+arOVVqFZ2JoMkek0=; b=f8DpYe5L6ueBAQiKSh
-	6eWhgbXpb+1r8OWl2Kl9tBhaW17HV0BVZ/HN8nmJSmFLhwAPSD5cVGDbGt2HwkGS
-	QgjWmG5rPS0O49yV0PDpXxEpgfEXgez2X3+DASRmmCBU+lvsvUBTdhxVsKFdt6CV
-	R7E/9kwN0HPLpv2bGCTv8bnRc=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Es
+	rSMK0TnaMid68JzQ6v1hteDGa+S/QMxhbry3trj4o=; b=DBE696aTReZ5ddUqkW
+	O1LKTw+tSF/HDgamXau7q+zhZr56E7CNCqKd09NcXlZd0vF7fTakLHlUgHtCXcSd
+	LTdXAOsDuu0tah6bK2Y3W/T0YuH2M8ml5rwjO8hvphAn2yu4pWi7FDe4qYbqQ4Aj
+	Yma/JAFq4AURaYiYiRe2UYryw=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgB3m07lma9qs7GbAQ--.54162S8;
-	Sun, 20 Sep 2026 16:31:47 +0800 (CST)
+	by gzsmtp4 (Coremail) with SMTP id PygvCgB3m07lma9qs7GbAQ--.54162S2;
+	Sun, 20 Sep 2026 16:31:35 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -32,12 +31,10 @@ Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	chenxiaosong@chenxiaosong.com,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v2 06/10] ntfs: restore EA attributes when an update fails
-Date: Sun, 20 Sep 2026 16:31:27 +0800
-Message-ID: <20260920083131.1880061-7-liubaolin12138@163.com>
+Subject: [PATCH v2 00/10] ntfs: persist Linux file attributes in an EA
+Date: Sun, 20 Sep 2026 16:31:21 +0800
+Message-ID: <20260920083131.1880061-1-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260920083131.1880061-1-liubaolin12138@163.com>
-References: <20260920083131.1880061-1-liubaolin12138@163.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -45,438 +42,133 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PygvCgB3m07lma9qs7GbAQ--.54162S8
-X-Coremail-Antispam: 1Uf129KBjvAXoW3tFWkurW3uFyUAw13uryfZwb_yoW8JryrAo
-	Wa9r45Gw1kuryjkw17Kw4qy3sxXF95K3yUJw4YkanFkF4j9w1Dtwnxt3WFgaySg3WrKF4D
-	Ww1Sqwn7CF18Jryxn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxDDJDUUUU
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRMp82qvmfMMTQAA3m
+X-CM-TRANSID:PygvCgB3m07lma9qs7GbAQ--.54162S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3Gw4DWF47XryDJr43tr43ZFb_yoWxWr15pF
+	Z3G39xK3ykJry2k397ta12v3WF9a95AF4UXr1DKry8uFyjk347tFWfta12vFW8Cr1fKw1j
+	qa1jq3ykZr45Aa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jnhL8UUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Qgn8WqvmeixpQAA3X
 
 From: Baolin Liu <liubaolin@kylinos.cn>
 
-Creating or replacing an EA can leave EA data and information out of
-sync if a later update fails. Existing deletion rollback ignores its
-own errors, and creation changes metadata before preparing the new list.
+This series implements persistent immutable, append-only and nodump flags
+using a private $LXFLAGS EA in the standard NTFS $EA/$EA_INFORMATION
+attributes. No new NTFS attribute type or formatter changes are needed.
 
-Prepare the complete new list while retaining both original attributes.
-Update EA data and information only after preparation succeeds, restore
-both on failure, and publish the cached presence state only on success.
-Keep structure errors as EUCLEAN and preserve operation errors. Mark the
-volume erroneous and shut it down if either restoration fails.
+The value is a little-endian u32 with immutable, append-only and nodump
+in bits 0, 1 and 2. Inode loading restores the flags. Unknown bits are
+preserved, and the entry is removed only when its entire value is zero.
+The setter protects system metadata and sys_immutable-derived immutable
+state, rejects direct writes to $LXFLAGS, and updates in-memory flags
+only after the EA update succeeds. Fileattr queries also report mount-wide
+case folding. Nodump is reported through both fileattr and statx.
 
-This handles synchronous failures; it does not make the two updates
-atomic across power loss or guarantee restoration on a failing device.
+Changes since v1:
+- Persist immutable, append-only and nodump in the private $LXFLAGS EA,
+  restoring them on inode load so inode reclaim and remount do not
+  discard the settings. Preserve unknown bits and reject direct xattr
+  writes or removal of this entry.
+- Reject clearing immutable on system metadata files and files protected
+  by sys_immutable. Report mount-wide case folding with FS_CASEFOLD_FL.
+- Add prerequisite EA fixes for presence tracking, chain validation,
+  error propagation, empty values and failed-update recovery. Use EUCLEAN
+  for structural errors detected by the EA helpers and preserve errors
+  from lower layers.
+- Organize the series into six EA fixes and four fileattr patches, with
+  documentation accompanying each feature step.
+- Rebase onto 018344e6f555 and verify Windows mount/access/CHKDSK
+  compatibility.
 
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
----
- fs/ntfs/ea.c | 349 ++++++++++++++++++++-------------------------------
- 1 file changed, 138 insertions(+), 211 deletions(-)
+Patch overview:
+- Patch 1 fixes the cached EA presence flag after creating or replacing
+  the only entry.
+- Patch 2 validates EA chains and links zero-terminated tails before
+  appending entries.
+- Patch 3 preserves EA write errors and reports truncate failures.
+- Patch 4 distinguishes missing attributes from lookup failures and
+  rejects incomplete EA attribute pairs.
+- Patch 5 distinguishes empty EA values from deletion and rejects
+  removal or replacement of absent entries.
+- Patch 6 prepares the new list before updating attributes, restores
+  both old attributes on failure, and shuts down if restoration fails.
+- Patch 7 adds fileattr queries for existing inode flags and mount-wide
+  case folding.
+- Patch 8 introduces the $LXFLAGS storage and inode-load paths, adds
+  immutable persistence, and protects system-imposed immutable state.
+- Patch 9 extends the persistent interface to append-only.
+- Patch 10 adds persistent nodump and reports it through fileattr and
+  statx.
 
-diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index 15bfcdddc7ee..888b531e8174 100644
---- a/fs/ntfs/ea.c
-+++ b/fs/ntfs/ea.c
-@@ -204,262 +204,189 @@ static int ntfs_ea_attr_lookup(struct ntfs_inode *ni, __le32 type)
- 	return err;
- }
- 
-+/* A NULL value means that the attribute should not exist. */
-+static int ntfs_ea_update_attr(struct ntfs_inode *ni, __le32 type,
-+			       char *value, s64 size)
-+{
-+	int err = ntfs_ea_attr_lookup(ni, type);
-+
-+	if (err && err != -ENOENT)
-+		return err;
-+	if (!value)
-+		return err == -ENOENT ? 0 :
-+			ntfs_attr_remove(ni, type, AT_UNNAMED, 0);
-+	if (err == -ENOENT)
-+		return ntfs_attr_add(ni, type, AT_UNNAMED, 0, value, size);
-+	return ntfs_write_ea(ni, type, value, 0, size, true);
-+}
-+
- /*
-- * Set a new EA, and set EA_INFORMATION accordingly
-- *
-- * This is roughly the same as ZwSetEaFile() on Windows, however
-- * the "offset to next" of the last EA should not be cleared.
-- *
-- * Consistency of the new EA is first checked.
-- *
-- * EA_INFORMATION is set first, and it is restored to its former
-- * state if setting EA fails.
-+ * Prepare the new EA list before changing either NTFS attribute. Keep the
-+ * original values until both updates succeed, so a failed update can be
-+ * rolled back. This does not provide atomicity across a crash or power loss.
-  */
- static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
- 		const void *value, size_t val_size, int flags,
- 		__le16 *packed_ea_size)
- {
- 	struct ntfs_inode *ni = NTFS_I(inode);
--	struct ea_information *p_ea_info = NULL;
--	int ea_packed, err = 0, ea_err;
--	bool has_ea;
--	struct ea_attr *p_ea;
--	u32 ea_info_qsize = 0;
--	char *ea_buf = NULL;
--	char *new_ea_buf;
--	char *old_ea_buf = NULL;
--	struct ea_information old_ea_info;
--	size_t new_ea_size = ALIGN(struct_size(p_ea, ea_name, 1 + name_len + val_size), 4);
--	s64 ea_off, ea_info_size, all_ea_size, ea_size;
--
--	if (name_len > 255)
-+	struct ea_information *old_info = NULL, info = {};
-+	char *old_ea = NULL, *ea = NULL;
-+	struct ea_attr *entry;
-+	s64 old_size = 0, info_size, offset = 0, entry_size = 0;
-+	u32 size = 0, new_size, next;
-+	size_t add_size;
-+	int err, info_err, ea_err, packed = 0, needed = 0;
-+	bool exists, remove = !value;
-+
-+	if (name_len > U8_MAX)
- 		return -ENAMETOOLONG;
-+	if (val_size > U16_MAX)
-+		return -E2BIG;
- 
- 	err = ntfs_ea_attr_lookup(ni, AT_EA_INFORMATION);
- 	if (err && err != -ENOENT)
- 		return err;
--	ea_err = ntfs_ea_attr_lookup(ni, AT_EA);
--	if (ea_err && ea_err != -ENOENT)
--		return ea_err;
--	if (!err != !ea_err)
-+	exists = !err;
-+	err = ntfs_ea_attr_lookup(ni, AT_EA);
-+	if (err && err != -ENOENT)
-+		return err;
-+	/* Do not silently discard an orphaned attribute. */
-+	if (exists != !err)
- 		return -EUCLEAN;
--	has_ea = !err;
--	if (!has_ea && (!value || (flags & XATTR_REPLACE)))
--		return -ENODATA;
--	if (has_ea) {
--		p_ea_info = ntfs_attr_readall(ni, AT_EA_INFORMATION, NULL, 0,
--						&ea_info_size);
--		if (IS_ERR(p_ea_info)) {
--			err = PTR_ERR(p_ea_info);
--			p_ea_info = NULL;
--			goto out;
--		}
--		if (ea_info_size != sizeof(struct ea_information)) {
-+
-+	if (exists) {
-+		old_info = ntfs_attr_readall(ni, AT_EA_INFORMATION, NULL, 0,
-+					     &info_size);
-+		if (IS_ERR(old_info))
-+			return PTR_ERR(old_info);
-+		if (info_size != sizeof(*old_info)) {
- 			err = -EUCLEAN;
- 			goto out;
- 		}
--
--		ea_buf = ntfs_attr_readall(ni, AT_EA, NULL, 0, &all_ea_size);
--		if (IS_ERR(ea_buf)) {
--			err = PTR_ERR(ea_buf);
--			ea_buf = NULL;
-+		old_ea = ntfs_attr_readall(ni, AT_EA, NULL, 0, &old_size);
-+		if (IS_ERR(old_ea)) {
-+			err = PTR_ERR(old_ea);
-+			old_ea = NULL;
- 			goto out;
- 		}
--
--		ea_info_qsize = le32_to_cpu(p_ea_info->ea_query_length);
--	} else {
--		p_ea_info = kzalloc_obj(struct ea_information, GFP_NOFS);
--		if (!p_ea_info)
--			return -ENOMEM;
--
--		ea_info_qsize = 0;
--		err = ntfs_attr_add(ni, AT_EA_INFORMATION, AT_UNNAMED, 0,
--				(char *)p_ea_info, sizeof(struct ea_information));
--		if (err)
-+		size = le32_to_cpu(old_info->ea_query_length);
-+		if (size > old_size) {
-+			err = -EUCLEAN;
- 			goto out;
--
--		goto alloc_new_ea;
--	}
--
--	if (ea_info_qsize > all_ea_size) {
--		err = -EUCLEAN;
--		goto out;
-+		}
- 	}
- 
--	/* Validate the whole chain before modifying it, including its tail. */
--	err = ntfs_ea_lookup(ea_buf, ea_info_qsize, NULL, 0, &ea_off,
--			     &ea_size);
-+	/* Validate even the entries following the one being replaced. */
-+	err = ntfs_ea_lookup(old_ea, size, NULL, 0, &offset, &entry_size);
- 	if (err != -ENOENT)
- 		goto out;
--	/* A zero tail offset must be linked before appending another EA. */
--	for (ea_off = 0; ea_off < ea_info_qsize; ea_off += ea_size) {
--		p_ea = (struct ea_attr *)(ea_buf + ea_off);
--		ea_size = le32_to_cpu(p_ea->next_entry_offset);
--		if (!ea_size) {
--			ea_size = ea_info_qsize - ea_off;
--			p_ea->next_entry_offset = cpu_to_le32(ea_size);
--		}
--	}
--
--	err = ntfs_ea_lookup(ea_buf, ea_info_qsize, name, name_len, &ea_off,
--			&ea_size);
-+	err = ntfs_ea_lookup(old_ea, size, name, name_len, &offset, &entry_size);
- 	if (err && err != -ENOENT)
- 		goto out;
--	if (ea_info_qsize && !err) {
-+	if (!err) {
- 		if (flags & XATTR_CREATE) {
- 			err = -EEXIST;
- 			goto out;
- 		}
--		if (!value) {
--			old_ea_info = *p_ea_info;
--			old_ea_buf = kvmemdup(ea_buf, all_ea_size, GFP_NOFS);
--			if (!old_ea_buf) {
--				err = -ENOMEM;
--				goto out;
--			}
--		}
--
--		/* Check the final $EA size before removing the old entry. */
--		if (value &&
--		    ntfs_attr_size_bounds_check(ni->vol, AT_EA,
--					ea_info_qsize - ea_size + new_ea_size)) {
--			err = -EFBIG;
--			goto out;
--		}
--
--		p_ea = (struct ea_attr *)(ea_buf + ea_off);
--
--		if (value &&
--		    le16_to_cpu(p_ea->ea_value_length) == val_size &&
--		    !memcmp(p_ea->ea_name + p_ea->ea_name_length + 1, value,
--			    val_size))
--			goto out;
--
--		le16_add_cpu(&p_ea_info->ea_length, 0 - ea_packed_size(p_ea));
--
--		if (p_ea->flags & NEED_EA)
--			le16_add_cpu(&p_ea_info->need_ea_count, -1);
--
--		memmove((char *)p_ea, (char *)p_ea + ea_size, ea_info_qsize - (ea_off + ea_size));
--		ea_info_qsize -= ea_size;
--		p_ea_info->ea_query_length = cpu_to_le32(ea_info_qsize);
--
--		if (!value && !ea_info_qsize) {
--			err = ntfs_attr_remove(ni, AT_EA, AT_UNNAMED, 0);
--			if (err)
--				goto out;
--
--			err = ntfs_attr_remove(ni, AT_EA_INFORMATION, AT_UNNAMED, 0);
--			if (err) {
--				/* Restore the original $EA if $EA_INFORMATION removal failed. */
--				ntfs_attr_add(ni, AT_EA, AT_UNNAMED, 0, old_ea_buf,
--					      all_ea_size);
--				ea_info_qsize = le32_to_cpu(old_ea_info.ea_query_length);
--			}
--			goto out;
--		}
--
--		if (!value) {
--			err = ntfs_write_ea(ni, AT_EA, ea_buf, 0, ea_info_qsize,
--					true);
--			if (err) {
--				ntfs_write_ea(ni, AT_EA, old_ea_buf, 0,
--					      all_ea_size, false);
--				goto out;
--			}
--
--			err = ntfs_write_ea(ni, AT_EA_INFORMATION, (char *)p_ea_info,
--					0, sizeof(struct ea_information), false);
--			if (err) {
--				ntfs_write_ea(ni, AT_EA, old_ea_buf, 0,
--					      all_ea_size, false);
--				ntfs_write_ea(ni, AT_EA_INFORMATION,
--					      (char *)&old_ea_info, 0,
--					      sizeof(old_ea_info), false);
--			}
--			goto out;
-+		entry = (struct ea_attr *)(old_ea + offset);
-+		if (!remove && le16_to_cpu(entry->ea_value_length) == val_size &&
-+		    !memcmp(entry->ea_name + name_len + 1, value, val_size)) {
-+			info = *old_info;
-+			goto done;
- 		}
- 	} else {
--		if (!value || (flags & XATTR_REPLACE)) {
-+		if (remove || (flags & XATTR_REPLACE)) {
- 			err = -ENODATA;
- 			goto out;
- 		}
-+		offset = size;
-+		entry_size = 0;
-+	}
- 
--		if (ntfs_attr_size_bounds_check(ni->vol, AT_EA,
--					ea_info_qsize + new_ea_size)) {
--			err = -EFBIG;
-+	add_size = remove ? 0 : ALIGN(sizeof(*entry) + name_len + 1 + val_size, 4);
-+	new_size = size - entry_size + add_size;
-+	if (new_size && ntfs_attr_size_bounds_check(ni->vol, AT_EA, new_size)) {
-+		err = -EFBIG;
-+		goto out;
-+	}
-+	if (new_size) {
-+		ea = kvzalloc(new_size, GFP_NOFS);
-+		if (!ea) {
-+			err = -ENOMEM;
- 			goto out;
- 		}
-+		if (offset)
-+			memcpy(ea, old_ea, offset);
-+		if (size > offset + entry_size)
-+			memcpy(ea + offset, old_ea + offset + entry_size,
-+			       size - offset - entry_size);
- 	}
--alloc_new_ea:
--	new_ea_buf = kvzalloc(ea_info_qsize + new_ea_size, GFP_NOFS);
--	if (!new_ea_buf) {
--		err = -ENOMEM;
--		goto out;
-+	size -= entry_size;
-+
-+	/* Link a zero-terminated old tail before appending the new entry. */
-+	for (offset = 0; offset < size; offset += next) {
-+		entry = (struct ea_attr *)(ea + offset);
-+		next = le32_to_cpu(entry->next_entry_offset);
-+		if (!next) {
-+			next = size - offset;
-+			entry->next_entry_offset = cpu_to_le32(next);
-+		}
-+		packed += ea_packed_size(entry);
-+		if (entry->flags & NEED_EA)
-+			needed++;
- 	}
--	if (ea_info_qsize)
--		memcpy(new_ea_buf, ea_buf, ea_info_qsize);
--	kvfree(ea_buf);
--	ea_buf = new_ea_buf;
--	p_ea = (struct ea_attr *)(ea_buf + ea_info_qsize);
--
--	/*
--	 * EA and REPARSE_POINT compatibility not checked any more,
--	 * required by Windows 10, but having both may lead to
--	 * problems with earlier versions.
--	 */
--	memcpy(p_ea->ea_name, name, name_len);
--	p_ea->ea_name_length = name_len;
--	p_ea->ea_name[name_len] = 0;
--	memcpy(p_ea->ea_name + name_len + 1, value, val_size);
--	p_ea->ea_value_length = cpu_to_le16(val_size);
--	p_ea->next_entry_offset = cpu_to_le32(new_ea_size);
--
--	ea_packed = le16_to_cpu(p_ea_info->ea_length) + ea_packed_size(p_ea);
--	p_ea_info->ea_length = cpu_to_le16(ea_packed);
--	p_ea_info->ea_query_length = cpu_to_le32(ea_info_qsize + new_ea_size);
--
--	if (ea_packed > 0xffff) {
-+	if (!remove) {
-+		entry = (struct ea_attr *)(ea + size);
-+		entry->next_entry_offset = cpu_to_le32(add_size);
-+		entry->ea_name_length = name_len;
-+		entry->ea_value_length = cpu_to_le16(val_size);
-+		memcpy(entry->ea_name, name, name_len);
-+		memcpy(entry->ea_name + name_len + 1, value, val_size);
-+		packed += ea_packed_size(entry);
-+	}
-+	if (packed > U16_MAX) {
- 		err = -EFBIG;
- 		goto out;
- 	}
--
--	/*
--	 * no EA or EA_INFORMATION : add them
--	 */
--	if (!has_ea) {
--		err = ntfs_attr_add(ni, AT_EA, AT_UNNAMED, 0, ea_buf,
--				ea_info_qsize + new_ea_size);
--		if (err)
--			goto out;
--	} else {
--		err = ntfs_write_ea(ni, AT_EA, ea_buf, 0,
--				ea_info_qsize + new_ea_size, true);
--		if (err)
--			goto out;
--	}
--
--	err = ntfs_write_ea(ni, AT_EA_INFORMATION, (char *)p_ea_info, 0,
--			sizeof(struct ea_information), false);
--	if (err)
-+	info.ea_length = cpu_to_le16(packed);
-+	info.need_ea_count = cpu_to_le16(needed);
-+	info.ea_query_length = cpu_to_le32(new_size);
-+
-+	/* All preparation is complete; errors from here require rollback. */
-+	err = ntfs_ea_update_attr(ni, AT_EA, ea, new_size);
-+	if (!err)
-+		err = ntfs_ea_update_attr(ni, AT_EA_INFORMATION,
-+					  new_size ? (char *)&info : NULL,
-+					  sizeof(info));
-+	if (err) {
-+		/* Try both restorations even if the first one fails. */
-+		ea_err = ntfs_ea_update_attr(ni, AT_EA, old_ea, old_size);
-+		info_err = ntfs_ea_update_attr(ni, AT_EA_INFORMATION,
-+					       (char *)old_info, sizeof(info));
-+		if (ea_err || info_err) {
-+			NVolSetErrors(ni->vol);
-+			NVolSetShutdown(ni->vol);
-+			ntfs_error(inode->i_sb,
-+				   "Failed to restore EAs of inode 0x%llx (%d, %d); shutting down.",
-+				   ni->mft_no, ea_err, info_err);
-+			err = -EIO;
-+		}
- 		goto out;
--
--	if (packed_ea_size)
--		*packed_ea_size = p_ea_info->ea_length;
--	ea_info_qsize += new_ea_size;
-+	}
-+	size = new_size;
- 	mark_mft_record_dirty(ni);
-+done:
-+	if (packed_ea_size)
-+		*packed_ea_size = info.ea_length;
-+	if (size)
-+		NInoSetHasEA(ni);
-+	else
-+		NInoClearHasEA(ni);
- out:
--	if (!err) {
--		if (ea_info_qsize > 0)
--			NInoSetHasEA(ni);
--		else
--			NInoClearHasEA(ni);
--	}
--
--	kvfree(ea_buf);
--	kvfree(old_ea_buf);
--	kvfree(p_ea_info);
--
-+	kvfree(ea);
-+	kvfree(old_ea);
-+	kvfree(old_info);
- 	return err;
- }
- 
+Testing on this revision:
+- QEMU tests covered flag and EA readback, inode cache reclaim,
+  read-only/read-write remount, unmount/mount and fresh-kernel reload.
+  Checked immutable write/unlink denial, append-only enforcement,
+  normal I/O after clearing flags, and read-only SETFLAGS rejection.
+- Verified EPERM when clearing $Bitmap protection, including without
+  sys_immutable, and when clearing sys_immutable-derived protection.
+  $MFT rejects SETFLAGS with ENOTTY through its empty operations.
+  Checked casefold reporting and STATX_ATTR_NODUMP.
+- Exercised first-EA creation/removal, XATTR_CREATE/REPLACE, zero-length
+  values, zero-terminated tails, unrelated EA preservation, unknown-bit
+  preservation, and direct LXFLAGS write/removal rejection.
+- Malformed LXFLAGS length, chain offsets, name termination, value
+  length and query length returned EUCLEAN. A corrupt tail following
+  LXFLAGS prevented an update without changing the existing flags.
+  An invalid resident EA_INFORMATION length rejected earlier by the
+  underlying attribute parser retained that parser's EIO.
+- Fault injection covered allocation failure, failures after each EA
+  attribute update and rollback failure. Tested creation, replacement
+  and removal with no other EAs, resident EAs and an 8 KiB non-resident
+  EA; checked old values and protection after failure and remount, and
+  shutdown when restoration failed.
+- Additional injection checked ENOSPC write errors, short writes,
+  truncate errors, ENOMEM/EIO lookup errors and missing EA attribute
+  pairs, with old EA contents verified after remount.
+- Formatted a SanDisk USB partition inside QEMU using the final kernel,
+  and created combined and individual flag probes through SETFLAGS.
+  A fresh QEMU boot with both disk and mount read-only confirmed flags
+  0x70/0x10/0x20/0x40 and LXFLAGS values 7/1/2/4, directory nodump,
+  absence of the cleared entry, unchanged canary EA and statx nodump.
+
+Windows compatibility testing of this revision completed on Windows
+25H2 (OS build 26200.9457), using the LXFLAGS_V3 USB volume (serial
+4C3F-43F9). Windows mounted the volume and accessed the existing probes
+with dir/type. chkdsk G: /f initially could not lock the volume; after
+accepting its forced-dismount prompt, it completed all three stages and
+reported no filesystem problems and no further action required.
+
+After returning the USB to Linux, a fresh QEMU guest running the final
+kernel checked it with both the virtual disk and NTFS mount read-only.
+GETFLAGS and EA reads confirmed the combined flags 0x70 and individual
+flags 0x10/0x20/0x40, with four-byte LXFLAGS values 7/1/2/4 unchanged.
+Directory nodump remained set, the cleared entry remained absent, the
+unrelated canary EA was unchanged, and statx still reported nodump.
+
+The tested Windows mount/access/CHKDSK sequence therefore preserved the
+LXFLAGS names, lengths and values on the tested Windows build.
+
+Baolin Liu (10):
+  ntfs: keep the EA presence flag after creating the first entry
+  ntfs: validate EA chains and link zero-terminated tails
+  ntfs: propagate EA write and truncate errors
+  ntfs: preserve EA attribute lookup errors
+  ntfs: distinguish empty EA values from removal
+  ntfs: restore EA attributes when an update fails
+  ntfs: add fileattr query support
+  ntfs: persist immutable in the $LXFLAGS EA
+  ntfs: persist append-only in the $LXFLAGS EA
+  ntfs: persist nodump in the $LXFLAGS EA
+
+ Documentation/filesystems/ntfs.rst |  24 ++
+ fs/ntfs/ea.c                       | 451 +++++++++++++++--------------
+ fs/ntfs/ea.h                       |   9 +
+ fs/ntfs/file.c                     | 125 +++++++-
+ fs/ntfs/inode.c                    |  12 +-
+ fs/ntfs/inode.h                    |   2 +
+ fs/ntfs/namei.c                    |   2 +
+ fs/ntfs/ntfs.h                     |   4 +
+ 8 files changed, 410 insertions(+), 219 deletions(-)
+
 -- 
 2.51.0
 
