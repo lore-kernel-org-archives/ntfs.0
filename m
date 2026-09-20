@@ -1,61 +1,43 @@
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A163D9556
-	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 06:32:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCBC82F8E8F
+	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 08:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789885940; cv=none; b=bQBkQBKlaYM6IxgrfwLh31NOYUmXwD5651LREr8NsEXhWlFmIR4bEBLJR53+cRz3iChMsO8hHQ00BCqxGvxrocRUDEr9N0mB9tbqSRN+AR243Yzek6gok/V0xMW6ZxBDnoixpw7qWSIW1qNTRWW0q9S6lAbRWFvxYkO4X+M1Xe8=
+	t=1789893126; cv=none; b=WOWPqdM5/Qq/sGcaBtvckMc5OTIkj4UZ48TzeYpoSKnShOLZwiItME6bTt4t+qTdrbJPT5OhLcdt3c1knp7MYRetlGHZuzR/LTfsxYJm+PQyXobWTf/DdgVU1Wxv3BN4csd4J+1u819+C/+BDrpe7rptjyUyo5rldv3XwKFcy3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789885940; c=relaxed/simple;
-	bh=pAERUW8myD8CNy2U4OteOdJ/vkvuBTpnim9iNvmMlf0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bDsPTzjGV72+GuSFf8dJ5S3zQd7KrjEXO2jrcoSX2XzPaspHdHvK0BCv8NoHAPZdc/zzD01HoBa7EAKSV1EvqnnAXWrZBBaHJJGydhKKEvnc1KKkVjCp00K5LaTWivm8XYBa9HRMCGjE1GrKoQcUA56Q90ImDfu8rokXNa+XXBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 014e4150b4bd11f19a56ed5b684f684d-20260920
-X-CTIC-Tags:
-	HR_CC_COUNT, HR_CC_DOMAIN_COUNT, HR_CC_NAME, HR_CC_NO_NAME, HR_CTE_8B
-	HR_CTT_MISS, HR_DATE_H, HR_DATE_WKD, HR_DATE_ZONE, HR_FROM_NAME
-	HR_SJ_DIGIT_LEN, HR_SJ_LANG, HR_SJ_LEN, HR_SJ_LETTER, HR_SJ_NOR_SYM
-	HR_SJ_PHRASE, HR_SJ_PHRASE_LEN, HR_SJ_WS, HR_TO_COUNT, HR_TO_DOMAIN_COUNT
-	HR_TO_NO_NAME, IP_TRUSTED, SRC_TRUSTED, SA_TRUSTED, SA_EXISTED
-	SN_EXISTED, SPF_NOPASS, DKIM_NOPASS, DMARC_NOPASS, CIE_BAD
-	CIE_GOOD, CIE_GOOD_SPF, GTI_FG_BS, GTI_RG_INFO, GTI_C_BU
-	AMN_GOOD, ABX_MISS_RDNS
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:b3c004ea-2d5d-4cd1-bb14-abe007292fed,IP:10,
-	URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:10
-X-CID-INFO: VERSION:1.3.19,REQID:b3c004ea-2d5d-4cd1-bb14-abe007292fed,IP:10,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:10
-X-CID-META: VersionHash:7db8b62,CLOUDID:a97caa48f5a694a96ff053bb118d16ee,BulkI
-	D:260920143212CE1VE3T0,BulkQuantity:0,SF:17|19|38|66|78|102|127|850|865|89
-	8,TC:nil,Content:0|15|50|99|100|102|158,EDM:-3,IP:-2,URL:0,File:nil,RT:nil
-	,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,B
-	RR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_FAS,TF_CID_SPAM_FSD
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 014e4150b4bd11f19a56ed5b684f684d-20260920
-X-User: wangxuewen@kylinos.cn
-Received: from localhost.localdomain [(223.70.159.239)] by mailgw.kylinos.cn
-	(envelope-from <wangxuewen@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1462341643; Sun, 20 Sep 2026 14:32:08 +0800
-From: Xuewen Wang <wangxuewen@kylinos.cn>
+	s=arc-20240116; t=1789893126; c=relaxed/simple;
+	bh=Ie5COk0tmhQEcp5kIuQPo/ZUSVcEEGAhl4hJioiuhIA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ZOxU/Prqoc7wqD9jVo3iSKfrFDEqhhTtdM/aYtA2sDnFT9LDNaqkTNf0mkL8wQneBNBIzY+CfiphQv8LcJo/ec/w2mej4bMpVs4KwkgINAyiNFgUrgzfw50oUsxA8bbmGO6J5dSF32Mg3CYFpO0fx/LCC3u9tcLVDL18MY+Pg3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=hgMBDczh; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="hgMBDczh"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=sl
+	m6wwvgS9oQ7CXUMaxnmw9GzX+LFkkuBvWkyoC2kCg=; b=hgMBDczhlZr7K79THU
+	LX/Sur3f3BUO9giErav0VGo0ddMBknBX++H8XYBOfD/UHG36xKFENp7AmxB+eKPx
+	6KZAzmbXaqPgoEYL5tzJy90UO9DGXloLNTzfNu6rabPXI3aJaOSlRg5esY1iXe8p
+	p6ubQDa30PA1OonPxkBBEGSbM=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgB3m07lma9qs7GbAQ--.54162S5;
+	Sun, 20 Sep 2026 16:31:41 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Xuewen Wang <wangxuewen@kylinos.cn>,
+	chenxiaosong@chenxiaosong.com,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v1] ntfs: preserve the 64-bit FITRIM minimum length
-Date: Sun, 20 Sep 2026 14:31:53 +0800
-Message-Id: <20260920063153.376958-1-wangxuewen@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+Subject: [PATCH v2 03/10] ntfs: propagate EA write and truncate errors
+Date: Sun, 20 Sep 2026 16:31:24 +0800
+Message-ID: <20260920083131.1880061-4-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260920083131.1880061-1-liubaolin12138@163.com>
+References: <20260920083131.1880061-1-liubaolin12138@163.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -63,40 +45,46 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PygvCgB3m07lma9qs7GbAQ--.54162S5
+X-Coremail-Antispam: 1Uf129KBjvdXoW7GFyfWFW7ZF4DXF17XF17Awb_yoWkXFX_u3
+	WxZF1kKr4jqF1kGanrArnI9ryqqa18ZF1qvwn5K3Wvy34Dt34qvrZ0grs5KFsrua10kr98
+	Gwn3WFy3AF13GjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUnuVbPUUUUU==
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Q0o8mqvme2yPAAA3B
 
-The minlen member of struct fstrim_range is a 64-bit byte count, but
-ntfs_ioctl_fitrim() uses max_t(u32, ...) to compare it with the device's
-discard granularity. This truncates the requested minimum length before
-passing it to ntfs_trim_fs().
+From: Baolin Liu <liubaolin@kylinos.cn>
 
-For example, a minimum length of 4 GiB is reduced to the discard
-granularity, allowing smaller free extents to be discarded. The truncated
-minimum length is also copied back to userspace.
+ntfs_write_ea() replaces negative write errors with EIO and ignores
+errors when shrinking the attribute after writing a shorter list.
+This can report success even though the final resize failed.
 
-Use max_t(u64, ...) to preserve the requested minimum length. The bitmap
-scan already compares the aligned extent length against range->minlen
-using 64-bit values.
+Preserve negative write errors, use EIO for short writes, and return
+truncate failures to the caller.
 
-Fixes: 9c87959601e8 ("ntfs: update file operations")
-Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 ---
- fs/ntfs/file.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ fs/ntfs/ea.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 8164326b7812..e315fed4d13b 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -866,7 +866,7 @@ static int ntfs_ioctl_fitrim(struct ntfs_volume *vol, unsigned long arg)
- 	if (range.len < vol->cluster_size)
- 		return -EINVAL;
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index 59160e49a53f..5c6facae4ed5 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -32,12 +32,12 @@ static int ntfs_write_ea(struct ntfs_inode *ni, __le32 type, char *value, s64 ea
  
--	range.minlen = max_t(u32, range.minlen, bdev_discard_granularity(dev));
-+	range.minlen = max_t(u64, range.minlen, bdev_discard_granularity(dev));
+ 	written = ntfs_inode_attr_pwrite(ea_vi, ea_off, ea_size, value, false);
+ 	if (written != ea_size)
+-		err = -EIO;
++		err = written < 0 ? written : -EIO;
+ 	else {
+ 		struct ntfs_inode *ea_ni = NTFS_I(ea_vi);
  
- 	err = ntfs_trim_fs(vol, &range);
- 	if (err < 0)
+ 		if (need_truncate && ea_ni->data_size > ea_off + ea_size)
+-			ntfs_attr_truncate(ea_ni, ea_off + ea_size);
++			err = ntfs_attr_truncate(ea_ni, ea_off + ea_size);
+ 		mark_mft_record_dirty(ni);
+ 	}
+ 
 -- 
-2.25.1
+2.51.0
 
