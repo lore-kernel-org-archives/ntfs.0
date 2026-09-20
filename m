@@ -1,174 +1,287 @@
 Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86EA3B8948
-	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 08:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC371FDA61
+	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 11:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789893154; cv=none; b=rnppBkl18V1JUUuVMGIsFiHJ7qaGzSJroJoIjiu10S1PCCniP7jj6CN1raHJiVKp+/UjVx1SFFP9uhgTeNgxXM728oAp/6DQ9ImG5oroANFr7tnqprFytJZgsZ1wG5K4jJGEHDYktsda0Ro9/ZIJ5CS6JN1Nq1v/B48hP1g2X3Y=
+	t=1789903553; cv=none; b=hSPY2LUWxIsoFiyCX3K3Kw4nqI2cNNoUDm1RBSDhw/fP/eWX44N/1AwYVFwOM2FEFnTVCWHva+r9PRm+ZRMVRSoVbXqF6mZldpuSbjisF5T2xmWjWK7Wr5lfK9h2ciV8Kfh7zxbCzB0k2xn8Xmrs24DU2dJoABg4KDEdFk7sLzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789893154; c=relaxed/simple;
-	bh=/CkXgnNuVYXJThs5XNYx5qmLIfoSFEMgjKeRhd6Yvlg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fT/lN5Y8eejZ91oAuEVYP6PXSaePDc/EDTLZnkFDeVq5cGO6I7e2W1EGyAmMesO4255aLRZAvN+/91ouAIvkyZ9JM7GEd80dgvNDyOAHSCU88ghkOETwHW+1GNxFhR9JsT5535fa3H2NsJYky0U/BNrrY4/LX4N3wJMQcadzwHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=DBE696aT; arc=none smtp.client-ip=117.135.210.5
+	s=arc-20240116; t=1789903553; c=relaxed/simple;
+	bh=jmhPB1P9jGwQfWomRnGhe0RB+DrGmw+jS55nZI7L4fY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j95a86WE7f+vzVqvpZ3XzfCuTW0Mks7a7GkJ6GT3/lmq0hoLGp1hGoQluyVrpCrBRaw6d3sZqMBxgNm9pBSIX7niOmPwh1Z3F7QNtNR2RTVSDkvYEacSEKveiam8iiIwzq6ZXP97aqnBwLbUwZk4IeWYcznMAlASfCLonu+Xdqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=SqSmlg4r; arc=none smtp.client-ip=117.135.210.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="DBE696aT"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="SqSmlg4r"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Es
-	rSMK0TnaMid68JzQ6v1hteDGa+S/QMxhbry3trj4o=; b=DBE696aTReZ5ddUqkW
-	O1LKTw+tSF/HDgamXau7q+zhZr56E7CNCqKd09NcXlZd0vF7fTakLHlUgHtCXcSd
-	LTdXAOsDuu0tah6bK2Y3W/T0YuH2M8ml5rwjO8hvphAn2yu4pWi7FDe4qYbqQ4Aj
-	Yma/JAFq4AURaYiYiRe2UYryw=
-Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgB3m07lma9qs7GbAQ--.54162S2;
-	Sun, 20 Sep 2026 16:31:35 +0800 (CST)
-From: Baolin Liu <liubaolin12138@163.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	chenxiaosong@chenxiaosong.com,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v2 00/10] ntfs: persist Linux file attributes in an EA
-Date: Sun, 20 Sep 2026 16:31:21 +0800
-Message-ID: <20260920083131.1880061-1-liubaolin12138@163.com>
-X-Mailer: git-send-email 2.51.0
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=AM+FarV7xB7Zz+QiLT9L6i+YPz8fUNu/gX+M5rzQES4=;
+	b=SqSmlg4rYqRU6fBU7461E5izVzhx12E1NLQpaEAQRBY3MxLO0wOKm5gIYgaHF3
+	Mn8ylT4HtMUwpGV/oWO78CjqGw/i3cIjH9rEZOQC0NlnIiA7I/nbFdhGT1GyPs6M
+	pc8qNT8Ed0efLtpjkxj+CPtHpH3bHK+Bmz6A77q1PpZSU=
+Received: from [IPV6:2409:8900:1ee3:222c:6d18:42cb:3228:5708] (unknown [])
+	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wCHlnuswq9qwud7Bw--.60149S2;
+	Sun, 20 Sep 2026 19:25:34 +0800 (CST)
+Message-ID: <04255390-4133-4e8e-81ad-4d2402498431@163.com>
+Date: Sun, 20 Sep 2026 19:25:32 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] ntfs: mount hibernated volumes read-only regardless of
+ errors=
+To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ zhongling0719@126.com, stable@vger.kernel.org
+References: <20260920025955.31209-1-zenghongling@kylinos.cn>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20260920025955.31209-1-zenghongling@kylinos.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PygvCgB3m07lma9qs7GbAQ--.54162S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3Gw4DWF47XryDJr43tr43ZFb_yoWxWr15pF
-	Z3G39xK3ykJry2k397ta12v3WF9a95AF4UXr1DKry8uFyjk347tFWfta12vFW8Cr1fKw1j
-	qa1jq3ykZr45Aa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jnhL8UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Qgn8WqvmeixpQAA3X
+X-CM-TRANSID:_____wCHlnuswq9qwud7Bw--.60149S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxtw13tF1xuw1xtF1DKr4rKrg_yoWfKr4Dpr
+	Z7Kwnxtr4ktr1a9rn2yayxG3WF9rZ2yF4jgr18Aw4xZrn8Jr13tryxKw4Y9a4Skr98tw48
+	XF4j9343WF4DZFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UfOz3UUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6g5iLWqvwq4eDwAA3T
 
-From: Baolin Liu <liubaolin@kylinos.cn>
 
-This series implements persistent immutable, append-only and nodump flags
-using a private $LXFLAGS EA in the standard NTFS $EA/$EA_INFORMATION
-attributes. No new NTFS attribute type or formatter changes are needed.
 
-The value is a little-endian u32 with immutable, append-only and nodump
-in bits 0, 1 and 2. Inode loading restores the flags. Unknown bits are
-preserved, and the entry is removed only when its entire value is zero.
-The setter protects system metadata and sys_immutable-derived immutable
-state, rejects direct writes to $LXFLAGS, and updates in-memory flags
-only after the EA update succeeds. Fileattr queries also report mount-wide
-case folding. Nodump is reported through both fileattr and statx.
+在 2026/9/20 10:59, Hongling Zeng 写道:
+> The hibernation check in load_system_files() only converts the
+> superblock to read-only under errors=remount-ro.  With the default
+> errors=continue (and with errors=panic), a hibernated volume is
+> mounted read-write and the mount-time $LogFile emptying writes to it,
+> although a hibernated volume must not be written to at all.
+> 
+> Drop the on_errors term so that a hibernated volume, or a volume whose
+> hibernation state cannot be determined, always mounts read-only.
+> NVolErrors() is still recorded, so ntfs_reconfigure() keeps refusing
+> remounts to read-write, and the $LogFile emptying is skipped by its
+> !sb_rdonly() check.
+> 
+> The check itself must not apply the errors= policy either: it runs
+> before SB_RDONLY is set, and ntfs_lookup_inode_by_name() and
+> ntfs_iget() call ntfs_error() internally on corruption or I/O errors,
+> which under errors=panic would panic the machine before the read-only
+> fallback has made its decision.  Run the check with the super block
+> temporarily marked read-only, which makes ntfs_handle_error() ignore
+> any ntfs_error() issued on this path; the super block is not
+> published yet at this point, so the temporary flag is not visible
+> elsewhere.
+> 
+> Restore read-write access only if the check succeeded and no errors
+> were recorded earlier during the mount, e.g. when loading the LogFile,
+> so that a volume with recorded errors stays read-only, matching what
+> ntfs_reconfigure() enforces for remounts, and a message is logged for
+> that case.
+> 
+> Fixes: 6251f0b0de7d ("ntfs: update super block operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+> ---
+> Change in v5:
+>   -Rework the errors=panic handling per review feedback.
+> ---
+>   fs/ntfs/super.c | 36 +++++++++++++++++++++++++++++++-----
+>   1 file changed, 31 insertions(+), 5 deletions(-)
+> 
+> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+> index f4a73e45773d..ab91cd1a8515 100644
+> --- a/fs/ntfs/super.c
+> +++ b/fs/ntfs/super.c
+> @@ -1398,6 +1398,7 @@ static bool load_system_files(struct ntfs_volume *vol)
+>   	struct ntfs_attr_search_ctx *ctx;
+>   	struct restart_page_header *rp;
+>   	int err;
+> +	bool temporary_ro = false;
+>   
+>   	ntfs_debug("Entering.");
+>   	/* Get mft mirror inode compare the contents of $MFT and $MFTMirr. */
+> @@ -1572,8 +1573,20 @@ static bool load_system_files(struct ntfs_volume *vol)
+>   	 * NVolErrors() without setting the dirty volume flag and mount
+>   	 * read-only.  This will prevent read-write remounting and it will also
+>   	 * prevent all writes.
+> +	 *
+> +	 * The check runs with the super block temporarily marked read-only, so
+> +	 * that ntfs_error() calls issued internally by ntfs_lookup_inode_by_name()
+> +	 * and ntfs_iget() cannot trigger errors=panic before the read-only
+> +	 * fallback has run.  The super block is not published yet, so the flag
+> +	 * is not visible elsewhere.
+>   	 */
+> +	if (!sb_rdonly(sb)) {
+> +		sb->s_flags |= SB_RDONLY;
+> +		temporary_ro = true;
+> +	}
+>   	err = check_windows_hibernation_status(vol);
+> +	if (temporary_ro && !err && !NVolErrors(vol))
+> +		sb->s_flags &= ~SB_RDONLY;
 
-Changes since v1:
-- Persist immutable, append-only and nodump in the private $LXFLAGS EA,
-  restoring them on inode load so inode reclaim and remount do not
-  discard the settings. Preserve unknown bits and reject direct xattr
-  writes or removal of this entry.
-- Reject clearing immutable on system metadata files and files protected
-  by sys_immutable. Report mount-wide case folding with FS_CASEFOLD_FL.
-- Add prerequisite EA fixes for presence tracking, chain validation,
-  error propagation, empty values and failed-update recovery. Use EUCLEAN
-  for structural errors detected by the EA helpers and preserve errors
-  from lower layers.
-- Organize the series into six EA fixes and four fileattr patches, with
-  documentation accompanying each feature step.
-- Rebase onto 018344e6f555 and verify Windows mount/access/CHKDSK
-  compatibility.
+Hi Hongling,
+   Thanks for sending the updated patch. I'm sorry, but while reviewing 
+this version more closely, I found a problem with the temporary 
+read-only approach I suggested during the v3 discussion.
 
-Patch overview:
-- Patch 1 fixes the cached EA presence flag after creating or replacing
-  the only entry.
-- Patch 2 validates EA chains and links zero-terminated tails before
-  appending entries.
-- Patch 3 preserves EA write errors and reports truncate failures.
-- Patch 4 distinguishes missing attributes from lookup failures and
-  rejects incomplete EA attribute pairs.
-- Patch 5 distinguishes empty EA values from deletion and rejects
-  removal or replacement of absent entries.
-- Patch 6 prepares the new list before updating attributes, restores
-  both old attributes on failure, and shuts down if restoration fails.
-- Patch 7 adds fileattr queries for existing inode flags and mount-wide
-  case folding.
-- Patch 8 introduces the $LXFLAGS storage and inode-load paths, adds
-  immutable persistence, and protects system-imposed immutable state.
-- Patch 9 extends the persistent interface to append-only.
-- Patch 10 adds persistent nodump and reports it through fileattr and
-  statx.
+   The condition above does not reliably establish whether read-write 
+access can be restored. An ntfs_error() call does not necessarily set 
+NVolErrors(), and some errors reported by nested helpers are not 
+propagated back to the hibernation check.
 
-Testing on this revision:
-- QEMU tests covered flag and EA readback, inode cache reclaim,
-  read-only/read-write remount, unmount/mount and fresh-kernel reload.
-  Checked immutable write/unlink denial, append-only enforcement,
-  normal I/O after clearing flags, and read-only SETFLAGS rejection.
-- Verified EPERM when clearing $Bitmap protection, including without
-  sys_immutable, and when clearing sys_immutable-derived protection.
-  $MFT rejects SETFLAGS with ENOTTY through its empty operations.
-  Checked casefold reporting and STATX_ATTR_NODUMP.
-- Exercised first-EA creation/removal, XATTR_CREATE/REPLACE, zero-length
-  values, zero-terminated tails, unrelated EA preservation, unknown-bit
-  preservation, and direct LXFLAGS write/removal rejection.
-- Malformed LXFLAGS length, chain offsets, name termination, value
-  length and query length returned EUCLEAN. A corrupt tail following
-  LXFLAGS prevented an update without changing the existing flags.
-  An invalid resident EA_INFORMATION length rejected earlier by the
-  underlying attribute parser retained that parser's EIO.
-- Fault injection covered allocation failure, failures after each EA
-  attribute update and rollback failure. Tested creation, replacement
-  and removal with no other EAs, resident EAs and an 8 KiB non-resident
-  EA; checked old values and protection after failure and remount, and
-  shutdown when restoration failed.
-- Additional injection checked ENOSPC write errors, short writes,
-  truncate errors, ENOMEM/EIO lookup errors and missing EA attribute
-  pairs, with old EA contents verified after remount.
-- Formatted a SanDisk USB partition inside QEMU using the final kernel,
-  and created combined and individual flag probes through SETFLAGS.
-  A fresh QEMU boot with both disk and mount read-only confirmed flags
-  0x70/0x10/0x20/0x40 and LXFLAGS values 7/1/2/4, directory nodump,
-  absence of the cleared entry, unchanged canary EA and statx nodump.
+   For example, ntfs_attr_readall() can report "Invalid attribute data 
+size" and return -EIO without setting NVolErrors(). If this happens 
+while reading the optional WSL extended attributes through 
+ntfs_ea_get_wsl_inode(), the error can be ignored and inode loading can 
+still succeed. If the hibernation header is otherwise valid and 
+zero-filled, the check can then return zero.
 
-Windows compatibility testing of this revision completed on Windows
-25H2 (OS build 26200.9457), using the LXFLAGS_V3 USB volume (serial
-4C3F-43F9). Windows mounted the volume and accessed the existing probes
-with dir/type. chkdsk G: /f initially could not lock the volume; after
-accepting its forced-dismount prompt, it completed all three stages and
-reported no filesystem problems and no further action required.
+   With errors=remount-ro, the original code would retain the read-only 
+state set by that ntfs_error() call. With v5, ntfs_handle_error() 
+returns immediately because SB_RDONLY is already set, and the condition 
+above can subsequently restore read-write access because neither err nor 
+NVolErrors() reflects that error.
 
-After returning the USB to Linux, a fresh QEMU guest running the final
-kernel checked it with both the virtual disk and NTFS mount read-only.
-GETFLAGS and EA reads confirmed the combined flags 0x70 and individual
-flags 0x10/0x20/0x40, with four-byte LXFLAGS values 7/1/2/4 unchanged.
-Directory nodump remained set, the cleared entry remained absent, the
-unrelated canary EA was unchanged, and statx still reported nodump.
+   This makes it difficult to define a reliable restoration condition 
+using only the check's return value and NVolErrors().
 
-The tested Windows mount/access/CHKDSK sequence therefore preserved the
-LXFLAGS names, lengths and values on the tested Windows build.
+   I now think a better approach is to temporarily replace 
+ON_ERRORS_PANIC with ON_ERRORS_REMOUNT_RO around 
+check_windows_hibernation_status(), then restore the original policy
+  immediately afterwards. This covers both direct and nested 
+ntfs_error() calls while preserving any read-only transition they 
+trigger. The temporary substitution leaves the existing errors=continue 
+and errors=remount-ro policies unchanged.
 
-Baolin Liu (10):
-  ntfs: keep the EA presence flag after creating the first entry
-  ntfs: validate EA chains and link zero-terminated tails
-  ntfs: propagate EA write and truncate errors
-  ntfs: preserve EA attribute lookup errors
-  ntfs: distinguish empty EA values from removal
-  ntfs: restore EA attributes when an update fails
-  ntfs: add fileattr query support
-  ntfs: persist immutable in the $LXFLAGS EA
-  ntfs: persist append-only in the $LXFLAGS EA
-  ntfs: persist nodump in the $LXFLAGS EA
+   This deliberately falls back to read-only for any ntfs_error() that 
+would otherwise trigger panic during the check, including recoverable 
+errors. I think that is a reasonable conservative fallback: it avoids 
+panic without treating every such error as a persistent volume error by 
+automatically setting NVolErrors().
 
- Documentation/filesystems/ntfs.rst |  24 ++
- fs/ntfs/ea.c                       | 451 +++++++++++++++--------------
- fs/ntfs/ea.h                       |   9 +
- fs/ntfs/file.c                     | 125 +++++++-
- fs/ntfs/inode.c                    |  12 +-
- fs/ntfs/inode.h                    |   2 +
- fs/ntfs/namei.c                    |   2 +
- fs/ntfs/ntfs.h                     |   4 +
- 8 files changed, 410 insertions(+), 219 deletions(-)
+   If the check reports hibernation or fails, we would still 
+unconditionally set SB_RDONLY and NVolErrors(). We would also retain 
+your protection for volumes with errors recorded during the check or 
+earlier in the mount.
 
--- 
-2.51.0
+
+   The following is a replacement patch against the same base as your v5:
+
+   @@ -1398,6 +1398,7 @@ static bool load_system_files(struct 
+ntfs_volume *vol)
+    	struct ntfs_attr_search_ctx *ctx;
+    	struct restart_page_header *rp;
+    	int err;
+   +	u8 saved_on_errors;
+
+    	ntfs_debug("Entering.");
+    	/* Get mft mirror inode compare the contents of $MFT and $MFTMirr. */
+   @@ -1572,8 +1573,18 @@ static bool load_system_files(struct 
+ntfs_volume *vol)
+    	 * NVolErrors() without setting the dirty volume flag and mount
+    	 * read-only.  This will prevent read-write remounting and it will also
+    	 * prevent all writes.
+   +	 *
+   +	 * Nested lookup and inode-loading errors must not panic before the
+   +	 * read-only fallback.  Temporarily use errors=remount-ro instead of
+   +	 * errors=panic, preserving any read-only transition even if an error
+   +	 * is not propagated or recorded in NVolErrors().  This is safe during
+   +	 * initial mount, before the super block is published.
+    	 */
+   +	saved_on_errors = vol->on_errors;
+   +	if (saved_on_errors == ON_ERRORS_PANIC)
+   +		vol->on_errors = ON_ERRORS_REMOUNT_RO;
+    	err = check_windows_hibernation_status(vol);
+   +	vol->on_errors = saved_on_errors;
+    	if (unlikely(err)) {
+    		static const char *es1a = "Failed to determine if Windows is 
+hibernated";
+    		static const char *es1b = "Windows is hibernated";
+   @@ -1581,12 +1592,15 @@ static bool load_system_files(struct 
+ntfs_volume *vol)
+    		const char *es1;
+
+    		es1 = err < 0 ? es1a : es1b;
+   -		/* If a read-write mount, convert it to a read-only mount. */
+   -		if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
+   -			sb->s_flags |= SB_RDONLY;
+   -			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+   -		}
+   +		/* Hibernation safety takes precedence over the errors= policy. */
+   +		sb->s_flags |= SB_RDONLY;
+    		NVolSetErrors(vol);
+   +		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+   +	} else if (!sb_rdonly(sb) && NVolErrors(vol)) {
+   +		/* Match the read-write remount restriction for recorded errors. */
+   +		sb->s_flags |= SB_RDONLY;
+   +		ntfs_error(sb,
+   +			   "Errors were recorded during mount.  Mounting read-only.  Run 
+chkdsk.");
+    	}
+
+    	/* If (still) a read-write mount, empty the logfile. */
+
+
+   Sorry again for overlooking this issue in my earlier suggestion. I 
+believe this approach is more robust because it never clears SB_RDONLY, 
+so it does not need to reconstruct whether a nested error should have 
+made the volume read-only. The policy change is limited to the 
+hibernation check during initial mount, before the superblock is published.
+
+   If you agree with this approach, could you please incorporate it and 
+send another revision? I'd appreciate feedback from you, Namjae, and 
+Hyunchul.
+
+feel free to add:
+Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
+
+Thanks,
+Baolin.
+
+
+
+
+
+
+
+>   	if (unlikely(err)) {
+>   		static const char *es1a = "Failed to determine if Windows is hibernated";
+>   		static const char *es1b = "Windows is hibernated";
+> @@ -1581,12 +1594,25 @@ static bool load_system_files(struct ntfs_volume *vol)
+>   		const char *es1;
+>   
+>   		es1 = err < 0 ? es1a : es1b;
+> -		/* If a read-write mount, convert it to a read-only mount. */
+> -		if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
+> -			sb->s_flags |= SB_RDONLY;
+> -			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+> -		}
+> +		/*
+> +		 * A Windows hibernation image is not a filesystem error, so
+> +		 * this is a safety interlock rather than something the
+> +		 * errors= policy may downgrade.  The super block is already
+> +		 * read-only here: the temporary flag taken for the check
+> +		 * above is not restored when the check failed.
+> +		 */
+> +		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+>   		NVolSetErrors(vol);
+> +	} else if (unlikely(temporary_ro && sb_rdonly(sb))) {
+> +		static const char *es1 = "Errors were recorded during mount";
+> +		static const char *es2 = ".  Run chkdsk.";
+> +
+> +		/*
+> +		 * Errors were recorded during the check or earlier, e.g. when
+> +		 * loading the LogFile.  Stay read-only, like ntfs_reconfigure()
+> +		 * does for volumes with recorded errors.
+> +		 */
+> +		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+>   	}
+>   
+>   	/* If (still) a read-write mount, empty the logfile. */
 
