@@ -1,24 +1,24 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB793C4555
-	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 02:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 258DE3C4565
+	for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 03:00:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789871972; cv=none; b=YDdF8wy+CIdlosjSLj9d8TPtShv1j3eJKZkgcH1XZZEv4jzqSaUbuOcxAaF1FRa12CMEOo87XTp5iJFMr9q2qyGnavKAvYdMDaWD2MDo/epBqPRnEqIjcm1FZik5ZYX6zWvbcbY6RHSC2rQb9hX1xs+2WqV8EbdqNZZ/Yj7osjY=
+	t=1789873208; cv=none; b=DBQJf27gPWy0k1avYdrDs5PrIfqd0vvWqxJo+ovMeHyYNC/ouZVT0UhDJ1TsEfv+VxgE1x0IPkDhWlMM2Ppa2aHH0o9uqBY7u+pM97VenmAS/IwAGH9AucYvhHB0kqReUTCxpiRAuy9Lg8Liz9N3ZbfwOIwROFN3+roDvalNJNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789871972; c=relaxed/simple;
-	bh=GCsAjX7R52Y2q8IvLXpU3GYW2cvTKh7EKXfmh1yWEPk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Pr3fd8ItQ6PSDl+n5yp6KYVouGITN9qpGtQaLtTNReVy9YyHecwT1KvOx6klzZGwToZewn87jG8qqQmM0YFRW8gl8VfIv6OjImYH82UcL117aE8A2gbKaTkvEEMVRuUOO7u0HyB4xW9lf1Rr4wuRAVypr0PmP3vBMAQ0YVgddRI=
+	s=arc-20240116; t=1789873208; c=relaxed/simple;
+	bh=wC1HqIIymDvpLY4qtFz7iU5GRoa1xNjRJvD0ZJ7Mcu8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=einRKrKXuFcOks17qY1PNZDliBV27flXf2PJrwPWuSk3UMra/YzNdj2ygDjuUO60rLEE6qD2DZpH6dcmFuvSmu4uAK79qZqSpu1d2v3BhNJb4rVlmTSwPNODqUk/5m8sic5Q/nwLMEChooCL7kxZ8eSkK9UIJp16bDjsCUIV0EI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 7b50f8e2b49c11f19a56ed5b684f684d-20260920
+X-UUID: 5e812b44b49f11f19a56ed5b684f684d-20260920
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:3ee9096d-b447-4d39-a64a-9a7b0de0730e,IP:0,U
+X-CID-O-INFO: VERSION:1.3.19,REQID:d8185d58-d7b6-49fd-ab98-ecf96aa70cbb,IP:0,U
 	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
 	:release,TS:-5
-X-CID-META: VersionHash:7db8b62,CLOUDID:520877f7efa71a7e04ec182b30ba4bc6,BulkI
+X-CID-META: VersionHash:7db8b62,CLOUDID:a6422464d4c6a77a4ad749c65008c46c,BulkI
 	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
 	-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,O
 	SA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -26,12 +26,12 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 7b50f8e2b49c11f19a56ed5b684f684d-20260920
+X-UUID: 5e812b44b49f11f19a56ed5b684f684d-20260920
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1947193105; Sun, 20 Sep 2026 10:39:20 +0800
+	with ESMTP id 1615079036; Sun, 20 Sep 2026 11:00:00 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -40,9 +40,9 @@ Cc: ntfs@lists.linux.dev,
 	zhongling0719@126.com,
 	Hongling Zeng <zenghongling@kylinos.cn>,
 	stable@vger.kernel.org
-Subject: [PATCH v4] ntfs: mount hibernated volumes read-only regardless of errors=
-Date: Sun, 20 Sep 2026 10:39:14 +0800
-Message-Id: <20260920023914.21881-1-zenghongling@kylinos.cn>
+Subject: [PATCH v5] ntfs: mount hibernated volumes read-only regardless of errors=
+Date: Sun, 20 Sep 2026 10:59:55 +0800
+Message-Id: <20260920025955.31209-1-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
@@ -84,14 +84,14 @@ Fixes: 6251f0b0de7d ("ntfs: update super block operations")
 Cc: stable@vger.kernel.org
 Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 ---
-Change in v4:
+Change in v5:
  -Rework the errors=panic handling per review feedback.
 ---
- fs/ntfs/super.c | 36 ++++++++++++++++++++++++++++++++----
- 1 file changed, 32 insertions(+), 4 deletions(-)
+ fs/ntfs/super.c | 36 +++++++++++++++++++++++++++++++-----
+ 1 file changed, 31 insertions(+), 5 deletions(-)
 
 diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index f4a73e45773d..473c76d2962f 100644
+index f4a73e45773d..ab91cd1a8515 100644
 --- a/fs/ntfs/super.c
 +++ b/fs/ntfs/super.c
 @@ -1398,6 +1398,7 @@ static bool load_system_files(struct ntfs_volume *vol)
@@ -123,23 +123,22 @@ index f4a73e45773d..473c76d2962f 100644
  	if (unlikely(err)) {
  		static const char *es1a = "Failed to determine if Windows is hibernated";
  		static const char *es1b = "Windows is hibernated";
-@@ -1581,12 +1594,27 @@ static bool load_system_files(struct ntfs_volume *vol)
+@@ -1581,12 +1594,25 @@ static bool load_system_files(struct ntfs_volume *vol)
  		const char *es1;
  
  		es1 = err < 0 ? es1a : es1b;
 -		/* If a read-write mount, convert it to a read-only mount. */
 -		if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
+-			sb->s_flags |= SB_RDONLY;
+-			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+-		}
 +		/*
 +		 * A Windows hibernation image is not a filesystem error, so
 +		 * this is a safety interlock rather than something the
-+		 * errors= policy may downgrade: always convert a read-write
-+		 * mount to read-only.
++		 * errors= policy may downgrade.  The super block is already
++		 * read-only here: the temporary flag taken for the check
++		 * above is not restored when the check failed.
 +		 */
-+		if (!sb_rdonly(sb))
- 			sb->s_flags |= SB_RDONLY;
--			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
--		}
-+
 +		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
  		NVolSetErrors(vol);
 +	} else if (unlikely(temporary_ro && sb_rdonly(sb))) {
