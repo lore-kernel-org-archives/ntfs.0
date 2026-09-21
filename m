@@ -1,89 +1,102 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from outgoing2021.csail.mit.edu (outgoing2021.csail.mit.edu [128.30.2.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 744283C0A00
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 14:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF314A8FE9
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 15:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.30.2.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790000562; cv=none; b=IcxlPsM0p0B4f+friP3jc9Nm2vemDe3QI+JwmLXF/3FwB9uK/zFyJKbSgpG7QWGkmUM5el0yW2VPcwEwo6TSolsy59GS0YqrWQrn2cSKCrA4NpYAjYmg3PovRNIprvAugLVJqX3AjqD3B+DORCy9tTvBamEergGB8srMreiWl9s=
+	t=1790006030; cv=none; b=Fq8iAdStycNwRLGNHNDibkhNGNcuONIn9V6EsyeqAH3WRX1ltwXn0fRyjZSQWuLCs/Op7IZ/zIZbzEukpBtewKFmYJN939YhzNqNru7K1s7LiMHKEGS6RuMCNt/FubkZfOItaGs2fJ9GxkRJ2wl7DNiFwBhJ5H+ttmVym441V8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790000562; c=relaxed/simple;
-	bh=rZ+iIZqg9Sn/bCZn5A9Pz9Lv+qXAskT5Ny/hU/1hQyM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BczPMebhDKNkp28auqGtuvwoefnO69lFeyPFCt1CVFc/jQLfe1w43jO5AlPAW9BxfbpuWcDK6fFdonn3FKUE457aXFKXH15snknZk8CbqEKpXZ3SnwxRR0NqJkZdp5+tsAkb+cqwaVy+LXTk/ztgvXreFPO4HGyb3fhBz4+jIFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hHodzdxp; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1790006030; c=relaxed/simple;
+	bh=ZJYhLSP+kH2gvHZZzMTdwvp6epUj2fwfuEGMdte1eKU=;
+	h=To:cc:From:Subject:Date:Message-ID; b=OzGO5xsGnMeqsDcZLDJ5eIuz9anTeTREsDg3rN8CpAgsaD0vCPXy2z2OdyjhyKYdfsqL6eJMFvlka5+iItJIr2zPMnCcQlfVi/Wulbm71Zq0Aus0di0LDBL0ZYAS7xlskV4JbaLjv+qxKZimxkUbiai5oNsBvUxADMj+7Jc6Nls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu; spf=pass smtp.mailfrom=csail.mit.edu; dkim=pass (2048-bit key) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.b=qDBBxCTz; arc=none smtp.client-ip=128.30.2.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csail.mit.edu
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hHodzdxp"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B39F1F000FF
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 14:22:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790000561;
-	bh=rZ+iIZqg9Sn/bCZn5A9Pz9Lv+qXAskT5Ny/hU/1hQyM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=hHodzdxppD0gIyr9dyfCeqF9nKFfZ8pyJ+YmCT5dPtU+LHWga+bFMvYlm+MWon4Ww
-	 DmG16xSENl+velbmDzQiHci5R0K7MMjv4D6HimgZp+0SQoDHQc3prWYdxLfUK5naWy
-	 3ynqz0SFDz+ZlrvW/xT9YexjJw5PEMYUUmjeamaSLULFHd/zs93iT0VbBX86EVi1ui
-	 HdQKss5b6OCMLyg1eGiKD727cK86XL8ZAV3sOaS87zX2Cb1G1/5JQQh9Z2SlFwehVz
-	 0wA25vuh4k7T6IxZan9kW84kKG6jkBkTSUfQ8IOC4167lLQUuZkDeWt9DUXgoOY9kP
-	 ezGjmo27TaYfw==
-Received: by mail-ej2-f12.google.com with SMTP id a640c23a62f3a-c294af0caa8so388159666b.1
-        for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 07:22:40 -0700 (PDT)
-X-Gm-Message-State: AFuF++l2/LLL5psL+YXktxGDpxJzjHhlQm80gts0DFqGJIG2+1Plx82e
-	KXcVvu/uoZKN8mWgFxxufLuDeIwoGeqXcq62qTmiFqg8LfU9CJ2pSybWCwkLrsG6SZMtTNvbtfo
-	i0VZqoWEfO/OyR7orUF1dgRgzuXSoZiA=
-X-Received: by 2002:a17:907:9618:b0:c26:19de:9adb with SMTP id
- a640c23a62f3a-c2a157fced4mr922237366b.26.1790000559678; Mon, 21 Sep 2026
- 07:22:39 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.b="qDBBxCTz"
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=outgoing.csail.mit.edu; s=test20231205; h=Message-ID:Date:Subject:Reply-To:
+	From:cc:To:Sender:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=qeX4NE8AicXh7hfXEcqF4WQgzWawOl18KFXNiF1Nl/I=; t=1790006028; x=1790870028; 
+	b=qDBBxCTzDXK1P41Jk3J2vi4r2C02ftRzUVRCCD8oj/2iLj64PY4+1x/tMXC30qF+nG/a/foBtFL
+	DDqyG//z7fr6mEeM16ZuO9BYE6Rgp3CJqCoiAb+HW7hDP7+wj/kPS0qL7+mF+yw1w/fOVON9SpifA
+	+HDkCRg7pGXHkolrixRy1T2HnN9LhjDs9muFOtDT2+3X5CP8mbXQ/I3gKFJK1dR7iqggYhkxYrfa0
+	yp1NYoRl70bfy8p8aaFuyArKE9vKmB1xcGgsDx1l4ncAOzMWT7RhdjLxvn0r4AiE+0/4kH/bC0N5m
+	jTNj2OL0o34fDbnThw1n0Z+yVmWlMtuLW3+A==;
+Received: from 30-10-12.wireless.csail.mit.edu ([128.30.10.12])
+	by outgoing2021.csail.mit.edu with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <rtm@csail.mit.edu>)
+	id 1x8gKw-008mSP-3q;
+	Mon, 21 Sep 2026 11:53:46 -0400
+Received: from 30-10-12.wireless.csail.mit.edu (localhost [127.0.0.1])
+	by 30-10-12.wireless.csail.mit.edu (Postfix) with ESMTP id BF6493D56037;
+	Mon, 21 Sep 2026 11:53:45 -0400 (EDT)
+To: Namjae Jeon <linkinjeon@kernel.org>,
+    Hyunchul Lee <hyc.lee@gmail.com>
+cc: ntfs@lists.linux.dev
+From: rtm@csail.mit.edu
+Reply-To: rtm@csail.mit.edu
+Subject: ntfs_read_inode_mount() can pass size=0 to kvzalloc() -> crash
+Date: Mon, 21 Sep 2026 11:53:45 -0400
+Message-ID: <88468.1790006025@30-10-12.wireless.csail.mit.edu>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
-MIME-Version: 1.0
-References: <20260916131837.28568-1-marek@wesolowski.eu.org>
-In-Reply-To: <20260916131837.28568-1-marek@wesolowski.eu.org>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Mon, 21 Sep 2026 23:22:25 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd9SQ_6fLm1v8nxj3WrnBT60S4Fy8_oZrN+Oi+0rOw2aEA@mail.gmail.com>
-X-Gm-Features: AcwNN1UqfKdnlshHlNumHxtIBG7Uc_UJE8folgdPusMuccOy9DwfGsiMZi5hH58
-Message-ID: <CAKYAXd9SQ_6fLm1v8nxj3WrnBT60S4Fy8_oZrN+Oi+0rOw2aEA@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: stop MFT writeback at allocated boundary
-To: =?UTF-8?Q?Marek_Weso=C5=82owski?= <marek@wesolowski.eu.org>
-Cc: ntfs@lists.linux.dev, hyc.lee@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 16, 2026 at 10:18=E2=80=AFPM Marek Weso=C5=82owski
-<marek@wesolowski.eu.org> wrote:
->
-> ntfs_write_mft_block() tests vcn in the loop condition before
-> recalculating it for the current MFT record.
->
-> When a folio straddles the end of the allocated MFT, the stale vcn from t=
-he
-> previous record admits one more iteration. The recalculated vcn can then
-> equal end_vcn. Runlist lookup fails and the volume is marked erroneous.
->
-> This was reproduced on arm64 with 16 KiB pages, 4 KiB clusters and 1 KiB
-> MFT records. With allocated_size 0x13000, writeback of folio index 0x4
-> attempted to map VCN 0x13. Creating an empty file left the volume dirty a=
-nd
-> the next mount was read-only. A mount and unmount without the file creati=
-on
-> remained clean.
->
-> Calculate vcn for the current record first and stop at the allocated
-> boundary. The patched driver passed file creation and deletion, a 64 MiB
-> fio write/read verification with crc32c, sync, unmount and read-write
-> remount.
->
-> Fixes: 115380f9a2f9 ("ntfs: update mft operations")
-> Signed-off-by: Marek Weso=C5=82owski <marek@wesolowski.eu.org>
-I can not apply this patch to the latest #ntfs-next branch. Could you
-please check if this patch is no longer necessary in #ntfs-next
-branch?
+If ni->attr_list_size (a u32) is e.g. 0xffffffe7, then this code in
+ntfs_read_inode_mount() rounds the size "up" to zero:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/ntfs.git ntfs-ne=
-xt
+  ni->attr_list = kvzalloc(round_up(ni->attr_list_size, SECTOR_SIZE),
+                           GFP_NOFS);
+  if (!ni->attr_list) {
+          ntfs_error(sb, "Not enough memory to allocate buffer for attribute l ist.");
+          goto put_err_out;
+  }
+  err = load_attribute_list_mount(vol, rl, ni->attr_list, ni->attr_list_size,
+                  le64_to_cpu(a->data.non_resident.initialized_size));
 
-Thanks.
+kvzalloc() returns ZERO_SIZE_PTR=0x10, so the "if" doesn't catch it, and
+load_attribute_list_mount() proceeds to treat ni->attr_list as a valid
+pointer, and crashes.
+
+A demo:
+# wget http://www.rtmrtm.org/rtm/ntfs50a.img.gz
+# gunzip ntfs50a.img.gz 
+# mount -t ntfs -o loop ntfs50a.img /mnt
+BUG: kernel NULL pointer dereference, address: 0000000000000050
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0002) - not-present page
+Oops: Oops: 0002 [#1] SMP DEBUG_PAGEALLOC PTI
+CPU: 8 UID: 0 PID: 2279 Comm: mount Not tainted 7.3.0-rc3-00508-g40288c9206c1 #44 PREEMPT(full)
+Hardware name: FreeBSD BHYVE/BHYVE, BIOS 14.0 10/17/2021
+RIP: 0010:memset_orig+0x33/0xb0
+RSP: 0018:ffffc90000a67be8 EFLAGS: 00010203
+ <TASK>
+ ? ntfs_read_inode_mount+0x868/0xb80
+ ? inode_init_always_gfp+0x1d8/0x210
+ ntfs_fill_super+0xb77/0x2c90
+ ? sb_set_blocksize+0x67/0xd0
+ ? __pfx_ntfs_fill_super+0x10/0x10
+ get_tree_bdev_flags+0x135/0x1d0
+ get_tree_bdev+0xf/0x20
+ ntfs_get_tree+0x14/0x20
+ vfs_get_tree+0x29/0xf0
+ fc_mount+0x13/0x90
+ path_mount+0x35e/0xc40
+ ? kmem_cache_free+0x20a/0x2f0
+ ? putname+0x40/0x80
+ __x64_sys_mount+0x11f/0x150
+ x64_sys_call+0x13d9/0x2220
+ do_syscall_64+0xdd/0x4a0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+Robert Morris
+rtm@mit.edu
+
