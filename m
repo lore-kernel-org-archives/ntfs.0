@@ -1,156 +1,149 @@
 Received: from mail-lf2-f13.google.com (mail-lf2-f13.google.com [74.125.229.205])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE373C0600
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 07:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2FE442882B
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 07:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.229.205
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789977466; cv=pass; b=gwE/WkNqwLOSHaziCZ9z4ZOmM/tmfKt+rDM9IUDZ53yriKD0IH8djEV3oJqUT5BlOB86jqvFCqHXxfdoXuwdUf/oa4W7rc+3rnx4W9/jZvNEyEQbzZtw3A//99LwgrOJK3VgtFmC6WGyJ0pD3spx+ibyqgnVGpsm6dUZI987uX8=
+	t=1789977558; cv=pass; b=IT4zIpo4ZUTilaBV+vedD6OX4TgNymHHn4XPdTRedBpAcyHIv+O6YAYe1k1FkfcfmLq2bY2NFCQmwEqpOsvWeq0MtZlBYFBBYJZ3M+5mf4NFeWq4vl437LaPfza5DbF/cZemY8L0alL/oX+0NREw8ery+8klbTvAkjjl9UbG9KE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789977466; c=relaxed/simple;
-	bh=wTKF3GJe24qvlJZnP3fb1zIfYdXZhI1ydDoNfbeg+Z8=;
+	s=arc-20240116; t=1789977558; c=relaxed/simple;
+	bh=I2KFHCsto5ktwcOC7Smw2RZRoRdPhzo99usTN0lCH4g=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ViRwjgO/RbYEr3KqvyAyff89pTsJ9taMCcTMpcznGrfWkPBGv+FHiTqwRxHV5k3tbR9no/O17e1HK6aeH1psrFcqGaPl9XLKIFxjeNwNx/WlXzzpeG8UTQmPj2xqfeY0swtoj4kJxzq+B5cjZcvLj9kdZO22HpBe/NnCSlWBmf0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sajLjDLI; arc=pass smtp.client-ip=74.125.229.205
+	 To:Cc:Content-Type; b=V+mnkkaLrIw3KUjvUmqy888pTv/s2zM3mYtgA919L0uBdgU4PDCUHtuNAcrcvglgFXBZIFfrTKL+5kMk2iOvJrdI1/N0EMCeRAV+/LqeTsNvzh5DT+VoRUwbnooYUcUNu8AE8kOddqP3NjQ747QrAuHdn2QWrTyUD1D9wbiyEEk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V3E0nTfb; arc=pass smtp.client-ip=74.125.229.205
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="sajLjDLI"
-Received: by mail-lf2-f13.google.com with SMTP id 2adb3069b0e04-5b5e4f15cfdso2488310e87.3
-        for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 00:57:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1789977463; cv=none;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V3E0nTfb"
+Received: by mail-lf2-f13.google.com with SMTP id 2adb3069b0e04-5b8c7a1aeecso1651328e87.3
+        for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 00:59:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789977555; cv=none;
         d=google.com; s=arc-20260327;
-        b=R0iAhmGivmLK8vN1zbamkF0Xub06bUGyeun9IqXbtKtd6wkaJRpL6C9Z2GqdNq02aP
-         r5C0paL2Y1aJFWJedgOvqFzsdbUGAGPiHnRNFSoiuMXQG1y5BUExClzPRZWHe/Q3wifI
-         jnEIqoJj4+Ss2nsYjQ1zMnJvfPeWZs4glEr8Dv2R1iwsboKmIt6LINP4YpHOle+oaav7
-         px2E5N0Ta6CGTU53rzgM3gvxWqul0U43EgdIrBou/9loGnSzp4pWASQ9BXLfyyy58cAW
-         rin0C1A4aANW0ZO2BBep7zc5DNBI1DoAUkL1Yvqe5WY+7wAKvoozyFrHYQpO1wdmBqpg
-         QYJA==
+        b=ULW+GsE/KJHcjaSM6yVazaIVcVYdmjvfazZrfZNi0T6f1G8wbIyUqiGHo0O4fGuYKC
+         +ddtZxZbkyUncsk3v9BMYq+MmoJgPAZx/lq2Lg7Ngwo5MdWVGvwCOYn8rKfeHWFjGgdE
+         DqyEu9YiExKLfkVFXYqP3PVa+rE0z8hEg+9LYtbm7vbDhddRA42JPBIFpZ7FGUo67NjK
+         bIvtjAsqIY+XpWxkj3inKhvrIJX8z2GdcOE7HSEIdbB4kBAtiHpApJ+vgrf6WW46dV1X
+         7JZY6Cey9fr0olgsYNqUGPzmt4iAeUmVUtZZi0qZlsyZhiF9bOhI9m9ihB51xPf5Yr3m
+         JlRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=g9IsRdNBpVaOm+BvbZJMl+aEIv6TVvsoIWi27r6K2mo=;
-        fh=WlZpunhnZ/uy6tDqt4+WbKQjR9RBDy1dtQVzcrGvNLs=;
-        b=GeWCt9hDjIlqjPlsSiF+/MZjxDaorGUT/fyaosjHTTafdzVBNmHXJOQf2Pc0boFtdO
-         BQCuJTw04XM/RhEOGWgMGIAkNEMz0ZROLT1S8fOz+wUrvp3KburCPMPoHt5Zr84g0pM9
-         y3AO0jI1z5w/iqlBhTOXBQyIRxtgOt6uBGihTcjnKcgXcf6cf43B3W//9jrDTBb1+AF4
-         CqoLHneBgULA32/PNhFp8SRsO3tr6ryrnR9UJt28wNdZ1AO4ImznLULVTbY67ZSJjzpT
-         hL/cvk7Ky84K0dDJ/+AbY/cgSnUE8YKIk6qOFs8IHwurbiTKxm15+PQZV3AAfXdCeVDO
-         jZWA==;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=3aepA27SIv41SqDk2ILO7FI1p6Gl+MGhkJvg7WvtfaU=;
+        fh=rMw1qD2cBEmeDD6hTtDqdOytUxTo4akhWclfsz9GXBM=;
+        b=AVLKk8Q0vvmwqKdDNyXmvdi+jPcskOzql0Lc6sqcltFZCFU0BIKQnHE68An2ZAxayi
+         tY9mpBV+4fpsjOTl0DqrX8PTcUOE+jkZqfkyAZo/Fmeapkm1qXbBTiJ/JJs9zKtxDIIa
+         d7jHBdMh6r0XouZotP5IGHL6aoZMN2cg5vhy9/UoedYVCDt0cBd0X/qjllkmLPq2aWIK
+         hlpZW679OeFZ5RvhBab89CvXXQVIRXPv74ugqzy57e52gs22RcTLWW8oPjqXN1760iD4
+         n0hRm38KtcFh7pzFCVQ9uC/nkIUrVRJJ8AlnIK7VaXz46tnHRk528MqK5+KlaUymCg6E
+         GvAw==;
         darn=lists.linux.dev
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789977463; x=1790582263; darn=lists.linux.dev;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=g9IsRdNBpVaOm+BvbZJMl+aEIv6TVvsoIWi27r6K2mo=;
-        b=sajLjDLIE0pjDvvCB/kRCl39jxfQ9wJuKORaix4Y60wX95M/94DV0dPoWC2ZHNBRWE
-         Vd2bVNM6sSNX7UdKkMkoSrJO6lnM0O70F0XjlnekP/vRoSFtCi8i5/bXX6dAbP9JHpEJ
-         PCaa6fs7nZroWUAATWw9DBjhQpZ6TjdNZ23qpFkQxpW7jvaX/oQzqWPTTtGvys1wenGc
-         GgSc9B0YN0k9gHktQ1zqs55WWNtgy7X1Zqqh+WX5XuS/4UMoJB25jm3uMOd0zrLX2LTN
-         ILL0HlCOTanXFvtY3NvE1eUAcmE8/iD04rviXfSUotWzC6hdUzL2aKu+lZDKr9BBUzwS
-         hriA==
+        d=gmail.com; s=20251104; t=1789977555; x=1790582355; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=3aepA27SIv41SqDk2ILO7FI1p6Gl+MGhkJvg7WvtfaU=;
+        b=V3E0nTfbfYG3AA+TMvnqBG9GgaZrNp023JJTNZZGRDs0FVkWRbpn91Iml2eQMOt0bG
+         WXuc50NP7SMhWqi+Kt9so36IiG3MWmZao5OdEHVrWhyIZ0kZdIS6xILoBv1aHl4zxtzW
+         Q5GuJvY97k4gQOzHobRTShHzB/kwI+O07NhD/CWpyCpvfO37QcD8sHSVzVAyrCaA1uXG
+         8zXLGMOemEzU1cLC5gAU6USOWXII6oCI1bUcPwVDi+nwIKpiMwHtfRA0kaHYtQ067ynU
+         Jkd5K0anUb90xIUdJ2Yt6GmF54hn6iH0gAzffIXE/xi4qj+MREaC0RVvm/Asd+Ce29cm
+         fWeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789977463; x=1790582263;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=g9IsRdNBpVaOm+BvbZJMl+aEIv6TVvsoIWi27r6K2mo=;
-        b=IXZUeIz3fHNazrd73LWNWWEmmNRMTgq59fJx5MO3/v4AGrkmpOtJS0XPTuRoe3Ep1h
-         zWpAhdhmTRGoD8vXIjLGifTKeOhG3tmvl8GU6xY0MA5Q7sTdNVM4qOZKPfrQQYApv++H
-         rktLfQYuTn3X5UU/j/ViwlUaqD+NW6Kaw1FoX59y/qOUybnUlgeyTwrSM5annTefVN8B
-         CR9BotPolvi0WBoZhgPufdbIyeX2MtH+zx1T8/XmmNsnLPlWW1eSFfBnmP/F5ZLBgq5m
-         kLePdVdsgD7JL67gryLiEreGpSknEU2b7vqKtW654Lslt4yzjePITofBWazhbd5q3JqX
-         cixg==
-X-Forwarded-Encrypted: i=1; AKwUvByUy1LosVLKVtbW5J6XveaF/cg/vv+Gu/uXAPtOa+D80Tw631L9GvWolr38BiQ+VlptYBV7@lists.linux.dev
-X-Gm-Message-State: AFuF++lMLt0mjOnymiV2OHLh5NojkIVetzOvhxLU5XIEzLwSmeXJaG3h
-	MMFd0VfyyDfzZ/3VFB7ogpFRcNYELUdr0x1s2MkyBS0VUYmQdSZ/NWvv5VgAE9rprcN+OERdCIp
-	sCJ1pULQOXYc5IotTatMzVnFUy01R6efYWQ==
-X-Gm-Gg: AYBFou0ObFeENNe1r+1JJyDicNTzlaVYNJJO4UxD47V2wHi+r4wyBiz7oHyhAmTirux
-	N+ufa5Ymjz6OAvF8QpvB8zYbBJLypL4i1bp3vVW3CB461UemWungBC7XfFn3SkposI2B0Wug/1g
-	xL8nJH1m2KBsMW3o8n2bTNJ5Dr9uwvmfldZRI/8OfvP/lvssJXe7LG5AZ9HIDsxqpPnvOZ++l6/
-	dbfRdKekVFCUxrbxjo7EawB512wfs/euSscmcwfNsFRBfOA7hxB+r4QR/wQaNtWRZqJKNX+fZqv
-	xwBNzdLXMt9fyKMs4fgmY92VH6lZgD9EUnizJmQBKeLR+KJHfPOTaJI=
-X-Received: by 2002:a05:6512:104c:b0:5b8:9ef4:2bdf with SMTP id
- 2adb3069b0e04-5b8c1809487mr2756705e87.26.1789977462770; Mon, 21 Sep 2026
- 00:57:42 -0700 (PDT)
+        d=1e100.net; s=20260707; t=1789977555; x=1790582355;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=3aepA27SIv41SqDk2ILO7FI1p6Gl+MGhkJvg7WvtfaU=;
+        b=2Y8cPQryMNJUJPnWYC01JudTD3oeINRPaGc8EckZ6kyKAM/c5VFIOfkTA1GfNQ2e/j
+         2HkayFckwoEzVsv9JJ4aerxzTfKGPYlJ9xrKDsKC4da+zcCuripP7XO0N6QBJGWMgUq0
+         VL1fJvo6mSupJ/kzDgt2hBgG/+cNBl08rnqdQ9nngLPPx2tC/3ETx7nkr7+kOIMfwED8
+         c3Mnipf5djY0l64olwx89K8Jq7roSNF+8piMuskCMhtzeLfHujM+bo9quZhjUvLpsbr3
+         Kl6tdS/qdSo3l+msymx31vWcq3pTHjeq85vlxt+Ui+ZJPiA3WSjec5uAuXGsApcjo/rZ
+         g7WQ==
+X-Forwarded-Encrypted: i=1; AKwUvBwCpJ1t5+wVMbcaT9b3eS8qLpgkEjjBRAvU2In4bMLfYpQldNmHSTZf+294MdzG28eWThXh@lists.linux.dev
+X-Gm-Message-State: AFuF++ledXogWBSpfFehHU1UQ2NbociA59AVCqvUcGYUC78soqiRp4+D
+	z1aep+XXoKFtzLFWhsuyhn7LtScozsIOs+0SDGehap+3XTWzGWNq57H5os+uI8reOmnNoWg9itK
+	PUgEtdkuT9pVagtm5r1r6BibtODM9tZc=
+X-Gm-Gg: AYBFou1/7DC429znTmAsgyetS0admd2G8AsZbPbTxRmeT9Rd+oikgakEwtSwspk1m2J
+	HIIAj/EMTT3KB54bTqpt/4UKZEvxZC1IXHkK2H8w63bDm22XCZFwiEPSvHe6byh5+nTf5/DkrPb
+	Og+evhto37ItpjMkwl49xp+FsNaRH0BmpgJ+W8+z9iZMv3I9SzChKL5COrDQj9B6NlrzP3sz5pt
+	s+OHNGK9OHO6hqg/QoJ5YYBp893WUUqVlJx8DjNk2bOD71PuLKT4ieBY2Y6jr6IUV8oCiJWzNCE
+	sfEjNRR0jJvwDPqw52d7ZLF/+ErhQJE+4+/52dgeFUMp0RzsPIVumLU=
+X-Received: by 2002:ac2:5685:0:b0:5b6:1783:d7b1 with SMTP id
+ 2adb3069b0e04-5b8c17fe594mr3210051e87.17.1789977554310; Mon, 21 Sep 2026
+ 00:59:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260920025955.31209-1-zenghongling@kylinos.cn> <04255390-4133-4e8e-81ad-4d2402498431@163.com>
-In-Reply-To: <04255390-4133-4e8e-81ad-4d2402498431@163.com>
+References: <20260920063153.376958-1-wangxuewen@kylinos.cn>
+In-Reply-To: <20260920063153.376958-1-wangxuewen@kylinos.cn>
 From: Hyunchul Lee <hyc.lee@gmail.com>
-Date: Mon, 21 Sep 2026 16:57:29 +0900
-X-Gm-Features: AcwNN1XT333aOgbhzPsm-JYe6T_jxFAvajhOncAJFvThd79_ZeNb3_O9r7eZWKk
-Message-ID: <CANFS6bYLBPr+FmE_MVWxBBMw+Qz55EFfy1u6UmBgkTak2CMyvA@mail.gmail.com>
-Subject: Re: [PATCH v5] ntfs: mount hibernated volumes read-only regardless of errors=
-To: liubaolin <liubaolin12138@163.com>, Hongling Zeng <zenghongling@kylinos.cn>
+Date: Mon, 21 Sep 2026 16:59:01 +0900
+X-Gm-Features: AcwNN1UkiQ_JkJL9NtBeCTb_hgmCbNBO3fvAM0Z6ss-_2PtRfA3QV5xcX422Ypo
+Message-ID: <CANFS6bY7vbzua0K8DJ74Cps7WDmpWOfxozPA4cu9Nro_Zx3xOw@mail.gmail.com>
+Subject: Re: [PATCH v1] ntfs: preserve the 64-bit FITRIM minimum length
+To: Xuewen Wang <wangxuewen@kylinos.cn>
 Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhongling0719@126.com, stable@vger.kernel.org
+	Baolin Liu <liubaolin@kylinos.cn>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Baolin, Hongling
+2026=EB=85=84 9=EC=9B=94 20=EC=9D=BC (=EC=9D=BC) =EC=98=A4=ED=9B=84 3:32, X=
+uewen Wang <wangxuewen@kylinos.cn>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+>
+> The minlen member of struct fstrim_range is a 64-bit byte count, but
+> ntfs_ioctl_fitrim() uses max_t(u32, ...) to compare it with the device's
+> discard granularity. This truncates the requested minimum length before
+> passing it to ntfs_trim_fs().
+>
+> For example, a minimum length of 4 GiB is reduced to the discard
+> granularity, allowing smaller free extents to be discarded. The truncated
+> minimum length is also copied back to userspace.
+>
+> Use max_t(u64, ...) to preserve the requested minimum length. The bitmap
+> scan already compares the aligned extent length against range->minlen
+> using 64-bit values.
+>
+> Fixes: 9c87959601e8 ("ntfs: update file operations")
+> Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 
->    If you agree with this approach, could you please incorporate it and
-> send another revision? I'd appreciate feedback from you, Namjae, and
-> Hyunchul.
+Looks good to me.
 
-I agree with this approach. It looks sound to me.
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
+> ---
+>  fs/ntfs/file.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> feel free to add:
-> Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
+> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+> index 8164326b7812..e315fed4d13b 100644
+> --- a/fs/ntfs/file.c
+> +++ b/fs/ntfs/file.c
+> @@ -866,7 +866,7 @@ static int ntfs_ioctl_fitrim(struct ntfs_volume *vol,=
+ unsigned long arg)
+>         if (range.len < vol->cluster_size)
+>                 return -EINVAL;
 >
-> Thanks,
-> Baolin.
+> -       range.minlen =3D max_t(u32, range.minlen, bdev_discard_granularit=
+y(dev));
+> +       range.minlen =3D max_t(u64, range.minlen, bdev_discard_granularit=
+y(dev));
 >
->
->
->
->
->
->
-> >       if (unlikely(err)) {
-> >               static const char *es1a = "Failed to determine if Windows is hibernated";
-> >               static const char *es1b = "Windows is hibernated";
-> > @@ -1581,12 +1594,25 @@ static bool load_system_files(struct ntfs_volume *vol)
-> >               const char *es1;
-> >
-> >               es1 = err < 0 ? es1a : es1b;
-> > -             /* If a read-write mount, convert it to a read-only mount. */
-> > -             if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
-> > -                     sb->s_flags |= SB_RDONLY;
-> > -                     ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
-> > -             }
-> > +             /*
-> > +              * A Windows hibernation image is not a filesystem error, so
-> > +              * this is a safety interlock rather than something the
-> > +              * errors= policy may downgrade.  The super block is already
-> > +              * read-only here: the temporary flag taken for the check
-> > +              * above is not restored when the check failed.
-> > +              */
-> > +             ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
-> >               NVolSetErrors(vol);
-> > +     } else if (unlikely(temporary_ro && sb_rdonly(sb))) {
-> > +             static const char *es1 = "Errors were recorded during mount";
-> > +             static const char *es2 = ".  Run chkdsk.";
-> > +
-> > +             /*
-> > +              * Errors were recorded during the check or earlier, e.g. when
-> > +              * loading the LogFile.  Stay read-only, like ntfs_reconfigure()
-> > +              * does for volumes with recorded errors.
-> > +              */
-> > +             ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
-> >       }
-> >
-> >       /* If (still) a read-write mount, empty the logfile. */
+>         err =3D ntfs_trim_fs(vol, &range);
+>         if (err < 0)
+> --
+> 2.25.1
 >
 
 
--- 
+--=20
 Thanks,
 Hyunchul
