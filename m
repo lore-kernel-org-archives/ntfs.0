@@ -1,124 +1,236 @@
-Received: from mail-pj2-f12.google.com (mail-pj2-f12.google.com [74.125.227.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from outgoing2021.csail.mit.edu (outgoing2021.csail.mit.edu [128.30.2.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF9D3F7A9F
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 09:54:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.140
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED55A35C6AA
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 09:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.30.2.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789984442; cv=none; b=TJ1NXECwKjy8C4uB+RaQ7bkyBu+RKNUZOmY8aB6URJ7jnlnAMeynPwhcJ4czDqnJxlN1xHhT9I1012GyJ+7zJc1ErlvulhruMqzWBNU3R90yRkVsgc3Fr9opcwBR9WUHaDxuziEP6uRGYkOLbXhV8Z79ObWtlZgKE3An3/bpVxs=
+	t=1789984726; cv=none; b=OcfLGuQJkyE2qvqKDjaa6T2eiLJIAZ2zVr0xRmiJwGN0wQwZUEs0oK9HVIS1u6b1o7DGCfbbW/b0m5VtXFjeBZJ71o15UghCMl7OlfPkQikCRKXzVmbvuDK7zLj7JI9S9SoX4X5hGgPHT6mMLhGatSWNS4oVq5oFystFDhvSl74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789984442; c=relaxed/simple;
-	bh=N9vVi4P1Mjs7grUglMREeLMqPYUK0Pes1zGaYGLoGOM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SbUmhyecPRy5onfuqKSwatQIFtj+Uv8LwS3LnVI4E9fOtJ2KLk6EFCFujTl6bIwBDSFAlmCIKBu+1GpR+pdMLK4RX3oxIQf0ditGH41gpxVlvqRA2Q7UuTY0aGY9YGJlVI0T6fA+H+PKly8RotCghqtGJSpFacFBeefNTOnGxr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=r8bvS0L4; arc=none smtp.client-ip=74.125.227.140
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	s=arc-20240116; t=1789984726; c=relaxed/simple;
+	bh=OpVJ2DuJsIijZYBlR3ejcclEdCcTk3AowF20YGtimy4=;
+	h=To:cc:From:Subject:In-reply-to:MIME-Version:Content-Type:Date:
+	 Message-ID; b=WYkt1eetHDfwLnmituRMZ6gnvoHDdpEbWGkhieleChXPuOeNrT/7QQsdyU/LX8AIq3IHgPOG6AcW0MKI5cvlTv1MhN2T4qhN0wlJB2yspaOUT6SA24fcpRa4zEe0qIWW95WugYKTHK6gg+yp1dAg57SkNKSvC5dbYKonWciQGYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu; spf=pass smtp.mailfrom=csail.mit.edu; dkim=pass (2048-bit key) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.b=nbq9DndK; arc=none smtp.client-ip=128.30.2.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csail.mit.edu
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="r8bvS0L4"
-Received: by mail-pj2-f12.google.com with SMTP id d9443c01a7336-2d747eb79f7so18519205ad.1
-        for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 02:54:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789984440; x=1790589240; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=jYjcuudhraEZFX+KTUDbhqjJTSMHJ82RNaYSBacJZ98=;
-        b=r8bvS0L4Pgb9j8g1GwpoTuf9rFsCqW+kpSAdinIB4lKVdTpUSDK/CKiidKofQw3bwC
-         1o3+VqK+gWMuO1moKQhB6fOuMy9XPjIVodg85CH18MmzLNc0GRIwksLIfFbWgE+MjV2s
-         fN9dZe3oRFVkY1EbyRyKn6tlej3JU/o2GpErzNlru5J8i0jr6nKz0Fh3NKmbMWTxHZuD
-         xp74uESgUdNFSx15hxdPefOX5I9fJv4PyPY0jJUTp4gkrHmay/4DVQ2YwXgFegt/WxIj
-         cg8KJcF4YcnDoCmTXugB63WvMieVqIS5z2BMkDHQJkflGNmF2BmOhX1lCl2UrWssjFzh
-         RTBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789984440; x=1790589240;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=jYjcuudhraEZFX+KTUDbhqjJTSMHJ82RNaYSBacJZ98=;
-        b=bezr08CpQjUvUpzfYi9lj5UGe6/uUh4Esrgjwv9vVR8xkUnXX6JkEcVQAzNQgi4f4P
-         MgU9F3AR9rX9T0116XwnTpG2obH/W9+tPKGazOfv4ruFM78uXWnCJkfM8Q1LXPCJlMFR
-         V28M+H2MReYQ6Pl0oX0811ctgplfnI6D3E/13SrBBW89uaSTptIsnZ8m0D0t5xUZZtsn
-         0kvXgOTCoM4cmncOPMTymb22OtHX2vd25nFTlc/7aSfFH2iUwHCxw7Alp89QTYWnVUDd
-         Zk1teidRSHtVkMoubpcWtU7cmAflQcd1a4pn6czfv8cEkhmX/vp7fmC1QzSGxi57mMOu
-         yYNQ==
-X-Forwarded-Encrypted: i=1; AKwUvBwKCm+h3XIxDZozVIFz6ZZUD/wscqJ5sggyf5eR9n/dwSVwLiSk9OIlpf+KQFgsvxOuELLe@lists.linux.dev
-X-Gm-Message-State: AFuF++lzfibK+09l9E8l5qZDG6rbSo1dT+/Lj/a9bSxX0zgzY35V5uwU
-	3I4YQMlN9nRwAQneoHYe+UWVTScF/V6Osa2F5ISx88JybMrC5/sW2KQU
-X-Gm-Gg: AYBFou0N2i702813zRs2Bw3xX33yEN6BrltpnDLGRVl4gB6EiFG58QhDhwlvNzEXKNV
-	IGiNKlgpb9ftHpg0zEINfm5KTGi9dxvc5Np4vYTCVzQihM5ekCsT8DljIWZy3KhHrfNKxTEC2Vt
-	2pojgRiN4gNRSKeBCDRaaAHCwqjllQKEIRq37TehbiCkQiOenX84CSZML24Yz52g4b9CBRDzZEi
-	XX5KgYOoKMyB9IruA7ELSPB8jAT293JoEXu7d2kT6/0+VjIMOuyoncHYDfQUHLgwHMuUfElZ47w
-	iK9F/LwE3RjCs7sdEHfoH6X5yW1CVZzGCGN1mMjB+tIdvvJ+M3gwWuYiF1MjGpG0wYUt5F9grD6
-	m1AZSPDaqbXwSoP2rWM2iQ/VA3pmLS7e3dAOr3Ms+CuvkG41uT9i83VSeR8+7NhhhGjiY6042re
-	JmWM/4Cqxo+wMEJkBnjSCKxZ3TYNxqfJs1oRYM1WPVo2R0k8u+NHt0MV9HMrqpe+bSEFeZJDNBL
-	UUdJEY+43v2OjMq7USAhdsthTfuZVPltg==
-X-Received: by 2002:a17:903:b84:b0:2dd:c053:82fa with SMTP id d9443c01a7336-2ddc053843cmr91334195ad.49.1789984439993;
-        Mon, 21 Sep 2026 02:53:59 -0700 (PDT)
-Received: from hyunchul-PC01.tail461a24.ts.net ([125.177.232.58])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ddc17baaebsm30505915ad.55.2026.09.21.02.53.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Sep 2026 02:53:59 -0700 (PDT)
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>,
-	ntfs@lists.linux.dev,
-	Baolin Liu <liubaolin@kylinos.cn>,
-	=?UTF-8?q?Marek=20Weso=C5=82owski?= <marek@wesolowski.eu.org>
-Subject: [PATCH v2] ntfs: require page-aligned full-page attribute writes
-Date: Mon, 21 Sep 2026 18:53:33 +0900
-Message-ID: <20260921095333.94659-2-hyc.lee@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260921095333.94659-1-hyc.lee@gmail.com>
-References: <20260921095333.94659-1-hyc.lee@gmail.com>
+	dkim=pass (2048-bit key) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.b="nbq9DndK"
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=outgoing.csail.mit.edu; s=test20231205; h=Message-ID:Date:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:In-reply-to:Subject:
+	Reply-To:From:cc:To:Sender:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+	List-Archive; bh=zy4b6r4LGKOb05zqnWLNoDTVODdtGMAS5t1EiOon5Ag=; t=1789984724;
+	x=1790848724; b=nbq9DndK65VBJ8RLKM2z53caLOUC3GvOPpdwa/iSt18jgrMJjxrrX+2BSiWsk
+	+MSodqvfLZ2UdUbKN1PXB9/sqHn5P0YKN/Me9Dte3jLrmoAc/3gabx+BAhQfcE4DcduDqRdW5b4RV
+	yZcnC4Q32KqZFtZx6YScocRVXNnviEIDVH56QQu7wzsgTepw9EzH7DJhdaA2oJx/UZmeCoVF/crX4
+	8AM/5vpSmp9T3nrZusDQPYgYQp4aBgFRsP6QGwwEYguhuqqn2k8dTxbFPDSSLyp4JPrcY+yyiCfC2
+	4Mvq0gVSZG4HIJD+6uVlOrl3KGuddYRTnSxwWg/Ju7GmLUySZA==;
+Received: from [24.147.175.133] (helo=crash.local)
+	by outgoing2021.csail.mit.edu with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <rtm@csail.mit.edu>)
+	id 1x8an6-007fpw-G8;
+	Mon, 21 Sep 2026 05:58:28 -0400
+Received: from localhost (localhost [127.0.0.1])
+	by crash.local (Postfix) with ESMTP id C92EB3D524A6;
+	Mon, 21 Sep 2026 05:58:27 -0400 (EDT)
+To: liubaolin <liubaolin12138@163.com>
+cc: Namjae Jeon <linkinjeon@kernel.org>,
+    Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev
+From: rtm@csail.mit.edu
+Reply-To: rtm@csail.mit.edu
+Subject: Re: integer wrap in ntfs load_attribute_list_mount() can cause buffer overflow
+In-reply-to: Your message of "Mon, 21 Sep 2026 11:03:21 +0800."
+             <3c5fb985-6b5a-4514-92af-445e46c5ee77@163.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 21 Sep 2026 05:58:27 -0400
+Message-ID: <54729.1789984707@localhost>
 
-__ntfs_inode_non_resident_attr_pwrite() treats count == PAGE_SIZE as
-proof that the request covers the complete folio. it allocates the folio
-without reading it and copies at offset zero. That proof is valid only
-when pos is page aligned.
+Baolin,
 
-Fixes: af0db57d4293 ("ntfs: update inode operations")
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-Cc: Marek Wesołowski <marek@wesolowski.eu.org>
-Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
----
-Changes in v2:
-  - Add Fixes tag.
+I am convinced! I withdraw my objection.
 
- fs/ntfs/inode.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Robert
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index d5e526d3612a..0391e4945e1c 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -3720,7 +3720,7 @@ static s64 __ntfs_inode_non_resident_attr_pwrite(struct inode *vi,
- 
- 	index = pos >> PAGE_SHIFT;
- 	while (count) {
--		if (count == PAGE_SIZE) {
-+		if (count == PAGE_SIZE && !offset_in_page(pos)) {
- 			folio = __filemap_get_folio(vi->i_mapping, index,
- 					FGP_CREAT | FGP_LOCK,
- 					mapping_gfp_mask(mapping));
-@@ -3742,7 +3742,7 @@ static s64 __ntfs_inode_non_resident_attr_pwrite(struct inode *vi,
- 
- 		folio_wait_writeback(folio);
- 
--		if (count == PAGE_SIZE) {
-+		if (count == PAGE_SIZE && !offset_in_page(pos)) {
- 			offset = 0;
- 			attr_len = count;
- 		} else {
--- 
-2.43.0
-
+> Date: Mon, 21 Sep 2026 11:03:21 +0800
+> Subject: Re: integer wrap in ntfs load_attribute_list_mount() can cause b=
+uffer
+>  overflow
+> To: rtm@csail.mit.edu
+> Cc: Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>,
+>         ntfs@lists.linux.dev
+> From: liubaolin <liubaolin12138@163.com>
+> X-CM-TRANSID: PygvCgBHgUp5nrBqwZMoAg--.6659S2
+> X-Coremail-Antispam: 1Uf129KBjvJXoWxCFy5Ww1DKr4UXFWfAFyDGFg_yoWrtw4rpF
+> 	WDKa43tr4ftr1qy3yayFs5XFyagrWxGw15t34UJry7uanxKFn3WFsrKa90va4kuwn7Jr1q
+> 	qa1jg343uF98ZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+> 	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UjFAXUUUUU=3D
+> X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6huMV2qwnnvLTwAA3R
+>=20
+>=20
+>=20
+>=20
+> =E5=9C=A8 2026/9/20 19:57, rtm@csail.mit.edu =E5=86=99=E9=81=93:
+> > Baolin,
+> > rl_byte_len is signed, so I worry that if it's possible for a
+> > corrupt image to cause the high bit to be set, it would not
+> > be > al_end - al. ntfs_bdev_read()'s size argument is
+> > unsigned, so it might then try to read a huge size.
+> > Robert
+>=20
+> Hi Robert,
+>   Regarding your concern that rl_byte_len could become negative and
+>   then be converted to a huge unsigned read size, I reviewed the
+>   latest ntfs-next tree I pulled, at commit 018344e6f555 ("ntfs: fix
+>   directory lookup on large-page systems"). My understanding is that
+>   the existing checks prevent rl_byte_len from becoming negative on
+>   this path,for the following reasons.
+>=20
+>   1. The run length in clusters cannot be negative.
+>   Before calling load_attribute_list_mount(), ntfs_read_inode_mount()
+>   calls ntfs_mapping_pairs_decompress() and aborts if it fails.
+>   The decompressor rejects a negative decoded run length:
+>=20
+>           if (unlikely(deltaxcn < 0)) {
+>                   ...
+>                   goto err_out;
+>           }
+>           rl[rlpos].length =3D deltaxcn;
+>=20
+>=20
+>   2. The run length in clusters also has an upper bound.
+>   For a data run with a non-negative LCN, the decompressor checks
+>   both addition overflow and whether the run extends beyond the
+>   volume boundary (logging omitted):
+>=20
+>           if (lcn >=3D 0) {
+>                   s64 run_end;
+>=20
+>                   if (check_add_overflow(lcn, rl[rlpos].length,
+>                                          &run_end))
+>                           goto err_out;
+>=20
+>                   if (run_end > (s64)vol->nr_clusters)
+>                           goto err_out;
+>           }
+>=20
+>   This ensures that:
+>=20
+>           rl->length <=3D vol->nr_clusters - lcn
+>=20
+>   Boot-sector parsing also rejects a volume with 2^32 or more
+>   clusters:
+>=20
+>           ll =3D le64_to_cpu(b->number_of_sectors) >>
+>                   sectors_per_cluster_bits;
+>           if (ll >=3D 1ULL << 32) {
+>                   ...
+>                   return false;
+>           }
+>           vol->nr_clusters =3D ll;
+>=20
+>   Therefore, the data run length must be less than 2^32 clusters.
+>   Sparse or unmapped runs cannot bypass this constraint to reach
+>   the byte-length calculation, because load_attribute_list_mount()
+>   rejects a negative LCN before that calculation.
+>=20
+>=20
+>   3. Converting this bounded cluster count to bytes cannot make
+>      rl_byte_len negative.
+>   The conversion helper takes and returns u64:
+>=20
+>           static inline u64 ntfs_cluster_to_bytes(
+>                           const struct ntfs_volume *vol, u64 clusters)
+>           {
+>                   return clusters << vol->cluster_size_bits;
+>           }
+>=20
+>   Its result is assigned to a signed 64-bit variable:
+>=20
+>           loff_t rl_byte_len;
+>=20
+>           rl_byte_len =3D ntfs_cluster_to_bytes(vol, rl->length);
+>=20
+>   The shift converts the cluster count to bytes. For example, with
+>   4096-byte clusters, cluster_size_bits is 12, so shifting left by 12
+>   multiplies the cluster count by 4096.
+>=20
+>   The relevant question is whether this multiplication can produce a
+>   value too large for the signed rl_byte_len.
+>=20
+>   The boot-sector checks and decoding allow at most 4096 bytes per
+>   sector and 4096 sectors per cluster. Thus, cluster_size_bits cannot
+>   exceed 24. Combined with the cluster-count bound above:
+>=20
+>           clusters < 2^32
+>           cluster_size_bits <=3D 24
+>=20
+>   the byte length satisfies:
+>=20
+>           clusters << cluster_size_bits < 2^32 * 2^24 =3D 2^56
+>=20
+>   This is below 2^63, so it fits in the non-negative range of a signed
+>   64-bit integer. In terms of bit positions, the cluster count can use
+>   at most bit 31; shifting it left by at most 24 positions can use at
+>   most bit 55. It cannot reach the sign bit, bit 63.
+>=20
+>=20
+>   Consequently, rl_byte_len cannot be negative on this path in the
+>   ntfs-next revision discussed above.
+>   Please let me know if I have missed a path around this validation.
+>=20
+> Thanks,
+> Baolin.
+>=20
+>=20
+>=20
+>=20
+> >=20
+> >> =E5=9C=A8 2026/9/20 04:22, rtm@csail.mit.edu =E5=86=99=E9=81=93:
+> >>> In this code in fs/ntfs/inode.c load_attribute_list_mount():
+> >>>                   rl_byte_off =3D ntfs_cluster_to_bytes(vol, lcn);
+> >>>                   rl_byte_len =3D ntfs_cluster_to_bytes(vol, rl->leng=
+th);
+> >>>                   if (al + rl_byte_len > al_end)
+> >>>                           rl_byte_len =3D al_end - al;
+> >>>                   err =3D ntfs_bdev_read(sb->s_bdev, al, rl_byte_off,
+> >>>                                      round_up(rl_byte_len, SECTOR_SIZ=
+E));
+> >>> rl->length is read from the NTFS disk image. If it is large enough,
+> >>> then "al + ll_byte_len" will wrap around to a small value, and the
+> >>> "if" statement won't prevent ntfs_bdev_read() from reading more data
+> >>> than there is space in al.
+> >>> Robert Morris
+> >>> rtm@mit.edu
+> >>
+> >> Hi Robert,
+> >>    Thanks for reporting this. You're right: the pointer addition can
+> >>    wrap around and bypass the bounds check.
+> >>
+> >>    I think we could fix this by comparing the run length against the
+> >>    remaining buffer space, like this:
+> >>
+> >>    -		if (al + rl_byte_len > al_end)
+> >>    +		if (rl_byte_len > al_end - al)
+> >>     			rl_byte_len =3D al_end - al;
+> >>
+> >>    Does this approach look reasonable to you?
+> >>    If so, would you be interested in submitting a patch? If you don't
+> >>    have time, I can arrange for an engineer on our team to submit it
+> >>    and credit you with a Reported-by tag.
+> >>
+> >>    I look forward to hearing your thoughts and discussing this further.
+> >>
+> >> Thanks,
+> >> Baolin.
+> >>
