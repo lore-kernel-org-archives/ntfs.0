@@ -1,124 +1,148 @@
-Received: from mail-pz2-f40.google.com (mail-pz2-f40.google.com [74.125.228.40])
+Received: from mail-pj2-f43.google.com (mail-pj2-f43.google.com [74.125.227.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7334C24B28
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 00:20:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1871DA23
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 01:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789950039; cv=none; b=XZcpvHeyIU1c4hcB3IxYSMeRe6HXa8Er6GpLGoke996/4MBEpli2PLuD0aRFH5dFAqAbT1vWtlsIDkCkqoViu0FXNWo7C8vxZJEkWh8H9WFLYtQ3TKReVgtYfAOdH1CGqBqbZUCXyUlKVcGct73kauUuDBS7ce/dhfCaStD5EyU=
+	t=1789954893; cv=none; b=bXqCMbWfo7ZGHEY/KdVE6p4FbUhJhPxYwADN/z077ltJ00mu0G+S1kmeNBPubM+sF5PAdJtSidgYjUISjWbGUbePHuCDqpjxX0Jk+UiTUn05TOaahpTgCR994/3y6v0rPSlp8p++zTE9M7Pphhng0wKGwmmIXxaY8otjsTj11BQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789950039; c=relaxed/simple;
-	bh=Y8aqOvxwysux/OqY+n9Oq5AbefWnqKe5itlF4eAnDrY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FDSR3LD00jQ/tO/KmhIy3eZ6SWyNfMmvm5QHDsM/XsibhfNQGHEFfs3wOB+8+ArP4el/f/VfwkL6xNPJhMfBm3nWuPTAhgJDaR9hAoEZA0y/8EmBO6v5t/ykfKg/vGTa07qI8DtbVWiiGqr4ZtkZUd6v0vdfa+YB3BDtUWerMdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W4QoOHj5; arc=none smtp.client-ip=74.125.228.40
+	s=arc-20240116; t=1789954893; c=relaxed/simple;
+	bh=sZVSVNnmqug24rEI1vY+L2FnqpiG6JF+5hzcQz5sBX4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GQfXXBLcYjnAcquLkxny0eFVDJcxvaMet8gE+cmbnkRf7w3rrXJs3yrK9RUneU4fV9cC0Wxak3HG4GowEURZUVbkWkJ9aKtdwWP9+BoUQW7veDIsIlHHfhJPQKzrHjJqt6QY7aKzszCt7zK1zOwbrP7+Sz/xRyjK25YjrIVFg7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=r2DoFIqR; arc=none smtp.client-ip=74.125.227.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W4QoOHj5"
-Received: by mail-pz2-f40.google.com with SMTP id d2e1a72fcca58-87ac7657a24so16997b3a.3
-        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 17:20:38 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="r2DoFIqR"
+Received: by mail-pj2-f43.google.com with SMTP id 98e67ed59e1d1-39e03468a5fso2148282a91.0
+        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 18:41:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789950038; x=1790554838; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=i4Owxq5xFlksuYFwwNYWHIP/gBOk1flMgdq5mmTd6bc=;
-        b=W4QoOHj5eEwQmOkW/M8ZUMWZYZO/V5qXh534CmJ5Qw5LA9IVT6Tc8Nsh3CD0MOo7v/
-         TBpqkwh643XSQBPikCfWc0xH5jL3CnkQhJh88LEKJ/0+hioBOyVYeR6xBlsfQybGkdA4
-         QrF+WyJyeJZpBKW86qh+ZaGg9A9hQpQ9JR4zuV0vlXsrNjvPhMnM9AslvP1/P8qhpk1U
-         SK58/53IIVKXlqLM64FRZVAZc2GKF4g06Ds/aVHksS35mAru4dJm4nsqDcVjTKPbAr83
-         +sVvvG66QhAoCfMNvh5zyvVdurtBSvJ8elkNw8RJEIyuagyuc8WI+GZKYibqpYqULn5P
-         gA+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789950038; x=1790554838;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=gmail.com; s=20251104; t=1789954891; x=1790559691; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=i4Owxq5xFlksuYFwwNYWHIP/gBOk1flMgdq5mmTd6bc=;
-        b=MhTKJzvJOIY+a0HjFlpSA7Je7h+sb1KguHcirhyjZVMbfa/GCvDD9ubsZmpmxv1xKd
-         PHw2lCprOcHZXcmOWuLuh1tK9gVTQRKpZxUfn1fxyqwiWZwtVdtF6htczeAKP1+pbUS4
-         FcUbATUAoPjpWsf3+jQoxXJqmyDo7tdNo+Re6yrSon5+ykGjDxpz0+XwvaWH2RZX2UqR
-         BAQd36JkMkndgQU/ogJrEgoQxfmbwLAvwdqdWzCJjIxkd54Knk1c1yLHrZZ+k9sN2z9h
-         JFoASVjFo9jAT1GeazA7fUCX89rv8Av/Mp9EFqYWfrl7Q4l4i++XePBeeKFlq06WaIGR
-         H6bA==
-X-Forwarded-Encrypted: i=1; AKwUvBxyFLrpV0qD3cMuK91rDDcxBS6x1IDd2yOR+Sqe8eUg7yP1LiT3bm4YWvRykw86a37HJt+C@lists.linux.dev
-X-Gm-Message-State: AFuF++mjMzVqlOMQp3QwWPAGv5YkM1Oe/b5zvv5ZEwZueNsoAovAIgEO
-	/mTgKOMIAusAh0IyAeVDdtPjer60RZ7d8ghDkKB1KkMQeI5hRewt4NSb
-X-Gm-Gg: AYBFou2MXGuyeBLlSkwgjsDPWpAkvTeRs4z/8duvfn5xjPtwKzbWbbJm5MCkAUEIryd
-	kgK20kUkPlsYT545uf15J/yZsx5FHoQdZx/qbKMEgaKYa4+tFTRaN3BTAy908fseY73NuXeuwV4
-	VbKHISwUqsnmS/CvntKkWdDZ/g4tmtXUQ5qQmzrTeaY77IX4TMnaSetoy6vC3VOgz5sIaqIcVhc
-	CAXL8qjNtkmDhLpsWTId66ff0SyXRFiHywvJy29jrUfVrYfWCKXLnZBLHt87O20h/RI780MvZgX
-	S+6WvvSafQ4a63KFV7oGQp8Zr0H+DdfnVtT1+URTg23zlr6STeund2fBrOW8BTSz3+QrmdyGIeX
-	7jWRmCwcSpvYqvZZ3j/3379emxQSYqRGd/XJPhREDVnbkxZlJ06s+ua81zdHIhWDmsX9UKDn+CU
-	2q5SVeiyqZbU+AtMClWfyp2H8dYouC8XJa5cQ2Jqinjs4+9Moqk+EuMdXJ/nmFQAQY1PDpQSjHt
-	7PH3A==
-X-Received: by 2002:a05:6a00:b4c:b0:874:706d:9631 with SMTP id d2e1a72fcca58-874de60c4a8mr13138951b3a.35.1789950037672;
-        Sun, 20 Sep 2026 17:20:37 -0700 (PDT)
-Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-877a94f238csm2289557b3a.21.2026.09.20.17.20.34
+        bh=dYBYldwjPEz+RxhJV5xhs6Rr3vF8vz2+BiAfSL6O5Kw=;
+        b=r2DoFIqRnEDvnoxovN/J66EQWOHwZfhCoOG2WdG8G9U0ptz5/W47l1wrT2VzY5E1+R
+         rVKvP+uyLuKxml3CIHf5j0OB4T6APtd01HI9uAIZmil/1+uddX25WOcaaDzS+sGNbHXh
+         mMlPvyv0NE2BGl06w3iYds21wchoM8D7k8hWREAVhz4ozKMV4JmWzKiVvvkIv/PysXgq
+         abvTybeDxAXtLBsC06F97QeTWRjYTLtvoXnXA2UaB8vG3t8aDP8BowllAcnTOiPO7Ek7
+         i28Q6F8aXG9qv+ajit+Ho8XWdWFUA7rVmfLQqCb1TcVP+QTFkLd1mYH1BacUpUr1n/Lf
+         XpaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789954891; x=1790559691;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=dYBYldwjPEz+RxhJV5xhs6Rr3vF8vz2+BiAfSL6O5Kw=;
+        b=k4/VPuBoTacBa7XtlDRSiMjqf8PXguO2RHjR0pnH7thLStRgChtSnt44L5G2D3sL2x
+         MDCkGI7yUQWr6K2bIgJReu2oYo9pX0zUXnwTiUiCQU/FxSblLe2T+2rqPtRgkdy9LEN3
+         DZuGMsVqiadfdH5njHV0YfmVSJiUf0KDSTDfdVzbl5btLx06FUPsCrxJ5m3zMFgXEbGd
+         svmQiKo5bm0TA5Ur2tQIKeGf7ga5vDXjTH/slRjcIr8G9xlBCKo2pixk1dBp1t7V5Fc2
+         CN1seHoorc3YPOcz8zcK7CDvC8++1BWQInWU9wdnTuZrpxXDxQk5aMtTFVqlYCwKta9r
+         ZNKw==
+X-Forwarded-Encrypted: i=1; AKwUvBy3LhvPMwd1QQnHi1W4aKvv90iphbwNwbcd0cf0UTvueGLqW8ETgNj2FZfRIo+1a+6fRhmF@lists.linux.dev
+X-Gm-Message-State: AFuF++lCirqSO6Z2YB8JpXsK4w7GkQWvHyVvoDZuUSlsdfjYHBsOwjLK
+	lr14rQgAKAMH5KfhenhZtVyyfakvSDtP2n/kvMEz5JZo/X0fag0aEtfY
+X-Gm-Gg: AYBFou1E1UTTZFzgV7dqT/tqVRW+ic1xfQ5f+y0HBPT+zA8z9O1mR1sn2rwY9W9uMO0
+	HmKK3EC1/uZUhkF1u4Ugrs0pVOMKkGBLLsP/L6UAd/JM5iuGGf9HunzkY0mPcPzgOxG2OFEEJDE
+	uPDj9fnphM2uZqwT3Dfsu56U4sKnOdyAfyS52IO+IH6kYw9+c7qZtvyEsrlbZspwcJ8gUbbzHer
+	MpYCb8bJmcESZaqi6NP3EWr9lkC8lemH6AxO3vUhogzIe7qt2NeHNCE3hyopib2UIc/yllU1mV/
+	YwWBK6PP5ej3Y15vqvhRNTZqUSLU6OGBUUC2lbBak5dGZvIr5YA0Rn1Vm6DCmvAA/tBRzU7S0nu
+	KCA3RYNr5lueK3D7DBkoqUk7Qv9F+8WBi+d1u/i+ZcndzOHluzBTCmVhnIlMue0Z21eVX/LvF9Z
+	n2ffBmN1ag56aMQD3ROXmKSNaXXBzsA4htnBhzc7kP7T26DfqX1aYR66zoo6su3mRj/SDyhr/BC
+	VGh9vMf57rqZTDkSlDl+4t0nBq8nddxag==
+X-Received: by 2002:a17:90b:6c5:b0:3a0:295e:6e58 with SMTP id 98e67ed59e1d1-3a0295e7719mr5639903a91.2.1789954890587;
+        Sun, 20 Sep 2026 18:41:30 -0700 (PDT)
+Received: from hyunchul-PC01.tail461a24.ts.net ([125.177.232.58])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a04982be8dsm2441598a91.13.2026.09.20.18.41.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Sep 2026 17:20:36 -0700 (PDT)
+        Sun, 20 Sep 2026 18:41:29 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
-	ntfs@lists.linux.dev
-Subject: [PATCH v5 10/10] ntfs: wait for attribute folio writeback before update
-Date: Mon, 21 Sep 2026 09:19:49 +0900
-Message-ID: <20260921-topic-4kn-lkml-v5-10-938afe402cd0@gmail.com>
+	ntfs@lists.linux.dev,
+	gunho@lge.com,
+	=?UTF-8?q?Marek=20Weso=C5=82owski?= <marek@wesolowski.eu.org>
+Subject: [PATCH] ntfs: fix FITRIM bitmap indexing for large pages
+Date: Mon, 21 Sep 2026 10:41:15 +0900
+Message-ID: <20260921014116.2781001-1-hyc.lee@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260921-topic-4kn-lkml-v5-0-938afe402cd0@gmail.com>
-References: <20260921-topic-4kn-lkml-v5-0-938afe402cd0@gmail.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=805; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=Y8aqOvxwysux/OqY+n9Oq5AbefWnqKe5itlF4eAnDrY=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqsHf1eyVmoco6emsLxH0YvewnY4psQnSfIAR3r
- KQ59Hm4GLSJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCarB39QAKCRA08jD6945I
- 0+ZtEACAFviYP6RwfeO6cOSPytNS1wjQmdc2txVD43vRpl67nJMDOY7mcbZVvmrhyC4CxBlYOc+
- 1ebv3Yd6YWSl/L7EsWOyBBFiUHfNJ0RjQEGBtW+Xt5Q+sur5L4LSJ47iuZDYL6+d3f7KIvP1fnu
- d67eZTbH4z90fnc1T1Eq5BejoZdswYeOdsvVE9Q7Fvv00Gwqv2bwaRYN7YqEDrMVcBnRjSAu50q
- 38bu9PCHUCiE7ZUnUFNhJFQnYuf3L3DtZXqD47Ec/Rlh7jUCSD3WITsNRhUV4bq4RusAqrceQZF
- rVrIoIQE406sHjT5Vt2gVmZLF+nfzyzxLwXdgK0TRH4mucpwEgMaMVKAr/4a22VSBDx+tkPjFYq
- kAL+8IFsmyGll/FP4SbQR0ywPkQMBS0hBUQ0HJaTWIwgQtnAsZX5MREUwaTaWK0kECzlVSNcHtW
- Zath9yS05vk75ns47mSJ2EH1Mc0xphG0c6a/VOSAvMdN1QyyLelsvRs5Rs0QZQsLSK02hQ6yQqK
- t/T+Itz1w4blKdhWZNKfMKDWUky5qOnS1AI0DAhJXvu0eRpb57RLj8Zcbj1VBImSeCUTALuOPSf
- Gmg90gDrNWWvRk1VACe12uJ+9U1hyjD9oeRjzsNtiz0MAtHfnnYOqFuvSUbQOiEFAYyPP3Kl+3R Zezk/zl5HrkiD1g==
-X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-ntfs_inode_attr_pwrite() locks an attribute folio before copying a new
-attribute image into it, but taking the folio lock does not wait for an
-already-running writeback BIO to complete. The writeback path can unlock
-the folio while PG_writeback remains set and the BIO still references the
-folio memory.
+The LCN bitmap has one bit per cluster, so a bitmap page represents
+PAGE_SIZE * 8 clusters. ntfs_trim_fs() still used a 15-bit shift when
+selecting the page. On arm64 with 16 KiB pages this selects the wrong
+bitmap page and can test or discard the wrong clusters.
+
+Compute bitmap indices from buf_clusters, use the page cluster base as
+the bit-search origin, and keep the requested range as the clipping
+boundary.
 
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: Marek Wesołowski <marek@wesolowski.eu.org>
 ---
- fs/ntfs/inode.c | 2 ++
- 1 file changed, 2 insertions(+)
+ fs/ntfs/bitmap.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 4375ad477809..d5e526d3612a 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -3740,6 +3740,8 @@ static s64 __ntfs_inode_non_resident_attr_pwrite(struct inode *vi,
- 			folio_lock(folio);
- 		}
+diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
+index 1840b7d84c62..df97970dc3d0 100644
+--- a/fs/ntfs/bitmap.c
++++ b/fs/ntfs/bitmap.c
+@@ -20,7 +20,7 @@ int ntfs_trim_fs(struct ntfs_volume *vol, struct fstrim_range *range)
+ 	struct folio *folio;
+ 	unsigned long *bitmap;
+ 	char *kaddr;
+-	u64 end, trimmed = 0, start_buf, end_buf, end_cluster;
++	u64 end, trimmed = 0, start_buf, end_buf, end_cluster, page_cluster;
+ 	u64 start_cluster = ntfs_bytes_to_cluster(vol, range->start);
+ 	u32 dq = bdev_discard_granularity(vol->sb->s_bdev);
+ 	int ret = 0;
+@@ -45,8 +45,8 @@ int ntfs_trim_fs(struct ntfs_volume *vol, struct fstrim_range *range)
+ 		return -ENOMEM;
  
-+		folio_wait_writeback(folio);
-+
- 		if (count == PAGE_SIZE) {
- 			offset = 0;
- 			attr_len = count;
-
+ 	buf_clusters = PAGE_SIZE * 8;
+-	start_index = start_cluster >> 15;
+-	end_index = (end_cluster + buf_clusters - 1) >> 15;
++	start_index = start_cluster / buf_clusters;
++	end_index = DIV_ROUND_UP_ULL(end_cluster, buf_clusters);
+ 
+ 	for (index = start_index; index < end_index; index++) {
+ 		folio = ntfs_get_locked_folio(vol->lcnbmp_ino->i_mapping,
+@@ -59,19 +59,20 @@ int ntfs_trim_fs(struct ntfs_volume *vol, struct fstrim_range *range)
+ 		kaddr = kmap_local_folio(folio, 0);
+ 		bitmap = (unsigned long *)kaddr;
+ 
+-		start_buf = max_t(u64, index * buf_clusters, start_cluster);
+-		end_buf = min_t(u64, (index + 1) * buf_clusters, end_cluster);
++		page_cluster = (u64)index * buf_clusters;
++		start_buf = max_t(u64, page_cluster, start_cluster);
++		end_buf = min_t(u64, page_cluster + buf_clusters, end_cluster);
+ 
+ 		end = start_buf;
+ 		while (end < end_buf) {
+ 			u64 aligned_start, aligned_end, aligned_count;
+-			u64 start = find_next_zero_bit(bitmap, end_buf - start_buf,
+-					end - start_buf) + start_buf;
++			u64 start = find_next_zero_bit(bitmap, end_buf - page_cluster,
++					end - page_cluster) + page_cluster;
+ 			if (start >= end_buf)
+ 				break;
+ 
+-			end = find_next_bit(bitmap, end_buf - start_buf,
+-					start - start_buf) + start_buf;
++			end = find_next_bit(bitmap, end_buf - page_cluster,
++					start - page_cluster) + page_cluster;
+ 
+ 			aligned_start = ALIGN(ntfs_cluster_to_bytes(vol, start), dq);
+ 			aligned_end = ALIGN_DOWN(ntfs_cluster_to_bytes(vol, end), dq);
 -- 
 2.43.0
 
