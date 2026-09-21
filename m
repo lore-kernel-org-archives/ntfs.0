@@ -1,72 +1,72 @@
-Received: from mail-pz2-f12.google.com (mail-pz2-f12.google.com [74.125.228.12])
+Received: from mail-pz2-f40.google.com (mail-pz2-f40.google.com [74.125.228.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B55217648
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 00:20:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB263D3B3
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 00:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789950010; cv=none; b=abNPQhCJNE9yOQYPjd5wyYLFm4Wn6EO7yupfdVYcgtPVqQrW8D14zPmJsmJ38jKvm8ETYSW2ZJ8NG/OdSAMUsowF1B77UXdVP5WS8C1yxgHBsMxKT/4bnrpsIygfDZZL9DdRFkkGZ/HjNwQSfAWiVdU6YSoyyeqiiQNr6ckKpaM=
+	t=1789950014; cv=none; b=BrriVeaNZEhNZymDCLhutKCK7+vPFvAb8Qr9Snd3KfWzikAMRIpvdf20NFHHuJ8RKTCSOYL4ygWWGQ/nEAySV9XPsnMCXwkYy5UPfnSfKGjAyGKpIgR1Bis6DySbWS+0Ta/vNW2mnPXAkRY0eRml8KNXOJUvmhOWwQE46QSaDrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789950010; c=relaxed/simple;
-	bh=vI3Rih4fsjG7pE+BpNKXjzIctM75Zkg4mW9f07Yjfvw=;
+	s=arc-20240116; t=1789950014; c=relaxed/simple;
+	bh=T2Cz2OVO1tHo7/utifasBhSnaS2K/prmNjB+AQ4TWUE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gm6yJEqXgLjzCDndPD90a33vd16RC8uCuXFon8ss0wya5rgiPV8Or2x1z8AFjft7k/5pckAGu+NZDJBDg02hHC7g23BM66jMEXgCZIHc3EHVrQ4c0NOvLNEXwXAKn2fwazAu6+jl11FLfas+4adZ2GQPS+Co8f90CVBdeWGPDEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gx9vjj11; arc=none smtp.client-ip=74.125.228.12
+	 MIME-Version:Content-Type; b=tV2We7pVAIEcdwCC2cwJi5XD8m1j4Rpkd4+LIR18eqJBO7Ntyec0tVPcPm6gbglKsqZVTiIFoQWAt7MVirMkZ91npiESfjg4gEV+AIaYc/NLPu6l9bsOY3geC52Q97lyVfnNrI6m35FylL+3PLOPVsGfrRQMRi8zIH6CCEz2q48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sQw9chZA; arc=none smtp.client-ip=74.125.228.40
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gx9vjj11"
-Received: by mail-pz2-f12.google.com with SMTP id d2e1a72fcca58-85469e25187so1319288b3a.2
-        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 17:20:08 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="sQw9chZA"
+Received: by mail-pz2-f40.google.com with SMTP id d2e1a72fcca58-87ac7657a24so16892b3a.3
+        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 17:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789950008; x=1790554808; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1789950012; x=1790554812; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=kkLcYN3uRxWbi8ZMmnE1rmLo1CitPI3+eWi0uPYL3/U=;
-        b=Gx9vjj11IoqjBm/DdL80fHoGiRR3vDHfD9HMaQK0VwNlwbQUjlrksoGKSPmPA9L1bJ
-         b+N9pHI7IEUECgH9olB9TwtXLl884kyQ/b7NLiLhu7ht0zLiH5PFh++Dk0ckZ/V5v12n
-         JSXKvB35J1s/g03HTkfyU3sMRX9+B81WIVvqA0vrc3ErOX+j+DOTINbce+r9K+302Na0
-         OA9NuvBPjOsoqHtG3CJUTvCzEVnaNFkoW0XguQAHj6I2GedelEzJf+GtYy9pFk8hn+5g
-         MZe44h7rlO8vHH1MTGoGCxLYve41yft+rfY1cpOxn4VzmNbbaXXarpOtW1UGeRX75ZhL
-         OfSw==
+        bh=aj2GirdUCPCqt69A8KYuumXOdCUgFWYJd+haJwi34dg=;
+        b=sQw9chZAT9e/ki8AUwzHPP14QiWVO7qk63mV1xO4L8jWFjmqhK1S0L0fcF/YeqWSLd
+         1EdE9c7TT7Dkmf3fjlkTws3F3+UaX1HN6DSqn67WYjsHrKS+uH7ahKDHpkAb18Dplm+3
+         kzNSur6gGd0+LxvpXQl4q111Yhg/14qPGGlo9M2HLKyQWeELaZyOsCBACU4ACUcHfuBi
+         56CLd1CPAWrB2vduY5oEDocouMW4qLqUCxQbeEVvzgGz3631p4MWfv14SSxvst/VBy5q
+         rKOkM1fAJ45FDBkQuBHik+T9U00adE20TXLPp4pIa2OcbsgDydGCr7Jmg99EG8DkwFIx
+         ju5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789950008; x=1790554808;
+        d=1e100.net; s=20260707; t=1789950012; x=1790554812;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=kkLcYN3uRxWbi8ZMmnE1rmLo1CitPI3+eWi0uPYL3/U=;
-        b=U/ZWMeTZT91hO+5aueVBZTNfr0PJrS1BVJqeljdgUSpbvJWUKwbCQPlmE7Y0f2Naef
-         d6wdaAwKrQz8UcRAwX0V5qbElXehVFYcwd0sZhTR/TXD3LUQdlDb0g0D9HcRxPkgpcBN
-         1juQcGaPRoP4lGRK27NBfmK6KTUU7WyfCszf0BFU0KfZvZwuD39Y6rcOrmAbStbV08Zr
-         ScKQ6l27x8+MKOtcc9vQHD5I8yNRStIB3DYMQrv7cPcyAFjwka4Vm2II3mxQmyI2Y0DW
-         8AwRZVqGF95y3XQUYnhuCtXTQkmWBdXYF6V6ChmdXFMLGXWD/XxlqOQ13O7Wie5KCYgz
-         EsGQ==
-X-Forwarded-Encrypted: i=1; AKwUvBx1+btw1MaQSbmMza0zHoFM+gsqtRV4JqcNoNhN/L3x1LtkJ2EywQ6PIYSne5lJcG5KS+Ub@lists.linux.dev
-X-Gm-Message-State: AFuF++kxniqAmkPjXQwfsxSBsXxE60Ef+aMEWMjy2vXs5o9vHgtpkTz2
-	RpXQNZ2aHsgCM96e/1MowF4KFaYKE0on6XDWcJdwM/VYjkLP9IPKlwdI
-X-Gm-Gg: AYBFou1jUGe8Ek7yr0LdcILwEtygfzEQsb4oSuL/EN9u3Auz+nCCb2TzjXWU+Z6ss6p
-	LmxyX4NkMG9hWuH2m/Z941vGEHCDko8hwrLQW7xnZ39lJcqIfjaxeF4kQWlewWxUB7f52CpQI7a
-	RlM/4079WnvbcogkfgHUTY+UtDpnXY2zdmCYK/DuqxS2aZzj+9Q3dE7PgqaDcRvGoK/QNriHdRj
-	wV3RAnOTgjXdZHp92X1mebE4odRWYF+7ItBYwBAKTZoAyGt40RfCwlGmx5RyrLOQ+dyO/b51Cvp
-	NOKCOSr1DP1nPWGCH9T0YTusne4IvFalGWT7EDfxD5sGd72aEEMxJEJPcvHiPPMW2bolUIzsK0t
-	WmB2pMkzd/CdLuxSnv0xHHdHDsbTGrFsXZXxKguMew6zMJMNqMrLELHCiuajtD3LaeANuVMY7D8
-	/haDLoNL2ZpyNDRrKbJyMRhfsZXzSxMCoADyyvqte7JIxnMc/miXuTb/e8SGrn1ZuGj+tUn1qSx
-	sNYHg==
-X-Received: by 2002:a05:6a00:e15:b0:871:e76a:2a35 with SMTP id d2e1a72fcca58-874dc9e013bmr12089560b3a.19.1789950007783;
-        Sun, 20 Sep 2026 17:20:07 -0700 (PDT)
+        bh=aj2GirdUCPCqt69A8KYuumXOdCUgFWYJd+haJwi34dg=;
+        b=JK0EeV6U4YN19EXKJU5hKbvbfDqWJRqnTkfYQXBb3ltGxkd5NstYK8ka00qpWhMgB5
+         3je/BtlqZ6IdSBKuIP3i4sHxue7JYjqSMxKWlzn4ht4RRJ+iWKMF/G+yrBI36Lw1Do4M
+         ILSCuX5H7upTqni3Th4AwesIXRT/IxuVrQ45tezevrf1f4b9SCmnVIzrRrA0wka2BX8c
+         e0onLRpoGGBprQDa+iXYX8+n8OGr07YI8MEU1tpDxjPY8xv/NQ+i/Cft7zgglbQJAfuI
+         jHc0RHVD7Pvu7G1kwPtb2YXSjMZnwqPYM1n6Cjm+x8Mnx348xpTHJNrRtRXMHk5l7JYw
+         j82w==
+X-Forwarded-Encrypted: i=1; AKwUvBwoO+g1d9CQLDDRehhKkInScEC9jvMPZvDI+rN0q3VhxhBNP8r5Pf4HZLOOYrDCT7BsCh0+@lists.linux.dev
+X-Gm-Message-State: AFuF++ninFbN/psHwNlScPu8lnk8HxVDDT9i361TMnZuw/ld8dPv6AuI
+	+0BtXCCaC70CouRnEsUUkk0M2XQSFRR2v3zFqSlOmJ8WImBoNqc6hkZH
+X-Gm-Gg: AYBFou1Xjtj1j8ESCzoE1AncZ4YsrHYxL2NRVvJpYwdADofdvJgi5V/fE3G83djrLXj
+	D3XfWOAvPxZp6i7zVRoq/elaYUpVv0WPRL8yvjqq/zO+SXO3rHFGofQLeWHRbLQuu1qX4V6/Bii
+	Pd2UeqJ7J2Io+NBtMLxClqmW1FHNUE/ixBD9grZzbTeIA4S8IwDJ976tQiKeSxXTgqGd7mXvYGL
+	+PnV8VPF757342T7+YzYzTRBonk4UBWwH1yUgiP2DNAFF2DB6m9gn6LOP0PDSRuU9iOTMbMKmR/
+	vQfzoL2jgHWM/sZ7PH5y4RxHOUo+BS5+/MwPHfFk6LS9ABwhwpHcp8c7qLsrZNVESD4SzAE5hF+
+	n5jovIO3lSc16pQW/8WJ39mF3sgxyIjeMZ3Mk+5hBqXSEIowV31nfhrWBXB1b/JI2jqU663gUBs
+	G8xltqOD3fsPipM/ZvTYjQV7qcUGP9pxKTUuyWNf6yzHNsQPfN9qyG3svwGVbfiO7L3Ad8A4YMW
+	8DnRQlLnc7Ad3RQ
+X-Received: by 2002:a05:6a00:1309:b0:878:34d7:699a with SMTP id d2e1a72fcca58-87834d76e1emr5522302b3a.42.1789950011988;
+        Sun, 20 Sep 2026 17:20:11 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-877a94f238csm2289557b3a.21.2026.09.20.17.20.03
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-877a94f238csm2289557b3a.21.2026.09.20.17.20.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Sep 2026 17:20:06 -0700 (PDT)
+        Sun, 20 Sep 2026 17:20:10 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev
-Subject: [PATCH v5 02/10] ntfs: validate the MFT I/O geometry
-Date: Mon, 21 Sep 2026 09:19:41 +0900
-Message-ID: <20260921-topic-4kn-lkml-v5-2-938afe402cd0@gmail.com>
+Subject: [PATCH v5 03/10] ntfs: write MFT mirror data in mapped I/O units
+Date: Mon, 21 Sep 2026 09:19:42 +0900
+Message-ID: <20260921-topic-4kn-lkml-v5-3-938afe402cd0@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260921-topic-4kn-lkml-v5-0-938afe402cd0@gmail.com>
 References: <20260921-topic-4kn-lkml-v5-0-938afe402cd0@gmail.com>
@@ -78,194 +78,248 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6800; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=vI3Rih4fsjG7pE+BpNKXjzIctM75Zkg4mW9f07Yjfvw=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqsHfz2ZmaoO/W4VVAleP1IvLvXZ9bmBZBI/pUz
- NMQubWW9dSJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCarB38wAKCRA08jD6945I
- 0+YVD/0aSsCCE/mo4/6N8SRwzRUaIhe3BLoxEizL3ecfy1UfsYQuNU42AtdM4is0EKUmwQcDYPv
- Z0grnOUL4mhdI/q2mmcsM2MD+LjMnC/ZOcmg4Yo6wdCvdX4odgviuloRskQQkGe20UdCN+l+pTU
- udO35SgJjwmMGSPh43qwixoichRjNFrpcbapMvbLrfEec5ra3ghU533Kq4O2Rxn9d9+7/JVa3Ij
- rqRpU6qs6NL6040EGiXehRCSgaAaJeHRpcJzWXTwb4ORHp0oxmS07gei+LVyIdKv3XtGXyPPYCJ
- U48ZruRcQPNkWZwdzwbv+/ylCRrSTwYTctSZS4IaEKayqCVLa9gaK0UGFdEC+f5/bsPrAVfsZ70
- oVL0pA497bE1ZVhV7fQQfaeetBCIkmIZsQbDlaVgKtHVtzZMQ3rzz2A9m+mkVZ2YFGFt62GUuap
- XBDrCNCW0PwLaUyCzKOjkZ9jzY+B/mhWoGz7zVcrCQg3ZC6ZbDL+s+/XugVRst4NygSCtCfpKlL
- RCAewLRNk0JHpjQzyTJtGRvmQtIbB3hl8fZl8aapOzEvOxI1Q+2q1Rup4xPuK5jto35Qd0K+XKT
- nqMCunTVP/7GhM/JtNMInzx+7Jkv//hQTAskmlsssSVYASDYiRRlnpyHlXn6mEQkZzoxMQS4DbJ WmFE0phEh7jrhpg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7849; i=hyc.lee@gmail.com;
+ h=from:subject:message-id; bh=T2Cz2OVO1tHo7/utifasBhSnaS2K/prmNjB+AQ4TWUE=;
+ b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqsHfzKaGjdeCQUo4w2hIBTOsMCzHRGuIBKkvIp
+ D8i+oTlWruJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCarB38wAKCRA08jD6945I
+ 0//UEACJ8sWV3XGA5zayBDMySRvty1eRSLcrqY6WeI3YBRPhirYGAG2HMrRz3GKLD6uu0KMfGrg
+ qQcWhGs6tFNor3Q5zjwaukFGHhCkSv+mweFX/uO1YyzpWeXnfqjB7B8nMs3fcMYapEWjU0cXJM1
+ qEEpOBl08jHqo6DsUijHOdGTbsYPAabeMtX5PloachBg3KeZE+evCpKLM9AQZz41sBke5b6Ow8j
+ HGYETZ8jTeFHyaZRoYpn0FG1Yu62blmc26BLzDtbFWEom2jZpjSHxh3aWflC0qVAren+xchQXoJ
+ wKbf9djrf/UZFyWZ0jJ14Pj+sCa1aDHYkazD4EN4b1qGwGiBo6x5XLzhptFlX8NO6pQwGZd7eef
+ XiCy7FVry9X9Mjgdsg5/zHR90G+ZoNKOj2tnSTSUzguEce5WssNl42T7QDcvNqwYoX8sU5g8G1e
+ cmIBm3sRscgFZqHXXEAuQ/7s1ier8xJHJ4r6DnhA9EpZz67IbH0lt4RMtJm2Dz9w7+gYzA0hB+S
+ XPLns0MVIOgmaxnTfBk11kjDpVfcNBC5s4wPwXjMPY0+FZbGwC1FkmBK6BNRLSL+2SyJHL6AVu2
+ UpqVXwpbPZAiSac+EoXB6wESJ2tCFsShvQt0+67VUB3jiVMArFdwrpwLj9RUXUnrNAy4ZB4erIa /ner1EChz7zJwIQ==
 X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
 Content-Transfer-Encoding: 8bit
 
-MFT writes must consider both the device logical block size and the NTFS
-record geometry. Validate those values at mount time, then cache the MFT
-I/O unit used by all MFT write paths.
+Replace the record-specific mirror writer with a unit-based helper
+and use a stack-allocated BIO for synchronous mirror writes.
 
-Use the larger of the device logical block and MFT record sizes as the MFT
-I/O unit. Keep valid geometries that the current write paths cannot safely
-handle read-only until their mapping support is generalized.
+Route write_mft_record_nolock() and ntfs_write_mft_block() through
+the common mirror primitive. The helper only returns errors, So callers
+handle volume error reporting and retry policy.
 
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
- fs/ntfs/super.c  | 76 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--
- fs/ntfs/volume.h |  8 ++++++
- 2 files changed, 82 insertions(+), 2 deletions(-)
+ fs/ntfs/mft.c | 142 ++++++++++++++++++++++++++++++----------------------------
+ fs/ntfs/mft.h |   2 -
+ 2 files changed, 73 insertions(+), 71 deletions(-)
 
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index a012c081dd4c..1b66efbd3990 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -295,6 +295,12 @@ static int ntfs_reconfigure(struct fs_context *fc)
- 		static const char *es = ".  Cannot remount read-write.";
- 
- 		/* Remounting read-write. */
-+		if (!vol->mft_write_supported) {
-+			ntfs_error(sb,
-+				   "MFT writeback is unsupported for this geometry%s",
-+				   es);
-+			return -EROFS;
-+		}
- 		if (NVolErrors(vol)) {
- 			ntfs_error(sb, "Volume has errors and is read-only%s",
- 					es);
-@@ -635,6 +641,8 @@ int ntfs_write_volume_label(struct ntfs_volume *vol, char *label)
- static bool is_boot_sector_ntfs(const struct super_block *sb,
- 		const struct ntfs_boot_sector *b, const bool silent)
- {
-+	u16 sector_size = le16_to_cpu(b->bpb.bytes_per_sector);
-+
- 	/*
- 	 * Check that checksum == sum of u32 values from b to the checksum
- 	 * field.  If checksum is zero, no checking is done.  We will work when
-@@ -655,8 +663,8 @@ static bool is_boot_sector_ntfs(const struct super_block *sb,
- 	if (b->oem_id != magicNTFS)
- 		goto not_ntfs;
- 	/* Check bytes per sector value is between 256 and 4096. */
--	if (le16_to_cpu(b->bpb.bytes_per_sector) < 0x100 ||
--	    le16_to_cpu(b->bpb.bytes_per_sector) > 0x1000)
-+	if (sector_size < 0x100 || sector_size > 0x1000 ||
-+	    !is_power_of_2(sector_size))
- 		goto not_ntfs;
- 	/*
- 	 * Check sectors per cluster value is valid and the cluster size
-@@ -737,6 +745,60 @@ static char *read_ntfs_boot_sector(struct super_block *sb,
- 	return boot_sector;
+diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
+index c9ea11198aa6..b102e0204eba 100644
+--- a/fs/ntfs/mft.c
++++ b/fs/ntfs/mft.c
+@@ -429,6 +429,12 @@ void __mark_mft_record_dirty(struct ntfs_inode *ni)
+ 	__mark_inode_dirty(VFS_I(base_ni), I_DIRTY_DATASYNC);
  }
  
-+static bool ntfs_validate_mft_io_geometry(struct ntfs_volume *vol,
-+					  const unsigned int logical_block_size)
++struct ntfs_mft_io_unit {
++	sector_t sector;
++	unsigned int folio_ofs;
++	unsigned int len;
++};
++
+ /*
+  * ntfs_bio_end_io - bio completion callback for MFT record writes
+  *
+@@ -445,65 +451,60 @@ static void ntfs_bio_end_io(struct bio *bio)
+ }
+ 
+ /*
+- * ntfs_sync_mft_mirror - synchronize an mft record to the mft mirror
+- * @vol:	ntfs volume on which the mft record to synchronize resides
+- * @mft_no:	mft record number of mft record to synchronize
+- * @m:		mapped, mst protected (extent) mft record to synchronize
+- *
+- * Write the mapped, mst protected (extent) mft record @m with mft record
+- * number @mft_no to the mft mirror ($MFTMirr) of the ntfs volume @vol.
+- *
+- * On success return 0.  On error return -errno and set the volume errors flag
+- * in the ntfs volume @vol.
+- *
+- * NOTE:  We always perform synchronous i/o.
++ * Write one MFT I/O unit to $MFTMirr.  The source folio contains the MST
++ * protected image that will be written to $MFT.
+  */
+-int ntfs_sync_mft_mirror(struct ntfs_volume *vol, const u64 mft_no,
+-		struct mft_record *m)
++static int ntfs_sync_mft_mirror_unit(struct ntfs_volume *vol,
++				     struct folio *source, u64 mirror_file_ofs,
++				     const struct ntfs_mft_io_unit *unit)
+ {
+-	u8 *kmirr;
+-	struct folio *folio;
+-	unsigned int folio_ofs;
+-	int err = 0;
+-	struct bio *bio;
++	struct folio *mirror;
++	struct bio_vec bvec;
++	struct bio bio;
++	u64 mirror_size;
++	unsigned int mirror_ofs;
++	u8 *src, *dst;
++	int err;
+ 
+-	ntfs_debug("Entering for inode 0x%llx.", mft_no);
++	if (unlikely(!vol->mftmirr_ino))
++		return -EIO;
++
++	mirror_size = (u64)vol->mftmirr_size * vol->mft_record_size;
++	if (mirror_file_ofs >= mirror_size ||
++	    unit->len > mirror_size - mirror_file_ofs)
++		return -EIO;
++	if (unit->folio_ofs + unit->len > folio_size(source))
++		return -EIO;
+ 
+-	if (unlikely(!vol->mftmirr_ino)) {
+-		/* This could happen during umount... */
++	mirror = read_mapping_folio(vol->mftmirr_ino->i_mapping,
++				    mirror_file_ofs >> PAGE_SHIFT, NULL);
++	if (IS_ERR(mirror))
++		return PTR_ERR(mirror);
++
++	folio_lock(mirror);
++	if (folio_test_writeback(mirror))
++		folio_wait_writeback(mirror);
++	mirror_ofs = mirror_file_ofs - folio_pos(mirror);
++	if (mirror_ofs + unit->len > folio_size(mirror)) {
+ 		err = -EIO;
+-		goto err_out;
+-	}
+-	/* Get the page containing the mirror copy of the mft record @m. */
+-	folio = read_mapping_folio(vol->mftmirr_ino->i_mapping,
+-			NTFS_MFT_NR_TO_PIDX(vol, mft_no), NULL);
+-	if (IS_ERR(folio)) {
+-		ntfs_error(vol->sb, "Failed to map mft mirror page.");
+-		err = PTR_ERR(folio);
+-		goto err_out;
++		goto out_unlock;
+ 	}
+ 
+-	folio_lock(folio);
+-	folio_clear_uptodate(folio);
+-	/* Offset of the mft mirror record inside the page. */
+-	folio_ofs = NTFS_MFT_NR_TO_POFS(vol, mft_no);
+-	/* The address in the page of the mirror copy of the mft record @m. */
+-	kmirr = kmap_local_folio(folio, 0) + folio_ofs;
+-	/* Copy the mst protected mft record to the mirror. */
+-	memcpy(kmirr, m, vol->mft_record_size);
+-	kunmap_local(kmirr);
+-
+-	bio = bio_alloc(vol->sb->s_bdev, 1, REQ_OP_WRITE, GFP_NOIO);
+-	bio->bi_iter.bi_sector =
+-		ntfs_bytes_to_bio_sector(NTFS_CLU_TO_B(vol, vol->mftmirr_lcn) +
+-					 ((u64)folio->index << PAGE_SHIFT) +
+-					 folio_ofs);
+-
+-	if (bio_add_folio(bio, folio, vol->mft_record_size, folio_ofs))
+-		err = submit_bio_wait(bio);
+-	else
++	folio_clear_uptodate(mirror);
++	src = kmap_local_folio(source, unit->folio_ofs);
++	dst = kmap_local_folio(mirror, mirror_ofs);
++	memcpy(dst, src, unit->len);
++	kunmap_local(dst);
++	kunmap_local(src);
++
++	bio_init(&bio, vol->sb->s_bdev, &bvec, 1, REQ_OP_WRITE);
++	bio.bi_iter.bi_sector = ntfs_bytes_to_bio_sector(NTFS_CLU_TO_B(vol, vol->mftmirr_lcn) +
++							 mirror_file_ofs);
++	if (!bio_add_folio(&bio, mirror, unit->len, mirror_ofs))
+ 		err = -EIO;
+-	bio_put(bio);
++	else
++		err = submit_bio_wait(&bio);
++	bio_uninit(&bio);
+ 
+ 	/*
+ 	 * The in-memory mirror is now valid because we just memcpy()'d the
+@@ -512,23 +513,26 @@ int ntfs_sync_mft_mirror(struct ntfs_volume *vol, const u64 mft_no,
+ 	 * the stale on-disk mirror and overwrite this copy.  The error is
+ 	 * propagated to the caller via @err.
+ 	 */
+-	folio_mark_uptodate(folio);
++	folio_mark_uptodate(mirror);
+ 
+-	folio_unlock(folio);
+-	folio_put(folio);
+-	if (likely(!err)) {
+-		ntfs_debug("Done.");
+-	} else {
+-		ntfs_error(vol->sb, "I/O error while writing mft mirror record 0x%llx!", mft_no);
+-err_out:
+-		ntfs_error(vol->sb,
+-			"Failed to synchronize $MFTMirr (error code %i).  Volume will be left marked dirty on umount.  Run chkdsk on the partition after umounting to correct this.",
+-			err);
+-		NVolSetErrors(vol);
+-	}
++out_unlock:
++	folio_unlock(mirror);
++	folio_put(mirror);
+ 	return err;
+ }
+ 
++static int ntfs_sync_mft_mirror_record(struct ntfs_volume *vol,
++				       struct folio *source, const u64 mft_no)
 +{
-+	struct super_block *sb = vol->sb;
-+	u32 mft_io_unit_size = 0;
-+	bool mft_write_supported = true;
++	struct ntfs_mft_io_unit unit = {
++		.folio_ofs = NTFS_MFT_NR_TO_POFS(vol, mft_no),
++		.len = vol->mft_record_size,
++	};
 +
-+	if (!is_power_of_2(logical_block_size) ||
-+	    logical_block_size > PAGE_SIZE ||
-+	    !is_power_of_2(vol->sector_size) ||
-+	    vol->sector_size < logical_block_size ||
-+	    vol->sector_size % logical_block_size ||
-+	    !is_power_of_2(vol->cluster_size) ||
-+	    !is_power_of_2(vol->mft_record_size) ||
-+	    vol->mft_record_size > PAGE_SIZE)
-+		goto err;
-+
-+	mft_io_unit_size = max(logical_block_size, vol->mft_record_size);
-+	if (mft_io_unit_size > PAGE_SIZE ||
-+	    mft_io_unit_size % logical_block_size ||
-+	    mft_io_unit_size % vol->mft_record_size)
-+		goto err;
-+
-+	/*
-+	 * The current direct-write path stores at most two MFT runlist
-+	 * segments. Keep valid but larger records read-only until that path
-+	 * can map an arbitrary number of segments.
-+	 */
-+	if (vol->mft_record_size > 2 * (u64)vol->cluster_size)
-+		mft_write_supported = false;
-+
-+	/*
-+	 * A containing device block is currently mapped through one MFT
-+	 * runlist element. Keep valid geometries that require crossing a
-+	 * cluster read-only until the mapping is generalized.
-+	 */
-+	if (mft_io_unit_size > vol->mft_record_size &&
-+	    (vol->cluster_size < mft_io_unit_size ||
-+	     vol->cluster_size % mft_io_unit_size))
-+		mft_write_supported = false;
-+
-+	vol->mft_io_unit_size = mft_io_unit_size;
-+	vol->mft_write_supported = mft_write_supported;
-+	return true;
-+
-+err:
-+	ntfs_error(sb,
-+		   "Unsupported MFT I/O geometry (logical %u, block %lu, sector %u, cluster %u, MFT record %u, I/O unit %u).",
-+		   logical_block_size, sb->s_blocksize,
-+		   (unsigned int)vol->sector_size, vol->cluster_size,
-+		   vol->mft_record_size, mft_io_unit_size);
-+	return false;
++	return ntfs_sync_mft_mirror_unit(vol, source,
++					 (u64)mft_no * vol->mft_record_size, &unit);
 +}
 +
  /*
-  * parse_ntfs_boot_sector - parse the boot sector and store the data in @vol
-  * @vol:	volume structure to initialise with data from boot sector
-@@ -749,9 +811,11 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 		const struct ntfs_boot_sector *b)
- {
- 	unsigned int sectors_per_cluster, sectors_per_cluster_bits, nr_hidden_sects;
-+	unsigned int logical_block_size;
- 	int clusters_per_mft_record, clusters_per_index_record;
- 	u64 ll;
+  * write_mft_record_nolock - write out a mapped (extent) mft record
+  * @ni:		ntfs inode describing the mapped (extent) mft record
+@@ -600,8 +604,8 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
  
-+	logical_block_size = bdev_logical_block_size(vol->sb->s_bdev);
- 	vol->sector_size = le16_to_cpu(b->bpb.bytes_per_sector);
- 	vol->sector_size_bits = ffs(vol->sector_size) - 1;
- 	ntfs_debug("vol->sector_size = %i (0x%x)", vol->sector_size,
-@@ -824,6 +888,9 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 		ntfs_warning(vol->sb, "Mft record size (%i) is smaller than the sector size (%i).",
- 				vol->mft_record_size, vol->sector_size);
- 	}
-+	if (!ntfs_validate_mft_io_geometry(vol, logical_block_size))
-+		return false;
-+
- 	clusters_per_index_record = b->clusters_per_index_record;
- 	ntfs_debug("clusters_per_index_record = %i (0x%x)",
- 			clusters_per_index_record, clusters_per_index_record);
-@@ -2455,6 +2522,11 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
- 			ntfs_error(sb, "Unsupported NTFS filesystem.");
- 		goto err_out_now;
- 	}
-+	if (!vol->mft_write_supported && !sb_rdonly(sb)) {
-+		sb->s_flags |= SB_RDONLY;
-+		ntfs_warning(sb,
-+			     "MFT writeback is unsupported for this geometry. Mounting read-only.");
-+	}
+ 		/* Synchronize the mft mirror now if not @sync. */
+ 		if (!sync && ni->mft_no < vol->mftmirr_size) {
+-			int sub_err = ntfs_sync_mft_mirror(vol, ni->mft_no,
+-							   fixup_m);
++			int sub_err = ntfs_sync_mft_mirror_record(vol, folio,
++								  ni->mft_no);
+ 			if (unlikely(sub_err) && !err)
+ 				err = sub_err;
+ 		}
+@@ -624,7 +628,8 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
  
- 	if (vol->sector_size > blocksize) {
- 		blocksize = sb_set_blocksize(sb, vol->sector_size);
-diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
-index c7cd27b6dc1a..fdb57279de84 100644
---- a/fs/ntfs/volume.h
-+++ b/fs/ntfs/volume.h
-@@ -43,6 +43,7 @@
-  * @mft_record_size: in bytes
-  * @mft_record_size_mask: mft_record_size - 1
-  * @mft_record_size_bits: log2(mft_record_size)
-+ * @mft_write_supported: Whether the MFT write paths support the geometry.
-  * @index_record_size: in bytes
-  * @index_record_size_mask: index_record_size - 1
-  * @index_record_size_bits: log2(index_record_size)
-@@ -111,6 +112,13 @@ struct ntfs_volume {
- 	u32 mft_record_size;
- 	u32 mft_record_size_mask;
- 	u8 mft_record_size_bits;
-+	bool mft_write_supported;
-+	/*
-+	 * Unit size used for MFT I/O. This is the MFT record size when
-+	 * it is at least as large as the device logical block, or the
-+	 * containing device logical block when the record is smaller.
-+	 */
-+	u32 mft_io_unit_size;
- 	u32 index_record_size;
- 	u32 index_record_size_mask;
- 	u8 index_record_size_bits;
+ 	/* If @sync, now synchronize the mft mirror. */
+ 	if (sync && ni->mft_no < vol->mftmirr_size) {
+-		int sub_err = ntfs_sync_mft_mirror(vol, ni->mft_no, fixup_m);
++		int sub_err =
++			ntfs_sync_mft_mirror_record(vol, folio, ni->mft_no);
+ 
+ 		if (unlikely(sub_err) && !err)
+ 			err = sub_err;
+@@ -3031,8 +3036,7 @@ static int ntfs_write_mft_block(struct folio *folio, struct writeback_control *w
+ 			prev_mft_ofs = mft_ofs;
+ 
+ 			if (mft_no < vol->mftmirr_size) {
+-				int sub_err = ntfs_sync_mft_mirror(vol, mft_no,
+-						(struct mft_record *)(kaddr + mft_ofs));
++				int sub_err = ntfs_sync_mft_mirror_record(vol, folio, mft_no);
+ 
+ 				if (unlikely(sub_err) && !err)
+ 					err = sub_err;
+diff --git a/fs/ntfs/mft.h b/fs/ntfs/mft.h
+index ed5c1d595c0d..eb8a6f0d7944 100644
+--- a/fs/ntfs/mft.h
++++ b/fs/ntfs/mft.h
+@@ -42,8 +42,6 @@ static inline void mark_mft_record_dirty(struct ntfs_inode *ni)
+ 		__mark_mft_record_dirty(ni);
+ }
+ 
+-int ntfs_sync_mft_mirror(struct ntfs_volume *vol, const u64 mft_no,
+-		struct mft_record *m);
+ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int sync);
+ 
+ /*
 
 -- 
 2.43.0
