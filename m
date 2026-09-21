@@ -1,154 +1,111 @@
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98E64582C8
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 09:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E852347986A
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 09:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789982363; cv=none; b=od+3IJxCOcgGhUuWDh5TL/PqZg/omvldqCtaHfRcSEi6iVgoPCbHmeQSVJiVvNpgXF/oSB6UYIic3ZeS2I3r1ZZefBeaNq5bN6lOBpX72TDPP+AFDvescfh9Qvk2LBCrdcvMh2oCOARvx11n7x2NimxBRxxxBvfFxzXLdoWf7as=
+	t=1789983040; cv=none; b=Td3p4/tMG1RBVeaWqi9nPJXXSwUXhq6ZIm7g5giXyS43mVHeSD0PspsOW6pDhD6juffIBDSJU1bJbPdkrm+PNEaKby6/Rt0jzMWRPNpEfvJRY2DssSey5uKNReI7vmtz3wspBJc0mdKxlzTynS1Cl3/24vBB0X5jMBdZJ4kOlIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789982363; c=relaxed/simple;
-	bh=ctfvrvRjDpF89isT+CxLZERwvBw6D/dw41TbnIBBu7s=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=e61lj44rjFspATf8UtXAB88vqe9IDeZPwDTxaS1IVYA+lvYVCbGRgSB3+eJeOwgf5/6Ok+8EtZliLNK8H2KPtBMQcldU5GlPfTZawvCZpSd6Nkyms5LHxQG9ievDZ6PiZe6QFvdQHUJ5zmljyYDgva7Srr+9ObVqjyLATiCo7Z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 823dbe18b59d11f19a56ed5b684f684d-20260921
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:7b8cc3ee-ffd5-4894-bb14-804e282dd169,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:c7d613d328ca9ba688807c2619c03747,BulkI
-	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
-	-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,O
-	SA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 823dbe18b59d11f19a56ed5b684f684d-20260921
-X-User: zenghongling@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <zenghongling@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1870055999; Mon, 21 Sep 2026 17:19:12 +0800
-From: Hongling Zeng <zenghongling@kylinos.cn>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>,
-	stable@vger.kernel.org,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v6] ntfs: mount hibernated volumes read-only regardless of errors=
-Date: Mon, 21 Sep 2026 17:19:07 +0800
-Message-Id: <20260921091907.1491879-1-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1789983040; c=relaxed/simple;
+	bh=bUd3GiTpnhfgbcYbF9HySykorWn8SmLQXEhcIQykk+k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=nFbceUigENEx2SJiHW9O7kq2Q2NtX7rxtRU6d+zX32xqGzQQH8gkZB6MWInalEjsvs9sd5+5x0/6iEJiTlCK70jg9JjJUx6n6zx1DoRs6o19Agt11uNEzIzKb7JaHv7zRRH4/Ox0LNgeAw/ldX4h3Szh4cchLLe2AFWal+vE0zA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=eWVm43RU; arc=none smtp.client-ip=220.197.31.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="eWVm43RU"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=bUd3GiTpnhfgbcYbF9HySykorWn8SmLQXEhcIQykk+k=; b=e
+	WVm43RUXjo8+C+DsxCkz2chfcr79mFru1RtghP8+E6xVPwtsvwdkG6yTCTE4lQww
+	+qX7Qgl2za2cLr64jbv0pljlItitl8smkKND57C+f0JEa0bGuWQID2ZpR2y81SPt
+	/lVKMZ27Auo/FvqMya/yZ0u1nVTbAN2NGbW9OeUAMU=
+Date: Mon, 21 Sep 2026 17:30:11 +0800 (CST)
+From: dd  <zhongling0719@126.com>
+To: "Hyunchul Lee" <hyc.lee@gmail.com>
+Cc: liubaolin <liubaolin12138@163.com>,
+	"Hongling Zeng" <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+	ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re:Re: [PATCH v5] ntfs: mount hibernated volumes read-only
+ regardless of errors=
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260511(2e539873) Copyright (c) 2002-2026 www.mailtech.cn 126com
+In-Reply-To: <CANFS6bYLBPr+FmE_MVWxBBMw+Qz55EFfy1u6UmBgkTak2CMyvA@mail.gmail.com>
+References: <20260920025955.31209-1-zenghongling@kylinos.cn>
+ <04255390-4133-4e8e-81ad-4d2402498431@163.com>
+ <CANFS6bYLBPr+FmE_MVWxBBMw+Qz55EFfy1u6UmBgkTak2CMyvA@mail.gmail.com>
+X-NTES-SC: AL_Qu2TC/WTvEgq5yScbOkWk00RgOk9WsG1vfQi24NQP500qi71ywAdfHpgMl3N2vqrKD+PmTmqeR1S+/xKV4RbWZzjx+UPUw7GSyImymhDfuTr
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=GBK
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-ID: <4e70c6d0.7644.1a0c34d327f.Coremail.zhongling0719@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:bykvCgCnF4kj+bBqEGdEAA--.29918W
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrgNNHmqw+SNP9QAA3E
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-The hibernation check in load_system_files() only converts the
-superblock to read-only under errors=remount-ro.  With the default
-errors=continue (and with errors=panic), a hibernated volume is
-mounted read-write and the mount-time $LogFile emptying writes to it,
-although a hibernated volume must not be written to at all.
-
-Drop the on_errors term so that a hibernated volume, or a volume whose
-hibernation state cannot be determined, always mounts read-only.
-NVolErrors() is still recorded, so ntfs_reconfigure() keeps refusing
-remounts to read-write, and the $LogFile emptying is skipped by its
-!sb_rdonly() check.
-
-The check itself must not apply the errors= policy either: it runs
-before SB_RDONLY is set, and ntfs_lookup_inode_by_name() and ntfs_iget()
-call ntfs_error() internally on corruption or I/O errors, which under
-errors=panic would panic the machine before the read-only fallback has
-made its decision.  Temporarily substitute errors=remount-ro for
-errors=panic around the check: nested ntfs_error() calls then fall
-back to read-only, and any read-only transition they trigger is
-preserved even when the error is not propagated to the check's return
-value or recorded in NVolErrors().  This is safe during initial mount,
-before the super block is published.
-
-If the check reports hibernation or fails, set SB_RDONLY and record
-NVolErrors() unconditionally: hibernation safety takes precedence over
-the errors= policy.  A volume with errors recorded during the check or
-earlier in the mount, e.g. when loading the LogFile, also stays
-read-only, matching what ntfs_reconfigure() enforces for remounts.
-
-Fixes: 6251f0b0de7d ("ntfs: update super block operations")
-Cc: stable@vger.kernel.org
-Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
----
-Change in v6:
- - Temporarily substitute errors=remount-ro for errors=panic during
-   the hibernation check.  ntfs_error() does not always set
-   NVolErrors(), so the v5 restore condition could re-enable write
-   access after a real error.
----
- fs/ntfs/super.c | 25 ++++++++++++++++++++-----
- 1 file changed, 20 insertions(+), 5 deletions(-)
-
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index f4a73e45773d..da2c8f310a7f 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -1398,6 +1398,7 @@ static bool load_system_files(struct ntfs_volume *vol)
- 	struct ntfs_attr_search_ctx *ctx;
- 	struct restart_page_header *rp;
- 	int err;
-+	u8 saved_on_errors;
- 
- 	ntfs_debug("Entering.");
- 	/* Get mft mirror inode compare the contents of $MFT and $MFTMirr. */
-@@ -1572,8 +1573,19 @@ static bool load_system_files(struct ntfs_volume *vol)
- 	 * NVolErrors() without setting the dirty volume flag and mount
- 	 * read-only.  This will prevent read-write remounting and it will also
- 	 * prevent all writes.
-+	 *
-+	 * Nested lookup and inode-loading errors must not panic before the
-+	 * read-only fallback has run.  Temporarily use errors=remount-ro
-+	 * instead of errors=panic, preserving any read-only transition even
-+	 * if an error is not propagated to the check's return value or
-+	 * recorded in NVolErrors().  This is safe during initial mount,
-+	 * before the super block is published.
- 	 */
-+	saved_on_errors = vol->on_errors;
-+	if (saved_on_errors == ON_ERRORS_PANIC)
-+		vol->on_errors = ON_ERRORS_REMOUNT_RO;
- 	err = check_windows_hibernation_status(vol);
-+	vol->on_errors = saved_on_errors;
- 	if (unlikely(err)) {
- 		static const char *es1a = "Failed to determine if Windows is hibernated";
- 		static const char *es1b = "Windows is hibernated";
-@@ -1581,12 +1593,15 @@ static bool load_system_files(struct ntfs_volume *vol)
- 		const char *es1;
- 
- 		es1 = err < 0 ? es1a : es1b;
--		/* If a read-write mount, convert it to a read-only mount. */
--		if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
--			sb->s_flags |= SB_RDONLY;
--			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
--		}
-+		/* Hibernation safety takes precedence over the errors= policy. */
-+		sb->s_flags |= SB_RDONLY;
- 		NVolSetErrors(vol);
-+		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
-+	} else if (!sb_rdonly(sb) && NVolErrors(vol)) {
-+		/* Match the read-write remount restriction for recorded errors. */
-+		sb->s_flags |= SB_RDONLY;
-+		ntfs_error(sb,
-+			   "Errors were recorded during mount.  Mounting read-only.  Run chkdsk.");
- 	}
- 
- 	/* If (still) a read-write mount, empty the logfile. */
--- 
-2.25.1
-
+SGkgYmFvbGluLAogVGhhbmtzIGZvciBjYXRjaGluZyB0aGlzLiBJIGFncmVlIHRoYXQgdGVtcG9y
+YXJpbHkgc2V0dGluZwogICAgU0JfUkRPTkxZCiAgICBtYWtlcyBpdCBpbXBvc3NpYmxlIHRvIGRp
+c3Rpbmd1aXNoIGFuIGVycm9yIHN1cHByZXNzZWQgYnkKICAgIG50ZnNfaGFuZGxlX2Vycm9yKCkK
+ICAgIGZyb20gYSBzdWNjZXNzZnVsIGNoZWNrLiBJbiBwYXJ0aWN1bGFyLCBlcnJvcnMgZnJvbSBv
+cHRpb25hbCBXU0wgRUEgbG9hZGluZyBtYXkgbmVpdGhlciBwcm9wYWdhdGUgdGhyb3VnaCB0aGUg
+aGliZXJuYXRpb24gY2hlY2sgbm9yIHNldAogICAgTlZvbEVycm9ycygpCiAgICAsIGFsbG93aW5n
+IHRoZSBmbGFnIHRvIGJlIGNsZWFyZWQgaW5jb3JyZWN0bHkuCgpIaSBhbGw6CiAgIE9uZSBxdWVz
+dGlvbjogd2l0aCBlcnJvcnM9cGFuaWMsIGEgY29ycnVwdCAkTG9nRmlsZSBjYW4gc3RpbGwgcGFu
+aWMKZHVyaW5nIGxvYWRfc3lzdGVtX2ZpbGVzKCksIGJlZm9yZSB0aGUgaGliZXJuYXRpb24gZmFs
+bGJhY2sgaXMgcmVhY2hlZC4KRm9yIGV4YW1wbGUsIG50ZnNfY2hlY2tfbG9nZmlsZSgpIHBhbmlj
+cyBvbiAiTG9nRmlsZSBpcyB0b28gc21hbGwiLgoKICAgU2hvdWxkIG1vdW50LXRpbWUgbWV0YWRh
+dGEgZXJyb3JzIGdlbmVyYWxseSBhdm9pZCBlcnJvcnM9cGFuaWMgYmVmb3JlCnRoZSBzdXBlcmJs
+b2NrIGlzIHB1Ymxpc2hlZD8gSWYgc28sIHRoYXQgc2VlbXMgbGlrZSBhIHNlcGFyYXRlIGZvbGxv
+dy11cAp0byBleHRlbmQgdGhlIHRlbXBvcmFyeSBwb2xpY3kgc3Vic3RpdHV0aW9uIG92ZXIgbG9h
+ZF9zeXN0ZW1fZmlsZXMoKS4KClRoYW5rcyEKCkF0IDIwMjYtMDktMjEgMTU6NTc6MjksICJIeXVu
+Y2h1bCBMZWUiIDxoeWMubGVlQGdtYWlsLmNvbT4gd3JvdGU6Cj5IaSBCYW9saW4sIEhvbmdsaW5n
+Cj4KPj4gICAgSWYgeW91IGFncmVlIHdpdGggdGhpcyBhcHByb2FjaCwgY291bGQgeW91IHBsZWFz
+ZSBpbmNvcnBvcmF0ZSBpdCBhbmQKPj4gc2VuZCBhbm90aGVyIHJldmlzaW9uPyBJJ2QgYXBwcmVj
+aWF0ZSBmZWVkYmFjayBmcm9tIHlvdSwgTmFtamFlLCBhbmQKPj4gSHl1bmNodWwuCj4KPkkgYWdy
+ZWUgd2l0aCB0aGlzIGFwcHJvYWNoLiBJdCBsb29rcyBzb3VuZCB0byBtZS4KPgo+Pgo+PiBmZWVs
+IGZyZWUgdG8gYWRkOgo+PiBTdWdnZXN0ZWQtYnk6IEJhb2xpbiBMaXUgPGxpdWJhb2xpbkBreWxp
+bm9zLmNuPgo+Pgo+PiBUaGFua3MsCj4+IEJhb2xpbi4KPj4KPj4KPj4KPj4KPj4KPj4KPj4KPj4g
+PiAgICAgICBpZiAodW5saWtlbHkoZXJyKSkgewo+PiA+ICAgICAgICAgICAgICAgc3RhdGljIGNv
+bnN0IGNoYXIgKmVzMWEgPSAiRmFpbGVkIHRvIGRldGVybWluZSBpZiBXaW5kb3dzIGlzIGhpYmVy
+bmF0ZWQiOwo+PiA+ICAgICAgICAgICAgICAgc3RhdGljIGNvbnN0IGNoYXIgKmVzMWIgPSAiV2lu
+ZG93cyBpcyBoaWJlcm5hdGVkIjsKPj4gPiBAQCAtMTU4MSwxMiArMTU5NCwyNSBAQCBzdGF0aWMg
+Ym9vbCBsb2FkX3N5c3RlbV9maWxlcyhzdHJ1Y3QgbnRmc192b2x1bWUgKnZvbCkKPj4gPiAgICAg
+ICAgICAgICAgIGNvbnN0IGNoYXIgKmVzMTsKPj4gPgo+PiA+ICAgICAgICAgICAgICAgZXMxID0g
+ZXJyIDwgMCA/IGVzMWEgOiBlczFiOwo+PiA+IC0gICAgICAgICAgICAgLyogSWYgYSByZWFkLXdy
+aXRlIG1vdW50LCBjb252ZXJ0IGl0IHRvIGEgcmVhZC1vbmx5IG1vdW50LiAqLwo+PiA+IC0gICAg
+ICAgICAgICAgaWYgKCFzYl9yZG9ubHkoc2IpICYmIHZvbC0+b25fZXJyb3JzID09IE9OX0VSUk9S
+U19SRU1PVU5UX1JPKSB7Cj4+ID4gLSAgICAgICAgICAgICAgICAgICAgIHNiLT5zX2ZsYWdzIHw9
+IFNCX1JET05MWTsKPj4gPiAtICAgICAgICAgICAgICAgICAgICAgbnRmc19lcnJvcihzYiwgIiVz
+LiAgTW91bnRpbmcgcmVhZC1vbmx5JXMiLCBlczEsIGVzMik7Cj4+ID4gLSAgICAgICAgICAgICB9
+Cj4+ID4gKyAgICAgICAgICAgICAvKgo+PiA+ICsgICAgICAgICAgICAgICogQSBXaW5kb3dzIGhp
+YmVybmF0aW9uIGltYWdlIGlzIG5vdCBhIGZpbGVzeXN0ZW0gZXJyb3IsIHNvCj4+ID4gKyAgICAg
+ICAgICAgICAgKiB0aGlzIGlzIGEgc2FmZXR5IGludGVybG9jayByYXRoZXIgdGhhbiBzb21ldGhp
+bmcgdGhlCj4+ID4gKyAgICAgICAgICAgICAgKiBlcnJvcnM9IHBvbGljeSBtYXkgZG93bmdyYWRl
+LiAgVGhlIHN1cGVyIGJsb2NrIGlzIGFscmVhZHkKPj4gPiArICAgICAgICAgICAgICAqIHJlYWQt
+b25seSBoZXJlOiB0aGUgdGVtcG9yYXJ5IGZsYWcgdGFrZW4gZm9yIHRoZSBjaGVjawo+PiA+ICsg
+ICAgICAgICAgICAgICogYWJvdmUgaXMgbm90IHJlc3RvcmVkIHdoZW4gdGhlIGNoZWNrIGZhaWxl
+ZC4KPj4gPiArICAgICAgICAgICAgICAqLwo+PiA+ICsgICAgICAgICAgICAgbnRmc19lcnJvcihz
+YiwgIiVzLiAgTW91bnRpbmcgcmVhZC1vbmx5JXMiLCBlczEsIGVzMik7Cj4+ID4gICAgICAgICAg
+ICAgICBOVm9sU2V0RXJyb3JzKHZvbCk7Cj4+ID4gKyAgICAgfSBlbHNlIGlmICh1bmxpa2VseSh0
+ZW1wb3Jhcnlfcm8gJiYgc2JfcmRvbmx5KHNiKSkpIHsKPj4gPiArICAgICAgICAgICAgIHN0YXRp
+YyBjb25zdCBjaGFyICplczEgPSAiRXJyb3JzIHdlcmUgcmVjb3JkZWQgZHVyaW5nIG1vdW50IjsK
+Pj4gPiArICAgICAgICAgICAgIHN0YXRpYyBjb25zdCBjaGFyICplczIgPSAiLiAgUnVuIGNoa2Rz
+ay4iOwo+PiA+ICsKPj4gPiArICAgICAgICAgICAgIC8qCj4+ID4gKyAgICAgICAgICAgICAgKiBF
+cnJvcnMgd2VyZSByZWNvcmRlZCBkdXJpbmcgdGhlIGNoZWNrIG9yIGVhcmxpZXIsIGUuZy4gd2hl
+bgo+PiA+ICsgICAgICAgICAgICAgICogbG9hZGluZyB0aGUgTG9nRmlsZS4gIFN0YXkgcmVhZC1v
+bmx5LCBsaWtlIG50ZnNfcmVjb25maWd1cmUoKQo+PiA+ICsgICAgICAgICAgICAgICogZG9lcyBm
+b3Igdm9sdW1lcyB3aXRoIHJlY29yZGVkIGVycm9ycy4KPj4gPiArICAgICAgICAgICAgICAqLwo+
+PiA+ICsgICAgICAgICAgICAgbnRmc19lcnJvcihzYiwgIiVzLiAgTW91bnRpbmcgcmVhZC1vbmx5
+JXMiLCBlczEsIGVzMik7Cj4+ID4gICAgICAgfQo+PiA+Cj4+ID4gICAgICAgLyogSWYgKHN0aWxs
+KSBhIHJlYWQtd3JpdGUgbW91bnQsIGVtcHR5IHRoZSBsb2dmaWxlLiAqLwo+Pgo+Cj4KPi0tIAo+
+VGhhbmtzLAo+SHl1bmNodWwK
