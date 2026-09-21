@@ -1,105 +1,79 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6571B35BDDB
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 05:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0475D31715D
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 06:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789969252; cv=none; b=EK2e7XG8d1l0LeXeJax5dTOYblcNycd+j49k+Bvc+6MV32+RLTLDK+LTf8+PksG/bs624cBhqQLiD7/WgbKFPmWbE5wg/OiCxsZmjScvsMa7Msd9mfSgx9XVKHyU8z3dC9ps9KdN045VZWenso/jQgbvv7YiCuuFUgrnunAy4do=
+	t=1789971448; cv=none; b=rCk0cwxbI3GAdpU5TyIk1ZYGh1P3uWvz1RMujFY6Lj+6nVIRPu7Fy2EU1KfnmMn3wKOElo6Gq/gocOS6rEeWCOg5YD3HhTetJI2biaghNBoCJXGACqUYXbfSBK2cpFN/sWbtwvfOAFmgw2YfzVOp51KjnCnvWOA+f1x8vnIqfpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789969252; c=relaxed/simple;
-	bh=7C8a8gl3+/V17z5Y/OdrJgOYp2YXwcYSofe0LRJp6bg=;
+	s=arc-20240116; t=1789971448; c=relaxed/simple;
+	bh=490jmg6NH6IDq+4390mYDNoWpu9tMk9K9iZfK/HqUCA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iiu+vLCdx9nHg5rETY35y6Io5meW5feMhVpj7FCmVqHwATmLIK0A5xHj3CfVte9+pIduob/NfrbWRPUDzCAMhg2d3c8iRmOA7Y7ALb9tWAsoTliOuL5PXZ6n7YgB6OeTj7VTZhokwEqhpY9NeEodIOx5RxagG+qJ2d/X6r8G6A4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bfKL0JgW; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=L0BJ4OzG8+zanmHMFHjNrsOLVMiBYAvY0qYalupxCCSfrcvcglSAUpdZCgMajP9vHn3Ayptq8I8KTeKLfd5y2CaAogAf8oOJUu2cPjrF/3oo5GeSh02EHDSYXpBW4tihwcBxQMK5+HeV1ljrZWlENROh0+CrTU41DESenxGCEe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y4/wurmM; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bfKL0JgW"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 028191F000FF
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 05:40:51 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y4/wurmM"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBAA21F0089A
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 06:17:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789969251;
-	bh=3vptOxIiwDK37IRk+ZQzrnUXBv/qwN+VTeIrsTCuA+E=;
+	s=k20260515; t=1789971446;
+	bh=490jmg6NH6IDq+4390mYDNoWpu9tMk9K9iZfK/HqUCA=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=bfKL0JgWd1H8sQ/VclhYcN5smfcI/qdWO+mHDQ73ssYFhpAri228qYBhRAoorTFOE
-	 pye/vPELiA1sQzHqwaNRzQFPTTJpc0UMUBVBXLfaM9iB3ooTMees4H9VM/RXCRvXEW
-	 bTXybbdmLSkpnNv5Ih3Ma/89kytLwhHIewpXzvUMvjdEh4rDK7xaYyb/eB29HbQl98
-	 S8h/3KcQJNWrWn6smgIOhmjAcnwxVcVKGQ9OLUe8g6hUHMl+qDt2VvZBWrhnMK1pwW
-	 4Kb6puMdRRlOJ9qeeFYoQxzd7nz8xQSQsFzZQZzgIn0Cn3J1Nd8QNgWmaaiEcLbfCi
-	 3r+uvT9Hjh1jQ==
-Received: by mail-ed2-f12.google.com with SMTP id 4fb4d7f45d1cf-6a9ba73bee8so1846381a12.0
-        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 22:40:50 -0700 (PDT)
-X-Gm-Message-State: AFuF++mD5uf4dbb7bnQWKn+/daebRZTSUeIdP/KKizwz3dxb+YZQhWBY
-	fo80TYXVoHT2hGT97yAOnb6afbXq/rkl6YfzR7+QkDFHRyy+ASY0F+Si/D96/8rjTZ3cuuZjkca
-	vWWwhWbcD6xFHCKlNZAeVkpBBMCon5r0=
-X-Received: by 2002:a05:6402:a0c6:b0:6aa:1406:fd12 with SMTP id
- 4fb4d7f45d1cf-6aa4f9c470amr6532916a12.6.1789969249625; Sun, 20 Sep 2026
- 22:40:49 -0700 (PDT)
+	b=Y4/wurmM3Or05LplUGQCRDtkkBB9b+455lAy4L8nqejWSrTTbIfqwIZqSWLayzgWi
+	 Mcl0ycj/PMu30FWpA93m83wUnBpipjGRIBea2GXujX+QtsmUZFzAaifgQoMKt8s7+i
+	 wZSz4trkIxaQTPC0ellRL9qRWbiPZakDCBJ9t97sRcCnGD3QwEPEEHJgNx7MCORk5W
+	 K6NFIItj54QcCDm95OAUHeIE0ihvwtNvu1HziYE2Fp7yUdJ1yZsNeT3VLcULbZXb2o
+	 RQ935c9yfGAakbQ+49cpwdfzIxkvYkXyaC/EGtDMdtRM2TMrrrVifjxTzxhGlImDXa
+	 TU+8YrkW64AGA==
+Received: by mail-yx2-f43.google.com with SMTP id 00721157ae682-895eaf31683so19897237b3.0
+        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 23:17:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvBzFiBG804h4bva6gDZHCP15bol9Dx8lZVS6yhieN7OLNkfWusn/4yYWe2G/sab7AT24/Tm4@lists.linux.dev
+X-Gm-Message-State: AFuF++l8UTmiRpIKiyXZZE4gGRBmcZH+ckHHGTL01PlxcvgxU5o8xkyf
+	mjOvNuN3gJJuhoZ/OUgTvO6Jf70jI48ZnbtT77BXebEYWbs5srtcV4kTSdSwnq+cokssHnMBgpH
+	Z3LZvUGJ6TDE6nQnXPQC0xuFlKzn/8vU=
+X-Received: by 2002:a05:690c:97:b0:81f:238a:1709 with SMTP id
+ 00721157ae682-89736367111mr24107707b3.34.1789971446148; Sun, 20 Sep 2026
+ 23:17:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260921-topic-4kn-lkml-v5-0-938afe402cd0@gmail.com>
-In-Reply-To: <20260921-topic-4kn-lkml-v5-0-938afe402cd0@gmail.com>
+References: <20260920083131.1880061-1-liubaolin12138@163.com> <20260920083131.1880061-3-liubaolin12138@163.com>
+In-Reply-To: <20260920083131.1880061-3-liubaolin12138@163.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Mon, 21 Sep 2026 14:40:37 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd85_s3dYWzEy--0guM_ugbYUR7F7m2PukUzpCSx1Cuzfg@mail.gmail.com>
-X-Gm-Features: AcwNN1UtKL2V4W-u3jEvOHdiko1vEB3DADro8Ux0CywUgsmXPM0pq-9pP23Bpbc
-Message-ID: <CAKYAXd85_s3dYWzEy--0guM_ugbYUR7F7m2PukUzpCSx1Cuzfg@mail.gmail.com>
-Subject: Re: [PATCH v5 00/10] ntfs: support 4K-native devices with smaller MFT records
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev
+Date: Mon, 21 Sep 2026 15:17:10 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd80AqEnzUvad2Od8fLh4yh20X8G7CVN1EcQCg1Vj1iJQw@mail.gmail.com>
+X-Gm-Features: AcwNN1XPJ8wSOMd4PglyskthANSjJd7xiQgGmfD9UvigjqfkdHiO3OQlWe755DE
+Message-ID: <CAKYAXd80AqEnzUvad2Od8fLh4yh20X8G7CVN1EcQCg1Vj1iJQw@mail.gmail.com>
+Subject: Re: [PATCH v2 02/10] ntfs: validate EA chains and link
+ zero-terminated tails
+To: Baolin Liu <liubaolin12138@163.com>
+Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	chenxiaosong@chenxiaosong.com, Baolin Liu <liubaolin@kylinos.cn>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 21, 2026 at 9:20=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> wr=
-ote:
+On Sun, Sep 20, 2026 at 5:31=E2=80=AFPM Baolin Liu <liubaolin12138@163.com>=
+ wrote:
 >
-> Make MFT writeback safe on native 4Kn devices when MFT records are
-> smaller than the device I/O unit.
+> From: Baolin Liu <liubaolin@kylinos.cn>
 >
-> Validate MFT I/O geometry, map and submit containing I/O units, and
-> coordinate direct writes with generic folio writeback. When a write
-> covers multiple MFT records, preserve the unchanged contents of
-> neighboring records in the containing I/O unit. Keep the completion
-> behavior requested by each direct-write caller, while requiring
-> synchronous completion before releasing an MFT bitmap entry.
+> A zero next-entry offset terminates an EA list. Appending an entry
+> without linking the old tail makes the new entry unreachable. Invalid
+> entries are also treated as missing names, allowing setters to proceed
+> on corrupt metadata.
 >
-> ---
-> Changes in v5:
->   * Rebased onto ntfs-next from
->     git://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/ntfs.git.
->   * Patch 6: Adapt allocations to the kmalloc_objs().
-> Changes in v4:
->   * Patch 6: fix for the 32-bit ARM __aeabi_uldivmod link failure
-> Changes in v3:
->   * Rebased onto ntfs-next from
->     git://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/ntfs.git.
-> Changes in v2:
->   * Fix compilation error in Patch 3.
->   * Keep valid but unsupported MFT geometries read-only and reject
->     read-write remounts.
->   * Document the sync-dependent -ENOMEM return from write_mft_record().
->   * Add Patch 9, which trigger page_mkwrite after native 4Kn partial-EOF
->     size extensions.
->   * Add Patch 10, which wait for attribute folio writeback before copying
->     a new non-resident attribute.
->
-> To: Namjae Jeon <linkinjeon@kernel.org>
-> Cc: ntfs@lists.linux.dev
->
-> ---
-> Hyunchul Lee (10):
->       ntfs: read MFT writeback bounds under size_lock
->       ntfs: validate the MFT I/O geometry
->       ntfs: write MFT mirror data in mapped I/O units
->       ntfs: serialize raw MFT updates against folio writeback
->       ntfs: track direct MFT writes until BIO completion
->       ntfs: write MFT folios through mapped I/O units
->       ntfs: write MFT records through containing I/O units
->       ntfs: use sync flag for direct MFT writes
->       ntfs: trigger page_mkwrite for native 4Kn size extension
->       ntfs: wait for attribute folio writeback before update
-The Fixes tags are required to be propagated to stable kernels.
+> Validate the entire chain before modifying it and connect a zero tail
+> to the append position. Check name terminators and retain the full tail
+> span when removing an entry. Return EUCLEAN for malformed EA structures
+> and inconsistent information lengths, preserving that error through the
+> get and set paths. Keep ENOENT for a missing name and translate it to
+> ENODATA only at the xattr read boundary. Preserve lower-level read errors=
+.
+Could ntfs_listxattr() reuse the same chain validation and return
+-EUCLEAN for malformed EA structures? And you can send only this patch
+for v3.
 Thanks.
