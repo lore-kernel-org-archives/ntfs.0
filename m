@@ -1,72 +1,71 @@
-Received: from mail-pj2-f43.google.com (mail-pj2-f43.google.com [74.125.227.171])
+Received: from mail-pz2-f41.google.com (mail-pz2-f41.google.com [74.125.228.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1871DA23
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 01:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB342F3C18
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 01:43:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789954893; cv=none; b=bXqCMbWfo7ZGHEY/KdVE6p4FbUhJhPxYwADN/z077ltJ00mu0G+S1kmeNBPubM+sF5PAdJtSidgYjUISjWbGUbePHuCDqpjxX0Jk+UiTUn05TOaahpTgCR994/3y6v0rPSlp8p++zTE9M7Pphhng0wKGwmmIXxaY8otjsTj11BQ=
+	t=1789955008; cv=none; b=iHPIb1vpW2mCd7k3s5JA90Gk+9QSCu+dOrHtho1OPZJUYX4BZrnZgGo4HuP6pvfENWDUI5LUykgbqS2MZ2k7xWeT0J1Wehuy49UJSeEw8X2vT4WbXO5MJlSc3dmkIBY4VKaviqv5UMhJNinzp6Dlb1TnyF4R+Ms56X43B/Jvik8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789954893; c=relaxed/simple;
-	bh=sZVSVNnmqug24rEI1vY+L2FnqpiG6JF+5hzcQz5sBX4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GQfXXBLcYjnAcquLkxny0eFVDJcxvaMet8gE+cmbnkRf7w3rrXJs3yrK9RUneU4fV9cC0Wxak3HG4GowEURZUVbkWkJ9aKtdwWP9+BoUQW7veDIsIlHHfhJPQKzrHjJqt6QY7aKzszCt7zK1zOwbrP7+Sz/xRyjK25YjrIVFg7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=r2DoFIqR; arc=none smtp.client-ip=74.125.227.171
+	s=arc-20240116; t=1789955008; c=relaxed/simple;
+	bh=l0syW4wWkx47n85Un2x5YlOtdrIf9qBhckCjzu2+nOo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NbrL7dmOtbu600cui9gINgVJ64OL+rC8ybmMnYcgUZSG9klnNvn7ZvuhHGd2h0td6GxyWwRANGWadsg0tdu6yMJfMlGImRUfrD7WQKbyiPUCCiNYm5uqBds59/l0FZ7OEA0DMxxPEBcqPHGzP9IbtVE473U9ioSxvLQx5pPKi5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ocpKmruI; arc=none smtp.client-ip=74.125.228.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="r2DoFIqR"
-Received: by mail-pj2-f43.google.com with SMTP id 98e67ed59e1d1-39e03468a5fso2148282a91.0
-        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 18:41:31 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ocpKmruI"
+Received: by mail-pz2-f41.google.com with SMTP id d2e1a72fcca58-85469a3490bso2605449b3a.3
+        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 18:43:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789954891; x=1790559691; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1789955005; x=1790559805; darn=lists.linux.dev;
         h=content-transfer-encoding:content-type:mime-version:message-id:date
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=dYBYldwjPEz+RxhJV5xhs6Rr3vF8vz2+BiAfSL6O5Kw=;
-        b=r2DoFIqRnEDvnoxovN/J66EQWOHwZfhCoOG2WdG8G9U0ptz5/W47l1wrT2VzY5E1+R
-         rVKvP+uyLuKxml3CIHf5j0OB4T6APtd01HI9uAIZmil/1+uddX25WOcaaDzS+sGNbHXh
-         mMlPvyv0NE2BGl06w3iYds21wchoM8D7k8hWREAVhz4ozKMV4JmWzKiVvvkIv/PysXgq
-         abvTybeDxAXtLBsC06F97QeTWRjYTLtvoXnXA2UaB8vG3t8aDP8BowllAcnTOiPO7Ek7
-         i28Q6F8aXG9qv+ajit+Ho8XWdWFUA7rVmfLQqCb1TcVP+QTFkLd1mYH1BacUpUr1n/Lf
-         XpaA==
+        bh=9pn/4Xw+v0qUIiO9G5hzdTP30+s8pum6BDFqqqYl/GE=;
+        b=ocpKmruIxZ2hZv7oHGx/EEh4ZacmkRhflVqa16XNp09OfCgBWXc2jtVxi1elX76pQ6
+         5MnYWpcLJ2pBO/5r3t7mkGPmiAn0Q02HV0GsMODDf96RoZ42Qiy8L/p9R1zUrqLRnGwT
+         9yH4AIyr0BqT1fxwOtpfJ6P/SYILyjzI1O5Rx/LCDbNm3FzRDR3ADqhDihY4StzsHZXv
+         NmDD9M0wdxdNC1gDyZcRMEy3+mN1vqbpcJGbEx9sPIDsvHMCz/CNRl6+EMOgysKE27NA
+         TcEkHqVdlLred/BnAj7u+VnNHutVDhY02rJXuzp0LEu9o+KVaD12w+oe3IqBV9OkMWCL
+         yA0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789954891; x=1790559691;
+        d=1e100.net; s=20260707; t=1789955005; x=1790559805;
         h=content-transfer-encoding:content-type:mime-version:message-id:date
          :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=dYBYldwjPEz+RxhJV5xhs6Rr3vF8vz2+BiAfSL6O5Kw=;
-        b=k4/VPuBoTacBa7XtlDRSiMjqf8PXguO2RHjR0pnH7thLStRgChtSnt44L5G2D3sL2x
-         MDCkGI7yUQWr6K2bIgJReu2oYo9pX0zUXnwTiUiCQU/FxSblLe2T+2rqPtRgkdy9LEN3
-         DZuGMsVqiadfdH5njHV0YfmVSJiUf0KDSTDfdVzbl5btLx06FUPsCrxJ5m3zMFgXEbGd
-         svmQiKo5bm0TA5Ur2tQIKeGf7ga5vDXjTH/slRjcIr8G9xlBCKo2pixk1dBp1t7V5Fc2
-         CN1seHoorc3YPOcz8zcK7CDvC8++1BWQInWU9wdnTuZrpxXDxQk5aMtTFVqlYCwKta9r
-         ZNKw==
-X-Forwarded-Encrypted: i=1; AKwUvBy3LhvPMwd1QQnHi1W4aKvv90iphbwNwbcd0cf0UTvueGLqW8ETgNj2FZfRIo+1a+6fRhmF@lists.linux.dev
-X-Gm-Message-State: AFuF++lCirqSO6Z2YB8JpXsK4w7GkQWvHyVvoDZuUSlsdfjYHBsOwjLK
-	lr14rQgAKAMH5KfhenhZtVyyfakvSDtP2n/kvMEz5JZo/X0fag0aEtfY
-X-Gm-Gg: AYBFou1E1UTTZFzgV7dqT/tqVRW+ic1xfQ5f+y0HBPT+zA8z9O1mR1sn2rwY9W9uMO0
-	HmKK3EC1/uZUhkF1u4Ugrs0pVOMKkGBLLsP/L6UAd/JM5iuGGf9HunzkY0mPcPzgOxG2OFEEJDE
-	uPDj9fnphM2uZqwT3Dfsu56U4sKnOdyAfyS52IO+IH6kYw9+c7qZtvyEsrlbZspwcJ8gUbbzHer
-	MpYCb8bJmcESZaqi6NP3EWr9lkC8lemH6AxO3vUhogzIe7qt2NeHNCE3hyopib2UIc/yllU1mV/
-	YwWBK6PP5ej3Y15vqvhRNTZqUSLU6OGBUUC2lbBak5dGZvIr5YA0Rn1Vm6DCmvAA/tBRzU7S0nu
-	KCA3RYNr5lueK3D7DBkoqUk7Qv9F+8WBi+d1u/i+ZcndzOHluzBTCmVhnIlMue0Z21eVX/LvF9Z
-	n2ffBmN1ag56aMQD3ROXmKSNaXXBzsA4htnBhzc7kP7T26DfqX1aYR66zoo6su3mRj/SDyhr/BC
-	VGh9vMf57rqZTDkSlDl+4t0nBq8nddxag==
-X-Received: by 2002:a17:90b:6c5:b0:3a0:295e:6e58 with SMTP id 98e67ed59e1d1-3a0295e7719mr5639903a91.2.1789954890587;
-        Sun, 20 Sep 2026 18:41:30 -0700 (PDT)
+        bh=9pn/4Xw+v0qUIiO9G5hzdTP30+s8pum6BDFqqqYl/GE=;
+        b=r6o/FHGYsaz+FrLo1PAtvjhzqAYu5GUcL/ot7JjXAqP2t40ymhCuVLQLCi3UlTSf7k
+         6u9fc8PD/KKZIcPiAS9wxLTxEa8/o7PgPsRcCIDd9OAYat95JiUpCfXisGPMqtL5fFGt
+         CP4Fvp6JST36DjQHzpH6xkD3dZM7Bz7tXi8V/whWimRfR50rnd9KBGcGodLM5iPrVTdZ
+         8y+pkohPiQhxCpHE2va2mruIknGIsvf7GZtdFH7tSmiomTT22ChtoEADs9bHzk8KbdJI
+         7q3Q1yFj4zcqO6vbyWqa3L5vgKe1OKnr/XALjc2uZcfr+p9ATQCDtS7RenU5eetq5oMk
+         I2OQ==
+X-Forwarded-Encrypted: i=1; AKwUvBw/Kv4Ihi4ZQ3P4ziUWuzxjwbM95Ht0GZSMDXAF+MyV0GJCy4q2aQmoauxR3HZYvspJABE4@lists.linux.dev
+X-Gm-Message-State: AFuF++mMkYj3jmkZ63vSDD+UA0xFkIo4dZA+q6T1MOkACT/X3rATqlW1
+	eIZyt5zHX0yoNlo1UInbM0OcoZBDpzo9EE5LqvtbBp3llx8y+C9McePw
+X-Gm-Gg: AYBFou0kQVdovZInrWvchOgjbFNFQGCPedmGxh/NR/lua0cSbO/yom8X75/mmEfg4PV
+	7lkUXjxI5X25kCBu+KdkR34PnxcWung/DFWYRTls/xVwQFZlcQK+0//EKitCIMBwbIeW8p0FtyI
+	yl8mnRAMABRxKoAj5uCLz2xW4/Bp7uQ7I0zXKMyCa+OMR+wua+Fx64XM/pFRzh4Aa4M9JAm4aoI
+	hKEDwRHN+BPRLHHf+7eeJs/VSNEBWFEnbnJ8t4w+queY5HHO6iOzou8iGpQkoQyp0I9O0/rTVkR
+	gNgZxc1dl8QrYuKMcw1s7BdJYrPNzNg9O51PTLRwx5Efr2oYbdeLBzVzz3oY+MVRkoQcE37ZVZ9
+	M9qvHmZjeS19HGxdAAguvaUsaGprKBl8L2OLg2E2JQBH7nTKdgTipiceHCvXzu7+lSRG7EW5ELQ
+	OoIWnTCosUsJ59jw7QLxAS/3uF0d5f7jZFn7BTZRiwrXe7jWFEAQIQPwcITbDjThX5dyfYuSnHB
+	u+UNGPcVQaihC0/OcqdMqk=
+X-Received: by 2002:a05:6a20:cd95:b0:3dd:a196:69e7 with SMTP id adf61e73a8af0-3dda1967885mr8793861637.66.1789955005399;
+        Sun, 20 Sep 2026 18:43:25 -0700 (PDT)
 Received: from hyunchul-PC01.tail461a24.ts.net ([125.177.232.58])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a04982be8dsm2441598a91.13.2026.09.20.18.41.28
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc72aed5c05sm2581292a12.22.2026.09.20.18.43.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Sep 2026 18:41:29 -0700 (PDT)
+        Sun, 20 Sep 2026 18:43:24 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>,
 	ntfs@lists.linux.dev,
-	gunho@lge.com,
 	=?UTF-8?q?Marek=20Weso=C5=82owski?= <marek@wesolowski.eu.org>
-Subject: [PATCH] ntfs: fix FITRIM bitmap indexing for large pages
-Date: Mon, 21 Sep 2026 10:41:15 +0900
-Message-ID: <20260921014116.2781001-1-hyc.lee@gmail.com>
+Subject: [PATCH] ntfs: require page-aligned full-page attribute writes
+Date: Mon, 21 Sep 2026 10:42:57 +0900
+Message-ID: <20260921014257.2790279-1-hyc.lee@gmail.com>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
@@ -77,72 +76,39 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The LCN bitmap has one bit per cluster, so a bitmap page represents
-PAGE_SIZE * 8 clusters. ntfs_trim_fs() still used a 15-bit shift when
-selecting the page. On arm64 with 16 KiB pages this selects the wrong
-bitmap page and can test or discard the wrong clusters.
-
-Compute bitmap indices from buf_clusters, use the page cluster base as
-the bit-search origin, and keep the requested range as the clipping
-boundary.
+__ntfs_inode_non_resident_attr_pwrite() treats count == PAGE_SIZE as
+proof that the request covers the complete folio. it allocates the folio
+without reading it and copies at offset zero. That proof is valid only
+when pos is page aligned.
 
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 Cc: Marek Wesołowski <marek@wesolowski.eu.org>
 ---
- fs/ntfs/bitmap.c | 19 ++++++++++---------
- 1 file changed, 10 insertions(+), 9 deletions(-)
+ fs/ntfs/inode.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
-index 1840b7d84c62..df97970dc3d0 100644
---- a/fs/ntfs/bitmap.c
-+++ b/fs/ntfs/bitmap.c
-@@ -20,7 +20,7 @@ int ntfs_trim_fs(struct ntfs_volume *vol, struct fstrim_range *range)
- 	struct folio *folio;
- 	unsigned long *bitmap;
- 	char *kaddr;
--	u64 end, trimmed = 0, start_buf, end_buf, end_cluster;
-+	u64 end, trimmed = 0, start_buf, end_buf, end_cluster, page_cluster;
- 	u64 start_cluster = ntfs_bytes_to_cluster(vol, range->start);
- 	u32 dq = bdev_discard_granularity(vol->sb->s_bdev);
- 	int ret = 0;
-@@ -45,8 +45,8 @@ int ntfs_trim_fs(struct ntfs_volume *vol, struct fstrim_range *range)
- 		return -ENOMEM;
+diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
+index d5e526d3612a..0391e4945e1c 100644
+--- a/fs/ntfs/inode.c
++++ b/fs/ntfs/inode.c
+@@ -3720,7 +3720,7 @@ static s64 __ntfs_inode_non_resident_attr_pwrite(struct inode *vi,
  
- 	buf_clusters = PAGE_SIZE * 8;
--	start_index = start_cluster >> 15;
--	end_index = (end_cluster + buf_clusters - 1) >> 15;
-+	start_index = start_cluster / buf_clusters;
-+	end_index = DIV_ROUND_UP_ULL(end_cluster, buf_clusters);
+ 	index = pos >> PAGE_SHIFT;
+ 	while (count) {
+-		if (count == PAGE_SIZE) {
++		if (count == PAGE_SIZE && !offset_in_page(pos)) {
+ 			folio = __filemap_get_folio(vi->i_mapping, index,
+ 					FGP_CREAT | FGP_LOCK,
+ 					mapping_gfp_mask(mapping));
+@@ -3742,7 +3742,7 @@ static s64 __ntfs_inode_non_resident_attr_pwrite(struct inode *vi,
  
- 	for (index = start_index; index < end_index; index++) {
- 		folio = ntfs_get_locked_folio(vol->lcnbmp_ino->i_mapping,
-@@ -59,19 +59,20 @@ int ntfs_trim_fs(struct ntfs_volume *vol, struct fstrim_range *range)
- 		kaddr = kmap_local_folio(folio, 0);
- 		bitmap = (unsigned long *)kaddr;
+ 		folio_wait_writeback(folio);
  
--		start_buf = max_t(u64, index * buf_clusters, start_cluster);
--		end_buf = min_t(u64, (index + 1) * buf_clusters, end_cluster);
-+		page_cluster = (u64)index * buf_clusters;
-+		start_buf = max_t(u64, page_cluster, start_cluster);
-+		end_buf = min_t(u64, page_cluster + buf_clusters, end_cluster);
- 
- 		end = start_buf;
- 		while (end < end_buf) {
- 			u64 aligned_start, aligned_end, aligned_count;
--			u64 start = find_next_zero_bit(bitmap, end_buf - start_buf,
--					end - start_buf) + start_buf;
-+			u64 start = find_next_zero_bit(bitmap, end_buf - page_cluster,
-+					end - page_cluster) + page_cluster;
- 			if (start >= end_buf)
- 				break;
- 
--			end = find_next_bit(bitmap, end_buf - start_buf,
--					start - start_buf) + start_buf;
-+			end = find_next_bit(bitmap, end_buf - page_cluster,
-+					start - page_cluster) + page_cluster;
- 
- 			aligned_start = ALIGN(ntfs_cluster_to_bytes(vol, start), dq);
- 			aligned_end = ALIGN_DOWN(ntfs_cluster_to_bytes(vol, end), dq);
+-		if (count == PAGE_SIZE) {
++		if (count == PAGE_SIZE && !offset_in_page(pos)) {
+ 			offset = 0;
+ 			attr_len = count;
+ 		} else {
 -- 
 2.43.0
 
