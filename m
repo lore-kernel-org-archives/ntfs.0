@@ -1,127 +1,156 @@
-Received: from mail-pj2-f36.google.com (mail-pj2-f36.google.com [74.125.227.164])
+Received: from mail-lf2-f13.google.com (mail-lf2-f13.google.com [74.125.229.205])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F01EE376BEA
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 06:44:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.164
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789973096; cv=none; b=diTmLuMKc8be+OSjoUfHGLedlSXUvgugQAPahaoJeVd7PY9zFKhuvCErtOEdcBXoOkd4el4K/R3onXxuS0hFaLA+3rqjEGxUdegbO1P34V74Hv6HplVKVL7lucppSRi4dNL1b9aTuSpx3uwxJmfWwj/KLF+9SPOT7QBpISFJiFs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789973096; c=relaxed/simple;
-	bh=F/FiOldzB5FitQqxux427YwALA2lkJe7vkW5UsH8LCY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gkphj15A3GGi8Kt5XNHFMZgEEd2Iw5FU2dGkbfMBiit6JOPWZ4ml0FOrfmUpOkMZBcCimQLRema2VEk0UOnjnUNcc5X72BvufhWNN4cF68Un5JW6E3KRTiU7rQoGjg/RWvvK080+7N8/hwqUuBytUxqP4f3FsLjQEYcqodzFRY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aHSpZHTz; arc=none smtp.client-ip=74.125.227.164
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE373C0600
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 07:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.229.205
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1789977466; cv=pass; b=gwE/WkNqwLOSHaziCZ9z4ZOmM/tmfKt+rDM9IUDZ53yriKD0IH8djEV3oJqUT5BlOB86jqvFCqHXxfdoXuwdUf/oa4W7rc+3rnx4W9/jZvNEyEQbzZtw3A//99LwgrOJK3VgtFmC6WGyJ0pD3spx+ibyqgnVGpsm6dUZI987uX8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1789977466; c=relaxed/simple;
+	bh=wTKF3GJe24qvlJZnP3fb1zIfYdXZhI1ydDoNfbeg+Z8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ViRwjgO/RbYEr3KqvyAyff89pTsJ9taMCcTMpcznGrfWkPBGv+FHiTqwRxHV5k3tbR9no/O17e1HK6aeH1psrFcqGaPl9XLKIFxjeNwNx/WlXzzpeG8UTQmPj2xqfeY0swtoj4kJxzq+B5cjZcvLj9kdZO22HpBe/NnCSlWBmf0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sajLjDLI; arc=pass smtp.client-ip=74.125.229.205
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aHSpZHTz"
-Received: by mail-pj2-f36.google.com with SMTP id d9443c01a7336-2d8fdc579daso29507155ad.1
-        for <ntfs@lists.linux.dev>; Sun, 20 Sep 2026 23:44:54 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="sajLjDLI"
+Received: by mail-lf2-f13.google.com with SMTP id 2adb3069b0e04-5b5e4f15cfdso2488310e87.3
+        for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 00:57:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789977463; cv=none;
+        d=google.com; s=arc-20260327;
+        b=R0iAhmGivmLK8vN1zbamkF0Xub06bUGyeun9IqXbtKtd6wkaJRpL6C9Z2GqdNq02aP
+         r5C0paL2Y1aJFWJedgOvqFzsdbUGAGPiHnRNFSoiuMXQG1y5BUExClzPRZWHe/Q3wifI
+         jnEIqoJj4+Ss2nsYjQ1zMnJvfPeWZs4glEr8Dv2R1iwsboKmIt6LINP4YpHOle+oaav7
+         px2E5N0Ta6CGTU53rzgM3gvxWqul0U43EgdIrBou/9loGnSzp4pWASQ9BXLfyyy58cAW
+         rin0C1A4aANW0ZO2BBep7zc5DNBI1DoAUkL1Yvqe5WY+7wAKvoozyFrHYQpO1wdmBqpg
+         QYJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=g9IsRdNBpVaOm+BvbZJMl+aEIv6TVvsoIWi27r6K2mo=;
+        fh=WlZpunhnZ/uy6tDqt4+WbKQjR9RBDy1dtQVzcrGvNLs=;
+        b=GeWCt9hDjIlqjPlsSiF+/MZjxDaorGUT/fyaosjHTTafdzVBNmHXJOQf2Pc0boFtdO
+         BQCuJTw04XM/RhEOGWgMGIAkNEMz0ZROLT1S8fOz+wUrvp3KburCPMPoHt5Zr84g0pM9
+         y3AO0jI1z5w/iqlBhTOXBQyIRxtgOt6uBGihTcjnKcgXcf6cf43B3W//9jrDTBb1+AF4
+         CqoLHneBgULA32/PNhFp8SRsO3tr6ryrnR9UJt28wNdZ1AO4ImznLULVTbY67ZSJjzpT
+         hL/cvk7Ky84K0dDJ/+AbY/cgSnUE8YKIk6qOFs8IHwurbiTKxm15+PQZV3AAfXdCeVDO
+         jZWA==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789973094; x=1790577894; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=diuDiAt1MBoAIRvmG/WpgnaXlcTTHxbIkiMj5XGJGC4=;
-        b=aHSpZHTzP0OcyZ4kfQrm/ouHQTcXnLAMe3JZHvWJ6a2vbnQ64a/09kApgGAkbkWazY
-         5RiEHus4LccAygeAQ1jPdB+Ex28irnZT+7quSCdutI2FUjppagCN1RFU33n2LtWmwk/H
-         kMim2ydV4WxdueJ9J3TAvw3fxRdpqt30gn6Kn/s8iSvEvk1DocLQXeQMJH0Hb4evCXfL
-         lVgyvki6ppoUGpAFB+plwchZZJy968Dtg5di7V4mx3coJBbunIwnkdvPXWN22Q/n91Tj
-         PLbDKD+aLfNCyH/9F4mef0bqmQs7UbsL7+cWMynvmvnaus+/TUsWrgFe8GhOIiYxdAii
-         01Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789973094; x=1790577894;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=gmail.com; s=20251104; t=1789977463; x=1790582263; darn=lists.linux.dev;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=diuDiAt1MBoAIRvmG/WpgnaXlcTTHxbIkiMj5XGJGC4=;
-        b=UIgZcsu47UMlrKK0YdCgY0G/KB1yUSwLA5iwR7cgK3S61Fb3KzN4qjorcfbpYBNVOJ
-         qiTIpcN46h4yIbYtxSkcYj0b59e1D88aCurV4WxvlbPa1NcvtqcklXngNmfjSCR4PQxp
-         V0nkbAjWieLQ07GuNYcFv8DNHr8+FDrz12evHOIye088Zyk3ss3pnq+siGAjz+g9XfwO
-         QBKgcyEU008665wG/eH/NjzF9LN7aQKELXpKIowx/+JRb4TfRCa2RDbYrelSTVCQ4se5
-         C9OUdTimNhjAKUf10t7yaboCiH1dNiWWY26j7X2G/XFXZV6Q+tIA3/zKehndH0ohcr29
-         QzNw==
-X-Forwarded-Encrypted: i=1; AKwUvBxaGN0K6EaWzQ9qKlx65b8enAl20xhYA30RHImtpyZyH5cN8BKfwlHcJA9jSO122oSwB96M@lists.linux.dev
-X-Gm-Message-State: AFuF++l03wjvHVNPDMU4YtGRL1pc8jbWMtw5DBVGUHubx0uHOHbVHnfS
-	OlTm8PCOf9rcgocR+E9C5WLFryr5IoWDpGela2oSRbKNsVGfMj6Eg4kH
-X-Gm-Gg: AYBFou1cnxhGhwPO81hcL1y78+Y8jeecWyg+BY3PpSygmU+rgPKWiSd7awMfPY5VluX
-	YbdutQPKm++QjjQ2TVWVfsrtWJXaAW68JxxbJML6o+pVXJlD/vU4umknfLObjjMzS0QbMz6lzes
-	kYWkmW2SvthlHqNDThDeS4ZMR73PDzL2eLH03Qkitgpl1jq0lFJtwsRDKweq6aL5NNo6wFcFSIN
-	sltX86/1gKJcop++o1JAzH8tc74oHgncgqJrvTrIm4S75XOg2wsLmP0HQK6uQSiuwQfW56o46RX
-	a+yBlin43hJDrm9mogBQsSbAd88h33fzLvcapktA4KVJjnHIUP34QYH0xBPII+M47IwbHkpWYMc
-	UxjsGadXyuQ4d1cw0nG8AxiP01COLRVGtBxgFmrgYkumNIg3L4iXqbNMeXrpKFIUBzH5tkDpwSQ
-	naik5t2uQciHdEH7P/dkj8xvOl4E78PdGitocpuO8g2d9w8UzrehC+i6lWox6JsGtJJCUlw2zAE
-	IeHjg==
-X-Received: by 2002:a17:902:fd88:b0:2dd:c100:313a with SMTP id d9443c01a7336-2ddc1003202mr91242235ad.54.1789973094191;
-        Sun, 20 Sep 2026 23:44:54 -0700 (PDT)
-Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ddc180395fsm28097345ad.81.2026.09.20.23.44.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Sep 2026 23:44:53 -0700 (PDT)
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>,
-	ntfs@lists.linux.dev,
-	stable@vger.kernel.org
-Subject: [PATCH v6 10/10] ntfs: wait for attribute folio writeback before update
-Date: Mon, 21 Sep 2026 15:44:12 +0900
-Message-ID: <20260921-topic-4kn-lkml-v6-10-75069f590b22@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260921-topic-4kn-lkml-v6-0-75069f590b22@gmail.com>
-References: <20260921-topic-4kn-lkml-v6-0-75069f590b22@gmail.com>
+        bh=g9IsRdNBpVaOm+BvbZJMl+aEIv6TVvsoIWi27r6K2mo=;
+        b=sajLjDLIE0pjDvvCB/kRCl39jxfQ9wJuKORaix4Y60wX95M/94DV0dPoWC2ZHNBRWE
+         Vd2bVNM6sSNX7UdKkMkoSrJO6lnM0O70F0XjlnekP/vRoSFtCi8i5/bXX6dAbP9JHpEJ
+         PCaa6fs7nZroWUAATWw9DBjhQpZ6TjdNZ23qpFkQxpW7jvaX/oQzqWPTTtGvys1wenGc
+         GgSc9B0YN0k9gHktQ1zqs55WWNtgy7X1Zqqh+WX5XuS/4UMoJB25jm3uMOd0zrLX2LTN
+         ILL0HlCOTanXFvtY3NvE1eUAcmE8/iD04rviXfSUotWzC6hdUzL2aKu+lZDKr9BBUzwS
+         hriA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789977463; x=1790582263;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=g9IsRdNBpVaOm+BvbZJMl+aEIv6TVvsoIWi27r6K2mo=;
+        b=IXZUeIz3fHNazrd73LWNWWEmmNRMTgq59fJx5MO3/v4AGrkmpOtJS0XPTuRoe3Ep1h
+         zWpAhdhmTRGoD8vXIjLGifTKeOhG3tmvl8GU6xY0MA5Q7sTdNVM4qOZKPfrQQYApv++H
+         rktLfQYuTn3X5UU/j/ViwlUaqD+NW6Kaw1FoX59y/qOUybnUlgeyTwrSM5annTefVN8B
+         CR9BotPolvi0WBoZhgPufdbIyeX2MtH+zx1T8/XmmNsnLPlWW1eSFfBnmP/F5ZLBgq5m
+         kLePdVdsgD7JL67gryLiEreGpSknEU2b7vqKtW654Lslt4yzjePITofBWazhbd5q3JqX
+         cixg==
+X-Forwarded-Encrypted: i=1; AKwUvByUy1LosVLKVtbW5J6XveaF/cg/vv+Gu/uXAPtOa+D80Tw631L9GvWolr38BiQ+VlptYBV7@lists.linux.dev
+X-Gm-Message-State: AFuF++lMLt0mjOnymiV2OHLh5NojkIVetzOvhxLU5XIEzLwSmeXJaG3h
+	MMFd0VfyyDfzZ/3VFB7ogpFRcNYELUdr0x1s2MkyBS0VUYmQdSZ/NWvv5VgAE9rprcN+OERdCIp
+	sCJ1pULQOXYc5IotTatMzVnFUy01R6efYWQ==
+X-Gm-Gg: AYBFou0ObFeENNe1r+1JJyDicNTzlaVYNJJO4UxD47V2wHi+r4wyBiz7oHyhAmTirux
+	N+ufa5Ymjz6OAvF8QpvB8zYbBJLypL4i1bp3vVW3CB461UemWungBC7XfFn3SkposI2B0Wug/1g
+	xL8nJH1m2KBsMW3o8n2bTNJ5Dr9uwvmfldZRI/8OfvP/lvssJXe7LG5AZ9HIDsxqpPnvOZ++l6/
+	dbfRdKekVFCUxrbxjo7EawB512wfs/euSscmcwfNsFRBfOA7hxB+r4QR/wQaNtWRZqJKNX+fZqv
+	xwBNzdLXMt9fyKMs4fgmY92VH6lZgD9EUnizJmQBKeLR+KJHfPOTaJI=
+X-Received: by 2002:a05:6512:104c:b0:5b8:9ef4:2bdf with SMTP id
+ 2adb3069b0e04-5b8c1809487mr2756705e87.26.1789977462770; Mon, 21 Sep 2026
+ 00:57:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=886; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=F/FiOldzB5FitQqxux427YwALA2lkJe7vkW5UsH8LCY=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqsNIMsIktW83shA1BmqQ5wSr1q6Jgo4/rrp6Td
- 1I8rTf8WFeJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCarDSDAAKCRA08jD6945I
- 0795EACoeB1DABEFWtHguQdVNOkbWz6ctf494M+xWM7Ri6Lcyxpq7oGuJk7pQY3di6Ek5NRe9XM
- ikT7grHa10Luiub48kErBWcIemjoZ1n73p24pOWAqIP6/7dufRsXnH6s/kxm8U4VlJm5FKih5u2
- dz/GsdCBrlLPlDaaQvZQRxjzzH8Z3uOZnaWL+hmQhkZ4tey0OjnTGWS+qhui+rhtDCU8s2e99k+
- h64PssKyt7B4kxgJ5cAKMSiB52I9zposYPPrLJdJ+8PeC1pUNnGqDE1V/pAbOPPU8nbEC9iJbjG
- 5lZO9gvUtvXhZmAuy+4q4BowH8Z3lyRN4W13547uNUQ8CxwD8bCC11mxWE8UObEgR4bK5VPjM1T
- CDesYMY6Bp9pqKcVNrjM9Ph/dPujQzxuZxuwR2W6a5HoWKJKGO13X60CPpjLzjtVibEa9P6qzEP
- G524W6hxOe7TBkOUMfg+2ZAYlAJLfPcImpNn7pTofx3LMq1hnp1ZoJ5jzGD9jcm9BfwdNBgfEjG
- GcNWbVjqDVoIQrAoEoIF2u297UILphaOZwfYPfIWkSVFsfmSwc+Odw8DcNLq6u6o0UHGxlPojpP
- PPOdDYOfwtZzlOZ5vVJpYsON7Bfvl6E8xiWZ05w8+COc4MEbLroBVGxp+x5Uup7Y/Y+IgMuasku UJgm9ZGxp89C6yQ==
-X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
-Content-Transfer-Encoding: 8bit
+References: <20260920025955.31209-1-zenghongling@kylinos.cn> <04255390-4133-4e8e-81ad-4d2402498431@163.com>
+In-Reply-To: <04255390-4133-4e8e-81ad-4d2402498431@163.com>
+From: Hyunchul Lee <hyc.lee@gmail.com>
+Date: Mon, 21 Sep 2026 16:57:29 +0900
+X-Gm-Features: AcwNN1XT333aOgbhzPsm-JYe6T_jxFAvajhOncAJFvThd79_ZeNb3_O9r7eZWKk
+Message-ID: <CANFS6bYLBPr+FmE_MVWxBBMw+Qz55EFfy1u6UmBgkTak2CMyvA@mail.gmail.com>
+Subject: Re: [PATCH v5] ntfs: mount hibernated volumes read-only regardless of errors=
+To: liubaolin <liubaolin12138@163.com>, Hongling Zeng <zenghongling@kylinos.cn>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	zhongling0719@126.com, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-ntfs_inode_attr_pwrite() locks an attribute folio before copying a new
-attribute image into it, but taking the folio lock does not wait for an
-already-running writeback BIO to complete. The writeback path can unlock
-the folio while PG_writeback remains set and the BIO still references the
-folio memory.
+Hi Baolin, Hongling
 
-Fixes: 115380f9a2f9 ("ntfs: update mft operations")
-Cc: stable@vger.kernel.org
-Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
----
- fs/ntfs/inode.c | 2 ++
- 1 file changed, 2 insertions(+)
+>    If you agree with this approach, could you please incorporate it and
+> send another revision? I'd appreciate feedback from you, Namjae, and
+> Hyunchul.
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 4375ad477809..d5e526d3612a 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -3740,6 +3740,8 @@ static s64 __ntfs_inode_non_resident_attr_pwrite(struct inode *vi,
- 			folio_lock(folio);
- 		}
- 
-+		folio_wait_writeback(folio);
-+
- 		if (count == PAGE_SIZE) {
- 			offset = 0;
- 			attr_len = count;
+I agree with this approach. It looks sound to me.
+
+>
+> feel free to add:
+> Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
+>
+> Thanks,
+> Baolin.
+>
+>
+>
+>
+>
+>
+>
+> >       if (unlikely(err)) {
+> >               static const char *es1a = "Failed to determine if Windows is hibernated";
+> >               static const char *es1b = "Windows is hibernated";
+> > @@ -1581,12 +1594,25 @@ static bool load_system_files(struct ntfs_volume *vol)
+> >               const char *es1;
+> >
+> >               es1 = err < 0 ? es1a : es1b;
+> > -             /* If a read-write mount, convert it to a read-only mount. */
+> > -             if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
+> > -                     sb->s_flags |= SB_RDONLY;
+> > -                     ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+> > -             }
+> > +             /*
+> > +              * A Windows hibernation image is not a filesystem error, so
+> > +              * this is a safety interlock rather than something the
+> > +              * errors= policy may downgrade.  The super block is already
+> > +              * read-only here: the temporary flag taken for the check
+> > +              * above is not restored when the check failed.
+> > +              */
+> > +             ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+> >               NVolSetErrors(vol);
+> > +     } else if (unlikely(temporary_ro && sb_rdonly(sb))) {
+> > +             static const char *es1 = "Errors were recorded during mount";
+> > +             static const char *es2 = ".  Run chkdsk.";
+> > +
+> > +             /*
+> > +              * Errors were recorded during the check or earlier, e.g. when
+> > +              * loading the LogFile.  Stay read-only, like ntfs_reconfigure()
+> > +              * does for volumes with recorded errors.
+> > +              */
+> > +             ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+> >       }
+> >
+> >       /* If (still) a read-write mount, empty the logfile. */
+>
+
 
 -- 
-2.43.0
-
+Thanks,
+Hyunchul
