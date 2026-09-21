@@ -1,96 +1,107 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A22D423A85
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 10:35:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC4B4A5EB8
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 14:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1789986911; cv=none; b=dvUrxyof1TnlAtzMGoyRwQawJpLNnZZGNm7l2uTeiFdgIpt7hHxTMVRhKd1TsnOTxiPv2HYa66JgpJl4VbO6hLIJhkGMeNfbiUWSowxP726sw9xIyZOKft8tP3hzAacYszuGZ87gTEgHUfULwwW0E8EcmwIy5DTNPVFWVlCokfE=
+	t=1790000191; cv=none; b=EGqSPSSWLc3vf1E5NfUUNEtWyX9o6DJdsrbiQ78L2nAjm0UAdSwVZT/w3sxTyPVh7bqYqwBb9NfPf/QGskNQ8666GOPAJ1yfEpyxGGVefnCo6eDHRYmTtFYEhflOyye34vBUT/S/Vzc9Ge6Ah/0S3y+Ws85/cRBqdCNTmxfIxE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1789986911; c=relaxed/simple;
-	bh=3SjuJ5yprBdHbNPy6ISdGcdm2v0uG7IMdK+ejrfWX2U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j2o6XoVSARwhl+5K8Bcssu1XNlFfqzq7yrOFDaCaxFcRBjQBbtn/xUoYPfqT8NUOvZxrP4395oh5h/f7ibWPNdD1Mlu4uulZM6ZMFF1J07QthVCBfgev/ClLm7kgEC4Ms0WRAvt4kw8YEz1G8wtnAflh6/9ukSpBqqt6pLln6kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ito3l6fM; arc=none smtp.client-ip=220.197.31.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1790000191; c=relaxed/simple;
+	bh=XO/Iyvnz3qETNkeIWvlQee03cckRo7x8Wx3SnMguIOQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GcqC01umuHTSlRZcaHWM/LAeZG1pPqlp3JMC0cVFR2tJsyHRJjDxlarNpDufPzbI5RzHDE1goQDdvm5giIitfuLSzAZFWDFML+MaE+JNpdpK/+a5iz8vhhKQq15hfN1xi7BZwOVKL5TqWsRxDNtzmV65idCZ3Jh2Ll3em8GZc7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ThA8Jthr; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ito3l6fM"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=D4Ns8s2IYd8NANDTYOdlaFRflLTwoK0uQVGyZdkFNsI=;
-	b=ito3l6fMy9BSDe1bWO3qXKC7LpX6EkwK+rydqnC5fMg+/XUYGASCJPObLAHamC
-	jYSQGnkz8kXl8fSZWPOjSKCdIjgJKMdhDCknY8UOtSKytnI8cdFSlYY6Eg+RjQbc
-	s3icfDdS2Q6Al25rp0RcEVHyl64uZ6FxJHvu7uByMoLkQ=
-Received: from [IPV6:2409:8900:1ee3:222c:3c21:ce3b:b986:2f34] (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgDX32FACLFqOgpsAg--.14968S2;
-	Mon, 21 Sep 2026 18:34:41 +0800 (CST)
-Message-ID: <4afe1b4d-7fbf-4fb6-866e-71bff3bbea6f@163.com>
-Date: Mon, 21 Sep 2026 18:34:40 +0800
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ThA8Jthr"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F31CE1F00898
+	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 14:16:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1790000190;
+	bh=VNwpL4KwapgAM2FRhULX1UUMm7aiHSA+6ZAEI7tm5o4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=ThA8JthrHF0hm5Ec4CkxU/Uf7UVWzsGhyve5hpMa621Lja5wfVMUsE94LuJn/3dOT
+	 ldi7hLFr39cLYwVnYSsgJmE+GN1ee3GSe6I2C/qASRUDVIA3aSWS5qjJsBnJAA4SUi
+	 xUMHhFw8RbtVWwM8kwAMbyqYWFEEMHeoplcjrvB297LlKrSOa1jRxNK2JmIaxR2R7h
+	 uHqk/jxpAe2uZ9t31Na9t3qr0DZj1fzBrzcL1cPe11yrNt1b/vd0776oeHJ/xvXe3H
+	 TMBrmdZD+gnrLkdFfEscXKcVdcc2jwMkvpgjsOBX756ded13dua/6eopq62PiBWsTg
+	 YEJaNVlgp2HxQ==
+Received: by mail-ed2-f12.google.com with SMTP id 4fb4d7f45d1cf-6a6056ac81fso5228605a12.2
+        for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 07:16:29 -0700 (PDT)
+X-Gm-Message-State: AFuF++kr2fD81YmsLL43iS1NBGCxNhBq38s0/xLntfj/eM20J1Id1cXV
+	bEDBBW4RVLi2OJ2vexQBAKXoMVa64b1uHfkyUl1uH8bgpMr+egM7992ydcDdMMepi5sGz4f8W3r
+	vNBM3sqcOr56WvH38twplhJ/PnPBDeE8=
+X-Received: by 2002:a17:907:c0c:b0:c24:b11c:6c05 with SMTP id
+ a640c23a62f3a-c2a156d58bemr876967466b.14.1790000188573; Mon, 21 Sep 2026
+ 07:16:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/10] ntfs: validate EA chains and link
- zero-terminated tails
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- chenxiaosong@chenxiaosong.com, Baolin Liu <liubaolin@kylinos.cn>
-References: <20260920083131.1880061-1-liubaolin12138@163.com>
- <20260920083131.1880061-3-liubaolin12138@163.com>
- <CAKYAXd80AqEnzUvad2Od8fLh4yh20X8G7CVN1EcQCg1Vj1iJQw@mail.gmail.com>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <CAKYAXd80AqEnzUvad2Od8fLh4yh20X8G7CVN1EcQCg1Vj1iJQw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PygvCgDX32FACLFqOgpsAg--.14968S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tFWDGryftr1rur1UCr4DArb_yoW8Xw1fpF
-	WUJ3Wjgw4kGr1UAF92yw4kJ34rXw1xWw17JFnIgw1vkF90gF4ayFWfKayI9a95Cr97Wr17
-	Xa1UKFZxuF15Aa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2iiDUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gEZ42qxCEGdsQAA3v
+References: <20260921-topic-4kn-lkml-v6-0-75069f590b22@gmail.com>
+In-Reply-To: <20260921-topic-4kn-lkml-v6-0-75069f590b22@gmail.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Mon, 21 Sep 2026 23:16:16 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd-QufcTW7RRXASSeaoc_fhnKx8sv+m9Quf4Dnqh98RM1Q@mail.gmail.com>
+X-Gm-Features: AcwNN1XQ6ml5CtRpw3KH592HGx_gkmEpWnK_Q0XDHSzzi7fG6qv-Z6j9QYfPf6s
+Message-ID: <CAKYAXd-QufcTW7RRXASSeaoc_fhnKx8sv+m9Quf4Dnqh98RM1Q@mail.gmail.com>
+Subject: Re: [PATCH v6 00/10] ntfs: support 4K-native devices with smaller MFT records
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-在 2026/9/21 14:17, Namjae Jeon 写道:
-> On Sun, Sep 20, 2026 at 5:31 PM Baolin Liu <liubaolin12138@163.com> wrote:
->>
->> From: Baolin Liu <liubaolin@kylinos.cn>
->>
->> A zero next-entry offset terminates an EA list. Appending an entry
->> without linking the old tail makes the new entry unreachable. Invalid
->> entries are also treated as missing names, allowing setters to proceed
->> on corrupt metadata.
->>
->> Validate the entire chain before modifying it and connect a zero tail
->> to the append position. Check name terminators and retain the full tail
->> span when removing an entry. Return EUCLEAN for malformed EA structures
->> and inconsistent information lengths, preserving that error through the
->> get and set paths. Keep ENOENT for a missing name and translate it to
->> ENODATA only at the xattr read boundary. Preserve lower-level read errors.
-> Could ntfs_listxattr() reuse the same chain validation and return
-> -EUCLEAN for malformed EA structures? And you can send only this patch
-> for v3.
-> Thanks.
-
-Hi Namjae,
-
-   Thanks for your feedback. I've updated ntfs_listxattr() to reuse the 
-full-chain validation and return -EUCLEAN for malformed EA 
-structures,while preserving lower-level read errors.
-   I've submitted only this revised patch as v3, as requested. I 
-verified that patches 3-10 of v2 still apply cleanly without 
-modification, and completed build checks and QEMU tests covering normal 
-and malformed EA lists.
-
-Please see:
-   "[PATCH v3 02/10] ntfs: validate EA chains and link zero-terminated 
-tails"
-
-Thanks,
-Baolin.
-
+On Mon, Sep 21, 2026 at 3:44=E2=80=AFPM Hyunchul Lee <hyc.lee@gmail.com> wr=
+ote:
+>
+> Make MFT writeback safe on native 4Kn devices when MFT records are
+> smaller than the device I/O unit.
+>
+> Validate MFT I/O geometry, map and submit containing I/O units, and
+> coordinate direct writes with generic folio writeback. When a write
+> covers multiple MFT records, preserve the unchanged contents of
+> neighboring records in the containing I/O unit. Keep the completion
+> behavior requested by each direct-write caller, while requiring
+> synchronous completion before releasing an MFT bitmap entry.
+>
+> ---
+> Changes in v6:
+>   * Add Fixes and Cc tags to all patches.
+> Changes in v5:
+>   * Rebased onto ntfs-next from
+>     git://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/ntfs.git.
+>   * Patch 6: Adapt allocations to the kmalloc_objs().
+> Changes in v4:
+>   * Patch 6: fix for the 32-bit ARM __aeabi_uldivmod link failure
+> Changes in v3:
+>   * Rebased onto ntfs-next from
+>     git://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/ntfs.git.
+> Changes in v2:
+>   * Fix compilation error in Patch 3.
+>   * Keep valid but unsupported MFT geometries read-only and reject
+>     read-write remounts.
+>   * Document the sync-dependent -ENOMEM return from write_mft_record().
+>   * Add Patch 9, which trigger page_mkwrite after native 4Kn partial-EOF
+>     size extensions.
+>   * Add Patch 10, which wait for attribute folio writeback before copying
+>     a new non-resident attribute.
+>
+> To: Namjae Jeon <linkinjeon@kernel.org>
+> Cc: ntfs@lists.linux.dev
+>
+> ---
+> Hyunchul Lee (10):
+>       ntfs: read MFT writeback bounds under size_lock
+>       ntfs: validate the MFT I/O geometry
+>       ntfs: write MFT mirror data in mapped I/O units
+>       ntfs: serialize raw MFT updates against folio writeback
+>       ntfs: track direct MFT writes until BIO completion
+>       ntfs: write MFT folios through mapped I/O units
+>       ntfs: write MFT records through containing I/O units
+>       ntfs: use sync flag for direct MFT writes
+>       ntfs: trigger page_mkwrite for native 4Kn size extension
+>       ntfs: wait for attribute folio writeback before update
+Applied them to #ntfs-next.
+Thanks.
