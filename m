@@ -1,293 +1,154 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf2-f13.google.com (mail-lf2-f13.google.com [74.125.229.205])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1892E3C4176
-	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 03:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790049425; cv=none; b=irH80jLYlDflZ6YCHpCAzdLTJXS6Gfupu+iSb50Ktt9Vd2xUYHbOGepzMkraYsI0whDUwvRhxGm2a0fkrxRL2Q0zP4HpXGFW2ObeRrSz+x+BBjqZWGQMfgbcM39sBgdI7F9klQ1uOgpNV5fYGz/M226uidRcFPSq4Toxx62DR9c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790049425; c=relaxed/simple;
-	bh=fs9BRfKmiz/PyKIurs8g3vcO8wdLXzJJUSrw4BeuuS0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=thOzfsH2y/3JPQaDZHoVJIukSQ1ZrC68bdFCQ5CYyLBE7Kz+7aKdeuMuyQhI/zmuaed5ch8+SQByAnj8a7gv9QqLvyuwhNbFBepOr63v+J6t19cBkYeyj5AoSPCcxdNKMLh7IlN1t3YOeeG9XAwgna0AC6oV5lY/dXn/oRbwSLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=DDc/ieWQ; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438FC3403E8
+	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 05:25:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.229.205
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1790054716; cv=pass; b=DZo/5H3k31qXmiDuusnwdldB7Mu/rk5dLKXoGBgZfiITO3279NQbH9S3XpfX6QOZEJP5vF3EAXwGCuA5fZ9oIfuKKDoTwRqsdIOysyRoQMYESrUHBHnXYZLfe+xBE/EWWBwSK/tijKpHlVepRxZgiJmiUN9A/oolSRuV5/JsZ2c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1790054716; c=relaxed/simple;
+	bh=0jd5cLTp3SOx8GkiEE9xyQ0WO5u6raBQoIhOrOBec+s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hTpaf0Io4L9LGoALCc4O9BDMD5eZNnP4bcWx51g+jPgFWFTX8Uka4q4aRsiuvxLSoQXqF48MjmeOPgfuXymhG4KugVrG5pe8LNJypXl3AWnueK7RiaBmJN+41eu/Q36BjrfcIrj8Rjeg8u0QWwjmXwizUz1DIYoA4kY/HLsCzDs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pLlxBIFf; arc=pass smtp.client-ip=74.125.229.205
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="DDc/ieWQ"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:From:To:
-	Content-Type; bh=/abNEaTU8UnmTUqiIkX9MYVhg0s2UGieH1rZ9EcWZrE=;
-	b=DDc/ieWQwPxLVWTOICtipOHBovsRq0+wb+ZAZmlh2ZluB/OWLNcx0J24baXcy9
-	z5dDnnKmVjcfXj6XPvQnVvKFEanquFnjxVgJ8TDK2tt8SY+OocPBOPvRoMUdFp0I
-	cH7k9z9uZe12+Fj4elohbI0KJHJ1umJw9p+ICxsya8ISU=
-Received: from [IPV6:2409:8900:1ee3:222c:420f:a5a2:eb51:8645] (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id PSgvCgBnT8p9_LFqrEKxAg--.19696S2;
-	Tue, 22 Sep 2026 11:56:47 +0800 (CST)
-Message-ID: <d56a1b4b-8080-449b-a324-eb10cc45a130@163.com>
-Date: Tue, 22 Sep 2026 11:56:45 +0800
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pLlxBIFf"
+Received: by mail-lf2-f13.google.com with SMTP id 2adb3069b0e04-5b76ff64d78so3445441e87.1
+        for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 22:25:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1790054713; cv=none;
+        d=google.com; s=arc-20260327;
+        b=SUQ1wYHbYZhF8YK12TIM+oETzz6oL0e+ikTJtkJtSAscqwAnxhJo0GOG23Xz+ZcMcA
+         FkZHUgIeyU/uSVrBup6U4K/e4wYiOlOj/WhDqLAh1Xoc90rPRk+H0X8H55F4tGZjpefa
+         yIRYOVy3OEJrghYeCHAkCi4iVC6kAqvTSsnjgPol3E+0NOhOc6lIksxc4my+1aoNpzzM
+         Muc9mlxNWRJx475c0vh+lqCAMRXIzCRa1Bys6yBRMXIF2aV5OXuG4JthIvfR8PG0V3Od
+         XpCgoeJaGrqKiM9hL3c+AYPbkGTS0xqOwTSozzDhkAZev/o/oxPKpKUkrXclvtrQwiU8
+         HiXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=r9A3FUQiYasXz1fvdfMOXzL7H/dvBBeexZCJ+4qyPew=;
+        fh=N8Kh5S8G+jWVZOIakPfy6BNoBIB9Q+meVBM8ULaWW9I=;
+        b=e0sDs8Nzb6Be0f3hcf2haha/x7sbdd3A3D+9Yry1MULGvL6GfEb1X7BJuRo+O1mvr5
+         Qd0IyjORFOQKqZYvfpH3iZ//ozCRwml5f/LkrQ2BLU3V7tZnuZzhN6mRKj0JHLXk0Cnk
+         NQ5ZcMA0UzadZkMBAdN7NtlFmOqy6XwZsM3Gd9sWN33WgSp+sTnNYTqc/5eJPKyO1nnY
+         5J/hSMIa1cVRA+DUcst9/5krKT6gDwYAHas1lQ3kTwK/mWPK+ZJpdT3kYRLG58cMeFiZ
+         F76iiZkQk1503UuPjUgqDGm+ZcafMiY0arY9ujkLo1FigL0LTaPeQ4vLtZktbuq+TIGL
+         ZRZw==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1790054713; x=1790659513; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=r9A3FUQiYasXz1fvdfMOXzL7H/dvBBeexZCJ+4qyPew=;
+        b=pLlxBIFfymt2fESsXcU6aMpGiW4iSXS0s3iy7hgsaYUOAQb1mPTUaDE9F1oyEYj4RG
+         jPZaD744NbL3H9sjDXg8gaAopbag8eih5O3XArPrVHtqDp1MFfJWaZWQCW7V2iwaqlm2
+         cXmLIzg4Y2y9qeK4JSjTjkm4O0z3SrLwJLlDgNdXqQveRUM2NqDNIMrhbgyFqqyS9pno
+         C005X0IzZJErEqIyyINugISoaehYF5OsVHgLX+0g9g180IT0M//uPZzie0Hn7OliJWu1
+         KZ3EtRKosBhYPdLYIrzIgn7jLdBctpa7KCEQJV+5ZzI3fF/6V26pN3lAkqOnxly2Exv1
+         QS8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1790054713; x=1790659513;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=r9A3FUQiYasXz1fvdfMOXzL7H/dvBBeexZCJ+4qyPew=;
+        b=W81liUw13OAD3GP4Q5sMTliLsqDNoYdgRTPKu5UiA6lAPFwBadstidQ9mb50TOUSqw
+         x/qmgC4FeQ75FLJ4bzIiSo4pPPIL9Jg5areU+yWbpKSu5y2WdPbtIO5LqJ9tuF3Sdjf8
+         U34I/BQMcIlcpUGFqr7MazvEohqm2xewJ77izdu2Y3Q6lXH2DXDR+WaboIdy+DmhyHme
+         e5kDmKxOlBRF+52qCo+Md8wCxmrrhhe4OpGQI0OJUqNG6LpdKCB7kto07NQOAqhWnauM
+         njT9PIwDArKzZFxhYfmxgwsHNtyvjvkVClKrdkee2wJgcSWxDTw1haZOeacz86pjA6nK
+         Gr5w==
+X-Forwarded-Encrypted: i=1; AKwUvBzdrl3NvFyPrECrJrguRxyWw9iLC2ZetL32TwT2BC8AhHa4pI8rJbsuq4cwIFiXcNky4A1x@lists.linux.dev
+X-Gm-Message-State: AFuF++lC1TzfBOgeQU2ZAsWiNVkkXaD6AUcjQxvvE0jTu042fQFdWApV
+	OIkff7EmTEkboXrPNdlG6L0WXMQArXnI7AJz8E440TvSltKJnp24xnsj3Asfvm4xyOfJ/eY1FQU
+	IItSTBcoUff9A5vTxM9ZhP8uaBP3OKYQ=
+X-Gm-Gg: AYBFou2CwWOvHh7qCrfl1yEo70IZ6ejBNgHsow2Yc1uzXa+kSXbVcO/rBgCEHPmGBo4
+	cobtx/4GQX+4mDFG4AKGHbNyNjwyHvpn1FZ8smomz22hiOd/mDE4W1DckNnGTzIuMAW9tjm9EHu
+	xPUyVQktiduX6a7eN45z/6CtYcTaLX9AnxEHLZshLdO/s1U7LbgWVlBMSnc/yU2VR4fceKxw15c
+	aCOggjN85eK/3BvnHy613/veDeQps/Vy5PQQtMsr75EC5rtklRPoy1c7FrwalcGboWQxc1lfL7J
+	KhCT3ADZxqQtrHnSVfxb955huZHFhMLGgQH/0t0ecfq6qc8fuBf0rTM=
+X-Received: by 2002:a05:6512:2348:b0:5b8:9a84:74fd with SMTP id
+ 2adb3069b0e04-5b8c17ee9ffmr4248097e87.4.1790054712894; Mon, 21 Sep 2026
+ 22:25:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/10] ntfs: validate EA chains and link
- zero-terminated tails
-From: liubaolin <liubaolin12138@163.com>
-To: linkinjeon@kernel.org, hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- Baolin Liu <liubaolin@kylinos.cn>
-References: <20260921102318.2104180-1-liubaolin12138@163.com>
-Content-Language: en-US
-In-Reply-To: <20260921102318.2104180-1-liubaolin12138@163.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PSgvCgBnT8p9_LFqrEKxAg--.19696S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3Wr4kAry5Xr4xuw15JFWfAFb_yoWxKw13pF
-	Z0y3s8JrWfJrnrWrn2ka1DXayrCw4xWryUK34xKw10krn0qr1qqas0kFyfuayFy3s7ur1F
-	gFZ8tFs5uF1UAFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2zuZUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwh9lMGqx-H9plwAA3u
+References: <20260920083131.1880061-1-liubaolin12138@163.com>
+ <20260920083131.1880061-9-liubaolin12138@163.com> <CANFS6bajYthoK3asS3PmfU+9aocdsHS9ZFaUhmiKV5BfbaygeQ@mail.gmail.com>
+ <250dd5e5-4a4e-4547-b205-f0b52bae4775@163.com>
+In-Reply-To: <250dd5e5-4a4e-4547-b205-f0b52bae4775@163.com>
+From: Hyunchul Lee <hyc.lee@gmail.com>
+Date: Tue, 22 Sep 2026 14:25:00 +0900
+X-Gm-Features: AclHuK9DpvIu8lP7A2qR74y5flfN5b4SPq5kUNXAggxDycWJuA--ecJM0kIN7ks
+Message-ID: <CANFS6bbM-OpYLoRvQNAhmo-FNBd9V0K7wEt6iYTc-6cPf+2uEw@mail.gmail.com>
+Subject: Re: [PATCH v2 08/10] ntfs: persist immutable in the $LXFLAGS EA
+To: liubaolin <liubaolin12138@163.com>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	chenxiaosong@chenxiaosong.com, Baolin Liu <liubaolin@kylinos.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Namjae,
-   Hyunchul has suggested avoiding the $LX prefix because it may 
-conflict with the WSL namespace. I agree with this concern and have 
-proposed using $LINUXFLAGS instead.
+2026=EB=85=84 9=EC=9B=94 22=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=84 12:27, =
+liubaolin <liubaolin12138@163.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+>
+>
+>
+> =E5=9C=A8 2026/9/22 09:21, Hyunchul Lee =E5=86=99=E9=81=93:
+> > Hi Baolin,
+> >
+> > 2026=EB=85=84 9=EC=9B=94 20=EC=9D=BC (=EC=9D=BC) =EC=98=A4=ED=9B=84 5:3=
+2, Baolin Liu <liubaolin12138@163.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1=
+:
+> >>
+> >> From: Baolin Liu <liubaolin@kylinos.cn>
+> >>
+> >> Add a fileattr setter for immutable and store its state in bit 0 of a
+> >> little-endian u32 in the private $LXFLAGS EA. Reuse the standard NTFS =
+EA
+> >> attributes and restore the flag when loading an inode, so eviction and
+> >> unmount do not discard the setting.
+> >
+> >
+> > I think that the name $LXFLAGS is not appropriate. the prefix $LX
+> > seems to be a WSL-owned namespace. The name could cause
+> > confusion or a future semantics collision with Windows WSL.
+> >
+> > Thanks,
+> > Hyunchul
+>
+> Hi Hyunchul,
+>
+>    Thanks for pointing this out. I agree that we should avoid the $LX
+> prefix to prevent confusion or a future semantics collision with WSL.
+>
+>    Would $LINUXFLAGS be an acceptable name for this private EA?
+>
+>    If you agree, I'll update the code and documentation, rerun the
+> relevant tests, including the Windows NTFS and CHKDSK compatibility
+> tests with the new name, and submit the revised patches as v4.
 
-   Because this name change affects the complete series, I plan to 
-update the code and documentation, rerun the relevant tests, and resend 
-the full series as v4.
+I agree. And others look good to me.
+Feel free to add my review tag for this patch set.
 
-   Please ignore the standalone v3 revision of patch 2 for now. I will 
-supersede it with the v4 series after the new EA name is confirmed.
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
+>
+>    I look forward to your feedback.
+>
+> Thanks,
+> Baolin.
+>
+
+
+--=20
 Thanks,
-Baolin.
-
-
-在 2026/9/21 18:23, Baolin Liu 写道:
-> From: Baolin Liu <liubaolin@kylinos.cn>
-> 
-> A zero next-entry offset terminates an EA list. Appending an entry
-> without linking the old tail makes the new entry unreachable. Invalid
-> entries are also treated as missing names, allowing setters to proceed
-> on corrupt metadata.
-> 
-> Validate the entire chain before modifying it and connect a zero tail
-> to the append position. Check name terminators and retain the full tail
-> span when removing an entry. Return EUCLEAN for malformed EA structures
-> and inconsistent information lengths, preserving that error through the
-> get, set and list paths. Keep ENOENT for a missing name and translate it to
-> ENODATA only at the xattr read boundary. Preserve lower-level read errors.
-> 
-> Reuse the same full-chain validation in ntfs_listxattr(), including
-> size-only queries, before copying names. Reject malformed lists with
-> EUCLEAN instead of returning an empty or partial list.
-> 
-> Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
-> ---
-> Changes since v2:
-> - Reuse full-chain validation in ntfs_listxattr(), including size-only
->    queries, and return EUCLEAN for malformed EA structures.
-> - Remove the duplicate listxattr structure checks; preserve lower-level
->    read errors.
-> 
-> This replaces [PATCH v2 02/10]. Original v2 patches 3-10 apply cleanly
-> on top without modification.
-> 
-> Validation:
-> - QEMU listxattr tests covered normal and zero-terminated lists, empty
->    lists, size-only queries, short buffers, malformed offsets, missing
->    name terminators, oversized values and truncated entry headers.
->    Verified EUCLEAN after successful file open, including tiny buffers.
-> - Checked an oversized query length at the patch-2 stage, and ordinary
->    file/xattr writes plus unmount/remount.
-> 
->   fs/ntfs/ea.c | 81 +++++++++++++++++++++++++++++++---------------------
->   1 file changed, 48 insertions(+), 33 deletions(-)
-> 
-> diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-> index bb97df3045a0..2ee700f8227e 100644
-> --- a/fs/ntfs/ea.c
-> +++ b/fs/ntfs/ea.c
-> @@ -53,10 +53,13 @@ static int ntfs_ea_lookup(char *ea_buf, s64 ea_buf_size, const char *name,
->   	loff_t offset, p_ea_size;
->   	unsigned int next;
->   
-> +	if (!ea_buf_size)
-> +		return -ENOENT;
-> +
->   	offset = 0;
->   	do {
->   		if (ea_buf_size - offset < sizeof(struct ea_attr))
-> -			break;
-> +			return -EUCLEAN;
->   
->   		p_ea = (const struct ea_attr *)&ea_buf[offset];
->   		next = le32_to_cpu(p_ea->next_entry_offset);
-> @@ -64,31 +67,31 @@ static int ntfs_ea_lookup(char *ea_buf, s64 ea_buf_size, const char *name,
->   
->   		if (p_ea_size < sizeof(struct ea_attr) ||
->   		    offset + p_ea_size > ea_buf_size)
-> -			break;
-> +			return -EUCLEAN;
->   
->   		if ((s64)p_ea->ea_name_length + 1 >
->   		    p_ea_size - offsetof(struct ea_attr, ea_name))
-> -			break;
-> +			return -EUCLEAN;
->   
->   		actual_size = ALIGN(struct_size(p_ea, ea_name, 1 + p_ea->ea_name_length +
->   					le16_to_cpu(p_ea->ea_value_length)), 4);
-> -		if (actual_size > p_ea_size)
-> -			break;
-> +		if (actual_size > p_ea_size ||
-> +		    p_ea->ea_name[p_ea->ea_name_length])
-> +			return -EUCLEAN;
->   
-> -		if (p_ea->ea_name_length == name_len &&
-> +		if (name && p_ea->ea_name_length == name_len &&
->   		    !memcmp(p_ea->ea_name, name, name_len)) {
->   			*ea_offset = offset;
-> -			*ea_size = next ? next : actual_size;
-> +			*ea_size = p_ea_size;
->   
->   			if (ea_buf_size < *ea_offset + *ea_size)
-> -				goto out;
-> +				return -EUCLEAN;
->   
->   			return 0;
->   		}
->   		offset += next;
->   	} while (next > 0 && offset < ea_buf_size);
->   
-> -out:
->   	return -ENOENT;
->   }
->   
-> @@ -126,7 +129,7 @@ static int ntfs_get_ea(struct inode *inode, const char *name, size_t name_len,
->   		return PTR_ERR(p_ea_info);
->   	if (ea_info_size != sizeof(struct ea_information)) {
->   		kvfree(p_ea_info);
-> -		return -EIO;
-> +		return -EUCLEAN;
->   	}
->   
->   	ea_info_qlen = le32_to_cpu(p_ea_info->ea_query_length);
-> @@ -137,7 +140,7 @@ static int ntfs_get_ea(struct inode *inode, const char *name, size_t name_len,
->   		return PTR_ERR(ea_buf);
->   
->   	if (ea_info_qlen > all_ea_size) {
-> -		err = -EIO;
-> +		err = -EUCLEAN;
->   		goto free_ea_buf;
->   	}
->   
-> @@ -162,7 +165,8 @@ static int ntfs_get_ea(struct inode *inode, const char *name, size_t name_len,
->   		return ea_value_len;
->   	}
->   
-> -	err = -ENODATA;
-> +	if (err == -ENOENT)
-> +		err = -ENODATA;
->   free_ea_buf:
->   	kvfree(ea_buf);
->   	return err;
-> @@ -216,7 +220,7 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
->   			goto out;
->   		}
->   		if (ea_info_size != sizeof(struct ea_information)) {
-> -			err = -EIO;
-> +			err = -EUCLEAN;
->   			goto out;
->   		}
->   
-> @@ -255,12 +259,29 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
->   	}
->   
->   	if (ea_info_qsize > all_ea_size) {
-> -		err = -EIO;
-> +		err = -EUCLEAN;
-> +		goto out;
-> +	}
-> +
-> +	/* Validate the whole chain before modifying it, including its tail. */
-> +	err = ntfs_ea_lookup(ea_buf, ea_info_qsize, NULL, 0, &ea_off,
-> +			     &ea_size);
-> +	if (err != -ENOENT)
->   		goto out;
-> +	/* A zero tail offset must be linked before appending another EA. */
-> +	for (ea_off = 0; ea_off < ea_info_qsize; ea_off += ea_size) {
-> +		p_ea = (struct ea_attr *)(ea_buf + ea_off);
-> +		ea_size = le32_to_cpu(p_ea->next_entry_offset);
-> +		if (!ea_size) {
-> +			ea_size = ea_info_qsize - ea_off;
-> +			p_ea->next_entry_offset = cpu_to_le32(ea_size);
-> +		}
->   	}
->   
->   	err = ntfs_ea_lookup(ea_buf, ea_info_qsize, name, name_len, &ea_off,
->   			&ea_size);
-> +	if (err && err != -ENOENT)
-> +		goto out;
->   	if (ea_info_qsize && !err) {
->   		if (flags & XATTR_CREATE) {
->   			err = -EEXIST;
-> @@ -537,7 +558,7 @@ ssize_t ntfs_listxattr(struct dentry *dentry, char *buffer, size_t size)
->   		goto out;
->   	}
->   	if (ea_info_size != sizeof(struct ea_information)) {
-> -		err = -EIO;
-> +		err = -EUCLEAN;
->   		goto out;
->   	}
->   
-> @@ -550,32 +571,26 @@ ssize_t ntfs_listxattr(struct dentry *dentry, char *buffer, size_t size)
->   		goto out;
->   	}
->   
-> -	if (ea_info_qsize > ea_buf_size || ea_info_qsize == 0)
-> +	if (ea_info_qsize > ea_buf_size) {
-> +		err = -EUCLEAN;
-> +		goto out;
-> +	}
-> +
-> +	/* Validate the entire chain, including size-only queries. */
-> +	err = ntfs_ea_lookup(ea_buf, ea_info_qsize, NULL, 0, &offset,
-> +			     &ea_size);
-> +	if (err != -ENOENT)
-> +		goto out;
-> +	err = 0;
-> +	if (!ea_info_qsize)
->   		goto out;
->   
->   	offset = 0;
->   	do {
-> -		if (ea_info_qsize - offset < sizeof(struct ea_attr)) {
-> -			err = -EIO;
-> -			goto out;
-> -		}
-> -
->   		p_ea = (const struct ea_attr *)&ea_buf[offset];
->   		next = le32_to_cpu(p_ea->next_entry_offset);
->   		ea_size = next ? next : (ea_info_qsize - offset);
->   
-> -		if (ea_size < sizeof(struct ea_attr) ||
-> -		    offset + ea_size > ea_info_qsize) {
-> -			err = -EIO;
-> -			goto out;
-> -		}
-> -
-> -		if ((int)p_ea->ea_name_length + 1 >
-> -			ea_size - offsetof(struct ea_attr, ea_name)) {
-> -			err = -EIO;
-> -			goto out;
-> -		}
-> -
->   		if (buffer) {
->   			if (ret + p_ea->ea_name_length + 1 > size) {
->   				err = -ERANGE;
-
+Hyunchul
