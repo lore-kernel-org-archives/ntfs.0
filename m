@@ -1,98 +1,83 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734863BF67A
-	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 13:12:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E863535FA2
+	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 13:30:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790082774; cv=none; b=s++cDeUwcgo1ruDk12FMabzGsx2f9FXmVG689VFe3SPpNG367CjgWAh6n3opOehGEes5zjstkCqXBXdG4HI1R71UxRtqHfZ1t+PIwQuegQYhoQgJAYepWRFtRslLkhr39f3nokWS0v4qOSN1SHIZtim3S7bM1ioVB1LZFOLoAuQ=
+	t=1790083806; cv=none; b=XNIDi9XitsBUfwTVqD8GACj82l8Ta+310HRpInhwIE/tUmzYisnYDRVPU7uN4jgrAxt7yR9Qkt3y5OROWEqVODn/dwUJ3Pv1hKGMeX5JVnqV1LDFcngupg+d92YJZh1a9wEjWHp/+LDCf9j3STMEXSlhLfnboeeBFkh3soYmAOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790082774; c=relaxed/simple;
-	bh=Z+X3CPEK2lQ74uBcjEJs3GiYIfZC6xYB/GEbTUf53RY=;
+	s=arc-20240116; t=1790083806; c=relaxed/simple;
+	bh=xQG4bPiB+xgCyMb7c4RiobOhzKkgomujGMD6HHMDHTw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VB5XzWYpc50H8QQCvmYJgPFAIvxN0PSgt64SPGT3i5hjxBDUfVsBgdO71CKSfno/KUfrDZGH3t4pOW+/Y2d1aJwl8iUXTEJwc+/9dH4KR8Y5m+HNqVGXTE2fpNkMulV2a7zruFj/FXYSuYwzdPcdXT8+b/rbm+y2NNdoC77ZRBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BNE7TE2j; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=Z2SZBQ6WFit+yIdarSNcshIbfX6dh90ET9zy7NZs5dRrXI4UYSGaGnzDYnukgoWhvV4jmAX9f0ZInHZ8QhEJhSWImrhpjcJSvIeuLqNB2dVzzx8l9hR8TCOzLxVUOzAKf8W1GEzmiFQIDZtyijalj3qbHI9Pnmev3AZg2ldLhVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O7OY81lp; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BNE7TE2j"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 290631F00899
-	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 13:12:53 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O7OY81lp"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C7DA1F00899
+	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 13:30:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790082773;
-	bh=lA7/YFjFFdLuae3oYEHQvKUO+2y5XR4FrVSWBLg9fns=;
+	s=k20260515; t=1790083805;
+	bh=xQG4bPiB+xgCyMb7c4RiobOhzKkgomujGMD6HHMDHTw=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=BNE7TE2ja2dOTlTH/c0eJGh8MYCnz81oCWuFnAHSZYYVTrjIHzkqsCAt5ixGNGQ9W
-	 OE/KMQQSNYzsTR5lqur2G2fafQhT48Lk8PNoRmCmqoXwGFc2N1MJN3suZtBs1yL4K1
-	 5B2Y/MjWpvdGB5XeKp/NbZ6Ykhr8ytuZW1YGKMTqqkW2hh3GJhgToxFGyBQ8nBsfMz
-	 4anePHtmgH4bKAZ38/5RZI2GABxBEaS1f9DVKtXTmLl/27akknkOuc5jRS2GhxLCaD
-	 BAqLTKE7XVR8tug5J4dsndeN8b307C2fvnqoMMP/offovEJjPId4tdIDITaZxjEAVP
-	 MiJbJq9o75Ysg==
-Received: by mail-ej2-f12.google.com with SMTP id a640c23a62f3a-c254f9f7dbeso473993666b.0
-        for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 06:12:53 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBzH7+KM83gg5OZqV4nvdrpUZmlvdrx+5Tfab1Pagi/pPgHedEgQTU3LewW1v10Tykmh2wgq@lists.linux.dev
-X-Gm-Message-State: AFuF++lc6G5otDvltFOCKxdjAwQHmYcGGTmtHvMxbCQM6BMFUL33kAGK
-	YX7NkUEXG+3jc6SaqjzsEDOAtPbRt7GxlS4N/jvxdTk+dDYl3VzsToUgP/0bAF88ph99mzAL/8G
-	RGbj0vk+ZJB9D9glqE4uhEivd41nMBgk=
-X-Received: by 2002:a17:907:c002:b0:c29:583a:c291 with SMTP id
- a640c23a62f3a-c2a15708b92mr1253803266b.21.1790082771808; Tue, 22 Sep 2026
- 06:12:51 -0700 (PDT)
+	b=O7OY81lpJmrPi4NxDLalaUJMcbLnmKizicvNXGy4LnIOx8m0BeGORq9dlKwYWw+Bx
+	 87t/c5X1ras9YJMC5hNRDl2zuiXNmCFTp/f9Ce4wjh44OHwhc+msrux19rcKX+Wbxi
+	 tnd6FftJwWtetJ8/yG8zWf6GYNI6AE7O7PxpMjdUaFxjYV7DTDY6X4peirkH99RQ2B
+	 J2aTXJGZHQdkdBOqb7nHIIQPtDJvBLUnB1/UBaYuO9MQqZVKBLg2SMu4055D9YIyHk
+	 hjm9a4DxsDAqL4L93/KlJhVdXOb4NgopolNsn1COocb03vidl6Ug9VCMxQZ1gbAefl
+	 5g3mj9iMb93FA==
+Received: by mail-yx2-f30.google.com with SMTP id 00721157ae682-85d440939efso36432627b3.1
+        for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 06:30:05 -0700 (PDT)
+X-Gm-Message-State: AFuF++l5AwOX7kfgrDvuqpTrGZqf2b84yLk5W/linW1HsGB5trAUQSn/
+	oqqOW1DcJmTQSOCFFSY9mMxljhoC497kYolHCMVs8GImlR3NQVrOOIq/4dVrd+Rmnj5Gi8v45w4
+	4G5c+0iw4+2ThwVjcYmQYVvOPlm4iiu4=
+X-Received: by 2002:a05:690c:f09:b0:873:5bb2:6c08 with SMTP id
+ 00721157ae682-89735a98c88mr46339977b3.50.1790083804434; Tue, 22 Sep 2026
+ 06:30:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260922101117.2140385-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260922101117.2140385-1-zenghongling@kylinos.cn>
+References: <20260922-fix-attrlist-size-limit-v1-1-c7e10b6c5656@gmail.com>
+In-Reply-To: <20260922-fix-attrlist-size-limit-v1-1-c7e10b6c5656@gmail.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Tue, 22 Sep 2026 22:12:39 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd-c-OPp_WxwR6raLb8OvOGmYmJSKQf+RQdH_qmVw5mjXw@mail.gmail.com>
-X-Gm-Features: AclHuK_YsIx4l9qDUH2HoFkiUaT79KZv_g2vbHpgtY8SDQVgf6KjcajKrD5Vd-o
-Message-ID: <CAKYAXd-c-OPp_WxwR6raLb8OvOGmYmJSKQf+RQdH_qmVw5mjXw@mail.gmail.com>
-Subject: Re: [PATCH v8] ntfs: mount hibernated volumes read-only regardless of errors=
-To: Hongling Zeng <zenghongling@kylinos.cn>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhongling0719@126.com, stable@vger.kernel.org, 
-	Baolin Liu <liubaolin@kylinos.cn>
+Date: Tue, 22 Sep 2026 22:29:50 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd_V_-5mdQpL89hiwcCBofFoh5mwJdc-00DwJtDdDL_x4g@mail.gmail.com>
+X-Gm-Features: AcwNN1XzLuiESKOqr34zUmvqc9y1NmRstNhlU8Vsdj6dVcI1YT_uvaSo-v4FI4c
+Message-ID: <CAKYAXd_V_-5mdQpL89hiwcCBofFoh5mwJdc-00DwJtDdDL_x4g@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: validate attribute-list sizes before allocation
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev, stable@vger.kernel.org, Robert Morris <rtm@mit.edu>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 22, 2026 at 7:11=E2=80=AFPM Hongling Zeng <zenghongling@kylinos=
-.cn> wrote:
+On Tue, Sep 22, 2026 at 3:19=E2=80=AFPM Hyunchul Lee <hyc.lee@gmail.com> wr=
+ote:
 >
-> The hibernation check in load_system_files() only converts the
-> superblock to read-only under errors=3Dremount-ro.  With the default
-> errors=3Dcontinue (and with errors=3Dpanic), a hibernated volume is
-> mounted read-write and the mount-time $LogFile emptying writes to it,
-> although a hibernated volume must not be written to at all.
+> The NULL point dereference could occur when an on-disk
+> $ATTRIBUTE_LIST size was truncated before it was validated and allocated.
 >
-> Drop the on_errors term so that a hibernated volume, or a volume whose
-> hibernation state cannot be determined, always mounts read-only.
-> NVolErrors() is still recorded, so ntfs_reconfigure() keeps refusing
-> remounts to read-write, and the $LogFile emptying is skipped by its
-> !sb_rdonly() check.
+> To fix this issue and prevent excessive memory allocation, limit the
+> $ATTRIBUTE_LIST size to 256 KiB.
 >
-> The check itself must not apply the errors=3D policy either: it runs
-> before SB_RDONLY is set, and ntfs_lookup_inode_by_name() and ntfs_iget()
-> call ntfs_error() internally on corruption or I/O errors, which under
-> errors=3Dpanic would panic the machine before the read-only fallback has
-> made its decision.  Temporarily substitute errors=3Dremount-ro for
-> errors=3Dpanic around the check: nested ntfs_error() calls then fall
-> back to read-only, and any read-only transition they trigger is
-> preserved even when the error is not propagated to the check's return
-> value or recorded in NVolErrors().  This is safe during initial mount,
-> before the super block is published.
+> The following existing implementation and Windows test provide evidence
+> for this 256 KiB compatibility limit:
 >
-> If the check reports hibernation or fails, set SB_RDONLY and record
-> NVolErrors() unconditionally: hibernation safety takes precedence over
-> the errors=3D policy.  A volume with errors recorded during the check or
-> earlier in the mount, e.g. when loading the LogFile, also stays
-> read-only, matching what ntfs_reconfigure() enforces for remounts.
+> NTFS already treats 256 KiB as the $ATTRIBUTE_LIST limit in its
+> attribute-size checks and $MFT attribute list repack/expand paths.
 >
-> Fixes: 6251f0b0de7d ("ntfs: update super block operations")
+> For additional Windows testing, when $MFT's attribute-list data_size was
+> above 256 KiB, Windows attached the disk partition but did not mount a NT=
+FS
+> volume and target access failed.
+>
+> Fixes: af0db57d4293 ("ntfs: update inode operations")
+> Link: https://lore.kernel.org/ntfs/88468.1790006025@30-10-12.wireless.csa=
+il.mit.edu/T/#u
 > Cc: stable@vger.kernel.org
-> Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
-> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-> Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+> Cc: Robert Morris <rtm@mit.edu>
+> Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 Applied it to #ntfs-next.
 Thanks!
