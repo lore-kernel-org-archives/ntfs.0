@@ -1,21 +1,22 @@
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86754E9C20
-	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 10:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6B2652ED25
+	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 10:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790071228; cv=none; b=Tnjoksc2pRbdlkNEE4M5BQ5Lz7G2wPiS8gCorq9JqGsh9X3tirzA0YrkHIbsRSG++1chn4SoxqANeSAPyo30gaAoVJtOTb/hs69NwTFc40cFjqTWicXKAcDlPbF+mSA5HVe9e2Gd6w0BVbk8OiraSL2hXvIp8wOVqboL/jIpLLA=
+	t=1790071890; cv=none; b=RtfdXWjjBKEo1pqfFQeVpGb+hRDSPXlAMkrBG0825qIL8QG5MRXAChByEgKicIG2Xk2K9hvFJmC3H1dx2i6u7SeNWUUzUazFD3nZg0bjOYs75Q3w0T3x+XLqP212CIJB7OmyfNcPUAdniOu7RfiiU3FL0mNG7Vr79WAPDpf+a4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790071228; c=relaxed/simple;
-	bh=Ycpv2bOivDeW/2Kk61K1JlU9KPo/cytaxYgK6fO3Kuk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=R1b+2tzeRhBN6m4418npZgjMTFluH/UTDV/vYX8BA3v1GVNX81h1fUg62hM3sD71/Un/4Ursr5Losl7+5NSOMUoPMrkf2hSnVgrZSDDhQYZfyG+H5z5lVHFGkKqIiQH79IHDOUPgQkfYiOPtYYCpqTOAG59brcAVxowBDCuk5qk=
+	s=arc-20240116; t=1790071890; c=relaxed/simple;
+	bh=hlssS8NhgX2Dtg5J+qklTsn1LRji3YcpG6NIF3be0YU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=o860xJf3TquovxyERvWofxM6wpQqVtGR/3Kt4pyJFgoR6rZtI5kpCiSgbUCsnkW5lyvNy7WQ9n+Sig/pd/+JWSXBnlEnK4FMwvA69e4JD1PtfIKZ6zftj+VmOkk8v2R1EZd4uUSBeqfSGmOCzCYKSE6JMV67QEQQkTeT+wYe3E0=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 69a0ae86b66c11f19a56ed5b684f684d-20260922
+X-UUID: f5b7bce2b66d11f19a56ed5b684f684d-20260922
+X-CID-CACHE: Type:Local,Time:202609221800+08,HitQuantity:1
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:d7e4e3d0-6cb3-4b0c-a9de-08f21298f03b,IP:0,U
+X-CID-O-INFO: VERSION:1.3.19,REQID:ee7210c1-9000-4760-adf8-6c93f382a4c0,IP:0,U
 	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
 	:release,TS:-5
 X-CID-META: VersionHash:7db8b62,CLOUDID:a842b0a05358cccc4fcd3b6ffd05ac44,BulkI
@@ -26,12 +27,12 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 69a0ae86b66c11f19a56ed5b684f684d-20260922
+X-UUID: f5b7bce2b66d11f19a56ed5b684f684d-20260922
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1983275394; Tue, 22 Sep 2026 18:00:17 +0800
+	with ESMTP id 276241234; Tue, 22 Sep 2026 18:11:21 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -42,8 +43,8 @@ Cc: ntfs@lists.linux.dev,
 	stable@vger.kernel.org,
 	Baolin Liu <liubaolin@kylinos.cn>
 Subject: [PATCH v8] ntfs: mount hibernated volumes read-only regardless of  errors=
-Date: Tue, 22 Sep 2026 18:00:12 +0800
-Message-Id: <20260922100012.2134955-1-zenghongling@kylinos.cn>
+Date: Tue, 22 Sep 2026 18:11:17 +0800
+Message-Id: <20260922101117.2140385-1-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
@@ -92,11 +93,11 @@ Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 Change in v8:
  -Resolve merge conflicts.
 ---
- fs/ntfs/super.c | 36 ++++++++++++++++++++++++++----------
- 1 file changed, 26 insertions(+), 10 deletions(-)
+ fs/ntfs/super.c | 26 +++++++++++++++++++++-----
+ 1 file changed, 21 insertions(+), 5 deletions(-)
 
 diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 82b5bf28b6ab..2a5694a5f098 100644
+index 82b5bf28b6ab..14b88f140427 100644
 --- a/fs/ntfs/super.c
 +++ b/fs/ntfs/super.c
 @@ -1503,6 +1503,7 @@ static bool load_system_files(struct ntfs_volume *vol)
@@ -139,23 +140,18 @@ index 82b5bf28b6ab..2a5694a5f098 100644
 +		/* Hibernation safety takes precedence over the errors= policy. */
 +		sb->s_flags |= SB_RDONLY;
  		NVolSetErrors(vol);
--		/*
--		 * Remember it for the lifetime of the mount: see
--		 * ntfs_sync_volume_dirty_state().
--		 */
--		NVolSetHibernated(vol);
 +		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
 +
-+                /*
-+                 * Remember it for the lifetime of the mount: see
-+                 * ntfs_sync_volume_dirty_state().
-+                 */
-+                NVolSetHibernated(vol);
+ 		/*
+ 		 * Remember it for the lifetime of the mount: see
+ 		 * ntfs_sync_volume_dirty_state().
+ 		 */
+ 		NVolSetHibernated(vol);
 +	} else if (!sb_rdonly(sb) && NVolErrors(vol)) {
 +		/* Match the read-write remount restriction for recorded errors. */
 +		sb->s_flags |= SB_RDONLY;
 +		ntfs_error(sb,
-+			"Errors were recorded during mount.  Mounting read-only.  Run chkdsk.");
++		    "Errors were recorded during mount.  Mounting read-only.  Run chkdsk.");
  	}
  
  	/* If (still) a read-write mount, empty the logfile. */
