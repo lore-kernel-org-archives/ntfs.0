@@ -1,126 +1,187 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02120136351
-	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 01:38:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1C52F7EFC
+	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 01:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790041112; cv=none; b=s2BduBkzPEmk9gWdRNUxw8PcKwo3SOrwdE1qQWoNpH5P6D6PFQhHV9dKVBpoT7ZshaDJ1ckahxiV/JItcqz101/EDI9z1ll6QG3apLFZtV/I7R8/IubY41uzhyFFOJE7AGAZVFJGJm16X0QTmtGH7dBMP6+uxeyXgbEh1nNyLhY=
+	t=1790041354; cv=none; b=N8bXrqIo229WemU9Z9ruVjOcKRrYtwDsZU+L+LyCYuPqFQgluFIaCwp85xNqsKDPtA10d236CEKNC4HhV+wB32e16/KdEyNY26auJr5Or4KTnIYDrjNWIe8D/g4X8DfU6GOJYynIbMgraflQq6vUHl51lugjpN1aV2ln35GFRcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790041112; c=relaxed/simple;
-	bh=rP9bOsI/Vw45Kq3GvGKjQNfwet9rCfrhWhSikCfBoQY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OAQCV9TYkY0r5ShCQjlcm33aldmadACzw9qo4ShW3YKK/XL/n5td5ta4XFsXzbQhyENQqFzxR4QEk0wL5Jl3/6khjyI+0MX79S/fxCxjB9kRGZr6pACUYMOiZcnueZibJPOFXBAcu9KTb8+YWLqzkLrnbvcdN+4P51RhOfS6Igk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SGFoHwDs; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1790041354; c=relaxed/simple;
+	bh=h6f4/LvZlOM3R3njDB/lK/tLH6Jqw0vPh5GrtlCYWWE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p/5/2t1G51qm6k1+Y7aSzmwyS+XK8ghEUFfoqDvFOYKDtcQSWbt3504bWoHOskx/jj2zIcLxx4zdhOYpafwq5WeG8L3chZuHVrC8wFbI2qVWxRZLQy/1PYEzChBdR1hAgUcMxa1zRPHzVw8Wg2UtwRYwBHa993alRJ3QiS7SLrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=FeFsyE8g; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SGFoHwDs"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D42C1F00898
-	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 01:38:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790041110;
-	bh=r+xQ8n/EjO1xAHa7oj3qvalz0JvaeK3MRnDLuBBgKD4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=SGFoHwDs0IexcYBkYh5VhFD1nOkQXRPNrPL2f8X/Gt4nb+UTOeUMSmXQ1OXjZ9/Sv
-	 iPV73HNEtqSDZxSZCOhwMICmGBcqhP4gGGU0apinqGMniIPdY5NGjkZtTcvRK3whCs
-	 Izl1zoh61RVazMVa4PJUE/TKTwLw/b7UzVB2fh1/sYtsELeu9Qa/ZfMKEsh+c3VOcu
-	 wvoJ9kBDnhea46MUFjwtnuIP5pnXKZpjN+CuGK+OLTbAjcTUR4lGDwv/5CUvR/oG9J
-	 JhUYW5V14lyiHYaydWiOlrLL11mX/ApjFQeTsY58/CAdTZs/mBZdYGGjVTOm79BKEH
-	 ePFRQWSIRtzFA==
-Received: by mail-ej2-f12.google.com with SMTP id a640c23a62f3a-c29703cb470so528723466b.0
-        for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 18:38:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBw4RD+6d/TyFtQ2AR7hnli6fVzsCyqCmc2MtrFA2N/XdwGTGni63nn1hUYByIZB7sgXhsPh@lists.linux.dev
-X-Gm-Message-State: AFuF++mF+h4K8hg8xv8DLOJtmnkq7TRc4enRmFjHtk+DsNIy1iBZZG7S
-	PqBeteI//BSXwVWWdHFjpR2eoztYwRkRz/oHoxH8wORb+mLG72qNm0hqv6sTcAp3DS4+HkyYJ85
-	Skq0gfoMLlMyubhmpIb3er9Ipu3JO/U4=
-X-Received: by 2002:a17:907:72c7:b0:c29:450f:bdbe with SMTP id
- a640c23a62f3a-c2a156dccb4mr1044938066b.16.1790041109284; Mon, 21 Sep 2026
- 18:38:29 -0700 (PDT)
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="FeFsyE8g"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=AOz+swpZq1Ofp9PUUeztSWFO36gn1JuZ0L2X2nAiOpo=;
+	b=FeFsyE8gSSItRtrD9WZky3UVL6ZlDNUYdbpqVqsV7abiENv0aidGtJioGPdLd5
+	zEasSMe/uB5qCre0IRqZnLn32wr0hgEVXAVqtUu/jVrV6BnZHzGgH/iPLPXExtly
+	a69c+i1BykSnemooL9D11ASDjz71jbw/S6uIk+v2gMVlM=
+Received: from [IPV6:2409:8900:1ee3:222c:420f:a5a2:eb51:8645] (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD317_23LFqukcLAA--.9224S2;
+	Tue, 22 Sep 2026 09:42:16 +0800 (CST)
+Message-ID: <f181c846-b13a-4cdd-b796-eddb3045ff4f@163.com>
+Date: Tue, 22 Sep 2026 09:42:14 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260916131837.28568-1-marek@wesolowski.eu.org>
- <CAKYAXd9SQ_6fLm1v8nxj3WrnBT60S4Fy8_oZrN+Oi+0rOw2aEA@mail.gmail.com> <f2cdaf0f-82e5-445c-9479-1e3113f8f3d7@163.com>
-In-Reply-To: <f2cdaf0f-82e5-445c-9479-1e3113f8f3d7@163.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Tue, 22 Sep 2026 10:38:14 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd_+NXHmPzMGqWoBQWjtQK5smv5uejRTTeiPY-yRCO8wjA@mail.gmail.com>
-X-Gm-Features: AcwNN1U-KugN5QhT7514po1ixU3QyOr96H0R1fDyNMaZoudeHlxSUAcv5fwqey0
-Message-ID: <CAKYAXd_+NXHmPzMGqWoBQWjtQK5smv5uejRTTeiPY-yRCO8wjA@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: stop MFT writeback at allocated boundary
-To: liubaolin <liubaolin12138@163.com>
-Cc: =?UTF-8?Q?Marek_Weso=C5=82owski?= <marek@wesolowski.eu.org>, 
-	ntfs@lists.linux.dev, hyc.lee@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6] ntfs: mount hibernated volumes read-only regardless of
+ errors=
+To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ zhongling0719@126.com, stable@vger.kernel.org,
+ Baolin Liu <liubaolin@kylinos.cn>
+References: <20260921091907.1491879-1-zenghongling@kylinos.cn>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20260921091907.1491879-1-zenghongling@kylinos.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD317_23LFqukcLAA--.9224S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxtw13tF1xtr1rKw4ruFW7Jwb_yoW7ur48pF
+	97Jwnxtr4kKr1a9wn2yay7K3Wrur92kayjkr18Aw4xXrn5JrnIg3yxKw1FgrWSkryFqw4x
+	XF4j93y3WF45AFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Us2-5UUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRh8R2qx3PhpxgAA3y
 
-On Tue, Sep 22, 2026 at 10:00=E2=80=AFAM liubaolin <liubaolin12138@163.com>=
- wrote:
->
->
->
-> =E5=9C=A8 2026/9/21 22:22, Namjae Jeon =E5=86=99=E9=81=93:
-> > On Wed, Sep 16, 2026 at 10:18=E2=80=AFPM Marek Weso=C5=82owski
-> > <marek@wesolowski.eu.org> wrote:
-> >>
-> >> ntfs_write_mft_block() tests vcn in the loop condition before
-> >> recalculating it for the current MFT record.
-> >>
-> >> When a folio straddles the end of the allocated MFT, the stale vcn fro=
-m the
-> >> previous record admits one more iteration. The recalculated vcn can th=
-en
-> >> equal end_vcn. Runlist lookup fails and the volume is marked erroneous=
-.
-> >>
-> >> This was reproduced on arm64 with 16 KiB pages, 4 KiB clusters and 1 K=
-iB
-> >> MFT records. With allocated_size 0x13000, writeback of folio index 0x4
-> >> attempted to map VCN 0x13. Creating an empty file left the volume dirt=
-y and
-> >> the next mount was read-only. A mount and unmount without the file cre=
-ation
-> >> remained clean.
-> >>
-> >> Calculate vcn for the current record first and stop at the allocated
-> >> boundary. The patched driver passed file creation and deletion, a 64 M=
-iB
-> >> fio write/read verification with crc32c, sync, unmount and read-write
-> >> remount.
-> >>
-> >> Fixes: 115380f9a2f9 ("ntfs: update mft operations")
-> >> Signed-off-by: Marek Weso=C5=82owski <marek@wesolowski.eu.org>
-> > I can not apply this patch to the latest #ntfs-next branch. Could you
-> > please check if this patch is no longer necessary in #ntfs-next
-> > branch?
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/ntfs.git ntf=
-s-next
-> >
-> > Thanks.
->
-> Hi Namjae, Marek,
->
->    Sorry, when reviewing this patch earlier, I did not check whether the
-> issue had already been addressed in the latest ntfs-next.
->
->    I have now checked, and e543dc6c5f1e ("ntfs: write MFT folios through
-> mapped I/O units") eliminates the problematic loop.
->
->    That commit checks the current record's byte offset against
-> min(i_size, allocated_size) before selecting it for writeback. The I/O
-> preparation loop also stops at that limit before mapping the next unit.
-> For the reported allocation boundary of 0x13000, this prevents the
-> lookup of VCN 0x13 that caused the error.
->
->    I therefore think this patch should no longer be needed on the
-> current ntfs-next.
-Thanks for checking it:)
 
->    Marek, could you please double-check this?
->
->    I'll make sure to check the latest ntfs-next when reviewing patches
-> in the future.
-Okay.
+
+在 2026/9/21 17:19, Hongling Zeng 写道:
+> The hibernation check in load_system_files() only converts the
+> superblock to read-only under errors=remount-ro.  With the default
+> errors=continue (and with errors=panic), a hibernated volume is
+> mounted read-write and the mount-time $LogFile emptying writes to it,
+> although a hibernated volume must not be written to at all.
+> 
+> Drop the on_errors term so that a hibernated volume, or a volume whose
+> hibernation state cannot be determined, always mounts read-only.
+> NVolErrors() is still recorded, so ntfs_reconfigure() keeps refusing
+> remounts to read-write, and the $LogFile emptying is skipped by its
+> !sb_rdonly() check.
+> 
+> The check itself must not apply the errors= policy either: it runs
+> before SB_RDONLY is set, and ntfs_lookup_inode_by_name() and ntfs_iget()
+> call ntfs_error() internally on corruption or I/O errors, which under
+> errors=panic would panic the machine before the read-only fallback has
+> made its decision.  Temporarily substitute errors=remount-ro for
+> errors=panic around the check: nested ntfs_error() calls then fall
+> back to read-only, and any read-only transition they trigger is
+> preserved even when the error is not propagated to the check's return
+> value or recorded in NVolErrors().  This is safe during initial mount,
+> before the super block is published.
+> 
+> If the check reports hibernation or fails, set SB_RDONLY and record
+> NVolErrors() unconditionally: hibernation safety takes precedence over
+> the errors= policy.  A volume with errors recorded during the check or
+> earlier in the mount, e.g. when loading the LogFile, also stays
+> read-only, matching what ntfs_reconfigure() enforces for remounts.
+> 
+> Fixes: 6251f0b0de7d ("ntfs: update super block operations")
+> Cc: stable@vger.kernel.org
+> Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
+> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+> ---
+> Change in v6:
+>   - Temporarily substitute errors=remount-ro for errors=panic during
+>     the hibernation check.  ntfs_error() does not always set
+>     NVolErrors(), so the v5 restore condition could re-enable write
+>     access after a real error.
+> ---
+>   fs/ntfs/super.c | 25 ++++++++++++++++++++-----
+>   1 file changed, 20 insertions(+), 5 deletions(-)
+> 
+> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+> index f4a73e45773d..da2c8f310a7f 100644
+> --- a/fs/ntfs/super.c
+> +++ b/fs/ntfs/super.c
+> @@ -1398,6 +1398,7 @@ static bool load_system_files(struct ntfs_volume *vol)
+>   	struct ntfs_attr_search_ctx *ctx;
+>   	struct restart_page_header *rp;
+>   	int err;
+> +	u8 saved_on_errors;
+>   
+>   	ntfs_debug("Entering.");
+>   	/* Get mft mirror inode compare the contents of $MFT and $MFTMirr. */
+> @@ -1572,8 +1573,19 @@ static bool load_system_files(struct ntfs_volume *vol)
+>   	 * NVolErrors() without setting the dirty volume flag and mount
+>   	 * read-only.  This will prevent read-write remounting and it will also
+>   	 * prevent all writes.
+> +	 *
+> +	 * Nested lookup and inode-loading errors must not panic before the
+> +	 * read-only fallback has run.  Temporarily use errors=remount-ro
+> +	 * instead of errors=panic, preserving any read-only transition even
+> +	 * if an error is not propagated to the check's return value or
+> +	 * recorded in NVolErrors().  This is safe during initial mount,
+> +	 * before the super block is published.
+>   	 */
+> +	saved_on_errors = vol->on_errors;
+> +	if (saved_on_errors == ON_ERRORS_PANIC)
+> +		vol->on_errors = ON_ERRORS_REMOUNT_RO;
+>   	err = check_windows_hibernation_status(vol);
+> +	vol->on_errors = saved_on_errors;
+>   	if (unlikely(err)) {
+>   		static const char *es1a = "Failed to determine if Windows is hibernated";
+>   		static const char *es1b = "Windows is hibernated";
+> @@ -1581,12 +1593,15 @@ static bool load_system_files(struct ntfs_volume *vol)
+>   		const char *es1;
+>   
+>   		es1 = err < 0 ? es1a : es1b;
+> -		/* If a read-write mount, convert it to a read-only mount. */
+> -		if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
+> -			sb->s_flags |= SB_RDONLY;
+> -			ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+> -		}
+> +		/* Hibernation safety takes precedence over the errors= policy. */
+> +		sb->s_flags |= SB_RDONLY;
+>   		NVolSetErrors(vol);
+> +		ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+> +	} else if (!sb_rdonly(sb) && NVolErrors(vol)) {
+> +		/* Match the read-write remount restriction for recorded errors. */
+> +		sb->s_flags |= SB_RDONLY;
+> +		ntfs_error(sb,
+> +			   "Errors were recorded during mount.  Mounting read-only.  Run chkdsk.");
+>   	}
+>   
+>   	/* If (still) a read-write mount, empty the logfile. */
+
+Hi Hongling,
+
+   The change itself looks good to me, and I'm happy to provide a 
+Reviewed-by. However, v6 does not apply cleanly to the latest ntfs-next.
+
+   Commit 86e6932550ba ("ntfs: sync the volume dirty bit with the 
+recorded error state") added the following after NVolSetErrors(vol) in 
+the hibernation handling in fs/ntfs/super.c:
+
+           /*
+            * Remember it for the lifetime of the mount: see
+            * ntfs_sync_volume_dirty_state().
+            */
+           NVolSetHibernated(vol);
+
+   The third hunk of v6 expects the closing brace immediately after 
+NVolSetErrors(vol), so its context no longer matches.
+
+   Could you please rebase the patch onto the latest ntfs-next, keeping 
+NVolSetHibernated(vol) and its comment inside the if (unlikely(err)) 
+branch? This flag prevents subsequent dirty-bit synchronization from 
+writing to a hibernated volume, so it needs to be preserved.
+
+   This is a context conflict; the hibernation fix itself is still needed.
+
+With the existing flag handling preserved, please feel free to add:
+   Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+
+Thanks,
+Baolin.
+
