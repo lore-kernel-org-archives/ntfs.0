@@ -1,102 +1,181 @@
-Received: from outgoing2021.csail.mit.edu (outgoing2021.csail.mit.edu [128.30.2.78])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF314A8FE9
-	for <ntfs@lists.linux.dev>; Mon, 21 Sep 2026 15:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.30.2.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B5C19C54E
+	for <ntfs@lists.linux.dev>; Tue, 22 Sep 2026 00:17:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790006030; cv=none; b=Fq8iAdStycNwRLGNHNDibkhNGNcuONIn9V6EsyeqAH3WRX1ltwXn0fRyjZSQWuLCs/Op7IZ/zIZbzEukpBtewKFmYJN939YhzNqNru7K1s7LiMHKEGS6RuMCNt/FubkZfOItaGs2fJ9GxkRJ2wl7DNiFwBhJ5H+ttmVym441V8o=
+	t=1790036239; cv=none; b=ulTTs1rCtPjEZOCNX7upMnfOCm+lS8aE0NhxKFzv1AVog749nd8Oyc23rd8o0MynMW9L4xfONi5+uKX5CAocAJ34YLArOn0hOm3OFO4MBz5Ekc93VXnsepiPbYXI8CWlRmuKuHCvA6834L/641U4nj66BGuTUpVLMBIP9ObMF+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790006030; c=relaxed/simple;
-	bh=ZJYhLSP+kH2gvHZZzMTdwvp6epUj2fwfuEGMdte1eKU=;
-	h=To:cc:From:Subject:Date:Message-ID; b=OzGO5xsGnMeqsDcZLDJ5eIuz9anTeTREsDg3rN8CpAgsaD0vCPXy2z2OdyjhyKYdfsqL6eJMFvlka5+iItJIr2zPMnCcQlfVi/Wulbm71Zq0Aus0di0LDBL0ZYAS7xlskV4JbaLjv+qxKZimxkUbiai5oNsBvUxADMj+7Jc6Nls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu; spf=pass smtp.mailfrom=csail.mit.edu; dkim=pass (2048-bit key) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.b=qDBBxCTz; arc=none smtp.client-ip=128.30.2.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csail.mit.edu
+	s=arc-20240116; t=1790036239; c=relaxed/simple;
+	bh=Dtd+vuEXW2FRSX4+Ub6P0X2FggLyeP43+es8EivwjKE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mWfqi9SUXOTKKl0riZ6ZatIEcrTh183PerPdm9ut0G99GWvvqvYcFNIY884E0m07rdw2XuK6Ldkwlv0V7NgzcXPM1sbJFRQL+AOdxF1xAinu8X/qirUafp32+5g3tsmCzX0G3Om/9hd7nut+pCdiYCpggk+Cq0pSsBo6S1yI87w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Oz702gl2; arc=none smtp.client-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.b="qDBBxCTz"
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=outgoing.csail.mit.edu; s=test20231205; h=Message-ID:Date:Subject:Reply-To:
-	From:cc:To:Sender:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=qeX4NE8AicXh7hfXEcqF4WQgzWawOl18KFXNiF1Nl/I=; t=1790006028; x=1790870028; 
-	b=qDBBxCTzDXK1P41Jk3J2vi4r2C02ftRzUVRCCD8oj/2iLj64PY4+1x/tMXC30qF+nG/a/foBtFL
-	DDqyG//z7fr6mEeM16ZuO9BYE6Rgp3CJqCoiAb+HW7hDP7+wj/kPS0qL7+mF+yw1w/fOVON9SpifA
-	+HDkCRg7pGXHkolrixRy1T2HnN9LhjDs9muFOtDT2+3X5CP8mbXQ/I3gKFJK1dR7iqggYhkxYrfa0
-	yp1NYoRl70bfy8p8aaFuyArKE9vKmB1xcGgsDx1l4ncAOzMWT7RhdjLxvn0r4AiE+0/4kH/bC0N5m
-	jTNj2OL0o34fDbnThw1n0Z+yVmWlMtuLW3+A==;
-Received: from 30-10-12.wireless.csail.mit.edu ([128.30.10.12])
-	by outgoing2021.csail.mit.edu with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <rtm@csail.mit.edu>)
-	id 1x8gKw-008mSP-3q;
-	Mon, 21 Sep 2026 11:53:46 -0400
-Received: from 30-10-12.wireless.csail.mit.edu (localhost [127.0.0.1])
-	by 30-10-12.wireless.csail.mit.edu (Postfix) with ESMTP id BF6493D56037;
-	Mon, 21 Sep 2026 11:53:45 -0400 (EDT)
-To: Namjae Jeon <linkinjeon@kernel.org>,
-    Hyunchul Lee <hyc.lee@gmail.com>
-cc: ntfs@lists.linux.dev
-From: rtm@csail.mit.edu
-Reply-To: rtm@csail.mit.edu
-Subject: ntfs_read_inode_mount() can pass size=0 to kvzalloc() -> crash
-Date: Mon, 21 Sep 2026 11:53:45 -0400
-Message-ID: <88468.1790006025@30-10-12.wireless.csail.mit.edu>
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Oz702gl2"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=VLPsiOrqn3JUU0Kgbrh6KiQx/oROijL617qgfbaZZ5s=;
+	b=Oz702gl2M2JgE6gVYAUzg5wZquwBbWF016dzPRl/G+N5AYPoMwRFD6EpHjYRsa
+	IF8YiIwQ4bbPrVYhpcFQlX4rVXY4FNCG3nvYBLL5Oma6Hw3lF74np5OhIZbggG11
+	wfPyAoA/OHKMKqxSZ4eYec55MwwXIOUrjnr9jyQw9jJmI=
+Received: from [IPV6:2409:8900:1ee3:222c:420f:a5a2:eb51:8645] (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wCHtwX5yLFqsv6SCA--.53149S2;
+	Tue, 22 Sep 2026 08:16:59 +0800 (CST)
+Message-ID: <3b2dc68a-08fb-45c7-aaa9-bfa8de52affd@163.com>
+Date: Tue, 22 Sep 2026 08:16:57 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] ntfs: mount hibernated volumes read-only regardless of
+ errors=
+To: dd <zhongling0719@126.com>, Hyunchul Lee <hyc.lee@gmail.com>
+Cc: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+ ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20260920025955.31209-1-zenghongling@kylinos.cn>
+ <04255390-4133-4e8e-81ad-4d2402498431@163.com>
+ <CANFS6bYLBPr+FmE_MVWxBBMw+Qz55EFfy1u6UmBgkTak2CMyvA@mail.gmail.com>
+ <4e70c6d0.7644.1a0c34d327f.Coremail.zhongling0719@126.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <4e70c6d0.7644.1a0c34d327f.Coremail.zhongling0719@126.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wCHtwX5yLFqsv6SCA--.53149S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZrWkXr1kZw4fCF1xtw4kCrg_yoWrur13pF
+	Wqga1DtF1kKr10krn2yay8JasavryvkFWjqr1kJw47Wrn8tFnxt3yrKr1j9FyFkr95Jw4x
+	XF40kFy3uFy5CFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTKZAUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRt3QmqxyPsZYgAA38
 
-If ni->attr_list_size (a u32) is e.g. 0xffffffe7, then this code in
-ntfs_read_inode_mount() rounds the size "up" to zero:
 
-  ni->attr_list = kvzalloc(round_up(ni->attr_list_size, SECTOR_SIZE),
-                           GFP_NOFS);
-  if (!ni->attr_list) {
-          ntfs_error(sb, "Not enough memory to allocate buffer for attribute l ist.");
-          goto put_err_out;
-  }
-  err = load_attribute_list_mount(vol, rl, ni->attr_list, ni->attr_list_size,
-                  le64_to_cpu(a->data.non_resident.initialized_size));
 
-kvzalloc() returns ZERO_SIZE_PTR=0x10, so the "if" doesn't catch it, and
-load_attribute_list_mount() proceeds to treat ni->attr_list as a valid
-pointer, and crashes.
+在 2026/9/21 17:30, dd 写道:
+> Hi baolin,
+>   Thanks for catching this. I agree that temporarily setting
+>      SB_RDONLY
+>      makes it impossible to distinguish an error suppressed by
+>      ntfs_handle_error()
+>      from a successful check. In particular, errors from optional WSL EA loading may neither propagate through the hibernation check nor set
+>      NVolErrors()
+>      , allowing the flag to be cleared incorrectly.
+> 
+> Hi all:
+>     One question: with errors=panic, a corrupt $LogFile can still panic
+> during load_system_files(), before the hibernation fallback is reached.
+> For example, ntfs_check_logfile() panics on "LogFile is too small".
+> 
+>     Should mount-time metadata errors generally avoid errors=panic before
+> the superblock is published? If so, that seems like a separate follow-up
+> to extend the temporary policy substitution over load_system_files().
+> 
+> Thanks!
 
-A demo:
-# wget http://www.rtmrtm.org/rtm/ntfs50a.img.gz
-# gunzip ntfs50a.img.gz 
-# mount -t ntfs -o loop ntfs50a.img /mnt
-BUG: kernel NULL pointer dereference, address: 0000000000000050
-#PF: supervisor write access in kernel mode
-#PF: error_code(0x0002) - not-present page
-Oops: Oops: 0002 [#1] SMP DEBUG_PAGEALLOC PTI
-CPU: 8 UID: 0 PID: 2279 Comm: mount Not tainted 7.3.0-rc3-00508-g40288c9206c1 #44 PREEMPT(full)
-Hardware name: FreeBSD BHYVE/BHYVE, BIOS 14.0 10/17/2021
-RIP: 0010:memset_orig+0x33/0xb0
-RSP: 0018:ffffc90000a67be8 EFLAGS: 00010203
- <TASK>
- ? ntfs_read_inode_mount+0x868/0xb80
- ? inode_init_always_gfp+0x1d8/0x210
- ntfs_fill_super+0xb77/0x2c90
- ? sb_set_blocksize+0x67/0xd0
- ? __pfx_ntfs_fill_super+0x10/0x10
- get_tree_bdev_flags+0x135/0x1d0
- get_tree_bdev+0xf/0x20
- ntfs_get_tree+0x14/0x20
- vfs_get_tree+0x29/0xf0
- fc_mount+0x13/0x90
- path_mount+0x35e/0xc40
- ? kmem_cache_free+0x20a/0x2f0
- ? putname+0x40/0x80
- __x64_sys_mount+0x11f/0x150
- x64_sys_call+0x13d9/0x2220
- do_syscall_64+0xdd/0x4a0
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
+Hi Hongling,
 
-Robert Morris
-rtm@mit.edu
+   Yes, the earlier $LogFile check can still panic. I would keep that 
+behavior and limit the temporary substitution to the hibernation check.
+
+   The intention of this exception is to preserve read-only access where 
+possible when we cannot establish whether Windows is hibernated.Refusing 
+write access provides a conservative outcome in that case, without 
+bringing down the whole system. Temporarily substituting remount-ro lets 
+us reach that outcome even when nested lookup or inode-loading helpers 
+call ntfs_error().
+
+   This deliberately also covers genuine metadata errors encountered 
+during the probe. It is a limited policy exception for the hibernation 
+check,rather than a requirement to suppress panic throughout mount.
+
+   A corrupt $LogFile detected earlier is an independent filesystem 
+error.Honoring the user's explicit errors=panic choice there is 
+reasonable,and that path will not proceed to the subsequent $LogFile 
+emptying.I do not think the hibernation exception requires changing that 
+behavior.
+
+   Also, extending the substitution over load_system_files() would not 
+cover the whole mount process: boot-sector processing and the initial 
+$MFT loading happen before it. Extending it further to cover all mount 
+stages would effectively make errors=panic apply only after a successful 
+mount, while using remount-ro during mount. I think that would override 
+the user's selected policy too broadly.
+
+   So my preference is to keep the temporary substitution around 
+check_windows_hibernation_status() and preserve the existing policy 
+elsewhere.
+
+Thanks,
+Baolin.
+
+
+> 
+> At 2026-09-21 15:57:29, "Hyunchul Lee" <hyc.lee@gmail.com> wrote:
+>> Hi Baolin, Hongling
+>>
+>>>     If you agree with this approach, could you please incorporate it and
+>>> send another revision? I'd appreciate feedback from you, Namjae, and
+>>> Hyunchul.
+>>
+>> I agree with this approach. It looks sound to me.
+>>
+>>>
+>>> feel free to add:
+>>> Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
+>>>
+>>> Thanks,
+>>> Baolin.
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>>        if (unlikely(err)) {
+>>>>                static const char *es1a = "Failed to determine if Windows is hibernated";
+>>>>                static const char *es1b = "Windows is hibernated";
+>>>> @@ -1581,12 +1594,25 @@ static bool load_system_files(struct ntfs_volume *vol)
+>>>>                const char *es1;
+>>>>
+>>>>                es1 = err < 0 ? es1a : es1b;
+>>>> -             /* If a read-write mount, convert it to a read-only mount. */
+>>>> -             if (!sb_rdonly(sb) && vol->on_errors == ON_ERRORS_REMOUNT_RO) {
+>>>> -                     sb->s_flags |= SB_RDONLY;
+>>>> -                     ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+>>>> -             }
+>>>> +             /*
+>>>> +              * A Windows hibernation image is not a filesystem error, so
+>>>> +              * this is a safety interlock rather than something the
+>>>> +              * errors= policy may downgrade.  The super block is already
+>>>> +              * read-only here: the temporary flag taken for the check
+>>>> +              * above is not restored when the check failed.
+>>>> +              */
+>>>> +             ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+>>>>                NVolSetErrors(vol);
+>>>> +     } else if (unlikely(temporary_ro && sb_rdonly(sb))) {
+>>>> +             static const char *es1 = "Errors were recorded during mount";
+>>>> +             static const char *es2 = ".  Run chkdsk.";
+>>>> +
+>>>> +             /*
+>>>> +              * Errors were recorded during the check or earlier, e.g. when
+>>>> +              * loading the LogFile.  Stay read-only, like ntfs_reconfigure()
+>>>> +              * does for volumes with recorded errors.
+>>>> +              */
+>>>> +             ntfs_error(sb, "%s.  Mounting read-only%s", es1, es2);
+>>>>        }
+>>>>
+>>>>        /* If (still) a read-write mount, empty the logfile. */
+>>>
+>>
+>>
+>> -- 
+>> Thanks,
+>> Hyunchul
 
