@@ -1,29 +1,30 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C17414419
-	for <ntfs@lists.linux.dev>; Wed, 23 Sep 2026 06:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAEB3AF641
+	for <ntfs@lists.linux.dev>; Wed, 23 Sep 2026 06:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790143399; cv=none; b=h+I3ijkVZRhM8BHMET+pvuP2yyj9O2AEBlgxZ4AF9AcqD/qjmh0TDt4JR4OWSA9DlBRjW6JpNAJ+n+didbrbyRqBOlmP4DuJi6+nJwxqOv+pNo/QhTJDJoPwqqzEij62FF+vHkbHOIjss9gzN3/mOF3xDAHIonmiFwHWx8rDZis=
+	t=1790143405; cv=none; b=oYh/9gHjCJNirU6zLGP+UbyGYn7iMLvU0TNf1GN4IOfQNZQW9GBYXD1zIiJ1V7hAUpaHRB4RbzWoM//Vv83W/6TwqjKbedWy4b4TiIriXQho1tOQv/Yfj0aWZCQeZbZYSkt3gxD9t+IQ6S7FXL/LdjYVgnwvGeSpG+q4Y4L0/Ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790143399; c=relaxed/simple;
-	bh=qwds/siRDE+eeZa5GkDL6duepRKLKaLT+6EW7WQwZuE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T4PtRncW1DR/7qUBnqywJgWTmz2Uo4KtYDqxLl/3UjSiMQIqfy/VoKyq3mp2fwYiSS+dgvcHYpfvsrjb4MsI9hNXQ4Q5dGhNxIRnOprSSfZOLS7AN2H8SCMFJiE0BuiOE7TvS5+Ek+qxuvlREbAOUYEP0Jr1KfAR3sXDR6p7i7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=SOX64Lc9; arc=none smtp.client-ip=220.197.31.4
+	s=arc-20240116; t=1790143405; c=relaxed/simple;
+	bh=4Bxu09lDN3sGYhPbkWjN2XGPea3D6GgYqM6hQhRqWHs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=AM7EHf+kHriiBOKDOI4KMQpDxEyf4CXijcYxmQXpAV5zjE9iPjP1Kk1scGTqtgImDrClFDasvBNU3/Kub/0xfYYRF8DvW7KnYr13tLyGYRu6xb55nbwEjNIuyb7+uC1Aqvy4bnvWG9sPiIQ6Hnt0NsfDnwEQc6GjhF3Iemry8/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=LsCz8QFC; arc=none smtp.client-ip=117.135.210.3
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="SOX64Lc9"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="LsCz8QFC"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=jZ
-	H6p0nbE6w/2bt0YPaWHLvUgTWm/ZxZD3uu7k6qs4c=; b=SOX64Lc9dSHp+w+sIV
-	2fjj6BIgz5ovrGd7vsLK0AnjKOwD54WV4Ui0iLUb/8Y1XYtA4xps15mpWZDDu+NJ
-	QjNf1fGDJVnWzJDPU3MEG6e5omPgkgFFc7nTUNT2AeKJdj/i/7q0Pr1mt4QvFpbK
-	IyHB5CwgZr7JfTHEkjoezqug0=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=5H
+	pexEt4aloWm+EqmZ+/bxGP1VV1dZYIoQw3Ij9JXjc=; b=LsCz8QFCI6SGBJdQve
+	C/FWbmr9GxWUCY1TQwqErywH2rKJbluEplha0V36xpcl8GxymbKMFtrf8glPciw7
+	tlrWgG7N0hA+7PHCl/hpkqdpNKzxDy/PbWC8BbdwG8d/KoPz3jiyVhzaQ2h0RMIC
+	BuV+2q5gaimYKUqDe1vD11MVo=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgCH_E+Ia7NqXdW_Aw--.58316S2;
-	Wed, 23 Sep 2026 14:02:50 +0800 (CST)
+	by gzsmtp4 (Coremail) with SMTP id PygvCgCH_E+Ia7NqXdW_Aw--.58316S6;
+	Wed, 23 Sep 2026 14:02:59 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -31,10 +32,12 @@ Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	chenxiaosong@chenxiaosong.com,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v4 00/10] ntfs: persist Linux file attributes in an EA
-Date: Wed, 23 Sep 2026 14:02:36 +0800
-Message-ID: <20260923060246.2499192-1-liubaolin12138@163.com>
+Subject: [PATCH v4 04/10] ntfs: preserve EA attribute lookup errors
+Date: Wed, 23 Sep 2026 14:02:40 +0800
+Message-ID: <20260923060246.2499192-5-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260923060246.2499192-1-liubaolin12138@163.com>
+References: <20260923060246.2499192-1-liubaolin12138@163.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -42,140 +45,130 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PygvCgCH_E+Ia7NqXdW_Aw--.58316S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3Gw4DWFyrAw47XFy3Cr18Grg_yoWxZFW8pF
-	Z3K3sxK3ykJw17C392ya12qayF9Fs5AFWUWryDKry8uFyY9342qFWft3WYqF4xCrWfKw1U
-	Xa1jq3ykurWrAaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j5eOJUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwQqET2qza4q8RgAA3C
+X-CM-TRANSID:PygvCgCH_E+Ia7NqXdW_Aw--.58316S6
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuryxurWxtr4UXr13Aw4fXwb_yoW5KrW7pF
+	yfGry3twsxX3ZxKFn7tr1DX3WYvas7GryUKr9rK3Z2kr1rt34Dtw15KF9Y9FyFyrWrA340
+	gF4UKay7Cr47Xr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jjBTOUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwROGUWqza5O9NgAA3v
 
 From: Baolin Liu <liubaolin@kylinos.cn>
 
-This series implements persistent immutable, append-only and nodump flags
-using a private $LINUXFLAGS EA in the standard NTFS $EA/$EA_INFORMATION
-attributes. No new NTFS attribute type or formatter changes are needed.
+ntfs_attr_exist() treats lookup failures as absence. Using it while
+updating EAs can select creation or removal paths after an allocation or
+I/O failure.
 
-The value is a little-endian u32 with immutable, append-only and nodump
-in bits 0, 1 and 2. Inode loading restores the flags. Unknown bits are
-preserved, and the entry is removed only when its entire value is zero.
-The setter protects system metadata and sys_immutable-derived immutable
-state, rejects direct writes to $LINUXFLAGS, and updates in-memory flags
-only after the EA update succeeds. Fileattr queries also report mount-wide
-case folding. Nodump is reported through both fileattr and statx.
+Use an EA-local lookup helper that preserves errors from mapping the MFT
+record, allocating the search context and looking up the attribute.
+Check both EA attributes before modifying either and return EUCLEAN if
+only one exists. Keep the known presence state for the final update.
 
-Changes since v3 (the standalone revision of patch 2):
-- Rename the private EA from $LXFLAGS to $LINUXFLAGS, as agreed with
-  Hyunchul, to avoid the WSL-owned $LX namespace. Rename the related
-  internal fields, helpers and constants, and update the documentation.
-- Include the v3 patch-2 changes: ntfs_listxattr() reuses full-chain
-  validation, including size-only queries, and returns EUCLEAN for
-  malformed EA structures while preserving lower-level read errors.
-- Resend the complete ten-patch series with Hyunchul's Reviewed-by tag.
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+---
+ fs/ntfs/ea.c | 51 ++++++++++++++++++++++++++++++++++++---------------
+ 1 file changed, 36 insertions(+), 15 deletions(-)
 
-Changes since v2:
-- The EA rename above and the listxattr validation requested during
-  review. The on-disk bit assignments and update/rollback behavior
-  remain unchanged.
-
-Patch overview:
-- Patch 1 fixes the cached EA presence flag after creating or replacing
-  the only entry.
-- Patch 2 validates EA chains and links zero-terminated tails before
-  appending entries.
-- Patch 3 preserves EA write errors and reports truncate failures.
-- Patch 4 distinguishes missing attributes from lookup failures and
-  rejects incomplete EA attribute pairs.
-- Patch 5 distinguishes empty EA values from deletion and rejects
-  removal or replacement of absent entries.
-- Patch 6 prepares the new list before updating attributes, restores
-  both old attributes on failure, and shuts down if restoration fails.
-- Patch 7 adds fileattr queries for existing inode flags and mount-wide
-  case folding.
-- Patch 8 introduces the $LINUXFLAGS storage and inode-load paths, adds
-  immutable persistence, and protects system-imposed immutable state.
-- Patch 9 extends the persistent interface to append-only.
-- Patch 10 adds persistent nodump and reports it through fileattr and
-  statx.
-
-Testing on this revision:
-- QEMU tests covered flag and EA readback, inode cache reclaim,
-  read-only/read-write remount, unmount/mount and fresh-kernel reload.
-  Checked immutable write/unlink denial, append-only enforcement,
-  normal I/O after clearing flags, and read-only SETFLAGS rejection.
-- Verified EPERM when clearing $Bitmap protection, including without
-  sys_immutable, and when clearing sys_immutable-derived protection.
-  $MFT rejects SETFLAGS with ENOTTY through its empty operations.
-  Checked casefold reporting and STATX_ATTR_NODUMP.
-- Exercised first-EA creation/removal, XATTR_CREATE/REPLACE, zero-length
-  values, zero-terminated tails, unrelated EA preservation, unknown-bit
-  preservation, and direct LINUXFLAGS write/removal rejection.
-- listxattr tests covered exact names and sizes, zero-terminated and
-  empty lists, short buffers, and malformed offsets, name terminators,
-  values and entry headers. Size-only, full-buffer and tiny-buffer
-  requests returned EUCLEAN for malformed chains after a successful open.
-- Malformed LINUXFLAGS length, chain offsets, name termination, value
-  length and query length returned EUCLEAN. A corrupt tail following
-  LINUXFLAGS prevented an update without changing the existing flags.
-  An invalid resident EA_INFORMATION length rejected earlier by the
-  underlying attribute parser retained that parser's EIO.
-- Fault injection covered allocation failure, failures after each EA
-  attribute update and rollback failure. Tested creation, replacement
-  and removal with no other EAs, resident EAs and an 8 KiB non-resident
-  EA; checked old values and protection after failure and remount, and
-  shutdown when restoration failed.
-- Additional injection checked ENOSPC write errors, short writes,
-  truncate errors, ENOMEM/EIO lookup errors and missing EA attribute
-  pairs, with old EA contents verified after remount.
-- Formatted a SanDisk USB partition inside QEMU using the final kernel,
-  and created combined and individual flag probes through SETFLAGS.
-  A fresh QEMU boot with both disk and mount read-only confirmed flags
-  0x70/0x10/0x20/0x40 and LINUXFLAGS values 7/1/2/4, directory nodump,
-  absence of the cleared entry, unchanged canary EA and statx nodump.
-
-The USB was freshly formatted with the label LINUXFLAGS_V4. The final
-read-only check verified that $LINUXFLAGS is present with the expected
-four-byte values and that the obsolete $LXFLAGS entry is absent.
-
-Windows compatibility testing with the new $LINUXFLAGS name completed
-on Windows build 26200.9457 (ver: 10.0.26200.9457), using the LINUXFLAGS_V4
-USB volume (serial 3B3F-1D09). Windows mounted the volume and accessed
-the existing probes with dir/type. After changing the current directory
-to C:\, chkdsk G: /f completed all three stages and reported no filesystem
-problems and no further action required.
-
-After returning the USB to Linux, a fresh QEMU guest running the final
-v4 kernel checked it with both the virtual disk and NTFS mount read-only.
-GETFLAGS and EA reads confirmed combined flags 0x70 and individual flags
-0x10/0x20/0x40, with four-byte $LINUXFLAGS values 7/1/2/4 unchanged.
-Directory nodump remained set, the cleared entry remained absent, the
-unrelated canary EA was unchanged, and statx still reported nodump.
-The obsolete $LXFLAGS entry was absent.
-
-The tested Windows mount/access/CHKDSK sequence therefore preserved the
-$LINUXFLAGS names, lengths and values on this Windows build.
-
-Baolin Liu (10):
-  ntfs: keep the EA presence flag after creating the first entry
-  ntfs: validate EA chains and link zero-terminated tails
-  ntfs: propagate EA write and truncate errors
-  ntfs: preserve EA attribute lookup errors
-  ntfs: distinguish empty EA values from removal
-  ntfs: restore EA attributes when an update fails
-  ntfs: add fileattr query support
-  ntfs: persist immutable in the $LINUXFLAGS EA
-  ntfs: persist append-only in the $LINUXFLAGS EA
-  ntfs: persist nodump in the $LINUXFLAGS EA
-
- Documentation/filesystems/ntfs.rst |  24 ++
- fs/ntfs/ea.c                       | 483 +++++++++++++++--------------
- fs/ntfs/ea.h                       |   9 +
- fs/ntfs/file.c                     | 125 +++++++-
- fs/ntfs/inode.c                    |  12 +-
- fs/ntfs/inode.h                    |   2 +
- fs/ntfs/namei.c                    |   2 +
- fs/ntfs/ntfs.h                     |   4 +
- 8 files changed, 423 insertions(+), 238 deletions(-)
-
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index 98ca9e4f8d25..6f7273f754ae 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -181,6 +181,29 @@ static inline int ea_packed_size(const struct ea_attr *p_ea)
+ 	return 5 + p_ea->ea_name_length + le16_to_cpu(p_ea->ea_value_length);
+ }
+ 
++/* Unlike ntfs_attr_exist(), preserve lookup errors. */
++static int ntfs_ea_attr_lookup(struct ntfs_inode *ni, __le32 type)
++{
++	struct ntfs_attr_search_ctx *ctx;
++	struct mft_record *mrec;
++	int err;
++
++	mrec = map_mft_record(ni);
++	if (IS_ERR(mrec))
++		return PTR_ERR(mrec);
++	ctx = ntfs_attr_get_search_ctx(ni, mrec);
++	if (!ctx) {
++		err = -ENOMEM;
++		goto out;
++	}
++	err = ntfs_attr_lookup(type, AT_UNNAMED, 0, CASE_SENSITIVE,
++			       0, NULL, 0, ctx);
++	ntfs_attr_put_search_ctx(ctx);
++out:
++	unmap_mft_record(ni);
++	return err;
++}
++
+ /*
+  * Set a new EA, and set EA_INFORMATION accordingly
+  *
+@@ -198,7 +221,8 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ {
+ 	struct ntfs_inode *ni = NTFS_I(inode);
+ 	struct ea_information *p_ea_info = NULL;
+-	int ea_packed, err = 0;
++	int ea_packed, err = 0, ea_err;
++	bool has_ea;
+ 	struct ea_attr *p_ea;
+ 	u32 ea_info_qsize = 0;
+ 	char *ea_buf = NULL;
+@@ -211,7 +235,16 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 	if (name_len > 255)
+ 		return -ENAMETOOLONG;
+ 
+-	if (ntfs_attr_exist(ni, AT_EA_INFORMATION, AT_UNNAMED, 0)) {
++	err = ntfs_ea_attr_lookup(ni, AT_EA_INFORMATION);
++	if (err && err != -ENOENT)
++		return err;
++	ea_err = ntfs_ea_attr_lookup(ni, AT_EA);
++	if (ea_err && ea_err != -ENOENT)
++		return ea_err;
++	if (!err != !ea_err)
++		return -EUCLEAN;
++	has_ea = !err;
++	if (has_ea) {
+ 		p_ea_info = ntfs_attr_readall(ni, AT_EA_INFORMATION, NULL, 0,
+ 						&ea_info_size);
+ 		if (IS_ERR(p_ea_info)) {
+@@ -230,15 +263,9 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 			ea_buf = NULL;
+ 			goto out;
+ 		}
+-		if (!ea_buf) {
+-			ea_info_qsize = 0;
+-			kvfree(p_ea_info);
+-			goto create_ea_info;
+-		}
+ 
+ 		ea_info_qsize = le32_to_cpu(p_ea_info->ea_query_length);
+ 	} else {
+-create_ea_info:
+ 		p_ea_info = kzalloc_obj(struct ea_information, GFP_NOFS);
+ 		if (!p_ea_info)
+ 			return -ENOMEM;
+@@ -249,12 +276,6 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 		if (err)
+ 			goto out;
+ 
+-		if (ntfs_attr_exist(ni, AT_EA, AT_UNNAMED, 0)) {
+-			err = ntfs_attr_remove(ni, AT_EA, AT_UNNAMED, 0);
+-			if (err)
+-				goto out;
+-		}
+-
+ 		goto alloc_new_ea;
+ 	}
+ 
+@@ -404,7 +425,7 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 	/*
+ 	 * no EA or EA_INFORMATION : add them
+ 	 */
+-	if (!ntfs_attr_exist(ni, AT_EA, AT_UNNAMED, 0)) {
++	if (!has_ea) {
+ 		err = ntfs_attr_add(ni, AT_EA, AT_UNNAMED, 0, ea_buf,
+ 				ea_info_qsize + new_ea_size);
+ 		if (err)
 -- 
 2.51.0
 
