@@ -1,32 +1,32 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C513ED5C3
-	for <ntfs@lists.linux.dev>; Thu, 24 Sep 2026 08:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132B12DF138
+	for <ntfs@lists.linux.dev>; Thu, 24 Sep 2026 08:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790238476; cv=none; b=mjZjrIURaSzsigbs2pkBgB0BUvFXeVBRyVxlCKA0KbDolkljTri1FvNt1Bok2s8F1Qk+eAds25wOUy5kfXtR0AtoXfhmSC45TPwURl9vD6Q96S+nWcU9VjF+7iYelQavxETk5DaWhAi5ZnJcNJEqznf0iC+1Iy/KRL5zRXn7+yk=
+	t=1790239366; cv=none; b=eB/J3mZIqr6iPOIrWrq7tVN5wtpoYaTTktYljkCOw2lfYL53sY+I23oVc2MJNbY6+YyW7MZMV/U3cTeMrUQ5DEIWgEH63xBqlcGirudntInEncXCAe2HRLA+jUoviA9Eevs2KvGYvKMqhuxeozNAdKXYSfRaXuEtIL8FMJYCnzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790238476; c=relaxed/simple;
-	bh=KwcK5xgPqiIzsIdZYwj+iTwLj1QDZWahTspRdU2yLkw=;
+	s=arc-20240116; t=1790239366; c=relaxed/simple;
+	bh=LDR88pRPadH5YbVZB0JSvzlf8x8iZc+HAMLWxUPf9i0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tRYbUAGcEWSRN4YZZUUefDOLGp9Yz7o32hoObdt5Dx2Hhoo6BVGUxqycmzedX2fR3btiU906vdXPZW7jqryFBzWfsbAGV+4kkhK15TCunS6Dmn2LbXD/eQ47HxeAYAeP735ZrnDE/8CTVbGuO3+kfxMVLDRGVDKksQf7Az+jrYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=kBJ3uuVk; arc=none smtp.client-ip=117.135.210.2
+	 In-Reply-To:Content-Type; b=XiktGbR+DFNCKrSTC2aYrfINZjqpNyyELFHPnVh/B/b6pSjv5iY2sITEn+MuEVTKqz1+penDZ3J9SvwMS74xp6iXQvMA6z0XaN3TuLIwLxjj3wRAzmGSII4bGFIPcca4c+JIWbi7+AE4lnBge/mPs/AZ6gjTjB7JkLwOZqO1ByM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=T5K8icr1; arc=none smtp.client-ip=117.135.210.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="kBJ3uuVk"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="T5K8icr1"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=mihx/T4hDNaaTgoju8xfzL5c8ChT4gZv0yw0Iy7hzj4=;
-	b=kBJ3uuVk7qPt73DvNfl9W8Tovxc05tQYlYDAVAtmMFjKnAC4V4XlvFYCmVr6M9
-	RsrJrrJBHxzZBC/KNGqH7ypzjZgv1Rfd40aE0Vy33OK1fHou4L/A4c6nSJqnSSuR
-	+loScpCXc2aumD8sPXUN58UqGYhFcfRyGclM3miGcDdlY=
+	Content-Type; bh=IES0DGNs4px2D7Z1njUR246i9JYyabrNmEEAlJUEP9M=;
+	b=T5K8icr1c+thaeaauEmupmgZHG3Tar1PiEUeS5ei2r9yY6cujOqEKFhJnAV7pg
+	/U5TxncpHnlddAAoYsQGPXgmsWK9eKyzlRLFGKQN6WyuIJhQKLW9pzHyojasBI3W
+	Qo0BwNizo3u0H3vK6Zgr71ygvDH1YOCrC60Dw1WcGfo7w=
 Received: from [IPV6:2409:8900:1eb0:45e:3c13:fdf5:6f81:b37a] (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDnr6fx3rRqFo8PAg--.38281S2;
-	Thu, 24 Sep 2026 16:27:30 +0800 (CST)
-Message-ID: <e71aaf63-433e-45bf-a22c-b48f7ab3c4d8@163.com>
-Date: Thu, 24 Sep 2026 16:27:28 +0800
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3rr1s4rRqVNcMAg--.10243S2;
+	Thu, 24 Sep 2026 16:42:21 +0800 (CST)
+Message-ID: <0b50a37a-4ee6-47cb-9bf8-1b0d40cb26eb@163.com>
+Date: Thu, 24 Sep 2026 16:42:15 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -44,12 +44,12 @@ From: liubaolin <liubaolin12138@163.com>
 In-Reply-To: <20260924041720.16477-1-michael@woolweaver.bid>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnr6fx3rRqFo8PAg--.38281S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3WF4ktw4fXw4xWw4rAw17trb_yoW3CFWrpF
-	ZxC3sxtrZ3Xr12g3s3tw4DZa4S9r1Fkr4UXr9rGw13Aa1Fqwn2gFy8KrW0vr1SyrZ8Jw1q
-	qF4Yg3y7CayDXFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zR-18dUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRO7hmq03vPwwAAA3s
+X-CM-TRANSID:_____wD3rr1s4rRqVNcMAg--.10243S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3WF4ktw4fXw4xWw4rAw17trb_yoWxWrWUpF
+	ZxA3sxtrWfXry2vas3tw4DZ3WS9a4FkrWUXr9xGw13J3ZYqwnagF18KrWjvr4SyrZ5J34j
+	qF4Yg3y7CayUXFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRSAprUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwg2bZmq04m1jvwAA3-
 
 
 
@@ -119,6 +119,19 @@ X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRO7hmq03vPwwAAA3s
 > +
 > +	expected = le16_to_cpu(ctx->mrec->link_count);
 > +	ntfs_attr_reinit_search_ctx(ctx);
+
+Hi Michael,
+   Could we reinitialize the search context before reading link_count?
+
+   ntfs_attr_reinit_search_ctx(ctx);
+   expected = le16_to_cpu(ctx->mrec->link_count);
+
+   This ensures the count is read from the base MFT record even if the 
+incoming context points to an extent record.
+
+Thanks,
+Baolin.
+
 > +
 > +	while (!(err = ntfs_attr_lookup(AT_FILE_NAME, NULL, 0, 0, 0, NULL, 0,
 > +					ctx))) {
@@ -129,20 +142,6 @@ X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRO7hmq03vPwwAAA3s
 > +
 > +		if (unlikely(attr->non_resident))
 > +			goto corrupt;
-Hi Michael,
-   This check appears redundant.
-   Both lookup paths used by ntfs_attr_lookup(), ntfs_attr_find() and 
-ntfs_external_attr_find(), call ntfs_attr_value_is_valid() before 
-returning a matching attribute. That function checks 
-ntfs_attr_type_is_resident_only(), which already includes AT_FILE_NAME.
-
-   A non-resident $FILE_NAME would therefore be rejected by the lookup 
-before entering this loop body.
-   Could we remove this duplicate check to simplify the code?
-
-Thanks,
-Baolin.
-
 > +
 > +		attr_len = le32_to_cpu(attr->length);
 > +		value_len = le32_to_cpu(attr->data.resident.value_length);
@@ -152,25 +151,6 @@ Baolin.
 > +			     value_len > attr_len - value_off ||
 > +			     value_len < offsetof(struct file_name_attr, file_name)))
 > +			goto corrupt;
-
-Hi Michael,
-    These bounds and minimum-length checks are also covered by 
-ntfs_attr_value_is_valid().
-
-   For the first two conditions, ntfs_resident_attr_value_get() already 
-checks that value->len <= attr_len and value_offset <= attr_len - 
-value->len, ensuring that the value fits entirely within the attribute. 
-This covers the same bounds, with the subtraction arranged differently.
-   For the third condition, ntfs_resident_attr_min_value_length() 
-returns offsetof(struct file_name_attr, file_name) + sizeof(__le16) for 
-AT_FILE_NAME, which is stricter than the check here.
-
-   None of these conditions can therefore hold after a successful 
-lookup. Could we remove these duplicate checks to simplify the code?
-
-Thanks,
-Baolin.
-
 > +
 > +		fn = (struct file_name_attr *)((u8 *)attr + value_off);
 > +		names++;
@@ -186,17 +166,6 @@ Baolin.
 > +			   "Inode link count doesn't match file name attributes. You should run chkdsk.");
 > +		return -EIO;
 > +	}
-
-Hi Michael,
-    This condition indicates filesystem metadata corruption: either the 
-number of name attributes does not match the on-disk link count, or 
-there are no names contributing to the VFS link count.
-    Could we return -EFSCORRUPTED instead of -EIO to describe the error 
-more accurately?
-
-Thanks,
-Baolin.
-
 > +
 > +	ntfs_attr_reinit_search_ctx(ctx);
 > +	return links;
@@ -205,16 +174,6 @@ Baolin.
 > +	ntfs_error(ctx->ntfs_ino->vol->sb,
 > +		   "Corrupt file name attribute. You should run chkdsk.");
 > +	return -EIO;
-
-Hi Michael,
-   Both checks that jump to corrupt appear to be covered by the 
-underlying validation and can be removed.
-   If you agree with those changes, the corrupt: label and its 
-associated error handling can also be dropped.
-
-Thanks,
-Baolin.
-
 > +}
 > +
 >   static struct lock_class_key ntfs_dir_inval_lock_key;
