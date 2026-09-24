@@ -1,39 +1,39 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A983C73CC
-	for <ntfs@lists.linux.dev>; Thu, 24 Sep 2026 09:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEC03A9630
+	for <ntfs@lists.linux.dev>; Thu, 24 Sep 2026 09:01:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790240492; cv=none; b=GFMXCUYnTpD7dSI2CWQhD+eNBhJIeKKLufgD67369aFPVIvSwJmJmtEYa6uFUQe4lAwox2KY4ZYBoCMwH+vMu3/PqjC9r81Iy2qle3rEqQGowo6y+fifQlhJerfrQDJExQmnn+dKdHKbebg+q9zeDcKoWvHZVjdljPBxjbM+aoI=
+	t=1790240492; cv=none; b=tqlJzyUApsQwk4LYNB5v7FoWpVkFKwI6G3/C7z5mOk8ZlkYDo0t9eI73WB1U3mQJy8hfQCbiQRaJinoMikcjzQu7hjLTjoHpgQpwU6eV8puQLclW1NeNzc71oVwSfY8nTDojCEwOeXWKdOetazD6yuUl1UIzWZAljve7238nlUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1790240492; c=relaxed/simple;
-	bh=URnx+KRu+EBokNvm0JYAZE5u8FlO6vN1AwaGb3rIO60=;
+	bh=L5ZqUyzrf4+2nFL11gRp7aQvV9wnEqTL5bER3fteVEQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ljSKIBk1ARQGB36IyL0wxF7anWtHAmr5FDZxwV/YLljCEcYJDXDVaOyV/FerjZbX30yrCJTPV3fgTnRIw3Z767+IdorffoN0pfuDszpm0ZnLSPV34ni/3fGRtLsRVVVhih1t9gzKBnEktgXVHq9wgPSPiUIrlQKajCy5WqIh988=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=mmtswZig; arc=none smtp.client-ip=117.135.210.2
+	 MIME-Version; b=buOfbUYidJNuQgE1/Bz2BH/xsU7RA4uq8K81fS5btQhc9dCStybje/DAEuxYh7IRB45RPtiWSzPJzX79F5Y4wYlmIadoTcvJmXWqyPWeDO3+UoWfawT5IaHtw5ZMuth4fFXFzhl9xSmfp+P9G9PPwHYCoXSNHtcU0GdXeGMBqnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=P7Dc3lHh; arc=none smtp.client-ip=117.135.210.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="mmtswZig"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="P7Dc3lHh"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=pd
-	6oZG92vv/3ivhx7v3ox5s2RlQW7KTGSNXZ1YwA9lQ=; b=mmtswZigk9gJnKqDai
-	wljRQVyJ4rEB6mB8oBwhzUQxYDkUhOdCDLcYsmBsW5B9qFcm/hP80I0gH7tsH5m4
-	HoBBgkXUExW+txHAEGCZoy9gzNYf4ELM2GlNp5nCz/jJatzRQFuipnRpIOl+h9Ff
-	AMSRB3QTfr2oiGGp0oW8fB5bo=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=qm
+	i3FHcbWjT1HDcn/gcvvyRGjaouytMYXJtS2GuTjXA=; b=P7Dc3lHhehjERVQMWX
+	dF3znFXcLEexbKPSOGwAKbxHQs00aXrJJyQ8Z+ZG7KU9/5Ha+prS9FwTFDr1bu6V
+	QqjE6hfpba2lB1bRRWNnjy+Wftp/sFftUL57KzBriwUgH1+QHL3FiJNGWS9uirg2
+	BqNF/GccW++jmZ1kYMacEMq9Q=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wD3H73Q5rRqL6EhAg--.34883S4;
-	Thu, 24 Sep 2026 17:01:11 +0800 (CST)
+	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wD3H73Q5rRqL6EhAg--.34883S7;
+	Thu, 24 Sep 2026 17:01:16 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v3 2/6] ntfs: report attribute errors to fsnotify
-Date: Thu, 24 Sep 2026 17:00:58 +0800
-Message-ID: <20260924090102.2865942-3-liubaolin12138@163.com>
+Subject: [PATCH v3 5/6] ntfs: report MFT writeback errors to fsnotify
+Date: Thu, 24 Sep 2026 17:01:01 +0800
+Message-ID: <20260924090102.2865942-6-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260924090102.2865942-1-liubaolin12138@163.com>
 References: <20260924090102.2865942-1-liubaolin12138@163.com>
@@ -44,360 +44,127 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3H73Q5rRqL6EhAg--.34883S4
-X-Coremail-Antispam: 1Uf129KBjvAXoW3ZrWkJw1kur4rJFykur48WFg_yoW8JrWDWo
-	ZIya1j9w4kKr1Yy3y09wn8tas8uan8GrZ8JFW5Jrnrur9Fqw4DGw1xG3W3Wayxu3yFgr1q
-	grykt395AFs7try5n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU3CzuDUUUU
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Re2gWq05tf2kQAA3B
+X-CM-TRANSID:_____wD3H73Q5rRqL6EhAg--.34883S7
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZw1kJF4kKrWrJrWfAF4UXFb_yoW5Kw45pF
+	Z8G3s3KrWDtr47Kwn7trW2v3Wa934xKa17CrykG3WI9wn8Kr1jqa10grWSgFWFkr93J3y8
+	Ja1qkrZ8CF1UAr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jcrc-UUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Ry4g2q05tz3VwAA3K
 
 From: Baolin Liu <liubaolin@kylinos.cn>
 
-Attribute corruption and failed allocation rollbacks can leave files
-unusable or their metadata inconsistent without notifying health monitors.
+MFT writeback failures need to reach filesystem health monitors as well
+as the kernel log and mapping error state.
 
-Add a file-level reporting helper and notify fsnotify when attribute
-validation fails or a rollback cannot release clusters or restore mapping
-pairs. Keep the original operation's return value separate from the
-rollback error reported to userspace.
+Report device errors from the existing parent BIO completion callback for
+both synchronous and asynchronous writes, before ending folio writeback.
+The generic fserror code queues notification work and takes its own inode
+reference, so no additional NTFS completion work is needed.
 
-Report rollback failures independently of earlier lookup or mapping
-errors. Leave event merging to fanotify instead of carrying reporting
-state through search contexts and mapping-pairs updates.
+Report mirror and preparation failures where they are detected, including
+failures that occur before a BIO can be submitted. Keep these reports
+together with completion reporting so errors retained in the write context
+still mark the volume and notify userspace independently of device errors.
+Preserve the retry handling for allocation failures in MFT write
+preparation.
 
 Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 ---
- fs/ntfs/attrib.c   | 84 ++++++++++++++++++++++++++++++++--------------
- fs/ntfs/attrlist.c | 17 ++++++----
- fs/ntfs/bitmap.c   |  2 +-
- fs/ntfs/super.c    | 12 +++++++
- fs/ntfs/volume.h   |  1 +
- 5 files changed, 84 insertions(+), 32 deletions(-)
+ fs/ntfs/mft.c | 34 ++++++++++++++++++++++++----------
+ 1 file changed, 24 insertions(+), 10 deletions(-)
 
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 333b3371acb4..10b7f9b7c051 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -838,6 +838,7 @@ static int ntfs_attr_find(const __le32 type, const __le16 *name,
- 		const u8 *val, const u32 val_len, struct ntfs_attr_search_ctx *ctx)
- {
- 	struct attr_record *a;
-+	struct ntfs_inode *base_ni;
- 	struct ntfs_volume *vol = ctx->ntfs_ino->vol;
- 	__le16 *upcase = vol->upcase;
- 	u32 upcase_len = vol->upcase_len;
-@@ -964,7 +965,11 @@ static int ntfs_attr_find(const __le32 type, const __le16 *name,
+diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
+index a1b1c080b256..6a202ffc513a 100644
+--- a/fs/ntfs/mft.c
++++ b/fs/ntfs/mft.c
+@@ -481,9 +481,11 @@ static void ntfs_mft_end_io(struct bio *bio)
+ 		err = blk_status_to_errno(bio->bi_status);
+ 	else
+ 		err = ctx->error;
++	/* Report device errors from both synchronous and asynchronous writes. */
++	if (bio->bi_status)
++		ntfs_report_file_metadata_error(ctx->mapping->host, err);
+ 	if (err) {
+ 		mapping_set_error(ctx->mapping, err);
+-		NVolSetErrors(ctx->vol);
+ 		ntfs_error(ctx->vol->sb, "I/O error while writing MFT: %d",
+ 			   err);
  	}
- 	ntfs_error(vol->sb, "mft %#llx, type %#x is corrupt. Run chkdsk.",
- 		   (long long)ctx->ntfs_ino->mft_no, le32_to_cpu(type));
+@@ -544,22 +546,24 @@ static int ntfs_sync_mft_mirror_unit(struct ntfs_volume *vol,
+ 	u64 mirror_size;
+ 	unsigned int mirror_ofs;
+ 	u8 *src, *dst;
+-	int err;
++	int err = -EIO;
+ 
+ 	if (unlikely(!vol->mftmirr_ino))
+-		return -EIO;
++		goto out_report;
+ 
+ 	mirror_size = (u64)vol->mftmirr_size * vol->mft_record_size;
+ 	if (mirror_file_ofs >= mirror_size ||
+ 	    unit->len > mirror_size - mirror_file_ofs)
+-		return -EIO;
++		goto out_report;
+ 	if (unit->folio_ofs + unit->len > folio_size(source))
+-		return -EIO;
++		goto out_report;
+ 
+ 	mirror = read_mapping_folio(vol->mftmirr_ino->i_mapping,
+ 				    mirror_file_ofs >> PAGE_SHIFT, NULL);
+-	if (IS_ERR(mirror))
+-		return PTR_ERR(mirror);
++	if (IS_ERR(mirror)) {
++		err = PTR_ERR(mirror);
++		goto out_report;
++	}
+ 
+ 	folio_lock(mirror);
+ 	if (folio_test_writeback(mirror))
+@@ -598,6 +602,9 @@ static int ntfs_sync_mft_mirror_unit(struct ntfs_volume *vol,
+ out_unlock:
+ 	folio_unlock(mirror);
+ 	folio_put(mirror);
++out_report:
++	if (err)
++		ntfs_report_metadata_error(vol, err);
+ 	return err;
+ }
+ 
+@@ -815,8 +822,14 @@ int write_mft_record_nolock(struct ntfs_inode *ni, struct mft_record *m, int syn
+ 		mark_mft_record_dirty(ni);
+ 		if (!sync)
+ 			err = 0;
+-	} else
+-		NVolSetErrors(vol);
++	} else {
++		struct ntfs_inode *base_ni = ni;
++
++		if (ni->nr_extents < 0)
++			base_ni = ni->ext.base_ntfs_ino;
++		mapping_set_error(folio->mapping, err);
++		ntfs_report_file_metadata_error(VFS_I(base_ni), err);
++	}
+ 	return err;
+ }
+ 
+@@ -3188,7 +3201,7 @@ static void ntfs_mft_write_error(struct ntfs_volume *vol,
+ 				 struct address_space *mapping, int err)
+ {
+ 	mapping_set_error(mapping, err);
 -	NVolSetErrors(vol);
-+	if (ctx->ntfs_ino->nr_extents >= 0)
-+		base_ni = ctx->ntfs_ino;
-+	else
-+		base_ni = ctx->ntfs_ino->ext.base_ntfs_ino;
-+	ntfs_report_file_metadata_error(VFS_I(base_ni), -EIO);
- 	return -EIO;
++	ntfs_report_file_metadata_error(mapping->host, err);
+ 	ntfs_error(vol->sb, "Error while writing MFT folio: %d", err);
  }
  
-@@ -1501,8 +1506,12 @@ static int ntfs_external_attr_find(const __le32 type,
- 		err = -EIO;
- 	}
- 
--	if (err != -ENOMEM)
--		NVolSetErrors(vol);
-+	if (err != -ENOMEM) {
-+		if (err != -EINTR && err != -ERESTARTSYS)
-+			ntfs_report_file_metadata_error(VFS_I(base_ni), err);
-+		else
-+			NVolSetErrors(vol);
-+	}
- 	return err;
- not_found:
- 	/*
-@@ -2233,10 +2242,11 @@ int ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size)
- rl_err_out:
- 	up_write(&ni->runlist.lock);
- 	if (rl) {
--		if (ntfs_cluster_free_from_rl(vol, rl) < 0) {
-+		err2 = ntfs_cluster_free_from_rl(vol, rl);
-+		if (err2 < 0) {
- 			ntfs_error(vol->sb,
- 				"Failed to release allocated cluster(s) in error code path.  Run chkdsk to recover the lost cluster(s).");
--			NVolSetErrors(vol);
-+			ntfs_report_file_metadata_error(vi, err2);
- 		}
- 		kvfree(rl);
- folio_err_out:
-@@ -3728,6 +3738,7 @@ static int __ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni,
- 	struct attr_record *a;
- 	s64 stop_vcn;
- 	int err = 0, mp_size, cur_max_mp_size, exp_max_mp_size;
-+	int rollback_err;
- 	bool finished_build;
- 	bool first_updated = false;
- 	struct super_block *sb;
-@@ -4016,10 +4027,14 @@ static int __ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni,
- 		m = map_mft_record(ext_ni);
- 		if (IS_ERR(m)) {
- 			ntfs_error(sb, "Could not map new MFT record");
--			if (ntfs_mft_record_free(ni->vol, ext_ni))
-+			rollback_err = ntfs_mft_record_free(ni->vol, ext_ni);
-+			if (rollback_err) {
- 				ntfs_error(sb, "Could not free MFT record");
-+				ntfs_report_file_metadata_error(VFS_I(base_ni),
-+								rollback_err);
-+			}
- 			ntfs_inode_close(ext_ni);
--			err = -ENOMEM;
-+			err = PTR_ERR(m);
- 			ext_ni = NULL;
- 			goto put_err_out;
- 		}
-@@ -4053,8 +4068,12 @@ static int __ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni,
- 		if (err < 0) {
- 			ntfs_error(sb, "Could not add attribute extent");
- 			unmap_mft_record(ext_ni);
--			if (ntfs_mft_record_free(ni->vol, ext_ni))
-+			rollback_err = ntfs_mft_record_free(ni->vol, ext_ni);
-+			if (rollback_err) {
- 				ntfs_error(sb, "Could not free MFT record");
-+				ntfs_report_file_metadata_error(VFS_I(base_ni),
-+								rollback_err);
-+			}
- 			ntfs_inode_close(ext_ni);
- 			goto put_err_out;
- 		}
-@@ -4067,8 +4086,12 @@ static int __ntfs_attr_update_mapping_pairs(struct ntfs_inode *ni,
- 		if (err < 0 && err != -ENOSPC) {
- 			ntfs_error(sb, "Failed to build MP");
- 			unmap_mft_record(ext_ni);
--			if (ntfs_mft_record_free(ni->vol, ext_ni))
-+			rollback_err = ntfs_mft_record_free(ni->vol, ext_ni);
-+			if (rollback_err) {
- 				ntfs_error(sb, "Couldn't free MFT record");
-+				ntfs_report_file_metadata_error(VFS_I(base_ni),
-+								rollback_err);
-+			}
- 			goto put_err_out;
- 		}
- 		a->data.non_resident.highest_vcn = cpu_to_le64(stop_vcn - 1);
-@@ -4449,6 +4472,7 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 	struct ntfs_attr_search_ctx *ctx = NULL;
- 	struct runlist_element *rl, *rln;
- 	s64 org_alloc_size, org_compressed_size;
-+	s64 freed;
- 	int err, err2;
- 	struct ntfs_inode *base_ni;
- 	struct super_block *sb = ni->vol->sb;
-@@ -4678,10 +4702,12 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 	return 0;
- rollback:
- 	/* Free allocated clusters. */
--	err2 = ntfs_cluster_free(ni, ntfs_bytes_to_cluster(vol, org_alloc_size),
--				-1, ctx);
--	if (err2)
-+	freed = ntfs_cluster_free(ni, ntfs_bytes_to_cluster(vol, org_alloc_size),
-+				  -1, ctx);
-+	if (freed < 0) {
- 		ntfs_debug("Leaking clusters");
-+		ntfs_report_file_metadata_error(VFS_I(base_ni), freed);
-+	}
- 
- 	/* Now, truncate the runlist itself. */
- 	if (ni != locked_ni)
-@@ -4698,14 +4724,18 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 		kvfree(ni->runlist.rl);
- 		ni->runlist.rl = NULL;
- 		ntfs_error(sb, "Couldn't truncate runlist. Rollback failed");
-+		ntfs_report_file_metadata_error(VFS_I(base_ni), err2);
- 	} else {
- 		/* Prepare to mapping pairs update. */
- 		ni->allocated_size = org_alloc_size;
- 		/* Restore mapping pairs. */
- 		if (ni != locked_ni)
- 			down_read(&ni->runlist.lock);
--		if (__ntfs_attr_update_mapping_pairs(ni, 0, locked_ni, true))
-+		err2 = __ntfs_attr_update_mapping_pairs(ni, 0, locked_ni, true);
-+		if (err2) {
- 			ntfs_error(sb, "Failed to restore old mapping pairs");
-+			ntfs_report_file_metadata_error(VFS_I(base_ni), err2);
-+		}
- 		if (ni != locked_ni)
- 			up_read(&ni->runlist.lock);
- 
-@@ -5139,8 +5169,9 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
- 	struct runlist_element *rl, *rlc;
- 	struct runlist_element *old_rl = NULL;
- 	s64 vcn = vcn_start, lcn, clu_count;
-+	s64 freed;
- 	s64 lcn_seek_from = -1;
--	int err = 0;
-+	int err = 0, err2;
- 	size_t new_rl_count, old_rl_count;
- 
- 	err = ntfs_attr_map_whole_runlist(ni);
-@@ -5239,10 +5270,11 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
- 			 old_rl_count * sizeof(*old_rl), GFP_NOFS);
- 	if (!old_rl) {
- 		err = -ENOMEM;
--		if (ntfs_cluster_free_from_rl(vol, rlc)) {
-+		err2 = ntfs_cluster_free_from_rl(vol, rlc);
-+		if (err2) {
- 			ntfs_error(vol->sb,
- 				   "Failed to free cluster allocation after runlist backup failure.");
--			NVolSetErrors(vol);
-+			ntfs_report_file_metadata_error(VFS_I(ni), err2);
- 		}
- 		kvfree(rlc);
- 		goto out;
-@@ -5252,8 +5284,11 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
- 	if (IS_ERR(rl)) {
- 		ntfs_error(vol->sb, "Failed to merge runlists");
- 		err = PTR_ERR(rl);
--		if (ntfs_cluster_free_from_rl(vol, rlc))
-+		err2 = ntfs_cluster_free_from_rl(vol, rlc);
-+		if (err2) {
- 			ntfs_error(vol->sb, "Failed to free hot clusters.");
-+			ntfs_report_file_metadata_error(VFS_I(ni), err2);
-+		}
- 		kvfree(rlc);
- 		goto out;
- 	}
-@@ -5272,13 +5307,12 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
- 		ntfs_attr_reinit_search_ctx(ctx);
- 		err = ntfs_attr_update_mapping_pairs_locked(ni, 0, ni);
- 		if (err) {
--			int err2;
--
--			err2 = ntfs_cluster_free(ni, vcn, clu_count, ctx);
--			if (err2 < 0 || err2 != clu_count) {
-+			freed = ntfs_cluster_free(ni, vcn, clu_count, ctx);
-+			if (freed < 0 || freed != clu_count) {
- 				ntfs_error(vol->sb,
- 					   "Failed to free cluster allocation. Leaving inconsistent metadata.\n");
--				NVolSetErrors(vol);
-+				err2 = freed < 0 ? freed : -EIO;
-+				ntfs_report_file_metadata_error(VFS_I(ni), err2);
- 				goto out;
+@@ -3346,6 +3359,7 @@ static int ntfs_write_mft_block(struct folio *folio, struct writeback_control *w
+ 						ctx->error = -EIO;
+ 					redirty = true;
+ 					err = -EIO;
++					ntfs_mft_write_error(vol, mapping, err);
+ 					break;
+ 				}
  			}
- 
-@@ -5290,11 +5324,11 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
- 			ni->runlist.rl = old_rl;
- 			ni->runlist.count = old_rl_count;
- 			old_rl = NULL;
--			if (ntfs_attr_update_mapping_pairs_locked(
--					ni, 0, ni)) {
-+			err2 = ntfs_attr_update_mapping_pairs_locked(ni, 0, ni);
-+			if (err2) {
- 				ntfs_error(vol->sb,
- 					   "Failed to restore mapping pairs after allocation rollback.\n");
--				NVolSetErrors(vol);
-+				ntfs_report_file_metadata_error(VFS_I(ni), err2);
- 			}
- 		}
- 	} else {
-diff --git a/fs/ntfs/attrlist.c b/fs/ntfs/attrlist.c
-index 1bbd2bc62c58..3c36e849a8ab 100644
---- a/fs/ntfs/attrlist.c
-+++ b/fs/ntfs/attrlist.c
-@@ -76,7 +76,7 @@ static int ntfs_attrlist_repack(struct inode *attr_vi,
- 	s64 old_alloc_size;
- 	size_t old_rl_count, new_rl_count;
- 	unsigned long flags;
--	int err, restore_err;
-+	int err, free_err, restore_err;
- 	if (attr_ni->mft_no != FILE_MFT || !NInoNonResident(attr_ni) ||
- 		min_alloc_size < 0)
- 		return -EINVAL;
-@@ -127,7 +127,9 @@ static int ntfs_attrlist_repack(struct inode *attr_vi,
- 		new_rl_count = 2;
- 
- 	if (new_rl_count != 2) {
--		ntfs_cluster_free_from_rl(vol, new_rl);
-+		free_err = ntfs_cluster_free_from_rl(vol, new_rl);
-+		if (free_err)
-+			ntfs_report_file_metadata_error(attr_vi, free_err);
- 		kvfree(new_rl);
- 		err = -ENOSPC;
- 		goto out_free_data;
-@@ -157,11 +159,12 @@ static int ntfs_attrlist_repack(struct inode *attr_vi,
- 		goto restore_old_runlist;
- 
- 	/* The new mapping is now authoritative; release the old data runs. */
--	if (ntfs_cluster_free_from_rl(vol, old_rl)) {
-+	free_err = ntfs_cluster_free_from_rl(vol, old_rl);
-+	if (free_err) {
- 		ntfs_error(vol->sb,
- 			   "Failed to free old ATTRIBUTE_LIST extent: inode %#llx",
- 			   (long long)attr_ni->mft_no);
--		NVolSetErrors(vol);
-+		ntfs_report_file_metadata_error(attr_vi, free_err);
- 	}
- 	kvfree(old_rl);
- 	kvfree(data);
-@@ -182,10 +185,12 @@ static int ntfs_attrlist_repack(struct inode *attr_vi,
- 	if (restore_err) {
- 		ntfs_error(vol->sb, "Failed to restore ATTRIBUTE_LIST mapping pairs (%d)",
- 			   restore_err);
--		NVolSetErrors(vol);
-+		ntfs_report_file_metadata_error(attr_vi, restore_err);
- 	}
- 
--	ntfs_cluster_free_from_rl(vol, new_rl);
-+	free_err = ntfs_cluster_free_from_rl(vol, new_rl);
-+	if (free_err)
-+		ntfs_report_file_metadata_error(attr_vi, free_err);
- 	kvfree(new_rl);
- 	err = err ? err : restore_err;
- 
-diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
-index 912fdcca8e01..54efcb054d0a 100644
---- a/fs/ntfs/bitmap.c
-+++ b/fs/ntfs/bitmap.c
-@@ -287,7 +287,7 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
- 		ntfs_error(vi->i_sb,
- 			"Failed to map subsequent page (error %i) and rollback failed (error %i). Aborting and leaving inconsistent metadata. Unmount and run chkdsk.",
- 			err, pos);
--		NVolSetErrors(NTFS_SB(vi->i_sb));
-+		ntfs_report_file_metadata_error(vi, pos);
- 	}
- 	return err;
- }
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 827313df0e28..a7a7ecf9d074 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -402,6 +402,18 @@ void ntfs_report_metadata_error(struct ntfs_volume *vol, int error)
- 		fserror_report_metadata(vol->sb, error, GFP_ATOMIC);
- }
- 
-+void ntfs_report_file_metadata_error(struct inode *inode, int error)
-+{
-+	struct ntfs_inode *ni = NTFS_I(inode);
-+
-+	/* Attribute inodes share the file handle of their base inode. */
-+	if (NInoAttr(ni))
-+		inode = VFS_I(ni->ext.base_ntfs_ino);
-+	NVolSetErrors(NTFS_SB(inode->i_sb));
-+	if (inode->i_sb->s_flags & SB_ACTIVE)
-+		fserror_report_file_metadata(inode, error, GFP_ATOMIC);
-+}
-+
- void ntfs_handle_error(struct super_block *sb)
- {
- 	struct ntfs_volume *vol = NTFS_SB(sb);
-diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
-index 5bcd0dd2a19d..366e9f5d0443 100644
---- a/fs/ntfs/volume.h
-+++ b/fs/ntfs/volume.h
-@@ -255,6 +255,7 @@ DEFINE_NVOL_BIT_OPS(NativeSymlinkRel)
- DEFINE_NVOL_BIT_OPS(SymlinkNative)
- 
- void ntfs_report_metadata_error(struct ntfs_volume *vol, int error);
-+void ntfs_report_file_metadata_error(struct inode *inode, int error);
- 
- static inline void ntfs_inc_free_clusters(struct ntfs_volume *vol, s64 nr)
- {
 -- 
 2.51.0
 
