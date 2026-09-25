@@ -1,78 +1,78 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E6B9476CDD
-	for <ntfs@lists.linux.dev>; Fri, 25 Sep 2026 08:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C6B3403F4
+	for <ntfs@lists.linux.dev>; Fri, 25 Sep 2026 08:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790325673; cv=none; b=iY6G/S1gVX3fm3VHLtyie5tT2KyZqpCjoWPzpJy9mPevUISRZOWYeGCunOnhTyYpVInILXkUyt9L3/XzzvZH32n6CC5EGt/WIyKO4M0gpce7ENP9sj7WdhK7YpjXgbKrXkXbJwQL5Wr/gnvU6PDcZGGPvaLzvXTYCy81ggl6VyI=
+	t=1790325744; cv=none; b=CIZolMFeLzhn1H3z1mcHDqkxdT6LbkV5D+we41vX8GNLKDLo8LddP4c68JPF3HPo03c5zmTqqDg+vcGwnk/WkNLUBGqfhPW3bHy3f1E1D6RjKRtfJr3z8fCMDBmo/W4zYEe+oqBE2hjIVSAV3q8t3Es7G8ERqihimgTRGp7LYBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790325673; c=relaxed/simple;
-	bh=y9XteAkCyP+v0FYz44SQwqSifvuiXc3WM9WstF3aM5U=;
+	s=arc-20240116; t=1790325744; c=relaxed/simple;
+	bh=kq7Xr0qZq5SIrw/g3FvF56cCahOW1bfM0GOYOHuO/jc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Jj4hjyX9WWYCVeuc4kxV1WZVOtK/3ndH15vaUnFIgiCMXp5UuMd2N3mwI/T/RUvGsT5AUdIm+kumthAjIafWEXJAydOFKDBuyFv6Ki5Ym4b52vRza2Fq8UeL/l5h/aP711imyjBu+zwAjxqiJ2+g4foquVw4+Y5g/Dr9+D4lvtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IuovNcyL; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=kQ644UrbSrcpOFXpUWdwSMDjhyvhsBMKQWfkSvC0PZnFuuUGOeSYrgy9DBLNPpUv5DEflQvWel6hSxA0ia3+mLLEkIh1MQ6vdv99gwjBfu9SliQ0wY22xJEj7lz/XBNv8EFs8EyBSuJPpZY4QMwSYPOGSRlIwn4X+AXggA9Xpn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cBmlGsDt; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IuovNcyL"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E09081F000FF
-	for <ntfs@lists.linux.dev>; Fri, 25 Sep 2026 08:41:11 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cBmlGsDt"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB8411F00898
+	for <ntfs@lists.linux.dev>; Fri, 25 Sep 2026 08:42:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790325671;
-	bh=TBQwqB2tvKCGdJ3ul4N5dIovuA+f4EhpXvTWX1hdc6A=;
+	s=k20260515; t=1790325734;
+	bh=kq7Xr0qZq5SIrw/g3FvF56cCahOW1bfM0GOYOHuO/jc=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=IuovNcyLixXSMbgQQQn4wor3DqLr3t5QoDKb9+RbTHElGuRy0VOuwu7a+0iD0M404
-	 PuCy+I3C/RRpAbA5a1IFuMrjcWvmqORWfIlOEJaFcsjtSCKQF8NYhwTou4RJHc/mJk
-	 SDLTh5ahW+J6nMcLYviwpBx1w46Z0r3j0y6pJnZhByaNrn/Ckv+3wE6UREV/1mAIJt
-	 9LCD7t9ldqjDD4Q0ootv1GY4Zfy1Yd3ujDtSsR6cbS3VChFk7+xMhg+XtCwxblA1cE
-	 SKa8wBFl3JaUrmjHBy97kUlX30XTbOqd7ektenWhBA2NF6eNf3E6OmIdp8IwfW/xV2
-	 +pN27q6IsR31A==
-Received: by mail-ej2-f12.google.com with SMTP id a640c23a62f3a-c254fa650c8so104879166b.0
-        for <ntfs@lists.linux.dev>; Fri, 25 Sep 2026 01:41:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBzk4aZ/0ryD0WH0zH6dRhTdgBuqAUhIYRcqp2skBWKzYhfGdUMCK+myl83i+TNvjpPiXBz8@lists.linux.dev
-X-Gm-Message-State: AFuF++kf7gmr1eRroH+rIFUp0ptCgH06aGMl7ujpbBHzqRs+gIypxzjj
-	NJmi92AUdVNQLyJbNsAuXegYxSItegHC9xOSS7UilXIwfEyIWDJACy2t7mD2w9kSXi0kROSZx+S
-	wnLuUqomLW1K9ytluO2k7bZy4PicI88Y=
-X-Received: by 2002:a17:906:9c82:b0:c29:49fd:c98 with SMTP id
- a640c23a62f3a-c2ac24c4c6dmr434654866b.32.1790325670498; Fri, 25 Sep 2026
- 01:41:10 -0700 (PDT)
+	b=cBmlGsDt4bjaH+j3a/VkZir05T9IXpT2+YXbeaQqVIOcMt6LsApJsy1TMuDSSShl5
+	 mXdIFOD+oSYfWs5Uk3Gz8OshbofiugCteOAMiaRBkQQHNRvTN9eEflgCT2uIvpaAA7
+	 fqHA3KkOudkaDt5R3OTHcmGwxljfgd4997p9ncvyCgoOYJFZ2br+XMuLi0Z6FF9tqS
+	 DlZqOzayUR5TJtplRxooc7zgsRzjc7G0Om8Mhw6BIFTotMi5jrrF+0rvxl1P3UtEaw
+	 +BJo9x55wQbWx6KEcAmyllCGG05b7MiKkAfikS3erLDCOBU1efN8nmdNkYMFLvFfeX
+	 wxSZqvh083v2Q==
+Received: by mail-ej2-f36.google.com with SMTP id a640c23a62f3a-c254f9f0b1eso99962066b.1
+        for <ntfs@lists.linux.dev>; Fri, 25 Sep 2026 01:42:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvBy0MheOjExzdbb+cB7MFo7bNFMnRmLL7mJLI0QSBX3fKTklLFJbbgkiVkF4VUri+r6w51ym@lists.linux.dev
+X-Gm-Message-State: AFuF++lKaGyjnJhuWK320UzW+cOCh5Ml12P01Odo7RpAt3N0HxmlHAkP
+	eHS3jCl0aIHwrRa1a/WJ3xEfysvjJ9xUNeIubh/3ipEl1oVZgkGY0ytuyKgkCs9oHohGZqDIHlA
+	q29OIE8IeQN0//Xnn202voWlicCUq5KU=
+X-Received: by 2002:a17:907:6eac:b0:c29:f5d8:9c82 with SMTP id
+ a640c23a62f3a-c2ac22f9694mr475995366b.49.1790325733527; Fri, 25 Sep 2026
+ 01:42:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260924014207.1678305-1-wangxuewen@kylinos.cn>
-In-Reply-To: <20260924014207.1678305-1-wangxuewen@kylinos.cn>
+References: <tencent_5D0FB865BC14FCE7080CBF2AA1E23ECA2005@qq.com>
+In-Reply-To: <tencent_5D0FB865BC14FCE7080CBF2AA1E23ECA2005@qq.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Fri, 25 Sep 2026 17:40:56 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8HNjkz68hk__RmZ8geWt4eCWXbETCHcRAAFz7t_qUDTA@mail.gmail.com>
-X-Gm-Features: AclHuK_g2TYqXeJoYpryfeiypDlcSa2suqJy_86YFTUgbbmD3dvnTxeYCKUybDU
-Message-ID: <CAKYAXd8HNjkz68hk__RmZ8geWt4eCWXbETCHcRAAFz7t_qUDTA@mail.gmail.com>
-Subject: Re: [PATCH v1 0/4] ntfs: fix MFT bitmap extension allocation
-To: Xuewen Wang <wangxuewen@kylinos.cn>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+Date: Fri, 25 Sep 2026 17:42:01 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd-M6aoyfL1d46Z5u9XGAyQK=1Qi814KpH06_XFvVpKAyA@mail.gmail.com>
+X-Gm-Features: AclHuK9d2wes8GqOzYqOyGtkDd8N66VnrhqEwhA0nQjE7hfbWdjpAoQbjn-uORs
+Message-ID: <CAKYAXd-M6aoyfL1d46Z5u9XGAyQK=1Qi814KpH06_XFvVpKAyA@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: fix runlist marker allocation and count
+To: pwngets <2605452642@qq.com>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 24, 2026 at 10:42=E2=80=AFAM Xuewen Wang <wangxuewen@kylinos.cn=
-> wrote:
+On Wed, Sep 23, 2026 at 2:41=E2=80=AFPM pwngets <2605452642@qq.com> wrote:
 >
-> This series fixes four bugs in the MFT bitmap extension path:
+> The marker path can append an unmapped element and an ENOENT
+> terminator after the merge helpers have already computed the resulting
+> runlist count. In that case, allocating ds + 2 elements leaves no room
+> for the terminator at ds + 2. The path also increments new_rl_count even
+> though the merge helper already accounted for the final runlist size,
+> causing a later merge to start past the terminator.
 >
->   - The adjacent-cluster candidate can be outside the volume. Check it
->     before accessing $Bitmap and fall back to the regular allocator.
->   - The allocator can return an adjacent cluster that merges with the
->     existing run. Preserve that run when rolling back a failed extension.
->   - Rollback can wait for the initial $Bitmap scan while holding a folio
->     the scanner needs. Wait for the scan before starting the allocation.
->   - Direct allocation changes $Bitmap without updating the cached free
->     counts. Update both counts and honor per-page accounting and space
->     reserved for delayed allocation.
+> Allocate space through ds + 2, and derive new_rl_count from the final
+> terminator index instead of incrementing the count a second time.
 >
-> Xuewen Wang (4):
->   ntfs: bound the adjacent cluster in MFT bitmap extension
->   ntfs: fix rollback after MFT bitmap run coalescing
->   ntfs: wait for the bitmap scan before MFT bitmap extension
->   ntfs: account for direct MFT bitmap cluster allocation
-Applied them to #ntfs-next.
+> A crafted NTFS image can reach this path through a normal read after the
+> image has been mounted and trigger out-of-bounds kernel heap accesses.
+>
+> Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator=
+")
+>
+> Assisted-by: OpenAI Codex:GPT-5
+> Signed-off-by: pwngets <2605452642@qq.com>
+Applied it to #ntfs-next.
 Thanks!
