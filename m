@@ -1,32 +1,32 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467BE441633
-	for <ntfs@lists.linux.dev>; Sat, 26 Sep 2026 12:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD2130CD81
+	for <ntfs@lists.linux.dev>; Sat, 26 Sep 2026 13:49:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790427189; cv=none; b=HR8u/XHI5NGeZHhDQUH2Iv5krYAhA1LtmAIeKdrJeIZ8hh2OoxEOauxTwjLOYSqLT9D1BeOsUTAoSJos6YzoyIdOyGeBxhexMYP/FuuRDq12BW3GEm1++wAOc7z2x4N3T9j81k8JlUItg20HnWVNl2Nilz7oR8gzdkrYMhpyzQ0=
+	t=1790430578; cv=none; b=teIvTC/ILK064BZeBQDKHvl+XlrCgsx6xSLudXqvFbxbm0QMoK3O1G4ZX+X3t1+tZJHboPC4PI8VFQt0RqAmqeFWskPHCtt2oEBPPZ6zw25m+pjhSewQ/l/VgpnzM+qEIBC0aGCleKTHF+5uZQPlQRPhbjj/ZgvS9wnClRPhctY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790427189; c=relaxed/simple;
-	bh=A9HS+gVdZjcLNBnpHSlruVJ50737lR2r9B8OkSSYKS8=;
+	s=arc-20240116; t=1790430578; c=relaxed/simple;
+	bh=pg4htWPSTWhst5jptWH6ipeiHyaHtmPzw6NrMc48f10=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qPqppc0o9ggxVBE54yCDRJiYhwWXExIjLd9/VvRo2H4odHsIK5kMasj+lt3y5WyPHCnEuV1Fhq2iJ+T8ROziFshaNxHGEY0ooakAw/f5wR+E91OUDRNhO/RzFEQ7F3JQ8ZuDfYUCdPIdk1drTGeajg1XExNsj4nPN7ulgZqs6ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=G++K7qqr; arc=none smtp.client-ip=220.197.31.2
+	 In-Reply-To:Content-Type; b=erze3Wqe8p9VJWWLAbrl8VTU6N0tr1YUZf6mYLkW28vATgumIZCKj3w+KIzxeKKMKFeVpEFzmXedVIoroxkGxY2ZuqTXHF63B0RYrF67TWNy2tX4ub/fCsm7nfXxqvv7UPCIZxD3vvNWvZ71112YwFNQpqox6GCg5Z/JUmkh7Ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=nN8TGVJo; arc=none smtp.client-ip=220.197.31.3
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="G++K7qqr"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="nN8TGVJo"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=0jkTHyU0InToqzfGvkxHo0JwF3ptW4i16rlCzwab6pU=;
-	b=G++K7qqrDBe9HT+NdLqOAZiFY+RdZQO8SCHrHnBMQw4qKeZByQZA9DulnZyFrQ
-	MgtjQif/l5TkE2BbrjwLGLPv3k9YbZG/2R5jp79vSHU+5ARYPKQbBC3G4wXmTWkX
-	VHoncDBpBI+gWQQF3leyM3gjuTIjocjEVZMWwdZYMwjAE=
+	Content-Type; bh=IGr+dvrh4HuH30oh4FfmfQWp2wTHQLcHpe5e0TGlCNw=;
+	b=nN8TGVJozCUsP1bsGz2yBQY1UoF0IIgMFZ0SxxNE6PWykna96RJP4LNDqf1cnu
+	lazIPW2ZHSkz2tVD5Pgd356BYCUHJ75LqoFsOldygCl3uQXmpTkHGQRDH2oYorsY
+	MnpmGsOWIhC3wIm3J6a86VlcgAJuDIyOqva+bp8x73vY8=
 Received: from [IPV6:2409:8949:6ca0:7910:cfbd:ff70:c0fd:a387] (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDnz8sRwLdqhP+xAw--.23214S2;
-	Sat, 26 Sep 2026 20:52:34 +0800 (CST)
-Message-ID: <285c4581-ee1b-4963-9741-ed44c9ad2583@163.com>
-Date: Sat, 26 Sep 2026 20:52:32 +0800
+	by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id _____wDnv6JTzbdqIb6jAw--.28866S2;
+	Sat, 26 Sep 2026 21:49:09 +0800 (CST)
+Message-ID: <21ffdfca-f58d-4509-889e-7f45e3266c30@163.com>
+Date: Sat, 26 Sep 2026 21:49:07 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -34,110 +34,111 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/6] ntfs: report shutdown errors to fsnotify
+Subject: Re: [PATCH v3 0/6] ntfs: report filesystem errors through fsnotify
 To: Hyunchul Lee <hyc.lee@gmail.com>
 Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
  linux-kernel@vger.kernel.org, Baolin Liu <liubaolin@kylinos.cn>
 References: <20260924090102.2865942-1-liubaolin12138@163.com>
- <20260924090102.2865942-7-liubaolin12138@163.com>
- <CANFS6baY+nbdzux-pF-MZ+8ryP8Q34RyO0Rh4qVR7rqvjsPHbg@mail.gmail.com>
+ <CANFS6bZu50diLF6Rk2BNLgpCWry3yW3n+JAjiqBXTijviRJ8JQ@mail.gmail.com>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <CANFS6baY+nbdzux-pF-MZ+8ryP8Q34RyO0Rh4qVR7rqvjsPHbg@mail.gmail.com>
+In-Reply-To: <CANFS6bZu50diLF6Rk2BNLgpCWry3yW3n+JAjiqBXTijviRJ8JQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnz8sRwLdqhP+xAw--.23214S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxXr4fWr4fXr45uFWxCw15urg_yoW5XrykpF
-	97AFnIkwsrXF129rsFqw43AF1Svas29w1UKr17Gw1Igr4vkr18tF4vkF1F9F4F9r9Y9w48
-	Z3WjganxurW7ZFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UliiDUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRK8h2q3wBKuhAAA3N
+X-CM-TRANSID:_____wDnv6JTzbdqIb6jAw--.28866S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxAF4fJr1rtF4kAFy3AFyftFb_yoWrXw13pF
+	Z7G3sxK3ykJry7twnIv3yUt3WFgrZ5J3yUXr13W34Ik3WYkr1jqFWxK3W09FW8urZ3t348
+	Xw4UK3srur1DAFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2zuZUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwhUR22q3zVWWzgAA3A
 
 
 
-在 2026/9/26 08:40, Hyunchul Lee 写道:
+在 2026/9/26 08:33, Hyunchul Lee 写道:
+> Hi Baolin,
+> 
 > 2026년 9월 24일 (목) 오후 6:02, Baolin Liu <liubaolin12138@163.com>님이 작성:
 >>
 >> From: Baolin Liu <liubaolin@kylinos.cn>
 >>
->> Notify FAN_FS_ERROR listeners when NTFS enters forced shutdown after
->> FS_IOC_SHUTDOWN or backing-device removal. Keep the shutdown state
->> transition and notification together in a dedicated helper.
->>
->> Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
->> ---
->>   fs/ntfs/super.c  | 12 +++++++++---
->>   fs/ntfs/volume.h |  1 +
->>   2 files changed, 10 insertions(+), 3 deletions(-)
->>
->> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
->> index a7a7ecf9d074..a0d3934ef6c8 100644
->> --- a/fs/ntfs/super.c
->> +++ b/fs/ntfs/super.c
->> @@ -414,6 +414,12 @@ void ntfs_report_file_metadata_error(struct inode *inode, int error)
->>                  fserror_report_file_metadata(inode, error, GFP_ATOMIC);
->>   }
->>
->> +void ntfs_report_shutdown(struct ntfs_volume *vol)
->> +{
->> +       NVolSetShutdown(vol);
+>> Report NTFS metadata and shutdown errors through the generic filesystem
+>> error notification infrastructure. Use file-level events for errors
 > 
-> Could we call test_and_set(NV_Shutdown, &vol->flags)
-> to avoid races?
+> There appear to be several error paths that identify corruption
+> but don't call any report_*_error(). For example:
+> 
+> * ntfs_lookup_inode_by_example(), ntfs_ib_read(),
+>    ntfs_read_iomap_begin_non_resident(), and etc.
+> 
 
 Hi Hyunchul,
-    Thank you for pointing this out. I'll use test_and_set_bit() in v4 
-to avoid duplicate shutdown notifications from concurrent callers.
+   Thank you for the suggestion. I agree that these corruption paths 
+should be covered.
+   I'll take some time to thoroughly review the remaining error paths 
+for similar omissions and add the missing reports in v4.
 
 Thanks,
 Baolin.
 
-> 
-> 
->> +       fserror_report_shutdown(vol->sb, GFP_ATOMIC);
->> +}
-> 
-> we can avoid test_and_set() to prevent race
-> 
-> 
->> +
->>   void ntfs_handle_error(struct super_block *sb)
->>   {
->>          struct ntfs_volume *vol = NTFS_SB(sb);
->> @@ -430,7 +436,7 @@ void ntfs_handle_error(struct super_block *sb)
->>                        sb->s_id);
->>          } else if (vol->on_errors == ON_ERRORS_CONTINUE) {
->>                  if (errseq_check(&sb->s_wb_err, vol->wb_err) == -ENODEV) {
->> -                       NVolSetShutdown(vol);
->> +                       ntfs_report_shutdown(vol);
->>                          vol->wb_err = sb->s_wb_err;
->>                  }
->>          }
->> @@ -2086,10 +2092,10 @@ int ntfs_force_shutdown(struct super_block *sb, u32 flags)
->>                  if (ret)
->>                          return ret;
->>                  bdev_thaw(sb->s_bdev);
->> -               NVolSetShutdown(vol);
->> +               ntfs_report_shutdown(vol);
->>                  break;
->>          case FS_SHUTDOWN_FLAGS_NOLOGFLUSH:
->> -               NVolSetShutdown(vol);
->> +               ntfs_report_shutdown(vol);
->>                  break;
->>          default:
->>                  return -EINVAL;
->> diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
->> index 366e9f5d0443..648fe8991304 100644
->> --- a/fs/ntfs/volume.h
->> +++ b/fs/ntfs/volume.h
->> @@ -256,6 +256,7 @@ DEFINE_NVOL_BIT_OPS(SymlinkNative)
+>> associated with an affected inode, and volume-level events for volume
+>> metadata and shutdown errors. Preserve the volume error flags and report
+>> failed recovery independently of the error that triggered it.
 >>
->>   void ntfs_report_metadata_error(struct ntfs_volume *vol, int error);
->>   void ntfs_report_file_metadata_error(struct inode *inode, int error);
->> +void ntfs_report_shutdown(struct ntfs_volume *vol);
+>> Report errors where they are detected and leave queued event merging to
+>> fanotify. No error_reported state is carried through search contexts,
+>> mapping-pairs updates or MFT mappings, so releasing a context cannot lose
+>> that state or suppress a later rollback or restore failure.
 >>
->>   static inline void ntfs_inc_free_clusters(struct ntfs_volume *vol, s64 nr)
->>   {
+>> Changes since v2:
+>> - Follow Hyunchul Lee's suggestion to remove error_reported tracking and
+>>    the reporting-aware mapping APIs throughout the series.
+>> - Report independent cluster, mapping-pairs, ATTRIBUTE_LIST and MFT
+>>    bitmap recovery failures while preserving the original operation errno.
+>> - Base the series on ntfs-next at 401898d748fc ("ntfs: validate
+>>    attribute-list sizes before allocation"). Retain its MFT parent BIO
+>>    and folio writeback implementation. Report synchronous and asynchronous
+>>    device errors in the existing completion callback; fserror itself
+>>    defers notification work and holds the inode reference. No additional
+>>    NTFS completion workqueue or pending-I/O counter is introduced.
+>> - Cover stale extent references, failed extent-record cleanup, mirror
+>>    failures and MFT preparation errors. Resolve attribute-inode reports
+>>    to their base inode and keep cluster-free counts in 64-bit variables.
+>> - Split MFT reporting into two patches: metadata validation, allocation
+>>    and recovery in patch 4; write preparation, mirror and BIO completion
+>>    errors in patch 5. This keeps the two review topics separate.
+>>    Shutdown reporting is now patch 6.
+>>
+>> Testing on this base:
+>> - QEMU passed mount/read/write/fsync/truncate/xattr/rename/unlink, MFT
+>>    growth and unmount without FAN_FS_ERROR events during normal operation.
+>> - Verified EIO with a valid FID for file MFT corruption, EUCLEAN without
+>>    a valid FID for an MFT bitmap mismatch, and ESHUTDOWN for forced
+>>    shutdown.
+>> - Fault injection of an initial mapping-pairs error followed by an
+>>    independent restore failure produced a merged FAN_FS_ERROR event with
+>>    error_count=2. Synchronous and asynchronous MFT completion failures
+>>    also generated notifications. The injection code is test-only and is
+>>    excluded from the series.
+>>
+>> Baolin Liu (6):
+>>    ntfs: report allocation metadata errors to fsnotify
+>>    ntfs: report attribute errors to fsnotify
+>>    ntfs: report inode metadata errors to fsnotify
+>>    ntfs: report MFT metadata and recovery errors to fsnotify
+>>    ntfs: report MFT writeback errors to fsnotify
+>>    ntfs: report shutdown errors to fsnotify
+>>
+>>   fs/ntfs/attrib.c   |  84 ++++++++++++++------
+>>   fs/ntfs/attrlist.c |  17 ++--
+>>   fs/ntfs/bitmap.c   |   2 +-
+>>   fs/ntfs/inode.c    |  12 ++-
+>>   fs/ntfs/lcnalloc.c |   4 +-
+>>   fs/ntfs/logfile.c  |   2 +-
+>>   fs/ntfs/mft.c      | 192 ++++++++++++++++++++++++++++-----------------
+>>   fs/ntfs/super.c    |  32 +++++++-
+>>   fs/ntfs/volume.h   |   4 +
+>>   9 files changed, 235 insertions(+), 114 deletions(-)
+>>
 >> --
 >> 2.51.0
 >>
