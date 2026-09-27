@@ -1,72 +1,72 @@
-Received: from mail-pj2-f41.google.com (mail-pj2-f41.google.com [74.125.227.169])
+Received: from mail-pj2-f12.google.com (mail-pj2-f12.google.com [74.125.227.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D343D413F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44F23D5221
 	for <ntfs@lists.linux.dev>; Sun, 27 Sep 2026 10:57:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.169
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.140
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790506649; cv=none; b=BltgfOuG4ghVRMpcPKHDingaGtOgt/wcdSCWb959+JQ2/EkXHRBbKssbcRzv35AO5Yv3RYVBrrI+lERLnkSIBVChlv5X8cJuXAU0oJPCRgoun6Px9kIYr53EmqJ2jLRpjPn0Ami1xJWzTCBuywEL7bCcKIZYfSZAII6FzC6l2CY=
+	t=1790506650; cv=none; b=o4gfKT9Z8fySwWz1cSqjHbPdH0nxhteTC3G30ZlWzZ6958jnYOPI+RNRE9Qe3HTeV0eWfpOoV9tTuQj0YnqOvIHYRWBoSOqvEkjgeWfcDMQWitQYz8yB1InKUzBQ7Hyn1sNmtThGdjCNM/tmjHEigk4yZzbVxftBFKSpJn5Y24A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790506649; c=relaxed/simple;
-	bh=j50b6HFpY691xsWjBZr7qmgD/1Uyyqi+7/IqWm3vVTU=;
+	s=arc-20240116; t=1790506650; c=relaxed/simple;
+	bh=eNwhT3ZGqjB2HEC8B6HN9G+Zq0SEoGTqMnOPNZ4zWJI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tw2leEY0siDobcHo/CNUjIKlozEA/CgajNw5hRFYPi+PZpV2tIK+5wy70NXB0bJOdWEjNDVKzJAkEqIdoBS56bSOe6HR08Zv2a8oIy6ZGh+D7B3Hj97HLKdJibk9QSzqa9l8hKJEx5l8htB9sMS+iy7SfDuacFHUB7F+Qxkhai4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ex9CI34s; arc=none smtp.client-ip=74.125.227.169
+	 MIME-Version; b=bnt0DiqyBC8uqsm8iQoHmn31ea+e2XUxd/yciOOp3r/vVs0HnU8mYVqC5lw6wl51rYNtMERFFIKj3baj+N+hp5maWyn3RUxZcfpisC9AcF7IBWK3xpT6oIt0mgQVXx8jJiFXpEZC/KKBd823a8zjBFI+04h6HTcU5BFdYDWK/NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HhlOd3Mk; arc=none smtp.client-ip=74.125.227.140
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ex9CI34s"
-Received: by mail-pj2-f41.google.com with SMTP id 98e67ed59e1d1-3a0bcdf41a3so1045882a91.2
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HhlOd3Mk"
+Received: by mail-pj2-f12.google.com with SMTP id 98e67ed59e1d1-396ccb1a98fso1628002a91.1
         for <ntfs@lists.linux.dev>; Sun, 27 Sep 2026 03:57:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790506640; x=1791111440; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1790506642; x=1791111442; darn=lists.linux.dev;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=qM1QolBILO9M6t8Cy7bQUCoiUPwrfyFsHodEhUYmYb8=;
-        b=Ex9CI34sC+43FHgtVcCtSGPsjixdO9zNq2N7nz84n0UxP7SEYdO7MKvmfpp6BBVXs8
-         Ue4X7zEXVcQFFnV4YS+HWTkoXPh9WrvEb4Ct+HDW5qWZzZ9mvpn6Bob9SD3jMmXRlbQ+
-         m9INU52o2htWJO67gPwHmgF1FSyr6kA4KA6Pakr3swwA6AtZD64mM+VLeYTva/ieXK18
-         +RKUA6SLgPhd4Ih0OnKJSCFhZPa4/9i9gBAYNCYR99kvz6sVqRsmyKtac0V+8eDFxuhz
-         EnQ4LVKxd4pGq9nEYB/3Jym9mwodzGXGofkNjjcCUzJh0DEbHFz//YchkLIzu4z1qr3u
-         lXOA==
+        bh=+ZGzG0bURFDXcZw30n7m4Md6MGV3VzuOyyLqAT8l4iw=;
+        b=HhlOd3Mkiv2CmKQGCyFT6nMreno2To5MMXLRMiQgIFtxpNah8H749LF6+igcBvUcC4
+         0Je6kA2X//mWSrZjAZTNSINU3TlfUcrQDlQwtKAkidN8Ct/4Z/KSAEagCI+tEc+wSYtq
+         zIpkU23aTSVNOjWyqsHx2aLsORgL/PIqPshWK6xPzi+Fj4uDNFNQEc1hblSNSd6bLfS9
+         xJ2CzaUsu7gAeIQPbM3P/gns3it42VI89ukjMOLXH6jTOHqpQvuh/YuOFvX0LJolz/72
+         v8x5fVG+PCeyGTo8G/FPkLde8pf6hFb6c6ktdZ7WJp/MwVKZL9aRgc1Dn0DrA1XhgH6k
+         rZsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790506640; x=1791111440;
+        d=1e100.net; s=20260707; t=1790506642; x=1791111442;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=qM1QolBILO9M6t8Cy7bQUCoiUPwrfyFsHodEhUYmYb8=;
-        b=EoasTcfemdyjZUdUb4xSvKDCgM+vraxYvtfKOTFan1NgOu+DhStmzwcpQgkZKhrLJx
-         kEySRYJWhVTOAqH97IXyrgfXh5WsYGg5vOsn7ZfCkTDlFZPVpw26J7yMDcHqZZR6eoXr
-         EBK5wKZhLUTuLLsvom/dpQFjs55hNVr5OhsI5vGii98sstJq9M3y3XAWiX2xAJhhFFlh
-         iNPxW5zOZ3kYRiCc8xpcTZM+A23UMWhcqQsYnbUGy3LkDodP3u56YI35DI1NDxrLBr+G
-         VaFFy8ooQGcrVjcp6Q3DpDVZ01lw7g8RRWcwW5aU6V/QTgFXRSZj7JIp8ziM5qVqnbi+
-         pItQ==
-X-Gm-Message-State: AFq9FYIQBGraP8QR3EXWITOerkgcvCGDoDH51GPKALbOJmWiFXJK4i4J
-	4P/tGQ3TmXpJ1zBbtETBkBiIAoOJwbXUB1nUXjhEDFA/82w3UTCqk3U2a3EcY+cctoKmwg==
-X-Gm-Gg: AYBFou23+vtMuVWJnZ4Ly1Rlqb+E74/5ZgiiKpk1c+/HC1NSj6VdHUtZeLy/0F5rzar
-	mgEpyrpLuyvZczmq8NWsejq8zefqOmLozLPc7eW+0oTJfmqeltLj/DxI63VrmMB0eK10mvNG5vz
-	0S1hc3VKk1nzSvf2AVCC85wXtR/qrFT6lhXOblazHqhog20lDF9Gd4i/74oHQ5ND1SWzxefBCMy
-	J3Fzh/UQQgThDKrWNBeMAzgpLu0AofKX1valUVrR1bz9/K7VsDGQrCiQhk0ghiei5kIx88V2xlx
-	2BuvIgiOCiOl8MUxEYmWkycfCvAEPoVWKOXGe+V6PwXQBfdGc4XnqEQwMq0G3f4mKMjl/wNcsYX
-	3nrGwY/T+Oi62rEqR1lQfdHGdOREuZ+j5g/kgakE57kT41LLfnzGcD+JOkF1msbInjPGEqdQJFv
-	zaotTJkRvvk9UC+xBUBBUwyfpo0J4FOSCWO0q2FV+eeWoljpMGuFE5lgSlQsxgDg0paGLI3fV3n
-	WuPII6CPURVz8fD/kk7VcFuaLOQyAQHmyRtZKYZk1KMbAAaZ2vke9/SXQPyt9NHdv9Ivq/nGVas
-	JYMsgvCNBOjBeDRo/JSXf8UNxlbRjfpdwZrigPNY1ieO5paJl0yX8K4BPuw=
-X-Received: by 2002:a17:90b:51c2:b0:3a0:deda:3d07 with SMTP id 98e67ed59e1d1-3a0deda3ff1mr3267462a91.14.1790506639701;
-        Sun, 27 Sep 2026 03:57:19 -0700 (PDT)
+        bh=+ZGzG0bURFDXcZw30n7m4Md6MGV3VzuOyyLqAT8l4iw=;
+        b=hyQ+YeQKG2WrIZXPEWs2yYMxe+ceGKOGqBct/9AeWZc7RlLvcBYQ3i/+aCEBzySWOn
+         4Mh43gmBXI/aJ12xmcjQDsw7WCDaZdxh2VdD59BRs0WNFmGDY8zP9azXPPdGLrViVuM/
+         tfU61RL1NJC1Qau4te4ydJxCHDn7JIDmv2DmAx6UHNY+Xxu7FzeP5Xg3EI8krg24CR6g
+         VbQiBYhqKDTGA1OGk2LtJ1PPri3b2HYa2S5tRg0g2I6LHf/pOZRqEx7Btfyb37Rg585G
+         1WYBR7cNjWQjfWGhHx/MpgEg3AflRjQvMxrNww4dCEsPjdAJiAfxqwMdz2qRvrCg9zep
+         iQqQ==
+X-Gm-Message-State: AFq9FYIasPDGlYE6rrgyI4HXsJok/zPivses84lk1T36WSYv4OKe156f
+	Qv4Vplk0Njs9UKQp+Ugn6x+ubQEI7qq/kkHiAr8ESw9iTQ7E9mr6eBGL
+X-Gm-Gg: AYBFou0GQSC830ZobO4cp2xOEuhNBNRtuk59/OYqWJXx+/Qh4hf1I1godCYEum6iohe
+	8Wb39pAuMUjMIcgdIqt0fEXdrfAxyZ6VGFx/PyxbxxJwUJWf5xNnJGN23ienFeYrje6ryNW9/tK
+	LpVh1wegRYFwzGz3h6Y3dZuGTAyH4cBJkLEV19QZJU09Rw2o3SbbubTQVfZs5JBG4Jd3CIzCKsk
+	PngEC0MtlTJvm61jkuxAUjk8YDltOQhHrtDAtFpkDBRiTfF23SQaVB99rF2f8hq47YFrxmxnpmw
+	jEG9VyLFnHpcuLZjGpN1MXbakUuAYwit28zbd2Ho/nT9MFqSb2aWmhLriNGNj6yzy2/gUR0g8W8
+	2MrH3+pV7ovGntimJJkR+rAF691aqXa8C/2HALjFnzYUFTtmB4AmXSrmDjjxTCv9QE+zabFjtFv
+	U12bz7eTtaAKoyB1We31JTh+PvzzcUnMIhF6HbxLPbWpMZWpCiefIbOwXKeDU07IY70Ss634gfp
+	IPlpXR1cVj5fcx4y+yqy5GoRwq3DupKJeIJb8rREcJoCzKklzFG2GxERZaFkiIbC5sZLylKuwE5
+	qw1rx1Y1VEOwcT9TSSL+3t7YVemJQerpTRLUyGQRLP9tXVUj5iA8e2KIoUg=
+X-Received: by 2002:a17:90b:4c41:b0:3a0:2ffd:1a51 with SMTP id 98e67ed59e1d1-3a0bb553257mr5933522a91.10.1790506641575;
+        Sun, 27 Sep 2026 03:57:21 -0700 (PDT)
 Received: from spider.bream-herring.ts.net ([103.6.151.236])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a0b99e5220sm14419192a91.16.2026.09.27.03.57.17
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a0b99e5220sm14419192a91.16.2026.09.27.03.57.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Sep 2026 03:57:19 -0700 (PDT)
+        Sun, 27 Sep 2026 03:57:21 -0700 (PDT)
 From: Matthias Goergens <matthias.goergens@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>,
 	Hyunchul Lee <hyc.lee@gmail.com>
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] ntfs: set the attribute list size before reserving space for it
-Date: Sun, 27 Sep 2026 18:57:12 +0800
-Message-ID: <a3db61194cd4c2a472963aa6d9e9563ceb8efd33.1790503811.git.matthias.goergens@gmail.com>
+Subject: [PATCH 2/3] ntfs: restart the zone search when the allocation hint fails
+Date: Sun, 27 Sep 2026 18:57:13 +0800
+Message-ID: <79878c7323e37a500c540b3b140102b73d46bafe.1790503811.git.matthias.goergens@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <cover.1790503811.git.matthias.goergens@gmail.com>
 References: <cover.1790503811.git.matthias.goergens@gmail.com>
@@ -78,63 +78,71 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-ntfs_attrlist_update_locked() resizes the attribute list and then, for
-$MFT, tries to reserve the maximum list size.  When that allocation
-fails with -ENOSPC it falls back to ntfs_attrlist_repack(), which reads
-the list through ntfs_inode_attr_pread().  The read stops at i_size,
-but i_size is only updated after the reserve, so when the list has just
-grown the repack gets a short read and returns -EIO.  Only -ENOSPC from
-the reserve is ignored, so the -EIO fails the $MFT extension and with
-it the file creation that needed a new mft record.
+When ntfs_cluster_alloc() is given a start_lcn, it first tries the
+clusters from there on.  If that does not satisfy the request, it moves
+on to the zone's current position, but keeps the pass, the zone_end and
+the has_guess state it had.  That loses free clusters in two ways.  If
+the search had already moved on to pass 2, whose range ends at the hint,
+it scans only from the zone position to the hint and misses every free
+cluster between the start of the zone and the zone position.  If no
+cluster had been tested yet, has_guess is still set, so the cluster at
+the zone position is tried as if it had been the hint, and when that
+cluster is in use the rest of the bitmap buffer is skipped.
 
-On a 32 MiB volume with 512-byte clusters whose $MFT has a non-resident
-attribute list, 591 of 1500 creations of empty files succeed and the
-rest fail with EIO while 742 KiB is still free:
+Both happen when the hint lies at or past the end of the volume, which
+ntfs_attr_map_cluster() produces when it extrapolates from the last
+allocated run across a hole.  The allocator then finds nothing, shrinks
+the MFT zone to nothing trying to satisfy the request, and fails with
+-ENOSPC.
 
-  ntfs: (device vda): ntfs_attrlist_update_locked(): Failed to reserve attribute list space
-  ntfs: Failed add attr entry to attrlist
-  ntfs: MP update failed
-  ntfs: (device vda): ntfs_mft_record_alloc(): Failed to extend mft data allocation.
+To reproduce on a 128 MiB volume with 4 KiB clusters, extend two files
+in turn by one cluster at a time, alternating between fallocate(),
+write() past EOF and truncate() up, so that the runs of each file are
+separated by holes.  When the volume is full, truncate both files back
+to 1 MiB and start again.  During the second round a one-cluster
+fallocate() fails with ENOSPC while 40 MiB is free.
 
-Update i_size as soon as the list has been resized.  File creation then
-goes on until the volume is full and fails with ENOSPC.
+Start the zone over as if no hint had been given.
 
-Fixes: b1d732e62a5b ("ntfs: repack $MFT/$ATTRIBUTE LIST")
+Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator")
 Signed-off-by: Matthias Goergens <matthias.goergens@gmail.com>
 ---
-The volume is frag.img from
-https://github.com/matthiasgoergens/linux/tree/reproducer/2026-09-26-ntfs-mft-runlist
-(mft-bootstrap/frag.img.xz); creating empty files on it until one fails
-is enough.  Tested with KASAN and lockdep: after the patch the files
-written before the volume filled read back intact after a remount, and
-ntfsfix and ntfsresize --info find nothing wrong with the image.
----
- fs/ntfs/attrlist.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ fs/ntfs/lcnalloc.c | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
 
-diff --git a/fs/ntfs/attrlist.c b/fs/ntfs/attrlist.c
-index 1bbd2bc62c582..62dfb96e31a3c 100644
---- a/fs/ntfs/attrlist.c
-+++ b/fs/ntfs/attrlist.c
-@@ -252,6 +252,9 @@ int ntfs_attrlist_update_locked(struct ntfs_inode *base_ni,
- 		return err;
- 	}
- 
-+	/* ntfs_attrlist_repack() below reads the list up to i_size. */
-+	i_size_write(attr_vi, base_ni->attr_list_size);
-+
- 	/*
- 	 * Reserve the maximum legal list size while the MFT metadata area is
- 	 * still easy to allocate contiguously. This prevents a later list entry
-@@ -279,8 +282,6 @@ int ntfs_attrlist_update_locked(struct ntfs_inode *base_ni,
+diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
+index 0d6cd08ee2e76..30faf422a5424 100644
+--- a/fs/ntfs/lcnalloc.c
++++ b/fs/ntfs/lcnalloc.c
+@@ -506,13 +506,25 @@ struct runlist_element *ntfs_cluster_alloc(struct ntfs_volume *vol, const s64 st
  		}
- 	}
  
--	i_size_write(attr_vi, base_ni->attr_list_size);
--
- 	if (NInoNonResident(attr_ni) && !NInoAttrListNonResident(base_ni))
- 		NInoSetAttrListNonResident(base_ni);
+ 		if (!used_zone_pos) {
++			/*
++			 * Leaving @start_lcn for the zone position starts the
++			 * zone over as if no hint had been given, even if the
++			 * search had already reached pass 2, whose range ends
++			 * at @start_lcn.
++			 */
+ 			used_zone_pos = 1;
+-			if (search_zone == 1)
++			has_guess = 0;
++			pass = 1;
++			if (search_zone == 1) {
+ 				zone_start = vol->mft_zone_pos;
+-			else if (search_zone == 2)
++				zone_end = vol->mft_zone_end;
++			} else if (search_zone == 2) {
+ 				zone_start = vol->data1_zone_pos;
+-			else
++				zone_end = vol->nr_clusters;
++			} else {
+ 				zone_start = vol->data2_zone_pos;
++				zone_end = vol->mft_zone_start;
++			}
  
+ 			if (!zone_start || zone_start == vol->mft_zone_start ||
+ 			    zone_start == vol->mft_zone_end)
 -- 
 2.55.0
 
