@@ -1,32 +1,32 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3423E394788
-	for <ntfs@lists.linux.dev>; Sun, 27 Sep 2026 13:07:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901453B14B3
+	for <ntfs@lists.linux.dev>; Sun, 27 Sep 2026 18:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790514434; cv=none; b=JiIdA6ocrMlwtPUv7xfUoQGEz4LLLXWxUOJY3Vwn9cagtD+ZZphKfZADfLBChxU5JbtshJ01TlvHe0PINV3dkw3fIiHhf+vErGh1JrGtZPxK6Z3cQbefIs+2rCbyvAUjMap5lHKQzK639/CoH0/vPw6sBTggz+47ENgu/pnaFCw=
+	t=1790532424; cv=none; b=U2VEXLBn/5oqrUFztFOBuvAEu0zSovkds64GJcSRusYfogzxFeru/SxEVwCDV/Zmkxp6WiMn2oZJe80U0lv523S18oCf+MvWgARVmQEsv2Y8jtwPAGvlqG98+lzRPRQAdLR9SH7Hp9ps/fdLhgBm8jxfitYZaVOgUrHchVhdhxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790514434; c=relaxed/simple;
-	bh=h7EyZ6ondBhsjAzfJeVCoPSevYU5WBM/L8a3d5KYL50=;
+	s=arc-20240116; t=1790532424; c=relaxed/simple;
+	bh=zj0eOVQcMFdCO2F/tmzy6sFvreF12/Rc+8pnjOdEJeU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iFBXQs+1LgcE+9vz9SsV/cSZZp1xAnSuUKT0B5ZeEx2oxrNz5VPbVOXCQGjAU48evykJoYYcdChF6HTWnwVbqPP3j9SrZGASPCJAYDp5NeSHLF/qpSQLzMJe5CicT6FT8EIek4D03K1/oINTqmupwo8j7vNM2eQt8X4kzc2mlgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=qM5qjiAF; arc=none smtp.client-ip=117.135.210.3
+	 In-Reply-To:Content-Type; b=njx5jV4PFPM8JOYMNOh9QvO15ZV7W2434hCt+quEbByQ+cQ5WlZIZMga71bBo5QU9ObJuxGgNaFDQWOyUOlwiuUO6MFfqulV+quAJrAHiJ7cZP3DuZSk1fJPLG5cVUbbQNAQQrIR+91iDjC2iuGVTGAGARctm82ncwnSMvq6O4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ZloloQp4; arc=none smtp.client-ip=117.135.210.2
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="qM5qjiAF"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ZloloQp4"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=nJprDaPp0Q7y0vJ393VOXwCA6lIV5UlOiphyQi69t00=;
-	b=qM5qjiAFNKajjJAoDRQU+xvEzzKcXmuk92m6WVJJGj0aXrST7u8sacouFpm2Rb
-	51h1qBphu92Li/LWqGqO6uPjYuBEJlSh3Gk1ym3eY79OINyfdPXwqtg9hUGmpmZl
-	8ZeObspz2pFzs6qcaYynSwqPo5sq3EsSeEsx5SxX8JtoI=
+	Content-Type; bh=AmSS20uqjhIkD3uyKwXh/DjkeYw+SDtfXioNX2jb3yg=;
+	b=ZloloQp4Giu/XlqkGSbBYTnacX6UzwoYtTPrs9iB8FYXhw7Zur9xm4rhrpNfzM
+	gBkJfCXt1o7/oJQhHjykCa0ZIpgDWKY7h8NiEUeOQQHpKdi1oRCaacMI85v+AuJh
+	GNi8tNEA047dHWa8yr+vnftLFsw2JNLzssQ7t2sBFF6V0=
 Received: from [IPV6:2409:8949:6ca0:7910:556a:2884:1c35:3923] (unknown [])
-	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wDnT631FLlqApXoBA--.11086S2;
-	Sun, 27 Sep 2026 21:07:02 +0800 (CST)
-Message-ID: <46ec6087-6509-4ba2-a98b-807dfec5f5c0@163.com>
-Date: Sun, 27 Sep 2026 21:07:01 +0800
+	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wD3d5QyW7lqm0URBQ--.45497S2;
+	Mon, 28 Sep 2026 02:06:44 +0800 (CST)
+Message-ID: <80e893c7-5373-4690-ac66-7b5952d7e99d@163.com>
+Date: Mon, 28 Sep 2026 02:06:42 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -34,53 +34,118 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] ntfs: fix the undo path of $MFT data extension
+Subject: Re: [PATCH 2/3] ntfs: restart the zone search when the allocation
+ hint fails
 To: Matthias Goergens <matthias.goergens@gmail.com>,
  Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>
 Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20260927105706.3111333-1-matthias.goergens@gmail.com>
+References: <cover.1790503811.git.matthias.goergens@gmail.com>
+ <79878c7323e37a500c540b3b140102b73d46bafe.1790503811.git.matthias.goergens@gmail.com>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260927105706.3111333-1-matthias.goergens@gmail.com>
+In-Reply-To: <79878c7323e37a500c540b3b140102b73d46bafe.1790503811.git.matthias.goergens@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnT631FLlqApXoBA--.11086S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7JrWxJr43Ww43XFWDJFyfXrb_yoW8Jry8p3
-	9Iy3s8Kr1qqwn2g3ZIya18Kr1Sga1fAw45Grn3Xw1xCr98JFyvqr10kF1Yg3W8trWxGay7
-	JrnrJ347uFWDAa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Uzc_hUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwhZLFmq5FPbb7wAA3M
+X-CM-TRANSID:_____wD3d5QyW7lqm0URBQ--.45497S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCry5Wr1kJFWftrW5ury8Krg_yoW5tr4Dp3
+	92kw4rtrn3Xwn7tF9xJanYq34Y9a18Jr1xCF18Xw1fArn8Arna9Fnxtrs5ZryxCaykWw1Y
+	vr4j9Fy7uF1ava7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U24iUUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbCwRTst2q5WzTGsQAA3F
 
 
 
 在 2026/9/27 18:57, Matthias Goergens 写道:
-> These fix two bugs in the undo path of
-> ntfs_mft_data_extend_allocation_nolock().  Patch 1 makes the $MFT
-> runlist locking there consistent: a map_mft_record() failure leaks the
-> lock, a lookup failure in restore_undo_alloc releases it without holding
-> it, and the clusters are freed and the runlist truncated without it.
-> Patch 2 fixes a use-after-free of a pointer into the runlist across the
-> truncation.
+> When ntfs_cluster_alloc() is given a start_lcn, it first tries the
+> clusters from there on.  If that does not satisfy the request, it moves
+> on to the zone's current position, but keeps the pass, the zone_end and
+> the has_guess state it had.  That loses free clusters in two ways.  If
+> the search had already moved on to pass 2, whose range ends at the hint,
+> it scans only from the zone position to the hint and misses every free
+> cluster between the start of the zone and the zone position.  If no
+> cluster had been tested yet, has_guess is still set, so the cluster at
+> the zone position is tried as if it had been the hint, and when that
+> cluster is in use the rest of the bitmap buffer is skipped.
 > 
-> Both paths only run when something fails while $MFT grows, so I tested
-> them in QEMU by forcing each failure once with a debug patch.  The
-> debug patch, the test scripts and the images are at
-> https://github.com/matthiasgoergens/linux/tree/reproducer/2026-09-27-ntfs-mft-extend-undo
+> Both happen when the hint lies at or past the end of the volume, which
+> ntfs_attr_map_cluster() produces when it extrapolates from the last
+> allocated run across a hole.  The allocator then finds nothing, shrinks
+> the MFT zone to nothing trying to satisfy the request, and fails with
+> -ENOSPC.
 > 
-> Thanks,
-> Matthias
+> To reproduce on a 128 MiB volume with 4 KiB clusters, extend two files
+> in turn by one cluster at a time, alternating between fallocate(),
+> write() past EOF and truncate() up, so that the runs of each file are
+> separated by holes.  When the volume is full, truncate both files back
+> to 1 MiB and start again.  During the second round a one-cluster
+> fallocate() fails with ENOSPC while 40 MiB is free.
 > 
-> Matthias Goergens (2):
->    ntfs: balance the $MFT runlist lock in data extension error paths
->    ntfs: do not use a stale runlist pointer when undoing $MFT extension
+> Start the zone over as if no hint had been given.
 > 
->   fs/ntfs/mft.c | 63 +++++++++++++++++++++++++++++++++++++++++++--------
->   1 file changed, 53 insertions(+), 10 deletions(-)
+> Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator")
+> Signed-off-by: Matthias Goergens <matthias.goergens@gmail.com>
+> ---
+>   fs/ntfs/lcnalloc.c | 18 +++++++++++++++---
+>   1 file changed, 15 insertions(+), 3 deletions(-)
 > 
-> 
-> base-commit: 259abb551e2944998cad4214c201954ab1ac5c8d
+> diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
+> index 0d6cd08ee2e76..30faf422a5424 100644
+> --- a/fs/ntfs/lcnalloc.c
+> +++ b/fs/ntfs/lcnalloc.c
+> @@ -506,13 +506,25 @@ struct runlist_element *ntfs_cluster_alloc(struct ntfs_volume *vol, const s64 st
+>   		}
+>   
+>   		if (!used_zone_pos) {
+> +			/*
+> +			 * Leaving @start_lcn for the zone position starts the
+> +			 * zone over as if no hint had been given, even if the
+> +			 * search had already reached pass 2, whose range ends
+> +			 * at @start_lcn.
+> +			 */
+>   			used_zone_pos = 1;
+> -			if (search_zone == 1)
+> +			has_guess = 0;
+> +			pass = 1;
 
-The series looks good to me.
+Hi Matthias,
+   Resetting pass, zone_end and has_guess here fixes the missed free 
+clusters when falling back from the hint to the zone position.
 
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+   However, !used_zone_pos only means that the zone position has not 
+been used yet; it does not mean that no clusters have been allocated.
+   A partial hint allocation can also reach this block at the end of the 
+bitmap buffer. Clearing has_guess then allows a nonadjacent run to be 
+appended even when is_contig is true.
+
+   Could we return the existing partial run before resetting the search 
+state, like this?
+
+   	if (!used_zone_pos) {
+   		if (is_contig && rlpos)
+   			goto out;
+
+   		used_zone_pos = 1;
+   		has_guess = 0;
+   		pass = 1;
+   		...
+   	}
+
+Thanks,
+Baolin.
+
+> +			if (search_zone == 1) {
+>   				zone_start = vol->mft_zone_pos;
+> -			else if (search_zone == 2)
+> +				zone_end = vol->mft_zone_end;
+> +			} else if (search_zone == 2) {
+>   				zone_start = vol->data1_zone_pos;
+> -			else
+> +				zone_end = vol->nr_clusters;
+> +			} else {
+>   				zone_start = vol->data2_zone_pos;
+> +				zone_end = vol->mft_zone_start;
+> +			}
+>   
+>   			if (!zone_start || zone_start == vol->mft_zone_start ||
+>   			    zone_start == vol->mft_zone_end)
 
