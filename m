@@ -1,123 +1,148 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj2-f12.google.com (mail-pj2-f12.google.com [74.125.227.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBDC2307AE3
-	for <ntfs@lists.linux.dev>; Sat, 26 Sep 2026 14:31:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC55195B1A
+	for <ntfs@lists.linux.dev>; Sun, 27 Sep 2026 05:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.140
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790433115; cv=none; b=iVm0JoMY8wGryCRr9fFbxFTlL4KjgM4mvX2nB5L5Mrmu0DGrFOkdRMsfGHcM7FoCgDYDQTDt98vkYAhaLkR9TsJ24VHANpek+d5DyZHLQvfaRx7pThSOguf9bCkZF0zmJZGChkJ4D7wMcWrlk4XrQQhwL8T8pXNDUtBrRnKA1OY=
+	t=1790485713; cv=none; b=cPHNjP0AdjcLgvg1RSNVi4DeUZq0x1lygEIHiW0erwpmUVkSZIee2inWVb59/FYfnyzXVuv1nCuROZahtHyIQmg23OlGonrPIjZcMkxEI8VuFIQjbYMmvj+FcOj3ZH+KPFF9shXuJbbpdczU/VLvn3lMsTDfxWbJ8qC19uPD76w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790433115; c=relaxed/simple;
-	bh=QXH2LiT8YGjoI7rTuB/5Bwfp0I60en8jf6uXJuf9Tts=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=qfRIExJFpK6JvUwAIyKZ9KH6KhmWmS11Q9ceC2B1LU36KfGoOr+P8Pxb/UeRCZNf7AO2shs/WCF6vaIFqZo6jasKrvl6g+vBBJr0GYXy40iZqauc44X3NI4AtQI70rYpbGL9dkAJc+xLIziGliWSDJQUsYBdMUFsBRZK8YdX6bk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=UcQPa3aJ; arc=none smtp.client-ip=220.197.31.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1790485713; c=relaxed/simple;
+	bh=CmbrNXVAYqa3pMRQjrJm0NpRq56JoeKYm+SK3RhWRdE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=jX8lkNHq3pem67+p9uu/r/2VrP6gZDSkmsvddHF/2RpyHydnCU43MGoDHT/X391m+NuBbY9UL6j6DtMx6vYpbmms+kuLm0PoEEkKrHua+SSh336rpIlfn+qPoNQM5Z8d2OtbVzRxiwJ0jNwHWH1zlmT3V9cwKTDryWqaOwwFc+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HL/DA6ho; arc=none smtp.client-ip=74.125.227.140
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="UcQPa3aJ"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=91ZRTd//Cy0HjvpGiq45l4WHobWPEmRrOtgmFOlGYxg=;
-	b=UcQPa3aJ+hEFfrrsF4esGR7x+OlREP35kb6KBrK0tTHioyeZOGGdEldOHJmSuf
-	zsst9XNPdD0qIOug0W0Ry62P1p+W5208HBfN4UB+WvG9ZC5z4hEsi1QfUdtYg+89
-	/KC+o8nC4RVopZ40a850JZVatUHLH+UOZf8jluWf+/ULc=
-Received: from [IPV6:2409:8949:6ca0:7910:f5b:45b8:eba1:685a] (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wD330c217dqjFyMAw--.59026S2;
-	Sat, 26 Sep 2026 22:31:20 +0800 (CST)
-Message-ID: <cad0b025-1c84-4076-8a3d-d04cd736a767@163.com>
-Date: Sat, 26 Sep 2026 22:31:17 +0800
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HL/DA6ho"
+Received: by mail-pj2-f12.google.com with SMTP id d9443c01a7336-2d747f0b25dso13009595ad.2
+        for <ntfs@lists.linux.dev>; Sat, 26 Sep 2026 22:08:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1790485711; x=1791090511; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=+MKaxGmfWE+Dz0aKj31pB/k7Jyep9gZ6ZS/k+y564DE=;
+        b=HL/DA6hofEpDI9+UqkX3XnNUyWePEuS9sQUQJwOz88yjdIAVpTebPNN1/clvmE+Qsp
+         bAb0Totlcf4KcWP/3PvbksdVsR6/T9/uBhKVtIo4IODaFe1NHazvd8tFuaRx/jZIRCui
+         MXNGYbYVqB9zxs8Mfa2c4xtBXScf0MjGc7TfTmg1JBHNL0n5Lyzx6XlAfA9tzjVLXo3S
+         TQfHw0jAWpPscdGH6bI+PdGYK0THtW9jX81FSvBQU2D5EiKxjUlAarf2ozTlc4XatALX
+         MnadcIZbYQjImvp1MFp/L9xyJq1unSLrmzGkqnEPZ9saz4ZorO5x2Dv6IlKQ8k5jc1O3
+         D/sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1790485711; x=1791090511;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=+MKaxGmfWE+Dz0aKj31pB/k7Jyep9gZ6ZS/k+y564DE=;
+        b=gjdX5Vd2Z5OV8XorDNzXZDZoOBjozDYH2EhueBqlI0yvl7RjTqP1luE714nKHHKtVA
+         9gV2RoSD0nG4+Vpg4wYTR0AMDqiS4K8yZJswpTdSvIngJAUOO02OOF0thBDi+Ua6Lu7u
+         /2MkLrGwcg//0wlkmkcF/NMdyG3NQORG3iRmI1ExAfDxOZTAczrsPocDvyKf5awl36To
+         uZTR7uzDgjXL22/yWpJEdH0x27H2znznfbP+qx3CPG8oeCjRziNwPvUL//PZycBVNDAz
+         8xch0pBvNC7Heuf/vSlFKZHOHgWlo9pB6M77rSR7xGS6vmLJJvQInNg9ytwC3tiKC0OD
+         y0mA==
+X-Gm-Message-State: AFq9FYLb8vkYMTdO3Gord0yFI8DtqcnIOLOCOUJ0oMnMGkYYgarptFT5
+	8hf0Qie4pkLqMF5s3+x58duWgEHaeMB2j+tYWMZtOlJa+aqbzB303rB5
+X-Gm-Gg: AYBFou2PVZJE8Qu4WkQiv1sOv+gWEmpjtjnKFTuUxgVuJPbmdVbbR4ov+GTobXT/50a
+	QBKAOU6QdBObx5HrtmphtCmmHISakVEa9zk7gn4V2GXFS0XdVN01nehns3Hk0biqJ0x7dYsdLh5
+	TSB3OqXW8bGebkwH5UaD2jPcIHTNRSFH4mZQNZ91DrXE75HboI7t8ub1E/uh5CFz8TPtGb/DG90
+	h0LRlOsEzy/qn3VNX4J/HeN2veDMJ0naPCunhRZu5zdNYQW500sDL2n5nbTZbmQgCLZZ7v0aBA7
+	qyzopTAgmxbxLQfw37cFXCPjOZHcReMSf5PeRGbNBHnhcqeEYwGTcXLHJov8o11Zf8c+HZEhjGX
+	pZ60bLzxQ92tCg7x6PKV27/GQt+1eIYnMrAvo8zm8G4xjQrljYpgPfYHFusljTmvgKg1HOjDAb4
+	IN3Pa14IvOu2cbHHSFatDaR5/tfn53c+OoFfiGb0sztSGLTU9iDwxX4oVzq6wNYo27IaAwNno81
+	H2ys1tb+fIcArBNg3XtIViibWtZOKPA0WjkOhN5d0I6sl9QSK1I5p16bcUNaA6DJLkIAFg/tD2/
+	nzN9RVm3LBkwk4kWpBBjIAeZjox+owO1KGjoqP9lxavz3SX55eduwcyvf8l8
+X-Received: by 2002:a17:902:e88d:b0:2df:a00a:2e3 with SMTP id d9443c01a7336-2dfa00a0543mr38304855ad.14.1790485710858;
+        Sat, 26 Sep 2026 22:08:30 -0700 (PDT)
+Received: from spider.bream-herring.ts.net ([103.6.151.236])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2df9142969esm26615495ad.45.2026.09.26.22.08.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Sep 2026 22:08:30 -0700 (PDT)
+From: Matthias Goergens <matthias.goergens@gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] ntfs: fix the $MFT bootstrap hang and reads of unmapped runlist ranges
+Date: Sun, 27 Sep 2026 13:08:19 +0800
+Message-ID: <cover.1790417653.git.matthias.goergens@gmail.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <arMoap0ZgeORuktT@hyunchul-PC02>
+References: <20260922153931.1976405-1-matthias.goergens@gmail.com> <arMoap0ZgeORuktT@hyunchul-PC02>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] ntfs: drain in-flight DIO before buffered write
- fallback
-To: Jiale Yao <yaojiale02@163.com>, Namjae Jeon <linkinjeon@kernel.org>,
- Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20260926072612.3022680-1-yaojiale02@163.com>
- <20260926072612.3022680-3-yaojiale02@163.com>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20260926072612.3022680-3-yaojiale02@163.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD330c217dqjFyMAw--.59026S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxWrWDZryfZF47Cw48Aw4DXFb_yoW5Jw4Dpr
-	Z0kFy3Jr9FyrWxWwn3GF48W3WF939rJ3y3urWkW3W7CrWrKr4vga18KF1Yvr4fJFnrJrW2
-	qF4v9rykCryUZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2-erUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hmMV2q31zlvkwAA3n
+
+Hi Hyunchul,
+
+This is v2 of "ntfs: fail the mount when $MFT needs its own extent
+records", now patch 3.  As you suggested, the mark now stays set for the
+whole $DATA enumeration in ntfs_read_inode_mount().  A crafted image
+that puts $MFT's second $DATA extent in an extent record the first
+extent does not cover hung v1 in that loop; with v2 the mount fails.
+One correction to v1: lockdep stayed silent not because of the folio
+lock, but because ntfs_fill_super() turns it off for the whole mount.
+
+Patch 3 needs patch 1.  With clusters smaller than a page, patch 3 can
+refuse the tail of a folio holding an $MFT record, and without patch 1
+the refused range is mapped as a hole and the mount carries on with an
+all-zero mft record.
+
+That hole is not specific to $MFT.  Patches 1 and 2 fix it for any file
+whose runlist is partly in an extent record that cannot be read: reads
+of that range return zeros with no error, and buffered writes into it
+report success and are lost.  Patch 4 does the same for a runlist that
+ends before allocated_size, which a crafted $MFT used to get past patch
+3.  Patch 5 refuses a $MFT whose data_size exceeds its allocation, and
+patch 6 requires initialized_size <= data_size <= allocated_size, with
+allocated_size a multiple of the cluster size, for every non-resident
+attribute, as fs/ntfs3 does.
+
+Tested under qemu with KASAN and the hung-task detector on ntfs-next,
+with and without the series.  Nine crafted images that hang or crash the
+mount without it fail to mount with it, and six that read zeros that are
+not on disk return errors instead.  Eighteen images that mount without
+the series, among them eight public test volumes written by Windows or
+mkntfs, read every file the same with it, and six small mkntfs images
+still mount.  The images and the scripts that generate them are at
+
+  https://github.com/matthiasgoergens/linux/tree/reproducer/2026-09-26-ntfs-mft-runlist
+
+and, for the ordinary file of patch 4, the unaligned allocated_size of
+patch 6 and three of the volumes that mount, at
+
+  https://github.com/matthiasgoergens/linux/tree/reproducer/2026-09-26-ntfs-v2-extra
+
+v1: https://lore.kernel.org/all/20260922153931.1976405-1-matthias.goergens@gmail.com/
+
+Thanks,
+Matthias
+
+Matthias Goergens (6):
+  ntfs: do not map an unmappable runlist fragment as a hole
+  ntfs: do not turn an unmappable runlist fragment into delalloc on
+    write
+  ntfs: fail the mount when $MFT needs its own extent records
+  ntfs: do not map a vcn as a hole when its runlist lookup failed
+  ntfs: fail the mount when $MFT's data size exceeds its allocation
+  ntfs: reject non-resident attributes whose sizes exceed their
+    allocation
+
+ fs/ntfs/attrib.c   | 54 +++++++++++++++++++++++++++++++++++++++----
+ fs/ntfs/attrlist.c |  8 +++++--
+ fs/ntfs/inode.c    | 57 ++++++++++++++++++++++++++++++++++++++++++++++
+ fs/ntfs/iomap.c    | 16 +++++++++++--
+ fs/ntfs/layout.h   | 13 +++++++----
+ fs/ntfs/volume.h   |  3 +++
+ 6 files changed, 137 insertions(+), 14 deletions(-)
 
 
-
-在 2026/9/26 15:26, Jiale Yao 写道:
-> An asynchronous direct write can remain in flight after the inode lock is
-> released.  If another direct write falls back to buffered I/O while the
-> first write is still pending, iomap_file_buffered_write() can dirty pages
-> before the first write completes its post-I/O page cache invalidation.
-> The invalidation then finds dirty pages, reports a page cache invalidation
-> failure, and records -EIO in the mapping error sequence.  A later fsync()
-> therefore returns -EIO.
-> 
-> Commit 15cdefd0c0522f9d5e12d947fa04f4c11649b699 ("ext4: drain
-> in-flight DIO before buffered write fallback") fixed the same race in
-> ext4.  NTFS has an equivalent fallback after iomap_dio_rw() returns
-> -ENOTBLK or a short write, but does not drain other in-flight DIO before
-> dirtying the page cache.
-> 
-> Wait for in-flight DIO before calling iomap_file_buffered_write() in the
-> fallback path.  Since NTFS supports IOCB_NOWAIT, do not enter the blocking
-> fallback for such requests.  Return -EAGAIN if no bytes were written, or
-> preserve the positive short-write result if the direct write made partial
-> progress.
-> 
-> A reproducer using concurrent AIO direct writes and buffered fallback
-> triggered the following warning and made a subsequent fsync() return
-> -EIO:
-> 
->    Page cache invalidation failure on direct I/O.  Possible data corruption
->    due to collision with buffered I/O!
-> 
-> Fixes: 9c87959601e8 ("ntfs: update file operations")
-> Link: https://lore.kernel.org/r/20260629113827.4074335-3-libaokun@linux.alibaba.com
-> Signed-off-by: Jiale Yao <yaojiale02@163.com>
-> ---
->   fs/ntfs/file.c | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
-> 
-> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-> index 007d1614b9ac..8bbfa842889a 100644
-> --- a/fs/ntfs/file.c
-> +++ b/fs/ntfs/file.c
-> @@ -525,8 +525,21 @@ static ssize_t ntfs_dio_write_iter(struct kiocb *iocb, struct iov_iter *from)
->   		ssize_t written;
->   		int ret2;
->   
-> +		if (iocb->ki_flags & IOCB_NOWAIT) {
-> +			if (!ret)
-> +				ret = -EAGAIN;
-> +			goto out;
-> +		}
-> +
->   		offset = iocb->ki_pos;
->   		iocb->ki_flags &= ~IOCB_DIRECT;
-> +
-> +		/*
-> +		 * Prevent concurrent direct I/O and buffered I/O to the same file
-> +		 * range. Wait for in-flight DIO to finish before dirtying pages.
-> +		 */
-> +		inode_dio_wait(file_inode(iocb->ki_filp));
-> +
->   		written = iomap_file_buffered_write(iocb, from,
->   				&ntfs_write_iomap_ops, &ntfs_iomap_folio_ops,
->   				NULL);
-
-Looks good to me.
-
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+base-commit: 259abb551e2944998cad4214c201954ab1ac5c8d
+-- 
+2.55.0
 
