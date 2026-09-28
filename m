@@ -1,70 +1,46 @@
-Received: from mail-pj2-f13.google.com (mail-pj2-f13.google.com [74.125.227.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58BE459ACB
-	for <ntfs@lists.linux.dev>; Mon, 28 Sep 2026 07:25:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB433F7892;
+	Mon, 28 Sep 2026 08:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790580326; cv=none; b=t4h0pW0sWwA1PtXEGIiBHkF5QPsck6gdNPb+ex3+ejlKD+DdpDGy46XzWY7xc1RXFDn8Mv5xu5xBmtUDIo/vfHtKAYlfDvT8AZibxsFq8AegmZnZJb8CZjb0kckcN7N3jl3EgzrLSb3aWD5daWHtW3GQuUAsPcW5WV1eSN9ESUg=
+	t=1790585669; cv=none; b=CtTzF7YE0c6cRvIF8kqhvB2vkFblJUIcYxA8CeX1rEud0i+v9YeTLXWDwn4mxbJbNzNXmmVCaoCnh0UOQShYdxAmAgPe66gW9sedhpxwaAST/pSnPAbP/S81bSN0U+A6I4qX/nmUh7WWw63JSvwhc3DQBGMBzE23cuj9ZRZaAak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790580326; c=relaxed/simple;
-	bh=w+ucCQBBxwqrw5cxZ2Qgf+RKtvkRszqRv3oF6oet1aQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NTfARO+fqT/L+UrITi7BUkPuDwqT0XUibmzvuBsTlRiQ9S0SntQN+pLwmtiRLyGcgXoab5rBKGDD95kjqCCUxo6bjrkgViZba5iW9EIpQA+z5xKBo5Y5ckKhU4jEJWF2ID5jnvdWDR6CUX46EMyxOwrQcqFQKmYW20WHIyzdRLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NWq6pcSB; arc=none smtp.client-ip=74.125.227.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	s=arc-20240116; t=1790585669; c=relaxed/simple;
+	bh=Gu8VLPRTCftgq6QZnrODe2DmnF3NE5o5dYzYXSoNsYY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nmBXslZVEVp7W/auI/keKednPLbIHZXbp7FfgKUWHb7rbUehr8uImbbEqf0fJGnz/bqe30iqBBHYmxDqhqykkMM8rE3U7hVef3b2lGcmt3T9JTGaHCtI74MEfkoMnoVxYMlPngMEFvpHecJPXSIpM7MquOEL97BlbSbrFSD83+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=CjgxTm+6; arc=none smtp.client-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NWq6pcSB"
-Received: by mail-pj2-f13.google.com with SMTP id 98e67ed59e1d1-396ccb65437so1493933a91.3
-        for <ntfs@lists.linux.dev>; Mon, 28 Sep 2026 00:25:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790580324; x=1791185124; darn=lists.linux.dev;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=HtrU3BdzOhlN6H0C3u1xoHAdKOKacRT4EqldSEc1nO0=;
-        b=NWq6pcSBPCyfRrRGS8EfZztlpCAe8vXrKqpMdPLIzD0U5DAVwAUkmy5Abw4qYn26tN
-         4JTAO5aBnGV7dS98cntSrQZLqnc81mS5ozgU4uBbvP8ZwD6EB2m6EE2/gEeBlQBlJWTQ
-         JHHYTTlmYrcsMelvs0BzpTuHk7Z8rAkb7K+nhK4MFYH2yHcwgouZh8CMKRaSAxOjPCEQ
-         n+TlLAojBMVfRqvsSgXETiId0sIP/VP+d2anNYNq9G2Ei7oE5X6IBUmQ2+VlX7/+REfO
-         aOpkvadvVcadV2ilF2f95MZh8XSFBU8MnnaKp8bgu2TT6dYMD39cG+VzDPCAWwsv3k9c
-         o5xQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790580324; x=1791185124;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=HtrU3BdzOhlN6H0C3u1xoHAdKOKacRT4EqldSEc1nO0=;
-        b=Nj/4lsIGzLTfa3GfqVe11srxDDi/aqHqTvDmDQfMaT1Vx94nFKRmvrEPJLSDE2fp28
-         c0/GRwB6a8KhfKy1uAjM93fTf1uBTi+Oi882nMHEVcw+7gK8KYW+073frtdNv0v5DYyw
-         EJeAQT87nz8gSuvqZmPd97Was+3t1hep2cGyLzYFtW8ZaY9GZqHSoR/OcpW2Twd2FGl6
-         n1ule7J3xzX5yeCE33ZlVod9uXXbQxWPaUMmjoRSUA1NvwV7CXsKZ12HxQZo+A2d839e
-         72MVBjhLVJNsZi0jEPWiCH9rPxKywe4qIvP84BFbxBmeXu5CxiIkvC35qO98yGGK4I2t
-         JfnA==
-X-Forwarded-Encrypted: i=1; AKwUvBxteXbnklFJxcEenoYA7Uf7gEyNXvz+J77J7KH695U/IgcF92lfMzoVsBFP9UjWBa6OK9Wh@lists.linux.dev
-X-Gm-Message-State: AFq9FYJft144zigox3zkuymoJkIrPD9GzcyTqwygbk0YcolM/8VCVmXe
-	TrERkiDfRToGthjnwYFZ5l9mnL4wT5d+cOtNnOmInsAXYFJZ6XCeJqt8
-X-Gm-Gg: AYBFou1pRbrIkDGSUVMhrlk987wL0+X2YEsP9JzInX4la8MnDXXniwydVOfZBsrF8R5
-	g6eIrFNN4RXWstAH02NfaPBHrdgcHRCNgQjxKTSB/A54KPSW4Jx1Fy+0zVaiFPZ1llaxhK5SQ+f
-	vIUubn5eESIRfHlPWijtjAVikiRHyyYI0e3Q2ztpODUggPtrWl5wY8xh12efh45CwqD2ys0yhNM
-	Rov5fzfBJKlzow+BC6qbDeUQdODmGk01bTyHh5gZ5PPbdbz9StU2iBDsegbwkeBk/py6BhsSpDe
-	PPfWS9LdGlNTOvZv1Y5xNNgQUQTK4mBhHUEwn9KL+9tbTpaqps7HRpERXRsxlWbCUABg4iNCODK
-	lr8Rzzm5aRZoeVYz73f7mNmLWuUOpJZ2ak/Fald468KYbmN7c6gEUZQay6zd9X8JAyf7bE7PhdR
-	DpcEj5H5ZoayzHO3y0xX9X6EEdnFugeInnO2tDX8gfIXVEpcCBw6M3IOLDMTpqzcvOFeorUfIqW
-	SAi3zwaG7fcwUo=
-X-Received: by 2002:a17:90b:3b87:b0:39e:4c7f:7305 with SMTP id 98e67ed59e1d1-3a098b53e2amr10256529a91.28.1790580324043;
-        Mon, 28 Sep 2026 00:25:24 -0700 (PDT)
-Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a0e0784510sm5187261a91.2.2026.09.28.00.25.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2026 00:25:22 -0700 (PDT)
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>,
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="CjgxTm+6"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=C0
+	xN9+Mm1EwHMBNzwLSmbI7LvmBH8XFz7NRvmKmiqKM=; b=CjgxTm+6/BQZfxrJTm
+	Kbf1UBoWMa3PZqyjCz02ppbP51TsYLj+30LYyfTeCZ7Jk5hupWkW+S7cEnuTksqW
+	e1Q4y9h6ngec+wpG9dj72HyXl7a1x1CXtsZoiZiRQmOrzC3CgimojYp8iSZlejc5
+	xz7gwmjHPPxmCXS/3vK0pROQo=
+Received: from pc.localdomain (unknown [])
+	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wD3t582K7pqm5HnBA--.52401S2;
+	Mon, 28 Sep 2026 16:54:15 +0800 (CST)
+From: Jiale Yao <yaojiale02@163.com>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+	Sungjong Seo <sj1557.seo@samsung.com>,
+	Yuezhang Mo <yuezhang.mo@sony.com>,
+	Jan Kara <jack@suse.com>,
+	Hyunchul Lee <hyc.lee@gmail.com>,
+	"Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
+	"Darrick J. Wong" <djwong@kernel.org>,
+	exfat@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-ext4@vger.kernel.org,
 	ntfs@lists.linux.dev
-Subject: [PATCH] ntfs: accept standard sparse compression unit
-Date: Mon, 28 Sep 2026 16:25:13 +0900
-Message-ID: <20260928072513.1776685-1-hyc.lee@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Cc: Jiale Yao <yaojiale02@163.com>
+Subject: [PATCH v3 0/3] fs: drain in-flight DIO before buffered write fallback
+Date: Mon, 28 Sep 2026 16:54:09 +0800
+Message-Id: <20260928085412.2221055-1-yaojiale02@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -72,45 +48,59 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3t582K7pqm5HnBA--.52401S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7AF1DtryfXFy7ZFykGF4rXwb_yoW8uF4Upr
+	WYga15trnFyrZ7CrZ7ua17JF1S9ws3J3y3urWag34Uuwn5Gr4DXF48tr1jqr43Aa1fGw12
+	vw40vas7uFyUC3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0piL0ePUUUUU=
+X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7xgiXGq6KzgicAAA3Y
 
-Windows native sparse-file inspection shows that a non-resident $DATA
-attribute can be marked sparse and record the standard compression unit
-(4) even when the file is not compressed.
+An asynchronous direct write can remain in flight after its submitting
+thread releases the inode lock.  If a buffered write dirties page cache
+in the meantime, the direct write can complete post-I/O invalidation after
+the pages become dirty.  The invalidation then reports a page cache
+invalidation failure and records -EIO in the mapping error sequence.  A
+later fsync() returns -EIO.
 
-Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
----
- fs/ntfs/inode.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+Commit 15cdefd0c0522f9d5e12d947fa04f4c11649b699 ("ext4: drain
+in-flight DIO before buffered write fallback") fixed this race in ext4.
+The same ordering is missing from the buffered fallback paths in ext2,
+NTFS, and exFAT, and from the regular buffered-write path in exFAT.
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 9583b2c6c7a2..de848180749d 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -1148,14 +1148,21 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 					goto unm_err_out;
- 				}
- 
-+				/*
-+				 * Windows stores the standard compression unit in
-+				 * sparse attributes even when the data is not compressed.
-+				 */
- 				if (NInoSparse(ni) &&
- 				    a->data.non_resident.compression_unit &&
- 				    a->data.non_resident.compression_unit !=
--				     vol->sparse_compression_unit) {
-+				     vol->sparse_compression_unit &&
-+				    a->data.non_resident.compression_unit !=
-+				     STANDARD_COMPRESSION_UNIT) {
- 					ntfs_error(vi->i_sb,
--						   "Found non-standard compression unit (%u instead of 0 or %d).  Cannot handle this.",
-+						   "Found non-standard compression unit (%u instead of 0, %d, or %d).  Cannot handle this.",
- 						   a->data.non_resident.compression_unit,
--						   vol->sparse_compression_unit);
-+						   vol->sparse_compression_unit,
-+						   STANDARD_COMPRESSION_UNIT);
- 					err = -EOPNOTSUPP;
- 					goto unm_err_out;
- 				}
+This series adds inode_dio_wait() before these paths dirty page cache.
+Each patch fixes one filesystem and remains independently buildable.  The
+NTFS patch also avoids entering the blocking fallback for IOCB_NOWAIT
+requests: it returns -EAGAIN if DIO made no progress and preserves a
+positive result after a partial direct write.
+
+A reproducer using concurrent AIO direct writes and buffered fallback
+triggered the following warning on all three filesystems and made a
+subsequent fsync() return -EIO:
+
+  Page cache invalidation failure on direct I/O.  Possible data corruption
+  due to collision with buffered I/O!
+
+Changes in v3:
+- Add inode_dio_wait() to both the regular and fallback buffered-write
+  paths in exFAT, and move the explanatory comment to
+  exfat_file_write_iter(), as requested by Chi Zhiling.
+- Add Baolin Liu's Reviewed-by tag to the NTFS patch.
+
+Changes in v2:
+- Handle IOCB_NOWAIT before the potentially blocking NTFS fallback,
+  returning -EAGAIN before any bytes are written and preserving a positive
+  short-write result otherwise, as requested in review.
+
+Jiale Yao (3):
+  ext2: drain in-flight DIO before buffered write fallback
+  ntfs: drain in-flight DIO before buffered write fallback
+  exfat: drain in-flight DIO before buffered writes
+
+ fs/exfat/file.c | 12 ++++++++++--
+ fs/ext2/file.c  |  7 +++++++
+ fs/ntfs/file.c  | 13 +++++++++++++
+ 3 files changed, 30 insertions(+), 2 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
