@@ -1,228 +1,246 @@
 Received: from mail-pj2-f39.google.com (mail-pj2-f39.google.com [74.125.227.167])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EDFC24676D
-	for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 03:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB2039E6CD
+	for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 08:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.167
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790740133; cv=none; b=MUdAWTl8noBMm1nBIcZy7oe6/BEKPd7pbqNo1q5vrKmzccYD9QwgyuZN5TCfo1neiGAlcdDu3wjg9VLJLTsPJ8hKj3Wk7KyT4v2nu7MXYfsudc2zQtonuVDgPuYslZx12PneZqid2I2/XrbHNsYJ79IpnXdban1VwrYurV6EYQ8=
+	t=1790756064; cv=none; b=eaThKXNfGgxgbaUtwNRY5qun3dh9qaGENrYYwjTjJpG4HphjLh4BrDKySC6fury8ZaHeSfCTaeq3PNncYAGFOXE/uh/tEMvWVe248fQqjIZ33WMwlM1WGVSoQ/NlHRr54itZY9XREoxDXr7fMl+/tUuT7N73ulvhkusHdkGqt2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790740133; c=relaxed/simple;
-	bh=WYmTryAaQ/trZZhmLAWBl5OpMn+WWDyNXRxH9foDQnI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hS6A7PT28AO5eLsGvJeWxk+CHB43ufoBsKyjdgEVFXyHLovGNd45yC7f6VTaz7+hFtjBhNAEqAcXa2GGAZahwlMGN++UJg9onWBz2jA7FAJWtsSaw/tPUFfevO3eEs4ex+/Vz9c7Cfrt/B9Kw7kyD+G5bqpqpUgmLIeIHRrS9Ts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aooAMmbJ; arc=none smtp.client-ip=74.125.227.167
+	s=arc-20240116; t=1790756064; c=relaxed/simple;
+	bh=4sVvF5N0X04y82EiZvsck+TNhVspB5fM8AD0Kq/G1ec=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AEznoT7AIekJUHGQsR4kltd7VPIxajGewDUltib3FGMb+Qkltw3w+q7OrcGQbbAkZcJTW2dcqpSweVnumPfGSmIz5+BdVm5TQKsAm49lUIDuzRV9BQ/8Iq/CFeQh54AyALF5jjsHGyTnFGIYF8LRanlC7fqUnNXGGKqBqnQ4jUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i8p8lv+R; arc=none smtp.client-ip=74.125.227.167
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aooAMmbJ"
-Received: by mail-pj2-f39.google.com with SMTP id d9443c01a7336-2e2c7eb3b8cso6351995ad.1
-        for <ntfs@lists.linux.dev>; Tue, 29 Sep 2026 20:48:52 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i8p8lv+R"
+Received: by mail-pj2-f39.google.com with SMTP id 98e67ed59e1d1-3a49b6bb21eso1273406a91.3
+        for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 01:14:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790740131; x=1791344931; darn=lists.linux.dev;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=hRt/tj2cSACQMtmTLMhEnniCAGYtbcz7VW2FXaU1+ms=;
-        b=aooAMmbJAEetnoT5nGKsaAeg89dLXnr7ukSzvhcU85z8iDKG8GFaiSV7J8MR0xplNX
-         KxMf7aUVcYub097jQTfz3Apmxc/zXcF7uPqpk5/Kh632saeXmq/Q/+BkBvKHepOvWgJB
-         haoMkWieQ9g712dGpma3CNqbASzue33RFucYcmdlwXbqDueYxYpzl+OPd8432r5MLzAs
-         HWdJikAWBdPNKa4MDUjEzxh2c3zyzIOZKPOFG82Q3ko2LbEYK2AdHbpsHWLz6psDbcJc
-         0mVcAHCFcl5X0z4vRX9oGkR+Myy5fP2DY9ABrF49AYw7h/y1NXwsl/ITZSOSg3MfBeM0
-         VrnA==
+        d=gmail.com; s=20251104; t=1790756062; x=1791360862; darn=lists.linux.dev;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=9SBW8K2oQrTXOHOneJy45UcoEEuUnutRwJ1mYqQQoWY=;
+        b=i8p8lv+RvMOI3ciRl4IpLm4UHvIzHSf+cWY53SJWrDtb11JlqAl9RZ19jdDmerk0sY
+         iRv5UXwJJwgBF4hv+zGO3H0L5sq17mwXxB99M8bUsPK/SI7hWF8Y8NLGFJL+sGBSq3jL
+         eZ23yo3GaRlVBwGsUtd3xogIszJtzjXJrbY+3/WZ8KhcnTU6zOAAcDCR3zwShHExg786
+         X3zjC2tpjXwM6+vKk3olWt+tEJpWj4KbIn2Dwy7/HCPJYu9CRdhkdLAp0FGB6xM/k6c5
+         7URvRopu43iox4AVQwg58+YZEiNK2Rz44fVpEWgRDFDOTWQnbOW1Giyad13e+uEWrGyJ
+         yHsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790740131; x=1791344931;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=hRt/tj2cSACQMtmTLMhEnniCAGYtbcz7VW2FXaU1+ms=;
-        b=jfn4uUdQrFTNFZV4XbgnOcDHbTlwLzDuvty418CO3dJIyEXqd7Eco3Is9fDdzdpXk1
-         hy5y6T8uLwOa+j/gRy/glzA3cs3sCXdVuFw1phChstmyw1W3l75IEBC0ZyS+j9CRmKE3
-         WjXMxoxRKBlkOGQeF4hYtKkiU3jOxTLeKfVucVdoCrsZAs0wh/9vrlTW4JIA2xdRMYEX
-         I9z9vUkmPn1qUGnEXcT/fSGE5BbNfWyOiIF9jBP8pGFHVnLwyFtk0AY1+Fx5jxTPJfcj
-         XmO759oLCKaZAyJEVhnC+vXLKxsTP7E/FrZQMyR9yXgJOF8xV0vp19WUOow/juCmK6hv
-         W5fA==
-X-Forwarded-Encrypted: i=1; AKwUvBwZeTIe9khZ0J7Md6f+K2fWSrz5JJ2t3uZ2W0qn7vc6JoyzR/2WQX9rk48ix+V8sZUI68DC@lists.linux.dev
-X-Gm-Message-State: AFq9FYIb6VB+JUGcf2e/lZKQVCfOtHar7T4v2wzzMA3qnuxwLaaL/Mx2
-	bGowNQ3eQLFrh8IHrLL3YX2x8/irvdlxX62pXFIU4/dSql9vGA2P88pqUevQHK7d53zaqw==
-X-Gm-Gg: AYBFou3xEhDE/x715a8PmNMJ8SCQayevPRM2gH+ydpTH/Gz1SRoqXP49vIU/EcV6icO
-	ZA2l2IGWfFyJSH6eQuQU2bfGF9Zh6gvmmGpyIoj2UrbRlej7Fw/jS+GXWUnjY2kuJ52XMpEqCUI
-	3QFTUS8D3KQEYeO/5Km1WYeH469QD+3q3lyKQL9fNm4UR/lyBbugXGB6mrodjW5iqGVlw2dI5++
-	GHZE7wnlkwex4O4jPkuWTFDzqprBeDmDWQge8b9BALCg2KP5Bzko7s5Iezle4/j3o4Tb1WvghZk
-	o1HB0bQOxiHIWU01QQHmurGyhqiArmmeV5TSUq8j/VbqmIDKBOAR2gAC9Bbk9ziUE4vw486iaug
-	XYVuKBpp+vb9wS5Hb1Iui4H1w2gDMGNtP/yaPRh7vCUdP778JVeMOqWVM8uD5sz8RQY7VMSNC60
-	4CgxrJeV2gPRR+ualAT7mlfN9+kheqePR9aikSi6jfiyLwkulod44obyfmozipzLxS5GqFyzk9p
-	ZVeZ+l6sUdilS4dCTJEKyHLUqA9Gthq4zLqanOWNuDJg2UIzC6MxNKOX367UMEwiOajbmePBu8o
-	gOx8TlxIx3hE+p/wuE85jGPgejwVB74cM6K5hWJ8KB0cLTZzekqA4e7RSdE=
-X-Received: by 2002:a17:903:1211:b0:2dd:ad74:6d19 with SMTP id d9443c01a7336-2e2e4b32296mr1470375ad.31.1790740131383;
-        Tue, 29 Sep 2026 20:48:51 -0700 (PDT)
-Received: from spider.bream-herring.ts.net ([103.6.151.236])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2e2dd86f3ddsm3760005ad.68.2026.09.29.20.48.49
+        d=1e100.net; s=20260707; t=1790756062; x=1791360862;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=9SBW8K2oQrTXOHOneJy45UcoEEuUnutRwJ1mYqQQoWY=;
+        b=o8unBKpwvg78tiFz5S/TnNcRlgt1VbMTSi3pJ95eQz7vo/FauWSuk5QScGdReouG3L
+         ZHapgDOD2f16K7Ql5i3TZuaOK73sVhtCRppfiYVkBBYB5B8yPqCm/F1vRYdoE5Y9tVwd
+         hT0Ir05q2wbwguNDFp47kQeCD3F5ceI6lL0I9Agq90sx1WGH83yjPB6FYpErthRFDhFC
+         yLSyhNQ7anN50gAyJO0zUpLXfbUeqsW3iIPb970akqT02bMciFr4d9RBOj2ZO8I9xa2D
+         UiuMVIhUVfAFocVJ3LTIXFvPtBdg6KorTwD10ntA6D4xLpKhIuyD6HxDD1qUhyoaILzO
+         CsVA==
+X-Forwarded-Encrypted: i=1; AKwUvBzXdwrX/UUscPbm8Gfs4ptIFJNwUWEDL1finA3Q4oXJv/H2UMeHpRULxxTM60tgGuIn6gn9@lists.linux.dev
+X-Gm-Message-State: AFq9FYLgYfHhC+GmJmt+kl09DLX52ymH+80f2Qzq1/PdFa95aUGMRGmZ
+	PsX0QPEa+4ma/f+IVJrAdsVXP4wdC+CD8P4DC06eTm7A9N2m3FsMMRhJ
+X-Gm-Gg: AYBFou0nzPGyTTnDuehPhveJ1OT3kGvG3P20sFDyNYH/3Ae+h+J22ymq5ilyEpfrzQp
+	wQhELsMgitKXICR9FZR/hNkik39ckOs22DCpX6v2Tw7XV/obypixpK3976pI7bwyHSxNAl3YiQ5
+	6P8hq33RPi0vP0HeyAnWDERqxJtp0SNjaTy5PGnwLakukX4wyesbr+E5gihch/Lqwz77TmFUPZV
+	uhjAwxYsTsBhL9Ag+AXhmODLt0rJTKvAneDdzaqNGR0eD+zrm79df2NMYKmTzp8iwOvAd3ZIUEE
+	DKXEthqdXQ+kf7708oNLN3Dkg9hl51CvUkCRPd7XeV/NXmsE/f0HN5IQjWhMXRoriOFlrm7vr+L
+	eKUVxv9pHFUTnFXPppGcaGqNbnb1KAEzAL/UCe/cE8/6SDdSgF/6jaQeTmx6vNBXDx3Y8RFWBKB
+	VNgfsdHRZvKB2JWZQRLP4ygMZi6sRZuxIqC2y/G1SqJ0zzJLtg63Nk81vpyN6GfL0bcrQ1B9w=
+X-Received: by 2002:a17:90a:ec8f:b0:3a0:22bd:6ef6 with SMTP id 98e67ed59e1d1-3a4d0f03a1amr417944a91.2.1790756062115;
+        Wed, 30 Sep 2026 01:14:22 -0700 (PDT)
+Received: from localhost ([27.122.242.71])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a4ce40a6d5sm1974462a91.15.2026.09.30.01.14.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2026 20:48:50 -0700 (PDT)
-From: Matthias Goergens <matthias.goergens@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>
-Cc: Baolin Liu <liubaolin12138@163.com>,
-	ntfs@lists.linux.dev,
+        Wed, 30 Sep 2026 01:14:21 -0700 (PDT)
+Date: Wed, 30 Sep 2026 17:14:19 +0900
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: Matthias Goergens <matthias.goergens@gmail.com>
+Cc: Namjae Jeon <linkinjeon@kernel.org>, ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] ntfs: reject non-resident attributes whose sizes exceed their allocation
-Date: Wed, 30 Sep 2026 11:48:35 +0800
-Message-ID: <0d9fadd7e8146bf2ea4c78e71ed41cd01588b545.1790684177.git.matthias.goergens@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <cover.1790684177.git.matthias.goergens@gmail.com>
-References: <cover.1790684177.git.matthias.goergens@gmail.com>
+Subject: Re: [PATCH v2 1/2] ntfs: balance the $MFT runlist lock in data
+ extension error paths
+Message-ID: <arzE28Mcte2g2-KW@hyunchul-PC02>
+References: <20260930033556.169300-1-matthias.goergens@gmail.com>
+ <20260930033556.169300-2-matthias.goergens@gmail.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260930033556.169300-2-matthias.goergens@gmail.com>
 
-ntfs_read_locked_inode(), ntfs_read_locked_attr_inode() and
-ntfs_read_locked_index_inode() take a non-resident attribute's data_size
-and initialized_size from disk without checking them against its
-allocated_size.  The runlist ends at allocated_size and the read path
-maps what lies beyond it as a hole, so a data_size larger than the
-allocation makes reads return zeros that are not on disk, with no error.
+Hi Matthias,
 
-On a crafted volume with 4 KiB clusters where a 6144000-byte file claims
-a data_size and initialized_size 64 KiB beyond its allocation, reading
-the file returns 16 clusters of such zeros.  A sparse file behaves the
-same.  A compressed file instead fails with -EIO after a burst of "Still
-have pages left!" errors from ntfs_read_compressed_block().
+On Wed, Sep 30, 2026 at 11:35:55AM +0800, Matthias Goergens wrote:
+> ntfs_mft_data_extend_allocation_nolock() drops the $MFT runlist lock
+> before allocating clusters, and every path into undo_alloc arrives
+> without it, except a map_mft_record() failure, which takes it first.
+> undo_alloc never releases it, so the lock leaks and the next $MFT
+> extension and $MFT writeback hang.  The restore_undo_alloc failure
+> path, on the other hand, releases the lock without holding it.  And
+> undo_alloc frees the clusters with ntfs_cluster_free() and truncates
+> the runlist without the lock, although both require it.
+> 
+> Enter undo_alloc without the lock on every path.  Under the lock, copy
+> the new runs and truncate the runlist; after dropping it, free the
+> clusters from the copy with ntfs_cluster_free_from_rl().  That keeps
+> lcnbmp_lock outside the runlist lock, as the function documents.  Like
+> the runlist merge failure above, this does not discard the clusters,
+> which were never written.  If the truncation fails, the runlist may
+> still reference the clusters, so they are not freed.  In that case, and
+> if the copy cannot be allocated, the clusters stay allocated and the
+> volume is marked for chkdsk.
+> 
+> A shorter fix would keep calling ntfs_cluster_free() on the live
+> runlist without the lock, relying on $MFT's runlist being fully mapped
+> and changed only by this function under mrec_lock.  That breaks
+> ntfs_cluster_free()'s documented locking rule on an argument about the
+> rest of the driver, so this patch does not do that.
+> 
+> Fixes: 115380f9a2f9 ("ntfs: update mft operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Matthias Goergens <matthias.goergens@gmail.com>
+> ---
+> v2: do not free the clusters if ntfs_rl_truncate_nolock() fails
+> (Hyunchul Lee).
+> 
+> Without this patch, a forced map_mft_record() failure gives "WARNING:
+> lock held when returning to user space" for the $MFT runlist lock, and
+> the next file create and $MFT writeback block on it.  A forced lookup
+> failure in restore_undo_alloc gives "bad unlock balance".  With it, the
+> create fails with EIO, lockdep stays quiet and the volume keeps working,
+> also when the copy allocation is forced to fail.  With the truncation
+> forced to fail, nothing is freed that $MFT's runlist still maps.  $MFT
+> growth on a fragmented volume behaves as before.
+> 
+>  fs/ntfs/mft.c | 59 ++++++++++++++++++++++++++++++++++++++++++++-------
+>  1 file changed, 51 insertions(+), 8 deletions(-)
+> 
+> diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
+> index e01e367a588d..8edc65911aa2 100644
+> --- a/fs/ntfs/mft.c
+> +++ b/fs/ntfs/mft.c
+> @@ -1764,6 +1764,36 @@ static int ntfs_mft_bitmap_extend_initialized_nolock(struct ntfs_volume *vol)
+>  	return ret;
+>  }
+>  
+> +/*
+> + * ntfs_mft_copy_tail - copy the runs of a runlist from a vcn onwards
+> + * @rl:		runlist to copy from
+> + * @vcn:	first vcn to copy
+> + *
+> + * Return a terminated copy of the runs of @rl covering @vcn and everything
+> + * after it, NULL if there are none, or ERR_PTR(-ENOMEM).  The caller must
+> + * hold the runlist lock and free the copy with kfree().
+> + */
+> +static struct runlist_element *ntfs_mft_copy_tail(struct runlist_element *rl, s64 vcn)
+> +{
+> +	struct runlist_element *end, *copy;
+> +	s64 delta;
+> +
+> +	rl = ntfs_rl_find_vcn_nolock(rl, vcn);
+> +	if (!rl || !rl->length)
+> +		return NULL;
+> +	for (end = rl; end->length; end++)
+> +		;
+> +	copy = kmemdup(rl, (end - rl + 1) * sizeof(*rl), GFP_NOFS);
+> +	if (!copy)
+> +		return ERR_PTR(-ENOMEM);
+> +	delta = vcn - copy->vcn;
+> +	copy->vcn = vcn;
+> +	copy->length -= delta;
+> +	if (copy->lcn >= 0)
+> +		copy->lcn += delta;
+> +	return copy;
+> +}
 
-Require 0 <= initialized_size <= data_size <= allocated_size, with
-allocated_size a multiple of the cluster size, when the inode is read,
-as fs/ntfs3 does in mi_enum_attr(), and fail with -EIO otherwise, which
-marks the inode bad and the volume as having errors.  initialized_size
-above data_size is rejected too because an extending write zeroes the
-gap it opens only from initialized_size onwards.  An unaligned
-allocated_size ends inside a cluster that the read path treats as past
-the end: a crafted 66440-byte file with 4 KiB clusters reads its last
-904 bytes as zeros.
+Would it be worth considering preserving the rl2 returned by 
+ntfs_cluster_alloc(), instead of re-allocating the tail with
+ntfs_mft_copy_tail() during rollback.
 
-Sparse and compressed attributes need no exception.  Every non-resident
-attribute has a cluster-aligned allocated_size >= data_size, holes
-included, on eight public test volumes (seven written by Windows, with
-LZNT1-compressed files, a sparse $UsnJrnl:$J and a OneDrive placeholder
-whose unnamed $DATA is one hole, and one by mkntfs), on a volume written
-by ntfs-3g and on one written by this driver, and the patched driver
-reads every file on them as before.  fs/ntfs3 has enforced the same
-checks since v6.6, also without exceptions.  The layout.h comment saying
-that data_size can exceed allocated_size for compressed and sparse
-attributes is corrected.
+It can avoid the runlist scanning and kmemdup(). I think that we could 
+introduce a variant of ntfs_runlists_merge() to preserve the source
+runlist.
 
-This also covers a non-resident attribute list, which
-load_attribute_list() reads through ntfs_attr_iget(), and $MFT, whose
-inode goes through ntfs_read_locked_inode() after the previous patch's
-check.  $MFT's own non-resident attribute list goes through neither:
-ntfs_read_inode_mount() loads it with load_attribute_list_mount() and
-ntfs_read_locked_inode() skips it for $MFT, so the check is added there
-too.  The check was already missing in the classic driver; the Fixes
-tag names the commit that brought that code back.
+> +
+>  /*
+>   * ntfs_mft_data_extend_allocation_nolock - extend mft data attribute
+>   * @vol:	volume on which to extend the mft data attribute
+> @@ -1791,7 +1821,7 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
+>  	s64 min_nr, nr, ll;
+>  	unsigned long flags;
+>  	struct ntfs_inode *mft_ni;
+> -	struct runlist_element *rl, *rl2;
+> +	struct runlist_element *rl, *rl2, *tail_rl;
+>  	struct ntfs_attr_search_ctx *ctx = NULL;
+>  	struct mft_record *mrec;
+>  	struct attr_record *a = NULL;
+> @@ -1904,7 +1934,6 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
+>  	if (IS_ERR(mrec)) {
+>  		ntfs_error(vol->sb, "Failed to map mft record.");
+>  		ret = PTR_ERR(mrec);
+> -		down_write(&mft_ni->runlist.lock);
+>  		goto undo_alloc;
+>  	}
+>  	ctx = ntfs_attr_get_search_ctx(mft_ni, mrec);
+> @@ -2015,7 +2044,6 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
+>  		write_unlock_irqrestore(&mft_ni->size_lock, flags);
+>  		ntfs_attr_put_search_ctx(ctx);
+>  		unmap_mft_record(mft_ni);
+> -		up_write(&mft_ni->runlist.lock);
+>  		/*
+>  		 * The only thing that is now wrong is ->allocated_size of the
+>  		 * base attribute extent which chkdsk should be able to fix.
+> @@ -2026,15 +2054,30 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
+>  	ctx->attr->data.non_resident.highest_vcn =
+>  			cpu_to_le64(old_last_vcn - 1);
+>  undo_alloc:
+> -	if (ntfs_cluster_free(mft_ni, old_last_vcn, -1, ctx) < 0) {
+> -		ntfs_error(vol->sb, "Failed to free clusters from mft data attribute.%s", es);
+> -		NVolSetErrors(vol);
+> -	}
+> -
+> +	/*
+> +	 * Entered without the runlist lock.  Take the new runs off the
+> +	 * runlist under it, and free their clusters from a copy once it is
+> +	 * dropped, as lcnbmp_lock nests outside it (see above).  If the
+> +	 * runlist cannot be truncated or the copy cannot be allocated, the
+> +	 * clusters stay allocated until chkdsk.
+> +	 */
+> +	down_write(&mft_ni->runlist.lock);
+> +	tail_rl = ntfs_mft_copy_tail(mft_ni->runlist.rl, old_last_vcn);
+>  	if (ntfs_rl_truncate_nolock(vol, &mft_ni->runlist, old_last_vcn)) {
+>  		ntfs_error(vol->sb, "Failed to truncate mft data attribute runlist.%s", es);
+>  		NVolSetErrors(vol);
+> +		/* The runlist may still reference the clusters, so keep them. */
+> +		if (!IS_ERR(tail_rl))
+> +			kfree(tail_rl);
+> +		tail_rl = NULL;
+> +	}
+> +	up_write(&mft_ni->runlist.lock);
+> +	if (IS_ERR(tail_rl) || ntfs_cluster_free_from_rl(vol, tail_rl)) {
+> +		ntfs_error(vol->sb, "Failed to free clusters from mft data attribute.%s", es);
+> +		NVolSetErrors(vol);
+>  	}
+> +	if (!IS_ERR(tail_rl))
+> +		kfree(tail_rl);
+>  	if (mp_extended && ntfs_attr_update_mapping_pairs(mft_ni, 0)) {
+>  		ntfs_error(vol->sb, "Failed to restore mapping pairs.%s",
+>  			   es);
+> -- 
+> 2.55.0
+> 
 
-Fixes: 1e9ea7e04472 ("Revert "fs: Remove NTFS classic"")
-Signed-off-by: Matthias Goergens <matthias.goergens@gmail.com>
----
- fs/ntfs/inode.c  | 27 +++++++++++++++++++++++++++
- fs/ntfs/layout.h | 13 ++++++++-----
- 2 files changed, 35 insertions(+), 5 deletions(-)
-
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 9c97fc3f9e5ff..7e475d339e920 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -651,6 +651,25 @@ void ntfs_set_vfs_operations(struct inode *inode, mode_t mode, dev_t dev)
- 	}
- }
- 
-+static bool ntfs_non_resident_sizes_inconsistent(struct inode *vi,
-+						 const struct attr_record *a)
-+{
-+	s64 allocated_size = le64_to_cpu(a->data.non_resident.allocated_size);
-+	s64 data_size = le64_to_cpu(a->data.non_resident.data_size);
-+	s64 initialized_size = le64_to_cpu(a->data.non_resident.initialized_size);
-+
-+	if (initialized_size >= 0 && initialized_size <= data_size &&
-+	    data_size <= allocated_size &&
-+	    !ntfs_bytes_to_cluster_off(NTFS_I(vi)->vol, allocated_size))
-+		return false;
-+
-+	ntfs_error(vi->i_sb,
-+		   "Attribute 0x%x of inode 0x%llx is corrupt (initialized size %lld, data size %lld, allocated size %lld).",
-+		   le32_to_cpu(a->type), NTFS_I(vi)->mft_no, initialized_size,
-+		   data_size, allocated_size);
-+	return true;
-+}
-+
- /*
-  * ntfs_read_locked_inode - read an inode from its device
-  * @vi:		inode to read
-@@ -1184,6 +1203,8 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 					"First extent of $DATA attribute has non zero lowest_vcn.");
- 				goto unm_err_out;
- 			}
-+			if (ntfs_non_resident_sizes_inconsistent(vi, a))
-+				goto unm_err_out;
- 			vi->i_size = ni->data_size = le64_to_cpu(a->data.non_resident.data_size);
- 			ni->initialized_size = le64_to_cpu(a->data.non_resident.initialized_size);
- 			ni->allocated_size = le64_to_cpu(a->data.non_resident.allocated_size);
-@@ -1446,6 +1467,8 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
- 			ntfs_error(vi->i_sb, "First extent of attribute has non-zero lowest_vcn.");
- 			goto unm_err_out;
- 		}
-+		if (ntfs_non_resident_sizes_inconsistent(vi, a))
-+			goto unm_err_out;
- 		vi->i_size = ni->data_size = le64_to_cpu(a->data.non_resident.data_size);
- 		ni->initialized_size = le64_to_cpu(a->data.non_resident.initialized_size);
- 		ni->allocated_size = le64_to_cpu(a->data.non_resident.allocated_size);
-@@ -1675,6 +1698,8 @@ static int ntfs_read_locked_index_inode(struct inode *base_vi, struct inode *vi)
- 			"First extent of $INDEX_ALLOCATION attribute has non zero lowest_vcn.");
- 		goto unm_err_out;
- 	}
-+	if (ntfs_non_resident_sizes_inconsistent(vi, a))
-+		goto unm_err_out;
- 	vi->i_size = ni->data_size = le64_to_cpu(a->data.non_resident.data_size);
- 	ni->initialized_size = le64_to_cpu(a->data.non_resident.initialized_size);
- 	ni->allocated_size = le64_to_cpu(a->data.non_resident.allocated_size);
-@@ -2008,6 +2033,8 @@ int ntfs_read_inode_mount(struct inode *vi)
- 					"Attribute list has non zero lowest_vcn. $MFT is corrupt. You should run chkdsk.");
- 				goto put_err_out;
- 			}
-+			if (ntfs_non_resident_sizes_inconsistent(vi, a))
-+				goto put_err_out;
- 
- 			rl = ntfs_mapping_pairs_decompress(vol, a, NULL, &new_rl_count);
- 			if (IS_ERR(rl)) {
-diff --git a/fs/ntfs/layout.h b/fs/ntfs/layout.h
-index 8f5792139d719..2de83d4ca40b9 100644
---- a/fs/ntfs/layout.h
-+++ b/fs/ntfs/layout.h
-@@ -811,14 +811,17 @@ enum {
-  *                                  on XP SP2+.
-  * @data.non_resident.reserved:     5 bytes for 8-byte alignment.
-  * @data.non_resident.allocated_size:
-- *                                  Allocated disk space in bytes.
-- *                                  For compressed: logical allocated size.
-+ *                                  Allocated size in bytes, a multiple of
-+ *                                  the cluster size.  For compressed and
-+ *                                  sparse attributes holes count as
-+ *                                  allocated; the clusters actually in use
-+ *                                  are in compressed_size.
-  * @data.non_resident.data_size:    Logical attribute value size in bytes.
-- *                                  Can be larger than allocated_size if
-- *                                  compressed/sparse.
-+ *                                  Never larger than allocated_size, also
-+ *                                  when compressed/sparse.
-  * @data.non_resident.initialized_size:
-  *                                  Initialized portion size in bytes.
-- *                                  Usually equals data_size.
-+ *                                  Usually equals data_size, never larger.
-  * @data.non_resident.compressed_size:
-  *                                  Compressed on-disk size in bytes.
-  *                                  Only present when compressed or sparse.
 -- 
-2.55.0
-
+Thanks,
+Hyunchul
