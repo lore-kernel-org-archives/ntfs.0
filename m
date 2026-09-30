@@ -1,166 +1,238 @@
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com [209.85.167.198])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388273BFAD4
-	for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 10:22:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.198
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790763733; cv=none; b=fD5jCrevM2M0BUJdTRdHbNBYLSb30JJgOidxV6DIMfU6+12pKmhJehi843Hsp3idOCQb/tW80JMiylwjDG9X51RncLT4BBujdOWEGWUb6CEDOJEILH7PbRruQCiP6htgvDVm+weLcB27fZkPA+Q+CTskBe/UvTKdx0jm+GoYN9A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790763733; c=relaxed/simple;
-	bh=HTstWwHGvjQaqkxfRTX9fKd56IW56PagSfiTwJIrIgo=;
-	h=MIME-Version:Date:In-Reply-To:Message-ID:Subject:From:To:Cc:
-	 Content-Type; b=JudMDE2YBdV5yML1fFmYvQemhBSQrBMrLEQ8Biimvf1+pBPAgopxFWQh7wlJ/0JkxhFgZd8xkf3UZRH6CrmQTiR0ljmhLtmkoKjgN5CMBjkvtFt0WUM7NKBBw+DzabJ0WPSXbxyspC8DH8m70W5uvlFJsSc4TwYuorAfyWepyPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=syzkaller.appspotmail.com; spf=pass smtp.mailfrom=M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com; arc=none smtp.client-ip=209.85.167.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=syzkaller.appspotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-Received: by mail-oi1-f198.google.com with SMTP id 5614622812f47-4b597558c4cso8497154b6e.1
-        for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 03:22:11 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295FB4E322C
+	for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 13:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1790775367; cv=pass; b=Qk4gf58ou9p8G41wipK/h21FsL8L8iPazqBejKTXfBhLrMh9oOKCZM0IPF6onl73jnL+LjcIULXEFFPpTgWMjqFX1hKv1wC8McUzZs6ZnfUBPyBEyZs9LUrbovgsUaQCu9gpKsJXwDBPNkxAR0xMQsPSnZakstt+qIpkHtEHIak=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1790775367; c=relaxed/simple;
+	bh=SXhpmvBhQ+TXtxniHLWeCSa452bmcr1rqYYurbJuz+I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rxhlrUuSC9mVqGUdx2Sk5Ci9i2BkdZeqH/8hHf1N4axv5JXPq1m0F8XfAPjvsQ6+Hvx5f+xkAJwQ+Q2075ALVlUsgDD+hM6gxQdD/pmIZxV++vwfZiREuAquRvPzXvyA5D7ztDG+9tFAd2GJ1IfJi23FU5icVZu6Po8shFG43dY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qeuqde8I; arc=pass smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qeuqde8I"
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6ae185cc40fso633509a12.1
+        for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 06:35:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1790775357; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ZDocXPL5+oYTfkxFB0h4OKhb2KYbDnu1Y0zYrf2zSWr8ZmNV02NphDzf6UauhtifI7
+         ARBM4aqHG385gUPkbQkiFHpYG3LImUrKUUdfpUc9wpDARGX9/f0lQAe4MVXe1BKeyjN0
+         v//whCFsPEJgVrN1L/q9BvUH/Bzkfx0ONKcgHXRq6tOi5ynlW7DaR5bUtjPqfqiG3afw
+         8c5WOoM1qVvkzVBU9NammbU45B7KzZewfwWwHS1bfbe9p/aVwN/jXMw1NAlBUobE4HS6
+         UsPvKc0AXIeOOit1KIjRnHYa8W3RanFfNry08t4JDepGVEFhUqNa7PVHXOqiqPnjwIER
+         1bCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=4QchkhwI1w5bSASLXqcxUjuWuiosjQacZxJlQZryO/o=;
+        fh=a7p1ksjm1uJjYwtkp7VJXpWyvm/k1yLcjILY7x0N9J8=;
+        b=IbB0OebKn4fK8FjWBUf+NpQinbG1rxY2WYJNIL/lDI1NugujJy1vhKEv30spaW9h3D
+         T2nJtHCZRKniKFVBnLB27Au9pS8jWeotzTy+QMXKv88KTU8DYj4pFxKD4qDcgdwQ2Sik
+         DJ/X2N8RuSR8ZLzvOGaP+pxm2xmI0wVdu2r6J3wF/nHJzdMt+S+YKe/7drBCQotcTipp
+         3Kf3WVsNQ4O0jPFp9Bsy1guTtcHPAQa2X8eUFwtgoSZcuVfAEB+eNvXI2GUIIOFYxBaG
+         PPzE2Km9N/DWTvp5ANTR4J4U7QlWoajVm7deVbJ9dp02tuG4GXygUAwjrj9pZrW/e/3x
+         xGCg==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1790775357; x=1791380157; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=4QchkhwI1w5bSASLXqcxUjuWuiosjQacZxJlQZryO/o=;
+        b=Qeuqde8IhgmE6WzROaBH0z+GgJ1MR6IONk3nLHZy+at/ZhZ6JOP7ySLCGrSU2uJY4q
+         elUqWcVtxWKW2oN0+I4pYC3ag8JdD1igz3/b/KJRdLCDdlvI+Q/dKSteEwvUakEcMQh1
+         9RoMLE4jO+TC5lFOZB+7ZQHnqMZUxW6BeiwE2ilZeVjJVCGOrb33QTDLRJNb8/vk9zgw
+         S0Scl8+IkKk4cOZzpmi1OCtKdYKBwrWc5u7q7wUaaw7jYvK3Hb5Ez7b34MwbjiCpKqfW
+         mvW5d/DLnJ65GrXlxzaxeF03xhBqTcM/UPP/BojgCNUvyv3zGJoSqSlIpAppK4U//vh4
+         4rpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790763730; x=1791368530;
-        h=content-type:cc:to:from:subject:message-id:in-reply-to:date
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=5ciPoU9g0L9TxJi7K6B543D4kgHHCBTjDma4BORePb8=;
-        b=xJ80l/OFjKOB7UPF+WcYFZpgyJ83KR1YX0HgIWwIAXg7bbSfGwb3HMBafT1reWSG67
-         Q/q2XtT2cqB6DjG/nNjA0TCeB+n94s9nRc4kaQLTB7sv+PAkeWC4EugSu9Ig0tbzr/iE
-         ufsJrMhyZJU5CKqOV2URdbtjyNj9m83t2Qv5STM1jDmfxK4vw52fvPnZ0TAanyCPSuhq
-         JoAWmOFaTU7/ik4h/ww2mn+UI/XroI0aCzkdDJgYkY6/o9GRTrHJBlGa3OMtuj0P4tbO
-         1RdYTST8YaHtCLmYgrftb7QfbaG0iKTv+GqP7Z+agIaz3RCqc8s3G/S84fmD3t5PbVZj
-         63jw==
-X-Forwarded-Encrypted: i=1; AKwUvBwv6M5Kwd9ZWi1yqSrKPJM/47uZpCOctXlPKFPf12O9YKO2estjhDJdphNI/fHvlVe9feHE@lists.linux.dev
-X-Gm-Message-State: AFuF++meGnHqfg0ssYEVTcz2hSvr6BN6rMdFjYTm+i2SPWiHnl+JCbQ7
-	T/7JQukV8hUbgPRSVAFy/jkhMKtUoMr9TAlQ2Lov4hyt99sbrMw7+0cdRj7J137yu4d8ia3nObK
-	xRSDb/sj5CEePh6QO2Ie1T8psnE0EYg9opWbPzVkMpDjCK37os9gYSAqYDnA=
+        d=1e100.net; s=20260707; t=1790775357; x=1791380157;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=4QchkhwI1w5bSASLXqcxUjuWuiosjQacZxJlQZryO/o=;
+        b=xgvgBuQP/dzjxJpCLxT8tsnNBX1tH2XaN4UtU/rAWYvOvXKxzfsbCRiDwwER61v2EI
+         htH17i8iNAfgFEns955kE3+hHvMdgfPfAsykYlIJPFaSTE2A38d5/jQUotIpGYCNHq9/
+         F+y3SqTOLZcH2verGHVBr2kZOT56yCCxmvKPQcTkRhZ3SPhjx8EKI7wgW1+HqvJxPFWB
+         GArzHc/uuD0i2kUlTP4y/VqO82D9gnRqgoOwqz00cVdEgdUNZ1fC83dvHja66zmE2rzG
+         D5MpY6C3BoMMMCQlbSTg96Esv2TAkVo5Qt8+ArCSLj6XNA/zA05/ZH1TII3PGRuYc7zC
+         cyEQ==
+X-Forwarded-Encrypted: i=1; AKwUvBzR1XZiySktqrFmgsKUse+dWDpxRxrb1AaGTQ2lR1QVbwfz8JlfsBVUrc3OisOQqwV/Wv5k@lists.linux.dev
+X-Gm-Message-State: AFuF++mMwTPETM82XpN8H7H6wqtmChgtl5KoEeTL1th+XNyXRoJaUD2l
+	OVIlUWPWXLjg+SzbRWLOHjxETOJZj4+jKX1kCbFE0p4frTPvFoJKq3FCWcZ/YLPx4x/Lspq1od4
+	nDhAXBxlQ+ZnCq+wQBcC0Tsiw/GAOb3M=
+X-Gm-Gg: AYBFou2Q/WEh0Q2I2OIWCr0SAkH5yI78EKq1wO/sUB6b/3KuXSlwepdX19fGo/gF/lR
+	ryaH5bF2sFjuOH+7OWrMlKGVnwEyFCJZ9sByPB9+7D88WLeL+lxPP4IVrV+lY4FvCv3J18gTwL9
+	kCm2aVGQ5+2Cn77q3cXX+sqqCQnmUNdK4Gal3WveNku9c1D6KjBV1M5e6GfZyuJvqD6Us3qW7eo
+	fauv0JVFdIzARVm2hTTeaPvNWIQiSSVzoROu7DZHtSdaAGyKOly5q+2vvOCmDL8+lqQ5E9wQOxH
+	zNNseNAlvaNvPpO1VE88fdG4/NXhp8xOWTR4qsf+T9IUCSzoV+8e54jCzMBBTgGVeGdH
+X-Received: by 2002:a17:906:6a05:b0:c2d:b9b4:f4de with SMTP id
+ a640c23a62f3a-c2e23d9207amr125564266b.18.1790775356627; Wed, 30 Sep 2026
+ 06:35:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-X-Received: by 2002:a05:6808:c3d7:b0:4cb:f21c:a794 with SMTP id
- 5614622812f47-4f1b5dd6029mr744708b6e.28.1790763730224; Wed, 30 Sep 2026
- 03:22:10 -0700 (PDT)
-Date: Wed, 30 Sep 2026 03:22:10 -0700
-In-Reply-To: <20260929034158.1455429-1-neilb@ownmail.net>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <6abce2d2.64639fcc.9812d.000c.GAE@google.com>
-Subject: [syzbot ci] Re: multiple-filesystems: prepare for changes to VFS locking
-From: syzbot ci <syzbot+cifa06034fce36fce1@syzkaller.appspotmail.com>
-To: a.hindborg@kernel.org, amir73il@gmail.com, anton.ivanov@cambridgegreys.com, 
-	baolin.wang@linux.alibaba.com, brauner@kernel.org, cem@kernel.org, 
-	coda@cs.cmu.edu, codalist@coda.cs.cmu.edu, fuse-devel@lists.linux.dev, 
-	hughd@google.com, hyc.lee@gmail.com, jack@suse.cz, jaharkes@cs.cmu.edu, 
-	jlayton@kernel.org, joel.granados@kernel.org, johannes@sipsolutions.net, 
-	kees@kernel.org, leitao@debian.org, linkinjeon@kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mm@kvack.org, linux-um@lists.infradead.org, 
-	linux-unionfs@vger.kernel.org, linux-xfs@vger.kernel.org, miklos@szeredi.hu, 
-	neilb@ownmail.net, ntfs@lists.linux.dev, richard@nod.at, 
-	viro@zeniv.linux.org.uk
-Cc: syzbot@lists.linux.dev, syzkaller-bugs@googlegroups.com
+References: <20260929034158.1455429-1-neilb@ownmail.net> <20260929034158.1455429-8-neilb@ownmail.net>
+In-Reply-To: <20260929034158.1455429-8-neilb@ownmail.net>
+From: Amir Goldstein <amir73il@gmail.com>
+Date: Wed, 30 Sep 2026 15:35:45 +0200
+X-Gm-Features: AclHuK-7IYZDCVZREHuHZMSP_wgME-NMrM9tsJnpybGevda7U-xOXfVzEqygZdo
+Message-ID: <CAOQ4uxjv3Ziqy+CjbCO7noAPse+a0066UO7pkFhStnnW9FFSPg@mail.gmail.com>
+Subject: Re: [PATCH 7/7] ovl: stop using lookup_one() in ovl_iterate().
+To: NeilBrown <neil@brown.name>
+Cc: Miklos Szeredi <miklos@szeredi.hu>, Kees Cook <kees@kernel.org>, 
+	Joel Granados <joel.granados@kernel.org>, Richard Weinberger <richard@nod.at>, 
+	Anton Ivanov <anton.ivanov@cambridgegreys.com>, Johannes Berg <johannes@sipsolutions.net>, 
+	Breno Leitao <leitao@debian.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Jan Harkes <jaharkes@cs.cmu.edu>, Hugh Dickins <hughd@google.com>, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Namjae Jeon <linkinjeon@kernel.org>, 
+	Hyunchul Lee <hyc.lee@gmail.com>, Carlos Maiolino <cem@kernel.org>, 
+	Alexander Viro <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, 
+	Jeff Layton <jlayton@kernel.org>, Jan Kara <jack@suse.cz>, linux-fsdevel@vger.kernel.org, 
+	fuse-devel@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-unionfs@vger.kernel.org, linux-um@lists.infradead.org, 
+	codalist@coda.cs.cmu.edu, coda@cs.cmu.edu, linux-mm@kvack.org, 
+	ntfs@lists.linux.dev, linux-xfs@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-syzbot ci has tested the following series
+On Tue, Sep 29, 2026 at 5:43=E2=80=AFAM NeilBrown <neilb@ownmail.net> wrote=
+:
+>
+> From: NeilBrown <neil@brown.name>
+>
+> lookup_one() is expected to be removed as it does not fit well with
+> proposed changes to directory locking.
+> Specifically d_alloc_parallel() will be ordered outside of i_rwsem
+> and as iterate_shared() is called with i_rwsem held it is not safe
+> to call d_alloc_parallel().
+>
+> We can instead call d_alloc_trylock() and then call the ->lookup, but
+> that can fail if there is a lookup attempt concurrent with the
+> readdir().
+>
+> ovl cannot afford for the lookup to fail as that could produce incorrect
+> results, and it cannot safely drop i_rwsem temporarily as that could
+> introduce races with handling of the directory cache.
+>
+> Instead we rely on the fact that ovl_iterate() has an exclusive lock on
+> the directory, so any concurrent lookup will wait for the ovl_iterate()
+> call to complete.  We allocate a separate dentry and if the lookup is
+> successful, it is hashed with the result.
 
-[v1] multiple-filesystems: prepare for changes to VFS locking
-https://lore.kernel.org/all/20260929034158.1455429-1-neilb@ownmail.net
-* [PATCH 1/7] VFS/xfs/ntfs: drop parent lock across d_alloc_parallel() in d_add_ci()
-* [PATCH 2/7] shmem: use d_duplicate()
-* [PATCH 3/7] coda: don't d_drop() early.
-* [PATCH 4/7] configfs: remove d_add() calls before configfs_attach_group()
-* [PATCH 5/7] hostfs: don't d_drop() before d_splice_alias() in hostfs_mkdir()
-* [PATCH 6/7] procfs: drop parent lock for d_alloc_parallel() in iterate_shared()
-* [PATCH 7/7] ovl: stop using lookup_one() in ovl_iterate().
+Please document this assumption with:
 
-and found the following issue:
-WARNING in __d_instantiate
+rwsem_assert_held_write(&dir->d_inode->i_rwsem);
 
-Full report is available here:
-https://ci.syzbot.org/series/b87296ff-c49f-416e-834c-a886ea8bd6c3
+and comment in the code. Having it in the git commit message is not
+enough for future code reviewers.
 
-***
+Other than that, I have no further comments, but I would like
+to have a review from Miklos before this patch lands, because
+I don't remember him reviewing any of the revisions and this is subtle.
+I am a bit concerned that we have no test coverage for this subtle code.
 
-WARNING in __d_instantiate
+>
+> When the concurrent lookup gets i_rwsem it mustn't do its own lookup -
+> it must use the existing dentry.  This is found, if it exists, using
+> try_lookup_noperm().
+>
+> Signed-off-by: NeilBrown <neil@brown.name>
+> ---
+>  fs/overlayfs/namei.c   | 12 ++++++++++++
+>  fs/overlayfs/readdir.c | 26 ++++++++++++++++++++++++--
+>  2 files changed, 36 insertions(+), 2 deletions(-)
+>
+> diff --git a/fs/overlayfs/namei.c b/fs/overlayfs/namei.c
+> index ca899fdfaafd..f56e33fd4d6b 100644
+> --- a/fs/overlayfs/namei.c
+> +++ b/fs/overlayfs/namei.c
+> @@ -1385,6 +1385,7 @@ struct dentry *ovl_lookup(struct inode *dir, struct=
+ dentry *dentry,
+>         struct ovl_fs *ofs =3D OVL_FS(dentry->d_sb);
+>         struct ovl_entry *poe =3D OVL_E(dentry->d_parent);
+>         bool check_redirect =3D (ovl_redirect_follow(ofs) || ofs->numdata=
+layer);
+> +       struct dentry *alias;
+>         int err;
+>         struct ovl_lookup_ctx ctx =3D {
+>                 .dentry =3D dentry,
+> @@ -1399,6 +1400,17 @@ struct dentry *ovl_lookup(struct inode *dir, struc=
+t dentry *dentry,
+>         if (dentry->d_name.len > ofs->namelen)
+>                 return ERR_PTR(-ENAMETOOLONG);
+>
+> +       /*
+> +        * The existence of this in-lookup dentry might have forced
+> +        * readdir to do the lookup with a new dentry.  If so we must
+> +        * return that one.
+> +        */
+> +       alias =3D try_lookup_noperm(&QSTR_LEN(dentry->d_name.name,
+> +                                           dentry->d_name.len),
+> +                                 dentry->d_parent);
+> +       if (alias && !IS_ERR(alias))
+> +               return alias;
+> +
+>         with_ovl_creds(dentry->d_sb)
+>                 err =3D ovl_lookup_layers(&ctx, &d);
+>
+> diff --git a/fs/overlayfs/readdir.c b/fs/overlayfs/readdir.c
+> index e7fe29cb6028..bc41da4bace8 100644
+> --- a/fs/overlayfs/readdir.c
+> +++ b/fs/overlayfs/readdir.c
+> @@ -574,8 +574,30 @@ static int ovl_cache_update(const struct path *path,=
+ struct ovl_cache_entry *p,
+>                 }
+>         }
+>         /* This checks also for xwhiteouts */
+> -       this =3D lookup_one(mnt_idmap(path->mnt), &QSTR_LEN(p->name, p->l=
+en), dir);
+> -       if (IS_ERR_OR_NULL(this) || !this->d_inode) {
+> +       this =3D d_alloc_trylock(dir, &QSTR_LEN(p->name, p->len));
+> +       if (this =3D=3D ERR_PTR(-EWOULDBLOCK)) {
+> +               /*
+> +                * Some other thread is looking up this name and will
+> +                * block on i_rwsem before it can complete the lookup.
+> +                * We will do the lookup in a new dentry and when that
+> +                * lookup gets a turn it will find and return this
+> +                * dentry.
+> +                */
+> +               this =3D d_alloc_name(dir, p->name);
+> +               if (!this)
+> +                       this =3D ERR_PTR(-ENOMEM);
+> +       }
+> +       if (!IS_ERR(this) && d_unhashed(this)) {
+> +               /* Either we got an in-lookup or we made our own unhashed=
+ */
+> +               struct dentry *alias =3D ovl_lookup(dir->d_inode, this, 0=
+);
+> +
+> +               d_lookup_done(this);
+> +               if (alias) {
+> +                       dput(this);
+> +                       this =3D alias;
+> +               }
+> +       }
+> +       if (IS_ERR(this) || !this->d_inode) {
+>                 /* Mark a stale entry */
+>                 p->is_whiteout =3D true;
+>                 if (IS_ERR(this)) {
 
-tree:      linux-next
-URL:       https://kernel.googlesource.com/pub/scm/linux/kernel/git/next/linux-next
-base:      3879f51857325da9bf3cfb073280257cd16ae067
-arch:      amd64
-compiler:  Debian clang version 22.1.8 (++20260613092233+e80beda6e255-1~exp1~20260613092250.77), Debian LLD 22.1.8
-config:    https://ci.syzbot.org/builds/dd8fcfa5-13f0-458f-bd3b-9c06d4d67a78/config
-syz repro: https://ci.syzbot.org/findings/fdffe42d-ac1a-40d9-b05c-014808f5b0ec/syz_repro
+How do you test your patch set? Do you have tests that exercise
+parallel create/lookup/readdir?
 
-------------[ cut here ]------------
-d_in_lookup(dentry)
-WARNING: fs/dcache.c:2197 at __d_instantiate+0x3f4/0x700 fs/dcache.c:2197, CPU#1: syz.0.17/5823
-Modules linked in:
-CPU: 1 UID: 0 PID: 5823 Comm: syz.0.17 Not tainted syzkaller #0 PREEMPT(full) 
-Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.2-debian-1.16.2-1 04/01/2014
-RIP: 0010:__d_instantiate+0x3f4/0x700 fs/dcache.c:2197
-Code: 03 41 80 f6 01 41 0f b6 ce c1 e1 0d 09 c1 89 0b 48 83 c4 10 5b 41 5c 41 5d 41 5e 41 5f 5d e9 03 26 96 09 cc e8 0d 84 75 ff 90 <0f> 0b 90 e9 7f fd ff ff e8 ff 83 75 ff 41 81 cc 00 00 01 00 e9 34
-RSP: 0018:ffffc900038d73a0 EFLAGS: 00010293
-RAX: ffffffff825242a3 RBX: ffff8881b4eef380 RCX: ffff888169801e00
-RDX: 0000000000000000 RSI: 0000000001000000 RDI: 0000000000000000
-RBP: 0000000001000000 R08: 0000000000000003 R09: 0000000000000004
-R10: dffffc0000000000 R11: fffff5200071ae6c R12: 0000000000280000
-R13: dffffc0000000000 R14: ffff8881bc29f3e0 R15: ffff8881bc29f3e4
-FS:  00007f15d1af96c0(0000) GS:ffff8882a8cc9000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000200000001000 CR3: 00000001bd5c4000 CR4: 00000000000006f0
-Call Trace:
- <TASK>
- d_make_persistent+0x8e/0x180 fs/dcache.c:3139
- shmem_mknod+0x2d4/0x340 mm/shmem.c:3851
- shmem_whiteout mm/shmem.c:3982 [inline]
- shmem_rename2+0x267/0x430 mm/shmem.c:4022
- vfs_rename+0xbd9/0xef0 fs/namei.c:6219
- ovl_do_rename_rd fs/overlayfs/overlayfs.h:371 [inline]
- ovl_check_rename_whiteout fs/overlayfs/super.c:593 [inline]
- ovl_make_workdir fs/overlayfs/super.c:713 [inline]
- ovl_get_workdir+0x93d/0x1980 fs/overlayfs/super.c:836
- ovl_fill_super_creds fs/overlayfs/super.c:1449 [inline]
- ovl_fill_super+0x1702/0x4360 fs/overlayfs/super.c:1561
- vfs_get_super fs/super.c:1405 [inline]
- get_tree_nodev+0xbb/0x150 fs/super.c:1424
- vfs_get_tree+0x92/0x2a0 fs/super.c:1947
- fc_mount fs/namespace.c:1198 [inline]
- do_new_mount_fc fs/namespace.c:3772 [inline]
- do_new_mount+0x319/0xdc0 fs/namespace.c:3848
- do_mount fs/namespace.c:4181 [inline]
- __do_sys_mount fs/namespace.c:4397 [inline]
- __se_sys_mount+0x31d/0x420 fs/namespace.c:4374
- do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
- do_syscall_64+0x166/0x520 arch/x86/entry/syscall_64.c:84
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
-RIP: 0033:0x7f15d0b9e159
-Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007f15d1af9028 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 00007f15d0e25fa0 RCX: 00007f15d0b9e159
-RDX: 0000200000000440 RSI: 0000200000000100 RDI: 0000000000000000
-RBP: 00007f15d0c3506b R08: 0000200000000080 R09: 0000000000000000
-R10: 0000000000000008 R11: 0000000000000246 R12: 0000000000000000
-R13: 00007f15d0e26038 R14: 00007f15d0e25fa0 R15: 00007ffe9e1b3308
- </TASK>
+It would be irresponsible to merge code without showing that the `alias`
+branches have been exercised. Do you have an idea how to do that?
 
-
-***
-
-If these findings have caused you to resend the series or submit a
-separate fix, please add the following tag to your commit message:
-  Tested-by: syzbot@syzkaller.appspotmail.com
-
----
-This report is generated by a bot. It may contain errors.
-syzbot ci engineers can be reached at syzkaller@googlegroups.com.
-
-To test a fix for this bug, please reply with `#syz test`
-(on a separate line) and attach the patch to the email.
-
-Notes:
-- The patch will be applied on top of the tested series (as an
-  incremental fix).
-- To test a new version of the whole series, please send it directly
-  to syzbot@lists.linux.dev.
-- Arguments like custom git repos and branches are not supported.
+Thanks,
+Amir.
