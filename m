@@ -1,74 +1,74 @@
-Received: from mail-pj2-f13.google.com (mail-pj2-f13.google.com [74.125.227.141])
+Received: from mail-pj2-f40.google.com (mail-pj2-f40.google.com [74.125.227.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC12F2F7EFE
-	for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 03:48:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A5336F419
+	for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 03:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790740123; cv=none; b=KyZxKsCf1M0ulslhoTZJCWyWZlXlC0D+Al5baCRod/B5YsMQ0/4j898syhDxLD1X9QA3XxihErVRm19xEDkk0EX23ZU0lUWNpZjbZealOo2+BgZ9Cnn947iirxtOZkHG4yNr8IrCcg3AyWSHgw1AUAot+F2AxODIMij7o1KLhaU=
+	t=1790740125; cv=none; b=nXQockqysHaT7jocZqkb03RCEV2VJhuus2uLVaWFJ1FO2011BXn1Ln1dKq6U4UcQwrkuDprQLotLzsqWSkeVwx3LN9eyQ85PJEiY5PpPfB7ViO+6rF0eBsdSpn1to9oZA4pfq1IelSDeeGIWWOCfuz+lSmSkHjbag5X6W2wGKJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790740123; c=relaxed/simple;
-	bh=H9+3s30juNb/giEz7ochd/E34EnHCmREpDdKjVmyt5Q=;
+	s=arc-20240116; t=1790740125; c=relaxed/simple;
+	bh=6xXPxNSmsFKV2TVA93HTty6D+P8jZ+V6clCDU9AmmVQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DwUHPTAid63/aEYqJtIjkx++WwkXcd5GDVvvm8f6LX5c4fTkQQF+6Y/dfyRTR7V391yYf1Nm3+X36t4htxVIhgYYLYyhqxE7NMG/92lKe5G4bSamnWh5G/yp2BKFYiDmyAyp+fyXEr5SDzQvO8SGpcXhtYpeiZWDcSTu9OT+mMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g2lEIfP8; arc=none smtp.client-ip=74.125.227.141
+	 MIME-Version; b=Uel1JJb7PZ2rgkNdw6Cc8H9PhQZnE81gkDtDqzNxXzOHkwhYTLQqlzbCtTyHj1xIL4dev6peHEloqGZdLvn8ZMqxPBZB6DWxdNhwMfgIaoYeZ/Ln6JLXGBdtgWp8ja4/nULs2FG5iHuOdD6FlfCQNxIZdCbHgwEsiTvawUIB8bM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pBECDYCF; arc=none smtp.client-ip=74.125.227.168
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g2lEIfP8"
-Received: by mail-pj2-f13.google.com with SMTP id d9443c01a7336-2d747f0b25dso31505275ad.2
-        for <ntfs@lists.linux.dev>; Tue, 29 Sep 2026 20:48:41 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pBECDYCF"
+Received: by mail-pj2-f40.google.com with SMTP id d9443c01a7336-2dfaf76605dso14169445ad.0
+        for <ntfs@lists.linux.dev>; Tue, 29 Sep 2026 20:48:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790740121; x=1791344921; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1790740123; x=1791344923; darn=lists.linux.dev;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=hhfDMI89uIjDeVVfhi83eTXwgrgv3Y9LBAg7bCLRm98=;
-        b=g2lEIfP8rlaMQ5mIzNipxk+uVjc8X9sRDrpAfiD1Qv+MaOh7i5D1oQxIQTKHrsnYlI
-         yThSZznwUApjgan8CebEAE6zmJ+hZ0orEgECAHZLkzC5ix6xTMKghn8G2XvUrnASBDVV
-         CsG1cp6mCjqgsJNA/rSdzTne/zfhI6o9mKJl9yIWXxioZ4lW+H5I50rd08j0yZZnw8Sp
-         k7opfGVxsy7kvNdYZxEyVm4e5vdy2ib55pdH/PQeFFOYYqPvjaIM+n9EgK8ktoCSrIjV
-         IZXHHWU8KhCes+r9Bu5Cq9ceSmus1Ater+8bqbJgMF0cqHnCFUxKrycSkzYJBjVAoRtF
-         irZw==
+        bh=PFhbuoDvUhhT0NM7dVUo0Ay1NU3i0WuHFz8vsUDnISE=;
+        b=pBECDYCFDzeQZs/81HnGglIlYoccOoR6WrwRyozbOnGvQ9Fw89dVGOJ1DU4i/l7XLO
+         VLATfL9HvsXRzmpqMzadYLr302plyNAFwz+WQ3XR1/2WV5UKGzCs+vXJV2hcmO/d255L
+         EVqFB6gz1OIIpM2UCLiSfmDOHwDgEfxeXv/w0hhFA9pdTF4YtFNk+XhZAK5tJ99Y7ITq
+         JFLEiJbb/oSZ8sSoIYC2QZzW+Ps7sT74ZtilGF/SI6B152Bxx0WQ/39NWq5N3holuALp
+         UoQJxoHKWNhJ9cJyjaa6ESKht5xsG16MNwzFSyxpHVpetMEz1vNke/TVHRx7icUzdzHD
+         wdVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790740121; x=1791344921;
+        d=1e100.net; s=20260707; t=1790740123; x=1791344923;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=hhfDMI89uIjDeVVfhi83eTXwgrgv3Y9LBAg7bCLRm98=;
-        b=pkeEOARMX5Y85CX65KOgoVw/9teaVsEE0OMEqJEi6WJjwxb8FUe9kefTJ/cH1ugZiw
-         cxS8bH19qhzzfu9X+nalR+5BGXbbgy/xcq/CCiYMBUJV8GIKOORQ3c9rmmh5vXRS/JfP
-         mEMJo6qpOE7rWhA354nR86YKQNpAg7MY4fX/qVO8eXqbv2MrWYQ0pec4lUipgc4Ys/I1
-         QBe49BiM1r3gD6TTidAZP8JAgckhTXXwOtCmQcZEoeAOx9fvUetGAIq5vHcjrxF9E5f6
-         JkQ2LYmSrUh6Vg8OmdXi1T+o2cheD2NkHP9qv89ybfX1A9IE0hdBR9aZmyyKr7RbAf+b
-         8FGg==
-X-Forwarded-Encrypted: i=1; AKwUvBxU8QZBDCY4JQil1GlXcjSNjhJvj7ecUCPSJxuUE816sTQfH8l775flsZfMzM2egGrBoIby@lists.linux.dev
-X-Gm-Message-State: AFq9FYKjD/vsVvxtEFeFascNFFZnvIGWG8FIHNwVOL5yZC1LAn6yL2bC
-	S4dG8Z9lo2MdDm9YUJ+ILKViVSSlkr8ajBhBvQ0IKnXnFIyV2/SdyRWQ
-X-Gm-Gg: AYBFou2u1yv0ssbRHu+45OVKtXZkbZAx+zTBdWFxy0ivUw+l4o/rX7TNE+6uJQit56g
-	tg8pYlFYK5JbYWzc0k9/JMwSO6M2n8OKKyEWPwIj8g0BBFdfw7hv9lmezqCoW5rGHzidQ6vq05k
-	rotZ49ygPZXMNU1w8vHN8iYTDlJ3s+mQvJQMDIfUhZfqPtwvtMu1tFqpG/J1Ce7QzkdtkOhFEwF
-	81hcQRbXfDePJXc5gT/pJPxeJpL3C9XdXmPk/ud4MHtrgPqN+bpD/KzDXWV9T1UvkqYTsxvJBvn
-	TQnvSiDkDizc2J59EOPIdyCSe+VjsrCdpxpLq5J6ktNu1g+pzs2oWrr3um8+QgGQ5jN7Ziv6I7W
-	kbEngb5QmKi3iS7k3cHENrxJSO/C5SQVRi3o2tm2RsfhmgmP7XnMaX5J/8vRgSgFC8aIZ4jODPk
-	HTFoF/4a+qKyphI0/mPLdJgVPM8v+wgI/YwR6qnCMIz416hKR2iZM8nEz7kVTItYhZj9w5u1HcK
-	xvK9aRBwDdyeAEGLcFgyNyuemB+7yf+VayQAL/5KXKKou0rWO/8nkqtSHjJSU2LKLzrjoNHFe6M
-	hZHY8ch47zy5zTze619Fmr9vxpLJFIUG7geqFp88RP+HNUMICOGIcnHXLok=
-X-Received: by 2002:a17:903:b4b:b0:2d6:ffa1:429b with SMTP id d9443c01a7336-2e2e4907f6amr1727745ad.7.1790740121227;
-        Tue, 29 Sep 2026 20:48:41 -0700 (PDT)
+        bh=PFhbuoDvUhhT0NM7dVUo0Ay1NU3i0WuHFz8vsUDnISE=;
+        b=WOzq3r3iUp4pDTA0g+ytzsQ6fNNEJqcf3nT5ZO0Yrn1F9zJqFESHD7mKcXZOfPeq/i
+         z5QAiF5He6SC4XUOJBQsSJDXP5ZGmtpHrIsesv8KG9LEKzcDu9N44L6IWWDiSFeOnsUA
+         7iTUwdyuWlyjH1ZLSzk1680I697g4X3KnkMVgM8OLKKx0Bx101/VP8d9D+myiY54KPx/
+         vISS7meHeMBKdYad8+PIcDPzUomyTqniTYSc8gOkd8sRlST1OBwkggYwWopZx44Vtut7
+         Ebb1KUSPGF+deaQVrrvll5I+Pzp6Pd4etBHXJXvwd1mm4JSBdu0UdHX5CGWNpz+bwg5s
+         66yQ==
+X-Forwarded-Encrypted: i=1; AKwUvBycjaZTOMX5OPZJzBYBPQ68PPf/7+8JUlTnrdU91mLaJ3sQNifFazqM8hQPHlkxOcmtfMFI@lists.linux.dev
+X-Gm-Message-State: AFq9FYIc++0VypsJi+Rvax1JI/4t72CSBG2Vt9jFRXYEfRBN3tpv45OS
+	OisLxz2+VoHylvMbibxX0lhE6DLslVfwB6hJNMoTnLmTgFbpq9wGKiBh
+X-Gm-Gg: AYBFou0CuAtMUC5x7rTCgdw7Vp/WKIBUumhJnPWAEHsriQxZt41pT66f6VYhUx+CXK7
+	Zb3r5wlveTj1p9qz23OF1/FTp8IUtZoQE1++O0Mms9iaPl2AhpVGxiivrvbvIyEne2OdMAtqVS7
+	rR4qONBG8oE8vHssojYs06J2Q24bQsCD37DW0BT4/glOhc04Y2cEKHVlexKMSmZfEpdJnfd+EyS
+	mLoKCQ1ZjvhbLaJgBFx4PyjrnKV3l+gpy1lZQEll1+v25VWrJeaFSZdPURUAv5THWtYztjUoY3P
+	gd/EkV3Wxq6+ZSWM1CNtA3KNGNlSaFeBJxkSiESHOPsYRTe80e8CdfYWHliLG+on1G0AzWyuZfC
+	fUpYLhiiCBgqgxh0kTLDDtE0MCCDpSwquDe2kqjFLLP9/4cjrocxG3iPRRfQZDcfHgy/yWEcCMO
+	QDDpbaFMzKV/Q6YYg7jF7UzAK6GyCaRjE5JkRGum8Rgsntz5xDZC1L0/ShUVNTtx8NIJ3m7yQP6
+	YpkNFU/fCv2FCwFS6eE8/HFdxX84UrQ7S/Atqbu42/7R2NefLas236oOD7XHg9ZnQTl/L/TYurR
+	bV0FSWbNRLIoIfGIrNZu+Y7cxN50UH16BOr5z5nVHEDHUOaEgg3qyLmQgtU=
+X-Received: by 2002:a17:903:94d:b0:2e2:c69a:bd7b with SMTP id d9443c01a7336-2e2e4b5a1aemr1470685ad.13.1790740123163;
+        Tue, 29 Sep 2026 20:48:43 -0700 (PDT)
 Received: from spider.bream-herring.ts.net ([103.6.151.236])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2e2dd86f3ddsm3760005ad.68.2026.09.29.20.48.39
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2e2dd86f3ddsm3760005ad.68.2026.09.29.20.48.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2026 20:48:40 -0700 (PDT)
+        Tue, 29 Sep 2026 20:48:42 -0700 (PDT)
 From: Matthias Goergens <matthias.goergens@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>,
 	Hyunchul Lee <hyc.lee@gmail.com>
 Cc: Baolin Liu <liubaolin12138@163.com>,
 	ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/6] ntfs: do not map an unmappable runlist fragment as a hole
-Date: Wed, 30 Sep 2026 11:48:30 +0800
-Message-ID: <7345400f8bb4bbb85c071151b6052129ecd0d3d4.1790684177.git.matthias.goergens@gmail.com>
+Subject: [PATCH v3 2/6] ntfs: do not turn an unmappable runlist fragment into delalloc on write
+Date: Wed, 30 Sep 2026 11:48:31 +0800
+Message-ID: <1360d1ada75cddf19f05e0bab437f4f216fc30f7.1790684177.git.matthias.goergens@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <cover.1790684177.git.matthias.goergens@gmail.com>
 References: <cover.1790684177.git.matthias.goergens@gmail.com>
@@ -80,87 +80,67 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-When the extent mft record holding part of a file's runlist cannot be
-read, ntfs_attr_vcn_to_rl() ignores the failed ntfs_map_runlist_nolock()
-retry and returns with *lcn == LCN_RL_NOT_MAPPED.  The iomap read path
-only rejects lcn < LCN_ENOENT, so it maps the range as a hole and read()
-returns zeros with no error.  The first read already does this:
-ntfs_attr_map_whole_runlist() keeps the fragments it could read,
-readahead drops its error, and the next lookup finds the unmapped tail.
+ntfs_write_simple_iomap_begin_non_resident() has the same unchecked
+retry.  LCN_RL_NOT_MAPPED passes its "lcn <= LCN_HOLE" test, so a
+buffered write into a range whose extent record cannot be read is
+merged into the runlist as LCN_DELALLOC over clusters that are already
+allocated on disk, and write() succeeds.  If the record stays
+unreadable, writeback fails too and the data never reaches the disk;
+the error only shows up at a later fsync() or a synchronous write.
 
-On a file whose runlist is split between its base record (vcn 0-214) and
-one extent record (vcn 215-1499), breaking only the extent record's FILE
-magic makes the kernel log "Failed to map extent mft record", yet read()
-returns 1285 clusters of zeros for vcn 215-1499.  A damaged attribute
-list entry, which makes the retry fail with -ENOENT, gives the same
-zeros.
+On the volume from the previous patch, after a read of the file, an
+8 KiB pwrite() at vcn 1000 returns 8192, fsync() returns -EIO, and
+after remount the range is unchanged.
 
-Return -ENOMEM if the retry ran out of memory and -EIO otherwise.  Both
-callers already handle an ERR_PTR; other negative lcns, including
-LCN_ENOENT, are returned as before, and so is LCN_RL_NOT_MAPPED at or
-beyond allocated_size, where nothing is mapped: the runlist ends there
-with LCN_RL_NOT_MAPPED when only the last extent is mapped, as after a
-write into it, and with clusters smaller than a page every read of a
-file's last folio looks up such vcns.
+Fail the lookup here too, with -ENOMEM or -EIO.  That pwrite() now
+fails with -EIO.  Writes whose range can be mapped are unaffected.
 
-Reads of vcn 215-1499 now fail with -EIO.  An intact volume exercised
-with buffered, mmap and O_DIRECT I/O, fallocate, truncate, sparse and
-compressed files behaves as before.
-
-Fixes: 495e90fa3348 ("ntfs: update attrib operations")
+Fixes: b041ca562526 ("ntfs: update iomap and address space operations")
 Cc: stable@vger.kernel.org
 Signed-off-by: Matthias Goergens <matthias.goergens@gmail.com>
 ---
- fs/ntfs/attrib.c | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+ fs/ntfs/iomap.c | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 333b3371acb47..5f5a91265af5e 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -317,7 +317,7 @@ int ntfs_map_runlist(struct ntfs_inode *ni, s64 vcn)
- struct runlist_element *ntfs_attr_vcn_to_rl(struct ntfs_inode *ni, s64 vcn, s64 *lcn)
- {
- 	struct runlist_element *rl = ni->runlist.rl;
--	int err;
-+	int err = 0;
+diff --git a/fs/ntfs/iomap.c b/fs/ntfs/iomap.c
+index c812d7f19b360..b4475963e57a7 100644
+--- a/fs/ntfs/iomap.c
++++ b/fs/ntfs/iomap.c
+@@ -394,7 +394,7 @@ static int ntfs_write_simple_iomap_begin_non_resident(struct inode *inode, loff_
+ 	loff_t vcn_ofs, rl_length;
+ 	struct runlist_element *rl, *rlc;
  	bool is_retry = false;
+-	int err = 0;
++	int err = 0, map_err = 0;
+ 	s64 vcn, lcn;
+ 	s64 max_clu_count =
+ 		ntfs_bytes_to_cluster(vol, round_up(length, vol->cluster_size));
+@@ -429,12 +429,24 @@ static int ntfs_write_simple_iomap_begin_non_resident(struct inode *inode, loff_
  
- 	if (!rl) {
-@@ -335,12 +335,32 @@ struct runlist_element *ntfs_attr_vcn_to_rl(struct ntfs_inode *ni, s64 vcn, s64
- 
- 	if (*lcn <= LCN_RL_NOT_MAPPED && is_retry == false) {
+ 	if (lcn <= LCN_RL_NOT_MAPPED && is_retry == false) {
  		is_retry = true;
 -		if (!ntfs_map_runlist_nolock(ni, vcn, NULL)) {
-+		err = ntfs_map_runlist_nolock(ni, vcn, NULL);
-+		if (!err) {
++		map_err = ntfs_map_runlist_nolock(ni, vcn, NULL);
++		if (!map_err) {
  			rl = ni->runlist.rl;
  			goto remap_rl;
  		}
  	}
  
 +	/*
-+	 * The runlist fragment containing @vcn could not be mapped, e.g.
-+	 * because the extent mft record holding it is corrupt.  Do not hand
-+	 * LCN_RL_NOT_MAPPED back to callers, which would treat it as a hole.
-+	 * At or beyond the allocated size nothing is mapped, and the runlist
-+	 * ends there with LCN_RL_NOT_MAPPED if only a later extent has been
-+	 * mapped, so return that end as it is.
++	 * As in ntfs_attr_vcn_to_rl(): a runlist fragment that could not be
++	 * mapped is not a hole.  Treating it as one would put a delalloc
++	 * extent over clusters that are allocated on disk but unknown to us.
 +	 */
-+	if (*lcn == LCN_RL_NOT_MAPPED) {
-+		unsigned long flags;
-+		s64 allocated_size;
-+
-+		read_lock_irqsave(&ni->size_lock, flags);
-+		allocated_size = ni->allocated_size;
-+		read_unlock_irqrestore(&ni->size_lock, flags);
-+		if ((s64)ntfs_cluster_to_bytes(ni->vol, vcn) < allocated_size)
-+			return ERR_PTR(err == -ENOMEM ? -ENOMEM : -EIO);
++	if (lcn == LCN_RL_NOT_MAPPED) {
++		up_write(&ni->runlist.lock);
++		mutex_unlock(&ni->mrec_lock);
++		return map_err == -ENOMEM ? -ENOMEM : -EIO;
 +	}
 +
- 	return rl;
- }
- 
+ 	max_clu_count = min(max_clu_count, rl->length - (vcn - rl->vcn));
+ 	if (max_clu_count == 0) {
+ 		ntfs_error(inode->i_sb,
 -- 
 2.55.0
 
