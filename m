@@ -1,135 +1,139 @@
-Received: from mail-pj2-f38.google.com (mail-pj2-f38.google.com [74.125.227.166])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from flow-a1-smtp.messagingengine.com (flow-a1-smtp.messagingengine.com [103.168.172.136])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7680E1A3160
-	for <ntfs@lists.linux.dev>; Thu,  1 Oct 2026 01:30:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D39E6367B79;
+	Thu,  1 Oct 2026 01:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.136
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790818256; cv=none; b=YUvvnbK/GRDSfdMW73cc4nwX9ZdMVJNuBAQQTTXGunM3VGsGiZfw9hxrUUOrZytHtdcwBuNxBjPPpTkoI/B5Zf58iZLb2+y4cdDzZj+4EJQI8pwOa8vpunREG66O8DmTTN1ZHpdWnAGOZgizvS6CXYA4+hifyx2a7kRm+f3lqgM=
+	t=1790818341; cv=none; b=lpXm83Oc77OBNEK+yEZGC8wz1O4hRiYjgIRbkUj7wkROtjXvsjR9zPluonG36ccAeENObFV/Uj9SFxiJy2/hE0xgXT43UBP3FXYcWmiWvs7GFjt/DSG3EKeBUJHvCbvkEruDRGGu6Mur9MTtkEhZ9muXXzFzlb2iptnoO94UVww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790818256; c=relaxed/simple;
-	bh=Vr4sD5gaVvIrwjNSmCbSMSDcqujXYvfNHZksLnesr9w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sUIeXsH8icJLlkiQvg09+PJCD4JfHypSesSd0zn4aFRtj+l5qk+7OJy/jh0OsJuvl5lG3AGW906u4a7KKPtGgsu/9ci0CMCNMrmpIVhfxc/0QLiqQDznGHUr1VakGeq21lPM/sqnbclPYp95eaeO1NX8lfXo0bGH4vBk2HDjScM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BiT/T/wO; arc=none smtp.client-ip=74.125.227.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	s=arc-20240116; t=1790818341; c=relaxed/simple;
+	bh=sLpgQF6H5d75/JTN/4twpvPGiqyIfg6B6/aAguvJD0Y=;
+	h=Content-Type:MIME-Version:From:To:Cc:Subject:In-reply-to:
+	 References:Date:Message-id; b=Pc0222x+sbiCN3MJ6UbEUTOhZUWuNac08lMghXpX5tJ4cZkPGBrvVojGjEIzN9NWC+T+EOvJAO/QL74ndAyvVTjYQadggkF0X7PBtSDBRlHqI3GFodeUdQu/T9zaQMu/rvOalKnLuxFt+QG7aJXEaj4oRlhgovu8Vf7OCTllNFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ownmail.net; spf=pass smtp.mailfrom=ownmail.net; dkim=pass (2048-bit key) header.d=ownmail.net header.i=@ownmail.net header.b=dU+0WpT9; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nykSWi/s; arc=none smtp.client-ip=103.168.172.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ownmail.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ownmail.net
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BiT/T/wO"
-Received: by mail-pj2-f38.google.com with SMTP id d9443c01a7336-2e2e688de2eso10053535ad.3
-        for <ntfs@lists.linux.dev>; Wed, 30 Sep 2026 18:30:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790818250; x=1791423050; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:mime-version:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=mbkEHAOXrrNr8qInc/nHsawXJy66lW4VufrCb59C0JM=;
-        b=BiT/T/wO+Uxo4FMDILXIyJjIcdchtmzz40/FGuEqOt2HEJ4zKf05gsLtQ6ASVRnq/K
-         +QonazGzGOAUgcCftA7pvoDvMBzGQqxPG5hSHzeVrzQq6Z79BVnnM4mw8nOxc6gCIc+O
-         3VBclhlDuQ3XYCndfaqASNyhFmVFy53UVNmzmM4k2nyk//Izy3rxV5epQhCQtRqMe8v9
-         2k1VrTUS1j249yzbuBGcX6pdthmYVPcROSWK6l+PLQOgFfhs/YIpXVVuj1DJrVimVAH7
-         3nqf21Oqyveg2eAFEpx2FxdM/BLdaWEDeIaTJI4YNetEu75eHbj3aJ2gF7YKZV3lG0cD
-         EYKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790818250; x=1791423050;
-        h=content-transfer-encoding:content-type:mime-version:message-id:date
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=mbkEHAOXrrNr8qInc/nHsawXJy66lW4VufrCb59C0JM=;
-        b=rD1+kYUkEAFZnrUlPs2AjmrpY0zAtU7deTouYY4jYlAAEAZTmMgRmS3EZzXmD6JyIH
-         RNQEXFfjn01P8ZwVYqzseB+ntjsCShRYB54NY8tVmRwYK5LaG9bAFoKozT2KjQ2AqLnN
-         tBjnBB89G6OLgtpNQoxWuThiazVa2RvGnw4ZpoFVrJESDOVUbJCqxGpZGikOv3lXtnT4
-         4G/qiPLrZdohhKNG39ZKckMvFeD6ni0QsdY75SOtrYu4owZvDsa10e4kz75QJozVaCGS
-         CU/04hGQa7Uaw0mvkCkpfmjzW/EE2u3Iy0LyePSlFr57o3YZg/hU9F+rO1MV+gHu49PV
-         N91A==
-X-Forwarded-Encrypted: i=1; AKwUvBz1MoB+KLQpnIpN53Kcp8yF9mCugJfqoJpfuscNSEd3IxNKfcrBr+CJMk3zKZzhTtXFoWRH@lists.linux.dev
-X-Gm-Message-State: AFq9FYIpjjY25ha/EBKs7b+KenYGShY9x+Q0R8sOVv1YgkE/lTVUGFxv
-	ckB1bVW4fX/pBzf8rbxf4luXiz5aqsifNkZMhH7JpADwwUQ3+Scsd9zO
-X-Gm-Gg: AYBFou2fhaFt7m/WTICWFIamAv1MlbhJGRyrb3TN0C50Kg5s1fOdrBOAk/CCd0cYaEb
-	Bst+65JlDkCDSOxFj4jNmdx4u3Ez5Olp+7XskdcsQLcqQReIl8k7f6IcyLjIcLGOT/T/2aKXw3A
-	Y8t8VMW6XBdmogmh7HXjn79oU/5M/JJRl5uRAEueJ9/DNVgkAfM9nAb192xnR0FxxB4tbM3x76i
-	ICwTfNCV1ZguyNQYiEn9yI9SSWyzH5n/AF5SsLK3NKyppWnQiDFdZH7/5Tx43XmroOyUeEn/DC9
-	KjeVlL9GOKBKODKexkgIpfOSZc/0l2DE1UVhVjjdY93H/tTITmN6krEcTOjyOw4CXGU8sUez7gV
-	t8q9ESixWRC8qwOFZ9oWHeM6jDgZFvancXYfyK4NFzAUbDePAlUr+DTG1Lq3jwBgUxTq07XcAA+
-	jItQierqQDMuuX/PPYoEgW41VVwUKIgS8oPcCQxUP6KSHGOdAXYO/xvNjkY8ENlGci/K552prmF
-	aTE
-X-Received: by 2002:a17:903:32c3:b0:2dd:c100:312e with SMTP id d9443c01a7336-2e2e4b6bff1mr23186575ad.42.1790818250210;
-        Wed, 30 Sep 2026 18:30:50 -0700 (PDT)
-Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2e300b8ff4bsm3607775ad.81.2026.09.30.18.30.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2026 18:30:49 -0700 (PDT)
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>,
-	ntfs@lists.linux.dev,
-	Alexandro Calo <alexandro.calo@nozominetworks.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] ntfs: only require compressed size on first extent
-Date: Thu,  1 Oct 2026 10:30:31 +0900
-Message-ID: <20261001-port-ntfs-only-requi-v1-1-b6504122a1a5@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	dkim=pass (2048-bit key) header.d=ownmail.net header.i=@ownmail.net header.b="dU+0WpT9";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nykSWi/s"
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailflow.phl.internal (Postfix) with ESMTP id B6867138013B;
+	Wed, 30 Sep 2026 21:32:15 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-05.internal (MEProxy); Wed, 30 Sep 2026 21:32:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ownmail.net; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:reply-to:subject:subject:to:to; s=fm1; t=
+	1790818335; x=1790825535; bh=v6sl/0R+rB68lGY0FGguwPrnWxhGA/6NlVe
+	vSXWfXMc=; b=dU+0WpT9ayrHlXGiw2fE7NtD4nUKlPkDDP3/RGUUox8ZXvJoUQo
+	oINwTLuzSo0Zg9v+dfBIplaHyARav2Mu8lCTqCAOo96G8RZvfBJi0GOymeRhi/dI
+	f7XplgGDzIDMI1NiNvfl0Zh7g8pAGXhSyOM2ZuxW5gpn9bMfnBKntlbG0GmOil2a
+	B91sBRg0ZDavly5kGWDikF89yurM2VpKV4qhOtg+jwnmZhRe5eEarAe582USAxvq
+	3TpRvW/dssTdCeqkSWOs6STZvipHkq3bwiSYuWKRV8gjPh+rQa+uxuUeDyyZW7OI
+	yaHU7NrMF786oNViHGBZb+A/zmB/ZU28Rkg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1790818335; x=
+	1790825535; bh=v6sl/0R+rB68lGY0FGguwPrnWxhGA/6NlVevSXWfXMc=; b=n
+	ykSWi/sGd5gvCHPUtRxJkK9qcoysaAZwvGnmOCwOtaQRRj1psP/USs+V1s3CCE8U
+	bGXX2E4xnMQU2eypDh/nQ4BVxOh/jB80ebnekbDY1oAa3240VyEwbSN+2nHiBQg7
+	kQTEDfjMQuCTtO/5lEEZqtGJvdfezRH80tHfoLaAYyvbV1vxa0wXlsMv0CSzAF1W
+	IzJYOjwhvjlayK2Cce3kxXooukECSCZ8CEO+QC2UTlLIWfL00oyTSCyqiKtquJWR
+	WNVkaXGTVvKYZyu/rAoJrUdPgNYilg28OA2T/F7ZfmMU+EBPOcfIPiXJIyMb+g3q
+	Wd07JiigVXT8DStdGxSBA==
+X-ME-Sender: <xms:Hbi9amRCw_kioWSBEhgnA4y0lG82UU2w07EeZKMs03XSK3bOCXF6nA>
+    <xme:Hbi9aus6-sF1IYxOKWGWnSJ7esBELFJJ4RjqP7pbXWzuyw9SfNidEdevmUe2qrpPT
+    6dBXtg9wpG_1KbOWHqWu7HcbCJn4x4SjDV-rfvmQFhNcSZy2pY>
+X-ME-Received: <xmr:Hbi9asCM5t-3GQu68lUW4pPb12EVK7ZfxE5JiCn0jxXqtLlyltpHLJofGBy1_PCWUyE0cOmDB2n7mv8cveU-5a6ZpaCEunk>
+X-ME-Proxy-Cause: dmFkZTG3KGb7tHgt4XbEdgaBbvRJJoXDWpMAFSGKnPa+FGRadeoOBQt63/9dFXh0uDdMHQ
+    4iJ2cIgUNrLNuACkoRhTc5qxpMylSF3jV7QyvProt74YjF+kiQqUTZdmWNsWacBqmWB84K
+    veH6OTbRcmsBVg1Wf2i8FMyZzc1eVaa+pkZCjnSlhdl4PlH1TysaXJbsGByCtBTH+n50BB
+    bcLzTEbkv5u2szZE2cmghDoJokPu68Cm+X2VRhSm6wIj0B+fmNAmOyZWU4zuUgOTHOSYnY
+    8OFG6vhsXQdCgKC6M6ZLdbcYz18tGTjcRhbAFMqiExh5vytioSAFh0IWdadZHBY/Q+YJsA
+    ln/MlFLYMsinjIw+1kmsqp3DVjRD4Hn+KNat7h1gnG7JekPoGkqrnYyrqPZvn6fiBKUpEn
+    0MDVBje7PRDGze3i9HFtvY9bUZlsY71046ZeN38zQq5h9E7XluoSZIuDT7WpQG37GNp+rF
+    E1CpBcw0zc0B9qZwbqQWwlUygDW1onMVM0VOnhrcnxwCQ59RFCVQsv7t2U3/QMSCzEuWaX
+    d8tEmDr4x0aozLp1DyF/IIcp6jGB2ETbZsjzbcpG3jEdtniaAruC9emGU9rvRatKlLHGfb
+    RQr8YBl253XGkX0sH1oOBGWWEx8zXBUrG+J7MHy/si5zIydG76lUiyz2+k1w
+X-ME-Proxy: <xmx:Hbi9ag0SmFUKJA6pqZNzQM73oSQuOS6JxCjWZ0qnhOnwy_oETfCYIA>
+    <xmx:Hbi9auS6xhgyi0kKzqyjeQGXMDAuEAIZaJqH5HhIKYcDW6E6NgAWjg>
+    <xmx:Hbi9avuA45NcxPmR8CruuVNHR7uHKgcEa3khA2ZaZ-H-_VBIq3pJvg>
+    <xmx:Hbi9au6JtIyHmLZ0gH6zRoBQAOTZdhLvdp4YIL2YSwaLGMgSKC6big>
+    <xmx:H7i9aqETvhFQVYysvlbm8o1zdHJwYsBkfqktEGeP4RoZ9q8OaxtXJYbM>
+Feedback-ID: i9d664b8f:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 30 Sep 2026 21:32:05 -0400 (EDT)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1500; i=hyc.lee@gmail.com;
- h=from:subject:message-id; bh=Vr4sD5gaVvIrwjNSmCbSMSDcqujXYvfNHZksLnesr9w=;
- b=owEBbQKS/ZANAwAKATTyMPr3jkjTAcsmYgBqvbeL8oqgf496tPWERamFesVXH9RX3wgd0mKKk
- ej+QP9wEkaJAjMEAAEKAB0WIQTVhSnMU3bjbW4eb2I08jD6945I0wUCar23iwAKCRA08jD6945I
- 0/i0EACBNenvAr2jBOskdaN6DfbPGTzeZW2ZMHWcCouYuJlNUIKegfQWE6VTsghHNpw9xC2yYnN
- OF/HvXoEHg8mOO5FQdFkfnE8QeVeKyrnT8CP/mcp9+nRWfklJrpsnTjQdtW3xF6HSfunDDogdDW
- ljNkP4op1/5qB6UzDMwlchx+Qqkyu9kwYI2je6Gc5T9zGZubgP5y6wBl3+t9pQdqplj+YLbmrEw
- dEa8yxd34j0ul1z3AMFcM42bqT6afRYJBz5z2mvP9jHEKqtOUFjgQW7U92gmjkgKwWeQFWEaUGA
- /zzIoOXg/OSNuqhf+h4L9Jt1u7JAxyuNIW7NgMQNtN5ZQHvJt9hWShTp90/Y4QXKgtgndyLH+Gw
- 8G+bxZdIYws+e+7s8QXW8gTfsVPOIJ/0QXFGtclpreBI58s67wNmw6T5srYpf8eKrn1DsixlfNh
- X/PYtCZJR/5gnQZzDc6w1a2uM3/32mRikDrgqkXDudezC/EXfGUgf2aaJURju/iU198wndthR8s
- rGBdRv0dS8P79THnOOQk+edtelknQrBRbXc0DFJptEGeNjIObFcR8cYIND8qzNCwzD98r2//rK9
- ps2ssGc7D2Y2lgSONSid2Bo5ZFvFCBSjqjqlLbrpqdqYVVD3QQ6RRLP/4sIr6rNRFTqUxsKB/Pd bE0mpRJqMOR52BQ==
-X-Developer-Key: i=hyc.lee@gmail.com; a=openpgp; fpr=D58529CC5376E36D6E1E6F6234F230FAF78E48D3
-Content-Transfer-Encoding: 8bit
+From: NeilBrown <neilb@ownmail.net>
+To: "Al Viro" <viro@zeniv.linux.org.uk>
+Cc: "Miklos Szeredi" <miklos@szeredi.hu>,
+ "Amir Goldstein" <amir73il@gmail.com>, "Kees Cook" <kees@kernel.org>,
+ "Joel Granados" <joel.granados@kernel.org>,
+ "Richard Weinberger" <richard@nod.at>,
+ "Anton Ivanov" <anton.ivanov@cambridgegreys.com>,
+ "Johannes Berg" <johannes@sipsolutions.net>,
+ "Breno Leitao" <leitao@debian.org>,
+ "Andreas Hindborg" <a.hindborg@kernel.org>,
+ "Jan Harkes" <jaharkes@cs.cmu.edu>, "Hugh Dickins" <hughd@google.com>,
+ "Baolin Wang" <baolin.wang@linux.alibaba.com>,
+ "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul Lee" <hyc.lee@gmail.com>,
+ "Carlos Maiolino" <cem@kernel.org>, "Christian Brauner" <brauner@kernel.org>,
+ "Jeff Layton" <jlayton@kernel.org>, "Jan Kara" <jack@suse.cz>,
+ linux-fsdevel@vger.kernel.org, fuse-devel@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-unionfs@vger.kernel.org,
+ linux-um@lists.infradead.org, codalist@coda.cs.cmu.edu, coda@cs.cmu.edu,
+ linux-mm@kvack.org, ntfs@lists.linux.dev, linux-xfs@vger.kernel.org
+Subject:
+ Re: [PATCH 4/7] configfs: remove d_add() calls before configfs_attach_group()
+In-reply-to: <20260929050739.GB3909609@ZenIV>
+References: <20260929034158.1455429-1-neilb@ownmail.net>
+  <20260929034158.1455429-5-neilb@ownmail.net>
+  <20260929050739.GB3909609@ZenIV>
+Date: Thu, 01 Oct 2026 11:32:02 +1000
+Message-id: <179081832202.37859.12981680448323688912@noble.neil.brown.name>
+Reply-To: NeilBrown <neil@brown.name>
 
-The attribute validator required the compressed_size field for
-every sparse or compressed extent. Continuation extents omit that field,
-so their valid mapping_pairs_offset of 64 was rejected and compressed
-reads failed.
+On Tue, 29 Sep 2026, Al Viro wrote:
+> On Tue, Sep 29, 2026 at 01:36:04PM +1000, NeilBrown wrote:
+> > From: NeilBrown <neil@brown.name>
+> > 
+> > These d_add() calls cannot be necessary.  The inode given is NULL so all
+> > they do is attach the dentry to the hash table.
+> > 
+> > If configfs_attach_group() fails, then d_drop() is called so the dentry
+> > will be detached.
+> > If configfs_attach_group() succeeds, then
+> >  configfs_attach_group -> configfs_attach_item ->configfs_create_dir
+> > must have succeeded, so d_instantiate() will have been called and the
+> > dentry hashed there.
+> 
+> Neither in mainline, nor in -next...
 
-Fixes: ffc755828de1 ("ntfs: Fix min_len for compressed/sparse attributes in ntfs_non_resident_attr_value_is_valid()")
-Cc: stable@vger.kernel.org
-Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
----
- fs/ntfs/attrib.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+I guess you are refering to d_instantiate() not being called here in
+mainline or -next, because it has been replaced with
+d_make_persistent()??  Sorry - old commit message.
 
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 333b3371acb4..6114368ae1b5 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -700,8 +700,12 @@ static bool ntfs_non_resident_attr_value_is_valid(const struct attr_record *a)
- 	min_len = offsetof(struct attr_record, data.non_resident.initialized_size) +
- 		  sizeof(a->data.non_resident.initialized_size);
- 
--	/* Sparse and compressed attributes have the extra compressed_size field */
--	if (a->flags & (ATTR_IS_SPARSE | ATTR_COMPRESSION_MASK))
-+	/*
-+	 * Only the first extent of sparse and compressed attributes has the
-+	 * extra compressed_size field.
-+	 */
-+	if ((a->flags & (ATTR_IS_SPARSE | ATTR_COMPRESSION_MASK)) &&
-+	    !a->data.non_resident.lowest_vcn)
- 		min_len += sizeof(a->data.non_resident.compressed_size);
- 
- 	if (attr_len < min_len)
+> 
+> d_add() _is_ wrong there, but this is not the right solution.  What
+> we really ought to do is build the subtree first, then either dissolve
+> it (without any pathname resolution having ever seen it) or move it
+> in place once we are sure that everything worked.
+> 
 
----
-base-commit: 259abb551e2944998cad4214c201954ab1ac5c8d
-change-id: 20261001-port-ntfs-only-requi-a2d6f88542ad
+I'll just drop this patch for now.  I only want it as part of
+deprecating d_add(), and that can wait.
 
-Best regards,
--- 
 Thanks,
-Hyunchul
-
+NeilBrown
