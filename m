@@ -1,289 +1,115 @@
-Received: from mail-ed2-f16.google.com (mail-ed2-f16.google.com [74.125.228.80])
+Received: from mail-pj2-f38.google.com (mail-pj2-f38.google.com [74.125.227.166])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9CDF3EC691
-	for <ntfs@lists.linux.dev>; Thu,  1 Oct 2026 07:33:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.228.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790840041; cv=pass; b=sN7QiVrKqD6HaTCmyIp1JQkqnjPXx/kZVU29FDdFSSZ56y9YbVGcaWQQHac/dDWZediMGVuro31UznfG7u3T4cTC7QhLPAt0WnNAlh2RgRqUhWaj+nttqTD/rpH5Vo1OoZ1wAvuzYlvMZL+4IRJI/N+TX2Zq7OsoEyKAF3Ii2rs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790840041; c=relaxed/simple;
-	bh=KLrl1JmKD/j4lbwTIj965Z/B9W7suYuEx4nj7ZOOSaM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AAwjUKDiBjkKaH21dxerwRj3xqrAW1YCyQ0GF2E8ybtVxjrdUdYyWcuJpPb/uxcPqv6xP4twh3KbiD1597A131YjDcs8ug0yFTiDDte1JeWEpoNFppd4ouKotSvfWgCsB5GuI/1p/odvDW9bm9N3e8rAlJGImKx6uUvbqNGFniI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qnbVeGCf; arc=pass smtp.client-ip=74.125.228.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1C53955F0
+	for <ntfs@lists.linux.dev>; Thu,  1 Oct 2026 14:49:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.166
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1790866184; cv=none; b=UD63HrsIs9+TvjaLkW0ZT+haA4quiP5dskh7C7eaPeZ7wcZ3KqTiIVq4uOCVFmSQzqCvvFlb77By6aJ06yxGhFlK7EdKE8KtVCb/58BIx0r8FPzQf7yhKvudvZ23Ew404SkMjNrotxuoEqzjOovrSb07FQIaeo20KA21ldiXdW8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1790866184; c=relaxed/simple;
+	bh=Oj5C4Mfx0dTb9luGBZORcT2IiZ7I3lUSzqMSLKqiAiI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XipF9LAoTSdyFWtN0vTRLZUFdmFkpbSps+63J20HxXpWDHil1smMjkIx3no8GgzejNivRlFe/suupLDYQZ5olxhTtFpzSOKJskROVLMt85YFfgQRqDLKUXvtEixptvmgviUlZGtUAGuyIDDDtz6qY0TIPKC4R+714eYfbBjUCvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ul0dr6Xg; arc=none smtp.client-ip=74.125.227.166
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qnbVeGCf"
-Received: by mail-ed2-f16.google.com with SMTP id 4fb4d7f45d1cf-6a9984f9adcso10543156a12.0
-        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 00:33:58 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1790840037; cv=none;
-        d=google.com; s=arc-20260327;
-        b=D5wG//MD4sndG4Lm8C5ybeorEzDVThLbqiVmoG1OBc1WraHUnOUVe6etg2Z+P6kOpv
-         JzmZOcieiRSz2+3jFTZDp7QQSicn5Jupsd+xEKV2HWBKYB68DdQ+w37GQGdA1agAa/9L
-         A1dIE/W5f1Gkh3Eq56E3tPjpYlR3M+Ql82WqlNjyBadA7WWKMPzQszR8DhBIQUdWV9ZM
-         LS2stDYyuAbp2n+faJsqjISDhIAlyVp6Vt4Hg9U9AhC+WXUbdv8SUODzyeMGOA5Yo1Q+
-         /Zq7XUiADjiptWPswaNEd78BAlJUhtX2I50aDO7KaPMrhGBT/thDGOabRSjVuH2iU/k2
-         7K5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=WTf1zoaT0Wsrc4m5L9oFar53LMEzHBHomKhDhLKQLu0=;
-        fh=g+gS8tNoacFZH3gD+Us2wT0twuX5lQutQRz2/kc52M8=;
-        b=CNyIrD3rfpZdQ5+Z9bSwde5jCUtYVNcXAwGvYntciCGHXFoWmUu78tPXIOFZUSCCqB
-         KADiHR6zOhwCbMtvJs+5QUAlbWtECFcQznNVNxg6p89ip4ZfzE4FtN9otr3X3vlfZIoG
-         SJUA/Ifg9xlfYN0y/6uHmRhgCOKbf9GOlu7E2klGBn/LQro/WzpXad4KsRTe1xTbzLvT
-         U1vkiqVuOwHHY95maLlaUfnPAS6Qhr7JjIx00YSmKps3NGpUqGgqHtqS9+WvAvcaKkHs
-         5Wi//+fLpAcC1BLNXAA0ug3+hQx9xztw3vzdLs2QLJuZSEFNjKynd7QfdtCAMQxTvwb/
-         5LBQ==;
-        darn=lists.linux.dev
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ul0dr6Xg"
+Received: by mail-pj2-f38.google.com with SMTP id d9443c01a7336-2e2db9f927cso13213225ad.1
+        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 07:49:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790840037; x=1791444837; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=WTf1zoaT0Wsrc4m5L9oFar53LMEzHBHomKhDhLKQLu0=;
-        b=qnbVeGCfJqr2bdOmFmB/vVajHu69xnwZYtZTnHFhy1xICDvMd8v8fis05UQZn8wCQL
-         Yc0hwKL2xzxEGOlVyeP8/HvSLbrdotSeGfwws5Jy8jjX9D6r9KaIaNMzbeUREWPPgUBi
-         Pn4Nv01BLjcbbCnS00izZvtc2lbxotk3/9TTGQzjFKUbMf07OlvMFLqa4ndRppPs1Xww
-         3DQ5GeMU0KPIZGIGtqTqTWDqZEeNwomT01/qISRmU2J1NKuWz/2gas/Nw6JK+BVoSfKG
-         JZQYP8/pFW4b2F68lUPvepiAcuYsl46BS2Gl/YugkrfHCkUT5MN4zYU2ZhPf9F0ZLOr0
-         +7sg==
+        d=gmail.com; s=20251104; t=1790866182; x=1791470982; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Kxg73ytnb8qP6pJiBvg4zQ5ISBtXzCRO0EIz45SrSkE=;
+        b=Ul0dr6XgmQ/7VaCQe/F6tmyKDcm8UGLxESQ9UhIZ47coRdBpzfAhu2cF9eL7kak0Qf
+         87CHGNuBuYJIKWHSNzQ8a+Hi7uflFZXS8SUaLybYNyucEMjilP1L22pmYn0WpRstjykz
+         Qg3oJXHiNpA5vWj4j4AJ+pVw7DWxiFQ9S83GU35TOxLP1ogEDLW88C1WUCAd82NuoyqB
+         LrNsYcsahEWUZXrXzuCqy0q89O6YsCVKlV1AjCTPfBBBSn18T5ReF7zTJ1qQ9sS3gXIi
+         zRQy7H5qLekrfjqa5z4N5mgt3gGTaaOH+jI8qtNA1JjgJGo31ErUiW5sIlV1NJl2GjDS
+         jdWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790840037; x=1791444837;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=WTf1zoaT0Wsrc4m5L9oFar53LMEzHBHomKhDhLKQLu0=;
-        b=yuwZWFPmvs7e0gGDnEzpNQ86nV3Luky5Gq+PeKv5q0OUYQcio/qAj5CSk1DySpNWFB
-         7wGSuCcppZCrj85umUgdsZskI9hYviU6qD6i2VmIxB9bQd6ruTwzEC/L5QzTw0XuTBnX
-         K7QN+itDnvvCUVfCMMyRDmaR3wOsFDyvNjRMeKR6VfzoTjA6biOCDueN2eFsPkEq77PL
-         pSaJZ/1xM/hd4tyqe8X+dxsHRVi4AvhL+jcRolDHM9iqlEoiaBjHcxUAxv83iT9H+5QT
-         GGFZKGSQgfuF3V/IYdUGIBDXZ8UPyzknaOZtT/KHbOyQT91Xw54Uh+uDoSfH0V3ccIHB
-         Bgvw==
-X-Forwarded-Encrypted: i=1; AKwUvBy+le2o6zNyahIaBKOFdN571Zg6N0Ufp5+ilM6GJBsKAO6vG+TV21TspOjNdPMyn7C/64Fy@lists.linux.dev
-X-Gm-Message-State: AFq9FYJ/09ZyS+R8KsHDRzMyBqcsB3civ4zkahh6MvTjuvgSGQnpvVWT
-	O50NpqYdxp7XD8CbDX83XVph1lF8fI/KTpmJ2zzuRmll0fcVhxJNG46tLT1lDmWVwSNhC0VFWlO
-	T4nXv8hXECvaYbJ/PTR+NXTn3SLNANv8=
-X-Gm-Gg: AYBFou2HSy9KoSBXsd6fyMtco7AlMugTnpFhbNTRPgIFdQCSQyNHVr32X+3MEK0pPh4
-	yHhToWM9ZXozTuYeeu16vlG8fgvc6YI4h9UU1AuKD7ypUtQaX68lXAAyr8ofJ7E44NYFyTk5za8
-	3WgGakXDWoJpjNNNz0eiEDyzQ62zDPGncyrPct0HOkjBmeE9+XL96oJbVPQSu37jrqGydiyW1cm
-	eYGMmUbUQ/jLtze7IYnJESwXow2xq3YgdufJPhE0XS9QbBQ28zDPskZcpj/Hb29tQCTlM8zhLDn
-	aY/SlyeIp1fEfc8Nm6CM0lfeXu0GMBgY56q2dl4/n3I2ojLHMllhLtq2
-X-Received: by 2002:a05:6402:3227:b0:6ac:9a44:d3ed with SMTP id
- 4fb4d7f45d1cf-6ae1986075bmr3067340a12.5.1790840036710; Thu, 01 Oct 2026
- 00:33:56 -0700 (PDT)
+        d=1e100.net; s=20260707; t=1790866182; x=1791470982;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Kxg73ytnb8qP6pJiBvg4zQ5ISBtXzCRO0EIz45SrSkE=;
+        b=J1r/ik3kfKZqyqI0VzTRfTmmqucPOOsrIG1D1B9ew5i28Nkls7rxSHFmu9KMLJTOEU
+         qzYkGTWlH5YYV4qQwjLAfQlbVyKZRQmPKFvR2Dnp8cJ5ERIClwvVooJOR21v4vOoUV08
+         vmRKBhPaSd1+MhzEBRFZHwA1uugWuVDQr4Z/CfY6HkoNtKS2C5pff9scKmtNs9PnY3Dt
+         bfWuaq4cWJMCydab18nfPgeQfQx6jdOCNYwj1qbNAHNscfFPhZeCc966jC/MJ5W5WG8Z
+         xheNp4OLb4wMXPt0WZ8Kx7DCQfGOzP7IvUEYuHvgHWeMNqsHSPI8nPF0T0P3PG/D0FOe
+         xwdQ==
+X-Forwarded-Encrypted: i=1; AKwUvBxslVvvpLquD1XKzUHkY4QK6hTCdg2FgjfjmTrcjJiRtiAbfvfv4x/WHFPIX3C04/tBE5vs@lists.linux.dev
+X-Gm-Message-State: AFq9FYJRLewY7taOO2le4wFEQ+UHY1tiByyFZjKcJhpWzPaHNf9R+8FG
+	4MrABNMJfLDTEarNRSmj1okEtfYUjjxMjFGYQhnXASp3iFOnzG5VPSxc0ZToTGIcvB814w==
+X-Gm-Gg: AYBFou2jqfiijCwc96fGeRVsSzbS4tUj7R0Azh8ZXswe3kQF9pA3ewq59Gqm8CVtqhW
+	KRnoxF5Fs0rkGSvSJzS7kifGBqkc9RDOZbTbjA3xLRyijp1YGCR05JGhNSNdQk1XIQnLvRSP3aF
+	SXvHSGE3DopbU8H1zHAEQXsSNmtmJxM/0Aby+O0NwkbumCOUH4bh8Y9eaj0k8r4d2i+e2lHQZpk
+	3pKzQC8Cw8V25YDdu50BeJL+mxGxCktz2EqzfvdvaGkBdwAybq1S93MXjfCJyOFPm1j8kTaRnUB
+	y0cO+rMpl0Agbfj2MMD6SKz3BMDpItQTcfS8021FvRppWzvEeFuCF6VWtsQ4vnbc1wRiP55kWK8
+	DKCCmnygsSO5n0/odOpe9PWFi2aB5ODfAzKHr1J1HL81c/MYmbBpvkI+LLPqwnlcmYcy29lq2PP
+	5dI7pSjnnmB8MSCeLqeE+Fm+cJTPhjTHijjA7Zo29gbCPsxnriD4C8N4OA9kuvvHoWnXjyVQw0P
+	FooW/VPJBdmWnYrcfaXPRXE5cvPgocKPK+D2juVjLcwOHfNR0BJWFBCxXu7FbnJYcVlp9rwwZUK
+	ab7yfujEbgkKzr/3FvVanw6pUB7h0Zn0PijzIrc4XOVS101GlK92ieyYjyQ=
+X-Received: by 2002:a17:903:2b04:b0:2dd:2b8:7198 with SMTP id d9443c01a7336-2e2e49962aemr46519465ad.6.1790866182244;
+        Thu, 01 Oct 2026 07:49:42 -0700 (PDT)
+Received: from spider.bream-herring.ts.net ([103.6.151.236])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2e317cd0624sm6636775ad.30.2026.10.01.07.49.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Oct 2026 07:49:41 -0700 (PDT)
+From: Matthias Goergens <matthias.goergens@gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>
+Cc: Baolin Liu <liubaolin@kylinos.cn>,
+	liubaolin <liubaolin12138@163.com>,
+	ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] ntfs: fix spurious EIO and ENOSPC on nearly full volumes
+Date: Thu,  1 Oct 2026 22:49:35 +0800
+Message-ID: <cover.1790853718.git.matthias.goergens@gmail.com>
+X-Mailer: git-send-email 2.56.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20260929034158.1455429-1-neilb@ownmail.net> <20260929034158.1455429-8-neilb@ownmail.net>
- <CAOQ4uxjv3Ziqy+CjbCO7noAPse+a0066UO7pkFhStnnW9FFSPg@mail.gmail.com> <179080463287.37859.4262341831478331513@noble.neil.brown.name>
-In-Reply-To: <179080463287.37859.4262341831478331513@noble.neil.brown.name>
-From: Amir Goldstein <amir73il@gmail.com>
-Date: Thu, 1 Oct 2026 09:33:44 +0200
-X-Gm-Features: AclHuK9MIhHprf4aDgaMwd_4tZZMvI-V-gvxwkigtEk9UN12WMcOwDyiP913px0
-Message-ID: <CAOQ4uxgEG6Wt1z7JO+v2sjs=Aoav0u7eLz+Ge3UqhVG4msBkwA@mail.gmail.com>
-Subject: Re: [PATCH 7/7] ovl: stop using lookup_one() in ovl_iterate().
-To: NeilBrown <neil@brown.name>
-Cc: Miklos Szeredi <miklos@szeredi.hu>, Kees Cook <kees@kernel.org>, 
-	Joel Granados <joel.granados@kernel.org>, Richard Weinberger <richard@nod.at>, 
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	Breno Leitao <leitao@debian.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Jan Harkes <jaharkes@cs.cmu.edu>, Hugh Dickins <hughd@google.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Namjae Jeon <linkinjeon@kernel.org>, 
-	Hyunchul Lee <hyc.lee@gmail.com>, Carlos Maiolino <cem@kernel.org>, 
-	Alexander Viro <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, 
-	Jeff Layton <jlayton@kernel.org>, Jan Kara <jack@suse.cz>, linux-fsdevel@vger.kernel.org, 
-	fuse-devel@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-unionfs@vger.kernel.org, linux-um@lists.infradead.org, 
-	codalist@coda.cs.cmu.edu, coda@cs.cmu.edu, linux-mm@kvack.org, 
-	ntfs@lists.linux.dev, linux-xfs@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 30, 2026 at 11:44=E2=80=AFPM NeilBrown <neilb@ownmail.net> wrot=
-e:
->
-> On Wed, 30 Sep 2026, Amir Goldstein wrote:
-> > On Tue, Sep 29, 2026 at 5:43=E2=80=AFAM NeilBrown <neilb@ownmail.net> w=
-rote:
-> > >
-> > > From: NeilBrown <neil@brown.name>
-> > >
-> > > lookup_one() is expected to be removed as it does not fit well with
-> > > proposed changes to directory locking.
-> > > Specifically d_alloc_parallel() will be ordered outside of i_rwsem
-> > > and as iterate_shared() is called with i_rwsem held it is not safe
-> > > to call d_alloc_parallel().
-> > >
-> > > We can instead call d_alloc_trylock() and then call the ->lookup, but
-> > > that can fail if there is a lookup attempt concurrent with the
-> > > readdir().
-> > >
-> > > ovl cannot afford for the lookup to fail as that could produce incorr=
-ect
-> > > results, and it cannot safely drop i_rwsem temporarily as that could
-> > > introduce races with handling of the directory cache.
-> > >
-> > > Instead we rely on the fact that ovl_iterate() has an exclusive lock =
-on
-> > > the directory, so any concurrent lookup will wait for the ovl_iterate=
-()
-> > > call to complete.  We allocate a separate dentry and if the lookup is
-> > > successful, it is hashed with the result.
-> >
-> > Please document this assumption with:
-> >
-> > rwsem_assert_held_write(&dir->d_inode->i_rwsem);
-> >
-> > and comment in the code. Having it in the git commit message is not
-> > enough for future code reviewers.
->
-> Yes, I can do that.
->
-> >
-> > Other than that, I have no further comments, but I would like
-> > to have a review from Miklos before this patch lands, because
-> > I don't remember him reviewing any of the revisions and this is subtle.
-> > I am a bit concerned that we have no test coverage for this subtle code=
-.
-> >
-> > >
-> > > When the concurrent lookup gets i_rwsem it mustn't do its own lookup =
--
-> > > it must use the existing dentry.  This is found, if it exists, using
-> > > try_lookup_noperm().
-> > >
-> > > Signed-off-by: NeilBrown <neil@brown.name>
-> > > ---
-> > >  fs/overlayfs/namei.c   | 12 ++++++++++++
-> > >  fs/overlayfs/readdir.c | 26 ++++++++++++++++++++++++--
-> > >  2 files changed, 36 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/fs/overlayfs/namei.c b/fs/overlayfs/namei.c
-> > > index ca899fdfaafd..f56e33fd4d6b 100644
-> > > --- a/fs/overlayfs/namei.c
-> > > +++ b/fs/overlayfs/namei.c
-> > > @@ -1385,6 +1385,7 @@ struct dentry *ovl_lookup(struct inode *dir, st=
-ruct dentry *dentry,
-> > >         struct ovl_fs *ofs =3D OVL_FS(dentry->d_sb);
-> > >         struct ovl_entry *poe =3D OVL_E(dentry->d_parent);
-> > >         bool check_redirect =3D (ovl_redirect_follow(ofs) || ofs->num=
-datalayer);
-> > > +       struct dentry *alias;
-> > >         int err;
-> > >         struct ovl_lookup_ctx ctx =3D {
-> > >                 .dentry =3D dentry,
-> > > @@ -1399,6 +1400,17 @@ struct dentry *ovl_lookup(struct inode *dir, s=
-truct dentry *dentry,
-> > >         if (dentry->d_name.len > ofs->namelen)
-> > >                 return ERR_PTR(-ENAMETOOLONG);
-> > >
-> > > +       /*
-> > > +        * The existence of this in-lookup dentry might have forced
-> > > +        * readdir to do the lookup with a new dentry.  If so we must
-> > > +        * return that one.
-> > > +        */
-> > > +       alias =3D try_lookup_noperm(&QSTR_LEN(dentry->d_name.name,
-> > > +                                           dentry->d_name.len),
-> > > +                                 dentry->d_parent);
-> > > +       if (alias && !IS_ERR(alias))
-> > > +               return alias;
-> > > +
-> > >         with_ovl_creds(dentry->d_sb)
-> > >                 err =3D ovl_lookup_layers(&ctx, &d);
-> > >
-> > > diff --git a/fs/overlayfs/readdir.c b/fs/overlayfs/readdir.c
-> > > index e7fe29cb6028..bc41da4bace8 100644
-> > > --- a/fs/overlayfs/readdir.c
-> > > +++ b/fs/overlayfs/readdir.c
-> > > @@ -574,8 +574,30 @@ static int ovl_cache_update(const struct path *p=
-ath, struct ovl_cache_entry *p,
-> > >                 }
-> > >         }
-> > >         /* This checks also for xwhiteouts */
-> > > -       this =3D lookup_one(mnt_idmap(path->mnt), &QSTR_LEN(p->name, =
-p->len), dir);
-> > > -       if (IS_ERR_OR_NULL(this) || !this->d_inode) {
-> > > +       this =3D d_alloc_trylock(dir, &QSTR_LEN(p->name, p->len));
-> > > +       if (this =3D=3D ERR_PTR(-EWOULDBLOCK)) {
-> > > +               /*
-> > > +                * Some other thread is looking up this name and will
-> > > +                * block on i_rwsem before it can complete the lookup=
-.
-> > > +                * We will do the lookup in a new dentry and when tha=
-t
-> > > +                * lookup gets a turn it will find and return this
-> > > +                * dentry.
-> > > +                */
-> > > +               this =3D d_alloc_name(dir, p->name);
-> > > +               if (!this)
-> > > +                       this =3D ERR_PTR(-ENOMEM);
-> > > +       }
-> > > +       if (!IS_ERR(this) && d_unhashed(this)) {
-> > > +               /* Either we got an in-lookup or we made our own unha=
-shed */
-> > > +               struct dentry *alias =3D ovl_lookup(dir->d_inode, thi=
-s, 0);
-> > > +
-> > > +               d_lookup_done(this);
-> > > +               if (alias) {
-> > > +                       dput(this);
-> > > +                       this =3D alias;
-> > > +               }
-> > > +       }
-> > > +       if (IS_ERR(this) || !this->d_inode) {
-> > >                 /* Mark a stale entry */
-> > >                 p->is_whiteout =3D true;
-> > >                 if (IS_ERR(this)) {
-> >
-> > How do you test your patch set? Do you have tests that exercise
-> > parallel create/lookup/readdir?
-> >
-> > It would be irresponsible to merge code without showing that the `alias=
-`
-> > branches have been exercised. Do you have an idea how to do that?
->
-> I think that to trigger the 'alias' code we would need to instrument the
-> code to block and wait.
-> e.g.  when readdir sees a particular name it could signal the test
-> harness somehow and then wait.  The test harness would trigger a lookup
-> of the name which would block on the parent i_rwsem.
-> The readdir then continues somehow and gets -EWOULDBLOCK and installs
-> the alias dentry.  When it completes the lookup continues and picks up
-> the alias.
->
-> Is there some way to set a tracepoint to block?
->
-> Maybe it would be enough to have something like:
->    if (strcmp(name, "MAGIC_NAME") =3D=3D 0) {
->         printk("waiting for MAGIC_NAME\n");
->         ssleep(15);
->    }
->
-> and have the test harness watch dmesg for MAGIC_NAME then trigger the
-> lookup.   Then adds some tracing to ovl_lookup() to ensure it picks up
-> the right thing...
+These fix three errors returned while free space is left.  Patch 1
+fixes file creation failing with EIO on a nearly full volume; it now
+goes on until the volume is full and then fails with ENOSPC.  Patch 2
+fixes the cluster allocator missing free clusters when its start hint
+lies at or past the end of the volume, which empties the MFT zone, and
+patch 3 removes the fallocate() check that then fails every later call.
+Together the two bugs make fallocate() refuse space that is free until
+the next mount.  Reproducers, run with KASAN and lockdep:
+https://github.com/matthiasgoergens/linux/tree/reproducer/2026-10-01-ntfs-nearfull-v2
 
-For this patch I am not asking for instrumentation with CI regression tests=
-.
-A word from you that you tested all the unexercised alias branches manually
-and how (e.g. include printk and sleep test report) is the minimum
-that I require
-to avoid merging subtle test-compiled-only code.
+Changes in v2: in patch 2, a contiguous request whose run from the hint
+stops at the end of a bitmap buffer or of the zone now gets that run
+back, instead of a second, non-adjacent run from the zone position, as
+Baolin Liu suggested.  That second run also happens on ntfs-next
+without this series, and fallocate() over a hole then leaves part of the
+range reading the data of a deleted file; patch 2 now fixes that as
+well.  Rebased on ntfs-next, with Baolin's Reviewed-by on patches 1
+and 3.
 
-For your parallel dirops odyssey as a whole, I think that proper
-fstests coverage is
-a must before the last step of relaxing the dir lock and the sooner you sta=
-rt
-with this the better the test coverage for all the perp series along the wa=
-y.
+v1: https://lore.kernel.org/all/cover.1790503811.git.matthias.goergens@gmail.com/
 
-Thanks,
-Amir.
+Matthias Goergens (3):
+  ntfs: set the attribute list size before reserving space for it
+  ntfs: restart the zone search when the allocation hint fails
+  ntfs: do not refuse fallocate() when the MFT zone is empty
+
+ fs/ntfs/attrlist.c |  5 +++--
+ fs/ntfs/file.c     |  3 ---
+ fs/ntfs/lcnalloc.c | 25 ++++++++++++++++++++++---
+ 3 files changed, 25 insertions(+), 8 deletions(-)
+
+
+base-commit: 708f9d56cacae21aeee98d16bcdd50a66edc04a0
+-- 
+2.56.0
+
