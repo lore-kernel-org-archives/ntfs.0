@@ -1,337 +1,192 @@
-Received: from mail-pz2-f37.google.com (mail-pz2-f37.google.com [74.125.228.37])
+Received: from mail-pz2-f39.google.com (mail-pz2-f39.google.com [74.125.228.39])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72744A5C59
-	for <ntfs@lists.linux.dev>; Thu,  1 Oct 2026 15:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.37
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEEA28690
+	for <ntfs@lists.linux.dev>; Fri,  2 Oct 2026 00:19:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.39
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790867165; cv=none; b=AImhYz2LsunNqRk//t3E4RrCTmIJBoByUFQORrE0s8Lu/GyWqyq1Puv1lldnLsRUpDGmNUgppOo0fpTGdENPp36yrSry8UFWn/tBPEo4i4Pv/zUYwYnDjnD+pTrCmNpHRTMSa3Qm1kqeeYDzB0aCHhTn7e+7fED5+vz6nYMkuj0=
+	t=1790900372; cv=none; b=KSx57NAz9ikc9CJuHv4XgBKGIhlEGeiPwVLgdzvZOlk69Itn/A6WdhjbomZJ35SoroBtezgsUVB0+581hxdLPp8jJpvctxvfnWobu8Un9FZil9Tv8IZrcXfPlqXTXXS/h5RrH828Ot3u591QeNYi3cuy4boesy+E4y9qjnNgx/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790867165; c=relaxed/simple;
-	bh=959PKmDmqbYmphBObUuUZb2yNOoX2/DlcuuCqeq0DMY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QMvF0k/GgrJWqhKmuoc4jBGPaz/VWah+dFMLQb3gcKMwvG4XxDK8JgNISS2SCYlZDyiTHyUh60Dcj6nZytUh+QTNqRZxUP22vll8yzBAk2WUwcuwmw1cJPG5cdLP5z+vkXhiZi7wf8rz6QB/OrQGV2c4/VnNnA5twsDH6Wuu9iA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=abrEQPQ8; arc=none smtp.client-ip=74.125.228.37
+	s=arc-20240116; t=1790900372; c=relaxed/simple;
+	bh=kUBQTyDRdNBIObWlxG/YdDxpo87GWyYgJttoaaGXTqE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zx24KLL3BxpFW02FEemMzGByntcxPR/BUhW44YY3Vaj5BAs304TjfVINxeo8P9YJ+h0jc32CHbZt6ZbKt8IZlOQ3ygOoSdHNGNvEDWuRn3zIZ+Azs1T+ugtUgCaAd4RfR9V3p97Rq/93FZkMzVdGPQLBq3y3X0eoIhRAYmXSAB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FhrIu9cE; arc=none smtp.client-ip=74.125.228.39
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="abrEQPQ8"
-Received: by mail-pz2-f37.google.com with SMTP id 41be03b00d2f7-cc7c9c2df74so827858a12.0
-        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 08:06:03 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FhrIu9cE"
+Received: by mail-pz2-f39.google.com with SMTP id 41be03b00d2f7-cc78dd412cfso2877911a12.0
+        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 17:19:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790867163; x=1791471963; darn=lists.linux.dev;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=tNFuIUXNuGIMK04aFKXkSC9USRBbb3SEJPHqr2VtdVw=;
-        b=abrEQPQ8WXgMRVUHhpfoRxlUZl08IRdqogzx3wsr8ePAZXI6J0rZCk4qtCPCazM9t4
-         Z1ql8iTMCkH2Y/nqtmCM12MQ5Gbkp6VZcuy0TEIfO/4QoLGEDBw6/1KfJPCKUFk5OLjR
-         adlpZZAE5vSVE0sw7H4YXVpwA2s+VseupNuLC9YQxK0XINs+ThafgvaJpF20Lfu9EDyd
-         zPsONAO0Yl3kN9m0k+SOFLqVQ4WRAc7NLuDbLvFfpVgP1tnpPwPAfC4N8sWlfdJEWmQN
-         aMekBl6Gb70FFv5StVAy7jhRZeok5qxhXe4VG0gvIUE3R8Fuk9ILPYEl7UF1SMM3mu1b
-         /fZg==
+        d=gmail.com; s=20251104; t=1790900370; x=1791505170; darn=lists.linux.dev;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=BUsap1DSRISulfdDtCLguVKFC6X0B5V082PAsB5stsk=;
+        b=FhrIu9cEllVYAGhjNz+8xqrZCPYI5/4NL9DZu3alwjXU6u5pomMV0/m7cVlh9Dc+m0
+         PCMUBM5ogYgQfkfI2TvKAeP0aRG638npSxv9Py9SUDKbx2gGZZ1Olyb/95nArU1fO9b8
+         /66cbFoIKXwE/L1BVzBqHWv934fh6v2koL7v9wbB/r/G8LT2VHxcPjvT/rQ7TbaAvi6F
+         ZdQLltSyVuIPJrg/Szu5e6tkorq6AH0rymbQMX7gKK/3hgzFR1Znn59M2xQfIPW0x6qk
+         sIZuJDv02kwv1yRbFQ7BkeoYean/j//Zf6HOZ0masH1qM4lPB1wpu9Kvjm/zvZRsRYF/
+         fJQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790867163; x=1791471963;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=tNFuIUXNuGIMK04aFKXkSC9USRBbb3SEJPHqr2VtdVw=;
-        b=fk5rSAZjS0O6pNlHzudYbkbE5xyVrJUtlDY+Cw72dxPnYQSEczc2RAAlm5dkHJFwQx
-         rmCWR5ixaescteJPAsR2x82SDDUvZsO+Z5mEG7iYmvSbSttyYlTQmmF10lc+4KYdIIuN
-         mOVPXf36xY8fgGc30B7exU3k45tz4LcxKHbKSOLo+Fa6QrbQtNQS40RzMsltvcOQhBnh
-         NvPizd7JdKUTh6rv26X1ceq230HYW7he4e2OzJR2cdPZyFfgRAn1sAsSAoIFgipweL3H
-         G+NfMqpXMeVv+yc8NFJ5VQxBUy6Xav39nuyET7Ph1mwVqlUMX9QcLumpn4896ezhuEG6
-         11Uw==
-X-Forwarded-Encrypted: i=1; AKwUvByhvhgBjv7X/YAwyVYOviOb6JjPRZXDMl6obW9xOkJsVClVJVQeSyBFXriPWdVCUwD0dk7N@lists.linux.dev
-X-Gm-Message-State: AFq9FYKdLC80CYEuBCInceJ7aVRhFqO98OuadKzYyP5yQ4XzKB64g0oT
-	zcFXfIac/vDn8rKKpQ3oRPbOEFpRBXVK1Mtj8zOh0jyBFz7hm+jbsOGv+YidXbJuQzYn9w==
-X-Gm-Gg: AYBFou2opVbNc6v2/1fE09pmKtaRQkF3F3Q+Ym0GO//gpUG7P2Wa78fK4LYGHNQPDpy
-	yiuEfubHVFLzcuzvDJTRDsJgMlxhs/zZYZTxGPFCNUPnaaRXP1fNeeg9n8pBXsB7nc3cIUA6omc
-	WDb54PElt2IxLAu/UICzykNOBApQmRyrDxB37Z2okVIv+7tzRiLoi3T+kQukT8hg/p3jHBYd+d6
-	BDdxaxvTSXke+ob7zBIswoiV/rgNip0Gyn4XMxGvWc1JY3/iuml84C8EOn5PtGZkz5urPB/w/f0
-	sBXNLwdCd5WeHCpkpZeH+BzzPaFGLvyhnGwVrYqu5wnFuJXZ1RQTjjc3WwOV0ToDxf+nJvEHM3V
-	aHshEjdZWM+4Vg8Tlcu8eVdJuVGZQvwvMaCBtYtBIdRPDbCK7JFT0/pHQ6mA+cFxVrbyN+dTrgO
-	/Qrbb45WopNVR1to/47i4Txqp6bS/DA16tGLdQfHXnuh/YeVTM7uOv6031Uzl8tDO4b77Opaa9w
-	F6cUgh7lDXRSvxGBYhjME3oLLEusKBK/9Sw6QpL5JWigHFPPNhcduYDAYp43ekeKOuZUIwjwguZ
-	y1d9eAm8MIAtyTMPYBYRzCN9hCwtIHYXadNXVkpOj2MpMFBqNRh2pUR6v+8=
-X-Received: by 2002:a17:90b:54c4:b0:3a4:b3a4:e7a6 with SMTP id 98e67ed59e1d1-3a4f2d2f534mr1881980a91.11.1790867162529;
-        Thu, 01 Oct 2026 08:06:02 -0700 (PDT)
-Received: from spider.bream-herring.ts.net ([103.6.151.236])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3a4f47cbd1dsm5248555a91.16.2026.10.01.08.06.00
+        d=1e100.net; s=20260707; t=1790900370; x=1791505170;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=BUsap1DSRISulfdDtCLguVKFC6X0B5V082PAsB5stsk=;
+        b=dj9N8A+IkPRS4TaD2vD/WKuRr2OMp0wFOW3NxzfLuL5vcmi8JXoELw/EkWjJH+y/Wj
+         aBvuiTbHr4Lgeiuv47BSEmgOZpeydHRXdAXAwQ2WQYVqH1nLwfNGkSFCUHjvilO6qvNM
+         YcVtPXTVD0mQJDZy84gMwDw/ry0RyK4lkI0LyQNNpWLsHqinY5IyUXyR/nQB1DV2922F
+         nTwWU/eA0GANL64XaE5Xf4ShRZDL5BAOgfdhg5fC8DXrpihHh2qX4CEEA+zidhqRpg0k
+         x94SWhm+yy/LXEPOGa34ZrBN6N0embOq0mtfM7UDuKiafad7xumMAEPZju8ddrEgkYXw
+         lCEQ==
+X-Forwarded-Encrypted: i=1; AKwUvBzyS6o/EXFYOQn0o2lVfcuIhQ3g03sszV1XyBL9mpBD5zLRv0TI4J9h02NzX3smzszHc1Nm@lists.linux.dev
+X-Gm-Message-State: AFuF++l902ZVogO49aGf6X1PtsIfDwikOu7MeyXFbqafJkpv1wwQvLXq
+	Lnd68rOcm9+1kqNlL+3fPIOWFbITryp6xXna1qsiNqXVRx1HuIA+e4Pz
+X-Gm-Gg: AYBFou2W/l+rsCv5MPVCL/N+cfjgt7vuj6CcK+OnxMswUUxZym3WCsXwliOnkcOimmu
+	L93D/pAs8i9rN3cqcZ6REi90K8sR+yGBqpKErQMtsjXnjYqISR3EC4004/+6QaIXIAklJgKYkQf
+	1XzinN4d4Sl3VXcQkuF5HMThHSgfPulVU1MRCeEMBPSYzr8tP8gvFASi9Hkd1WfB1x6EQKH4Kfn
+	5F/k2h+tI6Rhnf4bPtzD4hfZD0/soub37ikZZd10j09y451lUnSOMUYX6s3Cv+LulPMZAKp6fx7
+	T7vF4gzpGhQQbvZrtwQm4hMNWzhQsakdfUNhZ6ItKddsKtJI29MDYvPKYKWxvNS6xuetIwe383I
+	gj/r0cL/t/3c/CWyhuGw8LLorQeMIOewdaAjApKkeA2yRUm4iWfwnkKMoKmxSkr5uMi9QTYNKkP
+	1hOUQb1oSu1aeDRB0xP83dk4g8EjLSqVzgnrH2UwICBfUJQy5u9D+pH3uWZeXD
+X-Received: by 2002:a05:6a20:d74c:b0:3de:7854:854a with SMTP id adf61e73a8af0-3e0bcaa8497mr1036858637.6.1790900369746;
+        Thu, 01 Oct 2026 17:19:29 -0700 (PDT)
+Received: from localhost ([27.122.242.71])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc9f738639esm261847a12.23.2026.10.01.17.19.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Oct 2026 08:06:02 -0700 (PDT)
-From: Matthias Goergens <matthias.goergens@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>
-Cc: Baolin Liu <liubaolin@kylinos.cn>,
-	ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ntfs: hold the runlist lock while expanding a non-resident attribute
-Date: Thu,  1 Oct 2026 23:05:58 +0800
-Message-ID: <20261001150558.3970385-1-matthias.goergens@gmail.com>
-X-Mailer: git-send-email 2.56.0
+        Thu, 01 Oct 2026 17:19:28 -0700 (PDT)
+Date: Fri, 2 Oct 2026 09:19:26 +0900
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: Mark Eiger <eigermark8@gmail.com>
+Cc: Namjae Jeon <linkinjeon@kernel.org>, ntfs@lists.linux.dev
+Subject: Re: [PATCH v2] ntfs: write a clean LogFile on unmount and remount
+ read-only
+Message-ID: <ar74jneAvzVH3Zeb@hyunchul-PC02>
+References: <arzJaqJbyue5sjIO@hyunchul-PC02>
+ <20260930225213.53315-1-eigermark8@gmail.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260930225213.53315-1-eigermark8@gmail.com>
 
-ntfs_non_resident_attr_expand() changes ni->runlist.rl while it
-allocates clusters: ntfs_attr_map_whole_runlist(), the compressed
-branch's ntfs_rl_realloc() and ntfs_runlists_merge() can each kvfree()
-the old array.  Unless the caller already holds ni->runlist.lock, none
-of this happens under it; only the rollback takes it.  Callers without
-it include the write path, fallocate, ntfs_inode_attr_pwrite() and
-ntfs_resident_attr_resize().
+Hi Mark,
 
-Those callers hold mrec_lock, and the write path also inode_lock, but
-the iomap read side takes neither: FIEMAP, page faults, readahead and
-splice read reach ntfs_read_iomap_begin_non_resident(), which takes only
-ni->runlist.lock.  A FIEMAP running while write(2) extends the same file
-can walk the array that ntfs_runlists_merge() has just freed:
+> Leave the LogFile the way Windows does after a clean dismount instead:
+> two identical LFS 1.1 restart pages with RESTART_VOLUME_IS_CLEAN set and
+> a single "NTFS" client whose restart record is an empty checkpoint, so
+> there is nothing to redo or undo.  The checkpoint follows a no-op record
+> in the first log record page, which is also stored in both tail copies.
+> The log record pages are written and flushed before the restart pages
+> that refer to them.
 
-  BUG: KASAN: slab-use-after-free in ntfs_attr_vcn_to_rl+0x19b/0x200
+Thank you. I also verified that this approach works as expected on
+Windows.
 
-A reader that finds a vcn unmapped in the stale array also maps it from
-disk into the runlist the writer is changing, which shows up as "Run
-lists overlap. Cannot merge!".
+> --- a/fs/ntfs/super.c
+> +++ b/fs/ntfs/super.c
+> @@ -381,6 +381,14 @@ static int ntfs_reconfigure(struct fs_context *fc)
+>  				return err;
+>  			}
+>  		}
+> +		/*
+> +		 * Leave a clean LogFile behind, so that Windows can mount the
+> +		 * volume without writing to it.  Not after a forced remount:
+> +		 * writers in progress may still be modifying metadata.
+> +		 */
+> +		if (!(fc->sb_flags & SB_FORCE) && !NVolErrors(vol) &&
+> +		    vol->logfile_ino)
+> +			ntfs_write_clean_logfile(vol->logfile_ino);
 
-Take ni->runlist.lock for writing around the part of the expansion that
-changes the runlist and allocated_size, up to and including the mapping
-pairs update, as ntfs_non_resident_attr_shrink() does since commit
-91709ba5d6d7 ("ntfs: protect runlist updates with the runlist lock"),
-and hold it throughout the rollback, where ntfs_cluster_free() requires
-it.  The lock nests inside mrec_lock, as on the truncate-up path, which
-already calls this function with the runlist lock held.  Where the
-caller says it holds the lock (locked_ni == ni), assert that it holds it
-for writing.
+I think one more change is needed. $LogFile should be persisted before
+$Volume in this function and in put_super() to prevent a failed
+$LogFile write from leaving $Volume marked clean.
 
-For an $ATTRIBUTE_LIST whose lock the caller does not hold, drop the
-lock again before the mapping pairs update: that update can resize the
-same list through ntfs_attrlist_update_locked(), which returns -ENOSPC
-when told that the list's lock is held.  Holding it there made punching
-holes into a large fragmented file fail with -ENOSPC.
+And any errors from persisting $LogFile should be also propagated to the
+caller.
 
-Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-Cc: stable@vger.kernel.org
-Signed-off-by: Matthias Goergens <matthias.goergens@gmail.com>
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
----
-Changes since v1:
+>  	}
+>  
+>  	ntfs_debug("Done.");
+> @@ -1729,6 +1737,13 @@ static bool load_system_files(struct ntfs_volume *vol)
+>  			ntfs_error(sb, "Failed to load LogFile. Mounting read-only.");
+>  		}
+>  		NVolSetErrors(vol);
+> +	} else if (rp) {
+> +		struct restart_area *ra = (struct restart_area *)((u8 *)rp +
+> +				le16_to_cpu(rp->restart_area_offset));
+> +
+> +		/* Continue its LSNs when writing a clean LogFile later. */
+> +		vol->logfile_lsn = le64_to_cpu(ra->current_lsn);
+> +		vol->logfile_seq_bits = le32_to_cpu(ra->seq_number_bits);
+>  	}
+>  
+>  	kvfree(rp);
+> @@ -1974,10 +1989,6 @@ static void ntfs_put_super(struct super_block *sb)
+>  	iput(vol->mftbmp_ino);
+>  	vol->mftbmp_ino = NULL;
+>  
+> -	if (vol->logfile_ino) {
+> -		iput(vol->logfile_ino);
+> -		vol->logfile_ino = NULL;
+> -	}
+>  	if (vol->mftmirr_ino) {
+>  		/* Re-commit the mft mirror and mft just in case. */
+>  		ntfs_commit_inode(vol->mftmirr_ino);
+> @@ -2025,10 +2036,18 @@ static void ntfs_put_super(struct super_block *sb)
+>  				 */
+>  				ntfs_warning(sb,
+>  					"Volume has errors.  Leaving volume marked dirty.  Run chkdsk.");
+> +			} else if (vol->logfile_ino) {
+> +				/* The volume is clean on disk, so is the LogFile. */
+> +				ntfs_write_clean_logfile(vol->logfile_ino);
+>  			}
+>  		}
+>  	}
+>  
+> +	if (vol->logfile_ino) {
+> +		iput(vol->logfile_ino);
+> +		vol->logfile_ino = NULL;
+> +	}
+> +
+>  	/*
+>  	 * Release $Volume while the mft inode is still available: if the
+>  	 * commit above failed before it could clear the dirty flag,
+> diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
+> index fdb57279d..1e6696b60 100644
+> --- a/fs/ntfs/volume.h
+> +++ b/fs/ntfs/volume.h
+> @@ -71,6 +71,9 @@
+>   * @mftmirr_ino: The VFS inode of $MFTMirr.
+>   * @mftmirr_size: Size of mft mirror in mft records.
+>   * @logfile_ino: The VFS inode of LogFile.
+> + * @logfile_lsn: current_lsn of the LogFile restart area found at mount
+> + *	time, or of the clean restart area we last wrote, 0 if unknown.
+> + * @logfile_seq_bits: seq_number_bits belonging to @logfile_lsn.
+>   * @lcnbmp_ino: The VFS inode of $Bitmap.
+>   * @lcnbmp_lock: Lock for serializing accesses to the cluster bitmap
+>   * @vol_ino: The VFS inode of $Volume.
+> @@ -144,6 +147,8 @@ struct ntfs_volume {
+>  	struct inode *mftmirr_ino;
+>  	int mftmirr_size;
+>  	struct inode *logfile_ino;
+> +	u64 logfile_lsn;
+> +	u32 logfile_seq_bits;
+>  	struct inode *lcnbmp_ino;
+>  	struct rw_semaphore lcnbmp_lock;
+>  	struct mutex volume_label_lock;
+> -- 
+> 2.54.0 (Apple Git-157)
+> 
 
- - Add lockdep_assert_held_write(&ni->runlist.lock) for the case where
-   the caller says it holds the lock, as Hyunchul asked.  The only
-   caller that passes locked_ni == ni is __ntfs_attr_truncate_vfs(),
-   which takes the lock for writing just before the call.  Callers
-   from ntfs_attrlist_update_locked() never pass the list's own inode
-   as locked_ni, because that function returns -ENOSPC first.
- - Rebase onto current ntfs-next (708f9d56caca).  The rollback hunk
-   conflicted with the new restore of allocated_size under size_lock;
-   that now runs with the runlist lock held.
- - Keep both Reviewed-by tags.  Baolin, Hyunchul: the assertion is the
-   only functional addition, so shout if you would rather I dropped
-   yours.
-
-A reproducer that extends two files with interleaved clusters while
-FIEMAP loops over them hits the KASAN report above within two seconds in
-each of three runs without this patch.  With it, six 60-second runs are
-clean (three on v1, three on v2).  I can send it privately if you want
-it.
-
-Also tested v2 in a VM with KASAN, lockdep and the hung task detector:
-writes past EOF, fallocate, truncate-up, sparse and compressed files,
-growing xattrs, directories and a non-resident attribute list, with
-FIEMAP after each step.  Output is identical to v1, and lockdep reports
-nothing.  A build with a printk in front of the new assertion shows it
-running on the truncate-up path, and swapping that caller's down_write()
-for down_read() makes it fire.
-
- fs/ntfs/attrib.c | 74 ++++++++++++++++++++++++++++++++++--------------
- 1 file changed, 53 insertions(+), 21 deletions(-)
-
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 5439c12f9280..565bd468b893 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -4487,6 +4487,7 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 	struct super_block *sb = ni->vol->sb;
- 	size_t new_rl_count;
- 	unsigned long flags;
-+	bool runlist_locked = locked_ni == ni;
- 
- 	ntfs_debug("Inode 0x%llx, attr 0x%x, new size %lld old size %lld\n",
- 			(unsigned long long)ni->mft_no, ni->type,
-@@ -4528,10 +4529,19 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 	 * clusters if there is a change.
- 	 */
- 	if (ntfs_bytes_to_cluster(vol, ni->allocated_size) < first_free_vcn) {
-+		/*
-+		 * The runlist array is replaced below.  Readers such as the
-+		 * iomap read path hold only the runlist lock, not mrec_lock.
-+		 */
-+		if (runlist_locked)
-+			lockdep_assert_held_write(&ni->runlist.lock);
-+		else
-+			down_write(&ni->runlist.lock);
-+
- 		err = ntfs_attr_map_whole_runlist(ni);
- 		if (err) {
- 			ntfs_error(sb, "ntfs_attr_map_whole_runlist failed");
--			return err;
-+			goto unlock_runlist;
- 		}
- 
- 		/*
-@@ -4556,7 +4566,7 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 						last + more_entries + 1);
- 				if (IS_ERR(rl)) {
- 					err = -ENOMEM;
--					goto put_err_out;
-+					goto unlock_runlist;
- 				}
- 
- 				alloc_size = ni->allocated_size;
-@@ -4581,7 +4591,7 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 				rl = kmalloc(sizeof(struct runlist_element) * 2, GFP_NOFS);
- 				if (!rl) {
- 					err = -ENOMEM;
--					goto put_err_out;
-+					goto unlock_runlist;
- 				}
- 
- 				rl[0].vcn = ntfs_bytes_to_cluster(vol, ni->allocated_size);
-@@ -4628,7 +4638,8 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 				ntfs_debug("Cluster allocation failed (%lld)",
- 						(long long)first_free_vcn -
- 						ntfs_bytes_to_cluster(vol, ni->allocated_size));
--				return PTR_ERR(rl);
-+				err = PTR_ERR(rl);
-+				goto unlock_runlist;
- 			}
- 			/*
- 			 * A contiguous ATTRIBUTE_LIST allocation keeps its mapping
-@@ -4652,8 +4663,10 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 								ni->allocated_size),
- 						lcn_seek_from, DATA_ZONE, false,
- 						false, false);
--				if (IS_ERR(rl))
--					return PTR_ERR(rl);
-+				if (IS_ERR(rl)) {
-+					err = PTR_ERR(rl);
-+					goto unlock_runlist;
-+				}
- 			}
- 		}
- 
-@@ -4665,7 +4678,8 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 				ntfs_error(sb, "Run list merge failed");
- 				ntfs_cluster_free_from_rl(vol, rl);
- 				kvfree(rl);
--				return -EIO;
-+				err = -EIO;
-+				goto unlock_runlist;
- 			}
- 			ni->runlist.rl = rln;
- 			ni->runlist.count = new_rl_count;
-@@ -4673,11 +4687,28 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 
- 		/* Prepare to mapping pairs update. */
- 		ni->allocated_size = ntfs_cluster_to_bytes(vol, first_free_vcn);
--		err = ntfs_attr_update_mapping_pairs_locked(
--				ni, 0, locked_ni);
--		if (err) {
--			ntfs_debug("Mapping pairs update failed");
--			goto rollback;
-+		if (ni->type == AT_ATTRIBUTE_LIST && !runlist_locked) {
-+			/*
-+			 * Making room for the list's mapping pairs can resize
-+			 * this attribute list again through
-+			 * ntfs_attrlist_update_locked(), which takes its
-+			 * runlist lock.
-+			 */
-+			up_write(&ni->runlist.lock);
-+			err = ntfs_attr_update_mapping_pairs_locked(ni, 0,
-+								    locked_ni);
-+			if (err) {
-+				ntfs_debug("Mapping pairs update failed");
-+				goto rollback;
-+			}
-+		} else {
-+			err = ntfs_attr_update_mapping_pairs_locked(ni, 0, ni);
-+			if (err) {
-+				ntfs_debug("Mapping pairs update failed");
-+				goto rollback_locked;
-+			}
-+			if (!runlist_locked)
-+				up_write(&ni->runlist.lock);
- 		}
- 	}
- 
-@@ -4711,6 +4742,9 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 	ntfs_attr_put_search_ctx(ctx);
- 	return 0;
- rollback:
-+	if (!runlist_locked)
-+		down_write(&ni->runlist.lock);
-+rollback_locked:
- 	/* Free allocated clusters. */
- 	err2 = ntfs_cluster_free(ni, ntfs_bytes_to_cluster(vol, org_alloc_size),
- 				-1, ctx);
-@@ -4722,8 +4756,6 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 	 * dropping the lock: ntfs_attr_vcn_to_rl() fails a lookup below the
- 	 * allocated size that falls past the end of the runlist.
- 	 */
--	if (ni != locked_ni)
--		down_write(&ni->runlist.lock);
- 	err2 = ntfs_rl_truncate_nolock(vol, &ni->runlist,
- 			ntfs_bytes_to_cluster(vol, org_alloc_size));
- 	if (!err2) {
-@@ -4731,8 +4763,6 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 		ni->allocated_size = org_alloc_size;
- 		write_unlock_irqrestore(&ni->size_lock, flags);
- 	}
--	if (ni != locked_ni)
--		up_write(&ni->runlist.lock);
- 	if (err2) {
- 		/*
- 		 * Failed to truncate the runlist, so just throw it away, it
-@@ -4743,12 +4773,8 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 		ntfs_error(sb, "Couldn't truncate runlist. Rollback failed");
- 	} else {
- 		/* Restore mapping pairs. */
--		if (ni != locked_ni)
--			down_read(&ni->runlist.lock);
--		if (__ntfs_attr_update_mapping_pairs(ni, 0, locked_ni, true))
-+		if (__ntfs_attr_update_mapping_pairs(ni, 0, ni, true))
- 			ntfs_error(sb, "Failed to restore old mapping pairs");
--		if (ni != locked_ni)
--			up_read(&ni->runlist.lock);
- 
- 		if (NInoSparse(ni) || NInoCompressed(ni)) {
- 			ni->itype.compressed.size =  org_compressed_size;
-@@ -4756,6 +4782,8 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 		} else
- 			VFS_I(base_ni)->i_blocks = ni->allocated_size >> 9;
- 	}
-+	if (!runlist_locked)
-+		up_write(&ni->runlist.lock);
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
- 	return err;
-@@ -4763,6 +4791,10 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
- 	return err;
-+unlock_runlist:
-+	if (!runlist_locked)
-+		up_write(&ni->runlist.lock);
-+	return err;
- }
- 
- /*
-
-base-commit: 708f9d56cacae21aeee98d16bcdd50a66edc04a0
 -- 
-2.56.0
-
+Thanks,
+Hyunchul
