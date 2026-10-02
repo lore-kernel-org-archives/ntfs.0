@@ -1,74 +1,92 @@
-Received: from mail-pz2-f40.google.com (mail-pz2-f40.google.com [74.125.228.40])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 543FC247291
-	for <ntfs@lists.linux.dev>; Fri,  2 Oct 2026 05:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1211B330328
+	for <ntfs@lists.linux.dev>; Fri,  2 Oct 2026 06:01:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790919447; cv=none; b=jV2G1Ook3ZsRMPe7wR8bVeTyYkRIdlSozgR093OceMrZkA0KNlM8Im7boML3FVOUJAw2IjbnQ6k1EVobG7gogdwoQ4K/nomfHjGiTyxBc0s54HhEZ1EUSkGgVUaRxom86HKY5zxWO89vb9kS0za23jwCIe1AVt1axvuKo/d3NaU=
+	t=1790920895; cv=none; b=AiG+WJ6O+2loKnaxXDSb1nYJsqu1NFkiHlsfVNWK5PYvxpxMToSSLhFNEA+EcjVeoxepi6ODe9ELRVQMr9t47AbKyXE0oynQSQtH67GFipJqqEN3zl9D6r0vDRI62sMTzDL241z5hA7vO8FTpv+PfvZ89TcFvX/ju8MCoilorSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790919447; c=relaxed/simple;
-	bh=Qu+IT/SfaKywPp0ftNmip2dBTQBBkOkDk7AmvwWlwRQ=;
+	s=arc-20240116; t=1790920895; c=relaxed/simple;
+	bh=Zzl8GQMYT4ovWCoYqlximp5PJDij3vOuu7nwytPtyeU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U4fWBN3rSOsnakF0Dq8ThaKKDffVq1Ai+MOZfovODplzAd9yz3R6qx6ArDRjZcnil46Sw7gLKVRYcUhVKNNwHlY/5VU5MRbc1SZxG3QOHTxnNEUH7wFVvS0BbmaNrNdE1ZsfomJWzrAleSaQCaseVlZe0WMDeju+seUM3zRE0iA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lCdebBo5; arc=none smtp.client-ip=74.125.228.40
+	 Content-Type:Content-Disposition:In-Reply-To; b=QHcCamHt3dToEVVG7XMWMEA+7PwRVvJ68VBO/BE10Y0/iCx7XiYtsiB7fOudue2eGsnawargMMT7enTuzBzad+AT3vXOT1LQDGz7hvhaJeBfTqLyxK0G5jhb6LUJbNukwuXdr0MARvS01SMvsc9sHops01dEiyFOnBQPVtaLebw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j5uVEKWx; arc=none smtp.client-ip=209.85.216.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lCdebBo5"
-Received: by mail-pz2-f40.google.com with SMTP id 41be03b00d2f7-cc78d45f78fso4755767a12.3
-        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 22:37:26 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j5uVEKWx"
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-3a02551822eso742990a91.1
+        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 23:01:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790919446; x=1791524246; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1790920893; x=1791525693; darn=lists.linux.dev;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=vfrkmb0eJpHRNYj/pvBngGN4IjRZKZRH0wkIARGATCw=;
-        b=lCdebBo5ZkxlUPZ8I1x9Ymy2+MsoKjjCtgaKwttQnVoKHMgooLXrviZJSOP37Luv5o
-         1JW6tDCVtodlH2JI91C3qH4lf1pG6YCNLCFl9oLb32vb8rPTNClFIf352/U1PXn/Qsrk
-         KuPk3JbHKjzeZJMGl3/HquVjImbm/qvwg18db758AZOGPFOiurpNNM81dKh6Rou4CXWi
-         0HGfweI+r22SEshCCUvmDSbu25H26rjExgg+NsuQpauCeoR+Ph6aQuQgHzWixW+8jc3p
-         zFJLOiQu+ERjXmBCrsrR9XVRpWdfWZr6P5hGHfCtUTEUW6G4As2qk2VrvsD6Z8HDgs+G
-         elpA==
+        bh=bvzqwuTjdPy91zWm37KIYjrvoEq9pY5JTP911vnp5Bg=;
+        b=j5uVEKWxHclHRFLlaA9mkgGm4gnXhxOn1ki8h0iVCF3B19JcsURb2A5qNgjPpH+DLq
+         swz99ITLvMAma9PEX5q0BrItGplk1i8HMi9QR5paiVxoshGUQ1e3TvuC/27xIXn6iHsW
+         gHGlzh5/OejvczGyttQ9B7P1J80u3tj0MBQXMkuyjwhfmfzeXYgm3p6eF42/iJu1XIuN
+         A2WhLGiFjd1RK/cvL/coQQD2NGj2j079D6HATxRDF4eRoEyyG6M5EspD0It0D1s+egeE
+         k9DXg4jk3nPgmGInjhqc/gWp67GoqDE4cEKFaED+RRTNNnOAY7M03jxje/yaVa4ofLlz
+         0F5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790919446; x=1791524246;
+        d=1e100.net; s=20260707; t=1790920893; x=1791525693;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=vfrkmb0eJpHRNYj/pvBngGN4IjRZKZRH0wkIARGATCw=;
-        b=w5M9Tk2v7SYTpw/mtlGjv7FZsJu+/dCvoZ+OAE3qZSYOe773CrOWxNhveLQE7dg51B
-         ZY8OTp3CMhL4LHrgisTGoLbtbX2OHWfw6XZBGEDApIc+J3/k3BGyZNJWNGhLW415Foh+
-         KbrC4kKeBiuZ31NsRpoX1t7+FXXLs0E6jx18fI7ehB2AOvDryKAKBkOcLgdlb6bm5N4x
-         h5VVNpEnY2s17oHh2j0cJ6GcrYoJGLrYPVps4eUMdnoGTSHT36HeSUW23tVjbfFoPJHy
-         7FfV2Uv76iT3PctZ+Sg2HG8or6qcRIVHH5yA3IfZ5IUb2qWk8JlYdQMe4dhjTZask6mq
-         hNuQ==
-X-Forwarded-Encrypted: i=1; AKwUvBw4Y0w8GwpFSa6gnOullbLalunsMpPMr88wVCQShLg4/NWCbzgYYGKkR3WnO+VPJirSXggQ@lists.linux.dev
-X-Gm-Message-State: AFuF++ktuiqfHVVvqjWZD7yrWrJhchw5uUXbvWhlzffMI3wn+K8HpHY2
-	URQUOvkC9R6/rKee9zVoYDdXIiqVp7nmGknEibehLn6wNXREc/kf3aPJ
-X-Gm-Gg: AYBFou2yZTj4jWRkL2Rks56g/FGlIIwH/koNDWi1cJyaSlvJakPp/pXOQVkb83LHc6R
-	YtsXWBD8lStugIMLv88AGFpYr1l0GAyixWjI5gV3n5Z9BKbBPjLl3EW9Wz43G0mamiclp7ZUkHQ
-	OvM8LH6zxVfUP/PiZrroUE0Mn7CBbk06lnNGHpg2VwJU5of9N4WRMFp4LVw9vUA4CRsuWHe3EUj
-	vdnDPBwnKruISmTnty5xqe6YfPTfnqCSz8I8SN3sFm/F85z954nzebQVonfmUDmaz6r0gWtLYa8
-	0GF1xs0/E2f0Pq9J8syNtl2STQnyKkj48bZ0uDuQ4orlu6QX334bpK+PruwNKveCKUqQWmvh9Wj
-	bLDqzrCHnxS0TtdhZ25tAk20ZpEJhq3PQ7cUz8dxeqpdHLIKcA6+DaDH96GNjWOnEuedjOSQ5Q0
-	+Ktnp92kxTsjMsaCRSKlZMvSV+663qvQCNcVFVn6eObkRwVGJs8TS6yXlCICw2
-X-Received: by 2002:a05:6a21:2c01:b0:3de:74ee:c05d with SMTP id adf61e73a8af0-3e0bcfba78amr1843334637.23.1790919445425;
-        Thu, 01 Oct 2026 22:37:25 -0700 (PDT)
+        bh=bvzqwuTjdPy91zWm37KIYjrvoEq9pY5JTP911vnp5Bg=;
+        b=N60rJyZKXc2WXkx2X04Eo+Pq4kN9iKYQL+r/9PXdAFU1/84YPCqyfHZVqXHQaP4zqB
+         PSCwjOp3cYiUuA8r+U5m2v6Uk/7g0O0ZIfb4dMIoUgvH9pmBWjhZGHXIvVWquhz7qSNO
+         2WC65vQgwUNjbDdVseGWOEpi0KNd/qmq+D7w2dkStdsFqESNEOxtbvLEWKbMTMntb4d2
+         sSWZO/p2Q3/XRI/16pi4MVPevOBtDxGWIHm9NttguS9Dmg4Cnp+qL0gRRb2pXya4EQsD
+         PrvqydXLnpZkqYrHb3O/HQ6ZlnTp8c/eRtOD44lG8BKDjhKfRfRnIxUIforONSQTj9KG
+         y3qQ==
+X-Forwarded-Encrypted: i=1; AKwUvBw1ZUjtSEET9lrZH/Wy/oKMH+ZOtA+A9hjtXfhCaat8CA+qlVgyM/2RpNA8Xu+FDGK6LlHB@lists.linux.dev
+X-Gm-Message-State: AFq9FYLxzTO9p3qJJuKKtkqItSy8fJTedq63RK9WZpfG8hkzMhi8Rw5d
+	uJcbwyMjZeQ6XaLJgYQPtzl3KLJOjotAe99UWGY4FTt9NOgjWJtvgIsq
+X-Gm-Gg: AYBFou2WcnLv7YzLbiaYpuBtvKRgTdDwvJ4r5JW1GwKuOSxTkpcHGPuhdqzeoDfcCuq
+	fP+CbHGDe+6gCRA4iTJ94qOi2wx1h5sqMpfr7M3lX8gFuSFnDK+/D1ZNVeLtO+w72t2G4tCeAJf
+	nc8SaA8WHirygSiCh44NozHCaSZOaRRwyYt8Nxs7QiHbVXIUOLWwGPMuW9dKqEUIjeZ1qNqH0DO
+	rblaH8j30NqV915+4+XACqRElwifeS8ubvoIWkQ3F7+IKCbgdDVOM/w2GQ9neCAoDD2A3K/W3qk
+	ZUM70VWHPrylDQNQYnEK5Ias3q56ESNc/8RFrKQILGJ9wXk4MhoU1lHREPdoWtfzyrMAqD867bS
+	Ua14sIXLtmk/OyIJvc4MHkOVDiGyXMIxwfhmCYrADBj3ake8RStjLIEildRe5+UpcIV6I/vggjh
+	ugRieYMt3JU8KNXfwht308jQuLr9zxsY+sJ29MCfGYYAvWKLv46oJjExHW2sjr
+X-Received: by 2002:a17:90b:2644:b0:3a0:f2e1:8af9 with SMTP id 98e67ed59e1d1-3a4f3d124f2mr3588321a91.52.1790920893294;
+        Thu, 01 Oct 2026 23:01:33 -0700 (PDT)
 Received: from localhost ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-88b0cb77df7sm468216b3a.47.2026.10.01.22.37.24
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc9f721a6afsm519169a12.0.2026.10.01.23.01.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Oct 2026 22:37:24 -0700 (PDT)
-Date: Fri, 2 Oct 2026 14:37:22 +0900
+        Thu, 01 Oct 2026 23:01:32 -0700 (PDT)
+Date: Fri, 2 Oct 2026 15:01:30 +0900
 From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Matthias Goergens <matthias.goergens@gmail.com>
-Cc: Namjae Jeon <linkinjeon@kernel.org>, Baolin Liu <liubaolin@kylinos.cn>,
-	liubaolin <liubaolin12138@163.com>, ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] ntfs: fix spurious EIO and ENOSPC on nearly full
- volumes
-Message-ID: <ar9DEnzfkEvi3Oo9@hyunchul-PC02>
-References: <cover.1790853718.git.matthias.goergens@gmail.com>
+To: NeilBrown <neil@brown.name>
+Cc: Miklos Szeredi <miklos@szeredi.hu>, Amir Goldstein <amir73il@gmail.com>,
+	Kees Cook <kees@kernel.org>,
+	Joel Granados <joel.granados@kernel.org>,
+	Richard Weinberger <richard@nod.at>,
+	Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+	Johannes Berg <johannes@sipsolutions.net>,
+	Breno Leitao <leitao@debian.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Jan Harkes <jaharkes@cs.cmu.edu>, Hugh Dickins <hughd@google.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Namjae Jeon <linkinjeon@kernel.org>,
+	Carlos Maiolino <cem@kernel.org>,
+	Alexander Viro <viro@zeniv.linux.org.uk>,
+	Christian Brauner <brauner@kernel.org>,
+	Jeff Layton <jlayton@kernel.org>, Jan Kara <jack@suse.cz>,
+	linux-fsdevel@vger.kernel.org, fuse-devel@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-unionfs@vger.kernel.org,
+	linux-um@lists.infradead.org, codalist@coda.cs.cmu.edu,
+	coda@cs.cmu.edu, linux-mm@kvack.org, ntfs@lists.linux.dev,
+	linux-xfs@vger.kernel.org
+Subject: Re: [PATCH 1/7] VFS/xfs/ntfs: drop parent lock across
+ d_alloc_parallel() in d_add_ci()
+Message-ID: <ar9IuknaJqrGoF-j@hyunchul-PC02>
+References: <20260929034158.1455429-1-neilb@ownmail.net>
+ <20260929034158.1455429-2-neilb@ownmail.net>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -77,9 +95,28 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1790853718.git.matthias.goergens@gmail.com>
+In-Reply-To: <20260929034158.1455429-2-neilb@ownmail.net>
 
-The whole series look good to me.
+On Tue, Sep 29, 2026 at 01:36:01PM +1000, NeilBrown wrote:
+> From: NeilBrown <neil@brown.name>
+> 
+> A proposed change will invert the lock ordering between
+> d_alloc_parallel() and inode_lock() on the parent.
+> When that happens it will not be safe to call d_alloc_parallel() while
+> holding the parent lock - even shared.
+> 
+> We don't need to keep the parent lock held when d_add_ci() is run - the
+> VFS doesn't need it as dentry is exclusively held due to
+> DCACHE_PAR_LOOKUP and the filesystem has finished its work.
+> 
+> So drop and reclaim the lock (shared or exclusive as determined by
+> LOOKUP_SHARED) to avoid future deadlock.
+> 
+> Signed-off-by: NeilBrown <neil@brown.name>
+
+For the NTFS part,
+
+Looks good to me.
 
 Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 
