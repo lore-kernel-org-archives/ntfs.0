@@ -1,74 +1,74 @@
-Received: from mail-pz2-f37.google.com (mail-pz2-f37.google.com [74.125.228.37])
+Received: from mail-pj2-f40.google.com (mail-pj2-f40.google.com [74.125.227.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9066360EC9
-	for <ntfs@lists.linux.dev>; Fri,  2 Oct 2026 04:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.37
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F4635BDAA
+	for <ntfs@lists.linux.dev>; Fri,  2 Oct 2026 04:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.227.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790915710; cv=none; b=I01wLeP9lzq7ENBh3FpIFuvMMHSiuBaMP4E9cbmUEmUtCr5j1rFpVhSM7euUltX4aSMeU/11Dc5vaft0xN/cWVPRTHjrXyYwzmC71q2cOVFVBx2wTC1gEElOrPyafKoj0mFeOn46zAYcZ4Y8AoBd6jp2vnURnKln9ZnI0kZLyNw=
+	t=1790915713; cv=none; b=SVbRWPTKnbBPCXuz9iCIoKOV0YpslAn1hPUwmvMjID73eY5pkoCYkYsxHcklHnkdl2J9fh09ARSJXPpoa5Cq3T1PL5MF+jQKihrnarOxeuZYwH7lSyZM/Lt7hvCuf1YcHvrNe2B0qcmjsagsNTuVexG+fVS/7BtvlDhv2q6IvOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790915710; c=relaxed/simple;
-	bh=FhlGtBDBqbooWe0RmMGrO55RxhWrm/DLJJot976bih0=;
+	s=arc-20240116; t=1790915713; c=relaxed/simple;
+	bh=WlPCRWwkcwjEqNOHd0YbQEWRzqgfDbuB44g9qpmhju0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FYNTyKwQkxo5lr2bpP6BugkgJH2894Z/BthaKL70IRTL6Ge/niF68JtsAubC0+zY33PZtG6wDV56Ed0eW7amUehICDIXAtweMNWknUOKS1UVt6nXTHrwVakZCvZi49DWgILvx/AsAszRSELkCq1P/k+NvPjRSby7ggcXkzfhshY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XSjJ0w8L; arc=none smtp.client-ip=74.125.228.37
+	 MIME-Version; b=ltGFqFPFGAQTfP9hFBpZ9brLqkiZqJJGnfyFOWgbIsaZQi0OeS83wsLMuXxDKQpglz14Kk/SXYmI3PZMa73V8VzP4CcLVCZU7i/eeQ/fX2XyTNXCqyOeNSQx2BFeobN+yrrUZvTfj5NZYkLS0TXhl+dyZmdiw6hGnvRG9Itz7AU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gkEhK+0w; arc=none smtp.client-ip=74.125.227.168
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XSjJ0w8L"
-Received: by mail-pz2-f37.google.com with SMTP id 41be03b00d2f7-cc7c4c92477so2586378a12.0
-        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 21:35:08 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gkEhK+0w"
+Received: by mail-pj2-f40.google.com with SMTP id 98e67ed59e1d1-3a0d31bda43so4752152a91.1
+        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 21:35:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790915708; x=1791520508; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1790915711; x=1791520511; darn=lists.linux.dev;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=qGeFVvTCbU7hVv1m7NMiEfFFIPcZ+D554WZng02l/dY=;
-        b=XSjJ0w8L0J86234FIpBuObjgdWRtzsLn7wJFOJxJmZnpxg9fvpVRTFIEKTbmLGIzVF
-         v0l7Tstx/4nrzOeomVOAsDKCK8WPeFWk44Ux3lBSDJ0JBNE+mI2yHb/VJ8wM/RgM/C2f
-         uHZ/jQhfODDKzmxbw8YG3xoD2WYdhtDTuetkFhb6oMVnC8VoE1GzPrywGyhbkzF/Zms3
-         OuLr16QY6mHvATnwtZxjL491mSOD3AinQ5b5Sgv5Wa50ouGwHH5yUi50hkOVXTgcdGGK
-         JIBVn1GiCEjP0JpcWutueornp3BO9HDvSPrSbZFPr7Xg3qbLRbc31lv19bdPZmID4Mi8
-         JEgw==
+        bh=QC4s4f2EoD1bjgIyhN8MKrzd5sNVc2JZ8IkaO7wUKM0=;
+        b=gkEhK+0wLcSXBaQRfzSzy3pOADPsYK6V4o2BqC+Z8dr865tR/41wvQMaiye/bhSbfW
+         qTllg4opb3gudZjhA1/A6Q/lG893kE0McjTnKYVXEEQgewd1cONiwLUPnrpG+P705ypV
+         dYrguEgzwgtSnAI98LtqA+Xg5/lffW2jK4QjDTNkEWT5xE1y7b6Z62JpbhxNNsr/CGhR
+         lCHMIJSu3fMI5G48ZDH1mpSHZahqfovcUCF9F3Hwx49lH7AVj/1PLrPExoQSTC5bF3KH
+         vQV3fwXgaGhgb0nimKgWoq69VL4N25iuDHfwpPlOYBuqIEfnNXS/P3lxj9ZQBFJ8XKx3
+         xY9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790915708; x=1791520508;
+        d=1e100.net; s=20260707; t=1790915711; x=1791520511;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=qGeFVvTCbU7hVv1m7NMiEfFFIPcZ+D554WZng02l/dY=;
-        b=w+3I1XwX6uAaDpcVUHZ+ZPBnkHUUuvG/L+XxKJx+Kl0jenrWSDOuwqJpNJw8FXSIJE
-         C1n4gjHPrOBa9a8ocVH+5zwER5z54poEOa9wSSmTZfGXANWCPei8PYE1MnWrWyh0JXdX
-         Ug+0dUthQJOwGdpL8kFkZK5h5dYweh1MeEFKrMU4DD3/jLqqPElz3stzzHckZ2CXl2kg
-         qzbbEwVBH5hkzBl/V6UOsAE6+WP2H0nKsJwppnddgQeXu24DOmhUP92MiP7pP8gKmUF3
-         StOs39h1mTUxnlQytlL/DH9bLgvT63xRVqbWhgXIm3HIRq8Afx+Z9D3LxBUTW32nfMjs
-         we1A==
-X-Forwarded-Encrypted: i=1; AKwUvBwPejJbP4cVk6z7MjuZvBXllWki/xvs+Ofx5uJdKD4dRldtl39NdMwsuoRjS0/fKzoQ3aV6@lists.linux.dev
-X-Gm-Message-State: AFuF++n34FVJDvQjoPAOW9Ci0OQz4lV0Mj77lOmGpyGCJ6b1dzuHGVwC
-	AmAiYRLofJUfsg44WaAQN/fdQ3KOVQkim2rP7Kgk7QxC5ZEE0nfh5Rfs
-X-Gm-Gg: AYBFou3uQRblx5l84kffPR1lTbdxdwf7aw7Uwth0eAPgvdwCoYCT5BBT2pdLVr1phdM
-	sVfAnWwIsZ7Xi9J3vaFZhEdUArKC3TJdmbIx28rfn08N4HNvxV2fWxZSZ6mnf962iUIiDKNS/tE
-	NrpUGDJpXpqHaGdN6dZ43+LRKoX0/u2LRkD5KmKrYW1g1vm2mEvMfQ5Qv1Q06Laj+0HMIJOU2Uy
-	p2rnHu0Wg3fSZMQkkC6L91l1lw2rI5FPZ2PxfNf2vMsSyjEgXS+1qIAbgUtUI5vCqlK5I/4V8RL
-	R5EVjgZwakwDAnGZrQqMwrtBpMmY8hOSB8igwGUxMmcNscXh/NO9tHVJpypvIzUIlYsy2Hy8QqF
-	lXnqcfxrg+EdZNBG663/iHCqsfIagU2LTIN4C2Iu8+yH9AeKp9wrDRVbn/Bvru+06nbD9G+aRnp
-	BWSCS3hoHwBafc2kK6yuHnMUXMdJUpYKS7oBkZJytk4fc2HFIVdmyDBxGatRATE0Rzl6xFG7uFv
-	lj2QE8m5JGEQgQEaVi1wrk/qxmuUZD3SIHY9G6Pr+peIcWm3hWos06Md/7S2ENSBQ0jOgN4E31+
-	dHpihkpmwi3lLRhcupUtuYJ6Ddy8X9SyB6FVafz40s9xgPB3+N9xPaNnxas=
-X-Received: by 2002:a05:6a20:938b:b0:3dd:a196:53a8 with SMTP id adf61e73a8af0-3e0bd237011mr1615488637.74.1790915708114;
-        Thu, 01 Oct 2026 21:35:08 -0700 (PDT)
+        bh=QC4s4f2EoD1bjgIyhN8MKrzd5sNVc2JZ8IkaO7wUKM0=;
+        b=tkLvovWCOGRlzTXi1pX5Hod2B1WMqodOdrPXDaJeeTQIG+5Dn824QX771Bm4s0CLnz
+         U1KFG/JAeAW7piUasAPOQp7MmLN81ZTSIWApsA83BBjAke1Vkbx1g4O0aD9oAkG7VnVG
+         HDAOHF0+nBELq4y4+ukPTghB36orgoZNlboQq1YY0QLnmpBQUa3som2d68wsJAfR/LjI
+         ZdeoZeQnNeHTfDE5Q/veXIaFY3p3Ul0O+Fb//3HssnEgr6myJlXc5QzOtvVe7Ql/xk2x
+         zaWyz1qEqck0zcH4LjvNGkkQTzaZRhfJOqYzxYlDB11NccRQGQiz8SJUyryAi5d7GPTq
+         ocTg==
+X-Forwarded-Encrypted: i=1; AKwUvBwdbyb9dad3IfCORaiNy0J2xylyz0XATRnm7KEgceR1HoFjrLXxSRQld1UFkCWoWukX2EwG@lists.linux.dev
+X-Gm-Message-State: AFq9FYKzsNIWTgbiYImaJOElrI4QAo1tObcp5++KtFRW9y6BCOWP6/Ii
+	VnLEn/HvSPZGwU/uPBPK1PthdZAGTdN8a0EFgV+Af6njrzr1NMmeHowx
+X-Gm-Gg: AYBFou3qOjnBpZBLf8GpNjxZQ2ugEfqoPoM/G++Vce43GAJK9fEACeR78Br1SxoWbj9
+	iUerazzpXJ8MXHu9XvY6kmiJ6Fk4jT6IoTWGTha7TVYz78JXB62n9mepHbkWXvoFLraXPBGHg2w
+	Z5nKtzgzDrb4EfJIRxjWRtI3RjaeuBZDbZKCeLrxtOVuwOBbB3XHJ92h6AzJgo/JavHaEF8DLfi
+	OG+Jojytu2BlSj+fjITyzysQciASx2GKlTX6NsvaP+UlolTMSqFA4KyDYxgXyxUpFLwX2NNS965
+	fqaMvIeTqpeKB2T3mQ/W5ZQYi4v08Ls8HwxLffuz1UZF1G2r0Zq7Qt6W+kR1vlxxJL7wddaKe0d
+	cDcII7DeHQTyK5yj+aCInup+oR53y1dHZrfNsmBiNuu+uHBPT3T+oBF45r5NWgLF10yUVUEZa/J
+	MkpO2aVPL3pq1U/0jBaFGKPy36bY0lUHXSZmdJrHKvxAtJDh2L5zASCQul3xjIbO3JCs1yrYLTm
+	3ep/ggnj0rUdxbAMSIDqcNV4ZSFG4318SyNFt9ndYt9skgb+AGvjNXbP58xRBHgtQqxyg2fAjlu
+	/CNMybOr7zwhY4lzbVfwwJpt38MF75dpnM+FYBy6lrEZ3Ab+3SGxQcZVugM=
+X-Received: by 2002:a17:90b:2f90:b0:3a4:6e84:e7d8 with SMTP id 98e67ed59e1d1-3a6ce856c2bmr1168160a91.54.1790915710272;
+        Thu, 01 Oct 2026 21:35:10 -0700 (PDT)
 Received: from spider.bream-herring.ts.net ([103.6.151.236])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc9f7370db1sm436432a12.17.2026.10.01.21.35.04
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc9f7370db1sm436432a12.17.2026.10.01.21.35.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Oct 2026 21:35:06 -0700 (PDT)
+        Thu, 01 Oct 2026 21:35:09 -0700 (PDT)
 From: Matthias Goergens <matthias.goergens@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>,
 	Hyunchul Lee <hyc.lee@gmail.com>
 Cc: Baolin Liu <liubaolin@kylinos.cn>,
 	ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/3] ntfs: do not use a stale runlist pointer when undoing $MFT extension
-Date: Fri,  2 Oct 2026 12:34:57 +0800
-Message-ID: <20261002043459.1695429-2-matthias.goergens@gmail.com>
+Subject: [PATCH v3 2/3] ntfs: add a runlist merge that leaves the source runlist to the caller
+Date: Fri,  2 Oct 2026 12:34:58 +0800
+Message-ID: <20261002043459.1695429-3-matthias.goergens@gmail.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261002043459.1695429-1-matthias.goergens@gmail.com>
 References: <20261002043459.1695429-1-matthias.goergens@gmail.com>
@@ -80,56 +80,295 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-When ntfs_mft_data_extend_allocation_nolock() fails after it has
-rebuilt the mapping pairs of the last $MFT data extent, undo_alloc
-truncates the runlist and then rebuilds the old mapping pairs from rl2,
-a pointer into the runlist taken before the truncation.
-ntfs_rl_truncate_nolock() can reallocate the runlist, and KASAN then
-reports a use-after-free in ntfs_mapping_pairs_build().
+ntfs_runlists_merge() frees the source runlist once its runs are in the
+destination.  A caller that may have to undo the merge then has to work
+out its runs again from the merged runlist, where the first and the
+last of them may have been coalesced with neighbouring runs.
 
-Pass the start of the runlist instead, and hold the runlist lock for
-reading while the mapping pairs are built from it.
-ntfs_mapping_pairs_build() skips to the element containing the first
-vcn by itself.
+Add ntfs_runlists_merge_keep_src(), which neither modifies nor frees
+the source runlist.  For that, ntfs_rl_append() and ntfs_rl_replace()
+now merge the right-hand end into the copied run in the destination
+instead of into the last source run before copying it, and the merge
+helpers take the source as const, so the compiler checks that none of
+them writes to it.  The merged runlist is the same as before.
 
-Fixes: 1e9ea7e04472 ("Revert "fs: Remove NTFS classic"")
-Cc: stable@vger.kernel.org
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+For every caller, a source runlist without any mapped run, which the
+merge already warns about, now fails with -EINVAL instead of carrying
+on with nothing to insert: with no run copied, the right-hand merge
+into the destination would index before the insertion point.
+
+The next patch uses ntfs_runlists_merge_keep_src() to free exactly the
+clusters it allocated when it has to undo an $MFT data extension.
+
+Suggested-by: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: stable@vger.kernel.org # needed by the next patch
 Signed-off-by: Matthias Goergens <matthias.goergens@gmail.com>
 ---
-v3: unchanged, but now first, as it does not depend on the other two
-patches and can be applied on its own.
+v3: new, for patch 3 (Hyunchul Lee).
 
-A forced lookup failure of the first $MFT data extent, on a volume
-whose $MFT has several extents, gives the KASAN report before this
-patch and nothing after it.
+I compared the merge code before and after this patch in userspace, on
+three million random valid runlists covering all four merge helpers
+and the right-hand merges in append and replace: the merged runlists
+are identical, and ntfs_runlists_merge_keep_src() leaves the source as
+it was.  The harness, with the seed, is in the reproducer linked from
+the cover letter.
 
- fs/ntfs/mft.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ fs/ntfs/runlist.c | 98 ++++++++++++++++++++++++++++++++++++++---------
+ fs/ntfs/runlist.h |  3 ++
+ 2 files changed, 82 insertions(+), 19 deletions(-)
 
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index e01e367a588d..c2339acc6319 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -2043,11 +2043,16 @@ static int ntfs_mft_data_extend_allocation_nolock(struct ntfs_volume *vol)
- 	if (ctx) {
- 		a = ctx->attr;
- 		if (mp_rebuilt && !IS_ERR(ctx->mrec)) {
--			if (ntfs_mapping_pairs_build(vol, (u8 *)a + le16_to_cpu(
-+			int err;
+diff --git a/fs/ntfs/runlist.c b/fs/ntfs/runlist.c
+index f13d28c15887..76ba6ab72b8a 100644
+--- a/fs/ntfs/runlist.c
++++ b/fs/ntfs/runlist.c
+@@ -47,7 +47,7 @@ static inline void ntfs_rl_mm(struct runlist_element *base, int dst, int src, in
+  * @srcbase.
+  */
+ static inline void ntfs_rl_mc(struct runlist_element *dstbase, int dst,
+-		struct runlist_element *srcbase, int src, int size)
++		const struct runlist_element *srcbase, int src, int size)
+ {
+ 	if (likely(size > 0))
+ 		memcpy(dstbase + dst, srcbase + src, size * sizeof(*dstbase));
+@@ -152,8 +152,8 @@ static inline struct runlist_element *ntfs_rl_realloc_nofail(struct runlist_elem
+  * Return: true   Success, the runlists can be merged.
+  *	   false  Failure, the runlists cannot be merged.
+  */
+-static inline bool ntfs_are_rl_mergeable(struct runlist_element *dst,
+-		struct runlist_element *src)
++static inline bool ntfs_are_rl_mergeable(const struct runlist_element *dst,
++		const struct runlist_element *src)
+ {
+ 	/* We can merge unmapped regions even if they are misaligned. */
+ 	if ((dst->lcn == LCN_RL_NOT_MAPPED) && (src->lcn == LCN_RL_NOT_MAPPED))
+@@ -186,7 +186,8 @@ static inline bool ntfs_are_rl_mergeable(struct runlist_element *dst,
+  *
+  * It is up to the caller to serialize access to the runlists @dst and @src.
+  */
+-static inline void __ntfs_rl_merge(struct runlist_element *dst, struct runlist_element *src)
++static inline void __ntfs_rl_merge(struct runlist_element *dst,
++		const struct runlist_element *src)
+ {
+ 	dst->length += src->length;
+ }
+@@ -214,10 +215,11 @@ static inline void __ntfs_rl_merge(struct runlist_element *dst, struct runlist_e
+  * On error, return -errno. Both runlists are left unmodified.
+  */
+ static inline struct runlist_element *ntfs_rl_append(struct runlist_element *dst,
+-		int dsize, struct runlist_element *src, int ssize, int loc,
++		int dsize, const struct runlist_element *src, int ssize, int loc,
+ 		size_t *new_size)
+ {
+ 	bool right = false;	/* Right end of @src needs merging. */
++	s64 right_length = 0;	/* Length of the run merged at the right. */
+ 	int marker;		/* End of the inserted runs. */
+ 
+ 	/* First, check if the right hand end needs merging. */
+@@ -235,9 +237,9 @@ static inline struct runlist_element *ntfs_rl_append(struct runlist_element *dst
+ 	 * original runlists.
+ 	 */
+ 
+-	/* First, merge the right hand end, if necessary. */
++	/* Remember the run that the right hand end absorbs, if any. */
+ 	if (right)
+-		__ntfs_rl_merge(src + ssize - 1, dst + loc + 1);
++		right_length = dst[loc + 1].length;
+ 
+ 	/* First run after the @src runs that have been inserted. */
+ 	marker = loc + ssize + 1;
+@@ -246,6 +248,9 @@ static inline struct runlist_element *ntfs_rl_append(struct runlist_element *dst
+ 	ntfs_rl_mm(dst, marker, loc + 1 + right, dsize - (loc + 1 + right));
+ 	ntfs_rl_mc(dst, loc + 1, src, 0, ssize);
+ 
++	/* Merge the right hand end into the copy, leaving @src intact. */
++	dst[marker - 1].length += right_length;
 +
-+			down_read(&mft_ni->runlist.lock);
-+			err = ntfs_mapping_pairs_build(vol, (u8 *)a + le16_to_cpu(
- 				a->data.non_resident.mapping_pairs_offset),
- 				old_alen - le16_to_cpu(
- 					a->data.non_resident.mapping_pairs_offset),
--				rl2, ll, -1, NULL, NULL, NULL)) {
-+				mft_ni->runlist.rl, ll, -1, NULL, NULL, NULL);
-+			up_read(&mft_ni->runlist.lock);
-+			if (err) {
- 				ntfs_error(vol->sb, "Failed to restore mapping pairs array.%s", es);
- 				NVolSetErrors(vol);
- 			}
+ 	/* Adjust the size of the preceding hole. */
+ 	dst[loc].length = dst[loc + 1].vcn - dst[loc].vcn;
+ 
+@@ -279,7 +284,7 @@ static inline struct runlist_element *ntfs_rl_append(struct runlist_element *dst
+  * On error, return -errno. Both runlists are left unmodified.
+  */
+ static inline struct runlist_element *ntfs_rl_insert(struct runlist_element *dst,
+-		int dsize, struct runlist_element *src, int ssize, int loc,
++		int dsize, const struct runlist_element *src, int ssize, int loc,
+ 		size_t *new_size)
+ {
+ 	bool left = false;	/* Left end of @src needs merging. */
+@@ -374,12 +379,13 @@ static inline struct runlist_element *ntfs_rl_insert(struct runlist_element *dst
+  * On error, return -errno. Both runlists are left unmodified.
+  */
+ static inline struct runlist_element *ntfs_rl_replace(struct runlist_element *dst,
+-		int dsize, struct runlist_element *src, int ssize, int loc,
++		int dsize, const struct runlist_element *src, int ssize, int loc,
+ 		size_t *new_size)
+ {
+ 	int delta;
+ 	bool left = false;	/* Left end of @src needs merging. */
+ 	bool right = false;	/* Right end of @src needs merging. */
++	s64 right_length = 0;	/* Length of the run merged at the right. */
+ 	int tail;		/* Start of tail of @dst. */
+ 	int marker;		/* End of the inserted runs. */
+ 
+@@ -405,9 +411,12 @@ static inline struct runlist_element *ntfs_rl_replace(struct runlist_element *ds
+ 	 * original runlists.
+ 	 */
+ 
+-	/* First, merge the left and right ends, if necessary. */
++	/*
++	 * Remember the run that the right hand end absorbs, if any, then
++	 * merge the left hand end.
++	 */
+ 	if (right)
+-		__ntfs_rl_merge(src + ssize - 1, dst + loc + 1);
++		right_length = dst[loc + 1].length;
+ 	if (left)
+ 		__ntfs_rl_merge(dst + loc - 1, src);
+ 	/*
+@@ -432,6 +441,13 @@ static inline struct runlist_element *ntfs_rl_replace(struct runlist_element *ds
+ 	ntfs_rl_mm(dst, marker, tail, dsize - tail);
+ 	ntfs_rl_mc(dst, loc, src, left, ssize - left);
+ 
++	/*
++	 * Merge the right hand end into the last run of @src, now in @dst at
++	 * @marker - 1 (or into @dst[@loc - 1] if that absorbed all of @src),
++	 * leaving @src intact.
++	 */
++	dst[marker - 1].length += right_length;
++
+ 	/* We may have changed the length of the file, so fix the end marker. */
+ 	if (dsize - tail > 0 && dst[marker].lcn == LCN_ENOENT)
+ 		dst[marker].vcn = dst[marker - 1].vcn + dst[marker - 1].length;
+@@ -461,7 +477,7 @@ static inline struct runlist_element *ntfs_rl_replace(struct runlist_element *ds
+  * On error, return -errno. Both runlists are left unmodified.
+  */
+ static inline struct runlist_element *ntfs_rl_split(struct runlist_element *dst, int dsize,
+-		struct runlist_element *src, int ssize, int loc,
++		const struct runlist_element *src, int ssize, int loc,
+ 		size_t *new_size)
+ {
+ 	/* Space required: @dst size + @src size + one new hole. */
+@@ -488,11 +504,12 @@ static inline struct runlist_element *ntfs_rl_split(struct runlist_element *dst,
+ }
+ 
+ /*
+- * ntfs_runlists_merge - merge two runlists into one
++ * __ntfs_runlists_merge - merge two runlists into one
+  * @d_runlist: destination runlist structure to merge into
+  * @srl: source runlist to merge from
+  * @s_rl_count: number of elements in @srl (0 to auto-detect)
+  * @new_rl_count: on success, set to the new combined runlist size
++ * @keep_srl: leave @srl to the caller instead of deallocating it
+  *
+  * First we sanity check the two runlists @srl and @drl to make sure that they
+  * are sensible and can be merged. The runlist @srl must be either after the
+@@ -515,13 +532,14 @@ static inline struct runlist_element *ntfs_rl_split(struct runlist_element *dst,
+  * On success, return a pointer to the new, combined, runlist. Note, both
+  * runlists @drl and @srl are deallocated before returning so you cannot use
+  * the pointers for anything any more. (Strictly speaking the returned runlist
+- * may be the same as @dst but this is irrelevant.)
++ * may be the same as @dst but this is irrelevant.)  If @keep_srl is true,
++ * @srl is neither modified nor deallocated, and @drl must not be NULL.
+  *
+  * On error, return -errno. Both runlists are left unmodified.
+  */
+-struct runlist_element *ntfs_runlists_merge(struct runlist *d_runlist,
+-				     struct runlist_element *srl, size_t s_rl_count,
+-				     size_t *new_rl_count)
++static struct runlist_element *__ntfs_runlists_merge(struct runlist *d_runlist,
++		struct runlist_element *srl, size_t s_rl_count,
++		size_t *new_rl_count, bool keep_srl)
+ {
+ 	int di, si;		/* Current index into @[ds]rl. */
+ 	int sstart;		/* First index with lcn > LCN_RL_NOT_MAPPED. */
+@@ -553,6 +571,8 @@ struct runlist_element *ntfs_runlists_merge(struct runlist *d_runlist,
+ 
+ 	/* Check for the case where the first mapping is being done now. */
+ 	if (unlikely(!drl)) {
++		if (WARN_ON(keep_srl))
++			return ERR_PTR(-EINVAL);
+ 		drl = srl;
+ 		/* Complete the source runlist if necessary. */
+ 		if (unlikely(drl[0].vcn)) {
+@@ -582,7 +602,8 @@ struct runlist_element *ntfs_runlists_merge(struct runlist *d_runlist,
+ 		si++;
+ 
+ 	/* Can't have an entirely unmapped source runlist. */
+-	WARN_ON(!srl[si].length);
++	if (WARN_ON(!srl[si].length))
++		return ERR_PTR(-EINVAL);
+ 
+ 	/* Record the starting points. */
+ 	sstart = si;
+@@ -652,7 +673,8 @@ struct runlist_element *ntfs_runlists_merge(struct runlist *d_runlist,
+ 		ntfs_error(NULL, "Merge failed.");
+ 		return drl;
+ 	}
+-	kvfree(srl);
++	if (!keep_srl)
++		kvfree(srl);
+ 	if (marker) {
+ 		ntfs_debug("Triggering marker code.");
+ 		for (ds = dend; drl[ds].length; ds++)
+@@ -713,6 +735,44 @@ struct runlist_element *ntfs_runlists_merge(struct runlist *d_runlist,
+ 	return drl;
+ }
+ 
++/*
++ * ntfs_runlists_merge - merge two runlists into one
++ * @d_runlist: destination runlist structure to merge into
++ * @srl: source runlist to merge from, deallocated on success
++ * @s_rl_count: number of elements in @srl (0 to auto-detect)
++ * @new_rl_count: on success, set to the new combined runlist size
++ *
++ * See __ntfs_runlists_merge().
++ */
++struct runlist_element *ntfs_runlists_merge(struct runlist *d_runlist,
++		struct runlist_element *srl, size_t s_rl_count,
++		size_t *new_rl_count)
++{
++	return __ntfs_runlists_merge(d_runlist, srl, s_rl_count, new_rl_count,
++			false);
++}
++
++/*
++ * ntfs_runlists_merge_keep_src - merge two runlists, keeping the source
++ * @d_runlist: destination runlist structure to merge into, not empty
++ * @srl: source runlist to merge from
++ * @s_rl_count: number of elements in @srl (0 to auto-detect)
++ * @new_rl_count: on success, set to the new combined runlist size
++ *
++ * Like ntfs_runlists_merge(), but @srl is neither modified nor deallocated,
++ * on success or on error, and remains the caller's to kvfree().  Even when
++ * runs of @srl are coalesced with runs of @d_runlist, @srl keeps describing
++ * exactly its own runs, e.g. the clusters a caller has to free to undo the
++ * merge.
++ */
++struct runlist_element *ntfs_runlists_merge_keep_src(struct runlist *d_runlist,
++		struct runlist_element *srl, size_t s_rl_count,
++		size_t *new_rl_count)
++{
++	return __ntfs_runlists_merge(d_runlist, srl, s_rl_count, new_rl_count,
++			true);
++}
++
+ /*
+  * ntfs_mapping_pairs_decompress - convert mapping pairs array to runlist
+  * @vol: ntfs volume
+diff --git a/fs/ntfs/runlist.h b/fs/ntfs/runlist.h
+index cc92e09fbf68..0d4c32b1a338 100644
+--- a/fs/ntfs/runlist.h
++++ b/fs/ntfs/runlist.h
+@@ -68,6 +68,9 @@ enum {
+ struct runlist_element *ntfs_runlists_merge(struct runlist *d_runlist,
+ 		struct runlist_element *srl, size_t s_rl_count,
+ 		size_t *new_rl_count);
++struct runlist_element *ntfs_runlists_merge_keep_src(struct runlist *d_runlist,
++		struct runlist_element *srl, size_t s_rl_count,
++		size_t *new_rl_count);
+ struct runlist_element *ntfs_mapping_pairs_decompress(const struct ntfs_volume *vol,
+ 		const struct attr_record *attr, struct runlist *old_runlist,
+ 		size_t *new_rl_count);
 -- 
 2.56.0
 
