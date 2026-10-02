@@ -1,192 +1,121 @@
-Received: from mail-pz2-f39.google.com (mail-pz2-f39.google.com [74.125.228.39])
+Received: from mail-pz2-f36.google.com (mail-pz2-f36.google.com [74.125.228.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEEA28690
-	for <ntfs@lists.linux.dev>; Fri,  2 Oct 2026 00:19:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.39
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85FC92110E
+	for <ntfs@lists.linux.dev>; Fri,  2 Oct 2026 04:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.228.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1790900372; cv=none; b=KSx57NAz9ikc9CJuHv4XgBKGIhlEGeiPwVLgdzvZOlk69Itn/A6WdhjbomZJ35SoroBtezgsUVB0+581hxdLPp8jJpvctxvfnWobu8Un9FZil9Tv8IZrcXfPlqXTXXS/h5RrH828Ot3u591QeNYi3cuy4boesy+E4y9qjnNgx/g=
+	t=1790915708; cv=none; b=N4s43uqUgTMv1V1BTPHXyyuHhKY85OSW2Euz+jx0Ck6ma3qLbG4EXrHbtnbiOfYF3TwgR8yt30BkHPKRo5BB0MV2iTzny+ut+M/x7f7YQbz7hg/PXXnOjOKECM7/HjohW+vt2TfMXCiteEB6k8U1JDlBEIhXXHYd1FJNX0s///4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1790900372; c=relaxed/simple;
-	bh=kUBQTyDRdNBIObWlxG/YdDxpo87GWyYgJttoaaGXTqE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zx24KLL3BxpFW02FEemMzGByntcxPR/BUhW44YY3Vaj5BAs304TjfVINxeo8P9YJ+h0jc32CHbZt6ZbKt8IZlOQ3ygOoSdHNGNvEDWuRn3zIZ+Azs1T+ugtUgCaAd4RfR9V3p97Rq/93FZkMzVdGPQLBq3y3X0eoIhRAYmXSAB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FhrIu9cE; arc=none smtp.client-ip=74.125.228.39
+	s=arc-20240116; t=1790915708; c=relaxed/simple;
+	bh=2e2ewE55nFNffXiMvgPSdZOW+I2BZ3pUVfDPP1mxhA8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ey+zYt4Gyd14NMLrTnmFAxnobCnW708oT7l05lK7amgoTPVDVnNTp8l3Ww20uTftGOntsz3KMprVswH0UqVlBz5WZW+8S6WEyyPbV0yLPgh1yU3MiObyZ1Gg1ugGf41NPLFYmRMlmUr2Frbie6TbwJU1pYmGIl3F0QMCxZBckBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RlreRYo2; arc=none smtp.client-ip=74.125.228.36
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FhrIu9cE"
-Received: by mail-pz2-f39.google.com with SMTP id 41be03b00d2f7-cc78dd412cfso2877911a12.0
-        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 17:19:30 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RlreRYo2"
+Received: by mail-pz2-f36.google.com with SMTP id d2e1a72fcca58-888e95f3e96so979804b3a.1
+        for <ntfs@lists.linux.dev>; Thu, 01 Oct 2026 21:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1790900370; x=1791505170; darn=lists.linux.dev;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=BUsap1DSRISulfdDtCLguVKFC6X0B5V082PAsB5stsk=;
-        b=FhrIu9cEllVYAGhjNz+8xqrZCPYI5/4NL9DZu3alwjXU6u5pomMV0/m7cVlh9Dc+m0
-         PCMUBM5ogYgQfkfI2TvKAeP0aRG638npSxv9Py9SUDKbx2gGZZ1Olyb/95nArU1fO9b8
-         /66cbFoIKXwE/L1BVzBqHWv934fh6v2koL7v9wbB/r/G8LT2VHxcPjvT/rQ7TbaAvi6F
-         ZdQLltSyVuIPJrg/Szu5e6tkorq6AH0rymbQMX7gKK/3hgzFR1Znn59M2xQfIPW0x6qk
-         sIZuJDv02kwv1yRbFQ7BkeoYean/j//Zf6HOZ0masH1qM4lPB1wpu9Kvjm/zvZRsRYF/
-         fJQQ==
+        d=gmail.com; s=20251104; t=1790915705; x=1791520505; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=jDBf+2qnn5uR69+p18LQWYci7uKNqgSq+C3LtYBfIyc=;
+        b=RlreRYo2Wy0H15Vh+tS2TcCiFFkzsWPUCVxW3Jwwcb6UpH7TGMYTSqJU3umwutGsBv
+         6xxMOboCVKEL5Ar6VKevASDV1Xh16Mjw+b0I5rOSuSVKk2c6PmrPYXpu4BEatfDrFhZ+
+         NODFvyK9z59pEpSXb3pEKWfYmhOZKk2LNa8WlOSBCYFQz2yWv4ZZ9e3irA7iewVQjlOA
+         0fiKqNWs3k/LvVsXibvOr00KxR1j5JkoAEkyq23sF98K5y4eQrXhfU6wqNx+LDB9Qn9a
+         QSIWXR1AeUBSPovUfJyIpOvCsspDUCfkhtWcmo0kHlz8GeXnLQLH8qk84VzHL0Z2zpTp
+         KrSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790900370; x=1791505170;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=BUsap1DSRISulfdDtCLguVKFC6X0B5V082PAsB5stsk=;
-        b=dj9N8A+IkPRS4TaD2vD/WKuRr2OMp0wFOW3NxzfLuL5vcmi8JXoELw/EkWjJH+y/Wj
-         aBvuiTbHr4Lgeiuv47BSEmgOZpeydHRXdAXAwQ2WQYVqH1nLwfNGkSFCUHjvilO6qvNM
-         YcVtPXTVD0mQJDZy84gMwDw/ry0RyK4lkI0LyQNNpWLsHqinY5IyUXyR/nQB1DV2922F
-         nTwWU/eA0GANL64XaE5Xf4ShRZDL5BAOgfdhg5fC8DXrpihHh2qX4CEEA+zidhqRpg0k
-         x94SWhm+yy/LXEPOGa34ZrBN6N0embOq0mtfM7UDuKiafad7xumMAEPZju8ddrEgkYXw
-         lCEQ==
-X-Forwarded-Encrypted: i=1; AKwUvBzyS6o/EXFYOQn0o2lVfcuIhQ3g03sszV1XyBL9mpBD5zLRv0TI4J9h02NzX3smzszHc1Nm@lists.linux.dev
-X-Gm-Message-State: AFuF++l902ZVogO49aGf6X1PtsIfDwikOu7MeyXFbqafJkpv1wwQvLXq
-	Lnd68rOcm9+1kqNlL+3fPIOWFbITryp6xXna1qsiNqXVRx1HuIA+e4Pz
-X-Gm-Gg: AYBFou2W/l+rsCv5MPVCL/N+cfjgt7vuj6CcK+OnxMswUUxZym3WCsXwliOnkcOimmu
-	L93D/pAs8i9rN3cqcZ6REi90K8sR+yGBqpKErQMtsjXnjYqISR3EC4004/+6QaIXIAklJgKYkQf
-	1XzinN4d4Sl3VXcQkuF5HMThHSgfPulVU1MRCeEMBPSYzr8tP8gvFASi9Hkd1WfB1x6EQKH4Kfn
-	5F/k2h+tI6Rhnf4bPtzD4hfZD0/soub37ikZZd10j09y451lUnSOMUYX6s3Cv+LulPMZAKp6fx7
-	T7vF4gzpGhQQbvZrtwQm4hMNWzhQsakdfUNhZ6ItKddsKtJI29MDYvPKYKWxvNS6xuetIwe383I
-	gj/r0cL/t/3c/CWyhuGw8LLorQeMIOewdaAjApKkeA2yRUm4iWfwnkKMoKmxSkr5uMi9QTYNKkP
-	1hOUQb1oSu1aeDRB0xP83dk4g8EjLSqVzgnrH2UwICBfUJQy5u9D+pH3uWZeXD
-X-Received: by 2002:a05:6a20:d74c:b0:3de:7854:854a with SMTP id adf61e73a8af0-3e0bcaa8497mr1036858637.6.1790900369746;
-        Thu, 01 Oct 2026 17:19:29 -0700 (PDT)
-Received: from localhost ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc9f738639esm261847a12.23.2026.10.01.17.19.28
+        d=1e100.net; s=20260707; t=1790915705; x=1791520505;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=jDBf+2qnn5uR69+p18LQWYci7uKNqgSq+C3LtYBfIyc=;
+        b=FOtJEBu+NLYzxhhTtHUcB6sM5UQoNbsgKoUQ+6lhU1IiMHnxlbf9RYgNMY5Y8gtzf4
+         RO+6Elwl5sFBCaAHYzAeRcQSNacg1vX6XR8kbcTmH/aqWJHMzgC3siwbUgkt/58VQlkC
+         weyhieWyZmN4VD51X0p3sLzPZFR3prdp5+M/YWxyxsDN70kiCfnY9Srh/Azy8gAHLZbb
+         8sBViyvVo/IzH2Egxrd23MEAdZBb7HIM3QhzBK9CV6yOGx3iRPQ7ItteNs/wRBFdgQly
+         +mYibIWmO72EXOgpC3Kr0EJSDc4YOyEV+uiiRHC61ywYoUTr4wuMMoox9xrh/b20fsxJ
+         qCzg==
+X-Forwarded-Encrypted: i=1; AKwUvBxIWOhRy4QMb6bXu9eCj/3HRJ0FpKUij3iTAV6SEPVRYEl+pN3Wzi2R2Qb/HUhTtHMZsLTM@lists.linux.dev
+X-Gm-Message-State: AFuF++nYKcqpaw8VYtG3sr4jK4OqF+d+az/cUXGyry5Gf1LRe0MTS1UM
+	Xb+52BOBJdNH4Es8Ng6zMh9kQwWHIOj/U/qByMeG+oI4XIdpEqhp2FMB
+X-Gm-Gg: AYBFou2NDj/CIaQguk92G4ciVtPdPD2wpEc+5WQzbe2UqlMTjxkdv1kcVRev8AQmvpJ
+	qCSU5d66XYS4AnGQaUzIPz8SIc/ASqm5ilnLBa0PqYnqE94cldqsxeOl2S49YxFeRo5GdilLB0L
+	79ZI62Z+p4sRuwq1jDcxP8cRgPV3n8RDSxaimNPs217xe+r/lgf4GFWmSG22wgoHG3vMX9Q1mCT
+	edPOkVaIXE05dBfiR7TVr2LMMdvCMIcaknpDydpiH0ES42BA1wa1lWPSARKJWIsCLp3oynKSCNW
+	jASNZU5LPT3Kf3KL5alUeCV2eGBDEooh9V2QCrKxCqeZWDrGwEJ//+rErpNwuBvNCRdL0T36zQg
+	7qnAODIF3bV2r9WUGjdzliwEiIn1R0DUjKP8Scksjt3/HzMsYvSo+iIgXGm6eacL7jiA3BX/RG+
+	Is3DgJL0jwk4LJd5yvAFb8CrZnW2oxwHLqz5Y0rrPGGTOVXZVTKnMlNGqO4MP1HTMYTXNfWhMsi
+	S/LV1KOtvlpBpQDNIleq+eWta5S6CFbJZlJMk9DghHmu5i2FEOQJ5Tocsl12uYs0mjdEp2wEkNa
+	RP9uxiRBNeVb0L4LqI3m2CSFuMCG2pg9CU1mgeIkJ9NurySN/3pXEhY2rmM=
+X-Received: by 2002:a05:6a21:a344:b0:3c3:6f6c:aa21 with SMTP id adf61e73a8af0-3e0bceba7d1mr1718503637.11.1790915704636;
+        Thu, 01 Oct 2026 21:35:04 -0700 (PDT)
+Received: from spider.bream-herring.ts.net ([103.6.151.236])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cc9f7370db1sm436432a12.17.2026.10.01.21.35.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Oct 2026 17:19:28 -0700 (PDT)
-Date: Fri, 2 Oct 2026 09:19:26 +0900
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Mark Eiger <eigermark8@gmail.com>
-Cc: Namjae Jeon <linkinjeon@kernel.org>, ntfs@lists.linux.dev
-Subject: Re: [PATCH v2] ntfs: write a clean LogFile on unmount and remount
- read-only
-Message-ID: <ar74jneAvzVH3Zeb@hyunchul-PC02>
-References: <arzJaqJbyue5sjIO@hyunchul-PC02>
- <20260930225213.53315-1-eigermark8@gmail.com>
+        Thu, 01 Oct 2026 21:35:03 -0700 (PDT)
+From: Matthias Goergens <matthias.goergens@gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>
+Cc: Baolin Liu <liubaolin@kylinos.cn>,
+	ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] ntfs: fix the undo path of $MFT data extension
+Date: Fri,  2 Oct 2026 12:34:56 +0800
+Message-ID: <20261002043459.1695429-1-matthias.goergens@gmail.com>
+X-Mailer: git-send-email 2.56.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260930225213.53315-1-eigermark8@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Mark,
+These fix two bugs in the undo path of
+ntfs_mft_data_extend_allocation_nolock(): patch 1 fixes a use-after-free
+of a pointer into the runlist across the truncation, and patch 3 makes
+its $MFT runlist locking consistent.  Patch 2 adds the runlist merge
+that patch 3 uses to keep the runlist of the new clusters for the undo.
 
-> Leave the LogFile the way Windows does after a clean dismount instead:
-> two identical LFS 1.1 restart pages with RESTART_VOLUME_IS_CLEAN set and
-> a single "NTFS" client whose restart record is an empty checkpoint, so
-> there is nothing to redo or undo.  The checkpoint follows a no-op record
-> in the first log record page, which is also stored in both tail copies.
-> The log record pages are written and flushed before the restart pages
-> that refer to them.
+The undo path only runs when something fails while $MFT grows, so I
+tested it in QEMU by forcing each failure once with a debug patch, and
+tested patch 2 in userspace against the merge code it changes.  The
+debug patch, the test scripts, the volume images and the userspace test
+are at
+https://github.com/matthiasgoergens/linux/tree/reproducer/2026-10-02-ntfs-mft-extend-undo-v3
 
-Thank you. I also verified that this approach works as expected on
-Windows.
+Changes in v3:
+- Patch 3 frees the clusters from the runlist that ntfs_cluster_alloc()
+  returned, using the merge from patch 2, which leaves that runlist
+  intact, instead of copying the new runs with ntfs_mft_copy_tail() in
+  undo_alloc (Hyunchul Lee).  The undo path no longer allocates.
+- Patch 1 (patch 2 in v2) is unchanged and keeps Baolin Liu's
+  Reviewed-by.  It now comes first, as it can be applied on its own.
+- Rebased onto current ntfs-next.
 
-> --- a/fs/ntfs/super.c
-> +++ b/fs/ntfs/super.c
-> @@ -381,6 +381,14 @@ static int ntfs_reconfigure(struct fs_context *fc)
->  				return err;
->  			}
->  		}
-> +		/*
-> +		 * Leave a clean LogFile behind, so that Windows can mount the
-> +		 * volume without writing to it.  Not after a forced remount:
-> +		 * writers in progress may still be modifying metadata.
-> +		 */
-> +		if (!(fc->sb_flags & SB_FORCE) && !NVolErrors(vol) &&
-> +		    vol->logfile_ino)
-> +			ntfs_write_clean_logfile(vol->logfile_ino);
+v2: https://lore.kernel.org/all/20260930033556.169300-1-matthias.goergens@gmail.com/
+v1: https://lore.kernel.org/all/20260927105706.3111333-1-matthias.goergens@gmail.com/
 
-I think one more change is needed. $LogFile should be persisted before
-$Volume in this function and in put_super() to prevent a failed
-$LogFile write from leaving $Volume marked clean.
-
-And any errors from persisting $LogFile should be also propagated to the
-caller.
-
->  	}
->  
->  	ntfs_debug("Done.");
-> @@ -1729,6 +1737,13 @@ static bool load_system_files(struct ntfs_volume *vol)
->  			ntfs_error(sb, "Failed to load LogFile. Mounting read-only.");
->  		}
->  		NVolSetErrors(vol);
-> +	} else if (rp) {
-> +		struct restart_area *ra = (struct restart_area *)((u8 *)rp +
-> +				le16_to_cpu(rp->restart_area_offset));
-> +
-> +		/* Continue its LSNs when writing a clean LogFile later. */
-> +		vol->logfile_lsn = le64_to_cpu(ra->current_lsn);
-> +		vol->logfile_seq_bits = le32_to_cpu(ra->seq_number_bits);
->  	}
->  
->  	kvfree(rp);
-> @@ -1974,10 +1989,6 @@ static void ntfs_put_super(struct super_block *sb)
->  	iput(vol->mftbmp_ino);
->  	vol->mftbmp_ino = NULL;
->  
-> -	if (vol->logfile_ino) {
-> -		iput(vol->logfile_ino);
-> -		vol->logfile_ino = NULL;
-> -	}
->  	if (vol->mftmirr_ino) {
->  		/* Re-commit the mft mirror and mft just in case. */
->  		ntfs_commit_inode(vol->mftmirr_ino);
-> @@ -2025,10 +2036,18 @@ static void ntfs_put_super(struct super_block *sb)
->  				 */
->  				ntfs_warning(sb,
->  					"Volume has errors.  Leaving volume marked dirty.  Run chkdsk.");
-> +			} else if (vol->logfile_ino) {
-> +				/* The volume is clean on disk, so is the LogFile. */
-> +				ntfs_write_clean_logfile(vol->logfile_ino);
->  			}
->  		}
->  	}
->  
-> +	if (vol->logfile_ino) {
-> +		iput(vol->logfile_ino);
-> +		vol->logfile_ino = NULL;
-> +	}
-> +
->  	/*
->  	 * Release $Volume while the mft inode is still available: if the
->  	 * commit above failed before it could clear the dirty flag,
-> diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
-> index fdb57279d..1e6696b60 100644
-> --- a/fs/ntfs/volume.h
-> +++ b/fs/ntfs/volume.h
-> @@ -71,6 +71,9 @@
->   * @mftmirr_ino: The VFS inode of $MFTMirr.
->   * @mftmirr_size: Size of mft mirror in mft records.
->   * @logfile_ino: The VFS inode of LogFile.
-> + * @logfile_lsn: current_lsn of the LogFile restart area found at mount
-> + *	time, or of the clean restart area we last wrote, 0 if unknown.
-> + * @logfile_seq_bits: seq_number_bits belonging to @logfile_lsn.
->   * @lcnbmp_ino: The VFS inode of $Bitmap.
->   * @lcnbmp_lock: Lock for serializing accesses to the cluster bitmap
->   * @vol_ino: The VFS inode of $Volume.
-> @@ -144,6 +147,8 @@ struct ntfs_volume {
->  	struct inode *mftmirr_ino;
->  	int mftmirr_size;
->  	struct inode *logfile_ino;
-> +	u64 logfile_lsn;
-> +	u32 logfile_seq_bits;
->  	struct inode *lcnbmp_ino;
->  	struct rw_semaphore lcnbmp_lock;
->  	struct mutex volume_label_lock;
-> -- 
-> 2.54.0 (Apple Git-157)
-> 
-
--- 
 Thanks,
-Hyunchul
+Matthias
+
+Matthias Goergens (3):
+  ntfs: do not use a stale runlist pointer when undoing $MFT extension
+  ntfs: add a runlist merge that leaves the source runlist to the caller
+  ntfs: balance the $MFT runlist lock in data extension error paths
+
+ fs/ntfs/mft.c     | 59 +++++++++++++++++++---------
+ fs/ntfs/runlist.c | 98 ++++++++++++++++++++++++++++++++++++++---------
+ fs/ntfs/runlist.h |  3 ++
+ 3 files changed, 123 insertions(+), 37 deletions(-)
+
+
+base-commit: 708f9d56cacae21aeee98d16bcdd50a66edc04a0
+-- 
+2.56.0
+
