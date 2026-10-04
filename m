@@ -1,48 +1,73 @@
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DC3392831
-	for <ntfs@lists.linux.dev>; Sun,  4 Oct 2026 02:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EE338E8B1
+	for <ntfs@lists.linux.dev>; Sun,  4 Oct 2026 09:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791082113; cv=none; b=k+564PZ82o6lFPpu6rI+80FsgPPGXDBcqv3Slh7caNf0TnsMTbsW4hbuOXVp9m9Vfr8ioh8ZVJotw4QGG3cImDlTR/0XPZDLD0UU+DGdFheiD0QKEYs8ZUJdofkWyThD07iwXaAZDGkPhbWSDzSg4tW9mpa5fMd/g7hB42E2I6g=
+	t=1791107775; cv=none; b=jkMr5DX0/kZrBVmOmahbAYi8r1MhlTV/Rr/WWI2bWhwLKvo55RwI02PpUaV63NgA2FuL8nmjs1OVkKCl8X8j4wZCqL8NtWd1ruhKN/oVgPsIS8LPpvXUQ2aoMTiKSQMcmUVd3PXuDKBEf47nNE//o0A0dc+iepESFKE33Dzc/vQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791082113; c=relaxed/simple;
-	bh=DqdLgIYBfwwC8e7XxmTt5+ilGV7JaQJbpWXvJVY1fpQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aDLShLqUoWuVTlix72w0otI1PC9jxAu0Aw1dzfaSbNDcN706YeuQc1FVqjUox6KoIWe+2MekSdpQp3uIstSUwPl/Vh3XBIxWQYehLle5wrdZ3kA3YuPjYPcXY1WX5sY4UhuJAuCgQs8NhlXY9V/lHHWKve1SA2Zv7YMULNxThtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 126fc170bf9e11f19a56ed5b684f684d-20261004
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:acdd7188-f02f-413d-81a9-1517923d659a,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:3daf8573afda5cdad642f5db12af63a2,BulkI
-	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99|100|
-	102|158,EDM:-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,C
-	OL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 126fc170bf9e11f19a56ed5b684f684d-20261004
-X-User: zenghongling@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <zenghongling@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1936685982; Sun, 04 Oct 2026 10:48:26 +0800
-From: Hongling Zeng <zenghongling@kylinos.cn>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>
-Subject: [PATCH] ntfs: handle a failed size rollback in the write error path
-Date: Sun,  4 Oct 2026 10:48:22 +0800
-Message-Id: <20261004024822.640574-1-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1791107775; c=relaxed/simple;
+	bh=ZpBnja49FVnQcL435Kbkb+kuHE6T5X0obVqilKKMzjo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xkoatm+TNBT/Mbr0mTtmiTDOFKCX1SaIBJpGp4/DK9HaE1sdSh265TcGTNSfgi3NZVp9+2dJK0ykMWDR1arIZwk9Z4ETWNuLuE9FuTBXKfq8nTVAvrfopAZZwh7HhojhXZNWhV0QtoXTAMOFb1AQ9P2B0GB0ubwcPxK2CMz4KbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CQz3lgYF; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CQz3lgYF"
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-88b7d853b11so333963b3a.1
+        for <ntfs@lists.linux.dev>; Sun, 04 Oct 2026 02:56:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1791107773; x=1791712573; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=tDHu6N6WqaDVYQcb2PQWKiWT8vncXO+aoop0XtK3ZMY=;
+        b=CQz3lgYFfyN9O7hmABYCX4Z9mFlLHLf2k9Jo4fn97s0z/UpSK8xLxMbiqUQ4pVKp42
+         rlg3TnYJjV9Jqayss3mjUdX7LMsL0zdNb+PkttOx1chCZxVt7CRzKTgGxYDNhWWMLN4Q
+         BiaLmogRUCRu1Aort+bA56icmgkg9r+cAR8ScTfvUZF2uIKYrRqco6iKl+LfmY1j/CKT
+         n71sY8a35PikYOCjJufbLzJpts4Ib43yOKfEATX0dagJRY9BK3j9ar6IZaH2YwypGOAp
+         QcHu6sJDAToKNgD10zyxKpNRydBz0tLx5TMhI/UR+jkrghf9YhNISOU5xXADPDrocQ6L
+         TA1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791107773; x=1791712573;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=tDHu6N6WqaDVYQcb2PQWKiWT8vncXO+aoop0XtK3ZMY=;
+        b=G+oATH760g7IgfsVPMcI3DTzg/FOqhfPGmlDDDC8RBPXYVmtPOv93hOgk9/zDs8lAe
+         f/sr5KjQWmhPKCJAsoneXjba6+Sf6U1YGqjg9MYfXE5rAn3xYmZcm9QxT9r+8rXbWCMq
+         v11ifmXBU7hrFtEWmDtnIL+nKNcqjQwLu2IPg3hWa5WPdSjmdcQtZbO/MlNlIiQTr8t5
+         QI54xxUm3hAfa0yYFuC9oSx1Jax4FnECBgN5Y+tKARALMNfBhw7JmaRzLDh7V2jgE/l5
+         hdAVTGI0GTHa3/pt4c4gw2EetNrhBw1l0AWGhZ89ePPGOTgrqor4dU5jWklZ+sw9HflK
+         v13w==
+X-Forwarded-Encrypted: i=1; AKwUvByg6lKEyih5MR3DCxJhlDDN0d/c5uFHTsY1BxVWz7JFSd9whgTE77iQy7GjXmyv/peu3Jzv@lists.linux.dev
+X-Gm-Message-State: AFuF++lxR4qFtdcB7lEH5VKG7H/uLFR1Uk3NEb9JQ0+MTUaqn4EhSXKm
+	KMznshRmBY7aAxV/9kh4en4SwvKy17BBUmZISVhD5HByjLLijZsqplzU
+X-Gm-Gg: AYBFou1u2xanuDu1IXl0L3mLFx66J0Hw/xIkjD60sh7OYziRsMze6Rynao132rOXsik
+	6aJ57qCiWRJqe5B0kmAZLjIaQlt07GD4mfx7TAZFUQSQE8vN63t+7OT0XtgsIlDT3+SLG/PjvR8
+	K4o8HTj/MqlpBbRSa5/bKFseJANejCjybooEpcOUMpSMGCBu6eWSakjndPznYcDhypSWg5CKJyB
+	ZQib/bTCTRSvkjzZBqGaYxcmE1DFM/Qi59hJ9r2v1kazrWP/B2v3Qgw106Vt7BYAbk7QKkNfdyX
+	0DqY92ZLm9plPYTZX8uIcQcL1ZpLxjDMMpERG7hFuqnU875k4H5mBi5xw6ge5tBU/jUuZecI1ZJ
+	U9FVtB8Y62M/6FaIOP3+vunskxbu0vBmV4KQsChX4k7G66tluKpY2ZTSR6HPiF1odzReO5wXgSa
+	zhvL9puvy/pWbsI1KEGopfqqK9l06gcMzHRRdujjY4VGH9qqzFxjTtA+CFVFlbUJvm9iw+paPRq
+	gs/vMX0kxcPPL5ValKdJYLYPr/ZnfHK1QHVI8YOY0Av6jT05p6rhQskqDJ2/JXXcN9DrXtAooRI
+	lKqjVuWVmtwf8OOByOz3w49XQW1wUFFckP7TCYGiI5kPiLWEizKOdAq1JTA=
+X-Received: by 2002:a05:6a00:a114:b0:87a:3144:8c4c with SMTP id d2e1a72fcca58-88c64064002mr3596683b3a.59.1791107773270;
+        Sun, 04 Oct 2026 02:56:13 -0700 (PDT)
+Received: from spider.bream-herring.ts.net ([103.6.151.236])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-88b0c3a39f6sm2418175b3a.28.2026.10.04.02.56.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Oct 2026 02:56:11 -0700 (PDT)
+From: Matthias Goergens <matthias.goergens@gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>
+Cc: Baolin Liu <liubaolin12138@163.com>,
+	ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] ntfs: fix spurious EIO and ENOSPC on nearly full volumes
+Date: Sun,  4 Oct 2026 17:56:04 +0800
+Message-ID: <cover.1791107674.git.matthias.goergens@gmail.com>
+X-Mailer: git-send-email 2.56.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -51,71 +76,47 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-ntfs_file_write_iter() extends the data and initialized sizes before
-it copies the user data and restores them when the write then fails.
-The restoration is best-effort: both results are discarded, even
-though the extension is already recorded in the dirty MFT record.
-When the restoration fails too, the extended sizes reach the disk
-while the VFS inode keeps reporting the old ones: after a remount the
-file appears grown again, with an uninitialized tail where the failed
-write never put any data, and nothing records the failure.
+These fix three errors returned while free space is left, and a
+contiguous cluster allocation that comes back in two runs.  Patch 1
+fixes file creation failing with EIO on a nearly full volume; it now
+goes on until the volume is full and then fails with ENOSPC.  Patch 2
+fixes the cluster allocator missing free clusters when its start hint
+lies at or past the end of the volume, which empties the MFT zone, and
+patch 3 removes the fallocate() check that then fails every later call.
+Together the two bugs make fallocate() refuse space that is free until
+the next mount.  Patch 4 keeps a contiguous request to a single run:
+fallocate() zeroes only the first run, so the clusters of a second one
+kept the data of a deleted file.  Reproducers, run with KASAN and
+lockdep:
+https://github.com/matthiasgoergens/linux/tree/reproducer/2026-10-04-ntfs-nearfull-v3
 
-Keep both undo results: on failure, set NVolSetErrors(), which the next
-persistence point persists as VOLUME_IS_DIRTY, and log a message for
-the errors= policy.
+Changes in v3: Namjae Jeon asked whether a contiguous request can still
+get a second run once the search has left the hint, for instance when
+the run reaches the end of a bitmap page and the next page is skipped as
+full.  It can, on that path and on two more: where the search wraps to
+pass 2, and where it shrinks the MFT zone after trying every zone.  On
+ntfs-next each left 16 of 20 fallocated clusters reading the data of a
+deleted file.  New patch 4 does what he suggested: before setting a
+cluster's bit, it checks that the cluster follows the run, and returns
+the run otherwise.  Patches 1 to 3 are unchanged apart from Hyunchul
+Lee's Reviewed-by.  Rebased on ntfs-next.
 
-Fixes: 9c87959601e8 ("ntfs: update file operations")
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
----
- fs/ntfs/file.c | 29 +++++++++++++++++++++++++++--
- 1 file changed, 27 insertions(+), 2 deletions(-)
+v2: https://lore.kernel.org/all/cover.1790853718.git.matthias.goergens@gmail.com/
+v1: https://lore.kernel.org/all/cover.1790503811.git.matthias.goergens@gmail.com/
 
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 3ec82715a588..b5b30e44ac51 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -678,14 +678,39 @@ static ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
- 				&ntfs_iomap_folio_ops, NULL);
- out:
- 	if (ret < 0 && ret != -EIOCBQUEUED) {
-+		int undo_err = 0;
-+
- 		if (ni->initialized_size != old_init_size) {
-+			int init_err;
-+
- 			mutex_lock(&ni->mrec_lock);
--			ntfs_attr_set_initialized_size(ni, old_init_size);
-+			init_err = ntfs_attr_set_initialized_size(ni,
-+					old_init_size);
- 			mutex_unlock(&ni->mrec_lock);
-+			if (init_err && !undo_err)
-+				undo_err = init_err;
- 		}
- 		if (ni->data_size != old_data_size) {
-+			int data_err;
-+
- 			truncate_setsize(vi, old_data_size);
--			ntfs_attr_truncate(ni, old_data_size);
-+			data_err = ntfs_attr_truncate(ni, old_data_size);
-+			if (data_err && !undo_err)
-+				undo_err = data_err;
-+		}
-+		if (undo_err) {
-+			/*
-+			 * The extension is recorded in the dirty MFT
-+			 * record already, so a failed rollback leaves the
-+			 * new sizes on disk while the VFS inode keeps
-+			 * reporting the old ones.  Record the error: the
-+			 * next persistence point persists it as
-+			 * VOLUME_IS_DIRTY.  Run chkdsk.
-+			 */
-+			NVolSetErrors(vol);
-+			ntfs_error(vi->i_sb,
-+				   "Failed to roll back the size update: %d",
-+				   undo_err);
- 		}
- 	}
- out_lock:
+Matthias Goergens (4):
+  ntfs: set the attribute list size before reserving space for it
+  ntfs: restart the zone search when the allocation hint fails
+  ntfs: do not refuse fallocate() when the MFT zone is empty
+  ntfs: do not give a contiguous cluster allocation a second run
+
+ fs/ntfs/attrlist.c |  5 +++--
+ fs/ntfs/file.c     |  3 ---
+ fs/ntfs/lcnalloc.c | 35 ++++++++++++++++++++++++++++++++---
+ 3 files changed, 35 insertions(+), 8 deletions(-)
+
+
+base-commit: b2a3b6b6c7b09040e3f44ade6e20a7689e4acd28
 -- 
-2.25.1
+2.56.0
 
