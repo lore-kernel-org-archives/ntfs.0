@@ -1,43 +1,48 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D143E1D11
-	for <ntfs@lists.linux.dev>; Sat,  3 Oct 2026 09:30:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0AB35F602
+	for <ntfs@lists.linux.dev>; Sun,  4 Oct 2026 02:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791019859; cv=none; b=U1bcEXJvHwDxMCDQh2PC7rRCY8RxO/cparqxkXIUeelNIrmuh7kx5tvkzslVLb+kDiji338PSZTMXgJQasGbzz6+ooBkWUq1hIhYCfBIkSbgqIDi7b0/5RvMxjIzpGeMQAk4+pf5XFZ2ixusCXVeO7ZpjSPPkSakEn5iWISOaIo=
+	t=1791080796; cv=none; b=nJmcTWUE26CwJ5wgcU+jWlVtyLgUr6YziQc/qsYa2uu0DfpC0YB6BbbAAx9VElh1IIbYWisEhQGw1eoSej4NRDP2B77cBPQrILI3XIjn//ZKg1emk2BR3mL+1f+t9s6Q8FfX5iSGBosHoD+xzgCSTSoO+kCkVJ/fCFM3l94Yw5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791019859; c=relaxed/simple;
-	bh=sqWWb+KrOed5w2rVpp9l70Fk+QFdBHj91H1186lPvGQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=hW47x0JSpe7lfmeVdd6JtlgOkFRnl+L42ayjR2P8LdD4xJMrqqDQoYKJLVJRb3FIoyHA0CS1Am3aYy76LUccDR9fJjOLwIl3ynyIInRoJL6mgXAU9TrPaAooL8FsvZZJ6oeLoz3zrB2QVGMVR+KdSDtOqmo1LvBhxrMg9+fhDkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ZwnIcAQ5; arc=none smtp.client-ip=117.135.210.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ZwnIcAQ5"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=QQ
-	67WtE24na388y85ditoe0V9ALxaizzu0oal6aJ/IQ=; b=ZwnIcAQ54ohVrl0slU
-	fCZ0s5KsuDDMyPOg/9smtJsh0HyPN4Cv6d0/IeWzx+P8P48EJtCsUz/4EGd/bQR7
-	9z8ZNMBO77Mh0AkxN3ekGRLblsUrdL3Xby61bbtya/kJJiBnhh+vzi3yKjchihPR
-	3tyU5ZedaEjoO1YSnKxYaYu74=
-Received: from pc.localdomain (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id PigvCgBnTqs9y8BqZLmrCg--.23213S4;
-	Sat, 03 Oct 2026 17:30:43 +0800 (CST)
-From: Jiale Yao <yaojiale02@163.com>
-To: Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>,
-	ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Cc: Jiale Yao <yaojiale02@163.com>,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v4 2/3] ntfs: drain in-flight DIO before buffered write fallback
-Date: Sat,  3 Oct 2026 17:30:34 +0800
-Message-Id: <20261003093035.532916-3-yaojiale02@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261003093035.532916-1-yaojiale02@163.com>
-References: <20261003093035.532916-1-yaojiale02@163.com>
+	s=arc-20240116; t=1791080796; c=relaxed/simple;
+	bh=+7u3AWh8eXfJ1/497FGY7TeG1u8/HQEN/7K8DFRLNw4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VQyLmMFsliXccXV6bm2SJB5A29aY4/Bfp6Q8yAvodYz3pvb+Istykn9GJ+uvW2rYTC3nsGy0b1XHY0YVHVfTQ44g5zR932czYDv5jWhuPrbLUws6zbBMYuKfsFfo+n1/AxDvCWy5PflvBnl1ON1gUK7AxR6WdUqmtPMAAHX0SXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 0009f22ebf9b11f19a56ed5b684f684d-20261004
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:5adde99f-d50a-4863-a288-5896da0e7dd3,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:fd9bea664a05d29737292b42c015bcbc,BulkI
+	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
+	-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,O
+	SA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 0009f22ebf9b11f19a56ed5b684f684d-20261004
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1189330924; Sun, 04 Oct 2026 10:26:26 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>
+Subject: [PATCH v2] ntfs: record an error when the ACL xattr undo fails
+Date: Sun,  4 Oct 2026 10:26:22 +0800
+Message-Id: <20261004022622.631203-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -45,74 +50,75 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PigvCgBnTqs9y8BqZLmrCg--.23213S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tF4kGFy5AFykKF47tr1rXrb_yoW5Jr15pr
-	ZI9Fy5Jr9rtrZ7Xrn7CF48W3WF9rZ5J3y3ZrWDXw17Cr15Gr4vga18tF1Yvr4rJF9xJrW2
-	qa1v9rykCryUZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zi4v3OUUUUU=
-X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC8ATOCWrAy0Q7XQAA3w
 
-An asynchronous direct write can remain in flight after the inode lock is
-released.  If another direct write falls back to buffered I/O while the
-first write is still pending, iomap_file_buffered_write() can dirty pages
-before the first write completes its post-I/O page cache invalidation.
-The invalidation then finds dirty pages, reports a page cache invalidation
-failure, and records -EIO in the mapping error sequence.  A later fsync()
-therefore returns -EIO.
+ntfs_set_acl_ex() commits the new ACL xattr before it rewrites the WSL
+mode EA, and removes it again when that rewrite fails.  The removal is
+best-effort: its result is discarded and the EA paths record no error
+state, so when the removal fails too, the new, typically more
+permissive, ACL is left on disk while i_mode, the mode EA and the
+cached ACL keep the old values.  Once the stale xattr is loaded again -
+after a remount, or when the cached ACL is discarded - a chmod 0640 ->
+0777 that reported failure leaves the file accessible to the relaxed
+ACL while stat() still reports 0640.
 
-Commit 15cdefd0c0522f9d5e12d947fa04f4c11649b699 ("ext4: drain
-in-flight DIO before buffered write fallback") fixed the same race in
-ext4.  NTFS has an equivalent fallback after iomap_dio_rw() returns
--ENOTBLK or a short write, but does not drain other in-flight DIO before
-dirtying the page cache.
+Check the removal and record the failure: NVolSetErrors(), which the
+next persistence point persists as VOLUME_IS_DIRTY, and a log message
+the errors= policy acts on.  The flag cannot be written to disk here
+directly: the target inode's mrec_lock is held and the $Volume
+mrec_lock cannot be nested under it.
 
-Wait for in-flight DIO before calling iomap_file_buffered_write() in the
-fallback path.  Since NTFS supports IOCB_NOWAIT, do not enter the blocking
-fallback for such requests.  Return -EAGAIN if no bytes were written, or
-preserve the positive short-write result if the direct write made partial
-progress.
-
-A reproducer using concurrent AIO direct writes and buffered fallback
-triggered the following warning and made a subsequent fsync() return
--EIO:
-
-  Page cache invalidation failure on direct I/O.  Possible data corruption
-  due to collision with buffered I/O!
-
-Fixes: 9c87959601e8 ("ntfs: update file operations")
-Link: https://lore.kernel.org/r/20260629113827.4074335-3-libaokun@linux.alibaba.com
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-Signed-off-by: Jiale Yao <yaojiale02@163.com>
+Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 ---
- fs/ntfs/file.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ Change in v2:
+ -undo only a committed set: undoing a removal returned -ENODATA for an
+  already-removed xattr and was recorded as a volume error, or re-added
+  an empty xattr once the removal had dropped the last EA
+---
+ fs/ntfs/ea.c | 30 ++++++++++++++++++++++++++++--
+ 1 file changed, 28 insertions(+), 2 deletions(-)
 
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 007d1614b9ac..8bbfa842889a 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -525,8 +525,21 @@ static ssize_t ntfs_dio_write_iter(struct kiocb *iocb, struct iov_iter *from)
- 		ssize_t written;
- 		int ret2;
- 
-+		if (iocb->ki_flags & IOCB_NOWAIT) {
-+			if (!ret)
-+				ret = -EAGAIN;
-+			goto out;
-+		}
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index b4fcfbe2da4c..b3e079e2dc03 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -1084,8 +1084,34 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
+ 		mutex_lock(&NTFS_I(inode)->mrec_lock);
+ 		err = ntfs_ea_set_wsl_inode(inode, 0, &ea_size, NTFS_EA_MODE);
+ 		if (err) {
+-			ntfs_set_ea(inode, name, name_len, NULL, 0,
+-				    XATTR_REPLACE, NULL);
++			/*
++			 * Only a set needs undoing: a removal leaves no
++			 * new ACL behind, and repeating it would either
++			 * return -ENODATA again or, once it dropped the
++			 * last EA, re-create an empty xattr.
++			 */
++			if (acl) {
++				int undo_err = ntfs_set_ea(inode, name, name_len,
++						NULL, 0, XATTR_REPLACE, NULL);
 +
- 		offset = iocb->ki_pos;
- 		iocb->ki_flags &= ~IOCB_DIRECT;
-+
-+		/*
-+		 * Prevent concurrent direct I/O and buffered I/O to the same file
-+		 * range. Wait for in-flight DIO to finish before dirtying pages.
-+		 */
-+		inode_dio_wait(file_inode(iocb->ki_filp));
-+
- 		written = iomap_file_buffered_write(iocb, from,
- 				&ntfs_write_iomap_ops, &ntfs_iomap_folio_ops,
- 				NULL);
++				if (undo_err) {
++					/*
++					 * The ACL xattr is committed
++					 * already, so a failed removal
++					 * leaves the new, typically more
++					 * permissive, ACL on disk while
++					 * i_mode, the mode EA and the
++					 * cached ACL keep the old values.
++					 * Record the error: the next
++					 * persistence point persists it as
++					 * VOLUME_IS_DIRTY.  Run chkdsk.
++					 */
++					NVolSetErrors(NTFS_I(inode)->vol);
++					ntfs_error(inode->i_sb,
++						   "Failed to undo the ACL xattr: %d",
++						   undo_err);
++				}
++			}
+ 			mutex_unlock(&NTFS_I(inode)->mrec_lock);
+ 			inode->i_mode = old_mode;
+ 			goto out;
 -- 
-2.34.1
+2.25.1
 
