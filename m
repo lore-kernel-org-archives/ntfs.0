@@ -1,67 +1,413 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B293B6C09
-	for <ntfs@lists.linux.dev>; Tue,  6 Oct 2026 13:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3183E63B2
+	for <ntfs@lists.linux.dev>; Tue,  6 Oct 2026 14:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791294556; cv=none; b=PaeVcXYpwjncHGyY/vcETLsLf2Z3Rh4Jx3nqRiU1NCdD+gPwXUeao1FhAVYkqhS2yrtXRgl0EdCpYotSMXWG9ImpWJMenrYBnvYKYUreRCNMB010rbbZZqFcTFsSil5b0IrYyNp6QbPzcYzA/fRVLL3EHENxlEIq118K7mEVGe0=
+	t=1791296178; cv=none; b=Gaax07AwTYuFZV33QyypxtK+Nnv+L5HWENUEUGAWTMHQuXkXzKcOk8+T1pYY8xnqaWmBfBLEYDgqcIUEe1RfvHItwT0BCz+EU2Vk1SkEhdR7VTHPKcRl4w8HPTOUFlSIj0MmYlpcfNGkokon+z0onf4V7fhR7iKFnYhI7iS4xhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791294556; c=relaxed/simple;
-	bh=8R/ldjXjAlBbpS7zZfQqlDCtbPWXIwxq4sj4mSvlxgk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Pm6msNA8NEIGR1FFOPX/i9Y38Bh1m6ZUzdKw5S3QzTFEq+KCvIJnLX2QOfAP183Mt/1SEQwEn543lEExuu0XN+48Bq3Le6FDCenA+f7XHuMsapL9342cGNl4RpiGXP8Xu3kJTg3JyqmYlzhsxY16NpUkTUS5VXFa6Pl4DKEFtZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z+6Lkteb; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1791296178; c=relaxed/simple;
+	bh=0UFD1i+RXQOvsb6ZCudkD6zzwdyJp3fNta0EcJ+GGJM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bK75Q+7npETw50scVcFgLltx8fMg1746kZngv3t0xnhXMFnq3/gyJhO1IHieHr9u8BvxDOBjQ+FYlfVvZay+hxIZlkF4DXR4HAUrra5yqnL86jXnPtxw46Mj5mzcDsxxv+TyrdMKTnS0nbXEACRIB4FGioeGq7KjkzQ4yRUUF48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CRmEI+at; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z+6Lkteb"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BBCF1F000FF
-	for <ntfs@lists.linux.dev>; Tue,  6 Oct 2026 13:49:15 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CRmEI+at"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 673551F000FF;
+	Tue,  6 Oct 2026 14:16:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791294555;
-	bh=8R/ldjXjAlBbpS7zZfQqlDCtbPWXIwxq4sj4mSvlxgk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=Z+6LktebL53T1qNjGAcaSv/lqNBmvLqqzge/nf13F4aEwtkOaOezEqrUDM3ezYg5X
-	 N/RmTQxIwYY9Jf+7dBH1qiPsinsXAsaSGIdTh33M0lI7d3fgrsMWBEdAB2Kgytrr1h
-	 gynY+71pIKNU0K88bNZ46MF0Msm0XEYdsqTi3gEpqnb+9EEw7WvDmjwEKTGGezb3XU
-	 Wu0dBlGNTSk+dR8cK7pELByzyESVbIiLvC4brv93ymI5L5X7zpZSXsGdF1T9OIo09f
-	 zUbSVQM0R7S/YUgiAW/ewyFemvhWWWEvXrBswft+83UMYyDL4ccNuZChWa7FUEjjjo
-	 fL/gBK+Xgd2Yw==
-Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-677cc343120so2856800d50.0
-        for <ntfs@lists.linux.dev>; Tue, 06 Oct 2026 06:49:15 -0700 (PDT)
-X-Gm-Message-State: AFq9FYLU4DVByVfx/AkyYTB8pEYEDdS8dV9/KiydHiUan4je38LzJoqc
-	cxKLg+vGX2PM9WzOR5JVov6JFIqT+Pyj36OZrzZd5MicXxBS7/+qN0HJ0+VbvZfVN9FdAEzquCN
-	bO+7Zyb2nUg9U5Ycc9oGNy3zJhdbHecE=
-X-Received: by 2002:a05:690e:1487:b0:675:5dd5:bcbd with SMTP id
- 956f58d0204a3-677bd2ff1f0mr4704044d50.32.1791294554293; Tue, 06 Oct 2026
- 06:49:14 -0700 (PDT)
+	s=k20260515; t=1791296177;
+	bh=W44SWS5OGbtxKgUwiVz4YUY/6NVWZiMUIcXB67rONrk=;
+	h=From:To:Cc:Subject:Date;
+	b=CRmEI+at2NfST66wNjYf4fuUrXECus162hUKkCx5Cm12LcfYuitY5RMGNspbEETnR
+	 5kQvwB9dunONECDiZAYM7LyUmAOQtKj2bR/x7qyisUAsK4Im4RkqbN0Av13tMxnVnj
+	 Wa2pciP02AdZ4LdM87Dp33qDCQMBBtiXptSWDZzBTtouaxAXaGH0gyvkDDe/d0zqfG
+	 OlbgaECG0taH++g+SBizfJPFUPjL3vbCTij7mcWtzxMDkvwrsG/K2GrSgdtJS1NjR0
+	 oYhC1AI48+uTIAsOqgjmXMoWaxjNOPy0HUdrATMatgO8gSjaOuq5h3IQZQNIoFias2
+	 fALP8iJKQnCFQ==
+From: Namjae Jeon <linkinjeon@kernel.org>
+To: hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	Namjae Jeon <linkinjeon@kernel.org>
+Subject: [PATCH] ntfs: validate and reserve bad clusters at mount
+Date: Tue,  6 Oct 2026 23:16:12 +0900
+Message-Id: <20261006141612.28654-1-linkinjeon@kernel.org>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20261006-test-port-ntfs-oot-ntfs-only-require-compressed-size-on-first-exten-v2-1-080315ae06d3@gmail.com>
-In-Reply-To: <20261006-test-port-ntfs-oot-ntfs-only-require-compressed-size-on-first-exten-v2-1-080315ae06d3@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Tue, 6 Oct 2026 22:48:59 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd_LY+HqVV8gTigb+Nma4W-mJ7hyCXbw391hDk67sf1DEA@mail.gmail.com>
-X-Gm-Features: AclHuK8_nyWiOTfnHi-ut9Y9zc_oTnzfCvj-wPb09U9vE4P4Xp-0Dbh0rQDnGOM
-Message-ID: <CAKYAXd_LY+HqVV8gTigb+Nma4W-mJ7hyCXbw391hDk67sf1DEA@mail.gmail.com>
-Subject: Re: [PATCH v2] ntfs: only require compressed size on first extent
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 6, 2026 at 11:24=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> wr=
-ote:
->
-> The attribute validator required the compressed_size field for
-> every sparse or compressed extent. Continuation extents omit that field,
-> so their valid mapping_pairs_offset of 64 was rejected and compressed
-> reads failed.
->
-> Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
-Applied it to #ntfs-next.
-Please add a Fixes tag next time.
-Thanks.
+The cluster allocator only consults $Bitmap and never loads
+$BadClus:$Bad. A free bitmap bit for a known bad cluster can therefore
+place that cluster in the free-space cache and make it available for
+new file allocations.
+
+Load the named nonresident $Bad stream and map every attribute extent
+before validating full-volume coverage and identity mappings for bad
+runs. Reserve only free bits in $Bitmap on writable mounts and flush
+the corrections before the initial free-space scan. Keep bad-cluster
+counts diagnostic so reservations are accounted for exactly once.
+
+Force read-only mounts with repair advice when $Bad cannot be loaded
+or validated, and prevent read-write remounts after such errors. Leave
+the bitmap unchanged on read-only mounts and fail mounts on memory
+allocation failure. Suppress errors=panic while loading $BadClus so
+damaged metadata can fall back to read-only.
+
+Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
+---
+ fs/ntfs/bitmap.c |  53 +++++++++++++++
+ fs/ntfs/bitmap.h |   2 +
+ fs/ntfs/super.c  | 163 +++++++++++++++++++++++++++++++++++++++++++----
+ fs/ntfs/volume.h |   2 +
+ 4 files changed, 209 insertions(+), 11 deletions(-)
+
+diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
+index 912fdcca8e01..af86fb1c199b 100644
+--- a/fs/ntfs/bitmap.c
++++ b/fs/ntfs/bitmap.c
+@@ -12,6 +12,59 @@
+ #include "bitmap.h"
+ #include "ntfs.h"
+ 
++/*
++ * Check a $BadClus run against $Bitmap and optionally reserve its free bits.
++ * This is only used during mount, before the free-space scan starts. The
++ * scan will account for the repaired bits, so do not use the regular bitmap
++ * setters, which wait for that scan and assume every bit changes state.
++ * @free_bits counts only bits that were free, including on read-only mounts.
++ */
++int ntfs_bitmap_check_used(struct ntfs_volume *vol, s64 start, s64 count,
++		bool repair, s64 *free_bits)
++{
++	struct address_space *mapping = vol->lcnbmp_ino->i_mapping;
++	const unsigned int bits_per_page = PAGE_SIZE * BITS_PER_BYTE;
++	struct folio *folio;
++	u8 *bitmap;
++	unsigned int bit, end, bits;
++	s64 nr_free;
++
++	if (start < 0 || count <= 0 || start >= vol->nr_clusters ||
++	    count > vol->nr_clusters - start || NVolFreeClusterKnown(vol))
++		return -EINVAL;
++	if (repair && sb_rdonly(vol->sb))
++		return -EROFS;
++
++	while (count) {
++		folio = read_mapping_folio(mapping,
++					   start >> (PAGE_SHIFT + 3), NULL);
++		if (IS_ERR(folio))
++			return PTR_ERR(folio);
++
++		folio_lock(folio);
++		bitmap = kmap_local_folio(folio, 0);
++		bit = start & (bits_per_page - 1);
++		bits = min_t(s64, count, bits_per_page - bit);
++		end = bit + bits;
++		nr_free = 0;
++		for (bit = find_next_zero_bit_le(bitmap, end, bit); bit < end;
++		     bit = find_next_zero_bit_le(bitmap, end, bit + 1)) {
++			nr_free++;
++			if (repair)
++				__set_bit_le(bit, bitmap);
++		}
++		kunmap_local(bitmap);
++		if (repair && nr_free)
++			folio_mark_dirty(folio);
++		folio_unlock(folio);
++		folio_put(folio);
++		*free_bits += nr_free;
++		start += bits;
++		count -= bits;
++	}
++	return 0;
++}
++
+ int ntfs_trim_fs(struct ntfs_volume *vol, struct fstrim_range *range)
+ {
+ 	size_t buf_clusters;
+diff --git a/fs/ntfs/bitmap.h b/fs/ntfs/bitmap.h
+index 31177fe61da6..eccd0cf0f852 100644
+--- a/fs/ntfs/bitmap.h
++++ b/fs/ntfs/bitmap.h
+@@ -13,6 +13,8 @@
+ #include "volume.h"
+ 
+ int ntfs_trim_fs(struct ntfs_volume *vol, struct fstrim_range *range);
++int ntfs_bitmap_check_used(struct ntfs_volume *vol, s64 start, s64 count,
++		bool repair, s64 *free_bits);
+ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
+ 		const s64 count, const u8 value, const bool is_rollback);
+ 
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 2c6685342999..d174867b9f5f 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -21,6 +21,7 @@
+ #include "mft.h"
+ #include "ntfs.h"
+ #include "ea.h"
++#include "bitmap.h"
+ #include "volume.h"
+ 
+ /* A global default upcase table and a corresponding reference count. */
+@@ -1548,6 +1549,125 @@ static bool load_and_init_upcase(struct ntfs_volume *vol)
+ 	return false;
+ }
+ 
++static int ntfs_validate_badclus(struct ntfs_volume *vol,
++		const struct runlist *runlist, s64 *bad_clusters)
++{
++	const struct runlist_element *rl = runlist->rl;
++	s64 next_vcn = 0, bad = 0;
++	size_t i;
++
++	if (!rl)
++		return -EIO;
++
++	for (i = 0; i < runlist->count; i++) {
++		if (!rl[i].length) {
++			if (i != runlist->count - 1 ||
++			    rl[i].vcn != vol->nr_clusters ||
++			    rl[i].lcn != LCN_ENOENT ||
++			    next_vcn != vol->nr_clusters)
++				return -EIO;
++			*bad_clusters = bad;
++			return 0;
++		}
++		if (rl[i].vcn != next_vcn || rl[i].length < 0 ||
++		    rl[i].length > vol->nr_clusters - next_vcn)
++			return -EIO;
++		if (rl[i].lcn != LCN_HOLE) {
++			/* Each bad cluster is mapped to its own volume offset. */
++			if (rl[i].lcn != rl[i].vcn)
++				return -EIO;
++			bad += rl[i].length;
++		}
++		next_vcn += rl[i].length;
++	}
++	return -EIO;
++}
++
++/*
++ * Read the allocation of $BadClus:$Bad, not its data. initialized_size may
++ * be zero even when the runlist contains bad clusters. Validate every run
++ * before repairing $Bitmap, and let the later free-space scan account for
++ * the reservations without subtracting the bad-cluster count again.
++ */
++static int load_and_check_badclus(struct ntfs_volume *vol)
++{
++	static __le16 bad_name[] = {
++		cpu_to_le16('$'), cpu_to_le16('B'),
++		cpu_to_le16('a'), cpu_to_le16('d'),
++	};
++	struct super_block *sb = vol->sb;
++	struct inode *base_ino, *bad_ino;
++	struct ntfs_inode *ni;
++	s64 free_bits = 0;
++	u64 size = ntfs_cluster_to_bytes(vol, vol->nr_clusters);
++	size_t i;
++	int err;
++
++	base_ino = ntfs_iget(sb, FILE_BadClus);
++	if (IS_ERR(base_ino))
++		return PTR_ERR(base_ino);
++	if (!S_ISREG(base_ino->i_mode)) {
++		err = -EIO;
++		goto iput_base;
++	}
++	bad_ino = ntfs_attr_iget(base_ino, AT_DATA, bad_name,
++				 ARRAY_SIZE(bad_name));
++	if (IS_ERR(bad_ino)) {
++		err = PTR_ERR(bad_ino);
++		goto iput_base;
++	}
++	ni = NTFS_I(bad_ino);
++	if (!NInoNonResident(ni) || NInoCompressed(ni) || NInoEncrypted(ni) ||
++	    ni->data_size != size || ni->allocated_size != size) {
++		err = -EIO;
++		goto iput_bad;
++	}
++
++	down_write(&ni->runlist.lock);
++	err = ntfs_attr_map_whole_runlist(ni);
++	if (err)
++		goto unlock;
++	err = ntfs_validate_badclus(vol, &ni->runlist, &vol->bad_clusters);
++	if (err)
++		goto unlock;
++	for (i = 0; i < ni->runlist.count - 1; i++) {
++		struct runlist_element *rl = &ni->runlist.rl[i];
++
++		if (rl->lcn == LCN_HOLE)
++			continue;
++		err = ntfs_bitmap_check_used(vol, rl->lcn, rl->length,
++					     !sb_rdonly(sb), &free_bits);
++		if (err)
++			break;
++	}
++unlock:
++	up_write(&ni->runlist.lock);
++iput_bad:
++	iput(bad_ino);
++iput_base:
++	iput(base_ino);
++	if (err)
++		return err;
++	if (free_bits) {
++		/* A read-only mount must not later remount RW without repair. */
++		if (sb_rdonly(sb))
++			return -EIO;
++		err = filemap_write_and_wait(vol->lcnbmp_ino->i_mapping);
++		if (err)
++			return err;
++		err = blkdev_issue_flush(sb->s_bdev);
++		if (err)
++			return err;
++		ntfs_warning(sb,
++			     "Marked %lld bad clusters as used in $Bitmap.",
++			     free_bits);
++	}
++	if (vol->bad_clusters)
++		pr_info("volume contains %lld bad clusters, dev %s\n",
++			vol->bad_clusters, sb->s_id);
++	return 0;
++}
++
+ /*
+  * The lcn and mft bitmap inodes are NTFS-internal inodes with
+  * their own special locking rules:
+@@ -1563,16 +1683,16 @@ static struct lock_class_key
+  * Open the system files with normal access functions and complete setting up
+  * the ntfs super block @vol.
+  *
+- * Return 'true' on success or 'false' on error.
++ * Return 0 on success and -errno on error.
+  */
+-static bool load_system_files(struct ntfs_volume *vol)
++static int load_system_files(struct ntfs_volume *vol)
+ {
+ 	struct super_block *sb = vol->sb;
+ 	struct mft_record *m;
+ 	struct volume_information *vi;
+ 	struct ntfs_attr_search_ctx *ctx;
+ 	struct restart_page_header *rp;
+-	int err;
++	int err, ret = -EINVAL;
+ 	u8 saved_on_errors;
+ 
+ 	ntfs_debug("Entering.");
+@@ -1785,6 +1905,25 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 		    "Errors were recorded during mount.  Mounting read-only.  Run chkdsk.");
+ 	}
+ 
++	/* Check bad clusters after hibernation checks and before any writes. */
++	saved_on_errors = vol->on_errors;
++	if (saved_on_errors == ON_ERRORS_PANIC)
++		vol->on_errors = ON_ERRORS_REMOUNT_RO;
++	err = load_and_check_badclus(vol);
++	vol->on_errors = saved_on_errors;
++	if (err == -ENOMEM) {
++		ret = err;
++		ntfs_warning(sb, "Not enough memory to load $BadClus.");
++		goto iput_root_err_out;
++	}
++	if (err) {
++		sb->s_flags |= SB_RDONLY;
++		NVolSetErrors(vol);
++		ntfs_error(sb,
++			   "Failed to initialize $BadClus (%d). Mounting read-only. Run fsck.ntfs or chkdsk.",
++			   err);
++	}
++
+ 	/* If (still) a read-write mount, empty the logfile. */
+ 	if (!sb_rdonly(sb) &&
+ 	    vol->logfile_ino && !ntfs_empty_logfile(vol->logfile_ino) &&
+@@ -1799,7 +1938,7 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 	}
+ 	/* If on NTFS versions before 3.0, we are done. */
+ 	if (unlikely(vol->major_ver < 3))
+-		return true;
++		return 0;
+ 	/* NTFS 3.0+ specific initialization. */
+ 	/* Get the security descriptors inode. */
+ 	vol->secure_ino = ntfs_iget(sb, FILE_Secure);
+@@ -1818,7 +1957,7 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 		ntfs_error(sb, "Failed to load $Extend.");
+ 		goto iput_sec_err_out;
+ 	}
+-	return true;
++	return 0;
+ 
+ iput_sec_err_out:
+ 	iput(vol->secure_ino);
+@@ -1854,7 +1993,7 @@ static bool load_system_files(struct ntfs_volume *vol)
+ 	iput(vol->mftbmp_ino);
+ iput_mirr_err_out:
+ 	iput(vol->mftmirr_ino);
+-	return false;
++	return ret;
+ }
+ 
+ static void ntfs_volume_free(struct ntfs_volume *vol)
+@@ -2460,7 +2599,7 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
+ {
+ 	char *boot;
+ 	struct inode *tmp_ino;
+-	int blocksize, result;
++	int blocksize, result, err = -EINVAL;
+ 	pgoff_t lcn_bit_pages;
+ 	struct ntfs_volume *vol = NTFS_SB(sb);
+ 	int silent = fc->sb_flags & SB_SILENT;
+@@ -2632,8 +2771,10 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
+ 	 * Open the system files with normal access functions and complete
+ 	 * setting up the ntfs super block.
+ 	 */
+-	if (!load_system_files(vol)) {
+-		ntfs_error(sb, "Failed to load system files.");
++	result = load_system_files(vol);
++	if (result) {
++		err = result;
++		ntfs_warning(sb, "Failed to load system files (%d).", err);
+ 		goto unl_upcase_iput_tmp_ino_err_out_now;
+ 	}
+ 
+@@ -2742,9 +2883,9 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
+ 	kfree(vol->volume_label);
+ 	unload_nls(vol->nls_map);
+ 	kfree(vol);
+-	ntfs_debug("Failed, returning -EINVAL.");
++	ntfs_debug("Failed, returning %d.", err);
+ 	lockdep_on();
+-	return -EINVAL;
++	return err;
+ }
+ 
+ /*
+diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
+index 0473b602084c..6d9d6eb79a7c 100644
+--- a/fs/ntfs/volume.h
++++ b/fs/ntfs/volume.h
+@@ -86,6 +86,7 @@
+  * @nls_utf8: NLS table for UTF-8.
+  * @free_waitq: Wait queue for threads waiting for free clusters or MFT records.
+  * @free_clusters: Track the number of free clusters.
++ * @bad_clusters: Number of clusters recorded in $BadClus:$Bad.
+  * @free_mft_records: Track the free mft records.
+  * @dirty_clusters: Number of clusters that are dirty.
+  * @sparse_compression_unit: Size of compression/sparse unit in clusters.
+@@ -123,6 +124,7 @@ struct ntfs_volume {
+ 	u32 index_record_size_mask;
+ 	u8 index_record_size_bits;
+ 	s64 nr_clusters;
++	s64 bad_clusters;
+ 	s64 mft_lcn;
+ 	s64 mftmirr_lcn;
+ 	u64 serial_no;
+-- 
+2.25.1
+
