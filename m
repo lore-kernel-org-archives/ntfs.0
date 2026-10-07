@@ -1,38 +1,38 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD8A3C8C68
-	for <ntfs@lists.linux.dev>; Wed,  7 Oct 2026 13:19:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4BF4AA416
+	for <ntfs@lists.linux.dev>; Wed,  7 Oct 2026 13:19:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791379155; cv=none; b=Id8CRl2Fb/Hob4i8oi7Ey66PFWLldvhn+vsOS7yVsuQgPnWsBrV19s+3HdJdc48CTzWIMbsFhjJke1F0IErlyCXysRa2hXjWewDLwjSpCi0EeFPlZyJQ+vRfWeMxzbxhbGhzcp5+O8nlLQBCczJnCV+KAHUBj6s/4Tvb1omsfNo=
+	t=1791379158; cv=none; b=OE7msiq1cloMGIAZdXsqra+zhPHpSi5f03R4vt8OvWLm6H7TeP9WA6uGyCvX/ZqwrDOtDwWwMVbXS0H7ZR9aj003Wsz1fa6fevEGEFQ10a4dL7bUkvjTovHgmhWap5M0c4dayBLwdWK72hvHo+5aaqcVl2XdN7mbVCik1MFncgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791379155; c=relaxed/simple;
-	bh=xTpJFE5gQLPszgHGsiDE/h57b5+w+eiTGuW9SsFvCHk=;
+	s=arc-20240116; t=1791379158; c=relaxed/simple;
+	bh=IEVdlZmDxjI19e6nrOUoLU8TBAn4aDSffQTwK0/kVbo=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tlno3Xxun2eZ8SZksk/LA3N8CQQOzQqU+AoWiTKgjh7XYAYXAJvoeGAXi3RQ6a0b6Kq2dBx/2gjRWi81R+ltol79CJaRiZBT+9OKbcrwkW4rcy3f+F/4CXOStQe8vzCA6Vk7HCvqRr+/J+K/ABp428uuTXYBrJkWrK7sG/QtkhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kiBWq7jy; arc=none smtp.client-ip=100.103.45.18
+	 MIME-Version; b=JKHiZkhr84w7edhU93GHNPNX8hf7X1yU0NNSnddw5S/diOzKls0/T2ThpXDLk6hkm2emFXUGOrBIRcMtI6yK3sNx+8aJr0iaB9Y7c4Z8njUfycOJfT/M/+f0ZuVq46kaXn9g6CAijnTPLn3UgKPSN8JilOoUrDgZTDv0s122g6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IZ1ndmv8; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kiBWq7jy"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 881F91F0089E;
-	Wed,  7 Oct 2026 13:19:04 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IZ1ndmv8"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7ED81F0089D;
+	Wed,  7 Oct 2026 13:19:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791379145;
-	bh=hmcD/JZFWzBHazNc4IqG1d33c1PYwAVswzTWex/V25Y=;
+	s=k20260515; t=1791379143;
+	bh=orqcYQOBv3zapcA5WbjZRbURcg9bB6Nu37XqiTjX5R8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=kiBWq7jy20I0PVVjBLjxygSOqEF3LupPIntJgFycrqRdNWUbVkFbcCYGlol55XT/x
-	 QLL76Il7n15HYi5wdcyM0q7t0+0NyTRBrkA6FZI7d8pWoS07PM+YXPCpVDNWPlMzY0
-	 l0c1IG68xYW2QSFua9Jb7zELx3x758EsoTG+avAPAP8QZZthKxPMOeVB1DxvNiBdkt
-	 Jm+uw/9uulWzv1MZHJ0FrbDYD6rk3cdX4U6EUDH4LSJzNvEnVzj4ibRIx2agWb0ah1
-	 3Fx+K0xFhtmcbusuWigCqQECrQXkbwzNS+Z8/JGgWPlEcDqX8igdroPoWEz4cme9q7
-	 Wiwc80WmtEEqg==
+	b=IZ1ndmv8BbRZwFb0omzIPHFgmDj1F5vhwB1u1ePY1dF078HUnZdDGFNPWjdRAIiJU
+	 hpMVHLvFhS9cZJVD9PN0m2kEjUFeYqC8fGTNt++rtdhSl4zb97Vk+QCN05DvieJQDY
+	 77xUTImddLKEYeGueOSpiGThePtxr2w6MudGpUjoAad+NAwEpypx0F5H2mxc879/mI
+	 vfW0U41VdfgsdBF3ulKgmxPWzaDNFyn+Ru4AdxGqDd2UNbvBRyuonRDlb7xElJm6M0
+	 xzWYx5xKdlg7+tYjl28Wapi2Wua1uWaAemf4UJRWtYcdmyVE7XUYv/dN0+DyBNMFG7
+	 6+ERFLn0O/Tdw==
 From: Namjae Jeon <linkinjeon@kernel.org>
 To: hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	Namjae Jeon <linkinjeon@kernel.org>
-Subject: [PATCH 4/4] ntfs: propagate EA truncate errors
-Date: Wed,  7 Oct 2026 22:18:44 +0900
-Message-Id: <20261007131844.8013-4-linkinjeon@kernel.org>
+Subject: [PATCH 3/4] ntfs: clear stale pagecache on initialized-size extension
+Date: Wed,  7 Oct 2026 22:18:43 +0900
+Message-Id: <20261007131844.8013-3-linkinjeon@kernel.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261007131844.8013-1-linkinjeon@kernel.org>
 References: <20261007131844.8013-1-linkinjeon@kernel.org>
@@ -44,27 +44,97 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Propagate errors from truncating an EA stream so callers do not
-report a successful xattr update after a failed resize.
+iomap_zero_range() skips holes, so EOF-polluted cache data can survive
+gap zeroing. Discard the uninitialized cache range before advancing
+initialized_size so later reads cannot expose stale bytes.
 
-Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+Perform the cleanup in ntfs_extend_initialized_size() so both file writes
+and shared writable mmap preparation use it. Hold the invalidate lock
+while reading initialized_size, clearing the cache, zeroing the gap, and
+updating the attribute. Release the lock on every exit path.
+
+Fixes: af0db57d4293 ("ntfs: update inode operations")
 Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
 ---
- fs/ntfs/ea.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ fs/ntfs/inode.c | 41 +++++++++++++++++++++++++++--------------
+ 1 file changed, 27 insertions(+), 14 deletions(-)
 
-diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index b4fcfbe2da4c..ff69fb07f84a 100644
---- a/fs/ntfs/ea.c
-+++ b/fs/ntfs/ea.c
-@@ -37,7 +37,7 @@ static int ntfs_write_ea(struct ntfs_inode *ni, __le32 type, char *value, s64 ea
- 		struct ntfs_inode *ea_ni = NTFS_I(ea_vi);
+diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
+index eca0724c4358..6cfe8f24e4cc 100644
+--- a/fs/ntfs/inode.c
++++ b/fs/ntfs/inode.c
+@@ -8,6 +8,7 @@
  
- 		if (need_truncate && ea_ni->data_size > ea_off + ea_size)
--			ntfs_attr_truncate(ea_ni, ea_off + ea_size);
-+			err = ntfs_attr_truncate(ea_ni, ea_off + ea_size);
- 		mark_mft_record_dirty(ni);
+ #include <linux/writeback.h>
+ #include <linux/seq_file.h>
++#include <linux/mm.h>
+ 
+ #include "lcnalloc.h"
+ #include "time.h"
+@@ -2484,38 +2485,50 @@ int ntfs_extend_initialized_size(struct inode *vi, const loff_t offset,
+ 				 const loff_t new_size)
+ {
+ 	struct ntfs_inode *ni = NTFS_I(vi);
+-	loff_t old_init_size;
++	loff_t old_init_size, clear_size;
+ 	unsigned long flags;
+-	int err;
++	int err = 0;
++
++	if (!NInoNonResident(ni))
++		return -EINVAL;
+ 
++	filemap_invalidate_lock(vi->i_mapping);
+ 	read_lock_irqsave(&ni->size_lock, flags);
+ 	old_init_size = ni->initialized_size;
+ 	read_unlock_irqrestore(&ni->size_lock, flags);
+ 
+-	if (!NInoNonResident(ni))
+-		return -EINVAL;
+ 	if (old_init_size >= new_size)
+-		return 0;
++		goto out;
+ 
+ 	err = ntfs_attr_map_whole_runlist(ni);
+ 	if (err)
+-		return err;
++		goto out;
+ 
+-	if (!NInoCompressed(ni) && old_init_size < offset) {
+-		err = iomap_zero_range(vi, old_init_size,
+-				       offset - old_init_size,
+-				       NULL, &ntfs_seek_iomap_ops,
+-				       &ntfs_iomap_folio_ops, NULL);
+-		if (err)
+-			return err;
++	if (!NInoCompressed(ni)) {
++		/*
++		 * Zeroing skips holes, so discard cached uninitialized bytes
++		 * before making them visible to writes or shared mappings.
++		 */
++		clear_size = max_t(loff_t, i_size_read(vi), new_size);
++		truncate_pagecache_range(vi, old_init_size, clear_size - 1);
++
++		if (old_init_size < offset) {
++			err = iomap_zero_range(vi, old_init_size,
++					       offset - old_init_size,
++					       NULL, &ntfs_seek_iomap_ops,
++					       &ntfs_iomap_folio_ops, NULL);
++			if (err)
++				goto out;
++		}
  	}
+ 
+-
+ 	mutex_lock(&ni->mrec_lock);
+ 	err = ntfs_attr_set_initialized_size(ni, new_size);
+ 	mutex_unlock(&ni->mrec_lock);
+ 	if (err)
+ 		truncate_setsize(vi, old_init_size);
++out:
++	filemap_invalidate_unlock(vi->i_mapping);
+ 	return err;
+ }
  
 -- 
 2.25.1
