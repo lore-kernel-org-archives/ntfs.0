@@ -1,222 +1,246 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D69395AF2;
-	Wed,  7 Oct 2026 09:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CC73B71A3
+	for <ntfs@lists.linux.dev>; Wed,  7 Oct 2026 13:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791366455; cv=none; b=iCIDHicquUs99RUO9C0JXwRgA9OVwCTY8696IsoS6j50Z/hhJkWKM0QzpuBDsHIYW19ylEHABJiUus8mDVeun3YMmLZVmZT31rqF8poT00QsTLFg2WD6AWiHZXGujLO5CnyrxQ/p3seGB4V2p0eYYtw/sQhsJFvT8Ob0SgFncBk=
+	t=1791379149; cv=none; b=XkOxu03xCswBOcGEjBJ/TsP3gXHg4/Z0IcTNrPkvpjMnFfvaH9C7BolEUp0P5AVII1WcP9aYAHd+FeNbqtntLy3BWWmhHdtMeZcLHOT3tWzK03rLZdaWFJEWwKmyMIxRGWY7w3STwcjE0w6xkYxISTbEu26+IHFKT/2aULy2jtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791366455; c=relaxed/simple;
-	bh=MI7nzD7itjW5CD3PEi3m4rfppLLIWuVo4w29NRTu5Ps=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A18ab7BdFaOa564DGv291VEFXPODLEO2EM2b9m9r9OPoKKAsl3f1jRZ2FBZy9LwKKPhgXjGLAZoWB/8XaenK9piJYVVxQCmD5bqG8f6H7CPAgFtfcPxWXshxi9bYE5C6NQkpLk1aOlstuJv73dbZQ6VSmw559UxagRVRstsof7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fai2JdxQ; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1791379149; c=relaxed/simple;
+	bh=WfqbsxQtN9pBi4MAytMD7QzVgm5OBbehm6cqiv6Go8c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rR9x3r8WKM4o+migIIxqKXaSuMF0Wr4I/B8os044FwPXXL5sbHXUfI1Bku6ab6h7pVFnc+BoUDoHN8S7pwwD7+V4F+bbB/hR9jZGr+lIWL/IAdvdo+eiqEQYZQATBnReBrkGAXandHjTNBXsGu5eWo1nJCbr7B07Sg25f1Q27uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QR/v6bFx; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fai2JdxQ"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEB331F0089B;
-	Wed,  7 Oct 2026 09:47:13 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QR/v6bFx"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A591F0089B;
+	Wed,  7 Oct 2026 13:18:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791366444;
-	bh=WKfTrq8VHIA+znChlNb3NuZ60B46dqCeKbF4f81115I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=fai2JdxQg2GTZDr/VvQZVCO9hLiWsjmsp3kCspc8fuKK4Idhvb8afxieuvkYwQyYm
-	 EROdJ2PNOewRKi2TlzftYwYAKyOzWDZOqcN/uIKMcnbgV4RmoSWKvkrrjXqOH103u4
-	 pkW/zLZZoKah5esAFQs3D/dVu6u2y5mvWBDTVdUYX8sUlAMw/6TGZqWNoZl9+0sMb5
-	 XRIYEsb8pFZMI07mxgwGXu32WJ+4ExSOAeE3Q6diCbSoyE+fYRs6OFJ8RwEG+2QP6M
-	 t5VGgOEOdwhnOdt+AfIzlhYUJpGyLhxBjp3rfpsYz8tJfVVrUI3imhuR0jMSWv7pUP
-	 MBSrx6oIQcWWw==
-Date: Wed, 7 Oct 2026 11:47:09 +0200
-From: Carlos Maiolino <cem@kernel.org>
-To: NeilBrown <neil@brown.name>
-Cc: Miklos Szeredi <miklos@szeredi.hu>, 
-	Amir Goldstein <amir73il@gmail.com>, Kees Cook <kees@kernel.org>, 
-	Joel Granados <joel.granados@kernel.org>, Richard Weinberger <richard@nod.at>, 
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	Breno Leitao <leitao@debian.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Jan Harkes <jaharkes@cs.cmu.edu>, Hugh Dickins <hughd@google.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Namjae Jeon <linkinjeon@kernel.org>, 
-	Hyunchul Lee <hyc.lee@gmail.com>, Alexander Viro <viro@zeniv.linux.org.uk>, 
-	Christian Brauner <brauner@kernel.org>, Jeff Layton <jlayton@kernel.org>, Jan Kara <jack@suse.cz>, 
-	linux-fsdevel@vger.kernel.org, fuse-devel@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-unionfs@vger.kernel.org, linux-um@lists.infradead.org, codalist@coda.cs.cmu.edu, 
-	coda@cs.cmu.edu, linux-mm@kvack.org, ntfs@lists.linux.dev, 
-	linux-xfs@vger.kernel.org
-Subject: Re: [PATCH 1/7] VFS/xfs/ntfs: drop parent lock across
- d_alloc_parallel() in d_add_ci()
-Message-ID: <asYVApB1jdBYj9tN@cronus.toxiclabs.cc>
-References: <20260929034158.1455429-1-neilb@ownmail.net>
- <20260929034158.1455429-2-neilb@ownmail.net>
+	s=k20260515; t=1791379137;
+	bh=b+VWtvc5spFXXO+FD0CPDe5LwD9lv1FIcOIspepSkmU=;
+	h=From:To:Cc:Subject:Date;
+	b=QR/v6bFxTVUmaQmSJkhkvjYBLAd8UWTN1iiKrdAxVHQzZ9Vl4e1ltd/nbrb99ZAcK
+	 JirJpS9+UFl5fr5J5o29GR2XXQZ8G5YWPmz1uGMBMjavKtiYfO0dCyZLSnIO3BIAkf
+	 Emvdqu+3mg6J+nNvGH9QHdMeZCU4/TD7ml3JNSzx1wLSCLra1lC9hdzDETJkhjmSzU
+	 YF31S1MqNq6HprzzybfGBaey9sN4xYlOtH4kw+swJRMydanXFLv9G3vE0dP1BoPrtx
+	 PMlQwzsx4d3wY64gfYoScdH4LfINXrusVXzsU7RLrdOE0ycNw8mVN4gjVmfKR/+ifP
+	 w1znyVofCc0ag==
+From: Namjae Jeon <linkinjeon@kernel.org>
+To: hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	Namjae Jeon <linkinjeon@kernel.org>
+Subject: [PATCH 1/4] ntfs: replace put_folio zeroing with iomap tail handling
+Date: Wed,  7 Oct 2026 22:18:41 +0900
+Message-Id: <20261007131844.8013-1-linkinjeon@kernel.org>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260929034158.1455429-2-neilb@ownmail.net>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 29, 2026 at 01:36:01PM +1000, NeilBrown wrote:
-> From: NeilBrown <neil@brown.name>
-> 
-> A proposed change will invert the lock ordering between
-> d_alloc_parallel() and inode_lock() on the parent.
-> When that happens it will not be safe to call d_alloc_parallel() while
-> holding the parent lock - even shared.
-> 
-> We don't need to keep the parent lock held when d_add_ci() is run - the
-> VFS doesn't need it as dentry is exclusively held due to
-> DCACHE_PAR_LOOKUP and the filesystem has finished its work.
-> 
-> So drop and reclaim the lock (shared or exclusive as determined by
-> LOOKUP_SHARED) to avoid future deadlock.
-> 
-> Signed-off-by: NeilBrown <neil@brown.name>
-> ---
+The NTFS put_folio callbacks clear uninitialized data around buffered
+writes and zero ranges. Move this work to iomap block preparation and
+use the default folio release path.
 
-XFS bits are really small, but anyway, if needed, feel free to add:
+Set IOMAP_F_ZERO_TAIL only for mapped writes and zero ranges starting
+at or beyond initialized_size. Split mapped ranges at initialized_size
+and use iomap_truncate_page() to clear the boundary block's uninitialized
+tail when a mapping includes initialized bytes in that block. This
+preserves valid data when a short copy retries with a smaller length
+inside a cached iomap. Apply this to buffered write mappings and the
+read mappings reused by iomap_zero_range().
 
-Reviewed-by: Carlos Maiolino <cmaiolino@redhat.com>
+Record initialized_size in the validity cookie and revalidate it after
+locking each folio. Skip bytes initialized since the tail range was
+selected to preserve data written through a concurrent shared mapping.
 
->  Documentation/filesystems/porting.rst |  7 ++++++
->  fs/dcache.c                           | 32 +++++++++++++++++++++++----
->  fs/ntfs/namei.c                       |  2 +-
->  fs/xfs/xfs_iops.c                     |  2 +-
->  include/linux/dcache.h                |  3 ++-
->  5 files changed, 39 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/filesystems/porting.rst b/Documentation/filesystems/porting.rst
-> index 4e015f1bf1f8..f6a38bd9c68e 100644
-> --- a/Documentation/filesystems/porting.rst
-> +++ b/Documentation/filesystems/porting.rst
-> @@ -1409,3 +1409,10 @@ use only if you have no alternative.
->  The .create inode_operation no longer receives the 'excl' arg.  It must
->  always assume the file does not already exist.  If the filesystem needs
->  to be involved in non-exclusive create, it should provide atomic_open.
-> +
-> +---
-> +
-> +**mandatory**
-> +
-> +d_add_ci() must now be passed the flags arguemnt that was given to ->lookup
-> +
-> diff --git a/fs/dcache.c b/fs/dcache.c
-> index 83790c7a4dee..61e0896dc077 100644
-> --- a/fs/dcache.c
-> +++ b/fs/dcache.c
-> @@ -2383,6 +2383,7 @@ EXPORT_SYMBOL(d_obtain_root);
->   * @dentry: the negative dentry that was passed to the parent's lookup func
->   * @inode:  the inode case-insensitive lookup has found
->   * @name:   the case-exact name to be associated with the returned dentry
-> + * @lookup_flags: flags passed to ->lookup
->   *
->   * This is to avoid filling the dcache with case-insensitive names to the
->   * same inode, only the actual correct case is stored in the dcache for
-> @@ -2395,9 +2396,10 @@ EXPORT_SYMBOL(d_obtain_root);
->   * the exact case, and return the spliced entry.
->   */
->  struct dentry *d_add_ci(struct dentry *dentry, struct inode *inode,
-> -			struct qstr *name)
-> +			struct qstr *name, unsigned int lookup_flags)
->  {
->  	struct dentry *found, *res;
-> +	bool must_unlock = false;
->  
->  	/*
->  	 * First check if a dentry matching the name already exists,
-> @@ -2409,24 +2411,46 @@ struct dentry *d_add_ci(struct dentry *dentry, struct inode *inode,
->  		return found;
->  	}
->  	if (d_in_lookup(dentry)) {
-> +		/*
-> +		 * We are holding parent lock and so don't want to wait
-> +		 * for a d_in_lookup() dentry.  We can safely drop the
-> +		 * parent lock and reclaim it as we have exclusive
-> +		 * access to dentry as it is d_in_lookup() (so
-> +		 * ->d_parent is stable) and we are near the end
-> +		 * ->lookup() and will shortly drop the lock anyway.
-> +		 * We cannot retake the lock while the new dentry is in-lookup
-> +		 */
-> +		if (lookup_flags & LOOKUP_SHARED)
-> +			inode_unlock_shared(d_inode(dentry->d_parent));
-> +		else
-> +			inode_unlock(d_inode(dentry->d_parent));
-> +		must_unlock = true;
->  		found = d_alloc_parallel(dentry->d_parent, name);
->  		if (IS_ERR(found) || !d_in_lookup(found)) {
->  			iput(inode);
-> -			return found;
-> +			goto out_unlock;
->  		}
->  	} else {
->  		found = d_alloc(dentry->d_parent, name);
->  		if (!found) {
->  			iput(inode);
->  			return ERR_PTR(-ENOMEM);
-> -		} 
-> +		}
->  	}
->  	res = d_splice_alias(inode, found);
->  	if (res) {
->  		d_lookup_done(found);
->  		dput(found);
-> -		return res;
-> +		found = res;
->  	}
-> +	if (!must_unlock)
-> +		return found;
-> +out_unlock:
-> +	d_lookup_done(dentry);
-> +	if (lookup_flags & LOOKUP_SHARED)
-> +		inode_lock_shared(d_inode(dentry->d_parent));
-> +	else
-> +		inode_lock_nested(d_inode(dentry->d_parent), I_MUTEX_PARENT);
->  	return found;
->  }
->  EXPORT_SYMBOL(d_add_ci);
-> diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
-> index 7091b2496fac..61cfa4e16586 100644
-> --- a/fs/ntfs/namei.c
-> +++ b/fs/ntfs/namei.c
-> @@ -309,7 +309,7 @@ static struct dentry *ntfs_lookup(struct inode *dir_ino, struct dentry *dent,
->  		}
->  		nls_name.hash = full_name_hash(dent, nls_name.name, nls_name.len);
->  
-> -		dent = d_add_ci(dent, dent_inode, &nls_name);
-> +		dent = d_add_ci(dent, dent_inode, &nls_name, flags);
->  		kfree(nls_name.name);
->  		return dent;
->  
-> diff --git a/fs/xfs/xfs_iops.c b/fs/xfs/xfs_iops.c
-> index 4a3299abf774..fd480c0e4147 100644
-> --- a/fs/xfs/xfs_iops.c
-> +++ b/fs/xfs/xfs_iops.c
-> @@ -368,7 +368,7 @@ xfs_vn_ci_lookup(
->  	/* else case-insensitive match... */
->  	dname.name = ci_name.name;
->  	dname.len = ci_name.len;
-> -	dentry = d_add_ci(dentry, VFS_I(ip), &dname);
-> +	dentry = d_add_ci(dentry, VFS_I(ip), &dname, flags);
->  	kfree(ci_name.name);
->  	return dentry;
->  }
-> diff --git a/include/linux/dcache.h b/include/linux/dcache.h
-> index adf239f8205f..97d11f5e6a7b 100644
-> --- a/include/linux/dcache.h
-> +++ b/include/linux/dcache.h
-> @@ -267,7 +267,8 @@ struct dentry *d_duplicate(struct dentry *dentry);
->  /* weird procfs mess; *NOT* exported */
->  extern struct dentry * d_splice_alias_ops(struct inode *, struct dentry *,
->  					  const struct dentry_operations *);
-> -extern struct dentry * d_add_ci(struct dentry *, struct inode *, struct qstr *);
-> +extern struct dentry * d_add_ci(struct dentry *, struct inode *, struct qstr *,
-> +				unsigned int);
->  extern bool d_same_name(const struct dentry *dentry, const struct dentry *parent,
->  			const struct qstr *name);
->  extern struct dentry *d_find_any_alias(struct inode *inode);
-> 
-> base-commit: 3879f51857325da9bf3cfb073280257cd16ae067
-> -- 
-> 2.50.0.107.gf914562f5916.dirty
-> 
+Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
+---
+ fs/ntfs/iomap.c | 133 ++++++++++++++++++++++++++----------------------
+ 1 file changed, 71 insertions(+), 62 deletions(-)
+
+diff --git a/fs/ntfs/iomap.c b/fs/ntfs/iomap.c
+index b4475963e57a..754d5d91b6dc 100644
+--- a/fs/ntfs/iomap.c
++++ b/fs/ntfs/iomap.c
+@@ -12,73 +12,47 @@
+ #include "ntfs.h"
+ #include "iomap.h"
+ 
+-static void ntfs_iomap_put_folio_non_resident(struct inode *inode, loff_t pos,
+-					      unsigned int len, struct folio *folio)
++static bool ntfs_iomap_valid_initialized_size(struct inode *inode,
++		const struct iomap *iomap)
+ {
+-	struct ntfs_inode *ni = NTFS_I(inode);
+-	unsigned long sector_size = 1UL << inode->i_blkbits;
+-	loff_t start_down, end_up, init;
+-
+-	start_down = round_down(pos, sector_size);
+-	end_up = (pos + len - 1) | (sector_size - 1);
+-	init = ni->initialized_size;
+-
+-	if (init >= start_down && init <= end_up) {
+-		if (init < pos) {
+-			loff_t offset = offset_in_folio(folio, pos + len);
+-
+-			if (offset == 0)
+-				offset = folio_size(folio);
+-			folio_zero_segments(folio,
+-					    offset_in_folio(folio, init),
+-					    offset_in_folio(folio, pos),
+-					    offset,
+-					    folio_size(folio));
+-
+-		} else  {
+-			loff_t offset = max_t(loff_t, pos + len, init);
+-
+-			offset = offset_in_folio(folio, offset);
+-			if (offset == 0)
+-				offset = folio_size(folio);
+-			folio_zero_segment(folio,
+-					   offset,
+-					   folio_size(folio));
+-		}
+-	} else if (init <= pos) {
+-		loff_t offset = 0, offset2 = offset_in_folio(folio, pos + len);
+-
+-		if ((init >> folio_shift(folio)) == (pos >> folio_shift(folio)))
+-			offset = offset_in_folio(folio, init);
+-		if (offset2 == 0)
+-			offset2 = folio_size(folio);
+-		folio_zero_segments(folio,
+-				    offset,
+-				    offset_in_folio(folio, pos),
+-				    offset2,
+-				    folio_size(folio));
+-	}
+-	folio_unlock(folio);
+-	folio_put(folio);
++	return iomap->type == IOMAP_INLINE ||
++		iomap->validity_cookie == READ_ONCE(NTFS_I(inode)->initialized_size);
+ }
+ 
++const struct iomap_write_ops ntfs_iomap_folio_ops = {
++	.iomap_valid = ntfs_iomap_valid_initialized_size,
++};
++
++static const struct iomap_ops ntfs_zero_tail_iomap_ops;
++
+ /*
+- * iomap_zero_range is called for an area beyond the initialized size,
+- * garbage values can be read, so zeroing out is needed.
++ * Only set IOMAP_F_ZERO_TAIL at or beyond initialized_size: short-copy
++ * retries can end before the end of a cached iomap. For initialized
++ * mappings, split at initialized_size and zero only the boundary block's
++ * uninitialized tail.
+  */
+-static void ntfs_iomap_put_folio(struct inode *inode, loff_t pos,
+-		unsigned int len, struct folio *folio)
++static int ntfs_iomap_prepare_tail(struct inode *inode, struct iomap *iomap)
+ {
+-	if (NInoNonResident(NTFS_I(inode)))
+-		return ntfs_iomap_put_folio_non_resident(inode, pos,
+-							 len, folio);
+-	folio_unlock(folio);
+-	folio_put(folio);
+-}
++	loff_t init = READ_ONCE(NTFS_I(inode)->initialized_size);
++	loff_t end;
+ 
+-const struct iomap_write_ops ntfs_iomap_folio_ops = {
+-	.put_folio = ntfs_iomap_put_folio,
+-};
++	iomap->validity_cookie = init;
++	if (iomap->type != IOMAP_MAPPED)
++		return 0;
++
++	if (iomap->offset >= init) {
++		iomap->flags |= IOMAP_F_ZERO_TAIL;
++		return 0;
++	}
++
++	iomap->length = min_t(u64, iomap->length, init - iomap->offset);
++	end = iomap->offset + iomap->length;
++	if (round_up(end, i_blocksize(inode)) <= init)
++		return 0;
++
++	return iomap_truncate_page(inode, init, NULL, &ntfs_zero_tail_iomap_ops,
++				   &ntfs_iomap_folio_ops, NULL);
++}
+ 
+ static int ntfs_read_iomap_begin_resident(struct inode *inode, loff_t offset, loff_t length,
+ 		unsigned int flags, struct iomap *iomap, bool keep_mrec_lock)
+@@ -256,6 +230,14 @@ static int ntfs_read_iomap_begin_non_resident(struct inode *inode, loff_t offset
+ 		iomap->length = length;
+ 	up_write(&ni->runlist.lock);
+ 
++	if (flags & IOMAP_ZERO) {
++		int err;
++
++		err = ntfs_iomap_prepare_tail(inode, iomap);
++		if (err)
++			return err;
++	}
++
+ 	if (!(flags & IOMAP_ZERO) &&
+ 			iomap->type == IOMAP_MAPPED &&
+ 			iomap->offset < ni->initialized_size &&
+@@ -332,7 +314,6 @@ static bool ntfs_iomap_valid(struct inode *inode, const struct iomap *iomap)
+ }
+ 
+ static const struct iomap_write_ops ntfs_zero_iomap_folio_ops = {
+-	.put_folio = ntfs_iomap_put_folio,
+ 	.iomap_valid = ntfs_iomap_valid,
+ };
+ 
+@@ -364,6 +345,34 @@ const struct iomap_ops ntfs_seek_iomap_ops = {
+ 	.iomap_next = ntfs_seek_iomap_next,
+ };
+ 
++static int ntfs_zero_tail_iomap_begin(struct inode *inode, loff_t offset,
++		loff_t length, unsigned int flags, struct iomap *iomap,
++		struct iomap *srcmap)
++{
++	loff_t init = READ_ONCE(NTFS_I(inode)->initialized_size);
++	int err;
++
++	/* Skip bytes initialized after the tail range was selected. */
++	if (offset < init) {
++		iomap->type = IOMAP_HOLE;
++		iomap->addr = IOMAP_NULL_ADDR;
++		iomap->offset = offset;
++		iomap->length = min(length, init - offset);
++		return 0;
++	}
++
++	err = ntfs_seek_iomap_begin(inode, offset, length, flags, iomap, srcmap);
++	iomap->validity_cookie = init;
++	return err;
++}
++
++static DEFINE_IOMAP_ITER_NEXT(ntfs_zero_tail_iomap_next,
++		ntfs_zero_tail_iomap_begin);
++
++static const struct iomap_ops ntfs_zero_tail_iomap_ops = {
++	.iomap_next = ntfs_zero_tail_iomap_next,
++};
++
+ int ntfs_dio_zero_range(struct inode *inode, loff_t offset, loff_t length)
+ {
+ 	if ((offset | length) & (SECTOR_SIZE - 1))
+@@ -573,7 +582,7 @@ static int ntfs_write_simple_iomap_begin_non_resident(struct inode *inode, loff_
+ 			iomap->length = length;
+ 	}
+ 
+-	return 0;
++	return ntfs_iomap_prepare_tail(inode, iomap);
+ }
+ 
+ #define NTFS_IOMAP_FLAGS_BEGIN		BIT(1)
+-- 
+2.25.1
+
