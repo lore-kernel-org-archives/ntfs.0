@@ -1,48 +1,73 @@
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D6F3B0AFB
-	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 05:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E75F373BF6
+	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 06:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791784752; cv=none; b=Wg0ykcqc9pYRhbSAXcwM3P2cqa/uiCU6YU9/Tw3KRGTqTWLbVCOC11PzmkURWkqzI9sl6vFAAMUiJjJzsYVlu06VW+YjM5OhCONGT6jiGMhHQs3UYqeLAYwtpL+s57MalR8/VAbtc21QjTT/mrzzU8fSBfiYlNDSkNgWoAuI3ZI=
+	t=1791786048; cv=none; b=Sdxltg0z/9cHU2N7g3DWNQs+YLDV8j+nO/yYtI1d/7RHwMAcIlXIZl4MiHqT0r7HCEl73vOXtuYQdTV1W1BHp7RsfTB73zVRyriC4UXNKARYc15LKkDbhSlm2OSLqczcC97thy5t4KDfstbmjSVO6keznvvGLXMlBUsd22PZLM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791784752; c=relaxed/simple;
-	bh=V4bYiEtPvbsNwrfI4FTIqVOAh7K1SIyJuvRFG+HzNMA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CkSIUkIwTBXVTmN/ZL1eCghCT/4C1Cw3MgwVfVr5el9waPEIenvjQrK6qlt08gosoV67ptvsc0uNhKABvkVYqfqpvhcVxpDsnhNy5ZYWdfv0Fjnm1wfFKE74msZRKjxSNHcuAj7ZxbwurX5zJIWHQJiqmYCDiAD+2IrslKhO5a0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 06a39b54c60211f19a56ed5b684f684d-20261012
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:757bba7b-bf37-4f2b-a449-61fe3a784295,IP:0,U
-	RL:0,TC:0,Content:0,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:25
-X-CID-META: VersionHash:7db8b62,CLOUDID:a7c0691b46c78e865f19011d80d8f37d,BulkI
-	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
-	5|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 06a39b54c60211f19a56ed5b684f684d-20261012
-X-User: zenghongling@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <zenghongling@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 142794637; Mon, 12 Oct 2026 13:59:02 +0800
-From: Hongling Zeng <zenghongling@kylinos.cn>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
+	s=arc-20240116; t=1791786048; c=relaxed/simple;
+	bh=KjaORzNmIC0hbf9pMq5xRub4erK67RsKQRLJdDK1qSA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T9p0Tc+3c1yxkxc4DYVMJvOYY0qC5vJ7PrBcwrB3gL7fXyO4Ee5BLDmmCpwh4HO5z2QOM7tv5rlaeMeNdqa70zAZIgAwjgqLHPIs4YSvA58+/7G/Hb6stEpAAAHl6Kax3e+ca3UJMKX7F290gYV8/nlqIwHmvdCdPtaRbg7n5pM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hn5nZB8Y; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hn5nZB8Y"
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-cc4dbda1e5dso389513a12.2
+        for <ntfs@lists.linux.dev>; Sun, 11 Oct 2026 23:20:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1791786047; x=1792390847; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=ilUEX6P5SXdjM30xs4/YiTd6UosFP69OH0rOy8mkCZ0=;
+        b=hn5nZB8YOZwJmnzVpfM81H8cbe4l/KvrNgjk5CDFrmvXGX0VqqoaQ4+mA7Zo8M2qfa
+         FsQ9UXXId8ZJYEI4CoZj6hfJ74KTkObsHUhz6nudLtBHTdxyGXDnwOdwGSvNRGSIjoCw
+         LdFnv1lEZqXdaQd3tfCdO0AoyX65EqwlMkF+FQhVgUs6ypmFfy4MNcCMkWGbTzNRkNoQ
+         WVCnMAB+xBIKtGhGgsZJQtLRwRXUrlpOZxp/jAScSQl9Bsqm6F14sgqyATtkNby/NQBq
+         DKsct38abJAkV/avTx3fyubVghiSInQIoFrO/i7I+7jaxd305vfPQzM5GzSbd5U4zlLe
+         SnKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791786047; x=1792390847;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=ilUEX6P5SXdjM30xs4/YiTd6UosFP69OH0rOy8mkCZ0=;
+        b=s7xvaqIzgfgVmB4tZ8iNKab/OZfc98asPJ7FmXUcqlnNbHXpwP6cW8NjhkFA6yCRL5
+         OdnIdCp/YJjv7hltGdzkWemrqjuyTsDic1ejKYOyrTxrWlNFD5NF7pxbuwPxTS8U5mRg
+         73ykqBm6GFHp7W44fhfOb1yPFqhUdapXtpy46ItLPaO6+3R8tXrWnnPzCzP02Peb1faF
+         084Z/XGcJRZUTXvhSRWxN9UBuKjBPZqB/xxQEmW0FRFlOYpue+TL0/IZlZCkhIUb0+/v
+         Ip19rdgAeEB8vADy3MNVYaqv43gkiQCojRgf23hIJK57ZpadW97Tks40rc3NzgNgScPY
+         eoIg==
+X-Forwarded-Encrypted: i=1; AKwUvByBsEfOKIfSWX6HSjxpUy5e6xK8KgE8KmyW/HiI/u/T80N0/FmvZdIkM284IEeFr0/uSnGF@lists.linux.dev
+X-Gm-Message-State: AFq9FYIwjrXGbw/+be1Ed9BZLPr0wdYFwuaFLHRxe5hAD7qFzVqpHeTD
+	3hTlpNFBc2E9ud3U3n9IYievr2LRqDsLR8cyogkPULC/Sgq3jaWZVDuD
+X-Gm-Gg: AYBFou3PmAAJR2zQo7bpdzpgV1DhB+Vxrs0vVV6/ArUgCdr3mKpryknbf2rSvS5Oq4e
+	l7Evt/Cce9Ses5Waz7CweYp+o/1BvsBcpr8WFE0GD2p4Tf3UArChu6efodG/dlyB8fO8B8radbp
+	G3ZbvwlzmOLB2sFXoUZdhWXnNQKUOd8oiNcpayOkYJ/o0BgG5vKBYRwdmrmEWvzs3lj32YNc3QL
+	zjEnKAQD0mxmvdDtZSYAMZTc+FKHa3I17z844HbVWUDIxEa3ko1oGyFCyai8HfPbfR431OQvbDa
+	GeXCWjnHrVgIExotn6+Cdg4Qq9scHC5OvufFqCKE4ppYiLQHCPJ9675/XW655ajdEXdCV6AnAS5
+	0UKSHccQAOrTPirUK6Z/pw6NaiIYQMkhFn1zdq+ExRq1+WHscASEcFJ+dh72akUbjjWyQ/qGiB9
+	24IBrEr7svVtnvQt488ID/FFQJ8sCOJYuR6/5F4eqLO5eiK3PDXuWRH6juHn/yEaql/DauyJXml
+	01+91LLq5Y=
+X-Received: by 2002:a17:90b:1e47:b0:3a4:ee64:b82c with SMTP id 98e67ed59e1d1-3ab3b06bb4bmr6635992a91.66.1791786046779;
+        Sun, 11 Oct 2026 23:20:46 -0700 (PDT)
+Received: from osman.mioffice.cn ([43.224.245.178])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cd3d93c2c75sm3990091a12.0.2026.10.11.23.20.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Oct 2026 23:20:46 -0700 (PDT)
+From: Zhan Xusheng <zhanxusheng1024@gmail.com>
+X-Google-Original-From: Zhan Xusheng <zhanxusheng@xiaomi.com>
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>,
+	ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>
-Subject: [PATCH v3] ntfs: roll back the ACL xattr commit when the WSL mode update fails
-Date: Mon, 12 Oct 2026 13:58:59 +0800
-Message-Id: <20261012055859.52525-1-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+	Zhan Xusheng <zhanxusheng@xiaomi.com>
+Subject: [PATCH 0/2] ntfs: enforce the encrypted-file policy on the read paths
+Date: Mon, 12 Oct 2026 14:20:38 +0800
+Message-ID: <20261012062040.3826828-1-zhanxusheng@xiaomi.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -51,162 +76,39 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-ntfs_set_acl_ex() commits the new ACL xattr before it rewrites the WSL
-mode EA, and removes it again when that rewrite fails.  Removing the
-new xattr is only the right undo when no ACL xattr existed before the
-update: when the update replaced an existing one, the old ACL is
-discarded along with the failed update.  The undo is best-effort as
-well: its result is discarded and the EA paths record no error state,
-so when it fails too, the new, typically more permissive, ACL is left
-on disk while i_mode, the mode EA and the cached ACL keep the old
-values.  Once the stale xattr is loaded again - after a remount, or
-when the cached ACL is discarded - a chmod 0640 -> 0777 that reported
-failure leaves the file accessible to the relaxed ACL while stat()
-still reports 0640.
+From: Zhan Xusheng <zhanxusheng@xiaomi.com>
 
-Save the previous xattr before committing the new one, and roll back
-to it when the mode EA rewrite fails.  Remove the new xattr only when
-there was no previous one.  When the previous xattr cannot be read
-back, fail the update instead of replacing a value that could not be
-rolled back to.  A failed rollback is still recorded: NVolSetErrors(),
-which the next persistence point persists as VOLUME_IS_DIRTY, and a
-log message the errors= policy acts on.  The flag cannot be written
-to disk here directly: the target inode's mrec_lock is held and the
-$Volume mrec_lock cannot be nested under it.
+EFS-encrypted attributes are refused with -EOPNOTSUPP in exactly one
+place, ntfs_read_folio(), because decryption is not implemented.  Two
+read paths get there without passing that test and return the raw
+on-disk ciphertext instead, so the same read returns either ciphertext
+or -EOPNOTSUPP depending on which path serves it.
 
-Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
-Suggested-by: Hyunchul Lee <hyc.lee@gmail.com>
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
----
-Changes in v3:
-- Save the previous ACL xattr before committing the new one and roll
-  back to it when the update replaced an existing one, instead of
-  removing the new one (suggested by Hyunchul Lee)
-- Fail the update when the previous xattr cannot be read back, and
-  restore a zero-length previous xattr without XATTR_REPLACE
----
- fs/ntfs/ea.c | 86 +++++++++++++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 82 insertions(+), 4 deletions(-)
+Patch 1 is readahead, which marks the folios uptodate so ->read_folio
+is never called.  read(), mmap(), splice() and fadvise() all populate
+the page cache this way, so one test closes all four.
 
-diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index 1104fd72cd2a..319c2c09632f 100644
---- a/fs/ntfs/ea.c
-+++ b/fs/ntfs/ea.c
-@@ -1038,8 +1038,9 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
- {
- 	const char *name;
- 	size_t size, name_len;
--	void *value;
--	int err;
-+	void *value, *old_value = NULL;
-+	int err, old_len = -ENODATA;
-+	bool old_exists = false;
- 	int flags;
- 	umode_t mode;
- 
-@@ -1083,7 +1084,39 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
- 	}
- 
- 	mutex_lock(&NTFS_I(inode)->mrec_lock);
-+	if (acl && !init_acl) {
-+		/*
-+		 * Save the previous xattr so a committed set can be
-+		 * rolled back to it.  A new inode cannot have one yet,
-+		 * and one that cannot be read fails the update instead
-+		 * of being replaced: what was not saved cannot be
-+		 * rolled back to.
-+		 */
-+		old_len = ntfs_get_ea(inode, name, name_len, NULL, 0);
-+		if (old_len >= 0) {
-+			old_exists = true;
-+			/* kmalloc(0) returns the non-NULL ZERO_SIZE_PTR. */
-+			old_value = kmalloc(old_len, GFP_NOFS);
-+			if (!old_value) {
-+				err = -ENOMEM;
-+				goto out_unlock;
-+			}
-+			err = ntfs_get_ea(inode, name, name_len,
-+					  old_value, old_len);
-+			if (err != old_len) {
-+				kfree(old_value);
-+				old_value = NULL;
-+				if (err >= 0)
-+					err = -EIO;
-+				goto out_unlock;
-+			}
-+		} else if (old_len != -ENODATA) {
-+			err = old_len;
-+			goto out_unlock;
-+		}
-+	}
- 	err = ntfs_set_ea(inode, name, name_len, value, size, flags, NULL);
-+out_unlock:
- 	mutex_unlock(&NTFS_I(inode)->mrec_lock);
- 	if (err == -ENODATA && !size)
- 		err = 0; /* Removing non existed xattr. */
-@@ -1095,8 +1128,52 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
- 		mutex_lock(&NTFS_I(inode)->mrec_lock);
- 		err = ntfs_ea_set_wsl_inode(inode, 0, &ea_size, NTFS_EA_MODE);
- 		if (err) {
--			ntfs_set_ea(inode, name, name_len, NULL, 0,
--				    XATTR_REPLACE, NULL);
-+			if (acl) {
-+				int undo_err;
-+
-+				/*
-+				 * Only a set needs undoing: a removal
-+				 * leaves no new ACL behind, and repeating
-+				 * it would either return -ENODATA again
-+				 * or, once it dropped the last EA,
-+				 * re-create an empty xattr.
-+				 */
-+				if (old_exists) {
-+					/*
-+					 * A zero-length xattr cannot be
-+					 * restored with XATTR_REPLACE,
-+					 * which would remove it again.
-+					 */
-+					int undo_flags = old_len ?
-+						XATTR_REPLACE : 0;
-+
-+					undo_err = ntfs_set_ea(inode, name,
-+							name_len, old_value,
-+							old_len, undo_flags,
-+							NULL);
-+				} else {
-+					undo_err = ntfs_set_ea(inode, name,
-+							name_len, NULL, 0,
-+							XATTR_REPLACE, NULL);
-+				}
-+				if (undo_err) {
-+					/*
-+					 * The ACL xattr is committed
-+					 * already, so a failed rollback
-+					 * leaves the new, typically more
-+					 * permissive, ACL on disk while
-+					 * i_mode, the mode EA and the
-+					 * cached ACL keep the old values.
-+					 * Record the error: the next
-+					 * persistence point persists it as
-+					 * VOLUME_IS_DIRTY.  Run chkdsk.
-+					 */
-+					NVolSetErrors(NTFS_I(inode)->vol);
-+					ntfs_error(inode->i_sb,
-+						   "Failed to undo the ACL xattr: %d",
-+						   undo_err);
-+				}
-+			}
- 			mutex_unlock(&NTFS_I(inode)->mrec_lock);
- 			inode->i_mode = old_mode;
- 			goto out;
-@@ -1109,6 +1186,7 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
- 	}
- 
- out:
-+	kfree(old_value);
- 	kfree(value);
- 
- 	return err;
+Patch 2 is direct I/O, which bypasses the page cache entirely and has
+no such backstop.
+
+Both commits are in v7.1.  I have not added Cc: stable; returning
+ciphertext rather than an error is a correctness bug but not a
+privilege boundary crossing, so that call is better made by the
+maintainers.
+
+Found by reading the code.  I have no EFS-encrypted NTFS volume, so
+there is no reproducer; the paths were traced in the source.
+
+Zhan Xusheng (2):
+  ntfs: do not read ahead encrypted files
+  ntfs: reject direct I/O reads of encrypted files
+
+ fs/ntfs/aops.c | 7 ++++---
+ fs/ntfs/file.c | 4 ++--
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
+
+base-commit: d6d3455d8751854e0d1820f14184682e23ac4475
 -- 
-2.25.1
+2.43.0
 
