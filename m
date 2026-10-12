@@ -1,88 +1,114 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FBB8418353
-	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 11:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C46446074
+	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 12:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791806317; cv=none; b=Qjjp4oIazLjJxLtisEP1Up2FpwebKML27ID/AAzhhh2kNSP5uWvZsoXQ1pNtufhOPLxHc+1cIdvLG05fIo7R8Q/fqtZy4h3Dmj9Ciz6h/4t9fBEiVEN+3YQiyQStArUppss/uZyj432B0F2XapkxGkJgheLImPfMWH/dkKeN3+o=
+	t=1791806431; cv=none; b=TXQoWfKuEGTZM2qFLgqHh61eVXubWsVo5n9w434WgZLLc5AmMgsJ1qEfOnXFb+uTlOyAJBKF9LmaOpp1OlPGlCmOfFA2gyz6pxGyxMMngCXQ0KtO6q4b6jiSATI7KRq3KhCtFIqyUS7bwLqihO3lPyF2uM3X3gAeSP9quLFrYSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791806317; c=relaxed/simple;
-	bh=gUGz6lwQa1a2dYxqinX1f5TJWie/JLfd3LgMNAeJK8k=;
+	s=arc-20240116; t=1791806431; c=relaxed/simple;
+	bh=v36kMXCoWhLlci2FoPDTFXCbNshChbzEDGVmxQaK1jA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RI1Psb69RGkOnowBuKBSp1GEmjfD6XaMZGUfXWV0tXO4BTky3yvE9K5mrfLmV1ohHCRECNFo9k66Tt0f64NsI/RgGgfVJ3Lpggin1ojUaZytC/ln6mlqg/Hx00DLIUtTm/qwiRT50twYfRktvBc7ddNty5uVSLCkvrQpxQuqVDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BuNc7FbB; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=AKAjo16/kJ4zXcoO4F7cFv0/08DObX/jJfh67SUuzSfYCUDbmNCBzR9IxYOsJ4dZCrZxV1D3pYK3NvSHKrTAFhAB4edn2Fe8F+NbimsK6/5+8tiI6QW+YAGT9pgeSQONsfRlUWp7ERB9ZXJOSfHBVG2S9IM0tH9XQwOKR3q9jEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kOYunkU6; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BuNc7FbB"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE4521F0089D
-	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 11:58:35 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kOYunkU6"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D0991F0089B
+	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 12:00:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791806315;
-	bh=HYnvEiSRJD71V8Rd3An/g58Mos1BQ3rgGbWpmrIrJK8=;
+	s=k20260515; t=1791806430;
+	bh=aEz6mK8G91zL2oei9SD/3hGK+6I5qzlNp2zPpQheMg0=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=BuNc7FbB7dmIXR8I0IdobeoJnMQc8AR5wbl5tXoKFejArP1OyOfbKdKyS9j1bXx9m
-	 4ycefERmRZHCYVKo7wXZ1EENFWRYOdIJemtlI8aPmmR6Ill/wuZBaT+s+bpwT5NsbL
-	 b0v40KbIb/r/9skACubhxVz5nkhfOdEXgf7sRp4SPlObSXi1lZiPKcngZ/I4opKpUb
-	 nmzH8PTAF+3byc/QoKe/QtLRizuJ43U/9W6qsk0JpVKdEa6ZKGMzY/3zmRkW+pKowl
-	 Es2T3R4vT4/WsCuOsAj7B4SPbisepUmRbTk9oUlzSk7qcmERB+kwHXs/vhCGBTl0LA
-	 gM9iyZQQND/Mg==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-c2055573c8cso210785566b.3
-        for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 04:58:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBzXktpyvYTNJMu5AN8aKORhuVljqbHmJD9KhnT0QNgC+5IPyDWkfIsI0AhSQlbW5LBR6FSJ@lists.linux.dev
-X-Gm-Message-State: AFq9FYJrwu94HiddDncM6PbIf3ZYsURp6l+tNN3bfI525x6ruUtX/tkn
-	S/9fdJ0FhzeQAP7oIM9fJ6VnggOrQNNVjc/TXEqSQKHUT3cFpYqRBQt7h3yvqlPUslHKLDQOfyl
-	vkhDV8SaGqRcG7RdBMwU8VrQOUOofAGA=
-X-Received: by 2002:a17:907:3da1:b0:c2e:61e:f4fd with SMTP id
- a640c23a62f3a-c31a9a07772mr810203666b.5.1791806314541; Mon, 12 Oct 2026
- 04:58:34 -0700 (PDT)
+	b=kOYunkU6TtZWZp06Pfu6me0ARTNbf6jf6RPWgl97j51YXw6J3xWTxJibkeoN8O7Pb
+	 hVLv36gPk2SIV9yNCKEQ0l9voUmyTTLyQQiQqrEtRA6/2Gngvrx4mHJicFlPpSjPKD
+	 CjR/pr+J2VGi+ZoDNNwXX+dFovA5zRjxBLtbVVFEhR66o7aGcGTwdSL8MUdWpXfVnL
+	 MU4kqcCO67ACW3pFMm7deQym6JuCnK6sRBDflU+RaTxTi6JO77kHWqVy1OJL78wSsf
+	 0H9PZLn+poupYlTgHKRgDrPBRp53INcjbSmeeCoKlb0ur8k6njvR+K2ODMZYZPvwyB
+	 ApH4FidazYFhg==
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-c29c6a3930bso222608866b.3
+        for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 05:00:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvBypmYHhxnCUucEATkeMULZhk+gywZbzGc8geBdnL0l4gnT5IqJ6unT/1shVDq49bE3VCHMn@lists.linux.dev
+X-Gm-Message-State: AFq9FYLXmP2lWFjt16emYx83lAMFuXvP51lQ/NQ6RX99SOb1iyjMdvLg
+	hVsUrW32135wme0L/oFKaSsxVHK8mQsvGNo4dEeIJvK/omHmBYyb5/lF9LIYjMNjWsxEp0mA7Pf
+	sDiaNDyRZlxyqKcO4LT7fr2D2cjqywq0=
+X-Received: by 2002:a17:907:8d8d:b0:c26:306f:289b with SMTP id
+ a640c23a62f3a-c31a9b0b097mr785702466b.13.1791806429225; Mon, 12 Oct 2026
+ 05:00:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20261012062040.3826828-1-zhanxusheng@xiaomi.com>
-In-Reply-To: <20261012062040.3826828-1-zhanxusheng@xiaomi.com>
+References: <20261009075523.3135206-1-zhanxusheng@xiaomi.com>
+In-Reply-To: <20261009075523.3135206-1-zhanxusheng@xiaomi.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Mon, 12 Oct 2026 20:58:22 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8UhVysoZ50h8GPFjD701y5frB8MvWA4Y-sP6PCSvexsQ@mail.gmail.com>
-X-Gm-Features: AclHuK_zCh0yyDClvS7vBVflOscONkCx7g8dSTMN8zx_K7sJ0z_XwYZPqWsBJ-M
-Message-ID: <CAKYAXd8UhVysoZ50h8GPFjD701y5frB8MvWA4Y-sP6PCSvexsQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] ntfs: enforce the encrypted-file policy on the read paths
+Date: Mon, 12 Oct 2026 21:00:16 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd9Xi3kHSCuMFKY_cQWBz4HagCy6pgE6gKvfwrgs5XNAVQ@mail.gmail.com>
+X-Gm-Features: AclHuK-ZUxkPnPfEewj9Uhye7k_tFzT2AQ58OP-vqGk-bZwZYBczFLJUbX204oQ
+Message-ID: <CAKYAXd9Xi3kHSCuMFKY_cQWBz4HagCy6pgE6gKvfwrgs5XNAVQ@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: widen the sub-block offsets in ntfs_decompress()
 To: Zhan Xusheng <zhanxusheng1024@gmail.com>
 Cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
 	Zhan Xusheng <zhanxusheng@xiaomi.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 12, 2026 at 3:20=E2=80=AFPM Zhan Xusheng <zhanxusheng1024@gmail=
-.com> wrote:
+On Fri, Oct 9, 2026 at 4:55=E2=80=AFPM Zhan Xusheng <zhanxusheng1024@gmail.=
+com> wrote:
 >
-> From: Zhan Xusheng <zhanxusheng@xiaomi.com>
+> ntfs_decompress() tracks where the current sub-block starts and ends
+> inside the destination page with two u16s:
 >
-> EFS-encrypted attributes are refused with -EOPNOTSUPP in exactly one
-> place, ntfs_read_folio(), because decryption is not implemented.  Two
-> read paths get there without passing that test and return the raw
-> on-disk ciphertext instead, so the same read returns either ciphertext
-> or -EOPNOTSUPP depending on which path serves it.
+>         u16 do_sb_start;
+>         u16 do_sb_end;
+>         ...
+>         do_sb_start =3D *dest_ofs;
+>         do_sb_end =3D do_sb_start + NTFS_SB_SIZE;
 >
-> Patch 1 is readahead, which marks the folios uptodate so ->read_folio
-> is never called.  read(), mmap(), splice() and fadvise() all populate
-> the page cache this way, so one test closes all four.
+> *dest_ofs is an int page offset masked with ~PAGE_MASK, and
+> NTFS_SB_SIZE is 0x1000, so do_sb_end needs PAGE_SIZE + 0xfff of range.
+> That exceeds u16 once PAGE_SIZE reaches 0x10000: the last sub-block of a
+> page starts at 0xf000 and do_sb_end wraps from 0x10000 to 0.
 >
-> Patch 2 is direct I/O, which bypasses the page cache entirely and has
-> no such backstop.
+> The zero-fill that pads a short sub-block then computes a negative
+> length:
 >
-> Both commits are in v7.1.  I have not added Cc: stable; returning
-> ciphertext rather than an error is a correctness bug but not a
-> privilege boundary crossing, so that call is better made by the
-> maintainers.
+>         if (dp_addr < dp_sb_end) {
+>                 int nr_bytes =3D do_sb_end - *dest_ofs;
 >
-> Found by reading the code.  I have no EFS-encrypted NTFS volume, so
-> there is no reproducer; the paths were traced in the source.
+>                 memset(dp_addr, 0, nr_bytes);
 >
-> Zhan Xusheng (2):
->   ntfs: do not read ahead encrypted files
->   ntfs: reject direct I/O reads of encrypted files
-Applied them to #ntfs-next.
+> A sub-block made only of symbol tokens reaches this without consulting
+> do_sb_end on the way, because that path just does
+>
+>         *dp_addr++ =3D *cb++;
+>         ++*dest_ofs;
+>
+> and is bounded by dp_addr against dp_sb_end.  With do_sb_start at 0xf000
+> and eight literal bytes emitted, nr_bytes is -61448 and the memset()
+> runs for 18446744073709490168 bytes.
+>
+> Getting there is cheap: fifteen sub-blocks of eleven bytes each advance
+> *dest_ofs to 0xf000, since the same zero-fill pads each of them out to
+> 0x1000 while do_sb_end is still exact, and the sixteenth one triggers
+> the wrap.  A compression block is 0x10000 bytes with 4 KiB clusters and
+> the fixed compression unit of 4, so all sixteen fit with room to spare.
+>
+> Phrase tokens are bounded against do_sb_end and so return -EOVERFLOW
+> instead, and the
+>
+>         if (*dest_index =3D=3D dest_max_index && do_sb_end > dest_max_ofs=
+)
+>
+> check at the top of the sub-block stops firing for the same reason.
+>
+> Use int for both, matching *dest_ofs and dest_max_ofs.  The narrow type
+> came in with the original import and survived the removal and revert of
+> the driver.
+>
+> Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
+> Fixes: 1e9ea7e04472 ("Revert "fs: Remove NTFS classic"")
+Applied it to #ntfs-next.
 Thanks!
