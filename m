@@ -1,125 +1,114 @@
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93BB43AEF5F
-	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 10:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC033F4DCA;
+	Mon, 12 Oct 2026 10:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791799267; cv=none; b=Ri8ccNnzjnN+Qzb1fYeYFy0Ho5RXd01px5setybHFCoEorEBH+Lx/+m6Hor65U/9AL1J0Zz7vqO50PSAobG9+bHsx9sPfgBiZVVGEzdYCwQ4K5kn6VSapF+zBi0JkQLs7RouHNTebpwZbKV0oImTBSe9v9RPcEkOE7F8chY3vHQ=
+	t=1791800490; cv=none; b=f7KkYBjx8q0DcXkqWMk4PFaTL0MjKlxN9xlLaG6QyJ6KXIkZlb2Hm//ELJYFLX+qNrtx6FrrhvWcMDGqdYcLGfggzPnsCTZkjYUqp3o/L7nU64oRTE2AyLddJd3SivGUkE8N5a/GIcxxDO9p4WhEt8qsIp7UrJ8qzwQqpQQoT5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791799267; c=relaxed/simple;
-	bh=wixS3oHduGmXaXx1QCURZVkYo4rRgH2HUCv85ZKvaNs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KQhAuCot2j4f8dBJ2okK7U//flkvq0I70RtHvwOtiu8tk7yt7u8++3iFaaaZx+KfnnrpnpmvoST/XKSQaxd3QUu5IJqHqgP8zILCPEuQ2vklo0bkyMAm/LhqsAOm/6fw90ve9XxsJSYUuQf7JNtxBJ9QOOm4DNF3c7DplXQ9uKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=quG4yHY4; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	s=arc-20240116; t=1791800490; c=relaxed/simple;
+	bh=FHwfq/OCDsnntrfJYkKn8tLOjs4Tv7YHZV8JitYQDQ0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=llHmXC+YlFhxReQ+rBpOwfXrUggAXxiutyzHwER/gdhdOZULL9JInaAX+tBU0WNtkK+y/kuXR4AKWIl8bwRcC8mqj8RmXRJen71R5nn89q49m2v1txB5bxEBlCdTCE7mEC0G7dOGAeoRpIHHbRcWfn/e0xGpvYmQyx/l2oIl9Bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=daD9kmOa; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="quG4yHY4"
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-3ab41538192so1231403a91.0
-        for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 03:01:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791799265; x=1792404065; darn=lists.linux.dev;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=HugyZ/37YBIlGXyBPom5LHKMhfm/UdMpEclB1nn3ivQ=;
-        b=quG4yHY4DTgzOtpNIYi8h1boPVFlcV+lTofoX2sDZ5MboVEVMOVVTgikqm8KYjqn1q
-         aQ1HzFwDhFEwtHZNSL7HwoNCX2LMPhl7KIR6ymVzjUqT/XTDUuJoImh8JWpSD8w3ioFD
-         KW/eASYBcfwPaV9iLbBKhCr/j+RpSm+sfDWBO4mtO7lpZkV0Vp1HrG794+TQEXwogoUf
-         MtWVYBrNgNq3oMqoCkgFF9VowplnmoSKi7is20jrH7fX/yHp1KgXIZFhjZT83CTQxrQY
-         asEVg/NipkfZ5ShAExEb9Qe5UI81/WbSy/yf+4eq8BMxo5ExSflSGtG7e9yr3SuJeviR
-         OTqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791799265; x=1792404065;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=HugyZ/37YBIlGXyBPom5LHKMhfm/UdMpEclB1nn3ivQ=;
-        b=JNWhRBiL5HDBkhL5Hei7SPe4TJwG9+4xWM7+yBSBV68OK1Yn0eD5VwxZJ+3+3Qtv9H
-         1vZMdn8eEt5mR1QiAKeB0/Uhmrvoaobrj9/g43ZtvHbqirWmnsQs46gfO1SlPZSrhQv3
-         HLwWhZ05SiqOS31ARGnOY3uStd6nZyZ4Rgv6hihzfiXmFZL5oovzLwqN9j4QhTvZWhIk
-         gQxg5eO6OzU8rl0Z3xqtXQ64lob1uZtQVo4k6yf+4xyvU8rTRddjgCZEaODuWMGpXa0l
-         rtVjy19LBjd+R8w0Xnkrv9xzb5lw5tqqggpaVzHpbpgcayqrpQCrtTVb1SsEJq7s9aNI
-         26Uw==
-X-Forwarded-Encrypted: i=1; AKwUvBzaNwfxxe2XAdT0EoJnSD3GXt1xKvw9fL6phdL+fS9TGWypLYRCL1YL5IFInI5EYxWdcahM@lists.linux.dev
-X-Gm-Message-State: AFq9FYLVubn3QMX43VGxAsVylRlxxFBZwRtx6rYMvUmigfBDPFmEBrbm
-	mw8jFurdNvaH2siaGlCpx81K2yAAZr21VcRTRrCGtv8yPNi96AtTYLdB
-X-Gm-Gg: AYBFou3t3Eoi6Iro+hhGaKpKpVTYhEbc9HBn/Dfl9Wyn602Ml3JNxtNN8hej1l6U4TV
-	JUsVpoOH0KvgEUmfJFwFWYCfOO7dh1LY1EnzVOyvPcIbSTBOp3JGqF1DrMAoi0WxqwF8cWx2aHk
-	CmYk/YDud99SZOi3B6bCciboqAAZTeo4kLWiN3AE74atHHg0B8iZGJMJjPSeLVQDbcKaAtPdzT2
-	0w7RE/yQ215trfRPN/IU9KudkFk3Txhgn9xaq+BoFF3QK1C5AkQ/T/drPsJHRnG1VatDnHTepMs
-	Vd9Y21rsIByAjusWElCLkGgRU6u+PJa1AU1lPX3cT35tzuspCjs/Q3cWFJr6t959WFpydlut1S9
-	jSFS7RXGUJBLZot8ocq3S3DAgKn34LzcsAMe3PGbb6StY7Tc35mGgJA1hlAPktsUPk9M3or4DUo
-	yZJSy8KQ+CkOo1yJsKh5hCnHoRPNhCv+7M/PsnbOVJ971DsefU16oihYNSPGxv
-X-Received: by 2002:a17:90b:3c04:b0:3ab:c80:936d with SMTP id 98e67ed59e1d1-3ab3a735ffemr7677500a91.19.1791799264703;
-        Mon, 12 Oct 2026 03:01:04 -0700 (PDT)
-Received: from localhost ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3ab38dd5864sm15527715a91.8.2026.10.12.03.01.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Oct 2026 03:01:03 -0700 (PDT)
-Date: Mon, 12 Oct 2026 19:01:01 +0900
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Zhan Xusheng <zhanxusheng1024@gmail.com>
-Cc: Namjae Jeon <linkinjeon@kernel.org>, ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Zhan Xusheng <zhanxusheng@xiaomi.com>
-Subject: Re: [PATCH 0/2] ntfs: enforce the encrypted-file policy on the read
- paths
-Message-ID: <asyv3dcrnMUlisTp@hyunchul-PC02>
-References: <20261012062040.3826828-1-zhanxusheng@xiaomi.com>
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="daD9kmOa"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07DB31F0089C;
+	Mon, 12 Oct 2026 10:21:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1791800478;
+	bh=jSaTeXy5zEI39kgqqTi6yfSkP3Kgm5wm6RfoGXruvqg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=daD9kmOaoDrecEZ+GKWXxyW9H20UJr48DcxIiw0e65dcl8QTST3JZXcj61YvqNTyb
+	 c5d34ADQW1FTC40OtFvDZ/r1oWnvdCTDB2nBPiUWZpsdvr64rU3yyTUZCbQmtT/WHN
+	 M4L3IE8ZFu/uZjDyHAoHWVVDuNF/pppyPWohHYEa4Yvx8fprF5PUJYsVDI169f9kxo
+	 jBe+V1vSuEX9xF71FfYPmOVHGKSg4cEB3pIABRCDPA7K95hBDggmzUqYSJbpYomakn
+	 PXM0tJDgLdWEhvw5L8NTowb8aNFn6hJrwa/MlDBOPgqwCRarNEsyBQ1YwBmx0RfVjr
+	 WbnHd24KBBfVA==
+From: Christian Brauner <brauner@kernel.org>
+Date: Mon, 12 Oct 2026 12:20:46 +0200
+Subject: [PATCH RFC 01/28] ecryptfs: don't leak the inode when a lookup
+ can't open the lower file
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20261012062040.3826828-1-zhanxusheng@xiaomi.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261012-work-fs-sb_rdonly-v1-1-60743a3dc326@kernel.org>
+References: <20261012-work-fs-sb_rdonly-v1-0-60743a3dc326@kernel.org>
+In-Reply-To: <20261012-work-fs-sb_rdonly-v1-0-60743a3dc326@kernel.org>
+To: Jan Kara <jack@suse.com>
+Cc: Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, 
+ linux-ext4@vger.kernel.org, jfs-discussion@lists.sourceforge.net, 
+ linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, 
+ linux-fsdevel@vger.kernel.org, ntfs@lists.linux.dev, 
+ ocfs2-devel@lists.linux.dev, linux-btrfs@vger.kernel.org, 
+ gfs2@lists.linux.dev, linux-efi@vger.kernel.org, 
+ linux-mtd@lists.infradead.org, linux-xfs@vger.kernel.org, 
+ "Christian Brauner (Amutable)" <brauner@kernel.org>, stable@vger.kernel.org
+X-Mailer: b4 0.17-dev-3d1b8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1919; i=brauner@kernel.org;
+ h=from:subject:message-id; bh=FHwfq/OCDsnntrfJYkKn8tLOjs4Tv7YHZV8JitYQDQ0=;
+ b=owGbwMvMwCU28Zj0gdSKO4sYT6slMWSd2TJJmlVX9PaCsIn+FsHZwuxHGEpPFCj+mriqsDrpf
+ qGIfFJFRykLgxgXg6yYIotDu0m43HKeis1GmRowc1iZQIYwcHEKwETcDjD8sz1q8vHQt6fh7p09
+ uT08PmKLO9tkzFMehF2fYnDC/qOTC8P/xLgFX20+PbiQ+CC39cSDhwe1Dlq6qHKtT7/euMmvwfE
+ UHwA=
+X-Developer-Key: i=brauner@kernel.org; a=openpgp;
+ fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
 
-This whole series look good to me.
+ecryptfs_lookup_interpose() opens the lower file of a regular file to
+read the size from the header. If that fails it calls make_bad_inode()
+and returns the error. A new inode is still I_NEW at that point and
+nothing ever unlocks or puts it, so it leaks together with the reference
+it holds on the lower inode. And an inode that was already in the cache
+gets marked bad for all its other users instead of just losing the
+reference this lookup took.
 
-Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+umount then complains:
 
-On Mon, Oct 12, 2026 at 02:20:38PM +0800, Zhan Xusheng wrote:
-> From: Zhan Xusheng <zhanxusheng@xiaomi.com>
-> 
-> EFS-encrypted attributes are refused with -EOPNOTSUPP in exactly one
-> place, ntfs_read_folio(), because decryption is not implemented.  Two
-> read paths get there without passing that test and return the raw
-> on-disk ciphertext instead, so the same read returns either ciphertext
-> or -EOPNOTSUPP depending on which path serves it.
-> 
-> Patch 1 is readahead, which marks the folios uptodate so ->read_folio
-> is never called.  read(), mmap(), splice() and fadvise() all populate
-> the page cache this way, so one test closes all four.
-> 
-> Patch 2 is direct I/O, which bypasses the page cache entirely and has
-> no such backstop.
-> 
-> Both commits are in v7.1.  I have not added Cc: stable; returning
-> ciphertext rather than an error is a correctness bug but not a
-> privilege boundary crossing, so that call is better made by the
-> maintainers.
-> 
-> Found by reading the code.  I have no EFS-encrypted NTFS volume, so
-> there is no reproducer; the paths were traced in the source.
-> 
-> Zhan Xusheng (2):
->   ntfs: do not read ahead encrypted files
->   ntfs: reject direct I/O reads of encrypted files
-> 
->  fs/ntfs/aops.c | 7 ++++---
->  fs/ntfs/file.c | 4 ++--
->  2 files changed, 6 insertions(+), 5 deletions(-)
-> 
-> 
-> base-commit: d6d3455d8751854e0d1820f14184682e23ac4475
-> -- 
-> 2.43.0
-> 
+  VFS: Busy inodes after unmount of ecryptfs (ecryptfs)
+
+That's a WARN, or a BUG with CONFIG_BUG_ON_DATA_CORRUPTION. The lower
+filesystem reports the same when it is unmounted. Use iget_failed() for
+a new inode and iput() for one from the cache.
+
+Reproducer, opening the lower file read-write fails on a read-only bind
+mount:
+
+  sig=$(printf x | ecryptfs-add-passphrase - | sed -n 's/.*\[\(.*\)\].*/\1/p')
+  mount --bind -o ro /lower /lower
+  mount -i -t ecryptfs -o ecryptfs_sig=$sig,ecryptfs_cipher=aes,ecryptfs_key_bytes=16,ecryptfs_passthrough /lower /upper
+  cat /upper/f      # EROFS
+  umount /upper     # VFS: Busy inodes after unmount of ecryptfs
+
+Fixes: 3b06b3ebf441 ("eCryptfs: Fix new inode race condition")
+Cc: stable@vger.kernel.org
+Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
+---
+ fs/ecryptfs/inode.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/fs/ecryptfs/inode.c b/fs/ecryptfs/inode.c
+index 525297c7ebd8..0d8452558a98 100644
+--- a/fs/ecryptfs/inode.c
++++ b/fs/ecryptfs/inode.c
+@@ -362,7 +362,10 @@ static struct dentry *ecryptfs_lookup_interpose(struct dentry *dentry,
+ 	if (S_ISREG(inode->i_mode)) {
+ 		rc = ecryptfs_i_size_read(dentry, inode);
+ 		if (rc) {
+-			make_bad_inode(inode);
++			if (inode_state_read_once(inode) & I_NEW)
++				iget_failed(inode);
++			else
++				iput(inode);
+ 			return ERR_PTR(rc);
+ 		}
+ 	}
 
 -- 
-Thanks,
-Hyunchul
+2.53.0
+
