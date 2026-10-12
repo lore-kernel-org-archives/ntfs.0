@@ -1,163 +1,273 @@
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E717546D0B5
-	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 09:06:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791796009; cv=pass; b=r/RRUvjtwc33+695APL74TQMoLVIY6Y6EXsOtdMeMuXC0XiWTK9sZcqezdT/cGDLTIhdrfwuGSrmUUR2E6xGFh/74IHhsU8+6b4XihKNunp4BBqMdk1IpGfeHJJS0awWxPa6wQOlGdHLFwwGEmXiM07YCi1iHivHl0vNlBbcl8M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791796009; c=relaxed/simple;
-	bh=u6z0nz0rXLQD/d/++bl8nKXdZ9kodSiFoq2BerR4sr4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pulpuajcgDTAkglqGHRWtf3XnXpoGUcLmSd/GDzRcsYFD+Zp5QgcbyA+XvjRhYx4GCE9OXUouwtUXxboBIGRXuPSq246Xf/IxOTDbauxn35qtf651zGPEmreWxRCyoHnV97B6Q4h1fQEORLBeWB22bqQKkxNc7N7IPBejdAvovQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LbQcPBuC; arc=pass smtp.client-ip=74.125.224.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C774772A5
+	for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 09:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1791798596; cv=none; b=UJGordumAuaQDunsJlEejhARfEPtaiG19uVY45HEWwq/1wGEBJ3ksnzM4HVY3vaDO2jXJ5Cev81IKKsHr0ur75LpE7ZhGsYNMQOIUCRdMk0U882kS8zUzxpkWNnJv2bIp/L2ulacjx7SoN3ODsuKD6pKEx4k+2oYuxP9f3Y/i+g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1791798596; c=relaxed/simple;
+	bh=tquEmo3gl+DNuEdBkeQmX5Ac3hcWeJexs8oMeBPJW+Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QALcjXstgeF3uaQlzkvw+GkED/jo33TCYv5oMDQG3vfQ2/rzHz0Vw4MD6pDniSh2sQalMnJ0zIkNk9njHWWfwIKvfItKVl2CZ4sRgF2ty2JlCRvfgboEpyOc18uIl6mP+L2eCE9USM8Hnzo00FkcdafThpDf9alBUmdBQ/yXyT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GaitvKMW; arc=none smtp.client-ip=209.85.215.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LbQcPBuC"
-Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-675ee8fe788so161642d50.1
-        for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 02:06:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1791796007; cv=none;
-        d=google.com; s=arc-20260327;
-        b=hicwPGzJ9Ttb5pPOS5YeV8EVif6lXtZNg1T2ekFkrYMiHHC+3ltYEpuOvV0ctfO6L1
-         w1Ho1AFcx0Uu9lJj+s/R5J7YYck8jg+9dLdoN1nTmkrt/0OdvEdSkx1vZSYrPL4Jxd2U
-         dXsswZvC0V6nhm3H65cbV7vFzWyW6Y1vn7mleaOhMDGhjcoBsayxFLNz2xJGmTY/YWTa
-         KnLAennAphO73ne/Hq49W4f8DkLQVdizf2+BQ9JvTkZoRciyOXrI/HJ0GTmaLQKA1W6P
-         BHbOx5KyvP57BG+KJS2FQVckBFtYvMxWhYdj0IKTIq9PAjYyNMnvFyvVvqacZ5wGD96B
-         HSDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=7DociiOpQMr/snyhgBdk+Kg98nBD7g+hHAnoUTnSy0Q=;
-        fh=PbOaAQ3sATPxx0hTdZ3OuUja/CXssMmMWYpnkyIYMJ8=;
-        b=ZgQ+1OOAN9MAFPMImlCtM1myFDoEpcq0u0yMDx+5X6fWKUntjeAD3IvE/ioxa0gFiS
-         PNDIdFzIa3cvbRPk1uakdIY7roTUa5Ep+Q6nKXYBeAGui5a0ly6tz0+cVftbCDy4A0Mx
-         TB5YOBDwspsi38SHy7hUjfWXIH2dOdbZxjiAX7MvjzBtJRb7hSvUaGJ+tJ0NAii9haBC
-         CKSsmCMJJM1x40hhxd+HTHKnOBzbqrA30DZRH2S95TWswv32dHT+HVY+xGNiO0S7acbv
-         QbmtzwMy7d1clMJVA+hss0PKZ4ZfCAbo+LuTXYRwY2/egvF3aGu52RHqqJTj29B+PUth
-         t5DA==;
-        darn=lists.linux.dev
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GaitvKMW"
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-cc4aa18f9afso550317a12.3
+        for <ntfs@lists.linux.dev>; Mon, 12 Oct 2026 02:49:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791796007; x=1792400807; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+        d=gmail.com; s=20251104; t=1791798586; x=1792403386; darn=lists.linux.dev;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=7DociiOpQMr/snyhgBdk+Kg98nBD7g+hHAnoUTnSy0Q=;
-        b=LbQcPBuC2Abkl9TRTaRLI13XaSTiuGZ35pH1f7u70CUKc2NCMO+UEVBbrLg8EtPUCE
-         U/eVpfPrwm3yIwFUjPG1sHvgeX6AsyQXYruS6lqitRUZifZV0YO9vT2m1Ddmf1hiw+ks
-         NkMdeVNIfcwWpoG2bvon+2bV6ujUZ5A73x/3yzpsOM+6MCRY5a2DUMt/eH55mG8Bx6kG
-         UmERu/Vzk0FQyBtcOeroUqw75x6ypmWBytoypMKMPI0Ag2kc+mUs9PcnadbhO6Tf3Xru
-         iQNR3YrAy6zRHmJyQTrAD8Hokr18f67y+K9OGhlKlrQ8lSUUJxFFyFKd99WIAi0inhPb
-         UBEA==
+        bh=W79TeYdawJl05fpvMEHv8uRrqzpyiJUu8pXbceDlpDs=;
+        b=GaitvKMWuW/qUkm8zILogwmEfWYc52Fffx4r+6gqUDpij/wzgY7lUts+jvlLVqw/5r
+         esJGZ2k1b9b9lO9YWpOOGqYNVZMmIk6GY1ZfNR8uKAZ0SlvaLAakgZR4dXdjLq3CXrA5
+         D3m6YrusVpS6r2eD7o6VtW6oyPsdC6CAQyS4xU7jwb1FyROSptszv11CR0+v0psS/x8B
+         hv0zo/y/DnqOXyI0aewqpmQyXpZCqBiW7unge+q2Vt/2Lg7+1mbeqjfhxO1j0RwR1c5K
+         UgUEBt+gpZNk3PDSppFa+PctXyDoj0Pjo/I+aZv2K3lGWaTG3TiidVUHp/qQQUnbmYEj
+         L70w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791796007; x=1792400807;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1791798586; x=1792403386;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=7DociiOpQMr/snyhgBdk+Kg98nBD7g+hHAnoUTnSy0Q=;
-        b=kIMi6LwopLDAa7Oslodb743RuykSw9V5oaCyqTwa5OsIJaJ18rZoVeJITEmgLz/L7t
-         YcpDwEPkxnKcjzIeWCNq8mU5nSw+iiLgQe5F+cKZ8VYX0mQw0XUkKA8MfwNH+dpyVCQF
-         uide/a7bUSMnJ+pxcE0VGV/oZN+Dr6fn7xPVvMnKzhqD6b042aM0I1RyG4Pg4UAk1oqX
-         6L2Atb2LX8TXEGjopPuWJhw8wXduZwKFlaAbi/4kwPyVyuZk5AqK7aBO5kSpRqnA0R87
-         PJ1IjIRAUgXQHZN+k0nzTNnGPM/+0qGKkblSZ8bnrElgtjJEPoVKCkN33pJQJLOMQOo2
-         aw+g==
-X-Forwarded-Encrypted: i=1; AKwUvBwIXDgmwZWK1FKlZ7aQFDdbLRenGEfz7f7kvq9vs4kbBdFURGzloqgs0wFN/fY8gZGy7g0W@lists.linux.dev
-X-Gm-Message-State: AFq9FYKiekMezgmvbsmxWWJHZuawSvUIWRcTt/6qI/oXfX6yeaMZ2ge6
-	B44TRAQsvbi7+zo4tvp6BFgoon7ekrDYQEFbu1EPhBMIah1HPBUlSaQtkcRMlhm7ZRSnbPPHJ8T
-	xz1UnZytFfvj8JYHpFFop76JtZJpRsO8=
-X-Gm-Gg: AYBFou3DdbOqBiq4Ag8shV2/FiAWiwgIhEMfNHD8Qe5BTuYXyACENNDLyTY9zdyYln0
-	aNgUeVZ0WnD9JulJi7dNKaH0o6gT7SSxS9ao5gl7qk9NEtTYoog4u533/mweX0h7j/BymYEQH3U
-	1W5ybmQhiCx3jZ93veKaUO3hk8So6MSGaq11fz4ttoX6nLXlZSqwhhqGRQV2plQrNnPaNpM1QBD
-	/w87Yv61AJbHtjvkNQOwdBGFpsz0SRaiPZfVUPuSA7IWE2i8H5ZHh/VGmm9dpjJzumFGU4Rmg9w
-	uyHNom8OiW3wuHlwgkLTL38WLhboi52rZNeMpvSAWfeWSCt0b7GRe9rOuQ==
-X-Received: by 2002:a05:690c:6e10:b0:855:ba1b:c71a with SMTP id
- 00721157ae682-8b07edcda9emr55018537b3.3.1791796006796; Mon, 12 Oct 2026
- 02:06:46 -0700 (PDT)
+        bh=W79TeYdawJl05fpvMEHv8uRrqzpyiJUu8pXbceDlpDs=;
+        b=K0FZ70cWB2fx0Uyd/VsEu6HSUrzkGTKODHgfdMh2KQOIr9IW51OLY9PyFIM11XOYBK
+         NLrMu7B3/Lb6U/mA6NU+cg2BKjLPCc5FN3vpz7+ZNcndPJyNTUNGpYV08QmYdLgPO1LW
+         acQW1ILeldsM0Z8HqztwgOWkRUMoyTNscBapZoA+tDCrbPMzRt6yfs0i8a1KdV8Fc6yI
+         OrKvnbo/TPMHIgirvd/d3A6MdybKtyYuN3jORDgOa89eg5fvs81OPC7VHTElos24P4BJ
+         OV+NdDnuhyxnYgUIi23J/MuZZvmtPNnWhHdCLNAsWLu5ATM2gatbdZ2oW2pBQmAhWyrr
+         zbSQ==
+X-Forwarded-Encrypted: i=1; AKwUvBws9sVXXSkmvMDZvjr4fNx+sUk9jAvDgI0NAJZ8ebSjFhnavF/ucetzYkGRVIwLD+rJrCEZ@lists.linux.dev
+X-Gm-Message-State: AFq9FYKFPhIU7Pciu4mXwKWBpMzWd0Fvnyzv880fFSZuZdANumhI3EPh
+	uuFBS1gPk+MThSHiuqrddcG8mxXxFYPY6/EygExnwitw9+EcAjgiIkL6
+X-Gm-Gg: AYBFou2v8R5ZE4SW+OaXQUdoEZ1ck08bvSINaLR6CGgdovERv21sRNdu0VhyAFfTfRK
+	0EvdrxCEx0EPq5uxEZKUjG2cgA7t4a+exSg4wSu/DLgFv3iFVcvoQCC2N0RsKZYB88RdmWatOmD
+	j91fV56cZNSEJ9G6OUynlUUqXnaPkJ7BOKaXS/SOHBvihAIh3O9vf85KVgx3B2lDW2YExLRtAji
+	Ky9Dyc0qEzGnEVkbqwBQ5leDAoO36miYWEYdtWt85QFRbTiUnpVqkLjddaMbNlIa9FKOQWByuvT
+	6lVo2O5t0P5IcxglqljTsoLYzreFlXR1CEG8xCbrS+Tg51LsTgZL1zLmF9NOFrgLUdhOSGU/03L
+	9zCWlvAV92FACOBQ65gM0UmYqbeWCKMNm5Q1CE8naxt8xfoO4CVJpFRYqmoEb8JHYi7T6gcdloa
+	BJH1/xmmr0wv/GpN5HSj+CkvZdk1qLa7sT0hajRWbzn2Vny92D1hZaOqWVMWF7
+X-Received: by 2002:a17:90a:d2c7:b0:3ab:1b19:78f0 with SMTP id 98e67ed59e1d1-3ab3a8e1d1bmr7225596a91.41.1791798585771;
+        Mon, 12 Oct 2026 02:49:45 -0700 (PDT)
+Received: from localhost ([27.122.242.71])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3ab38b9639bsm15214275a91.4.2026.10.12.02.49.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Oct 2026 02:49:45 -0700 (PDT)
+Date: Mon, 12 Oct 2026 18:49:42 +0900
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: Hongling Zeng <zenghongling@kylinos.cn>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org, zhongling0719@126.com
+Subject: Re: [PATCH v4] ntfs: roll back the ACL xattr commit when the WSL
+ mode update fails
+Message-ID: <asytNg4xTuvkSxa-@hyunchul-PC02>
+References: <20261012073452.90099-1-zenghongling@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20261012031656.3858771-1-charsyam@gmail.com> <d19c802b-623b-4900-ba09-76302fc7b602@163.com>
-In-Reply-To: <d19c802b-623b-4900-ba09-76302fc7b602@163.com>
-From: CharSyam <charsyam@gmail.com>
-Date: Mon, 12 Oct 2026 18:06:34 +0900
-X-Gm-Features: AclHuK-5pJRz0EpMFaEkPVRrTYtxxFY8A2HZW0Ubbkdh28bgEbVt00nBBYDq37g
-Message-ID: <CAMrLSE6UGq4gfq2kuxgTdzzVFEocs_7gzx=FwN-o8Nm9+ZvDcg@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: compare streams_interface with mounted volume on remount
-To: liubaolin <liubaolin12138@163.com>
-Cc: linkinjeon@kernel.org, hyc.lee@gmail.com, ntfs@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261012073452.90099-1-zenghongling@kylinos.cn>
 
-Hi liubaolin.
+Hi Hongling,
 
-Thanks for your reviews.
-I will fix it soon.
+On Mon, Oct 12, 2026 at 03:34:52PM +0800, Hongling Zeng wrote:
+> ntfs_set_acl_ex() commits the ACL xattr before it rewrites the WSL
+> mode EA, and removes it again when the rewrite fails.  That only
+> undoes a set that created the xattr: when the update replaced or
+> removed an existing one, the old ACL is discarded along with the
+> failed update.  The undo result is discarded and the EA paths record
+> no error state, so when it fails too, the new, typically more
+> permissive, ACL is left on disk while i_mode, the mode EA and the
+> cached ACL keep the old values.  Once the stale xattr is loaded again
+> after a remount, a chmod 0640 -> 0777 that reported failure leaves
+> the file accessible to the relaxed ACL while stat() still reports
+> 0640.
+> 
+> Save the previous xattr before committing the update, and restore it
+> when the mode EA rewrite fails.  A removed xattr is restored by
+> creating it again: the removal dropped the entry, and XATTR_REPLACE
+> fails with -ENODATA on a missing entry.  Remove the new xattr only
+> when there was no previous one, and skip the undo when the commit
+> changed nothing, e.g. removing an xattr that never existed.  Fail
+> the update when the previous xattr cannot be read back.  A failed
+> rollback is still recorded: NVolSetErrors(), which the next
+> persistence point persists as VOLUME_IS_DIRTY, and a log message the
+> errors= policy acts on.  The flag cannot be written to disk here
+> directly: the target inode's mrec_lock is held and the $Volume
+> mrec_lock cannot be nested under it.
+> 
+> Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+> Suggested-by: Hyunchul Lee <hyc.lee@gmail.com>
+> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+> ---
+> Changes in v3:
+> - Save the previous ACL xattr before committing the new one and roll
+>   back to it when the update replaced an existing one, instead of
+>   removing the new one (suggested by Hyunchul Lee)
+> - Fail the update when the previous xattr cannot be read back, and
+>   restore a zero-length previous xattr without XATTR_REPLACE
+> Changes in v4:
+> - Undo a removal too: restore the previous xattr by creating it
+>   again, since the removal dropped the entry
+> - Skip the undo when the commit changed nothing, e.g. removing an
+>   xattr that never existed
+> ---
+>  fs/ntfs/ea.c | 90 +++++++++++++++++++++++++++++++++++++++++++++++++---
+>  1 file changed, 86 insertions(+), 4 deletions(-)
+> 
+> diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+> index 1104fd72cd2a..0577a2adc365 100644
+> --- a/fs/ntfs/ea.c
+> +++ b/fs/ntfs/ea.c
+> @@ -1038,8 +1038,10 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
+>  {
+>  	const char *name;
+>  	size_t size, name_len;
+> -	void *value;
+> -	int err;
+> +	void *value, *old_value = NULL;
+> +	int err, old_len = -ENODATA;
+> +	bool old_exists = false;
+> +	bool acl_committed = false;
+>  	int flags;
+>  	umode_t mode;
+>  
+> @@ -1083,7 +1085,40 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
+>  	}
+>  
+>  	mutex_lock(&NTFS_I(inode)->mrec_lock);
+> +	if (!init_acl) {
+> +		/*
+> +		 * Save the previous xattr so the update can be
+> +		 * rolled back to it when the mode EA rewrite fails.
+> +		 * A new inode cannot have one yet, and one that
+> +		 * cannot be read back fails the update.
+> +		 */
 
-2026=EB=85=84 10=EC=9B=94 12=EC=9D=BC (=EC=9B=94) =EC=98=A4=ED=9B=84 5:26, =
-liubaolin <liubaolin12138@163.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
->
->
->
-> =E5=9C=A8 2026/10/12 11:16, DaeMyung Kang =E5=86=99=E9=81=93:
-> > During reconfiguration, fc->s_fs_info points to a newly allocated
-> > ntfs_volume. It does not contain the mounted volume's stream setting.
-> > Consequently, a windows mount rejects a remount with the same
-> > streams_interface=3Dwindows setting, but accepts streams_interface=3Dno=
-ne
-> > without changing the active pathname interface. This also breaks an
-> > ordinary read-only remount when the existing windows setting is passed
-> > again, for example from fstab.
-> >
-> > Compare the requested setting with the mounted volume instead. Use its
-> > superblock when reporting an unsupported setting change.
-> >
-> > Fixes: 2de2cdd9cc08 ("ntfs: add pathname access for named streams")
-> > Signed-off-by: DaeMyung Kang <charsyam@gmail.com>
-> > ---
-> >   fs/ntfs/super.c | 4 ++--
-> >   1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-> > index 242fb19ced2b..711e90be9382 100644
-> > --- a/fs/ntfs/super.c
-> > +++ b/fs/ntfs/super.c
-> > @@ -275,8 +275,8 @@ static int ntfs_parse_param(struct fs_context *fc, =
-struct fs_parameter *param)
-> >                       result.uint_32 =3D=3D STREAMS_INTERFACE_WINDOWS;
-> >
-> >               if (fc->purpose =3D=3D FS_CONTEXT_FOR_RECONFIGURE &&
-> > -                 NVolStreamsWindows(vol) !=3D streams_windows) {
-> > -                     ntfs_error(vol->sb,
-> > +                 NVolStreamsWindows(NTFS_SB(fc->root->d_sb)) !=3D stre=
-ams_windows) {
-> > +                     ntfs_error(fc->root->d_sb,
-> >                                  "Cannot change streams_interface on re=
-mount.");
-> >                       return -EINVAL;
-> >               }
->
-> Hi DaeMyung,
->
->     The fix looks correct.
->     However, vol->sb is NULL in the newly allocated volume, so
-> ntfs_error() only logs the message. Changing the argument to
-> fc->root->d_sb also invokes the mounted volume=E2=80=99s error-handling p=
-olicy,
-> which would trigger a panic on a read-write mount with errors=3Dpanic.
->
->     This branch only rejects an unsupported option change during
-> remount; it does not indicate filesystem corruption or an I/O error.
->
->     Could we use ntfs_warning(fc->root->d_sb, ...) without triggering
-> that policy?
->
-> Thanks,
-> Baolin.
->
+Could you shorten this comment? I think that the explanations are already
+clear from the code.
+
+> +		old_len = ntfs_get_ea(inode, name, name_len, NULL, 0);
+> +		if (old_len >= 0) {
+> +			old_exists = true;
+
+Could you remove the old_exists? we can use old_len >= 0.
+
+> +			/* kmalloc(0) returns the non-NULL ZERO_SIZE_PTR. */
+> +			old_value = kmalloc(old_len, GFP_NOFS);
+> +			if (!old_value) {
+> +				err = -ENOMEM;
+> +				goto out_unlock;
+> +			}
+> +			err = ntfs_get_ea(inode, name, name_len,
+> +					  old_value, old_len);
+> +			if (err != old_len) {
+> +				kfree(old_value);
+> +				old_value = NULL;
+> +				if (err >= 0)
+> +					err = -EIO;
+> +				goto out_unlock;
+> +			}
+> +		} else if (old_len != -ENODATA) {
+> +			err = old_len;
+> +			goto out_unlock;
+> +		}
+> +	}
+>  	err = ntfs_set_ea(inode, name, name_len, value, size, flags, NULL);
+> +	if (!err)
+> +		acl_committed = true;
+> +out_unlock:
+>  	mutex_unlock(&NTFS_I(inode)->mrec_lock);
+>  	if (err == -ENODATA && !size)
+>  		err = 0; /* Removing non existed xattr. */
+> @@ -1095,8 +1130,54 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
+>  		mutex_lock(&NTFS_I(inode)->mrec_lock);
+>  		err = ntfs_ea_set_wsl_inode(inode, 0, &ea_size, NTFS_EA_MODE);
+>  		if (err) {
+> -			ntfs_set_ea(inode, name, name_len, NULL, 0,
+> -				    XATTR_REPLACE, NULL);
+> +			if (acl_committed) {
+> +				int undo_err;
+> +
+> +				if (old_exists) {
+> +					/*
+> +					 * Restore the previous xattr.
+> +					 * A removal dropped the entry, and
+> +					 * XATTR_REPLACE fails with
+> +					 * -ENODATA on a missing entry, so
+> +					 * create it.  A zero-length xattr
+> +					 * cannot be restored with
+> +					 * XATTR_REPLACE, which would
+> +					 * remove it again.
+> +					 */
+
+And I think this comment can be reduced.
+
+> +					int undo_flags = acl && old_len ?
+> +						XATTR_REPLACE : 0;
+> +
+> +					undo_err = ntfs_set_ea(inode, name,
+> +							name_len, old_value,
+> +							old_len, undo_flags,
+> +							NULL);
+> +				} else {
+> +					/*
+> +					 * No xattr existed before the
+> +					 * update, so remove the newly
+> +					 * committed one.
+> +					 */
+
+This branch is self-explanatory from `!old_exists`. 
+
+> +					undo_err = ntfs_set_ea(inode, name,
+> +							name_len, NULL, 0,
+> +							XATTR_REPLACE, NULL);
+> +				}
+> +				if (undo_err) {
+> +					/*
+> +					 * The xattr change is committed
+> +					 * already, so a failed rollback
+> +					 * leaves it on disk while i_mode,
+> +					 * the mode EA and the cached ACL
+> +					 * keep the old values.  Record the
+> +					 * error: the next persistence point
+> +					 * persists it as VOLUME_IS_DIRTY.
+> +					 * Run chkdsk.
+> +					 */
+
+Same here.
+
+> +					NVolSetErrors(NTFS_I(inode)->vol);
+> +					ntfs_error(inode->i_sb,
+> +						   "Failed to undo the ACL xattr: %d",
+> +						   undo_err);
+> +				}
+> +			}
+>  			mutex_unlock(&NTFS_I(inode)->mrec_lock);
+>  			inode->i_mode = old_mode;
+>  			goto out;
+> @@ -1109,6 +1190,7 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
+>  	}
+>  
+>  out:
+> +	kfree(old_value);
+>  	kfree(value);
+>  
+>  	return err;
+> -- 
+> 2.25.1
+> 
+
+-- 
+Thanks,
+Hyunchul
