@@ -1,96 +1,86 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E70594E5337
-	for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 23:39:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530894E0B6E
+	for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 23:43:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791934764; cv=none; b=DI6INIer/frgMO5CHsAbTC5qBtl0ilRi4CmWqntHWt2kaDjc0SsWoBYZxB2qRmd4VoGt8M6SmZyDE9Rt2gq3yhlKjk3oeukwYTFzwspUWU3VPMe2Fl22hRpsrmqf5nVx5zZeF/fuhLhbSWLum+UtC0MM+nJiTFk89wbGPs4RMB8=
+	t=1791935011; cv=none; b=Wye9PMVUnrlpIfzUHgKtqDTf0RCcoE0b1OnM4XmUnZ6X806TrdsaFPxVKjt6FgranMlcIv7QcF/XfLE2AQw+liv0SdNCkkr6M3wcy6uu5mgc03LY8zFRfN1FapLmoNzpVyOb5euPpeNjfwIA9joOFt74JQQ1ODf5ghJ+5jKMb04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791934764; c=relaxed/simple;
-	bh=hYap/LxKCLQAatY/8iXkHodBIjFF0dk3ql2qxDeaNMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=clWg+yePuI49VMWuAJPSCkDddjhPMWwQoJ+kYJgenFvEHL7gmYLIwfkcoemtMGtlJkzIn+TzvLAyZDlR+su2LoH+qj2EA2Lro0QJjUPPthj3iMgatn6blYBv+OsRMHbnxJaSKtFUCujOaJ57TGKNHnkagsTaztgGwfOPEatw7aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Z3xZ6n+r; arc=none smtp.client-ip=220.197.31.3
+	s=arc-20240116; t=1791935011; c=relaxed/simple;
+	bh=GvZxarkkwqqsR3khBy5tCFsKRpsaRw8uvoLtTbkALNo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RbCxPB1Lg/cy+RH69JY8tQTTLzmdxJ2UDJjeYAK8cKC2pNeMiLvC/fnqgSY6TsJF0FfL9yvl7+snd52uY2OqCBbpgrO3J5eD9dIF6BFvBKFyJ9im7SwpiHl5iKQogQS5hNklg6+wqeXwF7rChcuwRISWqocXOdGtEXCbE6RpYsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=HxmGHMN+; arc=none smtp.client-ip=117.135.210.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Z3xZ6n+r"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="HxmGHMN+"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=3jdvwbss58BY7guXUR0LgqIwUPv+LsOGeapfQrzXrLM=;
-	b=Z3xZ6n+r3wXu2VtgrknLJEDfqDB4tozq5hrygUh23dTwd5uDFpmkO2D7EcapXA
-	jLNVpAjf0iGTWJVGG8wk2yjAjrb23glHuGziQzIeYvDJh/YubUIppqw8p6sT0X5o
-	ORrLxqmtm521DOubFcnj2cmy//sq9WmSknzDnjxUT2wXI=
-Received: from [IPV6:2409:8900:1a87:d0a0:9d82:6fdf:5e33:6bcb] (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3dyEQwc5qXTIdEQ--.4112S2;
-	Wed, 14 Oct 2026 07:38:57 +0800 (CST)
-Message-ID: <00af14f7-20a7-46db-a611-b42097d87049@163.com>
-Date: Wed, 14 Oct 2026 07:38:56 +0800
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=lL
+	OVZmATFMcWY5AsWvDsdDWTAZ57Fo5AmzovE35nef8=; b=HxmGHMN+F1cmSC5PdD
+	H3+yitLmpEcTU/hXcxrFiuzx7/tvPligLq5OahvAPfVWG2Pax/gy+abu7CzLJSxh
+	CKtzo1hd0wAObhBQ9HWE0TOrrUrSmuZfiONpn2ypftVq23Gz/Yt8FREo3YxFRify
+	JcS1lLMQMzc0GcPhlPRTyHjBw=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3n8YRws5qn3YTEg--.47761S2;
+	Wed, 14 Oct 2026 07:43:15 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v1] ntfs: support FS_IOC_GETFSUUID
+Date: Wed, 14 Oct 2026 07:43:10 +0800
+Message-ID: <20261013234310.836392-1-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ntfs: avoid unnecessary padding in uapi structure
-To: Arnd Bergmann <arnd@kernel.org>, Namjae Jeon <linkinjeon@kernel.org>,
- Hyunchul Lee <hyc.lee@gmail.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, ntfs@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20261013204931.2287813-1-arnd@kernel.org>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20261013204931.2287813-1-arnd@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3dyEQwc5qXTIdEQ--.4112S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WFW3Xry3Aw45KF45Xr15XFb_yoW8Jw13pF
-	n3Gw1xGFZrWF1UCwsFkFWftF40qw4UKa4YkrW29w1jkFWaqFyvqrWv9r409ryktrWkua1Y
-	qF9rKFy5Cw1qvrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2oGLUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RLCjWrOwRIKgQAA3I
+X-CM-TRANSID:_____wD3n8YRws5qn3YTEg--.47761S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7WF15ZryxAF4DKF47tFW5Wrg_yoW8Gw1Upr
+	nak3yxKrZ5JF4j9ws2kr4Fqr1xZ3sxJa1Dtryqvw1fWws5t3WagrsFya4FgFWrAr95tr4j
+	qFs0939xuFyjqaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Um-ewUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hQEzmrOwhS47QAA3T
 
+From: Baolin Liu <liubaolin@kylinos.cn>
 
+NTFS reads the 64-bit volume serial number from the boot sector but leaves
+the superblock UUID unset. As a result, the generic FS_IOC_GETFSUUID
+handler returns ENOTTY for files and directories on an NTFS volume.
 
-在 2026/10/14 04:49, Arnd Bergmann 写道:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> Building the uapi headers with -Wpadded shows a warning that
-> may indicate an incompatibility:
-> 
-> ./usr/include/linux/ntfs.h:91:1: error: padding struct size to alignment boundary with 4 bytes [-Werror=padded]
-> 
-> This is relatively harmless here as the 64-bit members force natural
-> alignment, so this is not a problem for compat ioctls, and I checked
-> that the padding word is still initialized by means of using kvzalloc()
-> to allocate it, but it's better to avoid the padding out of
-> principle.
-> 
-> Change the reserved member to use a 64-bit type so the name field
-> starts after the structure and all padding is explicit.
-> 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->   include/uapi/linux/ntfs.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/include/uapi/linux/ntfs.h b/include/uapi/linux/ntfs.h
-> index f5b3d4997a56..89467ba07262 100644
-> --- a/include/uapi/linux/ntfs.h
-> +++ b/include/uapi/linux/ntfs.h
-> @@ -86,7 +86,7 @@ struct ntfs_stream_entry {
->   	__aligned_u64 alloc_size;
->   	__u32 name_len;
->   	__u32 name_offset;
-> -	__u32 reserved;
-> +	__aligned_u64 reserved;
->   	__u8 name[];
->   };
->   
+Register the on-disk little-endian serial number as an eight-byte
+filesystem identifier with super_set_uuid(). The generic VFS handler can
+then expose the existing volume identifier.
 
-Looks good to me.
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+Tested in QEMU with file and directory descriptors, comparing the returned
+bytes with the boot sector. Queries remain consistent after read-only
+and read-write remounts, unmount/mount and a fresh boot. An invalid output
+buffer returns EFAULT.
 
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+ fs/ntfs/super.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 242fb19ced2b..950d305ab695 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -997,6 +997,8 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
+ 				vol->mft_record_size_bits;
+ 	ntfs_debug("vol->mftmirr_size = %i", vol->mftmirr_size);
+ 	vol->serial_no = le64_to_cpu(b->volume_serial_number);
++	super_set_uuid(vol->sb, (const u8 *)&b->volume_serial_number,
++		       sizeof(b->volume_serial_number));
+ 	ntfs_debug("vol->serial_no = 0x%llx", vol->serial_no);
+ 
+ 	vol->sparse_compression_unit = 4;
+-- 
+2.51.0
 
