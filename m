@@ -1,115 +1,705 @@
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ACB23C4B93
-	for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 14:59:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791903544; cv=none; b=SZJkcVdYBSKgnOdhkO5t08466I2voeYqVAOw4hSqYnS1fPN0er9m/iMg6vqbhzZA2tW/wN1vGOPPwbyXccVc+XYFBKjCuyRsGr6t1N4s/hQu3f0WoZ4KfW2S/4MfFraHaxxK3ezN2qHkPMcl9mnsKaZJyBEzzzx28Nf48iIlIwI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791903544; c=relaxed/simple;
-	bh=A62Md/Uyi/42qVimXLqVhcnX90wP83924gg05eeVTvs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KWaVYy/bzyOnBqEVeqp2T6tBzFTZ6s1vhwGLZe9hxEymK0vm4GCvnyuC+NXeyun+r+hcNv9I5Wuje9sBEUXArqDyb4FPowB0T+nZ0HwR9W7UiZEjdF0CjC5DuTki5HzJm3Erm5dKUzxRMm6zxu9/z0NpaVJSItxQLTqNYbwaQOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BvoddbRW; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E0051B174
+	for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 16:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1791907284; cv=pass; b=bkF+V4qPfSzdbA2Jta6y2pEJVk3vtQKP+4gfqekQqKdGTXjRpA+hvVQfB8Ls6QqpdezRQcfH+vcbmwPi5d1ROXg29sVmjDQF36iMvhyY7C56IrlcydrKcVv4MNfa7NbEi0gPlyBbFV1NW6qFxSqhI8rJ5S7gXN29jto6u0Ejolk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1791907284; c=relaxed/simple;
+	bh=X76yH4SRvkB0KYQ4ndhMh74X8GjAVXcRS9Vo55WGTo0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aP4+JWxTOjWdUSwJp3DkDP84mDdVctTWHBZAXoBzOUDIe6beXBlWfPAMgHImU2X0XVwOZSskOMzm+6a6s6dkD80CJIUFYuebXTD5NMlImU9kTMPCb8S5w+CaiHSd5r4fOLUhz6meds+0chC72CpfeTFPF2ebiUkqxCCXZpDLvDM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rYkFTCBB; arc=pass smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BvoddbRW"
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-88d8bef6850so159809b3a.2
-        for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 07:59:03 -0700 (PDT)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="rYkFTCBB"
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4a1af482519so6504225e9.1
+        for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 09:01:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1791907278; cv=none;
+        d=google.com; s=arc-20260327;
+        b=sd4Lhft4scKqICFYKHLVyAvbVquZUiJDJmFv8BAOOlPdALTxJpcPPNLL3Ge6T3Jh4d
+         8avkDxxmTVqw1v6OM0LQGpTv/a0SQxqY4m8xLnqhC28QSHupJAygLNKo6kzMs9KUaxqg
+         KY937mqwM3uGeS+KgeRvAkJMKEGmxdsaPvs5j7xDJ+4C7YAVDXurnQXswvoF84Jf7k0z
+         fwzq0vIhd2jCgKWXft1gYUadmQ7hb10tpMnzhFMJLi2xONtjypa9Dv2GjaSOB9U9g0xd
+         Xk7zCXUn+YNjhrn14WNvlUTfL2xumHPARe1fjLvvhR9JGrZcJZv5ZMrH80+vdYqlhmu5
+         IKrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=qRuzTmy8QvIIH1aAenqhCcAXaaKxqjhhEwzLm0j86Q0=;
+        fh=BKzm40fkVkLAcwP3i1j95rwrednT2Yt8CjrlvMaaFyk=;
+        b=eA/4ZsBYAy1NA1Bh2xNOMekmTQXoyaPkysCRVsKYAYWAy5CEfwME1XCgQsnTPL/n2n
+         CvGdQ46iLVIjIuJEs2qLadbE6S58pGVjs5KCn+lhGVh3mInurEjex+gUciraaA4kYLIO
+         lV/MC21hj5J4zKpnf6ztBzkV/L0rLpaKi00v7pquHtO/FBwVsPlSJ995aHAsPXo52fBf
+         vvKVTts0T/qBfv/bxYGKI0hRJHsD7AxBPdTWLnyTGzzr6EE4zuEprth1jx+xUXvoz8vw
+         C8B6sWSLOz7C+nr9f6CBGzMq2oJmjGozG+pWQdpTclLBDv+9p8wgE6kV/FWCKtfAGawa
+         Y+eA==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791903543; x=1792508343; darn=lists.linux.dev;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=YzNvwx+hTE/Sy4DERDQI0AUbkPSf6A0fBJaHS6Z80VE=;
-        b=BvoddbRWGx3E+A0a3gSg9olfd10aM8J2nJHXuwTFnT38LvnAV8rdu7trPYdHHQWGrm
-         RIQh+kdYg3a4guUycr38j9LIWg/nfU8I/UAGqUIrsbA+Ef52SmWWA0FhcuvQc5ACB3Gi
-         q/y45GZXsklMPqQZQnwNbd24OWXe9xmgcWm7c6bTCY0/9VxZpDV2Paf9/xX2CTzIVEG4
-         cEZ8fvg7Xu7yWNp0xSqn6daUzDD+dan+IHZ9W9dNGebnhEE+frPQAlwaZUrLZqJUFgBv
-         5YRUpFu4cFNB567Y/bcYAtNEwl3tKVa5YX5GElqEX5XIv8vnCiCpS0MjCi0gr9m+UIT9
-         +cnA==
+        d=gmail.com; s=20251104; t=1791907278; x=1792512078; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=qRuzTmy8QvIIH1aAenqhCcAXaaKxqjhhEwzLm0j86Q0=;
+        b=rYkFTCBBrxxabU13wVgcDYHLpYNy3qEBeVPS6FfqIrAq01ouaA2fTfLLBdpr+TwFqr
+         LxA1amxxJSSq+RKrUXOgmsFUruDymoYsM+NNDVckZHszk8olYR66BaYQqFSVL3FC0HKt
+         loKCzo42eY2JXnx4dgaLmOS13BpRgTFylCBMw8qW3n9A9dmPijC4CYCdxjh02buGw8Xy
+         cAtSN0R3rlUE5Vz3zVSvuQUuXogUkVr/I/JIeAUWeQ6wYbM7nrLRkQ/PSpvX4gKKWgQu
+         XD1YV4jjNVne/rA8u1QzaXw6s/UpPehxxAbCzOt2e/Ff6NitcPgD18beb4lIt66wkkWh
+         oKyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791903543; x=1792508343;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=YzNvwx+hTE/Sy4DERDQI0AUbkPSf6A0fBJaHS6Z80VE=;
-        b=yu9kwimeuMgndg1AgMgeWnGhpIgNhpLXsDQNPRhIJIu/izOWb9pPSjRKzv3Ug10atG
-         lfpP36jfcH0To22Pl7FGWbh2sA7/fs2PluaUBNnfq5ExkH90e+70v12iDwQ0+FT/b5Wt
-         IsNQDq1YquUTiKk5HWhMc5r87zJGUrdVTlb26wLWqwI+njEW+6hzoQneFLXiZYHlwgwi
-         kU4W/Zn/WqPVoe13USUft4lRGQ27ZI6BW5gd0jXk2EafhgVgBe9H0Q+ZR5l0WN6f2RJU
-         GKtw186vdtdXo15FN45vm3R7JOwk4HuRzUdsi1eAAKA23fqs+HQBLwJUfCh1oBFhdTYU
-         nleQ==
-X-Gm-Message-State: AFq9FYIjhkOFQ+Pwe62GpETw4Ju0q0KKmEmEFgFsqia1MNmi9ix2lH7P
-	YldEjtRMQ2MBBmrSXaH1NTK4oWuuMAd5zchxvPL9l+kjJA6fdxOlIXZs6FmYitT+
-X-Gm-Gg: AYBFou3FQq0mEzpkUu5cDEEwQXIsPXfDV4XuU6MlOV7hdyng7M5Cam8fEFr12TKfTRQ
-	dVseJjVRtY+LT1RPomruvIjK1DUYaeC7x022cKxy8fCtxj6bCxRSuv60QccSnyTmcPS4HZi/GYU
-	GosRB0UZVnAVsHgyaVE3VYJTtVskNAfMhoBDEM+e7IEmWaSr+I1+lZV0USEvPmk/EESmLezC+n9
-	+BQopIO2kQRmPYmGmB5pnrKzGvomtGFhoFtiLOig9b3YDSNwcTCsMFTpMQjkFO58vspLu1+NIr3
-	DztgQ3Y1z0KQAx4OwKfvUr9Uiva/abypDxkKFkCRinTGCix5y5v2nxlyR6HVw46XRUL9cTMQqjT
-	7l57NqhAUkaQtGYt2tNPP9Oo0oCAtNVjaWNH9bL8aNwu/iUME1PoSZdcngKzgaPF6VZEIoB9fTG
-	D3Is/vSYjPAMaUWVvocsidGnhAictEHva1Ox7u9HfoKvC92exWPCDPsBh/DhMnLrM=
-X-Received: by 2002:a05:6a00:4889:b0:89a:ee91:e894 with SMTP id d2e1a72fcca58-89aeeb074bamr5887952b3a.0.1791903542669;
-        Tue, 13 Oct 2026 07:59:02 -0700 (PDT)
-Received: from ser8.. ([221.156.231.192])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-89a0724a045sm2987330b3a.45.2026.10.13.07.59.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2026 07:59:02 -0700 (PDT)
-From: DaeMyung Kang <charsyam@gmail.com>
-To: Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	DaeMyung Kang <charsyam@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH 2/2] ntfs: flush the block device when syncing a directory
-Date: Tue, 13 Oct 2026 23:58:46 +0900
-Message-ID: <20261013145846.56415-3-charsyam@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261013145846.56415-1-charsyam@gmail.com>
-References: <20261013145846.56415-1-charsyam@gmail.com>
+        d=1e100.net; s=20260707; t=1791907278; x=1792512078;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=qRuzTmy8QvIIH1aAenqhCcAXaaKxqjhhEwzLm0j86Q0=;
+        b=dYxKtDXp+KOiYVn9UIqmlHeeG12S/k6dvAGfiJypeNVhIo8bOcDymXpwKLQxbLSivH
+         jomJKBYW3CnjFph1Yb84yt6GLBMgFfbO/0EazXRgQgKTZRRly5H+2l1SBUpD2umWg+Vh
+         O8qUzWo5bQKAm4rCFo8ldzM5rghS/88Lily636HLXdwz1ct64xGQQBzY9CH1Tl7Ud2nh
+         7ymyIMuCAhtZX4yfuca9JbkOnQjxibkPVTptODLeRKJDRWTs4YWsn99loolw2t5CntMs
+         0sx6Y4Mulr+SjbaPxIO8VdXmph6kx5vgrlo7tvbJpq00m4UlTWWAI5Dhl0fLFGT04FNd
+         5Pkg==
+X-Forwarded-Encrypted: i=1; AKwUvBw6VxBYhVb0e2duAaxO17zWV8nY9BvriGk3AeCvH0LNA1pvmgsGtaFyoD6fuqBBcLfS6zVb@lists.linux.dev
+X-Gm-Message-State: AFq9FYLbezpuWUJ1bROcTLugPx+KIGokJLH4Ru2KfWZqNsJH+3SRRC8E
+	Sfca6JXO8GndzKwdb5DhxJKE7unGlzpjCyPIM3vypDZ1ZOEWDBEQFz8j0fNYen2KKqxGbnQ3p3b
+	3v9QALg2kpnmfmLKui6msuRqgq1BPjok=
+X-Gm-Gg: AYBFou0C58VZjF/GtZza26LX/U6C/tilT1ocq0en/+P4nakJoUBQU8HkN7O1zmkPNkt
+	4IRYzvgMaAxgp+lx37dh+5zW9bll+/Spozaoy2xzSX1CZ08JOdCIRvoisod8v+ikb10p2lu1sx0
+	9qW5PUFC00HhvLB++3x7oii39BZy9mlB9KMS9MsEHGPETO6L17WkrS3rE4Uz3u4IowjBC/d7pVx
+	PDjCqQmEHt4Bi5EBwDhU+QVrNzxSnscK7zXmyj1PZxVJwNNqZHUMck/P/l4xHdh1ZpaHvI2TXWe
+	XlGRnvGyKFAvssnJ5eBlZhyVwd/QN2SL/+iJiLAdBx2d5cDQmDWi3oJA
+X-Received: by 2002:a05:600d:4443:10b0:4a1:9c71:9f17 with SMTP id
+ 5b1f17b1804b1-4a19c71a176mr106991385e9.9.1791907278067; Tue, 13 Oct 2026
+ 09:01:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261012-work-fs-sb_rdonly-v1-0-60743a3dc326@kernel.org> <20261012-work-fs-sb_rdonly-v1-5-60743a3dc326@kernel.org>
+In-Reply-To: <20261012-work-fs-sb_rdonly-v1-5-60743a3dc326@kernel.org>
+From: Ryusuke Konishi <konishi.ryusuke@gmail.com>
+Date: Wed, 14 Oct 2026 01:01:00 +0900
+X-Gm-Features: AclHuK_PPS1_NVEQIlqEOwtchFvXH7m530N3mEwmecS77mqXkEhqFxAbpQ2_6lM
+Message-ID: <CAKFNMonNC1iKjc4Z=PzE9DJJ3X+SmWofbGFXGhHpiN-o1kQGrQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 05/28] nilfs2: don't set SB_RDONLY after filesystem errors
+To: Christian Brauner <brauner@kernel.org>
+Cc: Jan Kara <jack@suse.com>, Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, 
+	linux-ext4@vger.kernel.org, jfs-discussion@lists.sourceforge.net, 
+	linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, 
+	linux-fsdevel@vger.kernel.org, ntfs@lists.linux.dev, 
+	ocfs2-devel@lists.linux.dev, linux-btrfs@vger.kernel.org, 
+	gfs2@lists.linux.dev, linux-efi@vger.kernel.org, 
+	linux-mtd@lists.infradead.org, linux-xfs@vger.kernel.org, 
+	Karl Mehltretter <kmehltretter@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-ntfs_dir_fsync() writes directory metadata and calls sync_blockdev(),
-but does not flush the block device write cache. A successful fsync()
-can therefore leave the directory's metadata in a volatile device cache.
+On Mon, Oct 12, 2026 at 7:24=E2=80=AFPM Christian Brauner  wrote:
+>
+> __nilfs_error() sets SB_RDONLY with errors=3Dremount-ro, the nilfs2
+> default. That happens without holding sb->s_umount and from any context,
+> also while the filesystem is frozen. FIFREEZE doesn't block reads and a
+> lookup in a corrupted directory gets there:
+>
+>   NILFS error (device vda): nilfs_check_folio: bad entry in directory #11=
+: rec_len is smaller than minimal - offset=3D32, inode=3D17, rec_len=3D0, n=
+ame_len=3D16
+>   Remounting filesystem read-only
+>
+> freeze_super() and thaw_super() both look at sb_rdonly() to figure out
+> whether the s_writers rwsems need to be taken or released. So the thaw
+> after such an error skips ->unfreeze_fs() and sb_freeze_unlock() and
+> leaves all three rwsems write-locked on a superblock that is marked
+> unfrozen. Writers hang in sb_start_write() and umount warns when the
+> rwsems are freed:
+>
+>   WARNING: kernel/rcu/sync.c:177 at rcu_sync_dtor+0x143/0x190, CPU#3: kwo=
+rker/3:1/54
+>   WARNING: kernel/rcu/sync.c:180 at rcu_sync_dtor+0x14c/0x190
+>   WARNING: kernel/rcu/sync.c:188 at rcu_sync_dtor+0x13d/0x190
+>
+> nilfs2 already treats a runtime SB_RDONLY as "degraded to read-only
+> because of corruption" in a lot of places. nilfs_writepages() and
+> nilfs_mdt_write_folio() discard dirty pages, nilfs_evict_inode() skips
+> the deletion, the segment constructor returns -EROFS and a few
+> WARN_ONCE()s accept it. That can all stay as it is. Only what triggers
+> it changes. Like ext4 did in commit d3476f3dad4a ("ext4: don't set
+> SB_RDONLY after filesystem errors") record the error in a new
+> THE_NILFS_EMERGENCY_RO bit and add nilfs_sb_rdonly() which is true for
+> a read-only mount and for the emergency state. Then use that for every
+> sb_rdonly() check that guards a write.
+>
+> The VFS won't refuse anything for us anymore so nilfs2 has to do that
+> itself. nilfs_permission() returns -EROFS for MAY_WRITE in that state,
+> the same way sb_permission() does for a read-only superblock and the
+> same way nilfs2 already handles snapshots. That takes care of most
+> operations. setattr, write_iter and fileattr_set check the bit as well.
+> Symlinks didn't have a ->setattr so far and get nilfs_setattr() for
+> that. page_mkwrite fails with VM_FAULT_SIGBUS, the modifying ioctls go
+> through a new nilfs_mnt_want_write_file() and FITRIM is refused.
+> nilfs_sync_fs() writes neither a segment nor the superblock anymore.
+>
+> A remount to read-write fails with -EROFS. Note that nilfs2 explicitly
+> supported "mount -o remount,rw" after __nilfs_error() so far.
+> nilfs_attach_log_writer() reuses the existing log writer for exactly
+> that case. Now the state lasts until umount like on ext4 and the comment
+> there is updated. A remount to read-only still sets SB_RDONLY but skips
+> nilfs_cleanup_super() so the superblock isn't written.
+>
+> Like ext4 we show "emergency_ro" in the mount options. The mount stays
+> "rw". Writes through file descriptors opened before the error now fail
+> with -EROFS instead of being accepted and silently dropped by
+> nilfs_writepages(). Stores through shared mappings set up before the
+> error get SIGBUS once they fault. Stores to pages that were already
+> dirty don't fault until nilfs_writepages() discarded the page so those
+> are still dropped.
+>
+> While the current tree is mounted a second mount of the device has to
+> match the read-only state of the superblock. So a read-only mount now
+> fails with -EBUSY and a read-write mount shares the superblock. If only
+> snapshot mounts keep the superblock alive a new mount reconfigures it
+> instead. Then a read-only mount makes it read-only and a read-write
+> mount after that fails with -EROFS. And a non-forced remount to
+> read-only fails with -EBUSY while files are still open for writing.
+>
+> Reproducer (the sb_rdonly selftest at the end of this series covers it
+> as well):
+>
+>   truncate -s 512M img; mkfs.nilfs2 -q img
+>   mount -o loop img /mnt           # errors=3Dremount-ro is the default
+>   mkdir /mnt/d; touch /mnt/d/marker0123456789; sync
+>   touch /mnt/z; sync               # keep d's block out of the last log, =
+the
+>   umount /mnt                      # only one checksummed at mount
+>   off=3D$(grep -obUa marker0123456789 img | head -1 | cut -d: -f1)
+>   printf '\0\0' | dd of=3Dimg bs=3D1 seek=3D$((off - 4)) conv=3Dnotrunc  =
+ # rec_len :=3D 0
+>   mount -o loop img /mnt
+>   fsfreeze -f /mnt; ls /mnt/d; fsfreeze -u /mnt
+>   touch /mnt/x     # blocks forever in sb_start_write()
+>   # or umount instead: rcu_sync_dtor() warns three times
+>
+> Reported-by: Karl Mehltretter <kmehltretter@gmail.com>
+> Link: https://lore.kernel.org/r/20260903060855.4610-1-kmehltretter@gmail.=
+com
+> Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
+> ---
+>  fs/nilfs2/file.c      | 15 ++++++++++++++-
+>  fs/nilfs2/inode.c     | 13 +++++++++++--
+>  fs/nilfs2/ioctl.c     | 36 ++++++++++++++++++++++++++++++------
+>  fs/nilfs2/mdt.c       |  2 +-
+>  fs/nilfs2/namei.c     |  1 +
+>  fs/nilfs2/page.c      |  2 +-
+>  fs/nilfs2/segment.c   | 13 ++++++-------
+>  fs/nilfs2/sufile.h    |  2 +-
+>  fs/nilfs2/super.c     | 35 ++++++++++++++++++++++++++++-------
+>  fs/nilfs2/the_nilfs.h |  8 ++++++++
+>  10 files changed, 101 insertions(+), 26 deletions(-)
 
-Issue a cache flush after successful writeback and return any flush error.
-This matches the regular-file fsync and syncfs paths.
+Hi Christian,
 
-With QEMU blkdebug injecting -EIO for flush_to_disk, fsync() on an NTFS
-directory returned 0 before this change while syncfs() returned -EIO.
-After this change, both return -EIO. A kretprobe confirmed the flush
-error in the directory fsync path.
+Thank you very much for this patch.
+I've reviewed the change for nilfs2 and its rationale.
 
-Fixes: 1e9ea7e04472 ("Revert "fs: Remove NTFS classic"")
-Cc: stable@vger.kernel.org
-Signed-off-by: DaeMyung Kang <charsyam@gmail.com>
----
- fs/ntfs/dir.c | 2 ++
- 1 file changed, 2 insertions(+)
+I am in favor of this change, even if the emergency read-only flag
+ends up being placed in the super_block structure as a result of the
+ongoing review.  Feel free to add:
 
-diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
-index 5a0e21e7c283..fce10baa2b93 100644
---- a/fs/ntfs/dir.c
-+++ b/fs/ntfs/dir.c
-@@ -1192,6 +1192,8 @@ static int ntfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
- 	err = sync_blockdev(vi->i_sb->s_bdev);
- 	if (unlikely(err && !ret))
- 		ret = err;
-+	if (!ret)
-+		ret = blkdev_issue_flush(vi->i_sb->s_bdev);
- 	if (likely(!ret))
- 		ntfs_debug("Done.");
- 	else
--- 
-2.43.0
+Acked-by: Ryusuke Konishi <konishi.ryusuke@gmail.com>
 
+Thanks,
+Ryusuke Konishi
+
+>
+> diff --git a/fs/nilfs2/file.c b/fs/nilfs2/file.c
+> index f93b68c4877c..17d5e932dba5 100644
+> --- a/fs/nilfs2/file.c
+> +++ b/fs/nilfs2/file.c
+> @@ -54,6 +54,8 @@ static vm_fault_t nilfs_page_mkwrite(struct vm_fault *v=
+mf)
+>
+>         if (unlikely(nilfs_near_disk_full(inode->i_sb->s_fs_info)))
+>                 return VM_FAULT_SIGBUS; /* -ENOSPC */
+> +       if (unlikely(nilfs_emergency_ro(inode->i_sb->s_fs_info)))
+> +               return VM_FAULT_SIGBUS; /* -EROFS */
+>
+>         sb_start_pagefault(inode->i_sb);
+>         folio_lock(folio);
+> @@ -133,6 +135,17 @@ static int nilfs_file_mmap_prepare(struct vm_area_de=
+sc *desc)
+>         return 0;
+>  }
+>
+> +static ssize_t nilfs_file_write_iter(struct kiocb *iocb, struct iov_iter=
+ *from)
+> +{
+> +       struct inode *inode =3D file_inode(iocb->ki_filp);
+> +
+> +       /* refuse before file_update_time() touches the inode */
+> +       if (unlikely(nilfs_emergency_ro(inode->i_sb->s_fs_info)))
+> +               return -EROFS;
+> +
+> +       return generic_file_write_iter(iocb, from);
+> +}
+> +
+>  /*
+>   * We have mostly NULL's here: the current defaults are ok for
+>   * the nilfs filesystem.
+> @@ -140,7 +153,7 @@ static int nilfs_file_mmap_prepare(struct vm_area_des=
+c *desc)
+>  const struct file_operations nilfs_file_operations =3D {
+>         .llseek         =3D generic_file_llseek,
+>         .read_iter      =3D generic_file_read_iter,
+> -       .write_iter     =3D generic_file_write_iter,
+> +       .write_iter     =3D nilfs_file_write_iter,
+>         .unlocked_ioctl =3D nilfs_ioctl,
+>  #ifdef CONFIG_COMPAT
+>         .compat_ioctl   =3D nilfs_compat_ioctl,
+> diff --git a/fs/nilfs2/inode.c b/fs/nilfs2/inode.c
+> index 34e6096069ad..7dab8cfaad45 100644
+> --- a/fs/nilfs2/inode.c
+> +++ b/fs/nilfs2/inode.c
+> @@ -162,7 +162,7 @@ static int nilfs_writepages(struct address_space *map=
+ping,
+>         struct inode *inode =3D mapping->host;
+>         int err =3D 0;
+>
+> -       if (sb_rdonly(inode->i_sb)) {
+> +       if (nilfs_sb_rdonly(inode->i_sb)) {
+>                 nilfs_clear_dirty_pages(mapping);
+>                 return -EROFS;
+>         }
+> @@ -868,7 +868,7 @@ void nilfs_evict_inode(struct inode *inode)
+>         truncate_inode_pages_final(&inode->i_data);
+>
+>         nilfs =3D sb->s_fs_info;
+> -       if (unlikely(sb_rdonly(sb) || !nilfs->ns_writer)) {
+> +       if (unlikely(nilfs_sb_rdonly(sb) || !nilfs->ns_writer)) {
+>                 /*
+>                  * If this inode is about to be disposed after the file s=
+ystem
+>                  * has been degraded to read-only due to file system corr=
+uption
+> @@ -912,6 +912,9 @@ int nilfs_setattr(struct mnt_idmap *idmap, struct den=
+try *dentry,
+>         struct super_block *sb =3D inode->i_sb;
+>         int err;
+>
+> +       if (nilfs_emergency_ro(sb->s_fs_info))
+> +               return -EROFS;
+> +
+>         err =3D setattr_prepare(&nop_mnt_idmap, dentry, iattr);
+>         if (err)
+>                 return err;
+> @@ -952,6 +955,12 @@ int nilfs_permission(struct mnt_idmap *idmap, struct=
+ inode *inode,
+>             root->cno !=3D NILFS_CPTREE_CURRENT_CNO)
+>                 return -EROFS; /* snapshot is not writable */
+>
+> +       /* After an error made us read-only, like sb_permission() would *=
+/
+> +       if ((mask & MAY_WRITE) && nilfs_emergency_ro(inode->i_sb->s_fs_in=
+fo) &&
+> +           (S_ISREG(inode->i_mode) || S_ISDIR(inode->i_mode) ||
+> +            S_ISLNK(inode->i_mode)))
+> +               return -EROFS;
+> +
+>         return generic_permission(&nop_mnt_idmap, inode, mask);
+>  }
+>
+> diff --git a/fs/nilfs2/ioctl.c b/fs/nilfs2/ioctl.c
+> index 01a04080ef70..ac3e1a770162 100644
+> --- a/fs/nilfs2/ioctl.c
+> +++ b/fs/nilfs2/ioctl.c
+> @@ -143,6 +143,9 @@ int nilfs_fileattr_set(struct mnt_idmap *idmap,
+>         unsigned int flags, oldflags;
+>         int ret;
+>
+> +       if (nilfs_emergency_ro(inode->i_sb->s_fs_info))
+> +               return -EROFS;
+> +
+>         if (fileattr_has_fsx(fa))
+>                 return -EOPNOTSUPP;
+>
+> @@ -176,6 +179,23 @@ static int nilfs_ioctl_getversion(struct inode *inod=
+e, void __user *argp)
+>         return put_user(inode->i_generation, (int __user *)argp);
+>  }
+>
+> +/*
+> + * Like mnt_want_write_file(), but also refuse writers once an error mad=
+e the
+> + * filesystem read-only, the VFS doesn't know about that.
+> + */
+> +static int nilfs_mnt_want_write_file(struct file *filp)
+> +{
+> +       struct the_nilfs *nilfs =3D file_inode(filp)->i_sb->s_fs_info;
+> +       int ret;
+> +
+> +       ret =3D mnt_want_write_file(filp);
+> +       if (!ret && nilfs_emergency_ro(nilfs)) {
+> +               mnt_drop_write_file(filp);
+> +               ret =3D -EROFS;
+> +       }
+> +       return ret;
+> +}
+> +
+>  /**
+>   * nilfs_ioctl_change_cpmode - change checkpoint mode (checkpoint/snapsh=
+ot)
+>   * @inode: inode object
+> @@ -203,7 +223,7 @@ static int nilfs_ioctl_change_cpmode(struct inode *in=
+ode, struct file *filp,
+>         if (!capable(CAP_SYS_ADMIN))
+>                 return -EPERM;
+>
+> -       ret =3D mnt_want_write_file(filp);
+> +       ret =3D nilfs_mnt_want_write_file(filp);
+>         if (ret)
+>                 return ret;
+>
+> @@ -255,7 +275,7 @@ nilfs_ioctl_delete_checkpoint(struct inode *inode, st=
+ruct file *filp,
+>         if (!capable(CAP_SYS_ADMIN))
+>                 return -EPERM;
+>
+> -       ret =3D mnt_want_write_file(filp);
+> +       ret =3D nilfs_mnt_want_write_file(filp);
+>         if (ret)
+>                 return ret;
+>
+> @@ -866,7 +886,7 @@ static int nilfs_ioctl_clean_segments(struct inode *i=
+node, struct file *filp,
+>         if (!capable(CAP_SYS_ADMIN))
+>                 return -EPERM;
+>
+> -       ret =3D mnt_want_write_file(filp);
+> +       ret =3D nilfs_mnt_want_write_file(filp);
+>         if (ret)
+>                 return ret;
+>
+> @@ -1014,7 +1034,7 @@ static int nilfs_ioctl_resize(struct inode *inode, =
+struct file *filp,
+>         if (!capable(CAP_SYS_ADMIN))
+>                 goto out;
+>
+> -       ret =3D mnt_want_write_file(filp);
+> +       ret =3D nilfs_mnt_want_write_file(filp);
+>         if (ret)
+>                 goto out;
+>
+> @@ -1050,6 +1070,10 @@ static int nilfs_ioctl_trim_fs(struct inode *inode=
+, void __user *argp)
+>         if (!capable(CAP_SYS_ADMIN))
+>                 return -EPERM;
+>
+> +       /* Don't trust the segment usage after an error. */
+> +       if (nilfs_emergency_ro(nilfs))
+> +               return -EROFS;
+> +
+>         if (!bdev_max_discard_sectors(nilfs->ns_bdev))
+>                 return -EOPNOTSUPP;
+>
+> @@ -1202,7 +1226,7 @@ static int nilfs_ioctl_set_suinfo(struct inode *ino=
+de, struct file *filp,
+>         if (!capable(CAP_SYS_ADMIN))
+>                 return -EPERM;
+>
+> -       ret =3D mnt_want_write_file(filp);
+> +       ret =3D nilfs_mnt_want_write_file(filp);
+>         if (ret)
+>                 return ret;
+>
+> @@ -1295,7 +1319,7 @@ static int nilfs_ioctl_set_fslabel(struct super_blo=
+ck *sb, struct file *filp,
+>         if (!capable(CAP_SYS_ADMIN))
+>                 return -EPERM;
+>
+> -       ret =3D mnt_want_write_file(filp);
+> +       ret =3D nilfs_mnt_want_write_file(filp);
+>         if (ret)
+>                 return ret;
+>
+> diff --git a/fs/nilfs2/mdt.c b/fs/nilfs2/mdt.c
+> index 2a435349fd21..7863fbc559a2 100644
+> --- a/fs/nilfs2/mdt.c
+> +++ b/fs/nilfs2/mdt.c
+> @@ -398,7 +398,7 @@ static int nilfs_mdt_write_folio(struct folio *folio,
+>         struct super_block *sb;
+>         int err =3D 0;
+>
+> -       if (inode && sb_rdonly(inode->i_sb)) {
+> +       if (inode && nilfs_sb_rdonly(inode->i_sb)) {
+>                 /*
+>                  * It means that filesystem was remounted in read-only
+>                  * mode because of error or metadata corruption. But we
+> diff --git a/fs/nilfs2/namei.c b/fs/nilfs2/namei.c
+> index e037e0c6e31a..06b928387212 100644
+> --- a/fs/nilfs2/namei.c
+> +++ b/fs/nilfs2/namei.c
+> @@ -583,6 +583,7 @@ const struct inode_operations nilfs_special_inode_ope=
+rations =3D {
+>
+>  const struct inode_operations nilfs_symlink_inode_operations =3D {
+>         .get_link       =3D page_get_link,
+> +       .setattr        =3D nilfs_setattr,
+>         .permission     =3D nilfs_permission,
+>  };
+>
+> diff --git a/fs/nilfs2/page.c b/fs/nilfs2/page.c
+> index cf4f1c6798f5..01c80ed12138 100644
+> --- a/fs/nilfs2/page.c
+> +++ b/fs/nilfs2/page.c
+> @@ -259,7 +259,7 @@ int nilfs_copy_dirty_pages(struct address_space *dmap=
+,
+>
+>                 folio_lock(folio);
+>                 if (unlikely(!folio_test_dirty(folio))) {
+> -                       if (WARN_ONCE(!sb_rdonly(smap_inode->i_sb),
+> +                       if (WARN_ONCE(!nilfs_sb_rdonly(smap_inode->i_sb),
+>                                         "inconsistent dirty state\n"))
+>                                 goto unlock_folio;
+>
+> diff --git a/fs/nilfs2/segment.c b/fs/nilfs2/segment.c
+> index 829573cb6131..eb79245de60d 100644
+> --- a/fs/nilfs2/segment.c
+> +++ b/fs/nilfs2/segment.c
+> @@ -317,7 +317,7 @@ void nilfs_relax_pressure_in_lock(struct super_block =
+*sb)
+>         struct the_nilfs *nilfs =3D sb->s_fs_info;
+>         struct nilfs_sc_info *sci =3D nilfs->ns_writer;
+>
+> -       if (sb_rdonly(sb) || unlikely(!sci) || !sci->sc_flush_request)
+> +       if (nilfs_sb_rdonly(sb) || unlikely(!sci) || !sci->sc_flush_reque=
+st)
+>                 return;
+>
+>         set_bit(NILFS_SC_PRIOR_FLUSH, &sci->sc_flags);
+> @@ -2097,7 +2097,7 @@ static int nilfs_segctor_do_construct(struct nilfs_=
+sc_info *sci, int mode)
+>         struct the_nilfs *nilfs =3D sci->sc_super->s_fs_info;
+>         int err;
+>
+> -       if (sb_rdonly(sci->sc_super))
+> +       if (nilfs_sb_rdonly(sci->sc_super))
+>                 return -EROFS;
+>
+>         nilfs_sc_cstage_set(sci, NILFS_ST_INIT);
+> @@ -2321,7 +2321,7 @@ int nilfs_construct_segment(struct super_block *sb)
+>         struct nilfs_sc_info *sci =3D nilfs->ns_writer;
+>         struct nilfs_transaction_info *ti;
+>
+> -       if (sb_rdonly(sb) || unlikely(!sci))
+> +       if (nilfs_sb_rdonly(sb) || unlikely(!sci))
+>                 return -EROFS;
+>
+>         /* A call inside transactions causes a deadlock. */
+> @@ -2354,7 +2354,7 @@ int nilfs_construct_dsync_segment(struct super_bloc=
+k *sb, struct inode *inode,
+>         struct nilfs_transaction_info ti;
+>         int err =3D 0;
+>
+> -       if (sb_rdonly(sb) || unlikely(!sci))
+> +       if (nilfs_sb_rdonly(sb) || unlikely(!sci))
+>                 return -EROFS;
+>
+>         nilfs_transaction_lock(sb, &ti, 0);
+> @@ -2868,9 +2868,8 @@ int nilfs_attach_log_writer(struct super_block *sb,=
+ struct nilfs_root *root)
+>
+>         if (nilfs->ns_writer) {
+>                 /*
+> -                * This happens if the filesystem is made read-only by
+> -                * __nilfs_error or nilfs_remount and then remounted
+> -                * read/write.  In these cases, reuse the existing
+> +                * This happens if the filesystem is remounted read-only =
+and
+> +                * then read/write again.  In this case, reuse the existi=
+ng
+>                  * writer.
+>                  */
+>                 return 0;
+> diff --git a/fs/nilfs2/sufile.h b/fs/nilfs2/sufile.h
+> index 5888ed479c8b..d5e7598e36b3 100644
+> --- a/fs/nilfs2/sufile.h
+> +++ b/fs/nilfs2/sufile.h
+> @@ -76,7 +76,7 @@ int nilfs_sufile_trim_fs(struct inode *sufile, struct f=
+strim_range *range);
+>                 int _err =3D (err);                                      =
+ \
+>                                                                         \
+>                 if (unlikely(_err))                                     \
+> -                       _err =3D WARN_ONCE(!sb_rdonly((sufile)->i_sb),   =
+ \
+> +                       _err =3D WARN_ONCE(!nilfs_sb_rdonly((sufile)->i_s=
+b), \
+>                                 "unexpected sufile error %d\n", _err) ? \
+>                                 -EIO : -EROFS;                          \
+>                 _err;                                                   \
+> diff --git a/fs/nilfs2/super.c b/fs/nilfs2/super.c
+> index 893a504cb80c..22ae5b51d4ee 100644
+> --- a/fs/nilfs2/super.c
+> +++ b/fs/nilfs2/super.c
+> @@ -137,12 +137,17 @@ void __nilfs_error(struct super_block *sb, const ch=
+ar *function,
+>
+>         va_end(args);
+>
+> -       if (!sb_rdonly(sb)) {
+> +       if (!nilfs_sb_rdonly(sb)) {
+>                 nilfs_set_error(sb);
+>
+>                 if (nilfs_test_opt(nilfs, ERRORS_RO)) {
+>                         printk(KERN_CRIT "Remounting filesystem read-only=
+\n");
+> -                       sb->s_flags |=3D SB_RDONLY;
+> +                       /*
+> +                        * Don't set SB_RDONLY, that needs sb->s_umount a=
+nd a
+> +                        * remount. Flipping it on a frozen filesystem ma=
+kes
+> +                        * thaw leave s_writers locked forever.
+> +                        */
+> +                       set_nilfs_emergency_ro(nilfs);
+>                 }
+>         }
+>
+> @@ -508,7 +513,7 @@ static void nilfs_put_super(struct super_block *sb)
+>
+>         nilfs_detach_log_writer(sb);
+>
+> -       if (!sb_rdonly(sb)) {
+> +       if (!nilfs_sb_rdonly(sb)) {
+>                 down_write(&nilfs->ns_sem);
+>                 nilfs_cleanup_super(sb);
+>                 up_write(&nilfs->ns_sem);
+> @@ -529,6 +534,10 @@ static int nilfs_sync_fs(struct super_block *sb, int=
+ wait)
+>         struct nilfs_super_block **sbp;
+>         int err =3D 0;
+>
+> +       /* Nothing may be written after an error made us read-only. */
+> +       if (nilfs_emergency_ro(nilfs))
+> +               return 0;
+> +
+>         /* This function is called when super block should be written bac=
+k */
+>         if (wait)
+>                 err =3D nilfs_construct_segment(sb);
+> @@ -588,7 +597,7 @@ static int nilfs_freeze(struct super_block *sb)
+>         struct the_nilfs *nilfs =3D sb->s_fs_info;
+>         int err;
+>
+> -       if (sb_rdonly(sb))
+> +       if (nilfs_sb_rdonly(sb))
+>                 return 0;
+>
+>         /* Mark super block clean */
+> @@ -602,7 +611,7 @@ static int nilfs_unfreeze(struct super_block *sb)
+>  {
+>         struct the_nilfs *nilfs =3D sb->s_fs_info;
+>
+> -       if (sb_rdonly(sb))
+> +       if (nilfs_sb_rdonly(sb))
+>                 return 0;
+>
+>         down_write(&nilfs->ns_sem);
+> @@ -698,6 +707,8 @@ static int nilfs_show_options(struct seq_file *seq, s=
+truct dentry *dentry)
+>                 seq_puts(seq, ",norecovery");
+>         if (nilfs_test_opt(nilfs, DISCARD))
+>                 seq_puts(seq, ",discard");
+> +       if (nilfs_emergency_ro(nilfs))
+> +               seq_puts(seq, ",emergency_ro");
+>
+>         return 0;
+>  }
+> @@ -1087,7 +1098,7 @@ nilfs_fill_super(struct super_block *sb, struct fs_=
+context *fc)
+>                 goto failed_unload;
+>         }
+>
+> -       if (!sb_rdonly(sb)) {
+> +       if (!nilfs_sb_rdonly(sb)) {
+>                 err =3D nilfs_attach_log_writer(sb, fsroot);
+>                 if (err)
+>                         goto failed_checkpoint;
+> @@ -1099,7 +1110,7 @@ nilfs_fill_super(struct super_block *sb, struct fs_=
+context *fc)
+>
+>         nilfs_put_root(fsroot);
+>
+> -       if (!sb_rdonly(sb)) {
+> +       if (!nilfs_sb_rdonly(sb)) {
+>                 down_write(&nilfs->ns_sem);
+>                 nilfs_setup_super(sb, true);
+>                 up_write(&nilfs->ns_sem);
+> @@ -1145,6 +1156,10 @@ static int nilfs_reconfigure(struct fs_context *fc=
+)
+>         if (fc->sb_flags & SB_RDONLY) {
+>                 sb->s_flags |=3D SB_RDONLY;
+>
+> +               /* After an error nothing may be written, just go read-on=
+ly. */
+> +               if (nilfs_emergency_ro(nilfs))
+> +                       goto out;
+> +
+>                 /*
+>                  * Remounting a valid RW partition RDONLY, so set
+>                  * the RDONLY flag and then mark the partition as valid a=
+gain.
+> @@ -1156,6 +1171,12 @@ static int nilfs_reconfigure(struct fs_context *fc=
+)
+>                 __u64 features;
+>                 struct nilfs_root *root;
+>
+> +               /* An error made the filesystem read-only until umount. *=
+/
+> +               if (nilfs_emergency_ro(nilfs)) {
+> +                       err =3D -EROFS;
+> +                       goto ignore_opts;
+> +               }
+> +
+>                 /*
+>                  * Mounting a RDONLY partition read-write, so reread and
+>                  * store the current valid flag.  (It may have been chang=
+ed
+> diff --git a/fs/nilfs2/the_nilfs.h b/fs/nilfs2/the_nilfs.h
+> index 4776a70f01ae..0b300d08898e 100644
+> --- a/fs/nilfs2/the_nilfs.h
+> +++ b/fs/nilfs2/the_nilfs.h
+> @@ -30,6 +30,7 @@ enum {
+>         THE_NILFS_GC_RUNNING,   /* gc process is running */
+>         THE_NILFS_SB_DIRTY,     /* super block is dirty */
+>         THE_NILFS_PURGING,      /* disposing dirty files for cleanup */
+> +       THE_NILFS_EMERGENCY_RO, /* read-only after an error */
+>  };
+>
+>  /**
+> @@ -204,6 +205,13 @@ THE_NILFS_FNS(DISCONTINUED, discontinued)
+>  THE_NILFS_FNS(GC_RUNNING, gc_running)
+>  THE_NILFS_FNS(SB_DIRTY, sb_dirty)
+>  THE_NILFS_FNS(PURGING, purging)
+> +THE_NILFS_FNS(EMERGENCY_RO, emergency_ro)
+> +
+> +/* Mounted read-only or read-only after an error: nothing may be written=
+. */
+> +static inline bool nilfs_sb_rdonly(struct super_block *sb)
+> +{
+> +       return sb_rdonly(sb) || nilfs_emergency_ro(sb->s_fs_info);
+> +}
+>
+>  /*
+>   * Mount option operations
+>
+> --
+> 2.53.0
+>
+>
