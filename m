@@ -1,76 +1,76 @@
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D254F395AE4;
-	Tue, 13 Oct 2026 07:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB354E1C81
+	for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 12:39:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791877249; cv=none; b=RJoNqwyqDyvKFaINlu16NoCbqnWyKpqLUFJgJfUy+hgloSMKB3IpJZRZNXctgnIZCa/OHMFJHp0YGi+iKrJXnhEyCZJD0wFRx4tRc0g76ca14eLG3U2ZNfAuogX0xeYg8IqaUIbrDtkhvSEH9SV1vqHTis4XNkzw6hE6TKqYGp8=
+	t=1791895147; cv=none; b=oO0TgqvAG7IMaFh209zauQp61W4+0ZOzyNeWLpSv9/vawFqPcjL/DJDExF328iEMo9+jlpKHF97cfQkiQ5vReNgmK/CgPAroxNMGyxHM221gZ/FF+Bn24Rd2sjjHPhChRDwo1R+QMioQ75xZmuBRdfQo4bgJhqUJjKFpSjdkFt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791877249; c=relaxed/simple;
-	bh=ZTnOrsti/2w8yAPqPu5abDI5OT9mEbN9qOXIuqgEeYg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sPy2HSJzx50dR6jXHBjlzzCroxgh67mawVXAkbESjSuZQ1PiQOgqxXMvnQLXErZRtKL1HQeVmE0cbU4eYam+yIptebHeuv1UXDXik0mGar3p6+0kwSTjPXnH0XxMJSqeaphbij/middSthT6Ffk2D/0E4ZpnZ+Nm726TMFhzX1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=AaZbjD2s; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
+	s=arc-20240116; t=1791895147; c=relaxed/simple;
+	bh=45VxU6as6rSSf8KS89T03GAuN8yEH/ATCiF2BObyyaI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dPM6AWtQWWgO10Q6EQu6SNGJrbKKdAvzJOewuItrnDDHNj7cl4u9aJLoZUs/YpXcSy7box7PcnAQSKkFV1ZNLmJdyAmE516eTbiv1Hu8zLfNSqcbVGAId74d8Jnp016Q8ALPwUBajnsoj475YrUTsUws/omBE6K5unDIjhsNaGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZnUt/G7P; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="AaZbjD2s"
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=z8P81LjS8NfdOGd3+gt4wOMwgwV0ZCatSPsh7k6dc2Q=; b=AaZbjD2soi/yvHMBw/9GVnAIAL
-	shFTyE+Qr1ymdCPeMyfq5lqtdeYZcJr5NtEdEZX2Vr6tV+OH3rTBCbMSILJa0FCBM5oY1X2nIYdHG
-	l2eFb4GevJeSaAAC5jieCXubo7+NvjOvWM5to1Pdk/7OseD8HtAKx2Df7vHzy+xPq2RyWyhU29uJB
-	hY54yKFFTpgtZUOGihr6vdbSwshF4EuWVcQDT+aoKgO58YjUwvk0mXiYWfXd3/eMAMBGFOQrta/jK
-	wP6eABRMv2mfrN2+yN7hF8PYvYzHoaBLB/FBlXBYjnQR+JBo1ykn4SIKd9wbj1Ec9NexumPlQ90QL
-	5Yjx4eTQ==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGX7w-0000000CEmo-13nh;
-	Tue, 13 Oct 2026 07:40:48 +0000
-Date: Tue, 13 Oct 2026 00:40:48 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Christian Brauner <brauner@kernel.org>
-Cc: Jan Kara <jack@suse.com>, Al Viro <viro@zeniv.linux.org.uk>,
-	ecryptfs@vger.kernel.org, linux-ext4@vger.kernel.org,
-	jfs-discussion@lists.sourceforge.net, linux-nilfs@vger.kernel.org,
-	exfat@lists.linux.dev, linux-fsdevel@vger.kernel.org,
-	ntfs@lists.linux.dev, ocfs2-devel@lists.linux.dev,
-	linux-btrfs@vger.kernel.org, gfs2@lists.linux.dev,
-	linux-efi@vger.kernel.org, linux-mtd@lists.infradead.org,
-	linux-xfs@vger.kernel.org
-Subject: Re: [PATCH RFC 28/28] selftests/filesystems: test xfs remounts after
- a shutdown
-Message-ID: <as3ggAvyiKmCEG4v@infradead.org>
-References: <20261012-work-fs-sb_rdonly-v1-0-60743a3dc326@kernel.org>
- <20261012-work-fs-sb_rdonly-v1-28-60743a3dc326@kernel.org>
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZnUt/G7P"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A82931F0089A
+	for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 12:39:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1791895146;
+	bh=45VxU6as6rSSf8KS89T03GAuN8yEH/ATCiF2BObyyaI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=ZnUt/G7P8VGX96aC5h8KKRNhSwZJsPxnghkg+b+oqGaCuB7Vhqbrgf+g0Ihcfu4GS
+	 nZP+tRaZqgsPOVFARXP2nKP/lF47t0hADQZMZJAQhpaRNR2oyj02NhP9T32rMd9ZiA
+	 vBwzocGfKj666esT1d0xTrzNLLw0u/2rFi2a0xrV0RrE+o44F88Ak2gIUVfQNWEFe6
+	 nPrtLmZKIDKtQ99MQGTr/v0A4+J7vRiHDSkgetXLakYMgUofGWEjXrYOFvuXdHCJDg
+	 2Wgd2BLaQeM5bvO9i8T5PFE8oMphr0lcEdnOLlj9gNzmYg+yDAa76OO/QmMZC2TMVL
+	 CGxUT77d8eAZw==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-c31a34de844so444387066b.3
+        for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 05:39:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvBx8h89xlenG4q21NxHZ/u5/lOQseQswgtibdTJ0Dh5VhDFQrDjNKfNEfn1ZNjfsZHS9yjP3@lists.linux.dev
+X-Gm-Message-State: AFq9FYJxrYqBWQ4Xbr5t1zQZmQtDpz3cunEPCbnSms9moyC99b3uPSPj
+	nQhcof7Uhv/qKU1fMkL0sKOSU15l7DhIRABceBJgbX/qqLuNU3eSrJbptEwSv5gDjx3H9Q1FmFG
+	ZXltNa3VpHvS5mxAS5QZd6Bv+85NyBCs=
+X-Received: by 2002:a17:907:e10d:b0:c33:9fab:5f61 with SMTP id
+ a640c23a62f3a-c339fab8f29mr492951166b.29.1791895145229; Tue, 13 Oct 2026
+ 05:39:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261012-work-fs-sb_rdonly-v1-28-60743a3dc326@kernel.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+References: <20261012031656.3858771-1-charsyam@gmail.com> <20261012112755.1353990-1-charsyam@gmail.com>
+In-Reply-To: <20261012112755.1353990-1-charsyam@gmail.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Tue, 13 Oct 2026 21:38:51 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd_EUB83xcaDKFvRLZXfZtRVJsegDGwe8TMrqb29MZb2Ng@mail.gmail.com>
+X-Gm-Features: AclHuK8fHTvrJUyoSVFMnYpyazwL4ywU44XaGJ-nH6xOA7OUElE3cAej4a6-tV8
+Message-ID: <CAKYAXd_EUB83xcaDKFvRLZXfZtRVJsegDGwe8TMrqb29MZb2Ng@mail.gmail.com>
+Subject: Re: [PATCH v2] ntfs: compare streams_interface with mounted volume on remount
+To: DaeMyung Kang <charsyam@gmail.com>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>, Baolin Liu <liubaolin12138@163.com>, ntfs@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 12, 2026 at 12:21:13PM +0200, Christian Brauner wrote:
-> Add tests for remounting xfs after FS_IOC_SHUTDOWN with the default, the
-> logflush and the nologflush flags and after a shutdown that the remount
-> to read-only causes itself:
-> 
-> - option-only remount keeps it read-write
-> - remount to read-only works
-> - remount to read-write fails with EIO
-> 
-> For the last variant the image lives on a tmpfs of its own. The test
-> punches out the log and shrinks the tmpfs so the log write during the
-> remount fails with ENOSPC.
-
-Please make this a xfstests test case, which has the infrastructure
-for all this.  And make it generic, as the same shutdown ioctl is
-supported by half a dozen file systems, nothing really xfs-specific
-here.
-
+On Mon, Oct 12, 2026 at 8:28=E2=80=AFPM DaeMyung Kang <charsyam@gmail.com> =
+wrote:
+>
+> During reconfiguration, fc->s_fs_info points to a newly allocated
+> ntfs_volume. It does not contain the mounted volume's stream setting.
+> Consequently, a windows mount rejects a remount with the same
+> streams_interface=3Dwindows setting, but accepts streams_interface=3Dnone
+> without changing the active pathname interface. This also breaks an
+> ordinary read-only remount when the existing windows setting is passed
+> again, for example from fstab.
+>
+> Compare the requested setting with the mounted volume instead. Report
+> an unsupported change with ntfs_warning() so it does not invoke the
+> mounted filesystem's error-handling policy.
+>
+> Fixes: 2de2cdd9cc08 ("ntfs: add pathname access for named streams")
+> Signed-off-by: DaeMyung Kang <charsyam@gmail.com>
+Applied it to #ntfs-next.
+Thanks!
