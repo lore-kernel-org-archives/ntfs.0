@@ -1,82 +1,84 @@
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC48451CF78;
-	Tue, 13 Oct 2026 20:49:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 984D64B8293
+	for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 23:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791924577; cv=none; b=tERdyAjTBJ1alAx0m1nnZxWEqIHvbYThD2t4mfnTxW5fCVFi7QXG//vqqjnxsxvXq2Gr5T4xKRjuBT4bB1F2grRipQEclNuM86cJQWLKjGuVAK2ESpgo4SRsJXe+LfZuale4lQ2jREfTTpMbqg5wUfi743V35Vk4FET7/7Eh8ZU=
+	t=1791933884; cv=none; b=BK1HxtMH7Izud+Hh9AEtJvYcEfFk84O/imHzNfBRYZpbgPLuGqqtH6naiEtN+RNi1INtMusfdfJX1Qy64yJ7RYPQnt2qtq2JEJOW9GR1txC5TxvymnNoREv2b60XrlF046XeBlZ3eiBCX6NrqGlaitUcLBqFVyJU9zIu+5ZTtmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791924577; c=relaxed/simple;
-	bh=QTSX6QPpMg+9sCN0elNGYodHswvF0CSyxlA2iJhaVCE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PRzKkEyi2AqpP7MVaihAGmvD9qnHHREw93moed/UtZI5kfX0BvXhBf6nAH3+uDFSnF7EE6n0msdpnugekdDSBPgugFTCHMZ9MFTirvOGQwNLlD0/D5jPChqtv+dy40G0OYqnytTwJntawMdRhAMpxMydcy2PnPvox7yC4lQrZZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bJKnx04N; arc=none smtp.client-ip=100.103.45.18
+	s=arc-20240116; t=1791933884; c=relaxed/simple;
+	bh=Zxe1ke8IecLNwIRNUt4DD97QaPXlv4d3HU6wCaWGUdU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pKTr9oN3l4kciXqKOVyRZgPkCus3FqAZ8TCsytFFqRi6XHF9O+ZfbYfRyV4nave4+sKl5FDhdVt3wBJUlQiPamL32WSR6VeLzLVlCfE0n3VaXqNaqZDELWW5ulasK+5oBKoR2imNCMuQJs5RtEebOQycDh38VdTqsorBgwDL6LM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=IZb9Mfx9; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bJKnx04N"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 364811F000FF;
-	Tue, 13 Oct 2026 20:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791924575;
-	bh=n0x76FvMNjwdnTI4hMIC0B3uly+z96rCdJgiGOgndE4=;
-	h=From:To:Cc:Subject:Date;
-	b=bJKnx04NNmzzcUSwvGH1hTuu981CiOShv+UDcE9LcO6XEUsxR24iUeV3f5us0+Gu5
-	 rdaKw9h6gLJ0CNg2sqS2gGzpFIe7w0o8J18r0Inl+8nV2pOh+CnxGEV1JKrNTg1ci8
-	 j1OAe2Rcl+scvqn1N1P5ExK240PScFKEtuvuhF/qljGwAelGIF6XAMaNReJo4B+AXg
-	 AzcxmknjUN8Mc0xkSPoshw9KsVIafG20Q1l/G3fu2P4DzBMg9+qEfY2KjSG8k4uzsT
-	 4oFqvDC9hkUf0MiWt81H95/o0Ecec837gwaPPvdknBVNrwg/jZWz2aceYMaocTeK9S
-	 bMnDkIsIWv5Mg==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ntfs: avoid unnecessary padding in uapi structure
-Date: Tue, 13 Oct 2026 22:49:17 +0200
-Message-ID: <20261013204931.2287813-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.53.0
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="IZb9Mfx9"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=cxeqF0hbguvmh50FR2udmR5/i9PQqhuQfqU7PmhdImc=;
+	b=IZb9Mfx9E09E/d8TYnQqnWXBWqD6UjOfD3I4oCzmJGJCNphM7KFeawC2+TqvE4
+	5IX5o4mf+aQUgxfJQ2jFwwthAoEzLvZeY/H17D7QaxKFA7JYpHzkYgY1RuBPDV3d
+	sAvuy4/g/ggNPkcmgGXlvpZiDY3Moj5v9DZT4yLGDnCTU=
+Received: from [IPV6:2409:8900:1a87:d0a0:9d82:6fdf:5e33:6bcb] (unknown [])
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3H7+jvc5qdfoaEQ--.17989S2;
+	Wed, 14 Oct 2026 07:24:21 +0800 (CST)
+Message-ID: <764fa7c0-d585-400f-9dd6-351de2b7e222@163.com>
+Date: Wed, 14 Oct 2026 07:24:18 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] ntfs: handle block device cache flush in fsync paths
+To: DaeMyung Kang <charsyam@gmail.com>, Namjae Jeon <linkinjeon@kernel.org>,
+ Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20261013145846.56415-1-charsyam@gmail.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261013145846.56415-1-charsyam@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3H7+jvc5qdfoaEQ--.17989S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZF47GF4xtw4UZFWxAF1xuFg_yoWkWrX_ua
+	48Xw1UX392grn7u3Z3tr1UZayqv3W0yw45Ar92qFykA3yxArn5uF1DJrs0vrs0gFWkKr1F
+	gr1Y934fAr47ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUj0tC3UUUUU==
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QXmsWrOvaWnPwAA3f
 
-From: Arnd Bergmann <arnd@arndb.de>
 
-Building the uapi headers with -Wpadded shows a warning that
-may indicate an incompatibility:
 
-./usr/include/linux/ntfs.h:91:1: error: padding struct size to alignment boundary with 4 bytes [-Werror=padded]
+在 2026/10/13 22:58, DaeMyung Kang 写道:
+> Regular-file fsync currently ignores a block device cache flush failure,
+> while directory fsync never issues a cache flush. Both can report success
+> without ensuring that the data and metadata reached stable storage.
+> 
+> The first patch returns and logs flush failures from regular-file fsync.
+> The second adds a flush to directory fsync and reports its failure. The
+> syncfs path already handles flush errors.
+> 
+> QEMU blkdebug injected -EIO for flush_to_disk on ntfs-next at
+> 04fb910da2c8. Before these changes, both file and directory fsync
+> returned success while syncfs returned -EIO. With the respective fixes,
+> both fsync calls return -EIO. A kretprobe confirmed the flush failures.
+> 
+> DaeMyung Kang (2):
+>    ntfs: report block device flush failures from fsync
+>    ntfs: flush the block device when syncing a directory
+> 
+>   fs/ntfs/dir.c  | 2 ++
+>   fs/ntfs/file.c | 4 ++--
+>   2 files changed, 4 insertions(+), 2 deletions(-)
+> 
+> 
+> base-commit: 04fb910da2c857cdf99a331c576c3e5e7197c6dd
 
-This is relatively harmless here as the 64-bit members force natural
-alignment, so this is not a problem for compat ioctls, and I checked
-that the padding word is still initialized by means of using kvzalloc()
-to allocate it, but it's better to avoid the padding out of
-principle.
+The series looks good to me.
 
-Change the reserved member to use a 64-bit type so the name field
-starts after the structure and all padding is explicit.
-
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- include/uapi/linux/ntfs.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/include/uapi/linux/ntfs.h b/include/uapi/linux/ntfs.h
-index f5b3d4997a56..89467ba07262 100644
---- a/include/uapi/linux/ntfs.h
-+++ b/include/uapi/linux/ntfs.h
-@@ -86,7 +86,7 @@ struct ntfs_stream_entry {
- 	__aligned_u64 alloc_size;
- 	__u32 name_len;
- 	__u32 name_offset;
--	__u32 reserved;
-+	__aligned_u64 reserved;
- 	__u8 name[];
- };
- 
--- 
-2.53.0
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 
