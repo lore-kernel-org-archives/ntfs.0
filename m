@@ -1,39 +1,60 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530894E0B6E
-	for <ntfs@lists.linux.dev>; Tue, 13 Oct 2026 23:43:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3FA1A6829
+	for <ntfs@lists.linux.dev>; Wed, 14 Oct 2026 01:18:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791935011; cv=none; b=Wye9PMVUnrlpIfzUHgKtqDTf0RCcoE0b1OnM4XmUnZ6X806TrdsaFPxVKjt6FgranMlcIv7QcF/XfLE2AQw+liv0SdNCkkr6M3wcy6uu5mgc03LY8zFRfN1FapLmoNzpVyOb5euPpeNjfwIA9joOFt74JQQ1ODf5ghJ+5jKMb04=
+	t=1791940732; cv=none; b=QaAFmo0BRr9fWDkwpGQ7XmTEli8p0mqGned/AxS5eWWwiJ0S1iMfCcCz7qxW2sk8dztmJPSWpaHJohsC+J7KvG23Z14D240+PedjbWWCg57PMRpfPinfecxXu+800D0exJ+ufWRDm8XZBnnCpAdm9kdhugdj3Z6RfMzeFjcdkX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791935011; c=relaxed/simple;
-	bh=GvZxarkkwqqsR3khBy5tCFsKRpsaRw8uvoLtTbkALNo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RbCxPB1Lg/cy+RH69JY8tQTTLzmdxJ2UDJjeYAK8cKC2pNeMiLvC/fnqgSY6TsJF0FfL9yvl7+snd52uY2OqCBbpgrO3J5eD9dIF6BFvBKFyJ9im7SwpiHl5iKQogQS5hNklg6+wqeXwF7rChcuwRISWqocXOdGtEXCbE6RpYsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=HxmGHMN+; arc=none smtp.client-ip=117.135.210.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="HxmGHMN+"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=lL
-	OVZmATFMcWY5AsWvDsdDWTAZ57Fo5AmzovE35nef8=; b=HxmGHMN+F1cmSC5PdD
-	H3+yitLmpEcTU/hXcxrFiuzx7/tvPligLq5OahvAPfVWG2Pax/gy+abu7CzLJSxh
-	CKtzo1hd0wAObhBQ9HWE0TOrrUrSmuZfiONpn2ypftVq23Gz/Yt8FREo3YxFRify
-	JcS1lLMQMzc0GcPhlPRTyHjBw=
-Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3n8YRws5qn3YTEg--.47761S2;
-	Wed, 14 Oct 2026 07:43:15 +0800 (CST)
-From: Baolin Liu <liubaolin12138@163.com>
+	s=arc-20240116; t=1791940732; c=relaxed/simple;
+	bh=AMl2aWuauYzcDFthFpyeaYA3wlVJBMbQKbHj0jXbfJQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RU1R9JUZMQ85Vt6a72Vi8EuADZgqGIuFGqKGc0gzDgKxGA8SOSWJJ0ubrrYJhcqKidRob/VRDitn/7siG7Z5dU92fnUWgzNLznLA8s/SOWEnuKyeUqsOTK1TjpzxxMkKT0N4rszIgfEuMvnkyAldiNZnacb+oUQoYuwjB1K3Pi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 2fef8074c76d11f19a56ed5b684f684d-20261014
+X-CTIC-Tags:
+	HR_CC_COUNT, HR_CC_DOMAIN_COUNT, HR_CC_NAME, HR_CC_NO_NAME, HR_CTE_8B
+	HR_CTT_MISS, HR_DATE_H, HR_DATE_WKD, HR_DATE_ZONE, HR_FROM_NAME
+	HR_SJ_DIGIT_LEN, HR_SJ_LANG, HR_SJ_LEN, HR_SJ_LETTER, HR_SJ_NOR_SYM
+	HR_SJ_PHRASE, HR_SJ_PHRASE_LEN, HR_SJ_WS, HR_TO_COUNT, HR_TO_DOMAIN_COUNT
+	HR_TO_NO_NAME, IP_UNTRUSTED, SRC_UNTRUSTED, IP_UNFAMILIAR, SRC_UNFAMILIAR
+	SA_TRUSTED, SA_EXISTED, SN_TRUSTED, SN_EXISTED, SPF_NOPASS
+	DKIM_NOPASS, DMARC_NOPASS, CIE_BAD, CIE_GOOD_SPF, CIE_UNKNOWN
+	GTI_FG_BS, GTI_RG_INFO, GTI_C_BU, AMN_GOOD, ABX_MISS_RDNS
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:a5738390-a88d-486e-82bb-c653abb40bff,IP:10,
+	URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:10
+X-CID-INFO: VERSION:1.3.19,REQID:a5738390-a88d-486e-82bb-c653abb40bff,IP:10,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:10
+X-CID-META: VersionHash:7db8b62,CLOUDID:2626081ce28e968e1183f334528d0287,BulkI
+	D:261014091842K86BXRZZ,BulkQuantity:0,SF:17|19|38|66|78|102|127|136|850|86
+	5|898,TC:nil,Content:0|15|50|99,EDM:-3|-100,IP:-2,URL:0,File:nil,RT:nil,Bu
+	lk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:
+	0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_FAS,TF_CID_SPAM_FSD
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 2fef8074c76d11f19a56ed5b684f684d-20261014
+X-User: wangxuewen@kylinos.cn
+Received: from localhost.localdomain [(223.104.40.190)] by mailgw.kylinos.cn
+	(envelope-from <wangxuewen@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1274830366; Wed, 14 Oct 2026 09:18:39 +0800
+From: Xuewen Wang <wangxuewen@kylinos.cn>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v1] ntfs: support FS_IOC_GETFSUUID
-Date: Wed, 14 Oct 2026 07:43:10 +0800
-Message-ID: <20261013234310.836392-1-liubaolin12138@163.com>
-X-Mailer: git-send-email 2.51.0
+	Xuewen Wang <wangxuewen@kylinos.cn>
+Subject: [PATCH v1] ntfs: report birth time for symbolic links
+Date: Wed, 14 Oct 2026 09:18:24 +0800
+Message-Id: <20261014011824.493241-1-wangxuewen@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -41,46 +62,36 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3n8YRws5qn3YTEg--.47761S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WF15ZryxAF4DKF47tFW5Wrg_yoW8Gw1Upr
-	nak3yxKrZ5JF4j9ws2kr4Fqr1xZ3sxJa1Dtryqvw1fWws5t3WagrsFya4FgFWrAr95tr4j
-	qFs0939xuFyjqaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Um-ewUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hQEzmrOwhS47QAA3T
 
-From: Baolin Liu <liubaolin@kylinos.cn>
+NTFS already loads the creation time into i_crtime and reports it through
+ntfs_getattr(). However, the symbolic-link inode operations omit getattr,
+so statx() with AT_SYMLINK_NOFOLLOW falls back to generic_fillattr() and
+does not return STATX_BTIME for the link itself.
 
-NTFS reads the 64-bit volume serial number from the boot sector but leaves
-the superblock UUID unset. As a result, the generic FS_IOC_GETFSUUID
-handler returns ENOTTY for files and directories on an NTFS volume.
+Use ntfs_getattr() for symbolic links to expose their stored creation time.
 
-Register the on-disk little-endian serial number as an eight-byte
-filesystem identifier with super_set_uuid(). The generic VFS handler can
-then expose the existing volume identifier.
-
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
 ---
-Tested in QEMU with file and directory descriptors, comparing the returned
-bytes with the boot sector. Queries remain consistent after read-only
-and read-write remounts, unmount/mount and a fresh boot. An invalid output
-buffer returns EFAULT.
+Tested in QEMU with WSL and native symlinks, including dangling links and
+links to directories. Birth times survive inode cache eviction, remounts
+and a fresh boot. Queries that follow a link still report the target's
+creation time.
 
- fs/ntfs/super.c | 2 ++
- 1 file changed, 2 insertions(+)
+ fs/ntfs/file.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 242fb19ced2b..950d305ab695 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -997,6 +997,8 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 				vol->mft_record_size_bits;
- 	ntfs_debug("vol->mftmirr_size = %i", vol->mftmirr_size);
- 	vol->serial_no = le64_to_cpu(b->volume_serial_number);
-+	super_set_uuid(vol->sb, (const u8 *)&b->volume_serial_number,
-+		       sizeof(b->volume_serial_number));
- 	ntfs_debug("vol->serial_no = 0x%llx", vol->serial_no);
- 
- 	vol->sparse_compression_unit = 4;
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 58afd310d57b..58aad7f5c6c5 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -1556,6 +1556,7 @@ const struct inode_operations ntfs_file_inode_ops = {
+ const struct inode_operations ntfs_symlink_inode_operations = {
+ 	.get_link	= ntfs_get_link,
+ 	.setattr	= ntfs_setattr,
++	.getattr	= ntfs_getattr,
+ 	.listxattr	= ntfs_listxattr,
+ 	.fileattr_get	= ntfs_fileattr_get,
+ 	.fileattr_set	= ntfs_fileattr_set,
 -- 
-2.51.0
+2.25.1
 
