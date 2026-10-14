@@ -1,70 +1,74 @@
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24304E8E15
-	for <ntfs@lists.linux.dev>; Wed, 14 Oct 2026 12:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EDF4C1512
+	for <ntfs@lists.linux.dev>; Wed, 14 Oct 2026 12:44:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791981867; cv=none; b=EPTX9Ptc5385rNbq4c3NAfurbDlPjBdSyOmVijLrDY9usbbqQ1jcsLsFe1Bh2+0DOwAKI7J8w6eK21hw2Z1vZ6UoSTWOjBC2t69Po71WKZ23X8oPMQE9++NXaOux8npfp4hg9XQAwXDm+ybTO/g1YMapwPznUx6VGjf08MuPiTY=
+	t=1791981900; cv=none; b=QCxQ1mMHkYIM3ml5Wj1snetT7Xr/zyQ36dRdxtn91JupZdBkTRhDDiGBIZ9TYfUBNNf+iD2silhVgyaXasnJxS63dI8pGJyLmwXIfZJ2fMjvemI/0lDDookI9K7ABRrhW/d9Oe0WAe0hPJOTREQ5AHUIRfOeGXgGpT14HH3Xxl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791981867; c=relaxed/simple;
-	bh=eMPn4cPSWoSrdPxRQaiE0mcaKbIlI9N8RW4otXgnA1c=;
+	s=arc-20240116; t=1791981900; c=relaxed/simple;
+	bh=jlkg6Pp9S5K6OjqDHZJE27nWpXn+g10CvZhATskod9k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HWsrKUZxvYF0+bJTfNTFiRzNIsj+8oaHY2ISi/3+eL5IeciDXO46+SAQhavBnXT5omT2u5wJ1qCgrUCLkM2OEtT12tYpfDQDn45Sy+HSUDmUVUWQGTAeaNzC0uJPoSsqvhTW61gjPiL+wcoiAAwgqnjuXHgdV0CCGASoM+evels=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HrZvElBr; arc=none smtp.client-ip=100.103.45.18
+	 To:Cc:Content-Type; b=rdJxQHdHDzjYsv7GV4cqq8gGqpy3Z9E4iffeuKrkiuKNhJhOYWpZ+g3kPuTG7F310ySsjOGbcIjj5w4L775QjKhrwjcRl3WLPqq+F4WVhO/k5Al3ds5tlGPy4CO7CX0NOFSUXRGZ+2pEtIHfx0uI11GJoHffbLaG4VqmdEEa7CY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUV9RsN7; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HrZvElBr"
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A6481F00893
-	for <ntfs@lists.linux.dev>; Wed, 14 Oct 2026 12:44:26 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUV9RsN7"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65DB51F00899
+	for <ntfs@lists.linux.dev>; Wed, 14 Oct 2026 12:44:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791981866;
-	bh=eMPn4cPSWoSrdPxRQaiE0mcaKbIlI9N8RW4otXgnA1c=;
+	s=k20260515; t=1791981898;
+	bh=jlkg6Pp9S5K6OjqDHZJE27nWpXn+g10CvZhATskod9k=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=HrZvElBrsKEENoHVPiSUuiBTC+jvDnCcj+2D6fli8akQUcbrge+t0PXA0aR5coOBZ
-	 yPlOo0hfqtX08VnZdTYj7G556oLcFAuELpX/OaU+HUOhM3oAsiSOG+kqNKSYY5UETW
-	 fqmzQ1C8cee4vUQj5vs1ZKGxla44O2XUMPjwuUtUrQmGxDGdhAfjo7d85AoclFKGNw
-	 EW6IdwqLMzgMQ59LKLkiO+sUSP6hUVIv7uk1TGYgFh9Dr+3cZko+ahnsiGGRYfahmG
-	 d1DNpZoiyaTbLp5OnBhmwiUlYvOwxCtev7JcoESDMIWrsu1Afi6IUWDf4yxAIpaoLZ
-	 7zbky5NjAMfLw==
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-c2e5e090746so394077066b.0
-        for <ntfs@lists.linux.dev>; Wed, 14 Oct 2026 05:44:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBx5c8MeZoIt2nRCCGPPaM1eq1XxzewUtsWVTCv84LJO2cEbQhrIuFAmFfU9ZCLZZgFotz4u@lists.linux.dev
-X-Gm-Message-State: AFq9FYJp+b8LkqLuq2NThVYTGZcotz71rTgXGmuf7rRkPkGgwbHY3Ud3
-	Nafmx1wnt9WlgDdqPqiBRJ6af/vgDR+FPLq2I4OuuI7eOndoOliqRR5bDFoHyWw4x3TJNShfwzt
-	cLqF2GqrFmVkXma2tUsyftou9w6BhT1c=
-X-Received: by 2002:a17:906:730d:b0:c2e:63ba:1f90 with SMTP id
- a640c23a62f3a-c31aa0fb050mr1548431466b.48.1791981865098; Wed, 14 Oct 2026
- 05:44:25 -0700 (PDT)
+	b=cUV9RsN7MPaUayQSlydVagR7Gyx9JLiMfjhfYZJMuXev9DtNRzEUa9bSbCgeGolZF
+	 CbW8lCPQAklOqTxEtEK3Y4w4/pfknVyNR3xBcgoVuUvCOF2O6s31d1qgyu7gQDEmnR
+	 AJmDkargcJdUylKDQbWec0mzVVQavVYYMN5ZW/HBI1X4UuJq7GSGh1Gpee3TCtBEp1
+	 CrgmqFo8Qx8MdWTLrboV21/zryvSWVGmsnkS5/YY9kZK+KYzGoJICphtQUxhPSsEJu
+	 e/9moBCl359hQ6TV8Zpb+hCCcobCdcQh9IWF43rDrOok5sXOzycDmmhNdGybjlWIGv
+	 xFdb2pLQ+fNlQ==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-6b1aa4d71e7so845366a12.0
+        for <ntfs@lists.linux.dev>; Wed, 14 Oct 2026 05:44:58 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvByajWti9cf09tvGCqNyNzj1FSWXEU0SW2IwuZtXuQfC2gDTnhGbLKKRuWXLQY1nEnqkP5w1@lists.linux.dev
+X-Gm-Message-State: AFq9FYK9i9X2se33dJRxevQgwq+HjfPN3fvfX17PoKDPeTO8SOY6+pUY
+	dyh8S/9fBchqrtbz5zlxqLne8aercZrDDBoX1CwKLkxORUcMCVl3NO3FZiWdiL1uEHjcDHfBzKx
+	xvFNdrG8A2V5nEvrAJvH4I6oCCm+kNvU=
+X-Received: by 2002:a17:907:971e:b0:c2e:4831:1442 with SMTP id
+ a640c23a62f3a-c31a9a046bcmr1398161066b.1.1791981897013; Wed, 14 Oct 2026
+ 05:44:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20261014011824.493241-1-wangxuewen@kylinos.cn>
-In-Reply-To: <20261014011824.493241-1-wangxuewen@kylinos.cn>
+References: <20261013234310.836392-1-liubaolin12138@163.com>
+In-Reply-To: <20261013234310.836392-1-liubaolin12138@163.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Wed, 14 Oct 2026 21:44:12 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd-0BDeMF+4Bj7WMPUeGy6tw2je+yujrUjYG+pw6RqdzOw@mail.gmail.com>
-X-Gm-Features: AclHuK9B7ZaxmSn5-KIb94CXT9spp5et8QHLxVQmMwj_bUrDkjev2j-dNgQc4Fk
-Message-ID: <CAKYAXd-0BDeMF+4Bj7WMPUeGy6tw2je+yujrUjYG+pw6RqdzOw@mail.gmail.com>
-Subject: Re: [PATCH v1] ntfs: report birth time for symbolic links
-To: Xuewen Wang <wangxuewen@kylinos.cn>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+Date: Wed, 14 Oct 2026 21:44:43 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd_RbY92zjeAXXjmxBSPoBLLLyLkov0JcvLksd+QxgknuA@mail.gmail.com>
+X-Gm-Features: AclHuK8IGpmJGG5lHjhKYsUqNdolcBK51uG8dYcXIGxQjTdotJ0LRSHa2Uho0uc
+Message-ID: <CAKYAXd_RbY92zjeAXXjmxBSPoBLLLyLkov0JcvLksd+QxgknuA@mail.gmail.com>
+Subject: Re: [PATCH v1] ntfs: support FS_IOC_GETFSUUID
+To: Baolin Liu <liubaolin12138@163.com>
+Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Baolin Liu <liubaolin@kylinos.cn>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 14, 2026 at 10:18=E2=80=AFAM Xuewen Wang <wangxuewen@kylinos.cn=
-> wrote:
+On Wed, Oct 14, 2026 at 8:43=E2=80=AFAM Baolin Liu <liubaolin12138@163.com>=
+ wrote:
 >
-> NTFS already loads the creation time into i_crtime and reports it through
-> ntfs_getattr(). However, the symbolic-link inode operations omit getattr,
-> so statx() with AT_SYMLINK_NOFOLLOW falls back to generic_fillattr() and
-> does not return STATX_BTIME for the link itself.
+> From: Baolin Liu <liubaolin@kylinos.cn>
 >
-> Use ntfs_getattr() for symbolic links to expose their stored creation tim=
-e.
+> NTFS reads the 64-bit volume serial number from the boot sector but leave=
+s
+> the superblock UUID unset. As a result, the generic FS_IOC_GETFSUUID
+> handler returns ENOTTY for files and directories on an NTFS volume.
 >
-> Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+> Register the on-disk little-endian serial number as an eight-byte
+> filesystem identifier with super_set_uuid(). The generic VFS handler can
+> then expose the existing volume identifier.
+>
+> Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 Applied it to #ntfs-next.
 Thanks!
