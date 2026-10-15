@@ -1,98 +1,74 @@
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EADF530DF7;
-	Wed, 14 Oct 2026 13:47:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A688F2459CF
+	for <ntfs@lists.linux.dev>; Thu, 15 Oct 2026 00:20:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1791985663; cv=none; b=rOZcUCwf0LuOStKrxgzW0pYCfgewfM/Kodm3ZyXH+m8mNws6+nTZ0dUTy0quiUnn/3x6tqplTh6+h0KSsnVbMFD6h0ZHvUnCaGnM8JdViRqS70gS1bdnZ88yHSLvnDxC2lP1YS5do0g+/pGfSiKNKqLroedZRIOSTdvE1PXPEcM=
+	t=1792023608; cv=none; b=XnwFh6qFdZu0k6iWGHjDehjS0vGF7ooFfNMGaS46rZAOtuNE8qUtlc+Ni/P/iLi5pIcmaHYNp0RJ2OAH1AXREGnbfW1sl5NUb5VCQY3oH94oNa8IOJTMyjf+bug+XsxX0Ogd6weztQMjGDy1o9U6TdxIiUT3C8S+0A+KWuF8yMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1791985663; c=relaxed/simple;
-	bh=uLec5Ms1kEItxT/9M3m+iatVoLfvlo+Ku3r+6YxXaVo=;
+	s=arc-20240116; t=1792023608; c=relaxed/simple;
+	bh=AnNVEavxqtyOTLpLxYFj2+nZEID6bcl0Z2S7QWhHL6I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=phCBR6//HXrne9fXQuP5Y8SlKSN8HTEjA2q3Jc4Sajhj8+u1uUOHMyUHoTWCDTdEAzUTBJE3/IZJndBSh1RxXY2sWaD31bfg76jprO9ONdpaNf+CJguXn6+qH+rNM0OxUhvPqk7EUsm6GBMbQIaANXa0Vvd+R0yHPNISsRLC1lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=suse.cz; spf=pass smtp.mailfrom=suse.cz; dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b=KER6SV+3; dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b=5kV45Nl3; dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b=S0AnEx52; dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b=gG1ABpRO; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=suse.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.cz
+	 Content-Type:Content-Disposition:In-Reply-To; b=fYiq+Od1SDJnBbHvG3tEFjp0ZuShskHA/epR1zAS3wbzO1ymkdMJGLVrwp/axyFxlvVXKmQp5KZmyCCU2CU6PaAPltTfwO8upzHlmJhVzwr2ANFMhcs7AQ+b5ayAdlejed9pBGNKmJ3vDkj7V/K1tgXWNhA4ApeMloxZmHBApm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DI1f/TKr; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="KER6SV+3";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="5kV45Nl3";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="S0AnEx52";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="gG1ABpRO"
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id D252822258;
-	Wed, 14 Oct 2026 13:47:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-	t=1791985659; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DY9RqNIokuQ1DH3X9Yc1BCOmA2bOCbyTbnsYeJcms7U=;
-	b=KER6SV+3E5T8faaU3djQpSC8B9QPNgiQOksk9btYa1oyN+g/YdhOBY6t1StzY1g3bSF0IJ
-	zd1FvSem8kaP2TbkqojJhhhFOthOVUjirK7sCmgbkHZZx82aJ9Io4OE8IvNRplBb+KGXEf
-	1xnlhspPxY1CCNo9bMSSg22YlcPY1WI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1791985659;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DY9RqNIokuQ1DH3X9Yc1BCOmA2bOCbyTbnsYeJcms7U=;
-	b=5kV45Nl3phoxgImBDhEqInuMMmAek0XiQQPFlXI/cnE3ZS5Quvx+F2axMbnAyEMUB1fkx3
-	FIYEJ2frN9CQ5KBA==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.cz header.s=susede2_rsa header.b=S0AnEx52;
-	dkim=pass header.d=suse.cz header.s=susede2_ed25519 header.b=gG1ABpRO
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-	t=1791985657; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DY9RqNIokuQ1DH3X9Yc1BCOmA2bOCbyTbnsYeJcms7U=;
-	b=S0AnEx52KGncKxtGJdhOJnkNKWblqAhU1fDfPojL39mMiKeDrabTNcq7zrzX9j4BiwbLyH
-	OakWO7MFjbmum5NnwrDWXKsOJm95K6rjrzLtmGKio9hh9a9ZDKInBQ8G3OJJr2jLduCpIm
-	cY4ShwlOEbCtlHljqjRWtydkmyqg6nY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1791985657;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DY9RqNIokuQ1DH3X9Yc1BCOmA2bOCbyTbnsYeJcms7U=;
-	b=gG1ABpROq+bYTWDuUnYSBShOJ9fbmudAese1phkK/c9rHSbMI+6wnPeO8BO8ATprL8kHK6
-	exH5zVUd6CuBDKDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9348F133F1;
-	Wed, 14 Oct 2026 13:47:37 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id ACfUG/mHz2oSUQAAD6G6ig
-	(envelope-from <jack@suse.cz>); Wed, 14 Oct 2026 13:47:37 +0000
-Received: by quack3.suse.cz (Postfix, from userid 1000)
-	id 84A41A140F; Wed, 14 Oct 2026 15:47:36 +0200 (CEST)
-Date: Wed, 14 Oct 2026 15:47:36 +0200
-From: Jan Kara <jack@suse.cz>
-To: Andreas Gruenbacher <agruenba@redhat.com>
-Cc: Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
-	Jan Kara <jack@suse.com>, Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, 
-	linux-ext4@vger.kernel.org, jfs-discussion@lists.sourceforge.net, 
-	linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
-	ntfs@lists.linux.dev, ocfs2-devel@lists.linux.dev, linux-btrfs@vger.kernel.org, 
-	gfs2@lists.linux.dev, linux-efi@vger.kernel.org, linux-mtd@lists.infradead.org, 
-	linux-xfs@vger.kernel.org, stable@vger.kernel.org, 
-	Karl Mehltretter <kmehltretter@gmail.com>
-Subject: Re: [PATCH RFC 00/28] fs: don't set SB_RDONLY after filesystem errors
-Message-ID: <k7zduo2ewgvrmic2gc4wssakq4ystwqpuwo6a5llx2gzc64xzl@k2pjjijh5kye>
-References: <20261012-work-fs-sb_rdonly-v1-0-60743a3dc326@kernel.org>
- <my2k7257m265fp5ad77n5hfndl23i56gsog3jwnsyocp3yxbnj@aphfqdiej2hs>
- <20261013-forsten-ammoniak-geknackt-fefec366cc97@brauner>
- <CAHc6FU5JuYU8R4=agxgWBoEKrUGyWiitzRn5MwXiV7NZYt=_ag@mail.gmail.com>
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DI1f/TKr"
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-cc502d509c0so703929a12.2
+        for <ntfs@lists.linux.dev>; Wed, 14 Oct 2026 17:20:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1792023605; x=1792628405; darn=lists.linux.dev;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=ISbHRDvpK26efrlSANt4b/Vey+sE4YbMfz0mAYLwgdI=;
+        b=DI1f/TKrSW8rNceckgDjNaZLXQBVmyFmxNu6K4fkfF3TRdxt18JtOm3HVhizHCvv45
+         rk1dtvFiQUfWssAHUYflmD9u38KINr16XcpuYrXe0IcqyXM1KvozowR/TaQoYdU0l6km
+         +URfo9lNRt/uolS/TujGSi9dqJTI1Ueid8HHqkWeqROx8n/vKD9+Gkx/yYdoOdQzSu5L
+         cFKpn1srgZsx+UyIcXDuczCFigYy3MkMEvdr2YSxTddnMLBLtt5wpxpKGXJYffV/TRsW
+         CL/OlYvwJ+ryS8l+OVG/vpTk6ykf+Y1pMSqxmrSXxZDEl7xRZovoztj2RrzI9zrX7z9G
+         9hvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792023605; x=1792628405;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ISbHRDvpK26efrlSANt4b/Vey+sE4YbMfz0mAYLwgdI=;
+        b=M+A4cnJrZuleUs6QCqaymFa30T0nHIwm72oUk0wLouwWmed2xywzimaQADJFe4eebU
+         OOXT15jGgruIZMLlxKa+FjY3Mk27Tc7SqEE1hLpy32nMR3DSNMgu58NSkNt3D7UuHFp0
+         epxdxXz2sd5u3C8lg2F1gaK4uCgOrkVCP268IZT4vMhDdMAJ4CNG/cFcub/7DFaegOUe
+         aGdn5x7nOvgvbdQqAAt935l/xgX36S7ZXGqDhpNX8fH0UjiiFrGRmx6Oz5SoZBO2ivhf
+         pcny7TJzfecxYp+8S/0x+xcc68roEluJ3/jpGuVvR6aY9C5Ve9uGF9wRpKpEfPc5ZjBi
+         skmQ==
+X-Forwarded-Encrypted: i=1; AKwUvBxy1R2MNLFQP7Aczcpgd65QRBXljNnNpk59EKaxDpnTs7HbMWPs4C+f+WCD4AHyKCdd10eN@lists.linux.dev
+X-Gm-Message-State: AFq9FYJzII01yteCwU54wnQQQLftbI24la1H+Il+9Kx6UDSI408DF/BG
+	XLQ8FtgbZWNRLXPzG8/84CCTwQFY/9PiilEw3ukdtwrHlgekNKcruRg6
+X-Gm-Gg: AYBFou0MnBQNM0Bg/UZRWUb8bmUo7jElNbcYfmWjRTkvsyGZYaRWNzkH/3FYtgKO3Xw
+	Df8iIMOtUBFFe3hmEZcnHyiiSPDzGysZQL+popWK1dvoqYJjRHGMwjELtaMbQKcj7WJ20GOn6v+
+	sZLXer+Opbu6eUREqguvQmO0UzYzFJ8g3bKyxMfJKGWsVaCgKN3TF1uiUL4gQHQMr04t1nESeLf
+	05oxkEOjHGEm2yqWZ9E488Yk2j/duF3VmugtEVtPMeE8dqYE+vuo/QokpMYPwTsF7NuUGNvsddg
+	bJ638XlkD8tQU5rXBJnRkR2ATeMQho/YofABNSXwRVuKPPpKROttCkaGDLbqXOnYe26kKR71Kif
+	he+2zbujNMH5xND3GhPNZdWNLxAQdayhMkFgjFbzB/HmE6bxQEnDTR9bDyG4M1GcQqpGKpT1Etr
+	vPJqJe8t+byns7lp+p4rHP+aSRlG2yDfVe/ux7uz+F4fYrT8nQ9mesHXZhmERo
+X-Received: by 2002:a17:90b:2681:b0:3ab:189b:6981 with SMTP id 98e67ed59e1d1-3ab3a92f9f3mr13983908a91.48.1792023604661;
+        Wed, 14 Oct 2026 17:20:04 -0700 (PDT)
+Received: from localhost ([27.122.242.71])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3ac93ff4474sm1597813a91.0.2026.10.14.17.20.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2026 17:20:03 -0700 (PDT)
+Date: Thu, 15 Oct 2026 09:20:01 +0900
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: Hongling Zeng <zenghongling@kylinos.cn>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org, zhongling0719@126.com,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v5] ntfs: roll back the ACL xattr commit when the WSL
+ mode update fails
+Message-ID: <atAcMSHpAbf0aTGP@hyunchul-PC02>
+References: <20261013015652.19724-1-zenghongling@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -101,103 +77,39 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHc6FU5JuYU8R4=agxgWBoEKrUGyWiitzRn5MwXiV7NZYt=_ag@mail.gmail.com>
-X-Rspamd-Action: no action
-X-Spam-Score: -4.01
-X-Spam-Flag: NO
-X-Spamd-Result: default: False [-4.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
-	RCVD_COUNT_THREE(0.00)[3];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[suse.cz:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,suse.cz,suse.com,zeniv.linux.org.uk,vger.kernel.org,lists.sourceforge.net,lists.linux.dev,lists.infradead.org,gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:dkim,suse.com:email,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns]
-X-Spam-Level: 
-X-Rspamd-Queue-Id: D252822258
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+In-Reply-To: <20261013015652.19724-1-zenghongling@kylinos.cn>
 
-On Wed 14-10-26 12:04:08, Andreas Gruenbacher wrote:
-> On Wed, Oct 14, 2026 at 12:20 AM Christian Brauner <brauner@kernel.org> wrote:
-> > > I'm in favor of this. Just after checking couple of filesystem changes -
-> > > won't we be better off by using a generic flag in super_block for this so
-> > > that VFS can check for it? Then each filesystem won't have to implement
-> > > its own wrapper for simple_fsync(), quota operations, and whatever other
-> > > generic operations that need to bail on shutdown filesystem...
-> >
-> > Do you mean something like?:
-> >
-> > From 28c97f2142e255eb835d26deb97b00afccfb7c4a Mon Sep 17 00:00:00 2001
-> > From: Christian Brauner <brauner@kernel.org>
-> > Date: Tue, 13 Oct 2026 21:15:36 +0200
-> > Subject: [PATCH] fs: add a generic emergency read-only state
-> >
-> > The filesystems that stopped setting SB_RDONLY after an error refuse
-> > modifications themselves now. Each of them grew the same checks in
-> > ->open, ->setattr, ->fsync, ->write_inode, the directory operations, the
-> > quota operations and ->reconfigure. Jan suggested a generic flag so the
-> > VFS can do that once (cf. [1]).
-> >
-> > So add SB_STATE_EMERGENCY_RO in a new sb->s_state word. It is only ever
-> > set with set_bit() and never cleared so it can be tested anywhere
-> > without any ordering against the setter. A filesystem calls
-> > sb_set_emergency_ro() where it used to set SB_RDONLY. SB_RDONLY itself
-> > stays untouched so freeze_super() and thaw_super() keep seeing a
-> > consistent superblock.
-> >
-> > The VFS then checks it wherever sb_rdonly() gates a write:
-> >
-> > - __mnt_is_readonly() so mnt_want_write(), opening files for writing,
-> >   access(W_OK), nfsd and overlayfs see a read-only superblock
-> > - sb_permission() for vfs_create(), vfs_unlink() and friends
-> > - notify_change(), rw_verify_area(), vfs_fallocate(), vfs_fsync_range()
-> >   and do_page_mkwrite() for files that were opened before the error
-> > - reconfigure_super() refuses going read-write
-> > - sync_filesystem(), sync(2) and write_inode() don't write anymore
-> > - the dquot code doesn't write the quota files anymore and quotactl(2)
-> >   refuses to change anything
-> > - "emergency_ro" is shown in the mount options, /proc/mounts shows the
-> >   superblock as "ro" and statfs() reports ST_RDONLY like they did when
-> >   SB_RDONLY was set
-> >
-> > What reaches the filesystem without passing through the VFS it still has
-> > to refuse itself. That's its allocators, its journal, its own writeback
-> > and the deletion of unlinked inodes.
+On Tue, Oct 13, 2026 at 09:56:52AM +0800, Hongling Zeng wrote:
+> ntfs_set_acl_ex() commits the ACL xattr before it rewrites the WSL
+> mode EA, and removes it again when the rewrite fails.  That only
+> undoes a set that created the xattr: when the update replaced or
+> removed an existing one, the old ACL is discarded along with the
+> failed update.  No error is recorded when the undo fails, so the
+> new, typically more permissive, ACL is left on disk while i_mode,
+> the mode EA and the cached ACL keep the old values.  After a
+> remount, a chmod 0640 -> 0777 that reported failure leaves the file
+> accessible to the relaxed ACL while stat() still reports 0640.
 > 
-> For shared filesystems like gfs2, the concept of an emergency
-> read-only state doesn't make sense because in that state (in gfs2
-> terms, a withdrawn filesystem), we cannot do any more cluster-wide
-> locking and so we cannot allow any more reads, either. Could we define
-> the new flag in a way that would allow filesystems to enforce stronger
-> guarantees? This would suggest a flag name other than
-> SB_STATE_EMERGENCY_RO, though.
+> Save the previous xattr before committing the update, and restore it
+> when the mode EA rewrite fails.  A removed xattr is created again,
+> since XATTR_REPLACE fails with -ENODATA once the removal dropped the
+> entry.  Remove the new xattr only when there was no previous one, and
+> skip the undo when the commit changed nothing.  A failed rollback is
+> recorded: NVolSetErrors(), which the next persistence point persists
+> as VOLUME_IS_DIRTY, and a log message the errors= policy acts on.
+> The flag cannot be written to disk here directly: the target inode's
+> mrec_lock is held and the $Volume mrec_lock cannot be nested under
+> it.
+> 
+> Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
+> Cc: stable@vger.kernel.org
+> Suggested-by: Hyunchul Lee <hyc.lee@gmail.com>
+> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 
-The problem is that a lot of local filesystems really want the emergency
-read-only state (and not full fs shutdown). So if you want to fully
-shutdown the fs on error, either gfs2 has to do it on it's own or we could
-introduce another sb state for that. But I think emergency-ro state needs
-to stay...
+Looks good to me.
 
-								Honza
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+
 -- 
-Jan Kara <jack@suse.com>
-SUSE Labs, CR
+Thanks,
+Hyunchul
