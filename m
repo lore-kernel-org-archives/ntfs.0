@@ -1,223 +1,214 @@
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3C02D780C
-	for <ntfs@lists.linux.dev>; Fri, 16 Oct 2026 00:32:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7D93955FE
+	for <ntfs@lists.linux.dev>; Fri, 16 Oct 2026 03:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792110738; cv=none; b=lOHEc93+ACLkATCfL/6wGcsRflLHj5EGtMsUjaS0E1ZSTWjk2jIltaB0rlvLLlRe92VhR2PRKF0EdSebGrh55aLjgKtDME68Nc8DGl0mjnWcGkeVoQYjswBEQndibMBPOpYZO5FB8z1r2uMXAIq0wi3exYL/n0LQejHafWercrY=
+	t=1792120229; cv=none; b=jsrYmJN5bJ5mVqP2Yp8cT/7GKs6Oga0pjK25TFz9kOkhaOGMQwWDpcHgmAzNQWoZb00Nfyo2T9XoeshT0lvoqMpb9SpPS0keJ0wbkq/VU71QX+KIwAI1JeDQHtjiFcri+KR5rz8BSsXrfY92c8iVmmR+MYufzzAgV1coByPUqrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792110738; c=relaxed/simple;
-	bh=HxZt08dVRw4ejTWE+FGXV5r0nmHjM+0lQhVW4+dpeTE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NAKZEu1xkTgYOtR5Mmx90ah9DJ7gySay2jOFKHnRoG01AQUHU9OAUAgAqCBulVXxy4AsmNi/P0kqP+D5pHIm8rMS9Ao38x/8vYWvXdPSAKR5FvTLKuzFl1IQmCVkf1Xq3kAt2FF+H1QnUnf+23sfsRxsoOzFhXDRjL8hvUBjkUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=OMi03vrw; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="OMi03vrw"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1792110735;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2PpmzonvJ+GFyXX1ccvr8BDAPumMVPYHB7D08eoJkdk=;
-	b=OMi03vrwiksem2U41TCFBpUAaYtOZu+lGZOzQNCPnbZbJzhol7uqK7YGClwnyJrFYP7ZvB
-	XuiMXVbpxX9CP5a1piIHy0xC5qZ6xdSYcBrXoms3/U4sR8cR+kr8KrpKQcTPzttb0PiRWY
-	wj4ZU8y3W/z/IQVJFmLs9cARieZ3mzo=
-Received: from mail-yx1-f70.google.com (mail-yx1-f70.google.com
- [74.125.224.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-298-ho51mjSnPOWEhXxrV-4oWA-1; Fri, 16 Oct 2026 00:32:14 +0000
-X-MC-Unique: ho51mjSnPOWEhXxrV-4oWA-1
-X-Mimecast-MFC-AGG-ID: ho51mjSnPOWEhXxrV-4oWA_1792110734
-Received: by mail-yx1-f70.google.com with SMTP id 956f58d0204a3-6790b1d3bc9so8221961d50.0
-        for <ntfs@lists.linux.dev>; Thu, 15 Oct 2026 17:32:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792110734; x=1792715534;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=2PpmzonvJ+GFyXX1ccvr8BDAPumMVPYHB7D08eoJkdk=;
-        b=LqctozDE2rvITeA/uow+hchNSy88wixmWw/SOWHjr/5CYxPYenrQ4szZ/ZkScb1Sqo
-         YakYvJTQdlnm0K1rRwDPLgSWchbgDaqavMPKAuaeWMQJ36JjT6379b0zUlYIqtzoGRCX
-         Vp6l3OoVt8b2FujQ0IvHNjLnpfaQjOZF90+bpG8rT8EFQZrEQWgpCPsgxTfead9l0iNR
-         U8UyS9ubPnouZkyb/IflTU83NEFeGHc/O5Cb/hUIgv2TflewQSliWWrR2XzHuMpfPBPQ
-         Eho67faqdkUiI3VuHxYnUlgnP5UtHq8gjEK7E6wpAVw6k0pmwSRC9Zb6hfUwzH7ZKsNU
-         SEwg==
-X-Forwarded-Encrypted: i=1; AKwUvBxDyLbBRRPJ7jwVC9qTALGwUW1+7DxWK9AD+RpYKi3smWw8pARHHzSQPiemnXzzaHgrfr9s@lists.linux.dev
-X-Gm-Message-State: AFq9FYJR8WV9ZBcdhG9NqjaJMuHkCOxQm3zeAT4fF9FXTDL/KiAhD5/6
-	V72nDZXB+PqnvjGgUMALgoqqkGUbsCw6yt4zm542fDg94MRuJwFJpqBi78bHPAqm/p1Yub6NYCh
-	Bx8nPIPBer4gMlIoFGnLrCohL/b+5ziAQ4swvdAiFxZv+kPYr8Iug0o86tVbNx8Iiw3/akh0TG1
-	SfS8rffd40ZDz3HvKisl9GA/gWGcdu/g==
-X-Gm-Gg: AYBFou0QLEq2juTOXFYMKHA4W+hQ7iBl8ohnZN4F98bk6inrFUe5w7ekV8bmRQ7dkkh
-	bjeKsSTMCtLNwclrYzjRVz0zbgDFPPvvk+hRJO0Pr0QB/XN4IC3iUUcfJRU5QNWGonTiJ6lUw0U
-	kotsjN2JfFpCR/r+O6AaIGvB6J+OXQpg4b4FifMWAaC5FKrd95rOGqx+YiG5x9bas2pwIb0ykIy
-	rZnlKpwP4WGdftubv9AxEJqzQfBFWvzHkUcXYkTIONODw==
-X-Received: by 2002:a05:690e:12cf:b0:677:c92e:eee4 with SMTP id 956f58d0204a3-67936ac0905mr8161314d50.86.1792110733554;
-        Thu, 15 Oct 2026 17:32:13 -0700 (PDT)
-X-Received: by 2002:a05:690e:12cf:b0:677:c92e:eee4 with SMTP id
- 956f58d0204a3-67936ac0905mr8161290d50.86.1792110732554; Thu, 15 Oct 2026
- 17:32:12 -0700 (PDT)
+	s=arc-20240116; t=1792120229; c=relaxed/simple;
+	bh=rA5ggDv9ChQmCB/8QRJpMDUGTOGZug8ohy+IDQOg3VA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YWp2nFzgppbjqBhfHI3/tomS5jKmPaPD3VfC34C19UWl5MXVSWcTQYYsHAopONwzW7A10LtoIpZYDCHi7CNdgRi8r97x8mr1c/k9tlNrP4Mtae+TtCvOkAKlq8b/HuQ2c/aLA7jlmRSbPojGSVDa96wucQFgT3Aq7ok8wtAlsa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 1a219054c90f11f19a56ed5b684f684d-20261016
+X-CTIC-Tags:
+	HR_CC_COUNT, HR_CC_DOMAIN_COUNT, HR_CC_NAME, HR_CC_NO_NAME, HR_CTE_8B
+	HR_CTT_MISS, HR_DATE_H, HR_DATE_WKD, HR_DATE_ZONE, HR_FROM_NAME
+	HR_SJ_DIGIT_LEN, HR_SJ_LANG, HR_SJ_LEN, HR_SJ_LETTER, HR_SJ_NOR_SYM
+	HR_SJ_PHRASE, HR_SJ_PHRASE_LEN, HR_SJ_WS, HR_TO_COUNT, HR_TO_DOMAIN_COUNT
+	HR_TO_NO_NAME, IP_TRUSTED, SRC_TRUSTED, SA_TRUSTED, SA_EXISTED
+	SN_TRUSTED, SN_EXISTED, SPF_NOPASS, DKIM_NOPASS, DMARC_NOPASS
+	CIE_BAD, CIE_GOOD, CIE_GOOD_SPF, GTI_FG_BS, GTI_RG_INFO
+	GTI_C_BU, AMN_GOOD, ABX_MISS_RDNS
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:5c4e9449-0240-4d99-8ef6-89fa866b51e6,IP:10,
+	URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:10
+X-CID-INFO: VERSION:1.3.19,REQID:5c4e9449-0240-4d99-8ef6-89fa866b51e6,IP:10,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:10
+X-CID-META: VersionHash:7db8b62,CLOUDID:f21ea0ed1bdcf46785798b09998d501d,BulkI
+	D:261016111016W425NWVJ,BulkQuantity:0,SF:17|19|38|66|78|102|127|136|850|86
+	5|898,TC:nil,Content:0|15|50|99,EDM:-3|-100,IP:-2,URL:0,File:nil,RT:nil,Bu
+	lk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:
+	0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_FAS,TF_CID_SPAM_FSD
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 1a219054c90f11f19a56ed5b684f684d-20261016
+X-User: wangxuewen@kylinos.cn
+Received: from localhost.localdomain [(223.70.159.239)] by mailgw.kylinos.cn
+	(envelope-from <wangxuewen@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 1824619241; Fri, 16 Oct 2026 11:10:12 +0800
+From: Xuewen Wang <wangxuewen@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Xuewen Wang <wangxuewen@kylinos.cn>,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v1] ntfs: support persistent noatime attribute
+Date: Fri, 16 Oct 2026 11:09:57 +0800
+Message-Id: <20261016030957.1053110-1-wangxuewen@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-References: <20261012-work-fs-sb_rdonly-v1-0-60743a3dc326@kernel.org> <20261012-work-fs-sb_rdonly-v1-20-60743a3dc326@kernel.org>
-In-Reply-To: <20261012-work-fs-sb_rdonly-v1-20-60743a3dc326@kernel.org>
-From: Andreas Gruenbacher <agruenba@redhat.com>
-Date: Fri, 16 Oct 2026 02:32:01 +0200
-X-Gm-Features: AclHuK8NmKT3H02cx2l9pkluaZaWRnSiR4jZEUSx8b1tH5UXdD0FGyrgWytahmA
-Message-ID: <CAHc6FU5bdAjABRm=bnH68b2f66TZTDZ8sPdatLB2fS7-55U=yw@mail.gmail.com>
-Subject: Re: [PATCH RFC 20/28] gfs2: wait for a pending withdraw before
- remounting read-only
-To: Christian Brauner <brauner@kernel.org>
-Cc: Jan Kara <jack@suse.com>, Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, 
-	linux-ext4@vger.kernel.org, jfs-discussion@lists.sourceforge.net, 
-	linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, 
-	linux-fsdevel@vger.kernel.org, ntfs@lists.linux.dev, 
-	ocfs2-devel@lists.linux.dev, linux-btrfs@vger.kernel.org, 
-	gfs2@lists.linux.dev, linux-efi@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-xfs@vger.kernel.org, 
-	stable@vger.kernel.org
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Lf9KSG8WU4Mftj11iMz6LWLccaZYDjkQHSp3sXQWsN4_1792110734
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Christian,
+NTFS currently rejects FS_NOATIME_FL in its fileattr setter. This prevents
+users from disabling automatic access-time updates on individual files or
+directories with chattr +A.
 
-On Mon, Oct 12, 2026 at 1:27=E2=80=AFPM Christian Brauner <brauner@kernel.o=
-rg> wrote:
-> Since commit 9c4a3de6cd5b ("gfs2: Asynchronous withdraw") most of a
-> withdraw happens in do_withdraw() from a work item and SDF_JOURNAL_LIVE
-> stays set until it ran. A remount to read-only in that window goes
-> through gfs2_make_fs_ro(). Its log flushes bail out early on the
-> withdrawn filesystem before FLUSH_SHUTDOWN can clear SDF_JOURNAL_LIVE
-> and then gfs2_quota_cleanup() hits its BUG_ON():
->
->   kernel BUG at fs/gfs2/quota.c:1532!
->   RIP: 0010:gfs2_quota_cleanup+0x562/0x6b0
->    gfs2_make_fs_ro+0xf3/0x2e0
->    gfs2_reconfigure+0x42e/0xfd0
->    reconfigure_super+0x437/0xb20
->
-> Just flushing the withdraw work before the remount isn't enough.
-> gfs2_withdraw() sets SDF_WITHDRAWN, calls dump_stack() and only then
-> queues the work. So a remount can see a withdrawn filesystem while
-> there's nothing to flush yet. And a withdraw can also start in the
-> middle of gfs2_make_fs_ro().
->
-> So let do_withdraw() wake up waiters when it clears SDF_JOURNAL_LIVE and
-> let gfs2_make_fs_ro() wait for the bit after its log flushes, right
-> before gfs2_quota_cleanup(). On a healthy filesystem the shutdown flush
-> already cleared it. umount doesn't need to wait. gfs2_put_super() sets
-> SDF_NORECOVERY first and gfs2_quota_cleanup() only BUGs without it. Once
-> the bit is clear the journal isn't live anymore and gfs2_make_fs_ro()
-> doesn't write anything.
->
-> gfs2_make_fs_rw() can leave the bit set on a withdrawn filesystem as
-> well. It checks for a withdraw and then sets SDF_JOURNAL_LIVE. If
-> do_withdraw() runs in between it finds the journal not live yet and
-> returns. Nothing clears the bit then and the next remount to read-only
-> waits for it forever. So check for the withdraw and set the bit under
-> sd_log_flush_lock, which do_withdraw() holds while it tests the bit.
-> Then either the remount sees the withdraw or do_withdraw() sees the live
-> journal.
->
-> Reproducer, lock_nolock: a SCHED_FIFO task writes 1 to the withdraw
-> sysfs knob from cpu 1 and keeps cpu 1 busy (RT throttling and cpu 1's
-> fair server disabled) so do_withdraw() can't run, then from cpu 2:
->
->   mount -o remount,ro /mnt
->
-> On lock_dlm the window lasts as long as the withdraw helper runs. The
-> window before the work is queued can be widened with a kprobe on
-> dump_stack_lvl() that delays the task writing to the withdraw knob by a
-> few seconds. A remount to read-only or sysrq u in that window hits the
-> same BUG_ON().
->
-> Fixes: 9c4a3de6cd5b ("gfs2: Asynchronous withdraw")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
-> ---
->  fs/gfs2/super.c | 22 ++++++++++++++++++----
->  fs/gfs2/util.c  |  2 +-
->  2 files changed, 19 insertions(+), 5 deletions(-)
->
-> diff --git a/fs/gfs2/super.c b/fs/gfs2/super.c
-> index 06302c29340f..1d7b39354d65 100644
-> --- a/fs/gfs2/super.c
-> +++ b/fs/gfs2/super.c
-> @@ -147,12 +147,23 @@ int gfs2_make_fs_rw(struct gfs2_sbd *sdp)
->         }
->
->         error =3D gfs2_quota_init(sdp);
-> -       if (!error && gfs2_withdrawn(sdp)) {
-> -               gfs2_quota_cleanup(sdp);
-> +       if (error)
-> +               return error;
-> +
-> +       /*
-> +        * do_withdraw() only takes a live journal down. Check for a with=
-draw
-> +        * under the lock it holds for that so that either we see the wit=
-hdraw
-> +        * or it sees the journal live. Otherwise gfs2_make_fs_ro() waits=
- for
-> +        * the bit forever.
-> +        */
-> +       down_write(&sdp->sd_log_flush_lock);
-> +       if (gfs2_withdrawn(sdp))
->                 error =3D -EIO;
-> -       }
-> -       if (!error)
-> +       else
->                 set_bit(SDF_JOURNAL_LIVE, &sdp->sd_flags);
-> +       up_write(&sdp->sd_log_flush_lock);
-> +       if (error)
-> +               gfs2_quota_cleanup(sdp);
->         return error;
->  }
->
-> @@ -565,6 +576,9 @@ void gfs2_make_fs_ro(struct gfs2_sbd *sdp)
->                                    HZ * 5);
->                 gfs2_assert_warn(sdp, gfs2_log_is_empty(sdp));
->         }
-> +       /* A withdraw that do_withdraw() didn't finish yet leaves it live=
-. */
-> +       if (!test_bit(SDF_NORECOVERY, &sdp->sd_flags))
-> +               wait_on_bit(&sdp->sd_flags, SDF_JOURNAL_LIVE, TASK_UNINTE=
-RRUPTIBLE);
->         gfs2_quota_cleanup(sdp);
->  }
->
-> diff --git a/fs/gfs2/util.c b/fs/gfs2/util.c
-> index 83b8bb6446e5..1535ce2b7aa8 100644
-> --- a/fs/gfs2/util.c
-> +++ b/fs/gfs2/util.c
-> @@ -122,7 +122,7 @@ static void do_withdraw(struct gfs2_sbd *sdp)
->                 up_write(&sdp->sd_log_flush_lock);
->                 return;
->         }
-> -       clear_bit(SDF_JOURNAL_LIVE, &sdp->sd_flags);
-> +       clear_and_wake_up_bit(SDF_JOURNAL_LIVE, &sdp->sd_flags);
->         gfs2_ail_drain(sdp); /* frees all transactions */
->         up_write(&sdp->sd_log_flush_lock);
->
->
-> --
-> 2.53.0
->
+Store noatime in bit 3 of the private $LINUXFLAGS EA and restore S_NOATIME
+when loading an inode. Report and accept FS_NOATIME_FL in the fileattr
+callbacks, updating the in-memory flag only after the EA update succeeds.
+The VFS then suppresses automatic atime updates for the inode, while
+chattr -A restores the mount's atime policy.
 
-this looks good all around, thank you very much. Can I add it to my gfs2 qu=
-eue?
+Document the new on-disk bit and that newly created children do not inherit
+the attribute.
 
-Thanks,
-Andreas
+Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+---
+Tested in QEMU (x86-64, UP, NTFS debug and lockdep enabled) on disposable
+NTFS images mounted with strictatime. The unpatched kernel rejects +A on
+files and directories with EOPNOTSUPP. With this patch, chattr +A prevents
+atime updates on reads and directory enumeration, and chattr -A restores
+them. The attribute survives cache dropping, read-only/read-write remounts,
+unmount/mount and a fresh boot; clearing it also survives a fresh boot.
+
+Also checked the on-disk EA value, non-inheritance by new children,
+combinations with immutable/append-only/nodump, FSGETXATTR/FSSETXATTR,
+owner/nonowner permissions, EROFS on a read-only mount, rejection of direct
+EA writes, and preservation of unrelated EAs and unknown flag bits.
+
+ Documentation/filesystems/ntfs.rst | 15 ++++++++++-----
+ fs/ntfs/ea.c                       |  2 ++
+ fs/ntfs/ea.h                       |  4 +++-
+ fs/ntfs/file.c                     | 11 +++++++++--
+ 4 files changed, 24 insertions(+), 8 deletions(-)
+
+diff --git a/Documentation/filesystems/ntfs.rst b/Documentation/filesystems/ntfs.rst
+index 699e91f884d4..d5819da6ab53 100644
+--- a/Documentation/filesystems/ntfs.rst
++++ b/Documentation/filesystems/ntfs.rst
+@@ -38,15 +38,20 @@ The project is available at:
+ Linux file attributes
+ =====================
+ 
+-The driver supports lsattr(1) and chattr(1). Immutable, append-only and
+-nodump are stored in a private ``$LINUXFLAGS`` extended attribute within the
++The driver supports lsattr(1) and chattr(1). Immutable, append-only, nodump
++and noatime are stored in a private ``$LINUXFLAGS`` extended attribute within the
+ standard NTFS ``$EA``/``$EA_INFORMATION`` attributes. Its value is a
+ 32-bit little-endian bitmask: bit 0 is immutable, bit 1 is append-only,
+-and bit 2 is nodump. Unknown bits are preserved when updating the flags;
+-the entry is removed when the entire value becomes zero. These settings
++bit 2 is nodump, and bit 3 is noatime. Unknown bits are preserved when updating
++the flags; the entry is removed when the entire value becomes zero. These settings
+ survive inode eviction, unmount and reboot. Direct writes to this EA
+ through setxattr(2) or removexattr(2) are rejected; use chattr(1) instead.
+ 
++The noatime attribute (``chattr +A``) suppresses automatic access-time
++updates for the inode, including when mounted with ``strictatime``. It
++applies to directories as well as files, but is not inherited by newly
++created children. Use ``chattr -A`` to restore the mount's access-time policy.
++
+ System metadata files and files protected by the ``sys_immutable`` mount
+ option cannot have their immutable protection cleared with chattr(1).
+ Protection derived solely from the mount option is not stored in the EA.
+@@ -55,7 +60,7 @@ configured per file. Compression and encryption are reported but cannot
+ be changed through chattr(1).
+ 
+ These Linux flags are enforced by Linux. Storing them in an NTFS EA does
+-not make Windows enforce immutable, append-only or nodump semantics.
++not make Windows enforce immutable, append-only, nodump or noatime semantics.
+ 
+ 
+ Supported mount options
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index a1f948c4d2ec..fd97da73ff5c 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -501,6 +501,8 @@ int ntfs_ea_get_linuxflags(struct inode *inode)
+ 		inode->i_flags |= S_IMMUTABLE;
+ 	if (ni->linuxflags & NTFS_LINUXFLAGS_APPEND)
+ 		inode->i_flags |= S_APPEND;
++	if (ni->linuxflags & NTFS_LINUXFLAGS_NOATIME)
++		inode->i_flags |= S_NOATIME;
+ 	return 0;
+ }
+ 
+diff --git a/fs/ntfs/ea.h b/fs/ntfs/ea.h
+index 8f144fa4f9bb..3ad20431877b 100644
+--- a/fs/ntfs/ea.h
++++ b/fs/ntfs/ea.h
+@@ -11,8 +11,10 @@
+ #define NTFS_LINUXFLAGS_IMMUTABLE	BIT(0)
+ #define NTFS_LINUXFLAGS_APPEND	BIT(1)
+ #define NTFS_LINUXFLAGS_NODUMP	BIT(2)
++#define NTFS_LINUXFLAGS_NOATIME	BIT(3)
+ #define NTFS_LINUXFLAGS_MASK	(NTFS_LINUXFLAGS_IMMUTABLE | \
+-				 NTFS_LINUXFLAGS_APPEND | NTFS_LINUXFLAGS_NODUMP)
++				 NTFS_LINUXFLAGS_APPEND | NTFS_LINUXFLAGS_NODUMP | \
++				 NTFS_LINUXFLAGS_NOATIME)
+ 
+ extern const struct xattr_handler *const ntfs_xattr_handlers[];
+ 
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 58aad7f5c6c5..2cbe780758e3 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -167,6 +167,8 @@ int ntfs_fileattr_get(struct dentry *dentry, struct file_kattr *fa)
+ 		flags |= FS_IMMUTABLE_FL;
+ 	if (vi->i_flags & S_APPEND)
+ 		flags |= FS_APPEND_FL;
++	if (vi->i_flags & S_NOATIME)
++		flags |= FS_NOATIME_FL;
+ 	if (ni->linuxflags & NTFS_LINUXFLAGS_NODUMP)
+ 		flags |= FS_NODUMP_FL;
+ 	if (!NVolCaseSensitive(ni->vol))
+@@ -200,7 +202,8 @@ int ntfs_fileattr_set(struct mnt_idmap *idmap, struct dentry *dentry,
+ {
+ 	struct inode *vi = d_inode(dentry);
+ 	struct ntfs_inode *ni = NTFS_I(vi);
+-	u32 allowed = FS_IMMUTABLE_FL | FS_APPEND_FL | FS_NODUMP_FL;
++	u32 allowed = FS_IMMUTABLE_FL | FS_APPEND_FL | FS_NODUMP_FL |
++		      FS_NOATIME_FL;
+ 	u32 readonly = 0;
+ 	u32 linuxflags = ni->linuxflags & ~NTFS_LINUXFLAGS_MASK;
+ 	unsigned int new_fl = 0;
+@@ -245,6 +248,10 @@ int ntfs_fileattr_set(struct mnt_idmap *idmap, struct dentry *dentry,
+ 	}
+ 	if (fa->flags & FS_NODUMP_FL)
+ 		linuxflags |= NTFS_LINUXFLAGS_NODUMP;
++	if (fa->flags & FS_NOATIME_FL) {
++		new_fl |= S_NOATIME;
++		linuxflags |= NTFS_LINUXFLAGS_NOATIME;
++	}
+ 
+ 	mutex_lock(&ni->mrec_lock);
+ 	err = ntfs_ea_set_linuxflags(vi, linuxflags);
+@@ -252,7 +259,7 @@ int ntfs_fileattr_set(struct mnt_idmap *idmap, struct dentry *dentry,
+ 	if (err)
+ 		return err;
+ 
+-	inode_set_flags(vi, new_fl, S_IMMUTABLE | S_APPEND);
++	inode_set_flags(vi, new_fl, S_IMMUTABLE | S_APPEND | S_NOATIME);
+ 	inode_set_ctime_current(vi);
+ 	mark_inode_dirty(vi);
+ 	return 0;
+-- 
+2.25.1
 
