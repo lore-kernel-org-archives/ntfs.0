@@ -1,449 +1,211 @@
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out203-205-221-191.mail.qq.com (out203-205-221-191.mail.qq.com [203.205.221.191])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10924D9550
-	for <ntfs@lists.linux.dev>; Fri, 16 Oct 2026 14:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB5A5349AB
+	for <ntfs@lists.linux.dev>; Fri, 16 Oct 2026 17:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.191
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792161865; cv=none; b=IizKKzgx0i4bRIG1MaR8mhMS+bQRB1+d2qbjZEJ2qCVjGfYMgTqvTFw0XGrL2VhK9LNoYX1j6jWFWVtb0jEUm/2MFM8jCoZOLlyeUrVch3HLbdnnglMVHxfJq5OoU5e9GNLRAF3FPrGZsZ9GaXky70GjbapxHoI3+QCnQbsTf3I=
+	t=1792170876; cv=none; b=HQBmUQYft2yk9sPnG9cG8v8pfkzrbf6OaPiD26JY8x409wBfmo5xbvspbp3raOxsfm5/aENaRHhLQbPCBFMsQfZDSc6YcY+DEPCw7L28hbp4ArhkeD/RadC/e16SIHviFPSdN8G6n17xWSe6OGPu+HW0tXq4zBc9lf57qTG2fEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792161865; c=relaxed/simple;
-	bh=TOIiJPI34vCinEaBrduHlT9a71FAHO435ctrN82VAoE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XJtGmLYvAdBWj+Ntp6+hMcBq993b48ZioNhk8cuwkCHegd/9Tp+Yui7rduaf9zBQQdqrwLF+559Foos7SnHw1ntQ7ZRsH6dgLEVDcU+5o8kJWJwH4HGwliHyv3VPl2sjpfhjjq7y21fH3RhuXt/fe5WCDnhzVYaE57vyOoLYSRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YsqwFXkU; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	s=arc-20240116; t=1792170876; c=relaxed/simple;
+	bh=cEsn7PiRkdTCtLlbsl5WTDSTgA0Z4HMti55KlfEvrK8=;
+	h=Message-ID:From:To:Cc:Subject:Content-Type:MIME-Version; b=AbO8evAzoqlHUhni8C+9/asYY70Qk/Sc2So1yjOTOJjrkOOaqUrbT0VS8AThrDf20NfAkMvoVPRqORwMtRiUedQL2+Aqyk953ZnbunAdrLEXSfOcAtRcPbik+dkOAB212Ss56e6RIji0bg170p9ZNYUd9qC3qTma3DJfQIojiO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=w72585Jf; arc=none smtp.client-ip=203.205.221.191
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YsqwFXkU"
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-8b0a28a720aso49099827b3.2
-        for <ntfs@lists.linux.dev>; Fri, 16 Oct 2026 07:44:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1792161860; x=1792766660; darn=lists.linux.dev;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=b5mPysmOg/X2gxFC8sSeZVp+7zx/SSikTAHOJ0n/l4g=;
-        b=YsqwFXkUsIegogaGqqM8YXaNyhs3LWufNXX966sfxVfONElG88siv6bJxTd4Zl4xBt
-         PDrC9X9SvMavXGOsHYr1U809vAyIsDoLVVV+aMPYFbbX1v1FdVbHeOYQ5M2Mx3d9AMjw
-         F7GRfPYGn4Hw00EkEs+Kl9V33lcR8ntCOgi0XthFWMIp/eZFUXTOibTm+EKSve802pRz
-         89qX70QfHaDucpREQA2geLjOvYwaq/smL/878bjHH0stjgK7QHd7KQDOO7WSmetY3nud
-         uJQPIfNj8NC5gU9mnJoacKjiwxZiZMtG/1Kop09DEpgaHaDcWsHuaZ8QPl2dBDppNWNs
-         XxiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792161860; x=1792766660;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=b5mPysmOg/X2gxFC8sSeZVp+7zx/SSikTAHOJ0n/l4g=;
-        b=jv9BnxAAXKMWDoG5vB2s6T8x3NL/KOthpAX5dC+s4SGFjJ3nmOWpTElgu4ERwOZgV+
-         ZPkBfpLjF3g0IO86GckRyAllTHVIEeWiQ/lUISDldv+RKdiRGPornn6QeO+uPuWTgrgm
-         b9rgHgJH4YhbA31a4iggJZ4mhCWeUbCWo5ab0zgTh0CGgC8pKrggGWDe6SBL19h+wkK6
-         P5wmmY95scW61HQl07Ez8kojM1k+gzON/nt0lIPlOZ+LhGZKT/TgUKUMa4X/iil3QA/I
-         BUS3684/eeo6/a/278D2FJjxilfr5V+D6Y6qPsQGH4PtltglxvOvzk9PAju8M15phkyA
-         h2HQ==
-X-Forwarded-Encrypted: i=1; AKwUvByvK/OWHD1TXhXXeoTMrnnTHdh+AlJMKPwla+SxSpKQnRvsdprhL12SxbnYVWlXbVTSunJ3@lists.linux.dev
-X-Gm-Message-State: AFq9FYLFfcINXdSQ3NFThp94Ym0UPqJsVYW8o0JL2SELqx9uJCUR7ftk
-	dkaIeShuQgf1WrsVDiNBLDO09Oe9Vbz5b6uD0M96OoHyD3J75zH6zbEC
-X-Gm-Gg: AYBFou3d+XS/GHLGh/l8LnfJvFQpF0i28rzGYetC3x4+/YhB4oKDTR5WsVAIZAuMq6L
-	s46UFslgMHtu0zgSRkqfbBmPOXhi+pP3Dk2Fb3jBiEdRc09vXm6cW04trXBk9sX0HjeD5D1uepD
-	R0fGFHX4rA843YiES3vXYZNyr+tqNPPDN4X1S7ISMPE0+JaNP52ZlTDJFdHLmaT9o95MD/2Qne/
-	4TzzuMK8Y3BgBGBtgjqVV5Lg27veUdfYcqpOB/AHRSgpLpKXQkDOADY8cuEB1u4LlO6n/0pKZzG
-	KVro4fL43QJ0ewuVeu0Jlz5sTD8ZH4DEfrP+5ljgI/bH1Krw5yNCoURhb6/BLHIyYLZMiAg5ZhX
-	2tO+MMCWIw/DnVAMi97dvVaKT/jPxHMHmykef05zMIY4xwc8Ws2AugtpYztLvBMBJpB6u0rKstM
-	zWEmaNHiovs2xFjrMux45/CNj7vd3xnTVsNUGrJIyhOLvOvBVKO657CxeVL9mu9jhQBUqqVYf4
-X-Received: by 2002:a05:690c:a4d4:b0:8ae:8d28:77be with SMTP id 00721157ae682-8b0f205d6dfmr777507b3.1.1792161858531;
-        Fri, 16 Oct 2026 07:44:18 -0700 (PDT)
-Received: from zenbox ([2600:1700:18fb:6011:1002:ecef:6e38:613d])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-8b0e5888166sm9663717b3.14.2026.10.16.07.44.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Oct 2026 07:44:17 -0700 (PDT)
-Date: Fri, 16 Oct 2026 10:44:16 -0400
-From: Justin Suess <utilityemal77@gmail.com>
-To: Cai Xinchen <caixinchen1@huawei.com>
-Cc: mic@digikod.net, gnoack@google.com, paul@paul-moore.com, 
-	jmorris@namei.org, serge@hallyn.com, corbet@lwn.net, skhan@linuxfoundation.org, 
-	ast@kernel.org, daniel@iogearbox.net, andrii@kernel.org, eddyz87@gmail.com, 
-	memxor@gmail.com, martin.lau@linux.dev, song@kernel.org, yonghong.song@linux.dev, 
-	jolsa@kernel.org, emil@etsalapatis.com, ihor.solodrai@linux.dev, 
-	rdunlap@infradead.org, gregkh@linuxfoundation.org, rafael@kernel.org, dakr@kernel.org, 
-	johan@kernel.org, dlemoal@kernel.org, hch@lst.de, axboe@kernel.dk, 
-	viro@zeniv.linux.org.uk, brauner@kernel.org, jack@suse.cz, dhowells@redhat.com, 
-	code@tyhicks.com, linkinjeon@kernel.org, sj1557.seo@samsung.com, 
-	yuezhang.mo@sony.com, hirofumi@mail.parknet.co.jp, cel@kernel.org, jlayton@kernel.org, 
-	neil@brown.name, okorniev@redhat.com, Dai.Ngo@oracle.com, tom@talpey.com, 
-	hyc.lee@gmail.com, miklos@szeredi.hu, amir73il@gmail.com, senozhatsky@chromium.org, 
-	chenxiaosong@chenxiaosong.com, kpsingh@kernel.org, matt@bobrowski.net, rostedt@goodmis.org, 
-	mhiramat@kernel.org, mathieu.desnoyers@efficios.com, john.johansen@canonical.com, 
-	georgia.garcia@canonical.com, zohar@linux.ibm.com, roberto.sassu@huawei.com, 
-	dmitry.kasatkin@gmail.com, eric.snowberg@oracle.com, stephen.smalley.work@gmail.com, 
-	omosnacek@gmail.com, casey@schaufler-ca.com, takedakn@nttdata.co.jp, 
-	penguin-kernel@i-love.sakura.ne.jp, xiujianfeng@huawei.com, nanx95726@gmail.com, djwong@kernel.org, 
-	lujialin4@huawei.com, bpf@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org, 
-	driver-core@lists.linux.dev, linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
-	netfs@lists.linux.dev, ecryptfs@vger.kernel.org, exfat@lists.linux.dev, 
-	linux-nfs@vger.kernel.org, ntfs@lists.linux.dev, linux-unionfs@vger.kernel.org, 
-	linux-cifs@vger.kernel.org, linux-trace-kernel@vger.kernel.org, apparmor@lists.ubuntu.com, 
-	linux-integrity@vger.kernel.org, selinux@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v2 -next 09/18] landlock: Add READ_METADATA and
- WRITE_METADATA access rights
-Message-ID: <atI20Vs7Du9-g1Hz@zenbox>
-References: <20261015125425.3246251-1-caixinchen1@huawei.com>
- <20261015125425.3246251-10-caixinchen1@huawei.com>
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="w72585Jf"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1792170865; bh=7VYyJStnxiI0OG+kDQ0wre9AeU4MsoiOpilLVte4Uxg=;
+	h=From:To:Cc:Subject;
+	b=w72585JfJL+mVHBVkQmk6JhhYH/9R/zVtWA3k3KIKdw3WcW+7ZPXVY0jPtL0nm4WV
+	 2wqiyaHfqDwae4QAWub3xib6O5NjZ+Ukd4sMnRE4y8TMrDEZBHsRKIVKly1Wf4dU4i
+	 3UFfVxJIrpxiW+oMfvRStWyJ33Ma/DcoPPxmFscs=
+Received: from [127.0.0.1] ([2409:8d5c:c30:3b3:3535:7b1a:7bbe:6767])
+	by newxmesmtplogicsvrszb51-1.qq.com (NewEsmtp) with SMTP
+	id 39713CFD; Sat, 17 Oct 2026 01:14:23 +0800
+X-QQ-mid: xmsmtpt1792170863t99q9e5zw
+Message-ID: <tencent_B4CAA82E44ED5B89EB9ED691CABE58D3BF09@qq.com>
+X-QQ-XMAILINFO: OPIY/Y5G02yjnljCGNGJ4UL7vVtvt2rsPv7YT43+2VRnvyM/478k5uAF0agJgd
+	 Y93a2Tmu2ZyiAzl07hLk7K+rtYh6iUaFY1RviGRm73iF8WTzR12Oyt1X3b5uNzf97miFP1+2zWmv
+	 WLA1BuLothvEeCXYNRpwIol3S+jvBB0o48uGWndJiWb719BcwdnDbn78sAh92obbWkdcvS7BzGXG
+	 FoAW7lHaMGlqjTJ8WM8nKJ94vkwPa5XyGc7+7omYdIXUqyxPCPZ37G9rYewhD9Kno8FLCzJ7If+z
+	 oHX7JoCJd8xJCuh4u7D/xBa+wKGfzdFWKouz/HE0IZ6wp/VblGNDPCHN4qfILqi9NBbuNfiz/oq6
+	 DjG1b2Y/KVv2BG63jVt2hlOtgievyuwPuZYp6jWVP8CznGyVYxWfDJVtpl1Nr3ifpGdjXSR5Smjx
+	 z8DcaIG71JtqXwjgWSs3ITZ1yY8RwwnbVU9pazviNwOpcRe6pe0QA8mq9C80z5wohlhwihmm4v4b
+	 SspKpTLaiNH+3938ryIweYX7+7cnVzOcDy8g+oGY/mAPLTVp9OoTtHTDFaGW7jyqrdy7g99RElnm
+	 onM+hCt+xNySVFU2AjvQ5QZQuxAAG81ub3IPam7/mBtV22xcLFfZXw5MGjHieDI1hlxU7vZryA68
+	 TgmrckYocBJdw4bfX45u5KL5IAwcqrCIDXZYHupAAGqd2+ALNphVFiPneVMym14hec/lv9F2rt1/
+	 LQMbqxxXgleVCpL5FG7s4WtuavXx5QT9xNRllWXzJEsZFjMHjevlymekz524yBtPyxXD4Jrj1IQU
+	 adAl6TjeMmsIogN0JZ393qHtPUUzw9mVrd3yJFAoPmW6+a8mDd948Yp1PVlL4ApdZo1h16KMwyPq
+	 ZDBdB2u+Tj4zPMSaYhOwu0G03KAwuxk//JfZjydzZdqvLVxp7Fj79hR1VCzo+biLtggSQ6/AQQA/
+	 e4obykogQ9hiwDiISOsdMU2Cz93X9SguWxPK7BW+tW90QuJsHd4rvhQN2S6sJsTizGn5/9HZGNs9
+	 fcezX7hw0QO+NmYs9U++INcsANUzEV5zCs74GiskiVPEOtDKM6ZRBS1NLmT/3x4hXY07MfdLk8Ix
+	 pZsEfeU7mgl92LijMObKO8NfvXbA==
+X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
+From: Hang Nan <2122295973@qq.com>
+To: linkinjeon@kernel.org, hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev
+Subject: [PATCH] ntfs: check index block capacity in ntfs_ib_copy_tail()
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261015125425.3246251-10-caixinchen1@huawei.com>
+Precedence: bulk
+X-Mailer: git send-email style plain-text report
 
-On Thu, Oct 15, 2026 at 08:54:15PM +0800, Cai Xinchen wrote:
-> Add two new filesystem access rights to control file metadata access:
-> 
-> - LANDLOCK_ACCESS_FS_READ_METADATA: Read file or directory metadata
->   (e.g. inode attributes, extended attributes and POSIX ACLs) through
->   stat(2), fstat(2), lstat(2), newfstatat(2), getxattr(2) and
->   friends, listxattr(2) and friends, and the POSIX ACL read
->   operations.
-> - LANDLOCK_ACCESS_FS_WRITE_METADATA: Change file or directory
->   metadata through chmod(2) and friends, chown(2) and friends,
->   utimensat(2) and friends, setxattr(2) and friends, removexattr(2)
->   and friends, and the POSIX ACL set and remove operations.
-> 
-> This follows the coarse-grained grouping approach discussed in the
-> mailing list [1], where file metadata operations are grouped by
-> security relevance rather than by individual syscall.
-> 
-> Implement the two rights by hooking the inode_getattr,
-> inode_file_getattr, inode_setattr, inode_file_setattr,
-> inode_setxattr, inode_getxattr, inode_listxattr, inode_removexattr,
-> inode_set_acl, inode_get_acl and inode_remove_acl LSM hooks, which
-> now receive a struct path thanks to the preceding VFS and LSM
-> refactoring.  The following system calls are now controlled:
-> 
-> - stat(2), fstat(2), lstat(2), newfstatat(2), getxattr(2) and
->   friends, listxattr(2) and friends, POSIX ACL reads, and the
->   chattr(1)/xfs_io style reads: ioctl(FS_IOC_GETFLAGS),
->   ioctl(FS_IOC_FSGETXATTR) and file_getattr(2) via inode_getattr,
->   inode_getxattr, inode_listxattr, inode_get_acl and
->   inode_file_getattr (READ_METADATA)
-> - chmod(2), fchmod(2), fchmodat(2), fchmodat2(2), chown(2), fchown(2),
->   lchown(2), fchownat(2), chgrp(2), utimensat(2), futimens(2),
->   utime(2), setxattr(2) and friends, removexattr(2) and friends,
->   POSIX ACL set and remove, and the chattr(1)/xfs_io style writes:
->   ioctl(FS_IOC_SETFLAGS), ioctl(FS_IOC_FSSETXATTR) and
->   file_setattr(2) via inode_setattr, inode_file_setattr,
->   inode_setxattr, inode_removexattr, inode_set_acl and
->   inode_remove_acl (WRITE_METADATA)
-> 
-> Both new rights are added to ACCESS_FILE as they apply to both files
-> and directories.
-> 
-> hook_inode_setattr only restricts explicit metadata changes, i.e. it
-> checks WRITE_METADATA only when the ia_valid mask contains
-> ATTR_MODE, ATTR_UID, ATTR_GID, ATTR_TIMES_SET or ATTR_TOUCH.
-> Metadata changes that the kernel performs implicitly, such as
-> timestamp updates on write(2) or size changes on truncate(2), are
-> therefore not restricted, and neither are chmod(2)/chown(2) calls
-> that do not change any attribute (e.g. chown(2) with -1/-1, which is
-> a no-op that never reaches the hook), matching the behavior of the
-> SELinux inode_setattr hook.
-> 
-> Stacking filesystems forward fileattr operations to underlying inodes
-> without calling the LSM hooks again (see the preceding patch), so a
-> fileattr operation on an overlayfs file is checked once on the
-> user-facing merged path and is not spuriously denied because of the
-> kernel-side creator credentials used for the forward.
-> 
-> Kernel-internal accesses performed with override_creds() (e.g.
-> overlayfs and cachefiles) are not affected because Landlock domains
-> are attached to credentials, and kernel threads without a Landlock
-> domain (e.g. nfsd and ksmbd) are not restricted either.
-> 
-> Remove stat(2), chmod(2), chown(2), setxattr(2) and utime(2) from the
-> list of file-related actions that cannot be restricted yet, and add
-> the names of the new rights to _LANDLOCK_ACCESS_FS_NAMES in
-> include/linux/landlock.h, which is shared by audit records and trace
-> events, so that denied accesses can be reported with a human-readable
-> name and the static assertion on fs_access_strings in
-> security/landlock/audit.c stays valid.
-> 
-> Increment the Landlock ABI version from 12 to 13, and update the ABI
-> version check in tools/testing/selftests/landlock/base_test.c
-> accordingly.
->
-LANDLOCK_ACCESS_FS_*_METADATA should be checked at open time and follow
-the mechanic for the truncate right. Otherwise the access for already
-opened file descriptors would be changed. See hook_file_open in
-security/landlock/fs.c and this discussion here [1]
+fs/ntfs: fix 8-byte heap overflow in ntfs_ib_copy_tail()
 
-It should have clear documentation for this as well.
+This report was produced with the help of AI tooling, so per
+Documentation/process/security-bugs.rst I am reporting it publicly.  It is a
+plain bug and not a security bug under the project's own threat model (item 3).
 
-Justin
-[1] https://lore.kernel.org/all/20260929.Ahgoo4yeetai@digikod.net/
+1. Affected version
+   v7.3-rc7 (and v7.2).  File: fs/ntfs/index.c:1218 (ntfs_ib_copy_tail()).
+   The file is byte-identical in mainline
+   0fcb05b72344f40806cbe810de8872f1698bf053 (2026-10-14), so this is not fixed
+   upstream.
+
+2. The problem
+   ntfs_ib_copy_tail() copies the tail of a source index block into a
+   destination index block without checking that it still fits:
+
+       index.c:1216   memcpy(ntfs_ie_get_first(&dst->index), ie_head, tail_size)
+
+   tail_size comes entirely from the on-disk fields of the source block, while
+   the destination is whatever ntfs_ib_alloc() allocated.  Worst case for
+   ib_size == 4096:
+
+       tail_size    = (24 + 4072) - (24 + 16) - 16 = 4040
+       dst capacity = 4096 - 24 - 40               = 4032        => 8 bytes over
+
+   The sibling helper ntfs_ir_to_ib() already got this check in the v7.2..v7.3
+   window (index.c:1163-1169); ntfs_ib_copy_tail() was not updated, so one of
+   the two copy sites is still unchecked.  Path:
+   ntfs_index_add_filename() -> ntfs_ie_add() -> ntfs_ib_split() ->
+   ntfs_ib_copy_tail() -> memcpy().
+
+3. Triggering conditions and classification
+   - image crafted so that index blocks report entries_offset == 16,
+     index_length == allocated_size == 4072 with a single INDEX_ENTRY_END, and
+     usa_count == 1 (which also switches off the MST fixup);
+   - the image has to be mounted => CAP_SYS_ADMIN (or a loop mount).  Per
+     Documentation/process/threat-model.rst:219-223, "bugs triggered by
+     mounting a corrupted or maliciously crafted file system image" are not
+     considered vulnerabilities ("mounting a block device is a privileged
+     operation") - so I am reporting this as an ordinary bug, not as a
+     vulnerability;
+   - observed on v7.3-rc7 with slub_debug=zf:
+
+       [Right Redzone overwritten] 0xffff8937c24e5000-0xffff8937c24e5007
+       @offset=20480. First byte 0x50 instead of 0xcc
+       BUG kmalloc-4k (Not tainted): Object corrupt
+       Call Trace:
+        check_bytes_and_report+0x11e/0x140
+        free_to_partial_list
+        ntfs_ib_split+0x120/0x540
+        ntfs_ie_add+0xcd/0x200
+        ntfs_index_add_filename+0xca/0x120
+        __ntfs_create+0xa68/0xd60
+        ...
+        __x64_sys_openat
+
+     The 8 bytes written past the block are attacker-controlled image data (the
+     log shows the marker bytes planted in the image).  A KASAN kernel reports
+     the same window: "slab-out-of-bounds in ntfs_ib_split", "Write of size 4040
+     at <object+64>" on a kmalloc-4k object - also 8 bytes past the end.
+
+4. Reproducer
+   Available on request: a script that turns a mkntfs-created volume into the
+   crafted image (plus the initramfs that mounts it and creates the file), and
+   the console logs.
+
+5. Proposed fix
+   Add the same capacity check ntfs_ir_to_ib() already uses, and return -EIO,
+   which ntfs_ib_split() already propagates.  Tested on v7.3-rc7: with the
+   patch applied there is no redzone report at all and the create fails early
+   with
+
+       ntfs: ntfs_ib_copy_tail(): Entries (4040 B) exceed IB capacity
 
 
-> [1]
-> https://lore.kernel.org/all/abc960a1-e66e-792e-6869-cfd201c29dbe@digikod.net/
-> 
-> Assisted-by: opencode: glm-5.3
-> Signed-off-by: Cai Xinchen <caixinchen1@huawei.com>
-> ---
->  include/linux/landlock.h      |   4 +-
->  include/uapi/linux/landlock.h |  25 ++++++-
->  security/landlock/fs.c        | 126 ++++++++++++++++++++++++++++++++++
->  security/landlock/limits.h    |   2 +-
->  security/landlock/syscalls.c  |   2 +-
->  5 files changed, 153 insertions(+), 6 deletions(-)
-> 
-> diff --git a/include/linux/landlock.h b/include/linux/landlock.h
-> index 0ee4880988ba..ee1234fbc9f0 100644
-> --- a/include/linux/landlock.h
-> +++ b/include/linux/landlock.h
-> @@ -41,7 +41,9 @@
->  	_LANDLOCK_NAME_ENTRY(LANDLOCK_ACCESS_FS_REFER, "refer"), \
->  	_LANDLOCK_NAME_ENTRY(LANDLOCK_ACCESS_FS_TRUNCATE, "truncate"), \
->  	_LANDLOCK_NAME_ENTRY(LANDLOCK_ACCESS_FS_IOCTL_DEV, "ioctl_dev"), \
-> -	_LANDLOCK_NAME_ENTRY(LANDLOCK_ACCESS_FS_RESOLVE_UNIX, "resolve_unix")
-> +	_LANDLOCK_NAME_ENTRY(LANDLOCK_ACCESS_FS_RESOLVE_UNIX, "resolve_unix"), \
-> +	_LANDLOCK_NAME_ENTRY(LANDLOCK_ACCESS_FS_READ_METADATA, "read_metadata"), \
-> +	_LANDLOCK_NAME_ENTRY(LANDLOCK_ACCESS_FS_WRITE_METADATA, "write_metadata")
->  
->  #define _LANDLOCK_ACCESS_NET_NAMES \
->  	_LANDLOCK_NAME_ENTRY(LANDLOCK_ACCESS_NET_BIND_TCP, "bind_tcp"), \
-> diff --git a/include/uapi/linux/landlock.h b/include/uapi/linux/landlock.h
-> index 24510e5d8479..36dfb499e48e 100644
-> --- a/include/uapi/linux/landlock.h
-> +++ b/include/uapi/linux/landlock.h
-> @@ -429,6 +429,25 @@ struct landlock_capability_attr {
->   *
->   *   The rationale for this design is described in
->   *   :ref:`Documentation/security/landlock.rst <scoped-flags-interaction>`.
-> + * - %LANDLOCK_ACCESS_FS_READ_METADATA: Read file or directory metadata (e.g.
-> + *   inode attributes, extended attributes, and POSIX ACLs) through
-> + *   :manpage:`stat(2)`, :manpage:`fstat(2)`, :manpage:`lstat(2)`,
-> + *   :manpage:`newfstatat(2)`, :manpage:`getxattr(2)`, and
-> + *   :manpage:`listxattr(2)`.
-> + *
-> + *   This access right is available since the thirteenth version of the
-> + *   Landlock ABI.
-> + * - %LANDLOCK_ACCESS_FS_WRITE_METADATA: Change file or directory metadata
-> + *   (e.g. inode attributes, extended attributes, and POSIX ACLs) through
-> + *   :manpage:`chmod(2)`, :manpage:`chown(2)`, :manpage:`utimensat(2)`,
-> + *   :manpage:`setxattr(2)`, and :manpage:`removexattr(2)`, as well as related
-> + *   system calls.  Implicit metadata changes performed by the kernel (e.g.
-> + *   timestamp updates with :manpage:`write(2)`, or set-user-ID and
-> + *   set-group-ID bit clearing with :manpage:`write(2)` or
-> + *   :manpage:`truncate(2)`) are not restricted by this access right.
-> + *
-> + *   This access right is available since the thirteenth version of the
-> + *   Landlock ABI.
->   *
->   * Whether an opened file can be truncated with :manpage:`ftruncate(2)` or used
->   * with `ioctl(2)` is determined during :manpage:`open(2)`, in the same way as
-> @@ -493,9 +512,7 @@ struct landlock_capability_attr {
->   *
->   *   It is currently not possible to restrict some file-related actions
->   *   accessible through these syscall families: :manpage:`chdir(2)`,
-> - *   :manpage:`stat(2)`, :manpage:`flock(2)`, :manpage:`chmod(2)`,
-> - *   :manpage:`chown(2)`, :manpage:`setxattr(2)`, :manpage:`utime(2)`,
-> - *   :manpage:`fcntl(2)`, :manpage:`access(2)`.
-> + *   :manpage:`flock(2)`, :manpage:`fcntl(2)`, :manpage:`access(2)`.
->   *   Future Landlock evolutions will enable to restrict them.
->   */
->  /* clang-format off */
-> @@ -516,6 +533,8 @@ struct landlock_capability_attr {
->  #define LANDLOCK_ACCESS_FS_TRUNCATE			(1ULL << 14)
->  #define LANDLOCK_ACCESS_FS_IOCTL_DEV			(1ULL << 15)
->  #define LANDLOCK_ACCESS_FS_RESOLVE_UNIX			(1ULL << 16)
-> +#define LANDLOCK_ACCESS_FS_READ_METADATA		(1ULL << 17)
-> +#define LANDLOCK_ACCESS_FS_WRITE_METADATA		(1ULL << 18)
->  /* clang-format on */
->  
->  /**
-> diff --git a/security/landlock/fs.c b/security/landlock/fs.c
-> index a8fa8f77e775..f56277c67a24 100644
-> --- a/security/landlock/fs.c
-> +++ b/security/landlock/fs.c
-> @@ -318,6 +318,8 @@ static struct landlock_object *get_inode_object(struct inode *const inode)
->  	LANDLOCK_ACCESS_FS_EXECUTE | \
->  	LANDLOCK_ACCESS_FS_WRITE_FILE | \
->  	LANDLOCK_ACCESS_FS_READ_FILE | \
-> +	LANDLOCK_ACCESS_FS_READ_METADATA | \
-> +	LANDLOCK_ACCESS_FS_WRITE_METADATA | \
->  	LANDLOCK_ACCESS_FS_TRUNCATE | \
->  	LANDLOCK_ACCESS_FS_IOCTL_DEV | \
->  	LANDLOCK_ACCESS_FS_RESOLVE_UNIX)
-> @@ -1676,6 +1678,119 @@ static int hook_path_truncate(const struct path *const path)
->  	return current_check_access_path(path, LANDLOCK_ACCESS_FS_TRUNCATE);
->  }
->  
-> +static int hook_inode_getattr(const struct path *const path)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_READ_METADATA);
-> +}
-> +
-> +static int hook_inode_file_getattr(const struct path *const path,
-> +				   struct file_kattr *const fa)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_READ_METADATA);
-> +}
-> +
-> +static int hook_inode_setattr(const struct path *const path,
-> +			      struct iattr *const attr)
-> +{
-> +	unsigned int ia_valid = attr->ia_valid;
-> +
-> +	/*
-> +	 * Only explicit metadata changes are checked: implicit
-> +	 * timestamp updates never go through notify_change(), and size
-> +	 * changes (ATTR_SIZE) are governed by the truncate hooks
-> +	 * instead.  See the "File metadata" section in the user space
-> +	 * documentation for the full semantics.
-> +	 *
-> +	 * Clearing the setuid and setgid bits on write(2) or
-> +	 * truncate(2) is also an implicit change: callers request it
-> +	 * with ATTR_KILL_S[UG]ID, and do_notify_change() then adds a
-> +	 * synthesized ATTR_MODE (with these bits removed) before
-> +	 * calling this hook.  As do_notify_change() makes it a bug for
-> +	 * callers to pass ATTR_MODE together with a kill flag, an
-> +	 * ATTR_MODE seen along with ATTR_KILL_S[UG]ID is always
-> +	 * kernel-synthesized and must not be checked.  An explicit
-> +	 * chmod(2) never sets a kill flag, and an explicit chown(2) on
-> +	 * a privileged file is still checked thanks to ATTR_UID and
-> +	 * ATTR_GID.
-> +	 */
-> +	if (ia_valid & (ATTR_KILL_SUID | ATTR_KILL_SGID))
-> +		ia_valid &= ~ATTR_MODE;
-> +
-> +	if (!(ia_valid & (ATTR_MODE | ATTR_UID | ATTR_GID |
-> +			  ATTR_TIMES_SET | ATTR_TOUCH)))
-> +		return 0;
-> +
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_WRITE_METADATA);
-> +}
-> +
-> +static int hook_inode_file_setattr(const struct path *const path,
-> +				   struct file_kattr *const fa)
-> +{
-> +	/*
-> +	 * The chattr(2) style flags (e.g. FS_IMMUTABLE_FL) and fsxattr
-> +	 * fields are metadata: writing them requires WRITE_METADATA.  The
-> +	 * user-facing path is checked here; stacking filesystems skip this
-> +	 * hook on their internal forwards because they were already
-> +	 * checked on the user-facing path.
-> +	 */
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_WRITE_METADATA);
-> +}
-> +
-> +static int hook_inode_setxattr(const struct path *const path,
-> +			       const char *const name,
-> +			       const void *const value, const size_t size,
-> +			       const int flags)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_WRITE_METADATA);
-> +}
-> +
-> +static int hook_inode_getxattr(const struct path *const path,
-> +			       const char *const name)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_READ_METADATA);
-> +}
-> +
-> +static int hook_inode_listxattr(const struct path *const path)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_READ_METADATA);
-> +}
-> +
-> +static int hook_inode_removexattr(const struct path *const path,
-> +				  const char *const name)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_WRITE_METADATA);
-> +}
-> +
-> +static int hook_inode_set_acl(const struct path *const path,
-> +			      const char *const acl_name,
-> +			      struct posix_acl *const kacl)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_WRITE_METADATA);
-> +}
-> +
-> +static int hook_inode_get_acl(const struct path *const path,
-> +			      const char *const acl_name)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_READ_METADATA);
-> +}
-> +
-> +static int hook_inode_remove_acl(const struct path *const path,
-> +				 const char *const acl_name)
-> +{
-> +	return current_check_access_path(path,
-> +					LANDLOCK_ACCESS_FS_WRITE_METADATA);
-> +}
-> +
->  /**
->   * unmask_scoped_access - Remove access right bits in @masks in all layers
->   *                        where @client and @server have the same domain
-> @@ -2100,6 +2215,17 @@ static struct security_hook_list landlock_hooks[] __ro_after_init = {
->  	LSM_HOOK_INIT(path_unlink, hook_path_unlink),
->  	LSM_HOOK_INIT(path_rmdir, hook_path_rmdir),
->  	LSM_HOOK_INIT(path_truncate, hook_path_truncate),
-> +	LSM_HOOK_INIT(inode_getattr, hook_inode_getattr),
-> +	LSM_HOOK_INIT(inode_file_getattr, hook_inode_file_getattr),
-> +	LSM_HOOK_INIT(inode_setattr, hook_inode_setattr),
-> +	LSM_HOOK_INIT(inode_file_setattr, hook_inode_file_setattr),
-> +	LSM_HOOK_INIT(inode_setxattr, hook_inode_setxattr),
-> +	LSM_HOOK_INIT(inode_getxattr, hook_inode_getxattr),
-> +	LSM_HOOK_INIT(inode_listxattr, hook_inode_listxattr),
-> +	LSM_HOOK_INIT(inode_removexattr, hook_inode_removexattr),
-> +	LSM_HOOK_INIT(inode_set_acl, hook_inode_set_acl),
-> +	LSM_HOOK_INIT(inode_get_acl, hook_inode_get_acl),
-> +	LSM_HOOK_INIT(inode_remove_acl, hook_inode_remove_acl),
->  	LSM_HOOK_INIT(unix_find, hook_unix_find),
->  
->  	LSM_HOOK_INIT(file_alloc_security, hook_file_alloc_security),
-> diff --git a/security/landlock/limits.h b/security/landlock/limits.h
-> index ddd300e10689..ed606ee3102f 100644
-> --- a/security/landlock/limits.h
-> +++ b/security/landlock/limits.h
-> @@ -21,7 +21,7 @@
->  #define LANDLOCK_MAX_NUM_LAYERS		16
->  #define LANDLOCK_MAX_NUM_RULES		U32_MAX
->  
-> -#define LANDLOCK_LAST_ACCESS_FS		LANDLOCK_ACCESS_FS_RESOLVE_UNIX
-> +#define LANDLOCK_LAST_ACCESS_FS		LANDLOCK_ACCESS_FS_WRITE_METADATA
->  #define LANDLOCK_MASK_ACCESS_FS		((LANDLOCK_LAST_ACCESS_FS << 1) - 1)
->  #define LANDLOCK_NUM_ACCESS_FS		__const_hweight64(LANDLOCK_MASK_ACCESS_FS)
->  
-> diff --git a/security/landlock/syscalls.c b/security/landlock/syscalls.c
-> index fb5af318b69b..11d3a2abcec1 100644
-> --- a/security/landlock/syscalls.c
-> +++ b/security/landlock/syscalls.c
-> @@ -191,7 +191,7 @@ static const struct file_operations ruleset_fops = {
->   * If the change involves a fix that requires userspace awareness, also update
->   * the errata documentation in Documentation/userspace-api/landlock.rst .
->   */
-> -const int landlock_abi_version = 12;
-> +const int landlock_abi_version = 13;
->  
->  /**
->   * sys_landlock_create_ruleset - Create a new ruleset
-> -- 
-> 2.18.0.huawei.25
-> 
-> 
+--- git format-patch output ---
+(format-patch 信封的 From/Date 行已删去；下方即为补丁正文：提交信息 + diff)
+Subject: [PATCH] ntfs: check index block capacity in ntfs_ib_copy_tail()
+
+ntfs_ib_copy_tail() moves every index entry after the median entry from the
+source index block into a newly allocated one:
+
+	ie_head = ntfs_ie_get_next(median);
+	ies_end = (u8 *)ntfs_ie_get_end(&src->index);
+	tail_size = ies_end - (u8 *)ie_head;
+	memcpy(ntfs_ie_get_first(&dst->index), ie_head, tail_size);
+
+tail_size is computed from the source block alone and is never checked
+against the capacity of the destination, so a source index block whose
+entries do not fit the destination's allocated_size - entries_offset area
+writes past the end of the destination block:
+
+  BUG: KASAN: slab-out-of-bounds in ntfs_ib_split+0x481/0x1a60
+  Write of size 4040 at addr ffff88800358c040 by task creat/...
+  Allocated by task ...: ntfs_ib_alloc+0x29
+  The buggy address belongs to the object at ffff88800358c000
+  which belongs to the cache kmalloc-4k of size 4096
+
+The destination is allocated by ntfs_ib_alloc() with the source block size,
+and the sibling conversion path already performs exactly this check before
+copying entries, in ntfs_ir_to_ib() - added by dc09bf79b76f ("ntfs: Fix
+index_root heap OOB write in ntfs_ir_to_ib()"), i.e. the same overflow in
+the same file, fixed in July 2026:
+
+	ib_cap = le32_to_cpu(ib->index.allocated_size) -
+			le32_to_cpu(ib->index.entries_offset);
+	if ((u32)i > ib_cap) { ... }
+
+Add the same check here and fail the split with -EIO.  ntfs_ib_split()
+already unwinds correctly when this function returns an error: it clears
+the newly allocated VCN with ntfs_ibm_clear() and jumps to its error path.
+
+Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+Signed-off-by: Hang Nan <2122295973@qq.com>
+---
+ fs/ntfs/index.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+index 580998990..b9d0544f3 100644
+--- a/fs/ntfs/index.c
++++ b/fs/ntfs/index.c
+@@ -1200,6 +1200,7 @@ static int ntfs_ib_copy_tail(struct ntfs_index_context *icx, struct index_block
+ 		struct index_entry *median, s64 new_vcn)
+ {
+ 	u8 *ies_end;
++	u32 ib_cap;
+ 	struct index_entry *ie_head;		/* first entry after the median */
+ 	int tail_size, ret;
+ 	struct index_block *dst;
+@@ -1215,6 +1216,17 @@ static int ntfs_ib_copy_tail(struct ntfs_index_context *icx, struct index_block
+ 
+ 	ies_end = (u8 *)ntfs_ie_get_end(&src->index);
+ 	tail_size = ies_end - (u8 *)ie_head;
++
++	/* Entries must fit in the allocated index block */
++	ib_cap = le32_to_cpu(dst->index.allocated_size) -
++			le32_to_cpu(dst->index.entries_offset);
++	if ((u32)tail_size > ib_cap) {
++		ntfs_error(NULL, "Entries (%d B) exceed IB capacity",
++			   tail_size);
++		kvfree(dst);
++		return -EIO;
++	}
++
+ 	memcpy(ntfs_ie_get_first(&dst->index), ie_head, tail_size);
+ 
+ 	dst->index.index_length = cpu_to_le32(tail_size +
+-- 
+2.47.3
+
