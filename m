@@ -1,29 +1,29 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2E3392828
-	for <ntfs@lists.linux.dev>; Sat, 17 Oct 2026 11:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8ED548F017
+	for <ntfs@lists.linux.dev>; Sat, 17 Oct 2026 12:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792238332; cv=none; b=AgwgeVAjYpyjWIrYbsnVhzjHhjexX95ufQIr/aU26iy+sq4B7fiysU0GBJk0s1l44qPgYO7JDu1v6+j+7jtdpU43Hy/3h4bWmXg5BN+6ktwVeQ6ztY1Ucg98qiImWziB1F5aD2DB7UDNWTzozUnZjAAme/XMuwkLCRZuOrgItfg=
+	t=1792238675; cv=none; b=n8S8nO89STQTkw40D3dJdY3veBPwzhkLFzX5JiiSn9d/DSg8GBKJNvQuZxbujAx4epgP2sI1i78zkKWWq+uOuhe/i8LM/pq10m6q0ETLPaLxyBi8g//OU1/ShwFRVHHxlAVGrmcTVJJu7UHu/S5BeyIMbXpHnRYw0I2WGE0dOeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792238332; c=relaxed/simple;
-	bh=T/9SkEwODbyajpkgrrIWz3smX7KnI4hwrneFTvaZWII=;
+	s=arc-20240116; t=1792238675; c=relaxed/simple;
+	bh=ZjxTnbsU34aDPuNUOSPx3/8QO4DV1C+gczy8AqnDV+c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VDUab9XcinkifthDCBQlOWq7Op5YM8UFmfWDb2XEBxL5EbyuJPdZ1g8ztMV6nC7ocBFBSeycmn1kGNismR0hXmDTuFNPt4p7hTsPzsj3XhkpNt+++rL0QECdaPhqfpRaD1ZAHReAcqcPiZ9hNpzugvRsQHTB4EuDzNQ1LjQ5mi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=RbqWxeMo; arc=none smtp.client-ip=117.135.210.5
+	 In-Reply-To:Content-Type; b=GpJAwd8YYSF0UeMQPhSz6IuftXeY5Clr2j3jbmHrUyu7z4U7HksnsWlzVoouVp3Azt9ovl86yErrwcB5bEbO87rTSFVyc7rxyVIxVcj/lA/3g/t7HXKLyMnDOX+5Rqr1L9Q1tN+X0YiXTKGZK8x36L0wih6YUKHdkNQMTU+3nGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Q5zk9SYw; arc=none smtp.client-ip=220.197.31.2
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="RbqWxeMo"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Q5zk9SYw"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=yCD/TTQMviE6vaji4v0giLf1RPqkWhSu3L4P5tvLG34=;
-	b=RbqWxeMoH7F3CVbyB6FkK1JMM9gPXgVR29WHHM6KbREGZwEWeLHUOpb56aKyvs
-	+OxsBS4O9A0EGZVPOMx2PnDJwfZUESS1j5teI8rkgMJndUnrqzEZf2gCoF0596xg
-	fkQuF/VRYEFa1wOYf3U3IY/hm5iExqERH9W/b8DBJlCPQ=
-Message-ID: <a4dc245d-5c82-4051-a193-9678f94310e6@163.com>
-Date: Sat, 17 Oct 2026 19:58:28 +0800
+	Content-Type; bh=0iblGz6Ap8TXEifwU4JixX3TX6oNH4EhygedGzWwlrk=;
+	b=Q5zk9SYwsNhcLI0KjrBtnt3nVro8ZAj/dKAIkP24HOUKjLjDiUA7ituzWGBrYO
+	Jna1AQyYxDrqGCTgQURqWj1Aph8UpDIxLtqKkPYjWjXYMzemISDPdChp5aHZvXpN
+	dvniYr2o17TdV+I/8eOlz2BGzzhtxlvfFNUHrhf3Ow6Fw=
+Message-ID: <dbe87d5a-1f66-46c6-bc32-40016056ef26@163.com>
+Date: Sat, 17 Oct 2026 20:04:16 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -40,12 +40,12 @@ From: liubaolin <liubaolin12138@163.com>
 In-Reply-To: <tencent_B4CAA82E44ED5B89EB9ED691CABE58D3BF09@qq.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3Hw3kYtNqxtQiAw--.2495S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxuw18GF1ktry8uF1kGF4rXwb_yoWxAw4rpa
-	9rGr93tayDXr17urs2qF1UJasa9w1xAr4UGrWYkFy7Casxtr1xKFnYvryYgas2krZ3Aa42
-	qF1YqrZruryUZw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Ukb15UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QVhLGrTYuVoZgAA3R
+X-CM-TRANSID:_____wD3fwRAZNNqHfAOAw--.55115S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuw18GF1ktry8uF1kGF4rXwb_yoWxZF17pF
+	ZrGr93taykXr17urs2qF18Jasa9w18Ar4UGryYkFy7Casxtr1xKFnYvryYgas2krZ3Aa42
+	qF1YqrW7uryUZw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UgtxDUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gG4g2rTZEH1DwAA32
 
 
 
@@ -162,6 +162,18 @@ X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QVhLGrTYuVoZgAA3R
 > already unwinds correctly when this function returns an error: it clears
 > the newly allocated VCN with ntfs_ibm_clear() and jumps to its error path.
 > 
+Hi Hang,
+    The commit message is too long for this change.
+The repeated code excerpts and detailed comparison with ntfs_ir_to_ib() 
+make it harder for reviewers and future readers to identify the main 
+issue and the fix.
+    Please shorten it to briefly explain the triggering condition, why 
+the out-of-bounds write occurs, and how the capacity check prevents it. 
+Detailed analysis and full diagnostic logs can go in a separate email.
+
+Thanks,
+Baolin.
+
 > Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
 > Signed-off-by: Hang Nan <2122295973@qq.com>
 > ---
@@ -191,15 +203,6 @@ X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QVhLGrTYuVoZgAA3R
 > +	if ((u32)tail_size > ib_cap) {
 > +		ntfs_error(NULL, "Entries (%d B) exceed IB capacity",
 > +			   tail_size);
-Hi Hang,
-    Please pass icx->idx_ni->vol->sb instead of NULL to ntfs_error(). In 
-the current tree, __ntfs_error() calls ntfs_handle_error() only when sb 
-is non-NULL, so passing NULL skips the configured errors= policy and 
-omits the device name.
-
-Thanks,
-Baolin.
-
 > +		kvfree(dst);
 > +		return -EIO;
 > +	}
