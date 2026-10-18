@@ -1,134 +1,178 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EEB49F127
-	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 12:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A833A453B;
+	Sun, 18 Oct 2026 15:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792328104; cv=none; b=L0k3ePOchJeqvh7k4tFW6DF0aEvX7vydCarytT5IPyp/fXdzU7uVPmL2OhHwCLCqLaT2YQYwYWBC5fy7ydLUPjjgmgPIR+0TnpQjbdGQiA90870h6OxN1znW/WmM+y+ldxdQjqP9Cdd/EgzI8X3IuI/QQNDjYE7y8dWlMe2e3VU=
+	t=1792338522; cv=none; b=mQPBS+o84ndHvbu/QcdVOn1C4GVAz3KkMHOy+po/FHyJ1hA0VwMxGc05BP51inAKwA5NIHPzUfWko9D/iGKa3lou/NNSk+cymGWKFk0m/8bvXZvegGuC4+cljbBj3f9VF5uU83y7IV7IhFFaHC3rjBxnxchZ8u6V6AgcoytMMRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792328104; c=relaxed/simple;
-	bh=SmKo7BwEgMCVhVkfC9IPMNK7+dJmi26h43ByLoT3ODQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q+QqKSGSilmc+snarjejn9TtkJCKRM/il6IqveBg72fG6LTmIX3dhLZzlOwy0HyJgZy6MqXpEA8QXa4uwN8V6Hw48HFBaFN2MzdeC31ZyHPZ4oaFICIEtkzuZLatltkQ54MDu6MMD3iekDJ6m3IgPLNch54fJA5LFEJxgVW7F70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=P1DpJ5v4; arc=none smtp.client-ip=220.197.31.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	s=arc-20240116; t=1792338522; c=relaxed/simple;
+	bh=FaRcLEUs6l15qig9t/5mUVXsio7boF41UEEgpQSRb4g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T55XSCI5Bv56z3Hz7iH+q3uCuqzavW/LdzfnBbLbQ+2F21ozj5E0tkJXj1ZPmVDvzuYoL1scaALTOtQ80iK+KwKQZK/ru7MWmriw/gq+yiB8Y9M/K3gqORZouwhMktbG+8pd2rix8Jejv23kJ6tLwNybtIYZvoT83l5E3tSmtZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVyI2KX3; arc=none smtp.client-ip=100.103.45.18
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="P1DpJ5v4"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=odiuJRjHO5VH1rcOlNBvfq3JtWnhIkMtbLXvEjvE/bw=;
-	b=P1DpJ5v49BGUKmzXGOmjvSdVe+19LjiTqMRFihLm8wSR3Cewu22NQvNB0HU1GF
-	Nrfijdw63cXy7ArdeGi8RE5Q+3zTKadtKG/TeU1R2GIaD22KsmEyVdMEHdBBInk3
-	cXI5WI+9CQm3U9xMta7nRoHpZxIDxlR1aqYqQA9kj4cnE=
-Message-ID: <59388b04-7438-4f45-b7e5-10659c46a7be@163.com>
-Date: Sun, 18 Oct 2026 20:54:48 +0800
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVyI2KX3"
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F62E1F000C8;
+	Sun, 18 Oct 2026 15:48:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1792338520;
+	bh=qHr+ZYKSpAzCi10EtcwRrDzJJq6BBKkyzbps+RPUef0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=WVyI2KX3sfSFb7oZBIkg5vyFZX7+LpvwVP7fn4Cty10Z+Y1LmZOfywyVqCXWWjkZk
+	 w0HsKNxrIpDN+fTkwgMX01zxZ9pMY6N/P1LtrU17V8ZUMVAxbiAmgrPDGg7W+Rjs6i
+	 cOUCAgudB6PnoTQaLURK0fj6/ZYFFSlnOyU9KKE/6KmvZiNJKMOPTK8W4Rny4GZZn5
+	 dnzO8E7iP9hzjx0W6bJF+lnhorAfjoibm0p1V0l9L9VW6uVghDWolJvqlzthVu28XZ
+	 /BYjpM8dC6pSBrEBdq8Xis70LV4n4Q0dBgk6Rq7VtYXCr+VagK8d6QqHe7hk60/2QA
+	 1AcOlXaFgMXKQ==
+Date: Sun, 18 Oct 2026 17:48:34 +0200
+From: Christian Brauner <brauner@kernel.org>
+To: Andreas Gruenbacher <agruenba@redhat.com>
+Cc: Jan Kara <jack@suse.com>, Al Viro <viro@zeniv.linux.org.uk>, 
+	ecryptfs@vger.kernel.org, linux-ext4@vger.kernel.org, jfs-discussion@lists.sourceforge.net, 
+	linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
+	ntfs@lists.linux.dev, ocfs2-devel@lists.linux.dev, linux-btrfs@vger.kernel.org, 
+	gfs2@lists.linux.dev, linux-efi@vger.kernel.org, linux-mtd@lists.infradead.org, 
+	linux-xfs@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH RFC 20/28] gfs2: wait for a pending withdraw before
+ remounting read-only
+Message-ID: <20261018-ungemacht-sodbrennen-hausordnung-42d33a4f7098@brauner>
+References: <20261012-work-fs-sb_rdonly-v1-0-60743a3dc326@kernel.org>
+ <20261012-work-fs-sb_rdonly-v1-20-60743a3dc326@kernel.org>
+ <CAHc6FU5bdAjABRm=bnH68b2f66TZTDZ8sPdatLB2fS7-55U=yw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ntfs: check index block capacity in
- ntfs_ib_copy_tail()
-To: Hang Nan <2122295973@qq.com>, linkinjeon@kernel.org, hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, security@kernel.org
-References: <tencent_AC559EC491E8BEF6D2D9CBD02E00EC518809@qq.com>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <tencent_AC559EC491E8BEF6D2D9CBD02E00EC518809@qq.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PigvCgD3P0iYwdRq1ulfAg--.8725S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxAFyrZry3Cw4xWF15ZrWxCrg_yoW5Kr13pa
-	nrG3s3KaykXr17uFnava1jyF9a9w4fGrWUGrW5KrW7C39xGrn7KFnYy34Yg34xtrWfA34j
-	qF1jqry7uFZ8ZrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UHVb9UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RlmMWrUwZm8WQAA3k
+In-Reply-To: <CAHc6FU5bdAjABRm=bnH68b2f66TZTDZ8sPdatLB2fS7-55U=yw@mail.gmail.com>
 
+On Fri, Oct 16, 2026 at 02:32:01AM +0200, Andreas Gruenbacher wrote:
+> Christian,
+> 
+> On Mon, Oct 12, 2026 at 1:27 PM Christian Brauner <brauner@kernel.org> wrote:
+> > Since commit 9c4a3de6cd5b ("gfs2: Asynchronous withdraw") most of a
+> > withdraw happens in do_withdraw() from a work item and SDF_JOURNAL_LIVE
+> > stays set until it ran. A remount to read-only in that window goes
+> > through gfs2_make_fs_ro(). Its log flushes bail out early on the
+> > withdrawn filesystem before FLUSH_SHUTDOWN can clear SDF_JOURNAL_LIVE
+> > and then gfs2_quota_cleanup() hits its BUG_ON():
+> >
+> >   kernel BUG at fs/gfs2/quota.c:1532!
+> >   RIP: 0010:gfs2_quota_cleanup+0x562/0x6b0
+> >    gfs2_make_fs_ro+0xf3/0x2e0
+> >    gfs2_reconfigure+0x42e/0xfd0
+> >    reconfigure_super+0x437/0xb20
+> >
+> > Just flushing the withdraw work before the remount isn't enough.
+> > gfs2_withdraw() sets SDF_WITHDRAWN, calls dump_stack() and only then
+> > queues the work. So a remount can see a withdrawn filesystem while
+> > there's nothing to flush yet. And a withdraw can also start in the
+> > middle of gfs2_make_fs_ro().
+> >
+> > So let do_withdraw() wake up waiters when it clears SDF_JOURNAL_LIVE and
+> > let gfs2_make_fs_ro() wait for the bit after its log flushes, right
+> > before gfs2_quota_cleanup(). On a healthy filesystem the shutdown flush
+> > already cleared it. umount doesn't need to wait. gfs2_put_super() sets
+> > SDF_NORECOVERY first and gfs2_quota_cleanup() only BUGs without it. Once
+> > the bit is clear the journal isn't live anymore and gfs2_make_fs_ro()
+> > doesn't write anything.
+> >
+> > gfs2_make_fs_rw() can leave the bit set on a withdrawn filesystem as
+> > well. It checks for a withdraw and then sets SDF_JOURNAL_LIVE. If
+> > do_withdraw() runs in between it finds the journal not live yet and
+> > returns. Nothing clears the bit then and the next remount to read-only
+> > waits for it forever. So check for the withdraw and set the bit under
+> > sd_log_flush_lock, which do_withdraw() holds while it tests the bit.
+> > Then either the remount sees the withdraw or do_withdraw() sees the live
+> > journal.
+> >
+> > Reproducer, lock_nolock: a SCHED_FIFO task writes 1 to the withdraw
+> > sysfs knob from cpu 1 and keeps cpu 1 busy (RT throttling and cpu 1's
+> > fair server disabled) so do_withdraw() can't run, then from cpu 2:
+> >
+> >   mount -o remount,ro /mnt
+> >
+> > On lock_dlm the window lasts as long as the withdraw helper runs. The
+> > window before the work is queued can be widened with a kprobe on
+> > dump_stack_lvl() that delays the task writing to the withdraw knob by a
+> > few seconds. A remount to read-only or sysrq u in that window hits the
+> > same BUG_ON().
+> >
+> > Fixes: 9c4a3de6cd5b ("gfs2: Asynchronous withdraw")
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
+> > ---
+> >  fs/gfs2/super.c | 22 ++++++++++++++++++----
+> >  fs/gfs2/util.c  |  2 +-
+> >  2 files changed, 19 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/fs/gfs2/super.c b/fs/gfs2/super.c
+> > index 06302c29340f..1d7b39354d65 100644
+> > --- a/fs/gfs2/super.c
+> > +++ b/fs/gfs2/super.c
+> > @@ -147,12 +147,23 @@ int gfs2_make_fs_rw(struct gfs2_sbd *sdp)
+> >         }
+> >
+> >         error = gfs2_quota_init(sdp);
+> > -       if (!error && gfs2_withdrawn(sdp)) {
+> > -               gfs2_quota_cleanup(sdp);
+> > +       if (error)
+> > +               return error;
+> > +
+> > +       /*
+> > +        * do_withdraw() only takes a live journal down. Check for a withdraw
+> > +        * under the lock it holds for that so that either we see the withdraw
+> > +        * or it sees the journal live. Otherwise gfs2_make_fs_ro() waits for
+> > +        * the bit forever.
+> > +        */
+> > +       down_write(&sdp->sd_log_flush_lock);
+> > +       if (gfs2_withdrawn(sdp))
+> >                 error = -EIO;
+> > -       }
+> > -       if (!error)
+> > +       else
+> >                 set_bit(SDF_JOURNAL_LIVE, &sdp->sd_flags);
+> > +       up_write(&sdp->sd_log_flush_lock);
+> > +       if (error)
+> > +               gfs2_quota_cleanup(sdp);
+> >         return error;
+> >  }
+> >
+> > @@ -565,6 +576,9 @@ void gfs2_make_fs_ro(struct gfs2_sbd *sdp)
+> >                                    HZ * 5);
+> >                 gfs2_assert_warn(sdp, gfs2_log_is_empty(sdp));
+> >         }
+> > +       /* A withdraw that do_withdraw() didn't finish yet leaves it live. */
+> > +       if (!test_bit(SDF_NORECOVERY, &sdp->sd_flags))
+> > +               wait_on_bit(&sdp->sd_flags, SDF_JOURNAL_LIVE, TASK_UNINTERRUPTIBLE);
+> >         gfs2_quota_cleanup(sdp);
+> >  }
+> >
+> > diff --git a/fs/gfs2/util.c b/fs/gfs2/util.c
+> > index 83b8bb6446e5..1535ce2b7aa8 100644
+> > --- a/fs/gfs2/util.c
+> > +++ b/fs/gfs2/util.c
+> > @@ -122,7 +122,7 @@ static void do_withdraw(struct gfs2_sbd *sdp)
+> >                 up_write(&sdp->sd_log_flush_lock);
+> >                 return;
+> >         }
+> > -       clear_bit(SDF_JOURNAL_LIVE, &sdp->sd_flags);
+> > +       clear_and_wake_up_bit(SDF_JOURNAL_LIVE, &sdp->sd_flags);
+> >         gfs2_ail_drain(sdp); /* frees all transactions */
+> >         up_write(&sdp->sd_log_flush_lock);
+> >
+> >
+> > --
+> > 2.53.0
+> >
+> 
+> this looks good all around, thank you very much. Can I add it to my gfs2 queue?
 
-
-在 2026/10/18 19:59, Hang Nan 写道:
-> From: Hang Nan <2122295973@qq.com>
-> 
-> When an index block has to be split, ntfs_ib_copy_tail() moves every
-> entry that follows the median entry into a freshly allocated block.  The
-> number of bytes to move is computed from the source block's on-disk
-> header alone: it is the distance from the first entry after the median
-> to the end of the source block's entry area, so both entries_offset and
-> index_length are taken from a block that comes from the mounted image.
-> 
-> The destination is set up by ntfs_ib_alloc(): its entry area starts
-> after the index header, the update sequence array and the padding, which
-> for a 4096-byte block puts it at offset 40, and its usable capacity is
-> allocated_size minus that entries_offset.  A source block can declare a
-> smaller entries_offset than that, so the tail computed from it can be
-> larger than the destination can hold - 4040 against 4032 bytes in the
-> case at hand - and the copy writes the surplus past the end of the new
-> allocation, with values taken from the image.
-> 
-> Reject such a split before the copy and fail it with -EIO, which
-> ntfs_ib_split() already propagates after freeing the newly allocated
-> VCN. The sibling conversion path, ntfs_ir_to_ib(), got the equivalent
-> check in commit dc09bf79b76f ("ntfs: Fix index_root heap OOB write in
-> ntfs_ir_to_ib()"); this copy site was missed.
-> 
-> Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-> Signed-off-by: Hang Nan <2122295973@qq.com>
-> ---
-> v3:
->   - describe the size mismatch in words instead of quoting the code from
->     the function.
->   - correct the root cause: the overflow comes from the source and the
->     destination block having different entries_offset values, not from
->     space reserved for the terminating entry.
->   - restore the Fixes: tag.
-> 
-> Testing: on v7.3-rc7 with slub_debug=zf and a crafted NTFS image, the
-> destination object's redzone is overwritten by the last 8 bytes of the
-> copy before the change; with the change the split is refused, creat()
-> fails with -EIO and no redzone report appears.  The console logs of both
-> runs, the image-crafting script and the initramfs are available on
-> request.
-> ---
->   fs/ntfs/index.c | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
-> diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
-> index 580998990..2c345e32d 100644
-> --- a/fs/ntfs/index.c
-> +++ b/fs/ntfs/index.c
-> @@ -1200,6 +1200,7 @@ static int ntfs_ib_copy_tail(struct ntfs_index_context *icx, struct index_block
->   		struct index_entry *median, s64 new_vcn)
->   {
->   	u8 *ies_end;
-> +	u32 ib_cap;
->   	struct index_entry *ie_head;		/* first entry after the median */
->   	int tail_size, ret;
->   	struct index_block *dst;
-> @@ -1215,6 +1216,17 @@ static int ntfs_ib_copy_tail(struct ntfs_index_context *icx, struct index_block
->   
->   	ies_end = (u8 *)ntfs_ie_get_end(&src->index);
->   	tail_size = ies_end - (u8 *)ie_head;
-> +
-> +	/* Entries must fit in the allocated index block */
-> +	ib_cap = le32_to_cpu(dst->index.allocated_size) -
-> +			le32_to_cpu(dst->index.entries_offset);
-> +	if ((u32)tail_size > ib_cap) {
-> +		ntfs_error(icx->idx_ni->vol->sb,
-> +			   "Entries (%d B) exceed IB capacity", tail_size);
-> +		kvfree(dst);
-> +		return -EIO;
-> +	}
-> +
->   	memcpy(ntfs_ie_get_first(&dst->index), ie_head, tail_size);
->   
->   	dst->index.index_length = cpu_to_le32(tail_size +
-
-Thanks for v3. This addresses my previous comments. The code change 
-looks good to me.
-
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-
+I was planning to just provide a stable branch for everyone to pull post
+-rc1. Then you can just pull that in?
