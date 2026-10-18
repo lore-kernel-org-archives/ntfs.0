@@ -1,48 +1,47 @@
 Received: from out162-62-58-216.mail.qq.com (out162-62-58-216.mail.qq.com [162.62.58.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD8744781C
-	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FE03955E3
+	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.58.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792324418; cv=none; b=cXUd2iZ8iryeAY8xk8R5OPXbIQHinCRIDljeL1eSMuiX9nlTOzbHUyNISOY17rT/TnnJn6v5ufgTp6nOfONF50M/p8unuI6hi/uoyl445HZ2wHsj3i07jccd5lJ8NNrzdQHHTX2rj+MAE+4t6H0ulDjliOhRBUNI32Fc3xsZ76Y=
+	t=1792324532; cv=none; b=C+WDvjUO25ssB1a2hNx2c64putI8pmh8wh/ug6zO67QCdL2MFSD8K9yelDDTP0H/KE2FieS+TuP5MJ16GcAOvvceYc09UoEMlJBK1D5/TgjJ9f4TYDut7enwcmBWQowApUjDppu7IubB9KJZXA7tO/1R94IFndsT+nHMPJb1Zyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792324418; c=relaxed/simple;
-	bh=veF+FB3hlNU7m1FrVaX0Caku6qFuukd4SwnRSpMKWS4=;
-	h=Message-ID:From:To:Cc:Subject:Content-Type:MIME-Version:Date; b=hZiJyH7U540Hp3H8v1cQoiKyhQXw8DBYYdpdmUgWDhenPKYHjCP8704vQzXPur2/UxqVNF667tNmTFOJJ4GcTve47BaMqVmN+z/eIG7O97WAq+G7udzIeRr7JXpZ7Fy9zxxCWCypfen75OzHbjRmPyTDJ1Z7Y4qAlNSM8CcdNxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=eGP4QTwS; arc=none smtp.client-ip=162.62.58.216
+	s=arc-20240116; t=1792324532; c=relaxed/simple;
+	bh=AkmqaXj70e1Hry2kZYfF3WpbkQUppvCE50QSwM+ILSs=;
+	h=Message-ID:From:To:Cc:Subject:Content-Type:MIME-Version:Date; b=FaxcLQttZVW1B8KKfDAmUhIMMo5Zb/9tscdzR+UaJck5+cwKaOhXtKsWfWtT50EGzTN84NVvpowVTzt0kkLuDR8sSuWKCmdh3iy6DC/9Qr3pdMwHpCp6rRU2UKWupgJUDE60ESWlJR5X8ze1e48JrmOIe9pp9NUX1nkBkiRidy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=dsNz+ScP; arc=none smtp.client-ip=162.62.58.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="eGP4QTwS"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="dsNz+ScP"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1792324402; bh=PDD/7w5eEy8ZKNa93p/SVE7jJc2dRpk6KYHBactuk8Q=;
+	t=1792324524; bh=nFeSvV9V+SdBxig77m8Xi6QfhTqFlAPZO7IeD6ugF7o=;
 	h=From:To:Cc:Subject:Date;
-	b=eGP4QTwS8CCmmF0LY5qTyvaAcRVkOm3GaqiCSJYlwNtR+irc7KpEx4YDk2sVeqCwR
-	 2JGOEX8qhZJcUn53Z5dn/SPcet4vTguOhbbz7pOaJ9MaO+Masx0dwP15TxHjybNpLt
-	 fPdqHB3wWAdUeWkcpjjZCs8vyIPgr9R4kD2mm8YA=
+	b=dsNz+ScP+veijshD/2q1YyaOzYX0bAHbJu4Et1UG8dNKf/T+P3oMIuLNzzl/URN+Q
+	 QhC2NpTlK09CdZ6eIbpVREORqwDf513yZO6RPpT7nwJYGf4C/jAHyXY9YtMfE8F2yg
+	 I/AhRHcRM1jlIP/BFG9Cb7xOeH8MpTeQqA4RuFzU=
 Received: from [127.0.0.1] ([2409:8d5c:c30:3b3:3d39:a6e9:e5bc:61cf])
-	by newxmesmtplogicsvrsza63-0.qq.com (NewEsmtp) with SMTP
-	id D5383073; Sun, 18 Oct 2026 19:53:19 +0800
-X-QQ-mid: xmsmtpt1792324399tquckumni
-Message-ID: <tencent_BC3D6D20617FA5A6B394F15E98D98711C30A@qq.com>
-X-QQ-XMAILINFO: N9yihP4xsM7RMAtFAAbXDAYY7KhUP+C+AU0Us4CxSC5HqEcYzWf/tZqCRlFwrq
-	 nidJNUJeyRNAO5uuxPn0RhIk8rDIVx0zVUaNdmE73BrYEeEbkrtw/qjMvsCKyB6tE30O+3YbLR0N
-	 OYJ08I1HTsjzXD1anUE46M0ihFzNlBslKfDr1eCxBnaJLdo+YIqeHRonmnsKSIlYRckdsR/TK2Te
-	 0qadixd5HGf9YeDBTpbVQdDJOTImHP+VWsZu068tPBqSfHItW4ozv0gNgHt8h/FYVFipbrcXO/Vw
-	 7deN/JtS+R9byKBCfklaySWCBHyfCmyxVK7fv74LjWi9fzLcUixZNZAgWOJ6v9wKvGexmvHmniMG
-	 aEH0rycfu1kAhAlaXjIZcxw9VEkbzRQT8DLa6cigmyso8U0n3Dl6yPPa3XT3AuuswmPOh+avj/Tr
-	 lFxJPqazt4/8hWm4HDCT73r7hvpy4qwxKnJLFiQAt6WDP4N+wAiDvWaEAWPweUh6yLHpf1mJmQSg
-	 6C10Be+mXm9q1sH6wAIo3IAX1tpXw+pJXLbeRRYo+i5fbDZTtEyyCDWwgLb0BT6lJUC/0JJbr2U5
-	 H2g0dJ0aNYzP/WEPkoOEX8LvuNvg6ntrBVl/22LdjV0KF9g6+Gr4re6dVWjgFO/MFKje72pnuRaB
-	 WC5h3qNYdjOPQV+WnDJYYNu4hkEQ04dWntdJ6xQKZkTJp9RtxBxHJmnhD4tFJqYYHlUgS5xa4UvI
-	 UrbNx1ZRoh56eKEeUquH0TNKyimDAxeWzojAoBSBQkVNIgd6DP+caDFqJy4BK5jOHkfL8RDvxvJ8
-	 ukUOg4biJaNgz52znU5nkVyf3eK7KRievSc7aqdW2UBaDyg1f3SNhy5P8TLNV+bJ/uHjIGFaPz40
-	 yYv/ONo5ChjoVaFnSM6OIPv1nW59uJxli8v6+cjzhsSIja9oLvHQeebKDPghZ6N6smBQYSB2AWHz
-	 XKzGIO0RoTeymPsfF87Y/6VarHU18qFSfA7DTYQ/bOJ0i8fnlkvDz+HgKHom/VD5OrrFnWtq1gOi
-	 xrxO4gA5LD6QfsB4kRTv+apPHpC0mRe11PItjcR3kz8uC5VGoRrltJ7+zpllycVuqOZGT7R2P5K4
-	 ++67558I9t9OdqTaBDuFt1gAv+/PqCXVItDA57
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+	by newxmesmtplogicsvrszc56-0.qq.com (NewEsmtp) with SMTP
+	id DD69CC63; Sun, 18 Oct 2026 19:55:22 +0800
+X-QQ-mid: xmsmtpt1792324522tcch66u5a
+Message-ID: <tencent_0FA48B2FA0F4F4B2D58B25FB3FE2C7273907@qq.com>
+X-QQ-XMAILINFO: MMvVzQSdFuTp7Xf/fKn9bj4cKJpv7BGb90Y7+Cw6mxEJOh69TbsigWRt3dRvZZ
+	 YdTEMacnMyTdxWcl1hsvCxJGKWpVdtSyT+kGew9juZ6oeVd2yewwVC6fejXgT5y1RDC+78waN7Vr
+	 NgRrYVYeQx5X+SdjlqL34R9L9m4NDCdQD2MEyWBOOMLRhH4oYS5CVPnbqhu/5U8Jmfr1bJUJVFG/
+	 B1wgEDkh8COZ7+sy5gYPhg2OFQZJ/xG4o84n9LyiTngzbBThBXaxrS/rZQjcRCNPqnLu+uwaaQ78
+	 0ld74zC7s8DVqjR4fX+4e6vwzzYsyo3G1DGJzEuxyj4lNsnFPfoXHlu0Z0GMOUTs2aAJVXfBt90b
+	 zoPgPZ+KjUsOR0illWxYQOrCe3NUJys+YE8xJIP7TC1B6B4HaFfqCepxlYEVz344aSm6tpL5oEPe
+	 ID3Z+ezcpfccO/sOsSwFGzT+ZYJS+uRfeLJBkGw3vEGBlj+WeuL6i2yqR7eyKGL7FUi4+6fQjp9E
+	 Cl5GcNH0yKA6degPanVeQPx9jZYfcwY+H4cShKK/hAVzSKUeVPUv0+DeJOikfpu6PRDDhZJOhld4
+	 F17u0ixBmSkHLB7tF9x937KHa8AIlXhCNFYeox2O5VDou1k6elonwHIcyW9IE+YF3k8p80huOAbP
+	 wiqT0eZwISp0Hip9JItF5I+gqSoxD1c/rjnJ8xtdMPQgSHhf4M+n7E6lLjYMF7c/F7JHpLFFNxHG
+	 f8+oB5bZCGcbPobfMbA5m1pe6OxFT6PxU6FU8K6XlCyJkLaWgTmib5a1PdfsKp6znoMgcyQu9kZO
+	 H5sJ3YKc1Mlyxp2pu+Hcyh8YujBc3DVmVvibItamVk+iwxqmXzTRGrexdYIpqakUb1jpZZqbONB/
+	 VWNJG6p/42qzkddYOHrh4ZfbfG+HGqoBE/X1GN+mJBshwnhZxiBdBaNBeistEGKpASYQU8BSIK2J
+	 OqteU2NfUE4Qr6ioi3v0fVsxwqBGVNS3sENWYz2AzA4UblrG8+Mr9SNH6tCynAL/5ppML25aMBar
+	 73mvixj/jBBreRDPJKW9li7QRavYKy4TFhuEJDBqeSGsL91QKupWDBglMRwlM=
+X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
 From: Hang Nan <2122295973@qq.com>
 To: liubaolin12138@163.com, linkinjeon@kernel.org, hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev, security@kernel.org
@@ -56,61 +55,69 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
 Precedence: bulk
-Date: Sun, 18 Oct 2026 11:53:19 +0000
-X-OQ-MSGID: <ffbabf44bc9442b08f5e4fc65e3a59eb@qq.com>
+Date: Sun, 18 Oct 2026 11:55:20 +0000
+X-OQ-MSGID: <689ba24e84ef431f928bc05c9bacefc3@qq.com>
 X-Mailer: git send-email style plain-text report
 
 Hi Baolin,
 
-Agreed, and thanks for the careful read - the excerpt is gone.  v3 below: the
-commit message is prose only now and explains the size mismatch in words, and
-the code is unchanged since v2.
+You are right, and thanks - "space reserved for the last entry" was the
+wrong explanation.  v4 below puts it the way you describe: the source and
+the destination block have different entries_offset values, so a tail
+measured against the source's header can be larger than the capacity the
+newly allocated destination has.
 
-I re-ran both kernels just now with the same crafted image and slub_debug=zf
-(v3 differs from v2 in the commit message only):
+I re-derived the numbers from the tree to make sure I had them right:
 
-  before: [Right Redzone overwritten] 0xffff8d344216d000-0xffff8d344216d007
-          @offset=20480. First byte 0x50 instead of 0xcc
+  sizeof(struct index_block) = 40, struct index_header at +24 (16 bytes)
+  dst entries_offset = (16 + 9 * 2 + 7) & ~7 = 40, usa_count = 4096/512 + 1
+  dst allocated_size = 4096 - (40 - 16) = 4072
+  dst capacity       = 4072 - 40 = 4032
+  src (from the image): entries_offset = 16, index_length = 4072
+  relative to the index header: ie_head at +32, ies_end at +4072
+  -> tail = 4040 bytes, i.e. 8 bytes past the 4096-byte allocation
 
-  after:  ntfs: (device vda): ntfs_ib_copy_tail(): Entries (4040 B) exceed
-          IB capacity
-          creat -> -1, errno=5 (Input/output error)
+and the check compares that tail against the same 4072 - 40 = 4032.
 
-The "(device vda)" prefix is what passing ->vol->sb buys us, so the mount's
-errors= policy applies to this message too.
-
-Full console logs of both runs, the image-crafting script and the initramfs
-that mounts the image and creates the file are available on request.
+The code is unchanged since v2 (the diff is byte-identical), so the earlier
+run still applies with this patch; logs and the image script are available
+on request.
 
 --- 8< ---
-Subject: [PATCH v3] ntfs: check index block capacity in ntfs_ib_copy_tail()
+Subject: [PATCH v4] ntfs: check index block capacity in ntfs_ib_copy_tail()
 
-When an index block has to be split, ntfs_ib_copy_tail() moves every entry
-that follows the median entry into a freshly allocated block.  The number
-of bytes to move is taken from the source block's on-disk header alone: it
-is the distance from the first entry after the median to the end of the
-source block's entry area, so it trusts the entries_offset and index_length
-values stored in that block.
+When an index block has to be split, ntfs_ib_copy_tail() moves every
+entry that follows the median entry into a freshly allocated block.  The
+number of bytes to move is computed from the source block's on-disk
+header alone: it is the distance from the first entry after the median
+to the end of the source block's entry area, so both entries_offset and
+index_length are taken from a block that comes from the mounted image.
 
-The destination, however, is a new block whose entry area starts at its own
-entries_offset and which must additionally keep room for the terminating
-entry.  The two computations do not agree: when the entries of a source
-block fill its entry area right up to the last reserved slot, the computed
-tail is larger than the destination can hold - by 8 bytes for a 4096-byte
-block - and the copy writes that many bytes past the end of the new
-allocation, with values taken from the mounted image.
+The destination is set up by ntfs_ib_alloc(): its entry area starts
+after the index header, the update sequence array and the padding, which
+for a 4096-byte block puts it at offset 40, and its usable capacity is
+allocated_size minus that entries_offset.  A source block can declare a
+smaller entries_offset than that, so the tail computed from it can be
+larger than the destination can hold - 4040 against 4032 bytes in the
+case at hand - and the copy writes the surplus past the end of the new
+allocation, with values taken from the image.
 
 Reject such a split before the copy and fail it with -EIO, which
-ntfs_ib_split() already propagates after freeing the newly allocated VCN.
-The sibling conversion path, ntfs_ir_to_ib(), received the equivalent check
-in dc09bf79b76f ("ntfs: Fix index_root heap OOB write in
-ntfs_ir_to_ib()"); this copy site was missed.
+ntfs_ib_split() already propagates after freeing the newly allocated
+VCN.  The sibling conversion path, ntfs_ir_to_ib(), received the
+equivalent check in dc09bf79b76f ("ntfs: Fix index_root heap OOB write
+in ntfs_ir_to_ib()"); this copy site was missed.
 
 Signed-off-by: Hang Nan <2122295973@qq.com>
 ---
+v4:
+ - correct the root cause: the overflow comes from the source and the
+   destination having different entries_offset values, not from space
+   reserved for the terminating entry (review).
+
 v3:
  - drop the code excerpt from the commit message and describe the size
-   mismatch in words, as requested in review.  No code change since v2.
+   mismatch in words.
 
 v2:
  - pass icx->idx_ni->vol->sb to ntfs_error() so that the mount's errors=
