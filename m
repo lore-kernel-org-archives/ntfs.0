@@ -1,29 +1,29 @@
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8693148D8
-	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:03:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1202765E2
+	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:05:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792321418; cv=none; b=gvBUMGtQhoOOeH0Z8NcLWTQwpc0PWWLDtew+E3meq+bUbFsFzjoo0eo/tR9kTCiCUDEngAQeO7lw8vZmbKrn4kVC64P3cw1w7Z7mEgAd8+FcjpnqpvIhuxLVTOyBkg0DQdHM+fZ53uNs7hRNavDVXxEsk1j2xXeQ3rQopPn21M8=
+	t=1792321550; cv=none; b=Ck3xp8MH6SWgVMlNcHQElvPJTiL0Rcf85KjnWvtv1T1cYdNjdUeg2DeRzig1rBGePx+icn7nxHI2O6etuC2lSnlODKcRGuoIEee0o2ttDjLQJlXRKWAWc7440TDXNCAMAbCIHWFaPG8YMqebzc7EWdwfzNwPq9ANkZv6Z96SZMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792321418; c=relaxed/simple;
-	bh=gPf8zrv8u0gOfI+bcQm8USO6VoJAEczCq2VA/aO6x0Y=;
+	s=arc-20240116; t=1792321550; c=relaxed/simple;
+	bh=ykciUUph7apSMXjiOp+xYOp9PBIjmDz42rVz29E9Osc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jbfME5JXu7FogOEUi8h2QA/iqkDkrnFUQjZZ5dnJnsv/T5sQDi8HU6Zz4Lk8ozYC/Hoa/JM3alYar8/gMRWHTOEjEFhptS33fwpsjBVUoecN/ubNT7o+9IVTV+EFL4InAW8GDa1TEP+mdA99fRKTymj3eoilhZ4d7WNAUQjghEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=F7urFTig; arc=none smtp.client-ip=220.197.31.5
+	 In-Reply-To:Content-Type; b=rTneJTkgJa372VYQ56grRxBW0PzNQjS1n7g6fQBeEo2sSX7JIKiQwOuBcJmbjlJXQoojAP7J4PUQLxllPECVIhbPgJSG+tUfY22kJQTc/qZmA4yqUrCuMSxvTECBtGgtXV1R0BdSb8bXlR2N3MwXIwD8ctM+cfoh8T0bRm6KeTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=hWbh/FI7; arc=none smtp.client-ip=220.197.31.2
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="F7urFTig"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="hWbh/FI7"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=ROLNxw2kwaeqAL7/iAx4lxtb3owIxwgaBMd4Q/DgR/8=;
-	b=F7urFTig22w/0X7rr4r1PnkwK6e3V7vlq2iP00vL6O9kKDipmzBTaEGaUJg0sC
-	vgIBv6mEfvI2DinKSNl8/eXHyLHt0QSsEieTyD9AymJLUqwZJHi4IoVqzyyMLb0Y
-	uUHgdKO+ONkmqDWA8xBUH6zUD5yzeYMDaI7dJ9Cu6jwNc=
-Message-ID: <39b6c8df-4d5f-4a62-b366-58d1cef3ee58@163.com>
-Date: Sun, 18 Oct 2026 19:03:22 +0800
+	Content-Type; bh=JYYtrnStdXLq0D4MfmgUPm92KJJOW+T4rMCGxVqcHBM=;
+	b=hWbh/FI7Arey+fxs5bevithO0asMnQq9WKduVGz0ufc1sP1GDRZHhUyS45fTgr
+	rdrvsLcwE3hC5gY0WbpuVmRnWfo71k1L+0ebgxiRjgjfrFopK5L+IqMJBoKiFA6y
+	khOkD/2r16698SsdQbkLm85FSW6XqIUx7cvxvqzlduNAI=
+Message-ID: <e9b6c4cf-23e4-4c02-b643-810f60b56707@163.com>
+Date: Sun, 18 Oct 2026 19:05:34 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -41,12 +41,12 @@ From: liubaolin <liubaolin12138@163.com>
 In-Reply-To: <tencent_01175C3A5019C145877D1C31E2532BD2D806@qq.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PygvCgBnk4t6p9RqkHJLAg--.6189S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3JFWrGrWfAF47XF1xtr48Xrb_yoW7Ar1fpa
-	17G3s3ta97Xr47Zrnaq3WUtasa9w4fGrWUGrW5GFy7C3sxtrn7KF9YyryYgayIkFZ3A342
-	qF1jg347uryDXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UQ2-OUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RvXomrUp3sBngAA36
+X-CM-TRANSID:PCgvCgBHXnr+p9RqE1QIAg--.31046S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZF4DXFy7ZrW7KFW5Jr47Jwb_yoWrKF1Upa
+	17G3s3taykXr47ZrnaqF1Utasa9w1rJrWUGrW5KFW7C3sxJrn7KF95tryYgFyIvrZ3A342
+	qF1jgr9rCryUXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Um-erUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6h-4w2rUp-+M4QAA3F
 
 
 
@@ -122,28 +122,19 @@ X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RvXomrUp3sBngAA36
 > the destination by up to the size of that reserved entry (8 bytes for a
 > 4096-byte block), writing attacker-controlled data past the allocation.
 > 
-Hi Hang,
-    Please correct the root-cause description here. The 8-byte overflow 
-in this reproducer comes from the different source and destination entry 
-offsets, not from space reserved for the last entry.
-
-    The source uses entries_offset == 16, while ntfs_ib_alloc() sets the 
-destination's entries_offset to 40 to accommodate the index header, 
-update sequence array and alignment. After skipping the 16-byte median 
-entry, the source tail is 4040 bytes, but the destination has only 4032 
-bytes available.
-
-    The commit message can simply state that a corrupt source block can 
-have a smaller entries_offset than the newly allocated destination, so 
-the remaining tail may exceed the destination's usable capacity.
-
-Thanks,
-Baolin.
-
 > Reject such a split before the copy and fail it with -EIO, which
 > ntfs_ib_split() already propagates after clearing the newly allocated VCN.
 > 
 > Signed-off-by: Hang Nan <2122295973@qq.com>
+
+Hi Hang,
+    The Fixes: tag from v1 was dropped.
+    Please restore it before the Signed-off-by: line:
+Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+
+Thanks,
+Baolin.
+
 > ---
 >   fs/ntfs/index.c | 12 ++++++++++++
 >   1 file changed, 12 insertions(+)
