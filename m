@@ -1,29 +1,29 @@
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68D9346E5D
-	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:01:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8693148D8
+	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792321302; cv=none; b=Bn6Mikf6XS628F2+/i1k+IltbjWCuZUs3Ja0ykPVQbb4NQVakYmU497EP9dAwCmBBFJ9dUp5sfYVWaWBQEYulSDEwljK5tipV0fHqpzJTkZK+/uGtnwC9pUFXmtdLUeyYPQ+ZJKumwHJTGPpe/thfundQOGNl96VT+KKy1fgTnc=
+	t=1792321418; cv=none; b=gvBUMGtQhoOOeH0Z8NcLWTQwpc0PWWLDtew+E3meq+bUbFsFzjoo0eo/tR9kTCiCUDEngAQeO7lw8vZmbKrn4kVC64P3cw1w7Z7mEgAd8+FcjpnqpvIhuxLVTOyBkg0DQdHM+fZ53uNs7hRNavDVXxEsk1j2xXeQ3rQopPn21M8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792321302; c=relaxed/simple;
-	bh=T4v/8YgsXYs3GZknmCQilYSjBJA8hFxjDk/U6jaPN1M=;
+	s=arc-20240116; t=1792321418; c=relaxed/simple;
+	bh=gPf8zrv8u0gOfI+bcQm8USO6VoJAEczCq2VA/aO6x0Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J+Uh7F+9RwN4n+xXPhsV6bsi2CecSfyigHmNw/bbgC4jr4hJgAf7RkUnAmSY4UlpeduC6V2zDnSGeZfzHROsqEqgrpSDbhcz8b8fxkx6saJpJFfugd5fiOOoMxheSAyRnPM7ozHHTYbbEdXMug1ITwdBO/fuM/kSKcp5sEOd8R4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=PFfgJ5kM; arc=none smtp.client-ip=117.135.210.4
+	 In-Reply-To:Content-Type; b=jbfME5JXu7FogOEUi8h2QA/iqkDkrnFUQjZZ5dnJnsv/T5sQDi8HU6Zz4Lk8ozYC/Hoa/JM3alYar8/gMRWHTOEjEFhptS33fwpsjBVUoecN/ubNT7o+9IVTV+EFL4InAW8GDa1TEP+mdA99fRKTymj3eoilhZ4d7WNAUQjghEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=F7urFTig; arc=none smtp.client-ip=220.197.31.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="PFfgJ5kM"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="F7urFTig"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=nKCFeowwHAHCPOvQTz4lieL6V3+wHv5zV2fnXqaCUk0=;
-	b=PFfgJ5kMGVRH/OSwlz061nCAyGK1JIw1bUmbQGCt67NXMbujdC2T+KRFNeyQQB
-	pkfsmB2aYkeg3hpmpitBMm+lUybyfpeBygvBhzJUyhJbYMlfnHzF/oymrZOz6QjA
-	VWKgbATCPpJfaQeaeYWm3mDQP3e1doOE4vF+iTkEx5fHQ=
-Message-ID: <4c60e3a4-bbcc-48f4-b78a-c47513b95313@163.com>
-Date: Sun, 18 Oct 2026 19:01:29 +0800
+	Content-Type; bh=ROLNxw2kwaeqAL7/iAx4lxtb3owIxwgaBMd4Q/DgR/8=;
+	b=F7urFTig22w/0X7rr4r1PnkwK6e3V7vlq2iP00vL6O9kKDipmzBTaEGaUJg0sC
+	vgIBv6mEfvI2DinKSNl8/eXHyLHt0QSsEieTyD9AymJLUqwZJHi4IoVqzyyMLb0Y
+	uUHgdKO+ONkmqDWA8xBUH6zUD5yzeYMDaI7dJ9Cu6jwNc=
+Message-ID: <39b6c8df-4d5f-4a62-b366-58d1cef3ee58@163.com>
+Date: Sun, 18 Oct 2026 19:03:22 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
@@ -41,12 +41,12 @@ From: liubaolin <liubaolin12138@163.com>
 In-Reply-To: <tencent_01175C3A5019C145877D1C31E2532BD2D806@qq.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PigvCgDn70kJp9Rqp6hQAg--.7237S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZF4DXFy7ZrW7KFW5Jr47Jwb_yoW7Jr1xpa
-	17K393taykXrW7ZrnaqF1Utasa9w1rJrWUGrWrKFW7C3sxJrn7KF95tryYgFZ2vrZ3A342
-	qF1jgry7Cry5Xr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UHT5JUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Qq7hmrUpwrvnAAA3+
+X-CM-TRANSID:PygvCgBnk4t6p9RqkHJLAg--.6189S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3JFWrGrWfAF47XF1xtr48Xrb_yoW7Ar1fpa
+	17G3s3ta97Xr47Zrnaq3WUtasa9w4fGrWUGrW5GFy7C3sxtrn7KF9YyryYgayIkFZ3A342
+	qF1jg347uryDXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UQ2-OUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RvXomrUp3sBngAA36
 
 
 
@@ -115,15 +115,6 @@ X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Qq7hmrUpwrvnAAA3+
 > 	tail_size = ies_end - (u8 *)ie_head;
 > 	memcpy(ntfs_ie_get_first(&dst->index), ie_head, tail_size);
 > 
-Hi Hang,
-    The code excerpt is still present in the commit message. Please 
-remove it and briefly describe the size mismatch in words. That would 
-make the commit message more concise and help readers identify the cause 
-and fix more easily.
-
-Thanks,
-Baolin.
-
 > tail_size comes from the source block's on-disk entries_offset and
 > index_length, while the destination has only allocated_size minus
 > entries_offset bytes of room.  A corrupt source block whose entries
@@ -131,6 +122,24 @@ Baolin.
 > the destination by up to the size of that reserved entry (8 bytes for a
 > 4096-byte block), writing attacker-controlled data past the allocation.
 > 
+Hi Hang,
+    Please correct the root-cause description here. The 8-byte overflow 
+in this reproducer comes from the different source and destination entry 
+offsets, not from space reserved for the last entry.
+
+    The source uses entries_offset == 16, while ntfs_ib_alloc() sets the 
+destination's entries_offset to 40 to accommodate the index header, 
+update sequence array and alignment. After skipping the 16-byte median 
+entry, the source tail is 4040 bytes, but the destination has only 4032 
+bytes available.
+
+    The commit message can simply state that a corrupt source block can 
+have a smaller entries_offset than the newly allocated destination, so 
+the remaining tail may exceed the destination's usable capacity.
+
+Thanks,
+Baolin.
+
 > Reject such a split before the copy and fail it with -EIO, which
 > ntfs_ib_split() already propagates after clearing the newly allocated VCN.
 > 
