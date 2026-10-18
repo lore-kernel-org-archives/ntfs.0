@@ -1,86 +1,66 @@
 Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com [162.62.57.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D74143E9C6
-	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98271375F96
+	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792324676; cv=none; b=GTBA5bJGqpWq6IlhgyhewxlbXwPPX7UOd4j3CjvQKpXogQTUVZSEb+o5lDCfGUh1Nn06RfN75Ht4qQhnO9kRjaCaui9ooV/HnxlGcFw8AnbMNiZYzPHujYXecOxivl7ik0wsyQ/H++MFVnbD9mMrLsUHDr+cptSmS7bmpXNggZ4=
+	t=1792324763; cv=none; b=iYrdF+O+3cQBjpmJ7432hbzt2mjb2BwXH3SDbRAR5r0jgxYJvyqr6ppumZzkQ6KpMaLGvwoUNnrXRLa87+xITIYnfiisbC1ufbLoNGvKHeHgbIKGAa8W9HSIe/8NbmNnMZpfcX3QuBoSO9xRR7Q8dhnkaTY3TYnzBD6fcfvJgnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792324676; c=relaxed/simple;
-	bh=l93wSqUZc6owvPY9dYVRDKO1zoAk1+G/ahycBSFGP08=;
-	h=Message-ID:From:To:Cc:Subject:Content-Type:MIME-Version:Date; b=LD4GxDP+j0/gpciW5AU46J171HTtsQgMSKN+BQ5zucl3BtwnmxGPOxWx/iMKFtfD10xcy78mLGPfFijUu/OmZHJyX4PFWKThByFlJqFTOXBKuZli+eDBMH8hl9kbn6MMf+Lsfph4bgJabb+2bxForjFTIJVKNT4BXXrmWykizSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=Z6+Jjoyj; arc=none smtp.client-ip=162.62.57.49
+	s=arc-20240116; t=1792324763; c=relaxed/simple;
+	bh=x4I89/l22fEIViargU21gbEZXFEQSf7GhMaTsHIbJEI=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=pkGRDPiuZYZzDOqOV2jkrN7+vOvrTVtDs1U+wuHSEjIX4kPE9Pg6r6MMTzwy7bvtaYJBDdf49zb3acC+MkkLZu8qFKWKZexoEzaTfyvQkTS2AfSSFPz1zRVGAgXgulK6M2M2F9e69cNireIJMCOYyrhMBbiCBNm8m1BT6xSFk5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=W6udkLcv; arc=none smtp.client-ip=162.62.57.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="Z6+Jjoyj"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="W6udkLcv"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1792324662; bh=jlgM9t4x/blYgNq+CyK6/sg/R25vooLyEICRkpeirUY=;
+	t=1792324756; bh=HXzRKflA0zSUsciPS8bP/o6SiApnbWrLEqI7BKcMn6U=;
 	h=From:To:Cc:Subject:Date;
-	b=Z6+JjoyjcVJf+bMS1z06b7NrgscWnqRhNxeI7VqoqzA39YdElozw5Y+Svl9CfDWBT
-	 DcjD5DX6AlC4EBmZDGVhYUmlPrv8gBSLnUoTbMWjhoQOod72k+T7a0Y8orIvhpQEGy
-	 kGqZ0I8mh5ZX1D4Eu+KOFYF3TpvathYiL/10PEWo=
-Received: from [127.0.0.1] ([2409:8d5c:c30:3b3:3d39:a6e9:e5bc:61cf])
-	by newxmesmtplogicsvrszb51-1.qq.com (NewEsmtp) with SMTP
-	id E6813C26; Sun, 18 Oct 2026 19:57:40 +0800
-X-QQ-mid: xmsmtpt1792324660tdmh880hz
-Message-ID: <tencent_68D8DB4B110F3D9921617E29A7A7967D5C0A@qq.com>
-X-QQ-XMAILINFO: Me8mHstNM5a8yrpmdXiiEnYYYG0y39chhp5ksD8C7wazUWy6cLJmzumHZZUkg7
-	 iq2bL33Oi9wcb5g3mVBA45EtWifOhz8KJ7M30sG0s4qzTSP9ZlFPDuyGu69vvG2x2fIVSydDTfy1
-	 l99Cp+peddTwEu7KuGCt92ee8j7G5cwwTPSzlYaMtaDO2+F5aX9MhCo03gmNsfh2jcWKr5OQHvyB
-	 R1VtqX4sB5w0zLv+0dCe/GCyTDGz/lhFA3p1rTmzHmRrR5oG3CBRMui5S4fQn08FnP1XL4364hm+
-	 cfBaHlILZALxorO186bud8QsL1h3SqaIb0T7XudY+JxNki7rZuWxkPmDm5j4Cek3UzYbn0zqNNJo
-	 rlnWIkugWM47DD/vrDdDQ5CeiGA4I5GiFsVVoXNqakMw/P010nqc5nRFf52lNx3Dfaj68iFjfQHD
-	 V5cPaBC/22v2Wyv/An1vTvaM9YyGVYddy7Yj5ny7nvDjM5gBIhuLY1tNBTzfs0rSKZkA5eroCic6
-	 6r4aQY1tsniVxOZL25yQlg7OMIdXBWzYTHWcnrNVvqQlHkQbvkWj+934aa3soJmy9PsDRaer45J+
-	 yziUj0CGsn85G52jVAkWAUGuQXmSPx9hfCIbbJpvmpqaS6aA/CQp9tusrXMN+ozhSMDIXxBvjfeT
-	 73HdTklqpms/FqeIdYxrD6mKqAUWy8o8yR+HlF5hOK19mSNcQL/frsqRD7GdRups547W5CXMk8pV
-	 MZwHY+WoyOkpyCCAvA2jcko40L9A5/+BG/1Da6bHJvf8sXpOkdtdNLjkr1GH0SkWlVkX+oGenwZq
-	 LbASjQugAceoKuDETltLczOn110mcK7TONW+DH5wu+B2DI/09qjz4wLLR3qFgSFCQo+3UGlbGA2K
-	 te1gJUZcKMBi5FtZOAdSlMB8p3rkq/quEN3lgQLDOX/cEH7E8vxI14iFLa6/Ybz6i9vsU1CTjnpt
-	 Fkvzc2Clt5Uq3RD2JEsCyMMqSyqYzNs19PSvvr6boSiCQki0CPtwtx07hCPBOb+pl6LFIRaRi7M1
-	 UYmaB1BP7HU5mmrX+FeaDK6GYn74WHISQnPkwveNm5d+j8Pcc/gL29OtvZgzrPd8mlSGC7Cw7h/G
-	 6RTlyruUdAKrKQK6Xc+JtWPcAKXA==
-X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
-From: Hang Nan <2122295973@qq.com>
-To: liubaolin12138@163.com, linkinjeon@kernel.org, hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, security@kernel.org
-Subject: Re: [PATCH] ntfs: check index block capacity in ntfs_ib_copy_tail()
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	b=W6udkLcvcnUYQE2ME9krY2edENTnaxo4pKOW8A7FjmdxmRHfBM5vwHdQKxmv2yQVL
+	 8i/oKNhct26otV5Zas3WdIHJ77lrcNzXdHR5G9DVFk/1k6i4XrIBz8x46MfjBaJ3mw
+	 vlohSkMuYnYhxv8Jqqe87mQHhQrGCMJGHV62DWC8=
+Received: from localhost.localdomain ([2409:8d5c:c30:3b3:3d39:a6e9:e5bc:61cf])
+	by newxmesmtplogicsvrsza73-0.qq.com (NewEsmtp) with SMTP
+	id ECD11638; Sun, 18 Oct 2026 19:59:13 +0800
+X-QQ-mid: xmsmtpt1792324753t73fq8kju
+Message-ID: <tencent_AC559EC491E8BEF6D2D9CBD02E00EC518809@qq.com>
+X-QQ-XMAILINFO: NC4p7XQIBeahtHKwu2+OBlEjs4IZG4oec53LbPaztELBr6PS5dswhtO5ylU6nZ
+	 cTiocEh1DbM/WwByhUQQuP8KDCVkEV/+hvfvt2B+0wn4NlnnmXplfxjcbe4va0Udqz3HSMnbLure
+	 Nm9VLRZ54YYU5e+Lmww94WUPL704Cu569Qrg+8BSB4B1eKcLWKjkYKyDGJICZpZ7FWP3W/VEXco8
+	 3IKW1PG7W114/IxFd/4H3jb3gHoeTlPBhbZxz4BOVxbxPbWiEMa86f6UpM1aUzhwkjilJ7gB6rKm
+	 0kbXwJwmuRZb40kCiPa1f+qeu1GgWFXzAAa9YClcJqWDimTHUAMxWfQ0xtyu5of1K5+RyHycKdmz
+	 dzbZC2n7Y7w8xH0kRY+IQ+DcGIgM7EoDTLzJJA4ex3dryKRfk9bjwvgP71e2d6f1YRU3jGHgPwce
+	 7+odF6VQSBCPVOSaCkz5ceG7CkWabBQQz+QkZgebRv/0tLu4OpqoThAGcHWuOfriEWPcJGlyGuLT
+	 KjhQjYx9+tvufTXblhQvogEtv+Tpo1tDEI+RPk+nRkJOiLC7tznfo2Xi/kExqf3OhpqPV6ni1Tj7
+	 6P8WvFckm3H0jPnFKbxjtC9LG9Ckm2/Vs2OcrahbSf7C6uaZpzUbiX5FLYuOZW6+eHBcU8ylZYlG
+	 zbBmj4U0ApzUuDbd68s7aEWxF3lDRTjJqStzDs4BIRypEjoYxvLyKHTb/aOerymur1Cg8At8F7Zs
+	 CfktDmQ8BojxPK7MisGpSyQ4FSSDHQP+43AUqjtKhr5zD28nFZnX/6PJuh4/EJOhMm689Q6qM+D7
+	 dQPiwTQ3GMPDRWj6ex9buop2W0gaDsAKnLJVNtdDuCrqeFD+YUkPcb6JV8gzdYgmFfKW02vfyoUi
+	 KBt2w3j5Y04xIJg7EuUN9Y8DKvtRAWtAEX7UId9mL0nUB6VPxB2VvSzKyLUQHh1iSlVvgm6TFNcg
+	 Nbvh1L5HwHUBeZ8RbqfdrXjJ39gLBWEApyFqlvJVSBD2i6MbheHX6hG2SP6lOb0kXA9kwIZlydOC
+	 tluMD+MhV6GIY8j5l+ecs4l+cnMvEFmImrUrCjzm+rv2Tm1JBSpc9qHXcfA6Q=
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+From: "Hang Nan" <2122295973@qq.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com,
+	liubaolin12138@163.com
+Cc: ntfs@lists.linux.dev,
+	security@kernel.org
+Subject: [PATCH v3] ntfs: check index block capacity in ntfs_ib_copy_tail()
+Date: Sun, 18 Oct 2026 19:59:12 +0800
+X-OQ-MSGID: <20261018115912.200911-1-2122295973@qq.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Precedence: bulk
-Date: Sun, 18 Oct 2026 11:57:39 +0000
-X-OQ-MSGID: <1ecb8e14ea35496cb4472b135a6d7958@qq.com>
-X-Mailer: git send-email style plain-text report
+Content-Transfer-Encoding: 8bit
 
-Hi Baolin,
-
-My mistake - the tag was in v1 and I dropped it when I rewrote the commit
-message for v2.  Restored in v5, right above Signed-off-by:
-
-  Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-
-While re-running checkpatch in a tree that actually has the history (the
-local patch branch only has a handful of commits, so it cannot resolve any
-of these ids), it flagged one more thing: the sibling reference has to be
-written as "commit <sha> (\"title\")".  That is fixed as well, so
-checkpatch --strict is now clean with the history present.
-
-The code is unchanged since v2 (diff is byte-identical), so the earlier run
-still applies.
-
-Thanks,
-Hang
-
---- 8< ---
-Subject: [PATCH v5] ntfs: check index block capacity in ntfs_ib_copy_tail()
+From: Hang Nan <2122295973@qq.com>
 
 When an index block has to be split, ntfs_ib_copy_tail() moves every
 entry that follows the median entry into a freshly allocated block.  The
@@ -100,30 +80,27 @@ allocation, with values taken from the image.
 
 Reject such a split before the copy and fail it with -EIO, which
 ntfs_ib_split() already propagates after freeing the newly allocated
-VCN.  The sibling conversion path, ntfs_ir_to_ib(), got the equivalent
+VCN. The sibling conversion path, ntfs_ir_to_ib(), got the equivalent
 check in commit dc09bf79b76f ("ntfs: Fix index_root heap OOB write in
 ntfs_ir_to_ib()"); this copy site was missed.
 
 Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
 Signed-off-by: Hang Nan <2122295973@qq.com>
 ---
-v5:
- - restore the Fixes: tag that was dropped when the commit message was
-   rewritten (review), and use the "commit <sha> (\"...\")" form for the
-   sibling reference so that checkpatch --strict passes.
-
-v4:
- - correct the root cause: the overflow comes from the source and the
-   destination having different entries_offset values, not from space
-   reserved for the terminating entry (review).
-
 v3:
- - drop the code excerpt from the commit message and describe the size
-   mismatch in words.
+ - describe the size mismatch in words instead of quoting the code from
+   the function.
+ - correct the root cause: the overflow comes from the source and the
+   destination block having different entries_offset values, not from
+   space reserved for the terminating entry.
+ - restore the Fixes: tag.
 
-v2:
- - pass icx->idx_ni->vol->sb to ntfs_error() so that the mount's errors=
-   policy applies and the message is prefixed with "(device %s)".
+Testing: on v7.3-rc7 with slub_debug=zf and a crafted NTFS image, the
+destination object's redzone is overwritten by the last 8 bytes of the
+copy before the change; with the change the split is refused, creat()
+fails with -EIO and no redzone report appears.  The console logs of both
+runs, the image-crafting script and the initramfs are available on
+request.
 ---
  fs/ntfs/index.c | 12 ++++++++++++
  1 file changed, 12 insertions(+)
