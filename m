@@ -1,84 +1,134 @@
-Received: from out162-62-57-252.mail.qq.com (out162-62-57-252.mail.qq.com [162.62.57.252])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A4C479883
-	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 11:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.252
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EEB49F127
+	for <ntfs@lists.linux.dev>; Sun, 18 Oct 2026 12:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792324782; cv=none; b=ud58W3EEwBWCb9zurwA32oKl31wFCScflH8BfToqk3tLSWlS8a574EyOujOgsl/zLw+CQAAAAUg4uUA4ZIkbDFTz5FkAHaOSHXm1WrpGQQ1C7SB4Ul0jZjSBT1vlDj9PryhxlbtgCjS+GMIcJSCvNJDP78cj8jxKd85YdF4DXCA=
+	t=1792328104; cv=none; b=L0k3ePOchJeqvh7k4tFW6DF0aEvX7vydCarytT5IPyp/fXdzU7uVPmL2OhHwCLCqLaT2YQYwYWBC5fy7ydLUPjjgmgPIR+0TnpQjbdGQiA90870h6OxN1znW/WmM+y+ldxdQjqP9Cdd/EgzI8X3IuI/QQNDjYE7y8dWlMe2e3VU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792324782; c=relaxed/simple;
-	bh=0wfP+CIMBNs0ulBTdfrfAceE8fSDzwof+V0DLKoCLSY=;
-	h=Message-ID:From:To:Cc:Subject:Content-Type:MIME-Version:Date; b=pJ0YQ3eom9MNX1lmMOjXI77Z+sQ+W/nr6d4z1MZ46kMfcA8paOY7fD7CAS1oaKIQgGSR5Xlx02e/AK/GB6Vr3gx+s+PXNa/lmU2KejtS1X3vUHyXh6xC3tRfnFOEwyyyPGVR8CXaAalKfAFHP3166kfF3hwIZeNbj6ti03l9C9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=vFn3AONm; arc=none smtp.client-ip=162.62.57.252
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
+	s=arc-20240116; t=1792328104; c=relaxed/simple;
+	bh=SmKo7BwEgMCVhVkfC9IPMNK7+dJmi26h43ByLoT3ODQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q+QqKSGSilmc+snarjejn9TtkJCKRM/il6IqveBg72fG6LTmIX3dhLZzlOwy0HyJgZy6MqXpEA8QXa4uwN8V6Hw48HFBaFN2MzdeC31ZyHPZ4oaFICIEtkzuZLatltkQ54MDu6MMD3iekDJ6m3IgPLNch54fJA5LFEJxgVW7F70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=P1DpJ5v4; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="vFn3AONm"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1792324770; bh=APruQDTFp8VxXlQdi0OUbbP6b/zqwGWn+R70MPSlEsg=;
-	h=From:To:Cc:Subject:Date;
-	b=vFn3AONmxAH68yADlEXpG3Rk8S/0nrlAaa/mF/C0VheT0RI4fxvn0b8oYvwnAe/PP
-	 LEJOiFQszinTXOIm+NNozzaD5wzO1JT3VkchQiTD3fXyJ07XCkBgDEwhKiB1qjO63A
-	 8uMUlZ/XbVtu8mZ7y4tcqSlL9GgWLw+67ZdsFxQA=
-Received: from [127.0.0.1] ([2409:8d5c:c30:3b3:3d39:a6e9:e5bc:61cf])
-	by newxmesmtplogicsvrszb51-1.qq.com (NewEsmtp) with SMTP
-	id EDB052B6; Sun, 18 Oct 2026 19:59:27 +0800
-X-QQ-mid: xmsmtpt1792324767tdvxhrlua
-Message-ID: <tencent_69BE8ED8EFA90C29FF4B32FDB7ACE1C2C005@qq.com>
-X-QQ-XMAILINFO: NVAAucnmvwUdDj3/KdKV96RyKvPDh9eAXaMADCJK6HkCI09YOcWf5jmi8ZvcVc
-	 JQkxHS/K69Qwx8S4GshZxTsjnPeLxSLYZHH0bWollgWubx++NwiFOfZPuBdnrWpecjdkP+9cUgQN
-	 rfa7ehR2/6s+01oUs7n9kzczbiAA1NQqtCPwplHuxBnuvTUXOhx1I6I/NsfLjKX4KTYYBvuVEVvn
-	 KuGd33pQg5pKCAneQeAe+ZtNgKSV9IlP2hoIcOUzz8qyoqaUPXyOjhgV/nal3elTTF9v2fV5e1Mj
-	 fJTTp0ua6Z/SBirkUMTj8wtFsKkKe5MpGfHrplwl3PpSpiONkazZhJyM2C8bXWCcG3LED5ObAbDa
-	 aoHOJ07vq7GEBuoW5FSk5VW3sGb592CA2E3kfy6US5SFRQhpbt4e9Qe04CTMwHAUO2UjxZNx5ykh
-	 Z/ceFJS2QeNQlKThd+TonbPWzRhUmowYebTpWGfxHJ1BzrzCdzcYf9zzk9umza9vtgrDF6Rq8Ojy
-	 5sesN7IVuTPWU3X8aZNGp7aw4hcrUkDol/l/LpRV0IQI1fhZuurBsjA3aMLC0NNdk5Ts0A7LQHOv
-	 AfNFi4ot/LnXWxBxrYOSZtZcnQNCFUduD09WCBo4DSEXIb7qKRmoUxnMRE0/pIEjqM3s8th0GAZ2
-	 NMdxcKJMWjhA0kqiM8pIJHO1ka+J5lAwWRyuja+lUf2UdBiMLG3prJdM3wuP7y/2KpBqh/xnbZ8k
-	 fNVJMZYo7fZ6/yTXKXFtfuHvJwKi8VmmfFIGdkNReG/DlV3PyV23xs5iNSpA03A7ay1YjETewWsW
-	 TT6FN38ESsod2REMnlsL2P0oDVq6HtyM9mQC6vHq0OJqe6SDXAYes1obQYVV5id7rNu3q7JJVEdy
-	 CFpuT6+1uoOLmhjUQ8F5CGffp6gklLsthQJf3pXFQzf3wPl3V4rsIZ4WjJ2BOfzDWKXLqrdZx67B
-	 dZvNiOQDYoj8F0YrwOITrnxWux3ORyLV0y6lqzAlsdgVyQAkUsG9sCU4gR4ubA47vDHoBtN2xWDY
-	 Rd2aVi8QE6/Ofwc7aU8nRwlkGH8hHpuwXiWROZPMKFaQeyyin2pXagu3Rs8zBUmV2lN1q2PyqdDC
-	 k/p6MPEFvahCFqjPiTthp57EnpOw==
-X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
-From: Hang Nan <2122295973@qq.com>
-To: liubaolin12138@163.com, linkinjeon@kernel.org, hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, security@kernel.org
-Subject: Re: [PATCH] ntfs: check index block capacity in ntfs_ib_copy_tail()
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="P1DpJ5v4"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=odiuJRjHO5VH1rcOlNBvfq3JtWnhIkMtbLXvEjvE/bw=;
+	b=P1DpJ5v49BGUKmzXGOmjvSdVe+19LjiTqMRFihLm8wSR3Cewu22NQvNB0HU1GF
+	Nrfijdw63cXy7ArdeGi8RE5Q+3zTKadtKG/TeU1R2GIaD22KsmEyVdMEHdBBInk3
+	cXI5WI+9CQm3U9xMta7nRoHpZxIDxlR1aqYqQA9kj4cnE=
+Message-ID: <59388b04-7438-4f45-b7e5-10659c46a7be@163.com>
+Date: Sun, 18 Oct 2026 20:54:48 +0800
 Precedence: bulk
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 MIME-Version: 1.0
-Precedence: bulk
-Date: Sun, 18 Oct 2026 11:59:26 +0000
-X-OQ-MSGID: <c11008bfdc2f48ffbbd187246704b136@qq.com>
-X-Mailer: git send-email style plain-text report
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] ntfs: check index block capacity in
+ ntfs_ib_copy_tail()
+To: Hang Nan <2122295973@qq.com>, linkinjeon@kernel.org, hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, security@kernel.org
+References: <tencent_AC559EC491E8BEF6D2D9CBD02E00EC518809@qq.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <tencent_AC559EC491E8BEF6D2D9CBD02E00EC518809@qq.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PigvCgD3P0iYwdRq1ulfAg--.8725S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxAFyrZry3Cw4xWF15ZrWxCrg_yoW5Kr13pa
+	nrG3s3KaykXr17uFnava1jyF9a9w4fGrWUGrW5KrW7C39xGrn7KFnYy34Yg34xtrWfA34j
+	qF1jqry7uFZ8ZrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UHVb9UUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RlmMWrUwZm8WQAA3k
 
-Hi Baolin,
 
-Thanks for the pointers - that is fair, and sorry for mixing the two.  v3 is
-now posted as its own patch email:
 
-  Subject:    [PATCH v3] ntfs: check index block capacity in ntfs_ib_copy_tail()
-  Message-ID: <20261018115912.200911-1-2122295973@qq.com>
+在 2026/10/18 19:59, Hang Nan 写道:
+> From: Hang Nan <2122295973@qq.com>
+> 
+> When an index block has to be split, ntfs_ib_copy_tail() moves every
+> entry that follows the median entry into a freshly allocated block.  The
+> number of bytes to move is computed from the source block's on-disk
+> header alone: it is the distance from the first entry after the median
+> to the end of the source block's entry area, so both entries_offset and
+> index_length are taken from a block that comes from the mounted image.
+> 
+> The destination is set up by ntfs_ib_alloc(): its entry area starts
+> after the index header, the update sequence array and the padding, which
+> for a 4096-byte block puts it at offset 40, and its usable capacity is
+> allocated_size minus that entries_offset.  A source block can declare a
+> smaller entries_offset than that, so the tail computed from it can be
+> larger than the destination can hold - 4040 against 4032 bytes in the
+> case at hand - and the copy writes the surplus past the end of the new
+> allocation, with values taken from the image.
+> 
+> Reject such a split before the copy and fail it with -EIO, which
+> ntfs_ib_split() already propagates after freeing the newly allocated
+> VCN. The sibling conversion path, ntfs_ir_to_ib(), got the equivalent
+> check in commit dc09bf79b76f ("ntfs: Fix index_root heap OOB write in
+> ntfs_ir_to_ib()"); this copy site was missed.
+> 
+> Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+> Signed-off-by: Hang Nan <2122295973@qq.com>
+> ---
+> v3:
+>   - describe the size mismatch in words instead of quoting the code from
+>     the function.
+>   - correct the root cause: the overflow comes from the source and the
+>     destination block having different entries_offset values, not from
+>     space reserved for the terminating entry.
+>   - restore the Fixes: tag.
+> 
+> Testing: on v7.3-rc7 with slub_debug=zf and a crafted NTFS image, the
+> destination object's redzone is overwritten by the last 8 bytes of the
+> copy before the change; with the change the split is refused, creat()
+> fails with -EIO and no redzone report appears.  The console logs of both
+> runs, the image-crafting script and the initramfs are available on
+> request.
+> ---
+>   fs/ntfs/index.c | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+> index 580998990..2c345e32d 100644
+> --- a/fs/ntfs/index.c
+> +++ b/fs/ntfs/index.c
+> @@ -1200,6 +1200,7 @@ static int ntfs_ib_copy_tail(struct ntfs_index_context *icx, struct index_block
+>   		struct index_entry *median, s64 new_vcn)
+>   {
+>   	u8 *ies_end;
+> +	u32 ib_cap;
+>   	struct index_entry *ie_head;		/* first entry after the median */
+>   	int tail_size, ret;
+>   	struct index_block *dst;
+> @@ -1215,6 +1216,17 @@ static int ntfs_ib_copy_tail(struct ntfs_index_context *icx, struct index_block
+>   
+>   	ies_end = (u8 *)ntfs_ie_get_end(&src->index);
+>   	tail_size = ies_end - (u8 *)ie_head;
+> +
+> +	/* Entries must fit in the allocated index block */
+> +	ib_cap = le32_to_cpu(dst->index.allocated_size) -
+> +			le32_to_cpu(dst->index.entries_offset);
+> +	if ((u32)tail_size > ib_cap) {
+> +		ntfs_error(icx->idx_ni->vol->sb,
+> +			   "Entries (%d B) exceed IB capacity", tail_size);
+> +		kvfree(dst);
+> +		return -EIO;
+> +	}
+> +
+>   	memcpy(ntfs_ie_get_first(&dst->index), ie_head, tail_size);
+>   
+>   	dst->index.index_length = cpu_to_le32(tail_size +
 
-It addresses the three points from your review, keeps the commit message to
-the triggering condition, root cause and fix, and puts the revision notes
-and the testing note below the standalone "---" separator (after the
-trailers, before the diffstat).  It was generated with git format-patch
---reroll-count=3, checked with checkpatch --strict in a tree that has the
-history (so the Fixes: id and the sibling commit reference both resolve),
-and sent with git send-email.
+Thanks for v3. This addresses my previous comments. The code change 
+looks good to me.
 
-I will keep review replies in this thread and send any new revision as a
-standalone patch again.
-
-Thanks,
-Hang
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 
