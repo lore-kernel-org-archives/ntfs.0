@@ -1,74 +1,72 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=162.62.57.87
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=203.205.221.192
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792425300;
-	b=B/u357qxGYtgKlecTglh+CRVYT0TXX1icNrmUTFmTHmfAmfuplNr0v6wCicvIsma5ZfA
-	 ycwYidsn8wp3oIU0qD75lYLzSUH/733HbPK/V1L3DxLOFzUvS7nLKB73QEhtiCyhurQh6
-	 /14NRIHBXCLD/4UAcj4v/0sI5Qvg2XnFobcKYzgs3/mjG8P0OrguerdnUdxzpwiXpqNcw
-	 oJYWItSMw2TF9snQMfSYYE8hP1iJKATYvTVhGxJmSWwSlJF7AiF+ljpyem4ehwH75jTaB
-	 qQzV+1BTB90sL1rCts5JyfNSCm8djRz2dxe7uNj+WMXR0m02GF9+LDU/spiOzG78N+Q==
+	t=1792425302;
+	b=1zBkeGi4OiVxcDA7sqRlV41xF7fRocd3OPxktD6+c8K/lbjraEyyKSqQrwnb/JoQccrG
+	 Mix9p27odnsCYAxH5FhP1vR0mHMeK6rQ/IutiXmQE7BOUoDSuz+mmkLFAujWl3/RCP3D1
+	 mjFmffHiXPruCoEeeqFabn3k3cxbSN7EnxiHSJxXctIo6WDHVkDwnb4/oOqLFqMomdXle
+	 Ovh/VpHtbniASnKbMhmHE7NE9fV0I0zYrqfSoQ/TIf/bXkaR4vPW5LlqO07R7vepHLPW7
+	 2FEpuf5tmB6ge90TgvReay7b6Agv1r3q+yNbGZqzkPuScbupbky/bWEMw/1DbiFCIbA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792425300;
+	a=rsa-sha256; c=relaxed/relaxed; t=1792425302;
 	h=DMARC-Filter:DKIM-Signature:Received:X-QQ-mid:Message-ID:
-	 X-QQ-XMAILINFO:X-QQ-XMRINFO:From:To:Cc:Subject:Date:X-OQ-MSGID:
-	 X-Mailer:MIME-Version:Content-Transfer-Encoding;
-	bh=N+vtEGM/j8yUiYWQYDKqPwwZxk6KGQffAyV27Dhw6lU=;
-	b=w6iyxZ7mzdSHFuEM592BdrpyQHHQW8Ex//vwNkgk4Q7YhX5kE5wVSAQEY/K8HiFa+DW0
-	 CWYPu3kD2eQgrCGbrbZSNV+1SodQpi1TmSuutrem2vcEN5d9ZLciQkfDe6ACJg2N7e5FK
-	 V+uwLdjcVKFmoL3mxw3aECT2Q2yR4nqSbKbZglJkZpRNK9UCgHrSztce/U+JTcfCXOJ9F
-	 lMpbeWbfGFWx2QIQXagoo7HajpakRatyrchfnwc+73x+LB15GI6WwaLWAiQALk8ssDR+m
-	 S97DAwM87QaCwa3J5o7PQrKarEXBkQG8H2VSFP2+0P7/3eclkJGXfH3wb0YSTpyKFSw==
+	 X-QQ-XMAILINFO:X-QQ-XMRINFO:From:To:Cc:Subject:Content-Type:
+	 Content-Transfer-Encoding:MIME-Version:Precedence:Date:X-OQ-MSGID:
+	 X-Mailer;
+	bh=NXn8GMUfGW6rd+Ir0mSOlDwVjdtJ6f5AYFqGwl8YK5A=;
+	b=OwADBpGKjsy282dyo3cPQdnkZq+ag1DeFxICyGOYRdo19mQnSh4n9a4sFdYRdnmfYxtq
+	 rGHh8dBYlYFyFb110JRyrUPTtkhWRF3Wt3FhIyW/OMvBnVILxpE4HKdobGkeH66JJpA/J
+	 suwSl9jZjLhZ6lWZhHPMORgIjGaGeZ3U4QFtdUGGT4SUi77uYu0SlCOcU3SbBJaLxxSms
+	 GidX1LdsYywzMBi5kGqSqBY6tHizFwKKphtOgEbw5KUdXT/U60VJqb2M3si55rOrjhL8H
+	 5d/N3gOgpttNI4KDTeaaIzxlOaSp2vSPZ08s1qEmYkzKme+LS4AlnivGoJ3X56qJkqA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=qq.com;
 	spf=pass smtp.mailfrom=qq.com;
-	dkim=pass header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=ckNOQOl+;
-	arc=none smtp.remote-ip=162.62.57.87
-Received: from out162-62-57-87.mail.qq.com (out162-62-57-87.mail.qq.com [162.62.57.87])
+	dkim=pass header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=NVEcrb4G;
+	arc=none smtp.remote-ip=203.205.221.192
+Received: from out203-205-221-192.mail.qq.com (out203-205-221-192.mail.qq.com [203.205.221.192])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A06606DA65
-	for <ntfs@lists.linux.dev>; Mon, 19 Oct 2026 15:54:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org A4A06606DA65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AF8606DA6E
+	for <ntfs@lists.linux.dev>; Mon, 19 Oct 2026 15:55:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 63AF8606DA6E
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=ckNOQOl+
+	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=NVEcrb4G
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1792425283; bh=N+vtEGM/j8yUiYWQYDKqPwwZxk6KGQffAyV27Dhw6lU=;
+	t=1792425292; bh=NXn8GMUfGW6rd+Ir0mSOlDwVjdtJ6f5AYFqGwl8YK5A=;
 	h=From:To:Cc:Subject:Date;
-	b=ckNOQOl+toccNDiQuPr/NUPDBESiPbxJYmvNmGxa/igi6dOTfSs7ORil0OAbSiVH+
-	 o/NQPuFrV0OH+ZoRV2+2xuerEntTcITD9MEoFjw4/fShz4KPwGOSHTmclYsu7mD7lZ
-	 GwULTBot5gsvbVEJEX1lXaMV/EvnKlHyv7FgPB+s=
-Received: from localhost.localdomain ([2409:8d5c:c30:3b3:b0a0:db46:6df2:867d])
-	by newxmesmtplogicsvrsza63-0.qq.com (NewEsmtp) with SMTP
-	id DA823AAC; Mon, 19 Oct 2026 23:54:40 +0800
-X-QQ-mid: xmsmtpt1792425280t928rmq3g
-Message-ID: <tencent_17B0FD18F1E99339D2CC57497A4419F98506@qq.com>
-X-QQ-XMAILINFO: OD8Oy9jBXVxFBLaNweU9tknVSGw+Vasoc6fWx+XAZexhsiKC6KC5YYxBJKjfvt
-	 0fIG3hou55GERGN1hd3zWR2W47MOZnPh2Yrv0XBS4HBB0L1BmGyDF6ziPpRmqWiSis54BqwVWCpk
-	 qau28VEFp1mCDBfIauC7yvpQ48gLYKqq//jWCkZ7GgfrRZZMYI4cgjcZ2K6M6hE6ZXGo/T2sRUqb
-	 fiSTByoZIcgY7zhHacf7yoTzdLwZC/0LQIFb4FgTwmp70yCLZfnHWZA6jSP3v/cVB7H8Zoo1WFfa
-	 v13KsIFJ9IrZKxoUszx/uAQ+2vOQ7e/lMZMaI6hC6cluqVHRSeccICvqmBGwWdTd/maCm+D43bzZ
-	 bW71g32uyb4og8+YqbAtF/ypKdg+IqnkbQQ0+2tOsIrcN7RX6VHICBI/KZn03E5iNwmOLrCKTODX
-	 SLvvWArEQPdCYK7mXbsz5aFQn7m85JTbf+E02d3KewSyzJJJeQDar5lHO2LauSGqsDAYNod8n0CH
-	 Hatx4EjAo+B1UVyRyiFUzcILtgiKM0/H5k8nEmHItH3aIxdgbuOmC2kip9f60xMEMqQxHfP6nT2P
-	 DY4otlOHeqxslWtlmoCjvMdKGPjHqUBOFnFMBspMufGoU6Ocmk0pCMtus4qDUxZcIh54V+3VyUdG
-	 xVBMX5a8FHKdLNH0BZOy8jDn23NK7FgzWAqFEnWfKf2/NENLBf4no14aYPuHeoPIZZMtRMy78+b9
-	 8e5GRBMkT3MhPA9TrI6jl7adcN/O6u49cZgzJSukE9QF2+4c5RG+6zlA497Ebzs0yelcQU90kzZu
-	 DuTf429yDy631JAEEASOEdGj9zIT13gd6Qh4rt8X2UnfOtBl0uf7fLYOC9VJJSCN8OUaNIP6yKFJ
-	 l43EMPWCeBXHnbAutJ8sH6RUPsD5UwX5btgFUsxJ2GNdciH0IxkXNXbVTmhc5zU/NGRg7JHvFJtl
-	 pQRKnBfU1l7fYw4+ruYMJRL40WLEfFogmAX3GQechpJdZDbvuJHgcIpx7F5ei66BbtuCdf9jU4Wg
-	 2QvHtaj83wRuOBB1RaEkSBSGOP5Sebm0dGJ8F7RYKSJtEt6RltzTTklcW0g4s=
-X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+	b=NVEcrb4GjTO/ShcHmY4hVikDeQGw9vQgDL4IlAazQlA4s0kc5VXGV4BRNZ9PFb/QO
+	 1tA/UBkQeM/O8XAiSfQdg04GbLkOB/fcFTojeBT3CBOXuS0E8Tg/vylxjtCfKwufbM
+	 QmoflUlaTecL/j4STNxNxSy/XEHRGQPfACV0/MQY=
+Received: from [127.0.0.1] ([2409:8d5c:c30:3b3:b0a0:db46:6df2:867d])
+	by newxmesmtplogicsvrszc56-0.qq.com (NewEsmtp) with SMTP
+	id DB236845; Mon, 19 Oct 2026 23:54:50 +0800
+X-QQ-mid: xmsmtpt1792425290to0r6hza4
+Message-ID: <tencent_3682D61E92D8E6C91449FB8B33FDAB6CEC05@qq.com>
+X-QQ-XMAILINFO: NAuAIaytDrXpZELMP7+bSpmy2i7n1COLbb5SYkDSQN5lcSRgOFPKozSuxxA2SG
+	 9T81c0FMwww6khuL+O5EuNoqSUouHPMxPUmic6MDzdRb/GrD93XmVZp5XtVBavUzxlnA3Nw3KVQy
+	 dtno8IJ81Acx2PB6gKFg+bALnbRY8dYHLfsvEMKMKTwlM0fQc6g/ARX2EM4hsrcix2Os7dKwbn75
+	 36bnjNmsZThRCUe74NzbtWRgfgS+Ld8r3y3kV8KTJN3wJLOXrw9jgessyMnZa+fsl5CIGbpee+nJ
+	 2Od2E7MuCVsSGXpUHW/pIgi1yvwzOBUZgpFHihkOPpb/N3fXUun/uQNxoKFRsxlc4J11Q5WtisFs
+	 avHhKHfRlus1apGqFlDrAG5tgeSJv6cdw3iW0bFGr83qA8l3cV2VG1Sco9vhLZO0vUtQspFIKjc0
+	 MWwNIV/ik57+ofuDkQnKIqTa6EdEkuIRGWNafuHSaJ88kYSdLta9QEQ7NOSdC8+/G6B5VsjVX1+C
+	 B2475CIAlc6n4t5IcQ5NEEfeu7CqsOCyAL5X5peUrkFhBRlmubzZKu071u7mWlLDdB6pc6y5/luo
+	 z2S+AlFE7gl84x10RE/HV5kcieQ8+ve828o5/VBqbQBzks3mOCo8cxciQ/YRhjD+nv5U+78HKhOZ
+	 0RdurmGnwJMNTKLHOIuYDwW2qban1ceFzFblLYlDCeJwFv8DuQqq2No+gZX+aUyouCMQZnp8QvGj
+	 zpdEOx5W0d51wSVk26KPZNvgF5HwMIsD1fsIh/Lfo1s9jw867DytIHKOK/FxjugzUo3lAxCCp8tb
+	 3x+dwDlrjq8apyFRY2g/8djlGO1vsrTIl609A13Wg/x++aqaZaZE3aPKmtSRi6QmDp+zoByg+Fho
+	 q/6MMO3BhtiJ+p88SnSI5XamgNY7+HyKSPrMbrlqwSQ4aD4VMBSjqtlV6XwqD97akO3LpqypZc1N
+	 wBO7dzO1/Fij14i5TfxZkwv0ZROe5IrBt3BgtJ0plmsVbBmt2B+8gjzrnVpzDIMRtwApdcnbCHba
+	 /6trOST5mI0TI/Ja/vp0Bk7B1Q1ZI/uCKxjNHaMxxqrLXkqTmx
+X-QQ-XMRINFO: M/715EihBoGS47X28/vv4NpnfpeBLnr4Qg==
 From: Hang Nan <2122295973@qq.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com,
-	liubaolin12138@163.com
-Cc: ntfs@lists.linux.dev,
-	security@kernel.org
-Subject: [PATCH v4] ntfs: reject index blocks with a too small entries offset
-Date: Mon, 19 Oct 2026 23:54:39 +0800
-X-OQ-MSGID: <20261019155439.146528-1-2122295973@qq.com>
-X-Mailer: git-send-email 2.47.3
+To: hyc.lee@gmail.com
+Cc: linkinjeon@kernel.org, liubaolin12138@163.com, ntfs@lists.linux.dev
+Subject:
+ Re: [PATCH v3] ntfs: check index block capacity in ntfs_ib_copy_tail()
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -78,102 +76,54 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Precedence: bulk
+Date: Mon, 19 Oct 2026 15:54:49 +0000
+X-OQ-MSGID: <853cfac76d144ef4bff0fe763de8a272@qq.com>
+X-Mailer: git send-email style plain-text report
 
-Index blocks read from the volume are checked for a plausible header, but
-nothing keeps a block from placing its entries closer to the header than
-ntfs_ib_alloc() does when it creates one.  The allocation adds the update
-sequence array, one entry per 512-byte sector plus the terminator, to the
-index header and aligns the result to 8 bytes, so the first entry of a
-4096-byte block starts at offset 40, while a corrupt block may declare 16.
+Hi Hyunchul,
 
-ntfs_ib_copy_tail() then copies the entries that follow the median entry
-from the source block into a freshly allocated destination.  The tail is
-sized as index_length minus entries_offset and the median entry, both from
-the source, while the destination only has allocated_size minus the
-canonical offset of room.  With the values above the tail is 4040 bytes
-and the destination holds 4032, so the last 8 bytes are written past the
-end of the new allocation, with contents taken from the mounted image.
+Agreed, and v4 does it that way.  ntfs_index_block_inconsistent() now
+rejects a block whose entries_offset is below the canonical offset for the
+block size, instead of checking the capacity at the copy site:
 
-Reject such a block when it is read: entries_offset must not be smaller
-than the canonical offset for the block size.  Derive it from block_size
-rather than from the block's own usa_count, which post_read_mst_fixup()
-treats as "not protected" when it does not match the block size, and use
-the same helper in ntfs_ib_alloc() so both stay in sync.
+    static u32 ntfs_ib_canonical_entries_offset(u32 block_size)
+    {
+            u32 usa_count = block_size / NTFS_BLOCK_SIZE + 1;
 
-Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-Signed-off-by: Hang Nan <2122295973@qq.com>
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
----
-v4:
- - validate the entries offset when the block is read, as suggested by
-   Hyunchul, instead of checking the destination capacity before the copy.
+            return (sizeof(struct index_header) + usa_count * 2 + 7) & ~7;
+    }
 
-Testing: with slub_debug=zf and an image whose 4096-byte index block
-declares entries_offset 16, the split now fails when that block is read
-(ntfs_index_block_inconsistent(): entries offset 16 is below the minimum
-for a 4096-byte block), creat() returns -EIO and no redzone report
-appears.  An unmodified image of the same volume still mounts and accepts
-new files.
----
- fs/ntfs/index.c | 30 ++++++++++++++++++++++++++++--
- 1 file changed, 28 insertions(+), 2 deletions(-)
+One detail worth pointing out: the USA count is derived from block_size,
+not taken from the block's own usa_count.  post_read_mst_fixup() treats a
+usa_count that does not match the block size as "not protected" and
+returns success without fixing anything up, so a corrupt image can keep a
+small value there and make a bound derived from it small again.  With the
+count derived from block_size, a 4096-byte block always needs offset 40,
+which is exactly what ntfs_ib_alloc() computes; ntfs_ib_alloc() now uses
+the same helper so a block we create always passes the check.
 
-diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
-index 580998990..1e296afaf 100644
---- a/fs/ntfs/index.c
-+++ b/fs/ntfs/index.c
-@@ -489,6 +489,22 @@ static struct index_entry *ntfs_ie_dup_novcn(struct index_entry *ie)
- 	return dup;
- }
- 
-+/*
-+ * Canonical offset of the first index entry of an index block: the index
-+ * header, the update sequence array (one entry per 512-byte sector plus the
-+ * terminator) and the padding up to 8 bytes.  ntfs_ib_alloc() lays out new
-+ * blocks exactly like this, so a block read from disk must not put its
-+ * entries closer to the header: ntfs_ib_copy_tail() sizes the tail it copies
-+ * from the source block, while the destination only has allocated_size minus
-+ * this offset bytes of room.
-+ */
-+static u32 ntfs_ib_canonical_entries_offset(u32 block_size)
-+{
-+	u32 usa_count = block_size / NTFS_BLOCK_SIZE + 1;
-+
-+	return (sizeof(struct index_header) + usa_count * 2 + 7) & ~7;
-+}
-+
- /*
-  * Check the consistency of an index block
-  *
-@@ -548,6 +564,16 @@ int ntfs_index_block_inconsistent(struct ntfs_volume *vol,
- 					   offsetof(struct index_block, index),
- 					   inum))
- 		return -EIO;
-+
-+	if (le32_to_cpu(ib->index.entries_offset) <
-+	    ntfs_ib_canonical_entries_offset(block_size)) {
-+		ntfs_error(sb,
-+			   "Index block: entries offset %u is below the minimum for a %u-byte block: vcn %lld inode %llu\n",
-+			   le32_to_cpu(ib->index.entries_offset), block_size,
-+			   vcn, inum);
-+		return -EIO;
-+	}
-+
- 	if (ntfs_index_entries_inconsistent(vol, &ib->index, cr, inum))
- 		return -EIO;
- 	return 0;
-@@ -957,8 +983,8 @@ static struct index_block *ntfs_ib_alloc(s64 ib_vcn, u32 ib_size,
- 	*(__le16 *)((char *)ib + le16_to_cpu(ib->usa_ofs)) = cpu_to_le16(1);
- 	ib->lsn = 0;
- 	ib->index_block_vcn = cpu_to_le64(ib_vcn);
--	ib->index.entries_offset = cpu_to_le32((ih_size +
--				le16_to_cpu(ib->usa_count) * 2 + 7) & ~7);
-+	ib->index.entries_offset =
-+		cpu_to_le32(ntfs_ib_canonical_entries_offset(ib_size));
- 	ib->index.index_length = 0;
- 	ib->index.allocated_size = cpu_to_le32(ib_size -
- 			(sizeof(struct index_block) - ih_size));
--- 
-2.47.3
+With the validation at read time the copy is bounded: index_length <=
+allocated_size and entries_offset >= canonical imply that
+index_length - entries_offset - median_size cannot exceed
+allocated_size - canonical, so the check in ntfs_ib_copy_tail() is gone.
+ntfs_ir_to_ib() keeps its own check, since the index root has no update
+sequence array and is validated by ntfs_index_root_inconsistent() instead.
+
+Retested with the same crafted image (4096-byte block, entries_offset 16)
+and slub_debug=zf: the block is now rejected when it is read,
+
+    ntfs: (device vda): ntfs_index_block_inconsistent(): Index block:
+    entries offset 16 is below the minimum for a 4096-byte block:
+    vcn 18 inode 64
+    creat -> -1, errno=5 (EIO)
+
+and no redzone report appears.  An unmodified image of the same volume
+still mounts, and creating files in it still works.
+
+v4 is posted as a standalone patch email, with Baolin's Reviewed-by
+carried.
+
+Thanks,
+Hang
 
