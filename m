@@ -1,240 +1,179 @@
-Received: from canpmsgout10.his.huawei.com (canpmsgout10.his.huawei.com [113.46.200.225])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=162.62.57.87
+ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
+	t=1792425300;
+	b=B/u357qxGYtgKlecTglh+CRVYT0TXX1icNrmUTFmTHmfAmfuplNr0v6wCicvIsma5ZfA
+	 ycwYidsn8wp3oIU0qD75lYLzSUH/733HbPK/V1L3DxLOFzUvS7nLKB73QEhtiCyhurQh6
+	 /14NRIHBXCLD/4UAcj4v/0sI5Qvg2XnFobcKYzgs3/mjG8P0OrguerdnUdxzpwiXpqNcw
+	 oJYWItSMw2TF9snQMfSYYE8hP1iJKATYvTVhGxJmSWwSlJF7AiF+ljpyem4ehwH75jTaB
+	 qQzV+1BTB90sL1rCts5JyfNSCm8djRz2dxe7uNj+WMXR0m02GF9+LDU/spiOzG78N+Q==
+ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
+	a=rsa-sha256; c=relaxed/relaxed; t=1792425300;
+	h=DMARC-Filter:DKIM-Signature:Received:X-QQ-mid:Message-ID:
+	 X-QQ-XMAILINFO:X-QQ-XMRINFO:From:To:Cc:Subject:Date:X-OQ-MSGID:
+	 X-Mailer:MIME-Version:Content-Transfer-Encoding;
+	bh=N+vtEGM/j8yUiYWQYDKqPwwZxk6KGQffAyV27Dhw6lU=;
+	b=w6iyxZ7mzdSHFuEM592BdrpyQHHQW8Ex//vwNkgk4Q7YhX5kE5wVSAQEY/K8HiFa+DW0
+	 CWYPu3kD2eQgrCGbrbZSNV+1SodQpi1TmSuutrem2vcEN5d9ZLciQkfDe6ACJg2N7e5FK
+	 V+uwLdjcVKFmoL3mxw3aECT2Q2yR4nqSbKbZglJkZpRNK9UCgHrSztce/U+JTcfCXOJ9F
+	 lMpbeWbfGFWx2QIQXagoo7HajpakRatyrchfnwc+73x+LB15GI6WwaLWAiQALk8ssDR+m
+	 S97DAwM87QaCwa3J5o7PQrKarEXBkQG8H2VSFP2+0P7/3eclkJGXfH3wb0YSTpyKFSw==
+ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
+	dmarc=pass header.from=qq.com;
+	spf=pass smtp.mailfrom=qq.com;
+	dkim=pass header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=ckNOQOl+;
+	arc=none smtp.remote-ip=162.62.57.87
+Received: from out162-62-57-87.mail.qq.com (out162-62-57-87.mail.qq.com [162.62.57.87])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E238F4973B0;
-	Mon, 19 Oct 2026 13:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.225
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1792415914; cv=none; b=YKcIW6HWAlxjq+iN1A/HgH6ZRfbRe/s177OZHurkzVzC/IeShJribN8cXkzY7MxUsXhz9kIgX2YfyP1GciFL0WsAtZqalmnjycbvT6IewWQespCuAWsKLCE0dEcusem/X9DPIXnH+ov9ojQvFNMw2TqyeVpEr01Hxs/2pZFCfjg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1792415914; c=relaxed/simple;
-	bh=tw/NIA6n/WlEM9gbRkoL6G9qlG0bYIFMcFGFohHaOpg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=N482iX8m8Nw7vOGrvD9xQXdfTLcU6kmJ799YM0LArDSVcBTuxNryR8xqoJaTF/HlVIHkPObcAaxEHPjpHsuxKym/UgIKuL6xybf2hpsPm2SPHBCyYNPbhWG8Zd6Is7hBrYIRlt1NH90ZrkQXseSbx0pDA/YvvI/LGWcyQkh31z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=4TBSCuQs; arc=none smtp.client-ip=113.46.200.225
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A06606DA65
+	for <ntfs@lists.linux.dev>; Mon, 19 Oct 2026 15:54:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org A4A06606DA65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="4TBSCuQs"
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=nsTgvIZAvLZ3AkHd7te1YwAT5vQcze+ZS3sOvyFtcIg=;
-	b=4TBSCuQs0ZdnPFMgTM9bX9OvAvFEfbIZ0LIjSwYBzm0TCIeE0rVraJFOIej4k1X7EItvC1NmR
-	DX3BwVJS/9MaAexRTXkUg/68Kdod6DsiNW4k5ZZ6iNTl5sWy1P0de+g7jr1skB7fCwujvSD5mIa
-	tukVtvADo4Ri0z5qNKiN+rE=
-Received: from mail.maildlp.com (unknown [172.19.163.163])
-	by canpmsgout10.his.huawei.com (SkyGuard) with ESMTPS id 4j7bhR2PJ2z1K9D2;
-	Mon, 19 Oct 2026 21:18:15 +0800 (CST)
-Received: from whupemk100010.china.huawei.com (unknown [7.152.184.41])
-	by mail.maildlp.com (Postfix) with ESMTPS id 23C6D4057A;
-	Mon, 19 Oct 2026 21:18:18 +0800 (CST)
-Received: from [10.67.110.140] (10.67.110.140) by
- whupemk100010.china.huawei.com (7.152.184.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 19 Oct 2026 21:18:11 +0800
-Message-ID: <bfc74a80-92e9-4dcf-926e-0a2e2c33e4d5@huawei.com>
-Date: Mon, 19 Oct 2026 21:18:10 +0800
-Precedence: bulk
+	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=ckNOQOl+
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1792425283; bh=N+vtEGM/j8yUiYWQYDKqPwwZxk6KGQffAyV27Dhw6lU=;
+	h=From:To:Cc:Subject:Date;
+	b=ckNOQOl+toccNDiQuPr/NUPDBESiPbxJYmvNmGxa/igi6dOTfSs7ORil0OAbSiVH+
+	 o/NQPuFrV0OH+ZoRV2+2xuerEntTcITD9MEoFjw4/fShz4KPwGOSHTmclYsu7mD7lZ
+	 GwULTBot5gsvbVEJEX1lXaMV/EvnKlHyv7FgPB+s=
+Received: from localhost.localdomain ([2409:8d5c:c30:3b3:b0a0:db46:6df2:867d])
+	by newxmesmtplogicsvrsza63-0.qq.com (NewEsmtp) with SMTP
+	id DA823AAC; Mon, 19 Oct 2026 23:54:40 +0800
+X-QQ-mid: xmsmtpt1792425280t928rmq3g
+Message-ID: <tencent_17B0FD18F1E99339D2CC57497A4419F98506@qq.com>
+X-QQ-XMAILINFO: OD8Oy9jBXVxFBLaNweU9tknVSGw+Vasoc6fWx+XAZexhsiKC6KC5YYxBJKjfvt
+	 0fIG3hou55GERGN1hd3zWR2W47MOZnPh2Yrv0XBS4HBB0L1BmGyDF6ziPpRmqWiSis54BqwVWCpk
+	 qau28VEFp1mCDBfIauC7yvpQ48gLYKqq//jWCkZ7GgfrRZZMYI4cgjcZ2K6M6hE6ZXGo/T2sRUqb
+	 fiSTByoZIcgY7zhHacf7yoTzdLwZC/0LQIFb4FgTwmp70yCLZfnHWZA6jSP3v/cVB7H8Zoo1WFfa
+	 v13KsIFJ9IrZKxoUszx/uAQ+2vOQ7e/lMZMaI6hC6cluqVHRSeccICvqmBGwWdTd/maCm+D43bzZ
+	 bW71g32uyb4og8+YqbAtF/ypKdg+IqnkbQQ0+2tOsIrcN7RX6VHICBI/KZn03E5iNwmOLrCKTODX
+	 SLvvWArEQPdCYK7mXbsz5aFQn7m85JTbf+E02d3KewSyzJJJeQDar5lHO2LauSGqsDAYNod8n0CH
+	 Hatx4EjAo+B1UVyRyiFUzcILtgiKM0/H5k8nEmHItH3aIxdgbuOmC2kip9f60xMEMqQxHfP6nT2P
+	 DY4otlOHeqxslWtlmoCjvMdKGPjHqUBOFnFMBspMufGoU6Ocmk0pCMtus4qDUxZcIh54V+3VyUdG
+	 xVBMX5a8FHKdLNH0BZOy8jDn23NK7FgzWAqFEnWfKf2/NENLBf4no14aYPuHeoPIZZMtRMy78+b9
+	 8e5GRBMkT3MhPA9TrI6jl7adcN/O6u49cZgzJSukE9QF2+4c5RG+6zlA497Ebzs0yelcQU90kzZu
+	 DuTf429yDy631JAEEASOEdGj9zIT13gd6Qh4rt8X2UnfOtBl0uf7fLYOC9VJJSCN8OUaNIP6yKFJ
+	 l43EMPWCeBXHnbAutJ8sH6RUPsD5UwX5btgFUsxJ2GNdciH0IxkXNXbVTmhc5zU/NGRg7JHvFJtl
+	 pQRKnBfU1l7fYw4+ruYMJRL40WLEfFogmAX3GQechpJdZDbvuJHgcIpx7F5ei66BbtuCdf9jU4Wg
+	 2QvHtaj83wRuOBB1RaEkSBSGOP5Sebm0dGJ8F7RYKSJtEt6RltzTTklcW0g4s=
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+From: Hang Nan <2122295973@qq.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com,
+	liubaolin12138@163.com
+Cc: ntfs@lists.linux.dev,
+	security@kernel.org
+Subject: [PATCH v4] ntfs: reject index blocks with a too small entries offset
+Date: Mon, 19 Oct 2026 23:54:39 +0800
+X-OQ-MSGID: <20261019155439.146528-1-2122295973@qq.com>
+X-Mailer: git-send-email 2.47.3
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
+List-Post: <mailto:ntfs@lists.linux.dev>
+List-Help: <mailto:ntfs+help@lists.linux.dev>
 List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
+List-Owner: <mailto:ntfs+owner@lists.linux.dev>
+Precedence: list
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 -next 09/18] landlock: Add READ_METADATA and
- WRITE_METADATA access rights
-To: =?UTF-8?Q?G=C3=BCnther_Noack?= <gnoack@google.com>, Justin Suess
-	<utilityemal77@gmail.com>
-CC: <mic@digikod.net>, <paul@paul-moore.com>, <jmorris@namei.org>,
-	<serge@hallyn.com>, <corbet@lwn.net>, <skhan@linuxfoundation.org>,
-	<ast@kernel.org>, <daniel@iogearbox.net>, <andrii@kernel.org>,
-	<eddyz87@gmail.com>, <memxor@gmail.com>, <martin.lau@linux.dev>,
-	<song@kernel.org>, <yonghong.song@linux.dev>, <jolsa@kernel.org>,
-	<emil@etsalapatis.com>, <ihor.solodrai@linux.dev>, <rdunlap@infradead.org>,
-	<gregkh@linuxfoundation.org>, <rafael@kernel.org>, <dakr@kernel.org>,
-	<johan@kernel.org>, <dlemoal@kernel.org>, <hch@lst.de>, <axboe@kernel.dk>,
-	<viro@zeniv.linux.org.uk>, <brauner@kernel.org>, <jack@suse.cz>,
-	<dhowells@redhat.com>, <code@tyhicks.com>, <linkinjeon@kernel.org>,
-	<sj1557.seo@samsung.com>, <yuezhang.mo@sony.com>,
-	<hirofumi@mail.parknet.co.jp>, <cel@kernel.org>, <jlayton@kernel.org>,
-	<neil@brown.name>, <okorniev@redhat.com>, <Dai.Ngo@oracle.com>,
-	<tom@talpey.com>, <hyc.lee@gmail.com>, <miklos@szeredi.hu>,
-	<amir73il@gmail.com>, <senozhatsky@chromium.org>,
-	<chenxiaosong@chenxiaosong.com>, <kpsingh@kernel.org>, <matt@bobrowski.net>,
-	<rostedt@goodmis.org>, <mhiramat@kernel.org>,
-	<mathieu.desnoyers@efficios.com>, <john.johansen@canonical.com>,
-	<georgia.garcia@canonical.com>, <zohar@linux.ibm.com>,
-	<roberto.sassu@huawei.com>, <dmitry.kasatkin@gmail.com>,
-	<eric.snowberg@oracle.com>, <stephen.smalley.work@gmail.com>,
-	<omosnacek@gmail.com>, <casey@schaufler-ca.com>, <takedakn@nttdata.co.jp>,
-	<penguin-kernel@i-love.sakura.ne.jp>, <xiujianfeng@huawei.com>,
-	<nanx95726@gmail.com>, <djwong@kernel.org>, <lujialin4@huawei.com>,
-	<bpf@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-security-module@vger.kernel.org>,
-	<driver-core@lists.linux.dev>, <linux-block@vger.kernel.org>,
-	<linux-fsdevel@vger.kernel.org>, <netfs@lists.linux.dev>,
-	<ecryptfs@vger.kernel.org>, <exfat@lists.linux.dev>,
-	<linux-nfs@vger.kernel.org>, <ntfs@lists.linux.dev>,
-	<linux-unionfs@vger.kernel.org>, <linux-cifs@vger.kernel.org>,
-	<linux-trace-kernel@vger.kernel.org>, <apparmor@lists.ubuntu.com>,
-	<linux-integrity@vger.kernel.org>, <selinux@vger.kernel.org>,
-	<linux-kselftest@vger.kernel.org>
-References: <20261015125425.3246251-1-caixinchen1@huawei.com>
- <20261015125425.3246251-10-caixinchen1@huawei.com> <atI20Vs7Du9-g1Hz@zenbox>
- <atYBVCIYE1zDb7do@google.com>
-Content-Language: en-US
-From: Cai Xinchen <caixinchen1@huawei.com>
-In-Reply-To: <atYBVCIYE1zDb7do@google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
- whupemk100010.china.huawei.com (7.152.184.41)
 
-Hello Günther,
+Index blocks read from the volume are checked for a plausible header, but
+nothing keeps a block from placing its entries closer to the header than
+ntfs_ib_alloc() does when it creates one.  The allocation adds the update
+sequence array, one entry per 512-byte sector plus the terminator, to the
+index header and aligns the result to 8 bytes, so the first entry of a
+4096-byte block starts at offset 40, while a corrupt block may declare 16.
 
-Yes, this seems reasonable to me, and I agree it should be a conscious
-decision: the next revision will make the *_METADATA rights follow the
-same "file descriptor as capability" semantic as *_TRUNCATE and
-*_IOCTL_DEV.
+ntfs_ib_copy_tail() then copies the entries that follow the median entry
+from the source block into a freshly allocated destination.  The tail is
+sized as index_length minus entries_offset and the median entry, both from
+the source, while the destination only has allocated_size minus the
+canonical offset of room.  With the values above the tail is 4040 bytes
+and the destination holds 4032, so the last 8 bytes are written past the
+end of the new allocation, with contents taken from the mounted image.
 
-Concretely:
+Reject such a block when it is read: entries_offset must not be smaller
+than the canonical offset for the block size.  Derive it from block_size
+rather than from the block's own usa_count, which post_read_mst_fixup()
+treats as "not protected" when it does not match the block size, and use
+the same helper in ntfs_ib_alloc() so both stay in sync.
 
-- hook_file_open() will record READ_METADATA and WRITE_METADATA
-   availability at open() time, together with TRUNCATE and IOCTL_DEV;
-   both rights will join the _LANDLOCK_ACCESS_FS_OPTIONAL set, which
-   also keeps the deny-mask and quiet-audit logic consistent.
-- Metadata operations that go through a file descriptor (fstat() and
-   statx() on a descriptor, fchmod(), fchown(), futimensat() with
-   AT_EMPTY_PATH, fgetxattr(), fsetxattr(), flistxattr(),
-   fremovexattr(), POSIX ACLs set through a descriptor, the FS_IOC_*
-   flag ioctls, and file_getattr() / file_setattr() with AT_EMPTY_PATH)
-   will be authorized with the rights recorded at open() time,
-   regardless of the domain of the calling thread -- like ftruncate()
-   today.
-- Operations on paths keep being checked against the current domain.
-- The "Rights associated with file descriptors" documentation section
-   will be updated accordingly, together with a note that
-   READ_METADATA should usually be requested in lockstep with
-   READ_FILE and READ_DIR, as for WRITE_FILE and TRUNCATE.
+Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+Signed-off-by: Hang Nan <2122295973@qq.com>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+v4:
+ - validate the entries offset when the block is read, as suggested by
+   Hyunchul, instead of checking the destination capacity before the copy.
 
-On 10/19/2026 7:43 PM, Günther Noack wrote:
-> Hello!
->
-> On Fri, Oct 16, 2026 at 10:44:16AM -0400, Justin Suess wrote:
->> On Thu, Oct 15, 2026 at 08:54:15PM +0800, Cai Xinchen wrote:
->>> Add two new filesystem access rights to control file metadata access:
->>>
->>> - LANDLOCK_ACCESS_FS_READ_METADATA: Read file or directory metadata
->>>    (e.g. inode attributes, extended attributes and POSIX ACLs) through
->>>    stat(2), fstat(2), lstat(2), newfstatat(2), getxattr(2) and
->>>    friends, listxattr(2) and friends, and the POSIX ACL read
->>>    operations.
->>> - LANDLOCK_ACCESS_FS_WRITE_METADATA: Change file or directory
->>>    metadata through chmod(2) and friends, chown(2) and friends,
->>>    utimensat(2) and friends, setxattr(2) and friends, removexattr(2)
->>>    and friends, and the POSIX ACL set and remove operations.
->>>
->>> This follows the coarse-grained grouping approach discussed in the
->>> mailing list [1], where file metadata operations are grouped by
->>> security relevance rather than by individual syscall.
->>>
->>> Implement the two rights by hooking the inode_getattr,
->>> inode_file_getattr, inode_setattr, inode_file_setattr,
->>> inode_setxattr, inode_getxattr, inode_listxattr, inode_removexattr,
->>> inode_set_acl, inode_get_acl and inode_remove_acl LSM hooks, which
->>> now receive a struct path thanks to the preceding VFS and LSM
->>> refactoring.  The following system calls are now controlled:
->>>
->>> - stat(2), fstat(2), lstat(2), newfstatat(2), getxattr(2) and
->>>    friends, listxattr(2) and friends, POSIX ACL reads, and the
->>>    chattr(1)/xfs_io style reads: ioctl(FS_IOC_GETFLAGS),
->>>    ioctl(FS_IOC_FSGETXATTR) and file_getattr(2) via inode_getattr,
->>>    inode_getxattr, inode_listxattr, inode_get_acl and
->>>    inode_file_getattr (READ_METADATA)
->>> - chmod(2), fchmod(2), fchmodat(2), fchmodat2(2), chown(2), fchown(2),
->>>    lchown(2), fchownat(2), chgrp(2), utimensat(2), futimens(2),
->>>    utime(2), setxattr(2) and friends, removexattr(2) and friends,
->>>    POSIX ACL set and remove, and the chattr(1)/xfs_io style writes:
->>>    ioctl(FS_IOC_SETFLAGS), ioctl(FS_IOC_FSSETXATTR) and
->>>    file_setattr(2) via inode_setattr, inode_file_setattr,
->>>    inode_setxattr, inode_removexattr, inode_set_acl and
->>>    inode_remove_acl (WRITE_METADATA)
->>>
->>> Both new rights are added to ACCESS_FILE as they apply to both files
->>> and directories.
->>>
->>> hook_inode_setattr only restricts explicit metadata changes, i.e. it
->>> checks WRITE_METADATA only when the ia_valid mask contains
->>> ATTR_MODE, ATTR_UID, ATTR_GID, ATTR_TIMES_SET or ATTR_TOUCH.
->>> Metadata changes that the kernel performs implicitly, such as
->>> timestamp updates on write(2) or size changes on truncate(2), are
->>> therefore not restricted, and neither are chmod(2)/chown(2) calls
->>> that do not change any attribute (e.g. chown(2) with -1/-1, which is
->>> a no-op that never reaches the hook), matching the behavior of the
->>> SELinux inode_setattr hook.
->>>
->>> Stacking filesystems forward fileattr operations to underlying inodes
->>> without calling the LSM hooks again (see the preceding patch), so a
->>> fileattr operation on an overlayfs file is checked once on the
->>> user-facing merged path and is not spuriously denied because of the
->>> kernel-side creator credentials used for the forward.
->>>
->>> Kernel-internal accesses performed with override_creds() (e.g.
->>> overlayfs and cachefiles) are not affected because Landlock domains
->>> are attached to credentials, and kernel threads without a Landlock
->>> domain (e.g. nfsd and ksmbd) are not restricted either.
->>>
->>> Remove stat(2), chmod(2), chown(2), setxattr(2) and utime(2) from the
->>> list of file-related actions that cannot be restricted yet, and add
->>> the names of the new rights to _LANDLOCK_ACCESS_FS_NAMES in
->>> include/linux/landlock.h, which is shared by audit records and trace
->>> events, so that denied accesses can be reported with a human-readable
->>> name and the static assertion on fs_access_strings in
->>> security/landlock/audit.c stays valid.
->>>
->>> Increment the Landlock ABI version from 12 to 13, and update the ABI
->>> version check in tools/testing/selftests/landlock/base_test.c
->>> accordingly.
->>>
->> LANDLOCK_ACCESS_FS_*_METADATA should be checked at open time and follow
->> the mechanic for the truncate right. Otherwise the access for already
->> opened file descriptors would be changed. See hook_file_open in
->> security/landlock/fs.c and this discussion here [1]
->>
->> It should have clear documentation for this as well.
->>
->> Justin
->> [1] https://lore.kernel.org/all/20260929.Ahgoo4yeetai@digikod.net/
->
-> I agree with Justin here.
->
-> Apart from what I said in [1], Justin and Mickaël pointed out this
-> other aspect in which it is similar to *_TRUNCATE, in [2] and [3]:
-> System calls like fstat(2) operate on an already-opened file
-> descriptor, and the semantic that Landlock has so far been following
-> for these is that the effective access rights for that file descriptor
-> would be determined at the time of open(2) and stored in the opened
-> struct file, just as it has been done for the *_TRUNCATE and
-> *_IOCTL_DEV access rights in the hook_file_open() call which Justin
-> points to above.
->
-> That way, an already opened file acts as a handle for a "capability"
-> (in the more general sense of the word), and the things you can do
-> with that opened file don't change as the process enforces nested
-> Landlock domains.
->
-> Landlock's documentation describes this in
-> https://docs.kernel.org/userspace-api/landlock.html#rights-associated-with-file-descriptors
->
-> It feels that this would be in order for the *_METADATA rights as
-> well?  Does this seem reasonable to you?
->
-> (If you have arguments against that, I'm also more than happy to
-> discuss, but we should make a conscious decision. :-))
->
-> —Günther
->
-> [1] https://lore.kernel.org/all/arurOphe6QIx2Zr8@google.com/
-> [2] https://lore.kernel.org/all/arvjb0HJYh1KyEBB@suesslenovo/
-> [3] https://lore.kernel.org/all/20260929.Ahgoo4yeetai@digikod.net/
+Testing: with slub_debug=zf and an image whose 4096-byte index block
+declares entries_offset 16, the split now fails when that block is read
+(ntfs_index_block_inconsistent(): entries offset 16 is below the minimum
+for a 4096-byte block), creat() returns -EIO and no redzone report
+appears.  An unmodified image of the same volume still mounts and accepts
+new files.
+---
+ fs/ntfs/index.c | 30 ++++++++++++++++++++++++++++--
+ 1 file changed, 28 insertions(+), 2 deletions(-)
+
+diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+index 580998990..1e296afaf 100644
+--- a/fs/ntfs/index.c
++++ b/fs/ntfs/index.c
+@@ -489,6 +489,22 @@ static struct index_entry *ntfs_ie_dup_novcn(struct index_entry *ie)
+ 	return dup;
+ }
+ 
++/*
++ * Canonical offset of the first index entry of an index block: the index
++ * header, the update sequence array (one entry per 512-byte sector plus the
++ * terminator) and the padding up to 8 bytes.  ntfs_ib_alloc() lays out new
++ * blocks exactly like this, so a block read from disk must not put its
++ * entries closer to the header: ntfs_ib_copy_tail() sizes the tail it copies
++ * from the source block, while the destination only has allocated_size minus
++ * this offset bytes of room.
++ */
++static u32 ntfs_ib_canonical_entries_offset(u32 block_size)
++{
++	u32 usa_count = block_size / NTFS_BLOCK_SIZE + 1;
++
++	return (sizeof(struct index_header) + usa_count * 2 + 7) & ~7;
++}
++
+ /*
+  * Check the consistency of an index block
+  *
+@@ -548,6 +564,16 @@ int ntfs_index_block_inconsistent(struct ntfs_volume *vol,
+ 					   offsetof(struct index_block, index),
+ 					   inum))
+ 		return -EIO;
++
++	if (le32_to_cpu(ib->index.entries_offset) <
++	    ntfs_ib_canonical_entries_offset(block_size)) {
++		ntfs_error(sb,
++			   "Index block: entries offset %u is below the minimum for a %u-byte block: vcn %lld inode %llu\n",
++			   le32_to_cpu(ib->index.entries_offset), block_size,
++			   vcn, inum);
++		return -EIO;
++	}
++
+ 	if (ntfs_index_entries_inconsistent(vol, &ib->index, cr, inum))
+ 		return -EIO;
+ 	return 0;
+@@ -957,8 +983,8 @@ static struct index_block *ntfs_ib_alloc(s64 ib_vcn, u32 ib_size,
+ 	*(__le16 *)((char *)ib + le16_to_cpu(ib->usa_ofs)) = cpu_to_le16(1);
+ 	ib->lsn = 0;
+ 	ib->index_block_vcn = cpu_to_le64(ib_vcn);
+-	ib->index.entries_offset = cpu_to_le32((ih_size +
+-				le16_to_cpu(ib->usa_count) * 2 + 7) & ~7);
++	ib->index.entries_offset =
++		cpu_to_le32(ntfs_ib_canonical_entries_offset(ib_size));
+ 	ib->index.index_length = 0;
+ 	ib->index.allocated_size = cpu_to_le32(ib_size -
+ 			(sizeof(struct index_block) - ih_size));
+-- 
+2.47.3
+
