@@ -1,61 +1,74 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=203.205.221.202
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792486099;
-	b=vrvFnqhOYPfhpdkKqZHeAUxmeGoxDUGkeI1Xxt6xVpRITCf9ocNjNJzAnoRRQqxGH+RF
-	 n4wMT3eMPoGiIN5zzV32taSVzRZwzJhgFDTzagyEfiWwJgmmWUl0fW0MTRfAupqXVTFJc
-	 XckjiYvfugOss8oNGw4Dv2VcDkHSKMS3J/rQt3x0/+m+K8hiOVSMiDFumR4quUDEM1Vpn
-	 jxAaSBz3WUzIkTuZhFsxnLMiDZJnnKB0t8FQY8z/hRiCOBiZjFE7QLXnQlwO/EFnUDSEV
-	 RuGRHBKQVXuRemRlXi+jlzBTcD1HNQlRwM8RXMt7TuEWfFLMxAXKM2h768H1rD66DeA==
+	t=1792486444;
+	b=Wemewf69VOiIN8t9QC38XH4cJlVH1FsJjpnxtHI7A+4TbuqR1uxTS0KSfx5ZnA6ZNm0A
+	 0kdv358DvPcXHHvn0oFMvjBTAaMJHNUrsUmgqDp3G7HgseuG2FVAVyWLDxdIbscRkQbtD
+	 xSi/dHUt+0oxJEBInI022yCrG7uaghLPUR/ME3oXOjW5kxMcTq4B67q82mN5+KkUcjpj1
+	 uEw8GyOHvWf9Rwi6dEznlCGCbOxhi7yIefwZSnpGhbILwFiX3GyJsfN59CQ4f7RX7BzZI
+	 tRJDQwdN7ZfL5JAjVHeea8IJUebYIa4LkqddUBDk1w1HuZp54lJJPp4A1Fef7/yZE7Q==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792486099;
-	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
-	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
-	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
-	 X-Originating-IP:X-CM-SenderInfo;
-	bh=SuRGT8qs6NxW/ULUzYvBSCgnQOs1/96cbqNg/RCn3LU=;
-	b=qro7zcHvD5iXCb1sKXjtfNGuoDNrEAdLqcdiSGsTkhymPPj4n3p88XnKMfG7jVPYrw4Q
-	 NIzyOee2Ef6kd5m1uRG+8g/B9F23phwyydo+BICe4GgOTho1CylHsN4Ci/Y1R8QwUXImV
-	 0pGxoV/H0CePpzgA17G7+EHQVt2RIOlZCcrafDa9Oq0ZUfAFABMcGk2d7K55f/lSqA+xB
-	 vRkyecN4p9kl6aeAfIGQSudPYFih3SrEsPOlqhAqsnvI3j67ZZRIN2dtoqWYLp4DfLlOh
-	 sjkl9Kx+FECFf1YuUVzsKhXzbk2qwoTmOan150AC78XYJMOzsJLmo59KloDgHyzjG/w==
+	a=rsa-sha256; c=relaxed/relaxed; t=1792486444;
+	h=DMARC-Filter:DKIM-Signature:Received:X-QQ-mid:Message-ID:
+	 X-QQ-XMAILINFO:X-QQ-XMRINFO:From:To:Cc:Subject:Date:X-OQ-MSGID:
+	 Content-Type:Content-Transfer-Encoding:MIME-Version;
+	bh=BqDM/aH6+PKiAi7jEJt3/yD3uXSrwjK730i4iqYn9fY=;
+	b=RNxW5ud8qmFdPH/S/krS3zg2FExX5iiuJKpSYfInUegJO6zEz+SqA2CuenbwK1oByjPO
+	 k4+OrBkFLNTwYhDgLxomK4hIMh1VSe3GrFvHUx//JEyuh/3j+KHgEOuQlQPYmUKOqREO0
+	 +u3CgrAAAnqyI8v60GPel6ntunvNBYoyKUjgq/Bjn/ll0C8B30lsV0aW1hCiPoW9R11DE
+	 pcEYz+CtBBndpCADWT743jYMEpKjQ4zzYyEy32pkbUVYuHd6bt8rzYFdeDJWbTXQTrysa
+	 5MUsp1s/JLXJRxfxa/P2S0+oUZKanYpwnH/0m5iZUj+r0YuC2BhMRNL3XwPpKIKxtyg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=nCTPZuwL;
-	arc=none smtp.remote-ip=117.135.210.5
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	dmarc=pass header.from=qq.com;
+	spf=pass smtp.mailfrom=qq.com;
+	dkim=pass header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=wAeEhwIW;
+	arc=none smtp.remote-ip=203.205.221.202
+Received: from out203-205-221-202.mail.qq.com (out203-205-221-202.mail.qq.com [203.205.221.202])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE33660A261C
-	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 08:48:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org DE33660A261C
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E58606A319
+	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 08:54:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org E4E58606A319
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=nCTPZuwL
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Su
-	RGT8qs6NxW/ULUzYvBSCgnQOs1/96cbqNg/RCn3LU=; b=nCTPZuwL9wML9zz/Me
-	aoSmoCxyuyT37Rp1Zp+LExA0LAyGfgZxOnKb+J+JOMHLYF6wcujFZqeThXXzNKso
-	7m/CMGeEbKNA7EDGNVTsR0KA3tBsyNhhQVxYXxAyd3k2QQ3zMTgwVvIOakKxS/yc
-	m1HRYw2Fm6u+96nkamoQqhtvA=
-Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wD3t62yKtdqN_ayBQ--.9980S6;
-	Tue, 20 Oct 2026 16:47:51 +0800 (CST)
-From: Baolin Liu <liubaolin12138@163.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	wangxuewen@kylinos.cn,
-	wudandan@kylinos.cn
-Subject: [PATCH v4 28/31] ntfs: report EA metadata and restoration errors
-Date: Tue, 20 Oct 2026 16:44:18 +0800
-Message-ID: <20261020084421.2196486-29-liubaolin12138@163.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20261020084421.2196486-1-liubaolin12138@163.com>
-References: <20261020084421.2196486-1-liubaolin12138@163.com>
+	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=wAeEhwIW
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1792486440; bh=BqDM/aH6+PKiAi7jEJt3/yD3uXSrwjK730i4iqYn9fY=;
+	h=From:To:Cc:Subject:Date;
+	b=wAeEhwIW7HhWuL5Zw/D1IepvaKYJwbY7Jo536z/ENpwE2ZJcd6hcqpWn6bRPAMP+s
+	 esVlr/3h49UlxKIJSqWUPu7cx5f5u9Ns4pgJsGmR9113Fi5Hh/HQW01hCAe6T+vRqN
+	 UDIzxnthAe7N55kwM/J6T4ytNYDAOD3iSDBHeKSY=
+Received: from smtp.qq.com ([2409:8d5c:c30:3b3:c448:ac0b:9c62:2589])
+	by newxmesmtplogicsvrszc50-0.qq.com (NewEsmtp) with SMTP
+	id D7A3CA1F; Tue, 20 Oct 2026 16:53:58 +0800
+X-QQ-mid: xmsmtpt1792486438tbphg8ju9
+Message-ID: <tencent_162F22EDEB882D9E2691DEBF38D243CA4A09@qq.com>
+X-QQ-XMAILINFO: MIAHdi1iQo+zGwWI3tSDXmZ6BKZx5MfQJHkwZmUaUuP5Ax4nSJ3GnhBdyCcEVw
+	 vKvgplX0202A/PZvB8ii9Ujw0ikbTedqPZ6Vz6G9KOIxwUpKukFco1/FXsUDDmaKaC45U5RoUIM0
+	 Qs8Vf8820054r5GSmx5C4zdc0XPBkw1890dqXbCKZUTs9dS8tdqf9bW+aBSjkHTlTnBjY1cIplv3
+	 rZ2lVq3n9HGdEpdsIGIDKPNSmfXuEhgGA/NCq0Vi3/eH+ZVIhl4UGD3I9jZXRU/UmlyggE3Tf+vQ
+	 QsTUwQXWtzPTME+xsPJmBmU9dhadaOrSRcpcg6X3Fvc6nVQqY2BTBe3HSDNhiH6iJrwr1sxL0lTl
+	 4jBHVZEjrvWJMR1lytzwyopxrHy9XLE5E4b2VqAnXUxJGq2pUeQA++ODbWBWjl8qfSnCT0Oehx1A
+	 BjlGKMEg13MAPnTlMArenCPo9ej5CmBr1tLlv+9+gyqj7PxCVTPjj86GTbpr+uQveLLf7cb0QHJs
+	 Aum/fwAi0fv6JYi7ik9kRwMqV9edXF+gupILwePE+73puZb8PYNbdxnUO8SvCNYD592xNLkhqND4
+	 9551nsct3eAzJ0WKsEvHokENPH1dgMRmreNSpxVsrI3YIMVeO9OpaeaIgwTIu9ME1cd7aGqGiMz9
+	 vp9rFvTtc6Ki96I59mZ5KScL0vXPFmpeGF2AP16gkJGzyRktE2hoNJL4GdeMzaQ1bjNK4xso/UJO
+	 0t7QyZLaViAp0Ze5gHpZ2NTDHAbl2sCRqpJ/+WN/aWYzwmtp04B5nCjv7iTfDWPQ1OF8ZkkxD/of
+	 IBItpdqaYVlANu7/JhxYwpQ8rmRtcHSxu6qrYDOqq8w2mlfiEZhRTf4yiAu8GQsVBCzPOiLQdypL
+	 l4uuWuPVoo1d0ldguQghGUJiV835S10aovNgF5wPHMzmX/1cboTVNxJede0EiERN/fjJl6naG1ss
+	 osOBy38+LjKDixYr+OjVxowL26Ww/N4NkQNC5ZwTagZlYyyM2YM9Gpxk4UI5+a2Wy7cs16k8HXTl
+	 5rY1ZdAR5RXxaRqeWzSUDJ0K1TupQK8GM6Rc4ZTOS/cmVRYtEBygW/QsIGvI8MNFVhvZipnM6F6T
+	 CoJIveU3BKbri6v68=
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+From: Hang Nan <2122295973@qq.com>
+To: linkinjeon@kernel.org, Hyunchul Lee <hyc.lee@gmail.com>,
+ liubaolin12138@163.com
+Cc: ntfs@lists.linux.dev, security@kernel.org
+Subject: [PATCH v5] ntfs: reject index blocks with a too small entries offset
+Date: Tue, 20 Oct 2026 16:53:53 +0800
+X-OQ-MSGID: <179248643354.3676.4927804810897931377.20261020patchv5@qq.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -65,215 +78,104 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3t62yKtdqN_ayBQ--.9980S6
-X-Coremail-Antispam: 1Uf129KBjvJXoW3Jw43Jw15KFWDJFW7Xw1rCrg_yoWxAr4UpF
-	ZxG3s5t3Z5tr9rWrn3twnxZ3WY9FyIg3yjk347K3Z293Z8Kw1ktFWYkFWF9FZ29rZ5Gw4Y
-	qa1DG398Ca1UZr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UNAwsUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RdIE2rXKrd2oQAA3S
 
-From: Xuewen Wang <wangxuewen@kylinos.cn>
 
-Report malformed EA chains, orphaned attributes and invalid Linux flag
-sizes. Convert EINVAL from stored ACL decoding and inconsistent saved-ACL
-read lengths to EFSCORRUPTED. Keep missing values, unsupported ACL versions
-and allocation failures distinct from corruption.
+Index blocks read from the volume are checked for a plausible header, but
+nothing keeps a block from placing its entries closer to the header than
+ntfs_ib_alloc() does when it creates one.  The allocation adds the update
+sequence array, one entry per 512-byte sector plus the terminator, to the
+index header and aligns the result to 8 bytes, so the first entry of a
+4096-byte block starts at offset 40, while a corrupt block may declare 16.
 
-Report EA and EA_INFORMATION restoration failures separately, and failed
-ACL restoration after a WSL mode update. Even ENOMEM here can leave
-metadata inconsistent. Preserve the initiating error and existing
-shutdown decisions.
+ntfs_ib_copy_tail() then copies the entries that follow the median entry
+from the source block into a freshly allocated destination.  The tail is
+sized as index_length minus entries_offset and the median entry, both from
+the source, while the destination only has allocated_size minus the
+canonical offset of room.  With the values above the tail is 4040 bytes
+and the destination holds 4032, so the last 8 bytes are written past the
+end of the new allocation, with contents taken from the mounted image.
 
-Preserve EFSCORRUPTED for missing $AttrDef definitions instead of masking
-it as EFBIG. Keep non-ENOENT file-flag lookup errors. Report mapping-pairs
-sizing errors only for EFSCORRUPTED; an unmapped cache returning EINVAL
-does not prove corruption.
+Reject such a block when it is read: entries_offset must not be smaller
+than the canonical offset for the block size.  Derive it from block_size
+rather than from the block's own usa_count, which post_read_mst_fixup()
+treats as "not protected" when it does not match the block size, and use
+the same helper in ntfs_ib_alloc() so both stay in sync.
 
-Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+Signed-off-by: Hang Nan <2122295973@qq.com>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 ---
- fs/ntfs/ea.c | 72 +++++++++++++++++++++++++++++++++++++---------------
- 1 file changed, 51 insertions(+), 21 deletions(-)
+v5:
+ - drop the comment on ntfs_ib_canonical_entries_offset(), the helper name
+   and the commit message are enough (Hyunchul).
+ - regenerated and checked with git am on a clean tree; sent
+   quoted-printable so the indentation cannot be mangled on the way.
 
-diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index 1198f3059c5d..ee4d7d082b2c 100644
---- a/fs/ntfs/ea.c
-+++ b/fs/ntfs/ea.c
-@@ -129,6 +129,7 @@ static int ntfs_get_ea(struct inode *inode, const char *name, size_t name_len,
- 		return PTR_ERR(p_ea_info);
- 	if (ea_info_size != sizeof(struct ea_information)) {
- 		kvfree(p_ea_info);
-+		ntfs_report_file_metadata_error(inode, -EUCLEAN);
- 		return -EUCLEAN;
- 	}
- 
-@@ -168,6 +169,8 @@ static int ntfs_get_ea(struct inode *inode, const char *name, size_t name_len,
- 	if (err == -ENOENT)
- 		err = -ENODATA;
- free_ea_buf:
-+	if (err == -EUCLEAN)
-+		ntfs_report_file_metadata_error(inode, err);
- 	kvfree(ea_buf);
- 	return err;
+v4:
+ - validate the entries offset when the block is read, as suggested by
+   Hyunchul, instead of checking the destination capacity before the copy.
+
+Testing: with slub_debug=3Dzf and an image whose 4096-byte index block
+declares entries_offset 16, the split now fails when that block is read
+(ntfs_index_block_inconsistent(): entries offset 16 is below the minimum
+for a 4096-byte block), creat() returns -EIO and no redzone report
+appears.  An unmodified image of the same volume still mounts and accepts
+new files.
+---
+ fs/ntfs/index.c | 22 ++++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+index 580998990..b94a5b704 100644
+--- a/fs/ntfs/index.c
++++ b/fs/ntfs/index.c
+@@ -489,6 +489,14 @@ static struct index_entry *ntfs_ie_dup_novcn(struct inde=
+x_entry *ie)
+ 	return dup;
  }
-@@ -253,8 +256,10 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
- 	if (err && err != -ENOENT)
- 		return err;
- 	/* Do not silently discard an orphaned attribute. */
--	if (exists != !err)
-+	if (exists != !err) {
-+		ntfs_report_file_metadata_error(inode, -EUCLEAN);
- 		return -EUCLEAN;
+=20
++/* Offset of the first entry in an index block created by ntfs_ib_alloc(). */
++static u32 ntfs_ib_canonical_entries_offset(u32 block_size)
++{
++	u32 usa_count =3D block_size / NTFS_BLOCK_SIZE + 1;
++
++	return (sizeof(struct index_header) + usa_count * 2 + 7) & ~7;
++}
++
+ /*
+  * Check the consistency of an index block
+  *
+@@ -548,6 +556,16 @@ int ntfs_index_block_inconsistent(struct ntfs_volume *vo=
+l,
+ 					   offsetof(struct index_block, index),
+ 					   inum))
+ 		return -EIO;
++
++	if (le32_to_cpu(ib->index.entries_offset) <
++	    ntfs_ib_canonical_entries_offset(block_size)) {
++		ntfs_error(sb,
++			   "Index block: entries offset %u is below the minimum for a %u-byte blo=
+ck: vcn %lld inode %llu\n",
++			   le32_to_cpu(ib->index.entries_offset), block_size,
++			   vcn, inum);
++		return -EIO;
 +	}
- 
- 	if (exists) {
- 		old_info = ntfs_attr_readall(ni, AT_EA_INFORMATION, NULL, 0,
-@@ -307,9 +312,13 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
- 
- 	add_size = remove ? 0 : ALIGN(sizeof(*entry) + name_len + 1 + val_size, 4);
- 	new_size = size - entry_size + add_size;
--	if (new_size && ntfs_attr_size_bounds_check(ni->vol, AT_EA, new_size)) {
--		err = -EFBIG;
--		goto out;
-+	if (new_size) {
-+		err = ntfs_attr_size_bounds_check(ni->vol, AT_EA, new_size);
-+		if (err) {
-+			if (err == -ERANGE)
-+				err = -EFBIG;
-+			goto out;
-+		}
- 	}
- 	if (new_size) {
- 		ea = kvzalloc(new_size, GFP_NOFS);
-@@ -366,7 +375,10 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
- 		info_err = ntfs_ea_update_attr(ni, AT_EA_INFORMATION,
- 					       (char *)old_info, sizeof(info));
- 		if (ea_err || info_err) {
--			NVolSetErrors(ni->vol);
-+			if (ea_err)
-+				ntfs_report_file_metadata_error(inode, ea_err);
-+			if (info_err)
-+				ntfs_report_file_metadata_error(inode, info_err);
- 			NVolSetShutdown(ni->vol);
- 			ntfs_error(inode->i_sb,
- 				   "Failed to restore EAs of inode 0x%llx (%d, %d); shutting down.",
-@@ -385,6 +397,8 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
- 	else
- 		NInoClearHasEA(ni);
- out:
-+	if (err == -EUCLEAN)
-+		ntfs_report_file_metadata_error(inode, err);
- 	kvfree(ea);
- 	kvfree(old_ea);
- 	kvfree(old_info);
-@@ -492,10 +506,12 @@ int ntfs_ea_get_linuxflags(struct inode *inode)
- 			  &value, sizeof(value));
- 	if (err == -ENODATA)
- 		return 0;
--	if (err < 0)
--		return err == -ERANGE ? -EUCLEAN : err;
--	if (err != sizeof(value))
-+	if (err < 0 && err != -ERANGE)
-+		return err;
-+	if (err != sizeof(value)) {
-+		ntfs_report_file_metadata_error(inode, -EUCLEAN);
- 		return -EUCLEAN;
-+	}
- 
- 	ni->linuxflags = le32_to_cpu(value);
- 	if (ni->linuxflags & NTFS_LINUXFLAGS_IMMUTABLE)
-@@ -605,6 +621,8 @@ ssize_t ntfs_listxattr(struct dentry *dentry, char *buffer, size_t size)
- 	} while (next > 0 && offset < ea_info_qsize);
- 
- out:
-+	if (err == -EUCLEAN)
-+		ntfs_report_file_metadata_error(inode, err);
- 	mutex_unlock(&NTFS_I(inode)->mrec_lock);
- 	kvfree(ea_info);
- 	kvfree(ea_buf);
-@@ -694,7 +712,8 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
- 	err = ntfs_attr_lookup(ni->type, ni->name, ni->name_len,
- 			CASE_SENSITIVE, 0, NULL, 0, ctx);
- 	if (err) {
--		err = -EINVAL;
-+		if (err == -ENOENT)
-+			err = -EINVAL;
- 		goto err_out;
- 	}
- 
-@@ -744,7 +763,11 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
- 				CASE_SENSITIVE,
- 				0, NULL, 0, ctx);
- 		if (err) {
--			err = -EINVAL;
-+			if (err == -ENOENT) {
-+				err = -EFSCORRUPTED;
-+				ntfs_report_file_metadata_error(VFS_I(ni),
-+								-EFSCORRUPTED);
-+			}
- 			goto err_out;
- 		}
- 		a = ctx->attr;
-@@ -770,6 +793,8 @@ static int ntfs_new_attr_flags(struct ntfs_inode *ni, __le32 fattr)
- 	mp_size = ntfs_get_size_for_mapping_pairs(ni->vol, ni->runlist.rl, 0, -1, -1);
- 	if (unlikely(mp_size < 0)) {
- 		err = mp_size;
-+		if (err == -EFSCORRUPTED)
-+			ntfs_report_file_metadata_error(VFS_I(ni), err);
- 		ntfs_debug("Failed to get size for mapping pairs array, error code %i.\n", err);
- 		goto err_out;
- 	}
-@@ -1036,12 +1061,17 @@ struct posix_acl *ntfs_get_acl(struct mnt_idmap *idmap, struct dentry *dentry,
- 	mutex_unlock(&ni->mrec_lock);
- 
- 	/* Translate extended attribute to acl. */
--	if (err >= 0)
-+	if (err >= 0) {
- 		acl = posix_acl_from_xattr(&init_user_ns, buf, err);
--	else if (err == -ENODATA)
-+		if (IS_ERR(acl) && PTR_ERR(acl) == -EINVAL) {
-+			acl = ERR_PTR(-EFSCORRUPTED);
-+			ntfs_report_file_metadata_error(inode, -EFSCORRUPTED);
-+		}
-+	} else if (err == -ENODATA) {
- 		acl = NULL;
--	else
-+	} else {
- 		acl = ERR_PTR(err);
-+	}
- 
- 	if (!IS_ERR(acl))
- 		set_cached_acl(inode, type, acl);
-@@ -1118,8 +1148,11 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
- 			if (err != old_len) {
- 				kfree(old_value);
- 				old_value = NULL;
--				if (err >= 0)
--					err = -EIO;
-+				if (err >= 0) {
-+					err = -EFSCORRUPTED;
-+					ntfs_report_file_metadata_error(inode,
-+									-EFSCORRUPTED);
-+				}
- 				goto out_unlock;
- 			}
- 		} else if (old_len != -ENODATA) {
-@@ -1163,12 +1196,9 @@ static noinline int ntfs_set_acl_ex(struct mnt_idmap *idmap,
- 							XATTR_REPLACE, NULL);
- 				}
- 				if (undo_err) {
--					/*
--					 * Record a failed rollback so the next
--					 * persistence point marks the volume
--					 * dirty.  Run chkdsk.
--					 */
--					NVolSetErrors(NTFS_I(inode)->vol);
-+					/* The ACL and WSL mode may now disagree. */
-+					ntfs_report_file_metadata_error(inode,
-+									undo_err);
- 					ntfs_error(inode->i_sb,
- 						   "Failed to undo the ACL xattr: %d",
- 						   undo_err);
--- 
-2.51.0
++
+ 	if (ntfs_index_entries_inconsistent(vol, &ib->index, cr, inum))
+ 		return -EIO;
+ 	return 0;
+@@ -957,8 +975,8 @@ static struct index_block *ntfs_ib_alloc(s64 ib_vcn, u32 =
+ib_size,
+ 	*(__le16 *)((char *)ib + le16_to_cpu(ib->usa_ofs)) =3D cpu_to_le16(1);
+ 	ib->lsn =3D 0;
+ 	ib->index_block_vcn =3D cpu_to_le64(ib_vcn);
+-	ib->index.entries_offset =3D cpu_to_le32((ih_size +
+-				le16_to_cpu(ib->usa_count) * 2 + 7) & ~7);
++	ib->index.entries_offset =3D
++		cpu_to_le32(ntfs_ib_canonical_entries_offset(ib_size));
+ 	ib->index.index_length =3D 0;
+ 	ib->index.allocated_size =3D cpu_to_le32(ib_size -
+ 			(sizeof(struct index_block) - ih_size));
+--=20
+2.47.3
 
