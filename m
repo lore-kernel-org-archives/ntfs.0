@@ -1,72 +1,66 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=203.205.221.192
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=124.126.103.232
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792425302;
-	b=1zBkeGi4OiVxcDA7sqRlV41xF7fRocd3OPxktD6+c8K/lbjraEyyKSqQrwnb/JoQccrG
-	 Mix9p27odnsCYAxH5FhP1vR0mHMeK6rQ/IutiXmQE7BOUoDSuz+mmkLFAujWl3/RCP3D1
-	 mjFmffHiXPruCoEeeqFabn3k3cxbSN7EnxiHSJxXctIo6WDHVkDwnb4/oOqLFqMomdXle
-	 Ovh/VpHtbniASnKbMhmHE7NE9fV0I0zYrqfSoQ/TIf/bXkaR4vPW5LlqO07R7vepHLPW7
-	 2FEpuf5tmB6ge90TgvReay7b6Agv1r3q+yNbGZqzkPuScbupbky/bWEMw/1DbiFCIbA==
+	t=1792464800;
+	b=AC3auJBWRpG91l4Q3uRamE25fwDWb97Oy2ADXYhwWckx1a6MsCZ9Y+wqaNBpxsuObhQu
+	 e+G8vXv/N9FRx4zmk5VW5OeAaS8fP3yd4aj5XDGHhO7l5nXDJW3GDj3juoXPKKM4kHac/
+	 ZeHhX3ks3kRZRrQwREKV1JSp6sYntgSOPshVvojoWkhF9s3Hg4tZfcO3NdHXbHY5Y99H/
+	 rO3SHfHsTqzFLnELGBMsPff9IEGIw2zdjy7pdv59633Ie1fJoBkeFNDH/7WQIxikDF0+U
+	 cVrkvk8Igr2xd1czQnU1WTD8XVmOkYZNP098Sypw4+O7LFSb5tkDu2j/7lTRtfvf5Sw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792425302;
-	h=DMARC-Filter:DKIM-Signature:Received:X-QQ-mid:Message-ID:
-	 X-QQ-XMAILINFO:X-QQ-XMRINFO:From:To:Cc:Subject:Content-Type:
-	 Content-Transfer-Encoding:MIME-Version:Precedence:Date:X-OQ-MSGID:
-	 X-Mailer;
-	bh=NXn8GMUfGW6rd+Ir0mSOlDwVjdtJ6f5AYFqGwl8YK5A=;
-	b=OwADBpGKjsy282dyo3cPQdnkZq+ag1DeFxICyGOYRdo19mQnSh4n9a4sFdYRdnmfYxtq
-	 rGHh8dBYlYFyFb110JRyrUPTtkhWRF3Wt3FhIyW/OMvBnVILxpE4HKdobGkeH66JJpA/J
-	 suwSl9jZjLhZ6lWZhHPMORgIjGaGeZ3U4QFtdUGGT4SUi77uYu0SlCOcU3SbBJaLxxSms
-	 GidX1LdsYywzMBi5kGqSqBY6tHizFwKKphtOgEbw5KUdXT/U60VJqb2M3si55rOrjhL8H
-	 5d/N3gOgpttNI4KDTeaaIzxlOaSp2vSPZ08s1qEmYkzKme+LS4AlnivGoJ3X56qJkqA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1792464800;
+	h=DMARC-Filter:X-UUID:X-CID-P-RULE:X-CID-O-INFO:X-CID-META:X-CID-BVR:
+	 X-CID-BAS:X-CID-FACTOR:X-CID-RHF:X-UUID:X-User:Received:From:To:Cc:
+	 Subject:Date:Message-Id:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding;
+	bh=cbv6/xqF0y1tqpovj3pgoKgCHdKboVOC8kilnGDdCk4=;
+	b=WMtP9STAs8RLvyEfykZ2OJzYTt0L2B5ew2BY/VFM2bnEh2221/mM3WO8/RGc8si5nHML
+	 /c6Ep/JOP6iO2DxC8hOuhHmLG2CuoaGj4EEFgIhfeD7hfxHI1z8qDiqm/+z6LbdIeawaJ
+	 luKUf7ZoRmvwB/ryrrPeMIruqdPcngoVXi4RFtL4G4wb0kJu8wELbfJMj9OvzvE018Y9T
+	 SYdXJDN4zciKa2pQymtumWuio51LF2wKId76elNrfol3zVcLXNk8gt87jddpWI1s3+U7i
+	 eyoZk6T/cYlEowUR2Ckcp1dmYRGMgS5NoMldJPLQS3mf3qT0TSolfx/z+UTHbuJNs4Q==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=qq.com;
-	spf=pass smtp.mailfrom=qq.com;
-	dkim=pass header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=NVEcrb4G;
-	arc=none smtp.remote-ip=203.205.221.192
-Received: from out203-205-221-192.mail.qq.com (out203-205-221-192.mail.qq.com [203.205.221.192])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	dmarc=none header.from=kylinos.cn;
+	spf=pass smtp.mailfrom=kylinos.cn;
+	arc=none smtp.remote-ip=124.126.103.232
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AF8606DA6E
-	for <ntfs@lists.linux.dev>; Mon, 19 Oct 2026 15:55:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 63AF8606DA6E
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=NVEcrb4G
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1792425292; bh=NXn8GMUfGW6rd+Ir0mSOlDwVjdtJ6f5AYFqGwl8YK5A=;
-	h=From:To:Cc:Subject:Date;
-	b=NVEcrb4GjTO/ShcHmY4hVikDeQGw9vQgDL4IlAazQlA4s0kc5VXGV4BRNZ9PFb/QO
-	 1tA/UBkQeM/O8XAiSfQdg04GbLkOB/fcFTojeBT3CBOXuS0E8Tg/vylxjtCfKwufbM
-	 QmoflUlaTecL/j4STNxNxSy/XEHRGQPfACV0/MQY=
-Received: from [127.0.0.1] ([2409:8d5c:c30:3b3:b0a0:db46:6df2:867d])
-	by newxmesmtplogicsvrszc56-0.qq.com (NewEsmtp) with SMTP
-	id DB236845; Mon, 19 Oct 2026 23:54:50 +0800
-X-QQ-mid: xmsmtpt1792425290to0r6hza4
-Message-ID: <tencent_3682D61E92D8E6C91449FB8B33FDAB6CEC05@qq.com>
-X-QQ-XMAILINFO: NAuAIaytDrXpZELMP7+bSpmy2i7n1COLbb5SYkDSQN5lcSRgOFPKozSuxxA2SG
-	 9T81c0FMwww6khuL+O5EuNoqSUouHPMxPUmic6MDzdRb/GrD93XmVZp5XtVBavUzxlnA3Nw3KVQy
-	 dtno8IJ81Acx2PB6gKFg+bALnbRY8dYHLfsvEMKMKTwlM0fQc6g/ARX2EM4hsrcix2Os7dKwbn75
-	 36bnjNmsZThRCUe74NzbtWRgfgS+Ld8r3y3kV8KTJN3wJLOXrw9jgessyMnZa+fsl5CIGbpee+nJ
-	 2Od2E7MuCVsSGXpUHW/pIgi1yvwzOBUZgpFHihkOPpb/N3fXUun/uQNxoKFRsxlc4J11Q5WtisFs
-	 avHhKHfRlus1apGqFlDrAG5tgeSJv6cdw3iW0bFGr83qA8l3cV2VG1Sco9vhLZO0vUtQspFIKjc0
-	 MWwNIV/ik57+ofuDkQnKIqTa6EdEkuIRGWNafuHSaJ88kYSdLta9QEQ7NOSdC8+/G6B5VsjVX1+C
-	 B2475CIAlc6n4t5IcQ5NEEfeu7CqsOCyAL5X5peUrkFhBRlmubzZKu071u7mWlLDdB6pc6y5/luo
-	 z2S+AlFE7gl84x10RE/HV5kcieQ8+ve828o5/VBqbQBzks3mOCo8cxciQ/YRhjD+nv5U+78HKhOZ
-	 0RdurmGnwJMNTKLHOIuYDwW2qban1ceFzFblLYlDCeJwFv8DuQqq2No+gZX+aUyouCMQZnp8QvGj
-	 zpdEOx5W0d51wSVk26KPZNvgF5HwMIsD1fsIh/Lfo1s9jw867DytIHKOK/FxjugzUo3lAxCCp8tb
-	 3x+dwDlrjq8apyFRY2g/8djlGO1vsrTIl609A13Wg/x++aqaZaZE3aPKmtSRi6QmDp+zoByg+Fho
-	 q/6MMO3BhtiJ+p88SnSI5XamgNY7+HyKSPrMbrlqwSQ4aD4VMBSjqtlV6XwqD97akO3LpqypZc1N
-	 wBO7dzO1/Fij14i5TfxZkwv0ZROe5IrBt3BgtJ0plmsVbBmt2B+8gjzrnVpzDIMRtwApdcnbCHba
-	 /6trOST5mI0TI/Ja/vp0Bk7B1Q1ZI/uCKxjNHaMxxqrLXkqTmx
-X-QQ-XMRINFO: M/715EihBoGS47X28/vv4NpnfpeBLnr4Qg==
-From: Hang Nan <2122295973@qq.com>
-To: hyc.lee@gmail.com
-Cc: linkinjeon@kernel.org, liubaolin12138@163.com, ntfs@lists.linux.dev
-Subject:
- Re: [PATCH v3] ntfs: check index block capacity in ntfs_ib_copy_tail()
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E903606A31A
+	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 02:53:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 7E903606A31A
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 63e45224cc3111f19a56ed5b684f684d-20261020
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:eb72053e-1b74-4aa1-8a7d-fb698bba45f0,IP:0,U
+	RL:0,TC:0,Content:0,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:25
+X-CID-META: VersionHash:7db8b62,CLOUDID:c04fe1dbfda81541598a5a288292b987,BulkI
+	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
+	5|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
+	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 63e45224cc3111f19a56ed5b684f684d-20261020
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 204011034; Tue, 20 Oct 2026 10:53:12 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhongling0719@126.com,
+	Hongling Zeng <zenghongling@kylinos.cn>
+Subject: [PATCH v3] ntfs: handle a failed size rollback in the write error path
+Date: Tue, 20 Oct 2026 10:53:08 +0800
+Message-Id: <20261020025308.664764-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -76,54 +70,91 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Precedence: bulk
-Date: Mon, 19 Oct 2026 15:54:49 +0000
-X-OQ-MSGID: <853cfac76d144ef4bff0fe763de8a272@qq.com>
-X-Mailer: git send-email style plain-text report
+Content-Transfer-Encoding: 8bit
 
-Hi Hyunchul,
+ntfs_file_write_iter() extends the data and initialized sizes before
+it copies the user data and restores them when the write then fails.
+The restoration is best-effort: both results are discarded, even
+though the extension is already recorded in the dirty MFT record.
+When the restoration fails too, the extended sizes reach the disk
+while the VFS inode keeps reporting the old ones: after a remount the
+file appears grown again, with an uninitialized tail where the failed
+write never put any data, and nothing records the failure.
 
-Agreed, and v4 does it that way.  ntfs_index_block_inconsistent() now
-rejects a block whose entries_offset is below the canonical offset for the
-block size, instead of checking the capacity at the copy site:
+Keep both undo results: roll the data size back through the same
+VFS-facing truncate ntfs_setattr_size() uses, which also supports
+compressed attributes, and on failure keep the VFS size on the
+durable data size.  On an undo failure, set NVolSetErrors(), which
+the next persistence point persists as VOLUME_IS_DIRTY, and log a
+message for the errors= policy.
 
-    static u32 ntfs_ib_canonical_entries_offset(u32 block_size)
-    {
-            u32 usa_count = block_size / NTFS_BLOCK_SIZE + 1;
+Fixes: 9c87959601e8 ("ntfs: update file operations")
+Suggested-by: Hyunchul Lee <hyc.lee@gmail.com>
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+Changes in v3:
+- skip the initialized size rollback on a resident attribute;
+- roll the data size back through __ntfs_attr_truncate_vfs(), which
+  ntfs_setattr_size() uses, so compressed attributes roll back too;
+- keep the VFS size on the durable data size if the rollback fails.
+---
+ fs/ntfs/file.c | 34 +++++++++++++++++++++++++++-------
+ 1 file changed, 27 insertions(+), 7 deletions(-)
 
-            return (sizeof(struct index_header) + usa_count * 2 + 7) & ~7;
-    }
-
-One detail worth pointing out: the USA count is derived from block_size,
-not taken from the block's own usa_count.  post_read_mst_fixup() treats a
-usa_count that does not match the block size as "not protected" and
-returns success without fixing anything up, so a corrupt image can keep a
-small value there and make a bound derived from it small again.  With the
-count derived from block_size, a 4096-byte block always needs offset 40,
-which is exactly what ntfs_ib_alloc() computes; ntfs_ib_alloc() now uses
-the same helper so a block we create always passes the check.
-
-With the validation at read time the copy is bounded: index_length <=
-allocated_size and entries_offset >= canonical imply that
-index_length - entries_offset - median_size cannot exceed
-allocated_size - canonical, so the check in ntfs_ib_copy_tail() is gone.
-ntfs_ir_to_ib() keeps its own check, since the index root has no update
-sequence array and is validated by ntfs_index_root_inconsistent() instead.
-
-Retested with the same crafted image (4096-byte block, entries_offset 16)
-and slub_debug=zf: the block is now rejected when it is read,
-
-    ntfs: (device vda): ntfs_index_block_inconsistent(): Index block:
-    entries offset 16 is below the minimum for a 4096-byte block:
-    vcn 18 inode 64
-    creat -> -1, errno=5 (EIO)
-
-and no redzone report appears.  An unmodified image of the same volume
-still mounts, and creating files in it still works.
-
-v4 is posted as a standalone patch email, with Baolin's Reviewed-by
-carried.
-
-Thanks,
-Hang
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index d810ca5904bd..e66814d08f59 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -934,22 +934,42 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ 				&ntfs_iomap_folio_ops, NULL);
+ out:
+ 	if (ret < 0 && ret != -EIOCBQUEUED) {
+-		if (ni->initialized_size != old_init_size) {
+-			struct ntfs_inode *mrec_ni =
+-				ntfs_base_inode(ni);
++		int init_err = 0;
++		int data_err = 0;
++
++		/* ntfs_attr_set_initialized_size() rejects a resident one. */
++		if (ni->initialized_size != old_init_size &&
++		    NInoNonResident(ni)) {
++			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+ 
+ 			mutex_lock(&mrec_ni->mrec_lock);
+-			ntfs_attr_set_initialized_size(ni, old_init_size);
++			init_err = ntfs_attr_set_initialized_size(ni,
++					old_init_size);
+ 			mutex_unlock(&mrec_ni->mrec_lock);
+ 		}
+ 		if (ni->data_size != old_data_size) {
+-			struct ntfs_inode *mrec_ni =
+-				ntfs_base_inode(ni);
++			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+ 
+ 			truncate_setsize(vi, old_data_size);
++			/*
++			 * ntfs_attr_truncate() would reject a compressed
++			 * attribute; the shrink path also clamps the
++			 * initialized size down.
++			 */
+ 			mutex_lock(&mrec_ni->mrec_lock);
+-			ntfs_attr_truncate(ni, old_data_size);
++			data_err = __ntfs_attr_truncate_vfs(ni, old_data_size,
++					old_data_size);
+ 			mutex_unlock(&mrec_ni->mrec_lock);
++			/* Like ntfs_setattr_size(): stay on the durable size. */
++			if (data_err)
++				i_size_write(vi, ni->data_size);
++		}
++		if (init_err || data_err) {
++			/* The failed sizes stay in the dirty MFT record. */
++			NVolSetErrors(vol);
++			ntfs_error(vi->i_sb,
++				   "Failed to roll back the size update: %d",
++				   init_err ?: data_err);
+ 		}
+ 	}
+ out_lock:
+-- 
+2.25.1
 
