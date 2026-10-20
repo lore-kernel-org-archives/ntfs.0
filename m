@@ -1,48 +1,48 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792485886;
-	b=cqAPHbngoM4opiRd0C0ciZnlHL39hvZGk8Zsj1JnjgwSCvCMIoLDnj8Zm3MfPAiwaxrC
-	 VOdrayLls3llPj+DHqpD85olRmNrk9xLwB/pKHCP4N/dfTa64mv7q4FfNwR4SWOgbQOQC
-	 nA9+u1FayMr8QdOzwfSg/Q7JChlHUqmFvIUfiYjXY+KfErafBnsZrtOt0tZ2YYnEMeyCX
-	 sk2cXV/2d0RVU02KG6Ozw5NyP02xLZCPTEOoS1Rl0WUZFVSvLPIQx+Jy7f45TaQv6MTMV
-	 Uq3WN3m4NBT4KTxxCCYyLB0gX0mPcJqQXCASWJDfoxCCOxwoI1KszIHhIyDah7l7HYA==
+	t=1792485887;
+	b=m3GrHRIBcXuS/tD8rccqb24K7V9lqtugI7PCnkZD+lmIJ/FjPXoCWKIGtWp/n2Bmax8b
+	 +4luSSeDxug8PI8Ez+hW/wCIAsk7xDEzFWI9tF8F9WtDyPPv+SOHtesIYeKdXqk4E9zED
+	 nnF3QBdvoTkd39jmH85wggumslO/vDltoF/x2/pB2fHQxAplgIX9kpL3X8g8wl3w36UlX
+	 angg/tChSqAcD9Gkgi/sMvjGjgD+/ZmrJ1gKbXzzHQWoAEzfbZP5yZbhb3YyZiEZG1RBr
+	 db3r5/QXnYeGGP+OHp0IN+vRIrKfnrnANmxc/+HU93TbM+KkeIIBI0ernQeWNzk/ZrA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792485886;
+	a=rsa-sha256; c=relaxed/relaxed; t=1792485887;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-Originating-IP:X-CM-SenderInfo;
-	bh=YYH+ghVUXSTySGP/oik3jbStHMoxHjaB2HLpu9DWi34=;
-	b=PhBf8bTAT2f5mTFJGP19XIIkAEQjoNCpPNpsPNGvN7r6xVWX9CL+/UfgIAp0uHQLfcOc
-	 3qVdTKcr4nsORgVz4XSKkKttT//SOu32QhLSLnOQOOzULPrrzPuBhbnbmoy2qrB0c8iuj
-	 h81pz7IHW9Xew71W+E4Lot2hBixUQU++awwyMP3uavUGnlbK8q0K1e3/fWJxrtJuwZu4Y
-	 i40BYL8xpKlrhAxP+Skn75/iU53ZEiRkcJ04UTPxgWa1oTlWGEGeN060HI0bxk2xKH/pa
-	 uPOe4Ul5ndGtC/umLVe5YYEHpd6ycJ7Z7mhJpGx7wZHfxciEWbhOv7UxL2bEzvhU09g==
+	bh=n62yDuMFcQYwDHNQriXKGA7MRPC5g2osHHvCdHS4AIc=;
+	b=HbyEFvca+RHAPCqSOWZ0qNQTydUWo24IEk7NYLMv5BCzwmOAlZv8HGDvYxRVupkj2VnN
+	 2kZoyT+IYht9dWZ9wC7Z06gEt5nVFJAqur6FRuHyWvJN2QBBuCdCuBmW8k6wkC5Owxv+0
+	 qp1XpFGOb61hja3TsttMF7dNbjiLdsr06F3dM8fpn7vBaynmjwV2nGsEqQn58VU8qtKV2
+	 4s3t1k2GeN3SE3Lcxee7S15VPsir3SkgUdwiTOHJPV0M3IGBJmZhPwc3aPdYKmo2htGPD
+	 p+JEH/IBeQiQ3C6pPuBrJ69pNKY9m8LKVIEmx3y2p70CBYkjLnXsOPipBbZMgs88M9w==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=UdLbxQlJ;
-	arc=none smtp.remote-ip=117.135.210.5
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=HnBjMEH4;
+	arc=none smtp.remote-ip=220.197.31.5
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E005E606A31F
-	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 08:44:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org E005E606A31F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DF6606A31C
+	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 08:44:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org C2DF6606A31C
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=UdLbxQlJ
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=HnBjMEH4
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=YY
-	H+ghVUXSTySGP/oik3jbStHMoxHjaB2HLpu9DWi34=; b=UdLbxQlJymBgfsBKdf
-	UAzGnU1uTZIpqD2ZSxbcT2GtGlE1lW2XECr9phIvjOROYfMUlSpoRXBRAiydoGBb
-	WHh+T9A/tXf/y3Oo/rL5+Nugr81mLmJrMwap8y30KART6bDa16ko4+VPgQ1b6eNa
-	uA+MVHMgeNsuQjxXD7I+La168=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=n6
+	2yDuMFcQYwDHNQriXKGA7MRPC5g2osHHvCdHS4AIc=; b=HnBjMEH45PkrMAftVk
+	Vu307rCPL1Yvvnb36DWT6YncxJ8+9kMKAYonRhsfG0QYNhyBTTZekKHI/fdyDN3U
+	+Pq+o64BfsCAOOfoJlR9woTJypM6pgGvF3HA1J/qpw4u5MZiY2G+sFZsKeLV3gkY
+	haKc2JcbU/4HrTT3U/PgKMdV4=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3XyPnKddq1latBA--.56704S7;
-	Tue, 20 Oct 2026 16:44:30 +0800 (CST)
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3XyPnKddq1latBA--.56704S9;
+	Tue, 20 Oct 2026 16:44:31 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -50,9 +50,9 @@ Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	wangxuewen@kylinos.cn,
 	wudandan@kylinos.cn
-Subject: [PATCH v4 05/31] ntfs: report boot geometry and MFT bootstrap errors
-Date: Tue, 20 Oct 2026 16:43:55 +0800
-Message-ID: <20261020084421.2196486-6-liubaolin12138@163.com>
+Subject: [PATCH v4 07/31] ntfs: report logfile metadata and emptying errors
+Date: Tue, 20 Oct 2026 16:43:57 +0800
+Message-ID: <20261020084421.2196486-8-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261020084421.2196486-1-liubaolin12138@163.com>
 References: <20261020084421.2196486-1-liubaolin12138@163.com>
@@ -66,348 +66,225 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3XyPnKddq1latBA--.56704S7
-X-Coremail-Antispam: 1Uf129KBjvAXoW3tr4fXrW5Ar4kCw15ZrWDJwb_yoW8Jry5Wo
-	WS9F4q9w4kKw13Aa4vgw10vasru3ZxCws5Jr45Gr4DCFWvgw1UX347Jw13WayfGw4Ygr1D
-	Ary8Jw4rAFW8Gryxn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4iiSUUUUU
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6Q4W4GrXKe5KUwAA3y
+X-CM-TRANSID:_____wD3XyPnKddq1latBA--.56704S9
+X-Coremail-Antispam: 1Uf129KBjvJXoW3Xw4UKw15Ww4UWw47tw45trb_yoW3Cry7p3
+	WrGrn8K390ka4fWrsFyFyDZa4ayw1fJa9Fqry3Jw1Iqw1qgr4ktFyUKF909Fy8Kr95G34U
+	uF4YyrZrCFZxZa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jzMKAUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RAX4WrXKfBKvQAA3c
 
-From: Xuewen Wang <wangxuewen@kylinos.cn>
+From: Dandan Wu <wudandan@kylinos.cn>
 
-Mount initialization detects invalid MFT locations, mirror mismatches
-and corrupt bootstrap metadata without consistently recording them.
-Report these failures and use EFSCORRUPTED for confirmed corruption.
+Logfile validation and emptying can detect corruption or I/O failures
+without recording them. Report an unusable nonempty log after trying
+alternate restart pages, keeping unsupported versions distinct from
+corrupt restart metadata.
 
-Preserve specific errors through boot-sector parsing and MFT loading.
-Keep allocation failures and unsupported geometry distinct, and retain
-the existing read-only fallback. Before SB_ACTIVE, reporting records
-the volume error state without sending events.
+Report a missing required logfile, read failures, and write failures or
+corrupt runlists when emptying it, including on remount. Retain the
+existing read-only fallback.
 
-Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+Signed-off-by: Dandan Wu <wudandan@kylinos.cn>
 ---
- fs/ntfs/inode.c | 27 ++++++++++++++++++++----
- fs/ntfs/super.c | 55 +++++++++++++++++++++++++++++++++++--------------
- 2 files changed, 62 insertions(+), 20 deletions(-)
+ fs/ntfs/logfile.c | 51 +++++++++++++++++++++++++++--------------------
+ fs/ntfs/super.c   |  2 +-
+ 2 files changed, 30 insertions(+), 23 deletions(-)
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 5b3d1453d5e1..6ed995b09a3f 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -1880,7 +1880,7 @@ static int load_attribute_list_mount(struct ntfs_volume *vol,
- 	ntfs_debug("Entering.");
- 	if (!vol || !rl || !al || size <= 0 || initialized_size < 0 ||
- 			initialized_size > size)
--		return -EINVAL;
-+		return -EFSCORRUPTED;
- 	if (!initialized_size) {
- 		memset(al, 0, size);
- 		return 0;
-@@ -1896,7 +1896,7 @@ static int load_attribute_list_mount(struct ntfs_volume *vol,
- 		/* The attribute list cannot be sparse. */
- 		if (lcn < 0) {
- 			ntfs_error(sb, "ntfs_rl_vcn_to_lcn() failed. Cannot read attribute list.");
--			return -EIO;
-+			return -EFSCORRUPTED;
- 		}
- 
- 		rl_byte_off = ntfs_cluster_to_bytes(vol, lcn);
-@@ -1974,7 +1974,7 @@ int ntfs_read_inode_mount(struct inode *vi)
- 	struct attr_record *a;
- 	struct ntfs_attr_search_ctx *ctx;
- 	unsigned int i;
--	int err;
-+	int err = -EIO;
- 	size_t new_rl_count;
- 
- 	ntfs_debug("Entering.");
-@@ -2002,6 +2002,7 @@ int ntfs_read_inode_mount(struct inode *vi)
- 
- 	/* Allocate enough memory to read the first mft record. */
- 	if (vol->mft_record_size > 64 * 1024) {
-+		err = -EOPNOTSUPP;
- 		ntfs_error(sb, "Unsupported mft record size %i (max 64kiB).",
- 				vol->mft_record_size);
- 		goto err_out;
-@@ -2013,6 +2014,7 @@ int ntfs_read_inode_mount(struct inode *vi)
- 
- 	m = kzalloc(i, GFP_NOFS);
- 	if (!m) {
-+		err = -ENOMEM;
- 		ntfs_error(sb, "Failed to allocate buffer for $MFT record 0.");
- 		goto err_out;
- 	}
-@@ -2101,6 +2103,7 @@ int ntfs_read_inode_mount(struct inode *vi)
- 		ni->attr_list = kvzalloc(round_up(ni->attr_list_size, SECTOR_SIZE),
- 					 GFP_NOFS);
- 		if (!ni->attr_list) {
-+			err = -ENOMEM;
- 			ntfs_error(sb, "Not enough memory to allocate buffer for attribute list.");
- 			goto put_err_out;
- 		}
-@@ -2120,6 +2123,8 @@ int ntfs_read_inode_mount(struct inode *vi)
- 			rl = ntfs_mapping_pairs_decompress(vol, a, NULL, &new_rl_count);
- 			if (IS_ERR(rl)) {
- 				err = PTR_ERR(rl);
-+				if (err != -ENOMEM)
-+					err = -EFSCORRUPTED;
- 				ntfs_error(sb,
- 					   "Mapping pairs decompression failed with error code %i.",
- 					   -err);
-@@ -2222,6 +2227,9 @@ int ntfs_read_inode_mount(struct inode *vi)
- 		nrl = ntfs_mapping_pairs_decompress(vol, a, &ni->runlist,
- 						    &new_rl_count);
- 		if (IS_ERR(nrl)) {
-+			err = PTR_ERR(nrl);
-+			if (err != -ENOMEM)
-+				err = -EFSCORRUPTED;
- 			ntfs_error(sb,
- 				"ntfs_mapping_pairs_decompress() failed with error code %ld.",
- 				PTR_ERR(nrl));
-@@ -2260,6 +2268,7 @@ int ntfs_read_inode_mount(struct inode *vi)
- 			 */
- 			if ((vi->i_size >> vol->mft_record_size_bits) >=
- 					(1ULL << 32)) {
-+				err = -EOPNOTSUPP;
- 				ntfs_error(sb, "$MFT is too big! Aborting.");
- 				goto put_err_out;
- 			}
-@@ -2285,6 +2294,11 @@ int ntfs_read_inode_mount(struct inode *vi)
- 			err = ntfs_read_locked_inode(vi);
- 			if (err) {
- 				ntfs_error(sb, "ntfs_read_inode() of $MFT failed.\n");
-+				if (err == -ENOENT) {
-+					err = -EFSCORRUPTED;
-+					ntfs_report_metadata_error(vol,
-+								   -EFSCORRUPTED);
-+				}
- 				NVolClearMftBootstrap(vol);
- 				ntfs_attr_put_search_ctx(ctx);
- 				/* Revert to the safe super operations. */
-@@ -2356,9 +2370,14 @@ int ntfs_read_inode_mount(struct inode *vi)
- err_out:
- 	/* Also reached from inside the $DATA loop. */
- 	NVolClearMftBootstrap(vol);
-+	if (err == -ENOENT || !err)
-+		err = -EFSCORRUPTED;
-+	if (err != -ENOMEM && err != -EOPNOTSUPP &&
-+	    err != -EINTR && err != -ERESTARTSYS)
-+		ntfs_report_metadata_error(vol, err);
- 	ntfs_error(sb, "Failed. Marking inode as bad.");
- 	kfree(m);
--	return -1;
-+	return err;
- }
- 
- static void __ntfs_clear_inode(struct ntfs_inode *ni)
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 9bf5a626abbc..afee1b262a12 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -869,10 +869,10 @@ static bool ntfs_validate_mft_io_geometry(struct ntfs_volume *vol,
-  * @b:		boot sector to parse
+diff --git a/fs/ntfs/logfile.c b/fs/ntfs/logfile.c
+index ce38ce87f8fc..1b70a5126845 100644
+--- a/fs/ntfs/logfile.c
++++ b/fs/ntfs/logfile.c
+@@ -17,14 +17,14 @@
+  * @rp:		restart page header to check
+  * @pos:	position in @vi at which the restart page header resides
   *
-  * Parse the ntfs boot sector @b and store all imporant information therein in
-- * the ntfs super block @vol.  Return 'true' on success and 'false' on error.
-+ * the ntfs super block @vol. Return 0 on success and -errno on error.
+- * Check the restart page header @rp for consistency and return 'true' if it is
+- * consistent and 'false' otherwise.
++ * Check the restart page header @rp for consistency. Return 0 on success,
++ * -EOPNOTSUPP for an unsupported version, or -EINVAL for corruption.
+  *
+  * This function only needs NTFS_BLOCK_SIZE bytes in @rp, i.e. it does not
+  * require the full restart page.
   */
--static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
--		const struct ntfs_boot_sector *b)
-+static int parse_ntfs_boot_sector(struct ntfs_volume *vol,
-+				  const struct ntfs_boot_sector *b)
+-static bool ntfs_check_restart_page_header(struct inode *vi,
+-		struct restart_page_header *rp, s64 pos)
++static int ntfs_check_restart_page_header(struct inode *vi,
++					  struct restart_page_header *rp, s64 pos)
  {
- 	unsigned int sectors_per_cluster, sectors_per_cluster_bits, nr_hidden_sects;
- 	unsigned int logical_block_size;
-@@ -890,7 +890,7 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 		ntfs_error(vol->sb,
- 			"Sector size (%i) is smaller than the device block size (%lu).  This is not supported.",
- 			vol->sector_size, vol->sb->s_blocksize);
--		return false;
-+		return -EINVAL;
- 	}
- 
- 	if (b->bpb.sectors_per_cluster >= 0xf4)
-@@ -914,7 +914,7 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 		ntfs_error(vol->sb,
- 			"Cluster size (%i) is smaller than the sector size (%i).  This is not supported.",
- 			vol->cluster_size, vol->sector_size);
--		return false;
-+		return -EINVAL;
- 	}
- 	clusters_per_mft_record = b->clusters_per_mft_record;
- 	ntfs_debug("clusters_per_mft_record = %i (0x%x)",
-@@ -945,7 +945,7 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 		ntfs_error(vol->sb,
- 			"Mft record size (%i) exceeds the PAGE_SIZE on your system (%lu).  This is not supported.",
- 			vol->mft_record_size, PAGE_SIZE);
--		return false;
-+		return -EINVAL;
- 	}
- 	/* We cannot support mft record sizes below the sector size. */
- 	if (vol->mft_record_size < vol->sector_size) {
-@@ -953,7 +953,7 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 				vol->mft_record_size, vol->sector_size);
- 	}
- 	if (!ntfs_validate_mft_io_geometry(vol, logical_block_size))
--		return false;
-+		return -EINVAL;
- 
- 	clusters_per_index_record = b->clusters_per_index_record;
- 	ntfs_debug("clusters_per_index_record = %i (0x%x)",
-@@ -983,7 +983,7 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 		ntfs_error(vol->sb,
- 			   "Index record size (%i) is smaller than the sector size (%i).  This is not supported.",
- 			   vol->index_record_size, vol->sector_size);
+ 	u32 logfile_system_page_size, logfile_log_page_size;
+ 	u16 ra_ofs, usa_count, usa_ofs, usa_end = 0;
+@@ -43,7 +43,7 @@ static bool ntfs_check_restart_page_header(struct inode *vi,
+ 			(logfile_system_page_size - 1) ||
+ 			!is_power_of_2(logfile_log_page_size)) {
+ 		ntfs_error(vi->i_sb, "LogFile uses unsupported page size.");
 -		return false;
 +		return -EINVAL;
  	}
  	/*
- 	 * Get the size of the volume in clusters and check for 64-bit-ness.
-@@ -993,23 +993,25 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 	ll = le64_to_cpu(b->number_of_sectors) >> sectors_per_cluster_bits;
- 	if (ll >= 1ULL << 32) {
- 		ntfs_error(vol->sb, "Cannot handle 64-bit clusters.");
+ 	 * We must be either at !pos (1st restart page) or at pos = system page
+@@ -51,7 +51,7 @@ static bool ntfs_check_restart_page_header(struct inode *vi,
+ 	 */
+ 	if (pos && pos != logfile_system_page_size) {
+ 		ntfs_error(vi->i_sb, "Found restart area in incorrect position in LogFile.");
 -		return false;
 +		return -EINVAL;
  	}
- 	vol->nr_clusters = ll;
- 	ntfs_debug("vol->nr_clusters = 0x%llx", vol->nr_clusters);
- 	ll = le64_to_cpu(b->mft_lcn);
- 	if (ll >= (u64)vol->nr_clusters) {
-+		ntfs_report_metadata_error(vol, -EFSCORRUPTED);
- 		ntfs_error(vol->sb, "MFT LCN (%llu, 0x%llx) is beyond end of volume.  Weird.",
- 				ll, ll);
+ 	/* We only know how to handle version 1.1. */
+ 	if (le16_to_cpu(rp->major_ver) != 1 ||
+@@ -60,7 +60,7 @@ static bool ntfs_check_restart_page_header(struct inode *vi,
+ 			"LogFile version %i.%i is not supported.  (This driver supports version 1.1 only.)",
+ 			(int)le16_to_cpu(rp->major_ver),
+ 			(int)le16_to_cpu(rp->minor_ver));
 -		return false;
-+		return -EFSCORRUPTED;
++		return -EOPNOTSUPP;
  	}
- 	vol->mft_lcn = ll;
- 	ntfs_debug("vol->mft_lcn = 0x%llx", vol->mft_lcn);
- 	ll = le64_to_cpu(b->mftmirr_lcn);
- 	if (ll >= (u64)vol->nr_clusters) {
-+		ntfs_report_metadata_error(vol, -EFSCORRUPTED);
- 		ntfs_error(vol->sb, "MFTMirr LCN (%llu, 0x%llx) is beyond end of volume.  Weird.",
- 				ll, ll);
+ 	/*
+ 	 * If chkdsk has been run the restart page may not be protected by an
+@@ -75,7 +75,7 @@ static bool ntfs_check_restart_page_header(struct inode *vi,
+ 	if (usa_count != le16_to_cpu(rp->usa_count)) {
+ 		ntfs_error(vi->i_sb,
+ 			"LogFile restart page specifies inconsistent update sequence array count.");
 -		return false;
-+		return -EFSCORRUPTED;
++		return -EINVAL;
  	}
- 	vol->mftmirr_lcn = ll;
- 	ntfs_debug("vol->mftmirr_lcn = 0x%llx", vol->mftmirr_lcn);
-@@ -1050,7 +1052,7 @@ static bool parse_ntfs_boot_sector(struct ntfs_volume *vol,
- 		}
+ 	/* Verify the position of the update sequence array. */
+ 	usa_ofs = le16_to_cpu(rp->usa_ofs);
+@@ -84,7 +84,7 @@ static bool ntfs_check_restart_page_header(struct inode *vi,
+ 			usa_end > NTFS_BLOCK_SIZE - sizeof(u16)) {
+ 		ntfs_error(vi->i_sb,
+ 			"LogFile restart page specifies inconsistent update sequence array offset.");
+-		return false;
++		return -EINVAL;
  	}
- 
+ skip_usa_checks:
+ 	/*
+@@ -99,7 +99,7 @@ static bool ntfs_check_restart_page_header(struct inode *vi,
+ 			ra_ofs > logfile_system_page_size) {
+ 		ntfs_error(vi->i_sb,
+ 			"LogFile restart page specifies inconsistent restart area offset.");
+-		return false;
++		return -EINVAL;
+ 	}
+ 	/*
+ 	 * Only restart pages modified by chkdsk are allowed to have chkdsk_lsn
+@@ -108,10 +108,10 @@ static bool ntfs_check_restart_page_header(struct inode *vi,
+ 	if (!ntfs_is_chkd_record(rp->magic) && le64_to_cpu(rp->chkdsk_lsn)) {
+ 		ntfs_error(vi->i_sb,
+ 			"LogFile restart page is not modified by chkdsk but a chkdsk LSN is specified.");
+-		return false;
++		return -EINVAL;
+ 	}
+ 	ntfs_debug("Done.");
 -	return true;
 +	return 0;
  }
  
  /*
-@@ -1127,6 +1129,18 @@ static void ntfs_setup_allocators(struct ntfs_volume *vol)
- 	ntfs_debug("vol->mft_data_pos = 0x%llx", vol->mft_data_pos);
- }
- 
-+/* An unused record is corruption when a required system file is loaded. */
-+static struct inode *ntfs_system_iget(struct ntfs_volume *vol, unsigned long mft_no)
-+{
-+	struct inode *inode = ntfs_iget(vol->sb, mft_no);
-+
-+	if (IS_ERR(inode) && PTR_ERR(inode) == -ENOENT) {
-+		ntfs_report_metadata_error(vol, -EFSCORRUPTED);
-+		inode = ERR_PTR(-EFSCORRUPTED);
-+	}
-+	return inode;
-+}
-+
- static struct lock_class_key mftmirr_runlist_lock_key,
- 			     mftmirr_mrec_lock_key;
- /*
-@@ -1142,7 +1156,7 @@ static bool load_and_init_mft_mirror(struct ntfs_volume *vol)
+@@ -315,6 +315,7 @@ static bool ntfs_check_log_client_array(struct inode *vi,
+  *
+  * The following error codes are defined:
+  *	-EINVAL	- The restart page is inconsistent.
++ *	-EOPNOTSUPP - The logfile version is unsupported.
+  *	-ENOMEM	- Not enough memory to load the restart page.
+  *	-EIO	- Failed to reading from LogFile.
+  */
+@@ -328,10 +329,9 @@ static int ntfs_check_and_load_restart_page(struct inode *vi,
  
  	ntfs_debug("Entering.");
- 	/* Get mft mirror inode. */
--	tmp_ino = ntfs_iget(vol->sb, FILE_MFTMirr);
-+	tmp_ino = ntfs_system_iget(vol, FILE_MFTMirr);
+ 	/* Check the restart page header for consistency. */
+-	if (!ntfs_check_restart_page_header(vi, rp, pos)) {
+-		/* Error output already done inside the function. */
+-		return -EINVAL;
+-	}
++	err = ntfs_check_restart_page_header(vi, rp, pos);
++	if (err)
++		return err;
+ 	/* Check the restart area for consistency. */
+ 	if (!ntfs_check_restart_area(vi, rp)) {
+ 		/* Error output already done inside the function. */
+@@ -372,8 +372,6 @@ static int ntfs_check_and_load_restart_page(struct inode *vi,
+ 				ntfs_error(vi->i_sb, "Error mapping LogFile page (index %lu).",
+ 						idx);
+ 				err = PTR_ERR(folio);
+-				if (err != -EIO && err != -ENOMEM)
+-					err = -EIO;
+ 				goto err_out;
+ 			}
+ 			size = min_t(int, to_read, PAGE_SIZE);
+@@ -461,7 +459,7 @@ bool ntfs_check_logfile(struct inode *log_vi, struct restart_page_header **rp)
+ 	struct restart_page_header *rstr1_ph = NULL;
+ 	struct restart_page_header *rstr2_ph = NULL;
+ 	int log_page_size, err;
+-	bool logfile_is_empty = true;
++	bool logfile_is_empty = true, unsupported_version = false;
+ 	u8 log_page_bits;
+ 
+ 	ntfs_debug("Entering.");
+@@ -495,6 +493,7 @@ bool ntfs_check_logfile(struct inode *log_vi, struct restart_page_header **rp)
+ 	 */
+ 	if (size < log_page_size * 2 || (size - log_page_size * 2) >>
+ 			log_page_bits < MinLogRecordPages) {
++		ntfs_report_file_metadata_error(log_vi, -EFSCORRUPTED);
+ 		ntfs_error(vol->sb, "LogFile is too small.");
+ 		return false;
+ 	}
+@@ -516,6 +515,8 @@ bool ntfs_check_logfile(struct inode *log_vi, struct restart_page_header **rp)
+ 			}
+ 			folio = read_mapping_folio(mapping, idx, NULL);
+ 			if (IS_ERR(folio)) {
++				if (PTR_ERR(folio) == -EIO)
++					ntfs_report_file_metadata_error(log_vi, -EIO);
+ 				ntfs_error(vol->sb, "Error mapping LogFile page (index %lu).",
+ 						idx);
+ 				goto err_out;
+@@ -574,7 +575,11 @@ bool ntfs_check_logfile(struct inode *log_vi, struct restart_page_header **rp)
+ 		 * not abort if the restart page was invalid as we might still
+ 		 * find a valid one further in the file.
+ 		 */
+-		if (err != -EINVAL) {
++		if (err == -EOPNOTSUPP)
++			unsupported_version = true;
++		else if (err != -EINVAL) {
++			if (err == -EIO)
++				ntfs_report_file_metadata_error(log_vi, err);
+ 			kunmap_local(kbase);
+ 			folio_put(folio);
+ 			goto err_out;
+@@ -594,6 +599,8 @@ bool ntfs_check_logfile(struct inode *log_vi, struct restart_page_header **rp)
+ 		return true;
+ 	}
+ 	if (!rstr1_ph) {
++		if (!unsupported_version)
++			ntfs_report_file_metadata_error(log_vi, -EFSCORRUPTED);
+ 		ntfs_error(vol->sb,
+ 			"Did not find any restart pages in LogFile and it was not empty.");
+ 		return false;
+@@ -767,10 +774,10 @@ bool ntfs_empty_logfile(struct inode *log_vi)
+ 	ntfs_error(sb, "Failed to write buffer.  Unmount and run chkdsk.");
+ 	goto dirty_err;
+ rl_err:
++	err = -EFSCORRUPTED;
+ 	ntfs_error(sb, "Runlist is corrupt.  Unmount and run chkdsk.");
+ dirty_err:
+-	NVolSetErrors(vol);
+-	err = -EIO;
++	ntfs_report_file_metadata_error(log_vi, err);
+ err:
+ 	kvfree(empty_buf);
+ 	kfree(ra);
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index f5c9cf368f8a..7c10a1b24b14 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -1357,7 +1357,7 @@ static int load_and_check_logfile(struct ntfs_volume *vol,
+ 	int err = 0;
+ 
+ 	ntfs_debug("Entering.");
+-	tmp_ino = ntfs_iget(vol->sb, FILE_LogFile);
++	tmp_ino = ntfs_system_iget(vol, FILE_LogFile);
  	if (IS_ERR(tmp_ino)) {
  		if (!IS_ERR(tmp_ino))
  			iput(tmp_ino);
-@@ -1242,6 +1256,7 @@ static bool check_mft_mirror(struct ntfs_volume *vol)
- 		if (((struct mft_record *)kmft)->flags & MFT_RECORD_IN_USE) {
- 			/* Make sure the record is ok. */
- 			if (ntfs_is_baad_recordp((__le32 *)kmft)) {
-+				ntfs_report_metadata_error(vol, -EFSCORRUPTED);
- 				ntfs_error(sb,
- 					"Incomplete multi sector transfer detected in mft record %i.",
- 					i);
-@@ -1257,6 +1272,7 @@ static bool check_mft_mirror(struct ntfs_volume *vol)
- 		/* Do not check the mirror record if it is not in use. */
- 		if (((struct mft_record *)kmirr)->flags & MFT_RECORD_IN_USE) {
- 			if (ntfs_is_baad_recordp((__le32 *)kmirr)) {
-+				ntfs_report_metadata_error(vol, -EFSCORRUPTED);
- 				ntfs_error(sb,
- 					"Incomplete multi sector transfer detected in mft mirror record %i.",
- 					i);
-@@ -1276,6 +1292,7 @@ static bool check_mft_mirror(struct ntfs_volume *vol)
- 		}
- 		/* Compare the two records. */
- 		if (memcmp(kmft, kmirr, bytes)) {
-+			ntfs_report_metadata_error(vol, -EFSCORRUPTED);
- 			ntfs_error(sb,
- 				   "$MFT and $MFTMirr record %i do not match.  Run chkdsk.",
- 				   i);
-@@ -1310,6 +1327,7 @@ static bool check_mft_mirror(struct ntfs_volume *vol)
- 	do {
- 		if (rl2[i].vcn != rl[i].vcn || rl2[i].lcn != rl[i].lcn ||
- 				rl2[i].length != rl[i].length) {
-+			ntfs_report_metadata_error(vol, -EFSCORRUPTED);
- 			ntfs_error(sb, "$MFTMirr location mismatch.  Run chkdsk.");
- 			up_read(&mirr_ni->runlist.lock);
- 			return false;
-@@ -2741,9 +2759,10 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
- 	 */
- 	result = parse_ntfs_boot_sector(vol, (struct ntfs_boot_sector *)boot);
- 	kfree(boot);
--	if (!result) {
-+	if (result) {
-+		err = result;
- 		if (!silent)
--			ntfs_error(sb, "Unsupported NTFS filesystem.");
-+			ntfs_error(sb, "Failed to parse NTFS boot sector.");
- 		goto err_out_now;
- 	}
- 	if (!vol->mft_write_supported && !sb_rdonly(sb)) {
-@@ -2795,6 +2814,7 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
- 		ntfs_set_default_dentry_ops(sb);
- 	tmp_ino = new_inode(sb);
- 	if (!tmp_ino) {
-+		err = -ENOMEM;
- 		if (!silent)
- 			ntfs_error(sb, "Failed to load essential metadata.");
- 		goto err_out_now;
-@@ -2802,7 +2822,8 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
- 
- 	tmp_ino->i_ino = FILE_MFT;
- 	insert_inode_hash(tmp_ino);
--	if (ntfs_read_inode_mount(tmp_ino) < 0) {
-+	err = ntfs_read_inode_mount(tmp_ino);
-+	if (err) {
- 		if (!silent)
- 			ntfs_error(sb, "Failed to load essential metadata.");
- 		goto iput_tmp_ino_err_out_now;
-@@ -2826,6 +2847,7 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
- 	vol->lcn_empty_bits_per_page = kvmalloc_array(lcn_bit_pages, sizeof(unsigned int),
- 						      GFP_KERNEL);
- 	if (!vol->lcn_empty_bits_per_page) {
-+		err = -ENOMEM;
- 		ntfs_error(sb,
- 			   "Unable to allocate pages for storing LCN empty bit counts\n");
- 		goto unl_upcase_iput_tmp_ino_err_out_now;
-@@ -2876,6 +2898,7 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
- 		queue_work(ntfs_wq, &vol->precalc_work);
- 		return 0;
- 	}
-+	err = -ENOMEM;
- 	ntfs_error(sb, "Failed to allocate root directory.");
- 	/* Clean up after the successful load_system_files() call from above. */
- 	iput(vol->vol_ino);
 -- 
 2.51.0
 
