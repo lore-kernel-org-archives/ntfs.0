@@ -1,66 +1,62 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792480014;
-	b=dpVzaA9rkNSRYElC86p8LiDYcLLhgB/S4V7SFLfa3YOmLgQ3fANDIXFGhLNaOpB16jXn
-	 P8IgBWNRlzkOWRI9XRcmPg9KDceiBMJZBF2SDWGn3x4O1XVlwBBbF1KZy1pqPlLtbXa+1
-	 pnSprB2lamY3DLwBxrmm2bcCHf6wt26LTuztmphWOChDEqaGKT98qeXIDLxLMGsrnvxa8
-	 ymqyZu+hEWgfhd0myXIWMJG4qPX4VCkvKXUGtdHdKAA68PxcOj5TKTOMjpuoWITXThGaA
-	 ReKv6kWgwdnJXyxjOTpmQdOTfwfKMjz7sYVLz1lsoKkdCGPTT+1l3jnDwubf64OdYdQ==
+	t=1792485884;
+	b=1xoemAiH+E32+w7A46Qph8nX3iPNTbHCmLMiKTtiHhBlnnmH+w0hi4y1wl2hgUkNZnW2
+	 Gd6IYF5xBhQUM5TpNwy2eSwTcuw0VhktRE6iLkt6wzSXgvIj0oVF0OLuUyxXrol+ppAMr
+	 K7E5yyZ7mjzA9g31cDv/qOuC52kI7Sl5J9NkZymMsnsBiOlbmtwMGoRyYGpBlQmN++FzJ
+	 mDX+OPWAARL9KWBEQsA8W6GfTWrw9esxFEx6dy6rzspYUkCSiCdU9/1Tahyp14mXNOcWY
+	 MRMldI6TAnV1TcLJ3nfmRqiu3uSjDHHtdeDYnAPA5LBw/JdZ8i3qiLRu+qCB4eKWM+Q==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792480014;
-	h=DMARC-Filter:X-UUID:X-CID-P-RULE:X-CID-O-INFO:X-CID-META:X-CID-BVR:
-	 X-CID-BAS:X-CID-FACTOR:X-CID-RHF:X-UUID:X-User:Received:From:To:Cc:
-	 Subject:Date:Message-Id:X-Mailer:MIME-Version:
-	 Content-Transfer-Encoding;
-	bh=F1qqSTCbumdZbuSyYQjXco6k5FX4mgE04s/PLKPC+Sk=;
-	b=J4ZCH6Vqz8+o5Q+2oFk5frLstCFXnH8MeC6+ubFm1K4mdmKIZxCJo3EeVtq5UxPqDd+p
-	 PlAg2g2iaXRl2K1n+x49i4fzEAILpPUaBQOuEu8mqgZ9Ya+P2tojSm885VqOMiSIvoXwa
-	 ie6X41x3rX9QpCiLW9uURs7vSREbCzIKA0St84vr2OhhSu6vqTGr8Es0l7JNNm2gGA6Hu
-	 M97oWDDoX+ntu2o/nYOSa1l02YQR1EyVT/M1mNCWK4ReUTYodUpxLs2/LimFIEH7wcpkI
-	 estyriKWrpX4t9Ni/CQqlgQXyK846S3NDX8czsiA7wbIDXhd9gK5OVkH+fX4nv8utnQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1792485884;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-Originating-IP:X-CM-SenderInfo;
+	bh=1FV927e++ZwPma2sscnHEyJ9bGLQYMZ39H1t/XcQGMw=;
+	b=0IS2oLsWr9LJkAmG20+cEyEmgMMOOQjtqHjfyIvWxlv1Bo6Ge8ilcROL4J661rol96LF
+	 c9/AE9eV70FNJWh91BJYJfm+t7MLBQkXHQoy/2Y5rcA2jW7uP/xU2Xa8Ew6QMcmyihCnK
+	 ko0K6F5lhUoxliKsh1eJlVXsVkVVTlkieInI1eRJDA/TEUkBGOGlcq4u1iWh5Hw7GQm1L
+	 rSm4VGkvqv1ISKsT7nssIvQIFsahtGAo+HY0fR1u2lS1BB9kn4Q9ej27tnVrJJ8f7pjWb
+	 uJrhM2zDw+rrhnz5nHGyMzQVsTjaVqJX2pyjqtjvivHLyD0ufr5vMLrLgALghI8R+kw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=none header.from=kylinos.cn;
-	spf=pass smtp.mailfrom=kylinos.cn;
-	arc=none smtp.remote-ip=124.126.103.232
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=KdB++2Dw;
+	arc=none smtp.remote-ip=117.135.210.4
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D050D606A31B
-	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 07:06:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org D050D606A31B
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: cfad2ed6cc5411f19a56ed5b684f684d-20261020
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:8e296b8d-407a-4bf7-a42b-46222e1b6b2f,IP:0,U
-	RL:0,TC:0,Content:0,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:25
-X-CID-META: VersionHash:7db8b62,CLOUDID:5c8a7e57065866220d3cdf901db1cc9c,BulkI
-	D:nil,BulkQuantity:0,SF:102|136|850|865|898,TC:nil,Content:0|15|50|99,EDM:
-	5|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: cfad2ed6cc5411f19a56ed5b684f684d-20261020
-X-User: zenghongling@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <zenghongling@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1599878772; Tue, 20 Oct 2026 15:06:45 +0800
-From: Hongling Zeng <zenghongling@kylinos.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B737E606A31B
+	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 08:44:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org B737E606A31B
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=KdB++2Dw
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=1F
+	V927e++ZwPma2sscnHEyJ9bGLQYMZ39H1t/XcQGMw=; b=KdB++2DwvxsJM37Vx0
+	2VEFuaQMzE6anh5ISi8QIvU9QJIY6aQkOOe3RpxRZ8JDrAcBH9sDvuEsER+fcdMw
+	6YdOzLZB4aWOZXgBkrgEGsMisgH+uP+h/MXZgD0/motFamAWbuvpvFC4GyXahTIz
+	J9a3wRFUmVXK1iuG5hS7/gnms=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3XyPnKddq1latBA--.56704S5;
+	Tue, 20 Oct 2026 16:44:28 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	zhongling0719@126.com,
-	Hongling Zeng <zenghongling@kylinos.cn>
-Subject: [PATCH v4] ntfs: handle a failed size rollback in the write error path
-Date: Tue, 20 Oct 2026 15:06:41 +0800
-Message-Id: <20261020070641.793832-1-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+	wangxuewen@kylinos.cn,
+	wudandan@kylinos.cn,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v4 03/31] ntfs: add filesystem metadata error reporting helpers
+Date: Tue, 20 Oct 2026 16:43:53 +0800
+Message-ID: <20261020084421.2196486-4-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261020084421.2196486-1-liubaolin12138@163.com>
+References: <20261020084421.2196486-1-liubaolin12138@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -71,104 +67,130 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3XyPnKddq1latBA--.56704S5
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZw1fXw4Utw4xXF1UtrW7CFg_yoWrWw15pF
+	97Awn3Kw4DJFy2grs2kr42vw1Skas2gw4Utr1UXw1xZ3Wktw18tF4vyF1F9F1fKFWrX3yj
+	qr1j93y7ur4UZrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jHlksUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QwW4GrXKexJ7wAA3N
 
-ntfs_file_write_iter() extends the data and initialized sizes before
-it copies the user data and restores them when the write then fails.
-The restoration is best-effort: both results are discarded, even
-though the extension is already recorded in the dirty MFT record.
-When the restoration fails too, the extended sizes reach the disk
-while the VFS inode keeps reporting the old ones: after a remount the
-file appears grown again, with an uninitialized tail where the failed
-write never put any data, and nothing records the failure.
+From: Baolin Liu <liubaolin@kylinos.cn>
 
-Keep both undo results: roll the data size back through the same
-VFS-facing truncate ntfs_setattr_size() uses, which also supports
-compressed attributes, and on failure keep the VFS size on the
-durable data size.  Roll the data size back first: its shrink clamps
-the initialized size to the rolled-back data size, which can sit
-above the old initialized size and expose the uninitialized tail, so
-the initialized size rollback runs after it.  On an undo failure,
-set NVolSetErrors(), which the next persistence point persists as
-VOLUME_IS_DIRTY, and log a message for the errors= policy.
+Add file and volume helpers to report metadata errors through the generic
+deferred fsnotify infrastructure while retaining the volume error bit.
+Pass the caller's errno unchanged.
 
-Fixes: 9c87959601e8 ("ntfs: update file operations")
-Suggested-by: Hyunchul Lee <hyc.lee@gmail.com>
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+Move ntfs_inode_base() to inode.h and use it to identify the base file for
+attribute and extent inodes. Fall back to a volume report for I_FREEING
+or I_WILL_FREE, when retaining the inode for deferred reporting is unsafe.
+When SB_ACTIVE is clear, record only the volume error state.
+
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 ---
-Changes in v4:
-- roll the data size back before the initialized size: the shrink
-  clamps the initialized size to the rolled-back data size, which
-  can sit above the old initialized size and expose the
-  uninitialized tail.
-Changes in v3:
-- skip the initialized size rollback on a resident attribute;
-- roll the data size back through __ntfs_attr_truncate_vfs(), which
-  ntfs_setattr_size() uses, so compressed attributes roll back too;
-- keep the VFS size on the durable data size if the rollback fails.
----
- fs/ntfs/file.c | 41 ++++++++++++++++++++++++++++++++---------
- 1 file changed, 32 insertions(+), 9 deletions(-)
+ fs/ntfs/inode.c  |  7 -------
+ fs/ntfs/inode.h  |  8 ++++++++
+ fs/ntfs/super.c  | 29 +++++++++++++++++++++++++++++
+ fs/ntfs/volume.h |  3 +++
+ 4 files changed, 40 insertions(+), 7 deletions(-)
 
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index d810ca5904bd..ad032cccfb15 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -934,23 +934,46 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
- 				&ntfs_iomap_folio_ops, NULL);
- out:
- 	if (ret < 0 && ret != -EIOCBQUEUED) {
--		if (ni->initialized_size != old_init_size) {
--			struct ntfs_inode *mrec_ni =
--				ntfs_base_inode(ni);
-+		int init_err = 0;
-+		int data_err = 0;
+diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
+index 52e22022b4e7..c8560dd47d44 100644
+--- a/fs/ntfs/inode.c
++++ b/fs/ntfs/inode.c
+@@ -3532,13 +3532,6 @@ void ntfs_destroy_ext_inode(struct ntfs_inode *ni)
+ 	kmem_cache_free(ntfs_inode_cache, ni);
+ }
  
-+		if (ni->data_size != old_data_size) {
-+			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+-static struct ntfs_inode *ntfs_inode_base(struct ntfs_inode *ni)
+-{
+-	if (ni->nr_extents == -1)
+-		return ni->ext.base_ntfs_ino;
+-	return ni;
+-}
+-
+ static int ntfs_attr_position(__le32 type, struct ntfs_attr_search_ctx *ctx)
+ {
+ 	int err;
+diff --git a/fs/ntfs/inode.h b/fs/ntfs/inode.h
+index cf447fb51725..952398753ed1 100644
+--- a/fs/ntfs/inode.h
++++ b/fs/ntfs/inode.h
+@@ -298,6 +298,14 @@ static inline bool ntfs_inode_is_named_stream(struct ntfs_inode *ni)
+ 	return NInoAttr(ni) && ni->type == AT_DATA && ni->name_len;
+ }
+ 
++/* Extent and attached attribute inodes refer to their base MFT inode. */
++static inline struct ntfs_inode *ntfs_inode_base(struct ntfs_inode *ni)
++{
++	if (ni->nr_extents == -1)
++		return ni->ext.base_ntfs_ino;
++	return ni;
++}
 +
-+			truncate_setsize(vi, old_data_size);
-+			/*
-+			 * ntfs_attr_truncate() would reject a compressed
-+			 * attribute.
-+			 */
- 			mutex_lock(&mrec_ni->mrec_lock);
--			ntfs_attr_set_initialized_size(ni, old_init_size);
-+			data_err = __ntfs_attr_truncate_vfs(ni, old_data_size,
-+					old_data_size);
- 			mutex_unlock(&mrec_ni->mrec_lock);
-+			/* Like ntfs_setattr_size(): stay on the durable size. */
-+			if (data_err)
-+				i_size_write(vi, ni->data_size);
- 		}
--		if (ni->data_size != old_data_size) {
--			struct ntfs_inode *mrec_ni =
--				ntfs_base_inode(ni);
-+		/*
-+		 * The shrink above may leave the initialized size above
-+		 * the old one; ntfs_attr_set_initialized_size() rejects
-+		 * a resident attribute.
-+		 */
-+		if (ni->initialized_size != old_init_size &&
-+		    NInoNonResident(ni)) {
-+			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+ /* Return the base MFT inode for an attribute inode, or @ni itself. */
+ static inline struct ntfs_inode *ntfs_base_inode(struct ntfs_inode *ni)
+ {
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 71f0aea46bf8..df09c277ee54 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -14,6 +14,7 @@
+ #include <linux/sched/mm.h>
+ #include <linux/fs_context.h>
+ #include <linux/fs_parser.h>
++#include <linux/fserror.h>
  
--			truncate_setsize(vi, old_data_size);
- 			mutex_lock(&mrec_ni->mrec_lock);
--			ntfs_attr_truncate(ni, old_data_size);
-+			init_err = ntfs_attr_set_initialized_size(ni,
-+					old_init_size);
- 			mutex_unlock(&mrec_ni->mrec_lock);
- 		}
-+		if (init_err || data_err) {
-+			/* The failed sizes stay in the dirty MFT record. */
-+			NVolSetErrors(vol);
-+			ntfs_error(vi->i_sb,
-+				   "Failed to roll back the size update: %d",
-+				   init_err ?: data_err);
-+		}
- 	}
- out_lock:
- 	inode_unlock(vi);
+ #include "sysctl.h"
+ #include "logfile.h"
+@@ -426,6 +427,34 @@ const struct option_t on_errors_arr[] = {
+ 	{ 0,			NULL }
+ };
+ 
++/*
++ * Report confirmed metadata corruption as -EFSCORRUPTED, matching the errno
++ * returned to the caller. Preserve the errno of I/O and recovery failures
++ * so listeners can distinguish their causes.
++ */
++void ntfs_report_metadata_error(struct ntfs_volume *vol, int error)
++{
++	NVolSetErrors(vol);
++	if (vol->sb->s_flags & SB_ACTIVE)
++		fserror_report_metadata(vol->sb, error, GFP_ATOMIC);
++}
++
++void ntfs_report_file_metadata_error(struct inode *inode, int error)
++{
++	struct ntfs_inode *ni = NTFS_I(inode);
++
++	/* Attribute inodes share the file handle of their base inode. */
++	inode = VFS_I(ntfs_inode_base(ni));
++	/* Eviction cannot retain an inode reference for the deferred report. */
++	if (inode_state_read_once(inode) & (I_FREEING | I_WILL_FREE)) {
++		ntfs_report_metadata_error(NTFS_SB(inode->i_sb), error);
++		return;
++	}
++	NVolSetErrors(NTFS_SB(inode->i_sb));
++	if (inode->i_sb->s_flags & SB_ACTIVE)
++		fserror_report_file_metadata(inode, error, GFP_ATOMIC);
++}
++
+ void ntfs_handle_error(struct super_block *sb)
+ {
+ 	struct ntfs_volume *vol = NTFS_SB(sb);
+diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
+index ed5c0ccb9cd9..27f58beb4b2d 100644
+--- a/fs/ntfs/volume.h
++++ b/fs/ntfs/volume.h
+@@ -262,6 +262,9 @@ DEFINE_NVOL_BIT_OPS(SymlinkNative)
+ DEFINE_NVOL_BIT_OPS(MftBootstrap)
+ DEFINE_NVOL_BIT_OPS(StreamsWindows)
+ 
++void ntfs_report_metadata_error(struct ntfs_volume *vol, int error);
++void ntfs_report_file_metadata_error(struct inode *inode, int error);
++
+ static inline void ntfs_inc_free_clusters(struct ntfs_volume *vol, s64 nr)
+ {
+ 	if (!NVolFreeClusterKnown(vol))
 -- 
-2.25.1
+2.51.0
 
