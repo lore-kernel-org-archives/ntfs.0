@@ -1,52 +1,91 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.6
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.215.178
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792466646;
-	b=feVB49spKz3pvFJdi9eRj4hTPdRo1p2+mMHtYZzQDqoK0p//RZsrBCDHrrJp8jFjvFet
-	 T5yBQPrHYOSXX0C7yOsLpT7C9RtjCaiOLQMUR3jowerX8PpazNFIbBh0cFYzJaBfXGIdv
-	 JJjw/NpiVu4DGZGA8yyWnVTu4tw4REB2A8dX1X20OJ8+0gn6SbKvYPzrIyfYXuT2etp9E
-	 NXLdi24AxuqLEjV5DTSnzvpb1DnaFiqrKNM5nHoPF7saeUSeGKJZmO3+2dDsxg2v1TrSf
-	 cnuFI8AIRFst2egDC/+pN2O+6+Mi7iwttX31T6+Adna+R2e+nneznBqR2AzOk8rWHrg==
+	t=1792471317;
+	b=YugvMFdcrgqtohw0lVl3C5UOrRQVfnXvcpbUvLzu/TeAww2Nd0UjeRz5WFoqiIWVouY9
+	 XTEK3AVphKhBjDwDqpeOf9Zyp6W3goX5VoFyDNoTzW4/I/JGQJmxiTlPdOKlLs2a5x/0o
+	 0FhR0V1N6SOplUN6ma1h/lZ51MJ/tQ92of7IUA04qY0yY2RhyKCsFs5/uPjgADz4ms+8f
+	 LFIuuYfSU3CwMyQQDSQksC+vKuLftcxhL0AESIz3gpnoYp0W7ks91vBa1kqtW39BTRiMB
+	 IP6kxSPwPpHU62C/+g/6CF8rV8OgAf9o3C2rQU6seaabz9Wj1waW6yyh4f3WXSh9bYg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792466646;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:From:User-Agent:
-	 MIME-Version:To:CC:Subject:References:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
-	 X-CM-SenderInfo;
-	bh=RaseYI6mxt8wJNHN6oWVRaO9jf14C0/T0OwMtO2YNGE=;
-	b=dbxJNyafifcIWaupSa1e615igux2bqYtGAxCp4/2qO1jFAkpTqFGHuYdwcztprkK/gh/
-	 sVLeKr3F1AJ+1lJ+qiyL3h5feTIGEwf44O9J/nODZgyaZi1flcz9r7CaNGrNipgz4twcI
-	 luA/gvnTcEHm6qFvlguFNvRygZYUGxrPQNYjAjGGbYUyJOPCRkUBx217oEkh/QssPM+gS
-	 iYC11VtbTYZvELjp72lIERA1HhNY4e/hmqjr7r9UmIJpon/HCoopjvTs8sDkzsuzBMHwN
-	 4wHxpH+UoxlsnNkemxDJNFTIKONRSFV2LrZENrU0WCRNK3Lv1AevzgcoExYUfVH1C4g==
+	a=rsa-sha256; c=relaxed/relaxed; t=1792471317;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
+	 Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To;
+	bh=h8RyDxKsxxA1njuKWfRpTK+njnh+WrZ9QFC9upkynnw=;
+	b=EzFpEH53TaYdmPNZfz2iGZE44sqvtOK0eG2ExPD79kizBaqa3ypH6ZTRfIGHBQk7T8pj
+	 fJt/wXoFbCa2dSvzYuu38o3jbqKQ2BxvusZgS1cCvpWi4+awaR9tXyN6CFAQV3NUaiqY7
+	 ERikn7ef81ehjRv0h8QcjwfaEEJRibqfXdcpAyRsuzMTvo+IKvi4tP/VHY2s1butrxUeT
+	 bI0DrgWHY2QDQfNUG8twjPubcb+1iKyVnRv79fw+WPV5IUIuCpOaojxLSZsRSZZKP7y88
+	 ReStPIyvV2PgCJxkIVorUPINJb0ZAgILgOcdp8vFNuWyXvqnNw9tYdT+saBYYUe6/2w==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=126.com;
-	spf=pass smtp.mailfrom=126.com;
-	dkim=pass header.d=126.com header.i=@126.com header.a=rsa-sha256 header.s=s110527 header.b=Und3Nvjl;
-	arc=none smtp.remote-ip=220.197.31.6
-Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.6])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=ZG4byBW+;
+	arc=none smtp.remote-ip=209.85.215.178
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC442606A31A
-	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 03:24:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org EC442606A31A
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C0C606A319
+	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 04:41:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 06C0C606A319
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=126.com header.i=@126.com header.a=rsa-sha256 header.s=s110527 header.b=Und3Nvjl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
-	Content-Type; bh=RaseYI6mxt8wJNHN6oWVRaO9jf14C0/T0OwMtO2YNGE=;
-	b=Und3NvjlEiy7BtYfjydwrv5kMpcPVA7z3DDDGdFJ0dQV7vapFMacREbVNVZwsK
-	nSQkcIZ1+FIeJ9iJEasPZfGYi695zm7+DpCvZEFLtLJFGDKyjKh+/hn4Z2/dEV1t
-	9f11sT7UO49pExTTaIOTWhHvcDEyopfzdxe0K2P9YDz0E=
-Received: from localhost.localdomain (unknown [])
-	by gzsmtp5 (Coremail) with SMTP id QCkvCgDXHw653tZqsw1qBw--.14095S2;
-	Tue, 20 Oct 2026 11:23:37 +0800 (CST)
-Message-ID: <6AD6DE92.9030305@126.com>
-Date: Tue, 20 Oct 2026 11:22:58 +0800
-From: Hongling Zeng <zhongling0719@126.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=ZG4byBW+
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-cc4b1f7e8f4so1417915a12.1
+        for <ntfs@lists.linux.dev>; Mon, 19 Oct 2026 21:41:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1792471316; x=1793076116; darn=lists.linux.dev;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=h8RyDxKsxxA1njuKWfRpTK+njnh+WrZ9QFC9upkynnw=;
+        b=ZG4byBW+oMSN0k3GjNQ9t+VQT7WRp0GI2cRP72OupNPRAaoOcWCFyywXAsEqwuKE7o
+         /KAcaEf4XaPDdEShe7IfH1vGEvEmg3Ly2CS7dBXVGdzNCE/xIuYoL+jY6oOZFE+F23JT
+         fUbqC9tAq3si+jn1JiRBDKPvzQeJn6CGtzThUMI0DAvYc63wITqvVujSOYy+AHatlxd9
+         xnIwYa0jEJKnsVScLJNbbNsHLC7d5mC42m+TPB0QWApLZnQlzGVTk2sX+jhe/xA64acD
+         arFCeHrwX59BM4prtFVlIuLoM4K1kIx1tJvyRIVTZdbKFjRrFk68dw8P7Exrifg+jwua
+         ysZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792471316; x=1793076116;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=h8RyDxKsxxA1njuKWfRpTK+njnh+WrZ9QFC9upkynnw=;
+        b=ZTAarUutqt+V8NhZWYPPnJ2JJO3UIK5EXpOdMmKX9optlTeB6wnTXMmPM4wwgxkwA2
+         QqpB2M7eLp26NFMAfjME3q8nNXPzL4ElkJ1fhTB7UXlPU3xp3L7hUSJdqBboo+02TpIM
+         j4Z+dRiYm4mvendFebPoVVtQ0vbry2sxADLBjS7AQMm3RqyjDckTLPDwNP35k+hh5tq/
+         Rl0cQP7MT+5aX03Yu3KBzPepacnNjg+Q154plyXZgOhUlGGSljBcueXLkWUSUYuWAi1j
+         3CSsarDhBNGQ+RqnAmNKJhWlryYvtvaIP0xVku8JKucPPof6F8EN4wxJvK75clLY8jOO
+         ukuQ==
+X-Forwarded-Encrypted: i=1; AKwUvBxyeYhHAMADap4QUrrWNXfy666mq+9VPiVLSeIf8KzfNc5tC6XiUlUJoIidrEiGxyp0dC+B@lists.linux.dev
+X-Gm-Message-State: AFq9FYIeJycP1KB/4dSioLTy91n49HnDI+wdwwZjh9XD+ob7MSa1VxAs
+	6WfLk8w4CNvf0BpEh21rP8ECw7j/coVoN4x2iPFkmqJNS3jr2i4PVa3X
+X-Gm-Gg: AYBFou23EG9EBxZg3Fie6KNbLQscO+ZPva7/ezqEAXIrBPV7dQyefZ7Q+a8mDeOcmOW
+	bLqqJaSiyfU1FcIo3gJQPI8ayAJ5LFn18KSyo40eu6xoMjBqVyuiO9mieJwnxAgO9aZXpCb52UW
+	MMK7x/y31kGA3WkZFFbJ05V8VkVRu9YWdK/eGa6HcrXGBJBwf/ikTy7rgq/u5vmZATv5zyiuaL1
+	EDbrrQOHPrT9EcHBaKR9y/gKPnQKnPf42wj4ohxaGn/ur7NGB/rOBGK+AUn3LgQrgrNArq59XTH
+	Z+jMklg4F7shwN6amZwlcMZzS6K5MN9rXuGdEfwsruHpB9hdGKWplG8ZLkukvqJUegvnGvwu0SO
+	30sw/1SWNwqTvQGqbGkBNSALWNZYKZj4U3or/QvbwYNk9l7E7eWGe++8VpvTaSxI/YCHVXTlUB9
+	nYmORh/NIhqf2xKva020cSXvLqkL0dbJwxs5wGZUkMC+DsN2T8HV5vCQa5KlZB
+X-Received: by 2002:a17:90b:1343:b0:3ac:8897:7ba4 with SMTP id 98e67ed59e1d1-3acee2939a4mr7349151a91.5.1792471316125;
+        Mon, 19 Oct 2026 21:41:56 -0700 (PDT)
+Received: from localhost ([27.122.242.71])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3ad5da2d6aasm2237459a91.13.2026.10.19.21.41.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Oct 2026 21:41:55 -0700 (PDT)
+Date: Tue, 20 Oct 2026 13:41:53 +0900
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: Hang Nan <2122295973@qq.com>
+Cc: linkinjeon@kernel.org, liubaolin12138@163.com, ntfs@lists.linux.dev,
+	security@kernel.org
+Subject: Re: [PATCH v4] ntfs: reject index blocks with a too small entries
+ offset
+Message-ID: <atbxEefNNrsTJAWH@hyunchul-PC02>
+References: <tencent_17B0FD18F1E99339D2CC57497A4419F98506@qq.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -56,124 +95,15 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-To: Hyunchul Lee <hyc.lee@gmail.com>, 
- Hongling Zeng <zenghongling@kylinos.cn>
-CC: linkinjeon@kernel.org, ntfs@lists.linux.dev, 
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ntfs: handle a failed size rollback in the write error
- path
-References: <20261019064918.152859-1-zenghongling@kylinos.cn> <atbX6ZAHk8U4Xsuo@hyunchul-PC02>
-In-Reply-To: <atbX6ZAHk8U4Xsuo@hyunchul-PC02>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:QCkvCgDXHw653tZqsw1qBw--.14095S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxur1UCF4xJF1ktw45ZrWrZrb_yoWrAryrpr
-	9rGFsxKrs7X34xCwnIqFyYq3WFqryrWr4UuFy3JF13AF909rn7XF1UtrW8uFWktr98t3ZY
-	vr4DWrZxur95ZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jI0PfUUUUU=
-X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrhk2B2rW3rk9UgAA3y
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <tencent_17B0FD18F1E99339D2CC57497A4419F98506@qq.com>
 
+The changes itself looks reasonable, but the patch does not apply
+cleanly because whitespace problems.
 
-在 2026年10月20日 10:54, Hyunchul Lee 写道:
-> Hi Hongling,
->
-> On Mon, Oct 19, 2026 at 02:49:18PM +0800, Hongling Zeng wrote:
->> >ntfs_file_write_iter() extends the data and initialized sizes before
->> >it copies the user data and restores them when the write then fails.
->> >The restoration is best-effort: both results are discarded, even
->> >though the extension is already recorded in the dirty MFT record.
->> >When the restoration fails too, the extended sizes reach the disk
->> >while the VFS inode keeps reporting the old ones: after a remount the
->> >file appears grown again, with an uninitialized tail where the failed
->> >write never put any data, and nothing records the failure.
->> >
->> >Keep both undo results: on failure, set NVolSetErrors(), which the next
->> >persistence point persists as VOLUME_IS_DIRTY, and log a message for
->> >the errors= policy.
->> >
->> >Fixes: 9c87959601e8 ("ntfs: update file operations")
->> >Suggested-by: Hyunchul Lee<hyc.lee@gmail.com>
->> >Signed-off-by: Hongling Zeng<zenghongling@kylinos.cn>
->> >---
->> >Changes in v2:
->> >- do not roll the initialized size back on a resident data attribute,
->> >   where ntfs_attr_set_initialized_size() always fails with -EINVAL and
->> >   the data size rollback restores both coupled sizes.
->> >---
->> >  fs/ntfs/file.c | 46 +++++++++++++++++++++++++++++++++++++---------
->> >  1 file changed, 37 insertions(+), 9 deletions(-)
->> >
->> >diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
->> >index d810ca5904bd..597fd70ed30b 100644
->> >--- a/fs/ntfs/file.c
->> >+++ b/fs/ntfs/file.c
->> >@@ -934,22 +934,50 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
->> >  				&ntfs_iomap_folio_ops, NULL);
->> >  out:
->> >  	if (ret < 0 && ret != -EIOCBQUEUED) {
->> >-		if (ni->initialized_size != old_init_size) {
->> >-			struct ntfs_inode *mrec_ni =
->> >-				ntfs_base_inode(ni);
->> >+		int undo_err = 0;
->> >+		int init_err = 0;
->> >+
->> >+		/* ntfs_attr_set_initialized_size() rejects a resident one. */
->> >+		if (ni->initialized_size != old_init_size &&
->> >+		    NInoNonResident(ni)) {
->> >+			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
->> >  
->> >  			mutex_lock(&mrec_ni->mrec_lock);
->> >-			ntfs_attr_set_initialized_size(ni, old_init_size);
->> >+			init_err = ntfs_attr_set_initialized_size(ni,
->> >+					old_init_size);
->> >  			mutex_unlock(&mrec_ni->mrec_lock);
->> >+			if (init_err && !undo_err)
->> >+				undo_err = init_err;
->> >  		}
->> >  		if (ni->data_size != old_data_size) {
->> >-			struct ntfs_inode *mrec_ni =
->> >-				ntfs_base_inode(ni);
->> >+			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
->> >+			int data_err = 0;
->> >  
->> >  			truncate_setsize(vi, old_data_size);
->> >-			mutex_lock(&mrec_ni->mrec_lock);
->> >-			ntfs_attr_truncate(ni, old_data_size);
->> >-			mutex_unlock(&mrec_ni->mrec_lock);
->> >+			/*
->> >+			 * ntfs_attr_truncate() rejects a compressed one.
->> >+			 * Skip it also after a failed initialized size
->> >+			 * rollback: the shrunk data size would stay below
->> >+			 * the initialized size, which the loader rejects.
->> >+			 */
->> >+			if (!NInoCompressed(ni) && !init_err) {
->> >+				mutex_lock(&mrec_ni->mrec_lock);
->> >+				data_err = ntfs_attr_truncate(ni,
->> >+						old_data_size);
->> >+				mutex_unlock(&mrec_ni->mrec_lock);
->> >+			}
->> >+			if (data_err && !undo_err)
->> >+				undo_err = data_err;
->> >+		}
->> >+		if (ni->data_size != old_data_size && NInoCompressed(ni))
->> >+			ntfs_warning(vi->i_sb,
-> For compressed-file, the code only emits a warning, which causes the
-> VOLUME_IS_DIRTY persistence to be bypassed even though the MFT data size
-> remains expanded.
->
-> I think that we should report the compressed rollback as an error.
->
-> -- Thanks, Hyunchul
-   Hi Hyunchul,
+Could you regenerate the patch to fix it?
 
-   You are right, the warning-only path left the expanded data size with
-   no error state.  v3 drops the skip: the data size rollback now goes
-   through __ntfs_attr_truncate_vfs(), the same entry ntfs_setattr_size()
-   uses, which also supports compressed attributes.  The compressed
-   rollback is performed rather than skipped, and a failure of either
-   undo sets NVolSetErrors() and calls ntfs_error().
-
-   Thanks,
-   Hongling
-
-
+-- 
+Thanks,
+Hyunchul
