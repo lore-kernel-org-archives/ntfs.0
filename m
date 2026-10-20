@@ -1,48 +1,48 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792486052;
-	b=hjPYVZ7kvspuC4NvaoIzrzG9h6CJNkZiedTEKhI05/5KH0r5wpu32MwfOH7lLlMfW8XL
-	 QiVlKDRlkc4M0AnGSZyr4V0hktvLsw/hessos+YPmChgSLNYMkzlSHnqK48ncV3K9Dwvs
-	 JfKYrerQtd9c4G1WIOSFxKIU7hhPE+Za5TpPhVvWvtLOlUKSs9YU/KpckytYCJv+bMo5h
-	 bdZSrfRDRpZ66tWsLIayU5BD5X4irqDeNw7Rs/++OE8ftMB8wxZT6Tn5NzT7VWtvnRp2M
-	 nYl7h5B+ZH+93uk9v2Yt5OnHrdlJoyn/NR4g0RveqbchS7Xa+xL5QoH6kylcdX8seiQ==
+	t=1792486079;
+	b=qjM/26gG32XSsvEFqVU1jbsIatG3X2Q7v81mWxc/gmieLnRfPVsQI7xQdGdH1Q4kjvZm
+	 K6Qgdk5DNq5/haOR0YSx/z/wBwF8954zClehJChXc99cnHrJ6y5xI6jAf9LY5V/AIS6uJ
+	 2Hpg1tv641lbX8KVD7mI2kUrbOXO0uAXb27SAoegBUlccAGSEKkktmC3UXLOdE8kiGDVw
+	 a4AHlxbSoPSmZARCaJqbHnM/9RKRT/lmHsxK1/wcTgEyu6P25OtHaGxRSZ66PHe7/j9cZ
+	 QPUXCu0WpRdAc7/GVHRTnNHhje2Zes9ptg8wHo2eJO+tzetjETMXsOveHaXPpsBo9Lw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792486052;
+	a=rsa-sha256; c=relaxed/relaxed; t=1792486079;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-Originating-IP:X-CM-SenderInfo;
-	bh=Jz8F4mUkbLtbPQTYN3B+L3PGhhXSpYcJJgrVEaY/mh4=;
-	b=4t/1TKDHAywJIX4HdvWKuLa6BsRozzwOpvTH+AyKRvw0nb9HlKGBq7SkJerRMNzJiepk
-	 CAZgdoHGqm7gKaVSJOPDI9uKjxPYAYKLAHac6LQTpLPN2Ergxit9C9YnChZaxEMqO3H+E
-	 f155ObGrByzHaXJX8vVzHVE5apRf0UbTXJBLj09E/uxNeltN+i16g7nFQxX1YIu+wuG46
-	 8W44emgrj6YgNExvjP+wsvdUNrgTDeD6sZRHsqHf8IDGDY2hmrGdSq8a4haz9m2mqpiDT
-	 RS7zWzC34o5rZRTWmL5YlhGQvONMh/80tpRMFF76yoFMXEriVxzG1BcSMKGzy+WjrGA==
+	bh=pCYVLnKlwWFu2dTmmG/DqjRyyF+oOB7q7tn5CcP2eok=;
+	b=HNRdTsL1N75CPJcwrP2M3+ui2YjA5EeN5XJBtXh3Z2m/iArZgunHmyM5g2eyc9/+juRI
+	 cIK/HxVqP5iiGlLji/Jp2h7ok/+KWSzS527yu/QwMUlkPb2S8RmtMqnBuYk7vyFdpy9qI
+	 Wg88k4d0Cy0dUG4h+LvIYI7lGHg6Fmp+pO5SASTcv1+xupXQVqLm5AdAP5WdqOX+HUj2s
+	 T+IL62GakEpgUfR514FGxl8l0Fgy0d0c3eAqoDo67xr480v5SnLqpD/jdNqKD4CQOG824
+	 6rXoFVYJjFFlQOVWT0aaU0y5cmDMjS97tYA6Nk1CCawLW4dRogp8XtBoRLObsexQtfw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=nuvguevW;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=iveJbtMX;
 	arc=none smtp.remote-ip=220.197.31.4
 Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3AB606A323
-	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 08:47:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org CB3AB606A323
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFED3606A33C
+	for <ntfs@lists.linux.dev>; Tue, 20 Oct 2026 08:47:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org CFED3606A33C
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=nuvguevW
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=iveJbtMX
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Jz
-	8F4mUkbLtbPQTYN3B+L3PGhhXSpYcJJgrVEaY/mh4=; b=nuvguevWg6Fw/ZwZUt
-	D5ZVCxA03DU+J88pW4K9Zoqw6dQjvvPTeBU9HCFHXNwdx8WiM1cC/JJeDYh2xr/A
-	QBx+l+o96Y6hH4XEHYZ0+d8RPkzfn/fUsaz8ZoTqCZyW+SgxSRDBD5n79O0Or9wM
-	B7k0HInsTGez7FfIyUMVnyR6o=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=pC
+	YVLnKlwWFu2dTmmG/DqjRyyF+oOB7q7tn5CcP2eok=; b=iveJbtMXDThrqSv6tt
+	xQiw5qnkwq9X8stE1rAnTulT2joknZgoJpQsUtUO67ksQBTjKAPuG1qhOgI5DHcG
+	l1JhthOJe63RqX3kLfMKkyESuNM35ncHCZv6lW60aEhoOMBG2vpx1ZYKGrMTJy1r
+	AgL8W70hvS9DEvQviCU2xXiXw=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wD3X_tvKtdqGocHBg--.23211S6;
-	Tue, 20 Oct 2026 16:46:44 +0800 (CST)
+	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wD3t62yKtdqN_ayBQ--.9980S2;
+	Tue, 20 Oct 2026 16:47:47 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -50,9 +50,9 @@ Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	wangxuewen@kylinos.cn,
 	wudandan@kylinos.cn
-Subject: [PATCH v4 20/31] ntfs: preserve index traversal errors and directory retries
-Date: Tue, 20 Oct 2026 16:44:10 +0800
-Message-ID: <20261020084421.2196486-21-liubaolin12138@163.com>
+Subject: [PATCH v4 24/31] ntfs: serialize and report export parent reconstruction errors
+Date: Tue, 20 Oct 2026 16:44:14 +0800
+Message-ID: <20261020084421.2196486-25-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261020084421.2196486-1-liubaolin12138@163.com>
 References: <20261020084421.2196486-1-liubaolin12138@163.com>
@@ -66,437 +66,130 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3X_tvKtdqGocHBg--.23211S6
-X-Coremail-Antispam: 1Uf129KBjvAXoW3Cr43ZF1rCFykZry7ArWfuFg_yoW8JF1xuo
-	WfArs09wn5uryUAF1293W2qFy7ZayDGw45tw48Gr4v9wsrC3yDCw47G345X3y3ua1rWr45
-	Zr1Iqwn3JFZ7Jry8n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4txhDUUUU
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RQ4A2rXKnRoIAAA3t
+X-CM-TRANSID:_____wD3t62yKtdqN_ayBQ--.9980S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxWr4DCw15XF1DAF18Wr4xtFb_yoWrZF4xpF
+	y3J3sxtrZ8JFyfurnayay5Z34Sk34fGrWUWrn3K3WSyw4qqrn29F1ftFyj9r1FkrWrJ34Y
+	qw4jga43C3yUXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j1uWLUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RRIE2rXKrR19QAA3F
 
-From: Dandan Wu <wudandan@kylinos.cn>
+From: Xuewen Wang <wangxuewen@kylinos.cn>
 
-Index-root and allocation lookups collapse errors into NULL, and
-tree traversal can turn failures into EIO or EOF. Return error pointers
-and update all callers together, including both tree-walk directions.
-Report missing or malformed required index metadata as EFSCORRUPTED.
+Exportfs calls ntfs_get_parent() without the child inode lock. Hold the
+child's mrec_lock across FILE_NAME lookup and parent loading to stabilize
+corruption checks against rename and rmdir.
 
-Let readdir return traversal errors without marking the directory as
-exhausted. Resume from the insertion position after a saved key is
-deleted, advance past consumed entries before a partial result, and
-retain the saved key when lookup fails before consuming it.
+Report an unused parent as EFSCORRUPTED only for a linked, non-deleting
+child. Report missing required or malformed FILE_NAME attributes, while
+continuing past malformed candidates as before. Release the lock before
+d_obtain_alias().
 
-Signed-off-by: Dandan Wu <wudandan@kylinos.cn>
+Preserve ordinary stale-handle behavior. NTFS returns EFSCORRUPTED for a
+confirmed corrupt parent reference; generic open_by_handle_at() decoding
+still converts that error to ESTALE.
+
+Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
 ---
- fs/ntfs/dir.c   |  19 +++++--
- fs/ntfs/index.c | 134 ++++++++++++++++++++++++++++++------------------
- 2 files changed, 97 insertions(+), 56 deletions(-)
+ fs/ntfs/namei.c | 43 ++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 34 insertions(+), 9 deletions(-)
 
-diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
-index afee30f8b501..7854a06a83b5 100644
---- a/fs/ntfs/dir.c
-+++ b/fs/ntfs/dir.c
-@@ -805,7 +805,9 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
- 		err = ntfs_index_lookup(private->key,
- 					le16_to_cpu(private->key_length),
- 					ictx);
--		if (!err) {
-+		if (!err || err == -ENOENT) {
-+			/* A deleted resume key leaves the next entry in the context. */
-+			err = 0;
- 			next = ictx->entry;
- 			/*
- 			 * Update ie_pos with private->curr_pos
-@@ -819,6 +821,8 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
- 					goto out;
- 			}
- 
-+			if (next->flags & INDEX_ENTRY_END)
-+				goto next_entry;
- 			goto nextdir;
- 		} else {
- 			goto out;
-@@ -879,8 +883,9 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
- 
- 	if (next->flags & INDEX_ENTRY_NODE) {
- 		ictx->ia_ni = ntfs_ia_open(ictx, ictx->idx_ni);
--		if (!ictx->ia_ni) {
--			err = -EINVAL;
-+		if (IS_ERR(ictx->ia_ni)) {
-+			err = PTR_ERR(ictx->ia_ni);
-+			ictx->ia_ni = NULL;
- 			goto out;
- 		}
- 
-@@ -901,6 +906,7 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
- 		goto nextdir;
- 
- 	while (1) {
-+next_entry:
- 		next = ntfs_index_next(next, ictx);
- 		if (IS_ERR(next)) {
- 			err = PTR_ERR(next);
-@@ -989,7 +995,11 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
- 			private->key_length = next->key_length;
- 			break;
- 		}
-+		/* The saved key is consumed; retry from the next offset. */
-+		kfree(private->key);
-+		private->key = NULL;
- 		ie_pos += le16_to_cpu(next->length);
-+		actor->pos = ie_pos;
- 	}
- 
- 	if (!err)
-@@ -1015,9 +1025,8 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
- 	if (err) {
- 		if (private) {
- 			private->curr_pos = actor->pos;
--			private->end_in_iterate = true;
-+			private->end_in_iterate = false;
- 		}
--		err = 0;
- 	}
- 	ntfs_index_ctx_put(ictx);
- 	kfree(name);
-diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
-index 1adb722f0e7c..ab678998afc8 100644
---- a/fs/ntfs/index.c
-+++ b/fs/ntfs/index.c
-@@ -581,35 +581,44 @@ static struct index_root *ntfs_ir_lookup(struct ntfs_inode *ni, __le16 *name,
- 		u32 name_len, struct ntfs_attr_search_ctx **ctx)
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index 47e52270e8ee..a64ab7881052 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -1730,7 +1730,8 @@ const struct inode_operations ntfs_dir_inode_ops = {
+  * fs/exportfs/expfs.c::find_exported_dentry() which in turn is called from the
+  * default ->decode_fh() which is export_decode_fh() in the same file.
+  *
+- * Note: ntfs_get_parent() is called with @d_inode(child_dent)->i_mutex down.
++ * Serialize the file name lookup and parent load against rename and rmdir
++ * with the child's mrec_lock; exportfs does not hold the child's inode lock.
+  *
+  * Return the dentry of the parent directory on success or the error code on
+  * error (IS_ERR() is true).
+@@ -1738,6 +1739,7 @@ const struct inode_operations ntfs_dir_inode_ops = {
+ static struct dentry *ntfs_get_parent(struct dentry *child_dent)
  {
- 	struct attr_record *a;
--	struct index_root *ir = NULL;
-+	struct index_root *ir;
-+	int err;
+ 	struct inode *vi = d_inode(child_dent);
++	struct inode *parent;
+ 	struct ntfs_inode *ni = NTFS_I(vi);
+ 	struct mft_record *mrec;
+ 	struct ntfs_attr_search_ctx *ctx;
+@@ -1747,15 +1749,20 @@ static struct dentry *ntfs_get_parent(struct dentry *child_dent)
+ 	int err;
  
- 	ntfs_debug("Entering\n");
- 	*ctx = ntfs_attr_get_search_ctx(ni, NULL);
- 	if (IS_ERR(*ctx)) {
- 		ntfs_error(ni->vol->sb, "%s, Failed to get search context", __func__);
-+		err = PTR_ERR(*ctx);
- 		*ctx = NULL;
--		return NULL;
-+		return ERR_PTR(err);
+ 	ntfs_debug("Entering for inode 0x%llx.", ni->mft_no);
++	mutex_lock(&ni->mrec_lock);
+ 	/* Get the mft record of the inode belonging to the child dentry. */
+ 	mrec = map_mft_record(ni);
+-	if (IS_ERR(mrec))
+-		return ERR_CAST(mrec);
++	if (IS_ERR(mrec)) {
++		err = PTR_ERR(mrec);
++		goto unlock_err;
++	}
+ 	/* Find the first file name attribute in the mft record. */
+ 	ctx = ntfs_attr_get_search_ctx(ni, mrec);
+ 	if (IS_ERR(ctx)) {
+ 		unmap_mft_record(ni);
+-		return ERR_PTR(PTR_ERR(ctx));
++		err = PTR_ERR(ctx);
++		ctx = NULL;
++		goto unlock_err;
  	}
- 
--	if (ntfs_attr_lookup(AT_INDEX_ROOT, name, name_len, CASE_SENSITIVE,
--				0, NULL, 0, *ctx)) {
-+	err = ntfs_attr_lookup(AT_INDEX_ROOT, name, name_len, CASE_SENSITIVE,
-+			       0, NULL, 0, *ctx);
-+	if (err) {
-+		if (err == -ENOENT) {
+ try_next:
+ 	err = ntfs_attr_lookup(AT_FILE_NAME, NULL, 0, CASE_SENSITIVE, 0, NULL,
+@@ -1763,27 +1770,45 @@ static struct dentry *ntfs_get_parent(struct dentry *child_dent)
+ 	if (unlikely(err)) {
+ 		ntfs_attr_put_search_ctx(ctx);
+ 		unmap_mft_record(ni);
+-		if (err == -ENOENT)
++		if (err == -ENOENT && vi->i_nlink) {
 +			err = -EFSCORRUPTED;
-+			ntfs_report_file_metadata_error(VFS_I(ni),
-+							-EFSCORRUPTED);
++			ntfs_report_file_metadata_error(vi, -EFSCORRUPTED);
+ 			ntfs_error(vi->i_sb,
+ 				   "Inode 0x%llx does not have a file name attribute.  Run chkdsk.",
+ 				   ni->mft_no);
+-		return ERR_PTR(err);
 +		}
- 		ntfs_error(ni->vol->sb, "Failed to lookup $INDEX_ROOT");
- 		goto err_out;
++		goto unlock_err;
  	}
+ 	attr = ctx->attr;
+-	if (unlikely(attr->non_resident))
++	if (unlikely(attr->non_resident)) {
++		ntfs_report_file_metadata_error(vi, -EFSCORRUPTED);
+ 		goto try_next;
++	}
+ 	fn = (struct file_name_attr *)((u8 *)attr +
+ 			le16_to_cpu(attr->data.resident.value_offset));
+ 	if (unlikely((u8 *)fn + le32_to_cpu(attr->data.resident.value_length) >
+-	    (u8 *)attr + le32_to_cpu(attr->length)))
++	    (u8 *)attr + le32_to_cpu(attr->length))) {
++		ntfs_report_file_metadata_error(vi, -EFSCORRUPTED);
+ 		goto try_next;
++	}
+ 	/* Get the inode number of the parent directory. */
+ 	parent_ino = MREF_LE(fn->parent_directory);
+ 	/* Release the search context and the mft record of the child. */
+ 	ntfs_attr_put_search_ctx(ctx);
+ 	unmap_mft_record(ni);
  
- 	a = (*ctx)->attr;
- 	if (a->non_resident) {
-+		ntfs_report_file_metadata_error(VFS_I(ni), -EFSCORRUPTED);
- 		ntfs_error(ni->vol->sb, "Non-resident $INDEX_ROOT detected");
-+		err = -EFSCORRUPTED;
- 		goto err_out;
- 	}
- 
- 	ir = (struct index_root *)((char *)a + le16_to_cpu(a->data.resident.value_offset));
--err_out:
--	if (!ir) {
--		ntfs_attr_put_search_ctx(*ctx);
--		*ctx = NULL;
--	}
- 	return ir;
-+err_out:
-+	ntfs_attr_put_search_ctx(*ctx);
-+	*ctx = NULL;
+-	return d_obtain_alias(ntfs_iget(vi->i_sb, parent_ino));
++	parent = ntfs_iget(vi->i_sb, parent_ino);
++	if (IS_ERR(parent) && PTR_ERR(parent) == -ENOENT &&
++	    vi->i_nlink && !NInoBeingDeleted(ni)) {
++		ntfs_report_file_metadata_error(vi, -EFSCORRUPTED);
++		parent = ERR_PTR(-EFSCORRUPTED);
++	}
++	mutex_unlock(&ni->mrec_lock);
++	return d_obtain_alias(parent);
++
++unlock_err:
++	mutex_unlock(&ni->mrec_lock);
 +	return ERR_PTR(err);
  }
  
- static struct index_root *ntfs_ir_lookup2(struct ntfs_inode *ni, __le16 *name, u32 len)
-@@ -618,7 +627,7 @@ static struct index_root *ntfs_ir_lookup2(struct ntfs_inode *ni, __le16 *name, u
- 	struct index_root *ir;
- 
- 	ir = ntfs_ir_lookup(ni, name, len, &ctx);
--	if (ir)
-+	if (!IS_ERR(ir))
- 		ntfs_attr_put_search_ctx(ctx);
- 	return ir;
- }
-@@ -631,8 +640,8 @@ static int ntfs_ir_move_to_base(struct ntfs_index_context *icx)
- 	int ret = 0;
- 
- 	ir = ntfs_ir_lookup(icx->idx_ni, icx->name, icx->name_len, &ctx);
--	if (!ir)
--		return -ENOENT;
-+	if (IS_ERR(ir))
-+		return PTR_ERR(ir);
- 
- 	if (ctx->ntfs_ino->mft_no != icx->idx_ni->mft_no) {
- 		ret = ntfs_attr_record_move_to(ctx, icx->idx_ni);
-@@ -751,7 +760,7 @@ struct ntfs_inode *ntfs_ia_open(struct ntfs_index_context *icx, struct ntfs_inod
- 		ntfs_error(icx->idx_ni->vol->sb,
- 				"Failed to open index allocation of inode %llu",
- 				(unsigned long long)ni->mft_no);
--		return NULL;
-+		return ERR_CAST(ia_vi);
- 	}
- 
- 	return NTFS_I(ia_vi);
-@@ -862,12 +871,13 @@ int ntfs_index_lookup(const void *key, const u32 key_len, struct ntfs_index_cont
- 	}
- 
- 	ir = ntfs_ir_lookup(ni, icx->name, icx->name_len, &icx->actx);
--	if (!ir)
--		return -EIO;
-+	if (IS_ERR(ir))
-+		return PTR_ERR(ir);
- 
- 	icx->block_size = le32_to_cpu(ir->index_block_size);
- 	if (icx->block_size < NTFS_BLOCK_SIZE) {
--		err = -EINVAL;
-+		ntfs_report_file_metadata_error(VFS_I(ni), -EFSCORRUPTED);
-+		err = -EFSCORRUPTED;
- 		ntfs_error(sb,
- 			"Index block size (%d) is smaller than the sector size (%d)",
- 			icx->block_size, NTFS_BLOCK_SIZE);
-@@ -901,8 +911,9 @@ int ntfs_index_lookup(const void *key, const u32 key_len, struct ntfs_index_cont
- 
- 	/* Child node present, descend into it. */
- 	icx->ia_ni = ntfs_ia_open(icx, ni);
--	if (!icx->ia_ni) {
--		err = -EIO;
-+	if (IS_ERR(icx->ia_ni)) {
-+		err = PTR_ERR(icx->ia_ni);
-+		icx->ia_ni = NULL;
- 		goto err_out;
- 	}
- 
-@@ -1161,7 +1172,8 @@ static s64 ntfs_ibm_get_free(struct ntfs_index_context *icx)
- 	return vcn;
- }
- 
--static struct index_block *ntfs_ir_to_ib(struct index_root *ir, s64 ib_vcn)
-+static struct index_block *ntfs_ir_to_ib(struct ntfs_index_context *icx,
-+					 struct index_root *ir, s64 ib_vcn)
- {
- 	struct index_block *ib;
- 	struct index_entry *ie_last;
-@@ -1173,7 +1185,7 @@ static struct index_block *ntfs_ir_to_ib(struct index_root *ir, s64 ib_vcn)
- 
- 	ib = ntfs_ib_alloc(ib_vcn, le32_to_cpu(ir->index_block_size), LEAF_NODE);
- 	if (!ib)
--		return NULL;
-+		return ERR_PTR(-ENOMEM);
- 
- 	ies_start = (char *)ntfs_ie_get_first(&ir->index);
- 	ies_end   = (char *)ntfs_ie_get_end(&ir->index);
-@@ -1188,9 +1200,11 @@ static struct index_block *ntfs_ir_to_ib(struct index_root *ir, s64 ib_vcn)
- 	ib_cap = le32_to_cpu(ib->index.allocated_size) -
- 			le32_to_cpu(ib->index.entries_offset);
- 	if ((u32)i > ib_cap) {
-+		ntfs_report_file_metadata_error(VFS_I(icx->idx_ni),
-+						-EFSCORRUPTED);
- 		ntfs_error(NULL, "Entries (%d B) exceed IB capacity", i);
- 		kvfree(ib);
--		return NULL;
-+		return ERR_PTR(-EFSCORRUPTED);
- 	}
- 
- 	memcpy(ntfs_ie_get_first(&ib->index), ies_start, i);
-@@ -1296,8 +1310,11 @@ static int ntfs_ia_add(struct ntfs_index_context *icx)
- 	}
- 
- 	icx->ia_ni = ntfs_ia_open(icx, icx->idx_ni);
--	if (!icx->ia_ni)
--		return -ENOENT;
-+	if (IS_ERR(icx->ia_ni)) {
-+		ret = PTR_ERR(icx->ia_ni);
-+		icx->ia_ni = NULL;
-+		return ret;
-+	}
- 
- 	return 0;
- }
-@@ -1317,8 +1334,8 @@ static int ntfs_ir_reparent(struct ntfs_index_context *icx)
- 	ntfs_debug("Entering\n");
- 
- 	ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
--	if (!ir) {
--		ret = -ENOENT;
-+	if (IS_ERR(ir)) {
-+		ret = PTR_ERR(ir);
- 		goto out;
- 	}
- 
-@@ -1335,14 +1352,15 @@ static int ntfs_ir_reparent(struct ntfs_index_context *icx)
- 	}
- 
- 	ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
--	if (!ir) {
--		ret = -ENOENT;
-+	if (IS_ERR(ir)) {
-+		ret = PTR_ERR(ir);
- 		goto clear_bmp;
- 	}
- 
--	ib = ntfs_ir_to_ib(ir, new_ib_vcn);
--	if (ib == NULL) {
--		ret = -EIO;
-+	ib = ntfs_ir_to_ib(icx, ir, new_ib_vcn);
-+	if (IS_ERR(ib)) {
-+		ret = PTR_ERR(ib);
-+		ib = NULL;
- 		ntfs_error(icx->idx_ni->vol->sb, "Failed to move index root to index block");
- 		goto clear_bmp;
- 	}
-@@ -1353,8 +1371,8 @@ static int ntfs_ir_reparent(struct ntfs_index_context *icx)
- 
- retry:
- 	ir = ntfs_ir_lookup(icx->idx_ni, icx->name, icx->name_len, &ctx);
--	if (!ir) {
--		ret = -ENOENT;
-+	if (IS_ERR(ir)) {
-+		ret = PTR_ERR(ir);
- 		goto clear_bmp;
- 	}
- 
-@@ -1475,8 +1493,8 @@ static int ntfs_ir_truncate(struct ntfs_index_context *icx, int data_size)
- 	if (!ret) {
- 		i_size_write(VFS_I(icx->idx_ni), icx->idx_ni->initialized_size);
- 		icx->ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
--		if (!icx->ir)
--			return -ENOENT;
-+		if (IS_ERR(icx->ir))
-+			return PTR_ERR(icx->ir);
- 
- 		if (!shrink)
- 			icx->ir->index.allocated_size = cpu_to_le32(data_size);
-@@ -1578,8 +1596,8 @@ static int ntfs_ir_insert_median(struct ntfs_index_context *icx, struct index_en
- 	ntfs_debug("Entering\n");
- 
- 	icx->ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
--	if (!icx->ir)
--		return -ENOENT;
-+	if (IS_ERR(icx->ir))
-+		return PTR_ERR(icx->ir);
- 
- 	new_size = le32_to_cpu(icx->ir->index.index_length) +
- 		le16_to_cpu(median->length);
-@@ -1591,8 +1609,8 @@ static int ntfs_ir_insert_median(struct ntfs_index_context *icx, struct index_en
- 		return ret;
- 
- 	icx->ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
--	if (!icx->ir)
--		return -ENOENT;
-+	if (IS_ERR(icx->ir))
-+		return PTR_ERR(icx->ir);
- 
- 	return ntfs_ih_insert(&icx->ir->index, median, new_vcn,
- 			ntfs_icx_parent_pos(icx));
-@@ -1972,8 +1990,11 @@ static int ntfs_index_rm_node(struct ntfs_index_context *icx)
- 
- 	if (!icx->ia_ni) {
- 		icx->ia_ni = ntfs_ia_open(icx, icx->idx_ni);
--		if (!icx->ia_ni)
--			return -EINVAL;
-+		if (IS_ERR(icx->ia_ni)) {
-+			ret = PTR_ERR(icx->ia_ni);
-+			icx->ia_ni = NULL;
-+			return ret;
-+		}
- 	}
- 
- 	ib = kvzalloc(icx->block_size, GFP_NOFS);
-@@ -2187,11 +2208,13 @@ struct index_entry *ntfs_index_walk_down(struct index_entry *ie, struct ntfs_ind
- 
- 		ictx->parent_pos[ictx->pindex] = 0;
- 		ictx->parent_vcn[ictx->pindex] = vcn;
--		if (!ntfs_ib_read(ictx, vcn, ictx->ib)) {
-+		err = ntfs_ib_read(ictx, vcn, ictx->ib);
-+		if (!err) {
- 			ictx->entry = ntfs_ie_get_first(&ictx->ib->index);
- 			entry = ictx->entry;
--		} else
--			entry = ERR_PTR(-EIO);
-+		} else {
-+			entry = ERR_PTR(err);
-+		}
- 	} while (!IS_ERR(entry) && (entry->flags & INDEX_ENTRY_NODE));
- 
- 	return entry;
-@@ -2209,6 +2232,7 @@ static struct index_entry *ntfs_index_walk_up(struct index_entry *ie,
- {
- 	struct index_entry *entry = ie;
- 	s64 vcn;
-+	int err;
- 
- 	if (ictx->pindex <= 0)
- 		return NULL;
-@@ -2225,21 +2249,23 @@ static struct index_entry *ntfs_index_walk_up(struct index_entry *ie,
- 				ntfs_attr_put_search_ctx(ictx->actx);
- 			ictx->ir = ntfs_ir_lookup(ictx->idx_ni, ictx->name,
- 						  ictx->name_len, &ictx->actx);
--			if (ictx->ir)
-+			if (!IS_ERR(ictx->ir))
- 				entry = ntfs_ie_get_by_pos(
- 					&ictx->ir->index,
- 					ictx->parent_pos[ictx->pindex]);
- 			else
--				entry = NULL;
-+				return ERR_CAST(ictx->ir);
- 		} else {
- 			/* up into non-root node */
- 			vcn = ictx->parent_vcn[ictx->pindex];
--			if (!ntfs_ib_read(ictx, vcn, ictx->ib)) {
-+			err = ntfs_ib_read(ictx, vcn, ictx->ib);
-+			if (!err) {
- 				entry = ntfs_ie_get_by_pos(
- 					&ictx->ib->index,
- 					ictx->parent_pos[ictx->pindex]);
--			} else
--				entry = NULL;
-+			} else {
-+				return ERR_PTR(err);
-+			}
- 		}
- 		ictx->entry = entry;
- 	} while (entry && (ictx->pindex > 0) &&
-@@ -2249,7 +2275,7 @@ static struct index_entry *ntfs_index_walk_up(struct index_entry *ie,
- 
- /*
-  * ntfs_index_next - get next entry in an index according to collating sequence.
-- * Returns next entry or NULL if none.
-+ * Returns the next entry, NULL if none, or an error pointer.
-  *
-  * Sample layout :
-  *
-@@ -2299,8 +2325,11 @@ struct index_entry *ntfs_index_next(struct index_entry *ie, struct ntfs_index_co
- 		if (flags & INDEX_ENTRY_NODE) {
- 			if (!ictx->ia_ni) {
- 				ictx->ia_ni = ntfs_ia_open(ictx, ictx->idx_ni);
--				if (!ictx->ia_ni)
--					return ERR_PTR(-EIO);
-+				if (IS_ERR(ictx->ia_ni)) {
-+					next = ERR_CAST(ictx->ia_ni);
-+					ictx->ia_ni = NULL;
-+					return next;
-+				}
- 			}
- 
- 			next = ntfs_index_walk_down(next, ictx);
-@@ -2314,6 +2343,9 @@ struct index_entry *ntfs_index_next(struct index_entry *ie, struct ntfs_index_co
- 		}
- 	}
- 
-+	if (IS_ERR(next))
-+		return next;
-+
- 	/* return NULL if stuck at end of a block */
- 	if (next && (next->flags & INDEX_ENTRY_END))
- 		next = NULL;
+ static struct inode *ntfs_nfs_get_inode(struct super_block *sb,
 -- 
 2.51.0
 
