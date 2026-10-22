@@ -1,55 +1,76 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=203.205.221.245
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792670306;
-	b=Qu50ABsP8tS/bt7VC/iZCrF+7K7EoDMi7XuljvR2vMv74gC75nU48y+0NA3rw8VkZMyT
-	 4rtvB5Z/qWPDv0Oy4dxC6w1Wm6piY5TNi8XbpQbEYzdS4vkW4QgnMfc19megfSNJ2Rqeb
-	 b0HL/P4Eqsq2Qgh+1nZyayBkCgigx8iH5ZON0U4BDmDLwr0JjiBkVsKO26s72etYZH+ZA
-	 4hw9G5C4WSiy039eYp+zmW8qOSB9l0pvYNx3dd5SZF/8ytlSpKa46xOv+0ztBM1inKuO3
-	 T6LQe3mi0enrWAN2RJ2RraDsfFuSxxVU73Ji4FeTWV+0Sskn7ahFqOYfxbCAdhr75uw==
+	t=1792680544;
+	b=hUsWKWp7qPMfOX+Ojp0DbXmdwAqXlkBhp7uTNoGo3E6mMcB60BpFxl+IOyQC8Ydyk6Sc
+	 3eVRrZ5C1oULem1otHbwlHrbD9dZwX9RJU3V/9dvyQjV/E7IiWnebAUaCZ8TiX3kt8hAd
+	 dBbsiNDu+rMUcRavM5Ml1TJA3JAP6w5ds+9DjgIjVQyyfd0yVik0uclLFduuUE50a/68j
+	 Gpt5z2OVcVqFCnzz7LqtMaa256MdY9PEMJhQKzUxGVBM95/p7UXxUtSrO60N88rCiKC8Q
+	 aCcLfoIMbANv9ViYe8S9UBTUSWXDkWx8//ao1J+NaGOpkEXykApbMbqk3XBG854CQZg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792670306;
-	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
-	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=SKUK5/GdLZFaMvNXAe6hw1LRL0hbCiGKqTHYLhCBoL8=;
-	b=fP4hYL853V9910HNtcay7jG53JGnrzpiyfXSs2BpFpntoAo/QUgP6zSHXcsaflt1ch+L
-	 X7Rapn+JEIPdtMRofiTfxhNsWdUwOKp922xEZPoWH99aiBtzWEnNWnus4bd/DH1hHW29j
-	 VmVyqzQEFD55x1HsrS7hM6VsZ4PIYBOOSlOMi9l/tsbINTPCRbXoQ4GC4owvzqK9Kqaa0
-	 2NEWE0lPuyOOslG3ROnqgMksZEFbq2AZd/C0UPgoDRiAhgOLd1WvfUWDTurMjyXUnTWXy
-	 AFUzKk89AW5mpmSVyLQMXIIw4eJiOg8OBi+B+bqKuCA7kKvj4FHKmxAETJpcw2CykFA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1792680544;
+	h=DMARC-Filter:DKIM-Signature:Received:X-QQ-mid:Message-ID:
+	 X-QQ-XMAILINFO:X-QQ-XMRINFO:From:To:Cc:Subject:Date:X-OQ-MSGID:
+	 Content-Type:Content-Transfer-Encoding:MIME-Version;
+	bh=2RH58x6Y/sAtUM15JCHy1C2bqdC3scU/oBdWNKPRLIQ=;
+	b=S5GQ4+SYEstVyAVYcaV23hP+48dh2Kn0CucuT+mSHWtSt2apZ6XUQVegef1jC2HNmFrc
+	 PHktDr28GR+wzuC3P2QJmq6AcZTOuQyBMt8oTlv8HV+WLtSkvW2STe3Eergd/k3ebNyPT
+	 IZ1/PAKtNg+sehnsNYi5PQ361q4loXLBYCMDa5Y43Ixk7kdHxhz85Tg22MjhmqV3C/w56
+	 U3SySTrOVjw8uhaN1NV/GZXCONgvlFjm/nCXYL4C17zI/ceWNETlMOLzHvUF68YeJEEkt
+	 xVnHQqqkQig74679WAGxNWwvTB4THIrWL9J2iG9VFdSFCSCTXwCswggEWUS3RHajn+g==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Hx+8e9pV;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	dmarc=pass header.from=qq.com;
+	spf=pass smtp.mailfrom=qq.com;
+	dkim=pass header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=R4G4S6lH;
+	arc=none smtp.remote-ip=203.205.221.245
+Received: from out203-205-221-245.mail.qq.com (out203-205-221-245.mail.qq.com [203.205.221.245])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2351606A31A
-	for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 11:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8761560A6F69
+	for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 14:49:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 8761560A6F69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Hx+8e9pV
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E6CF1F000C6
-	for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 11:58:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792670305;
-	bh=SKUK5/GdLZFaMvNXAe6hw1LRL0hbCiGKqTHYLhCBoL8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=Hx+8e9pV38lBaTyI3tnwpq+IlSGLFTHiyP8rn2IEzLvxH12v/6NwwI73UnrjrfHzy
-	 VOw1fXOug/slBHRf4AEyVBc/kf291bXw8X0BrW4pkakmB07PzTFc8hLq9Hw5drsQN8
-	 dFdfwgCUkIexkoNfD3BlYFzjGCf8H+SzzXJibBbJunXezEY6aYqhR80/u/Q8chAnqm
-	 A8I0lGsazB4/dfQNZbTspLuGH9jXf/3a0xFx2/ndV/CMKFhpvhIg42cplnWtOphxMg
-	 OdJuVTUJ9hbAiD2CgTqxi4NMSGNPEkyGal2fX5ivZElCgfQqKiRh0zpRNwB42m5ahq
-	 FFWo0yNyyzLNA==
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6b1a86c0316so2325283a12.0
-        for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 04:58:25 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBypEbA7FMQ+fvfwPHlOLvC1x0bzWVhC/BcbDFdEHue8Q2O1pZ0k4Ir7CjxARocF9+AXedZV@lists.linux.dev
-X-Gm-Message-State: AFq9FYLGY2+/JqiDpD+V4AR1QoUHP6gQ3Lyt8a0UIForYR7597pMPNeY
-	N6PB7LBiC36CvTbZRsiqVMpusWiJqLxFp79K49FNZOFdajF8FIolurU/DoiDaOB+SOwlJRU8vmv
-	D6oZeGhmddD37wbWwa+e1md/oZoJsYgg=
-X-Received: by 2002:a17:907:72c2:b0:c2e:7fe7:288e with SMTP id
- a640c23a62f3a-c4679792b95mr480147666b.32.1792670304103; Thu, 22 Oct 2026
- 04:58:24 -0700 (PDT)
+	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=R4G4S6lH
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1792680534; bh=2RH58x6Y/sAtUM15JCHy1C2bqdC3scU/oBdWNKPRLIQ=;
+	h=From:To:Cc:Subject:Date;
+	b=R4G4S6lHZmrP1KL6q2PIcCmy07Xc/RlNQwulVMjFtaf8icFSi0FWbMHHmPmSjsQmc
+	 G6+TMxTVvRy58a70O9Jan+AFhkcR+kZAEustbqV2HAPbxYuB+0R06WB4Mxh41uogLy
+	 RsMTCbWkSNXWXJkElbhDwuo3WqdWWxE7KHcMJGPI=
+Received: from smtp.qq.com ([2409:8d5c:c30:3b3:a047:429d:4de8:cc50])
+	by newxmesmtplogicsvrszc43-0.qq.com (NewEsmtp) with SMTP
+	id C340FAB9; Thu, 22 Oct 2026 22:48:52 +0800
+X-QQ-mid: xmsmtpt1792680532tu7w63qo0
+Message-ID: <tencent_5C530912FB57647A7259DF4581FD11F1F806@qq.com>
+X-QQ-XMAILINFO: Nk/C+eM/eBrifacTzzHjxcqwszihW4NWdo6q5LPeMfr1rR38C6AhVrVj77b30u
+	 vBROPDmo53cOMjbx1sd5eOlMjptzoF6EIpFrixqabAsowUXQv9OXzCPgNCHkO7cwuCzoM8rag4Ed
+	 z0AR09s+qf2kEbCcrt5n89fgrYV1zAi1D19XEEl7uey3jMPDErIghH9UXycJvZyxLVWWIJ7yvVFC
+	 5Wmk+UzBAP7fQg4A2tBzYjNCygVsdu1jx+CcInXgg9jbVbRo85U6DNUv0N8MaWjt7P+Q5CHvwz2A
+	 PPmK4rJ5/8Ilh/qTstTteDAb5YX4WYzjUsOOk29wSeI5wDLHNEzy540nbL1RsaiEP6mXEpZbt31q
+	 4JJz1cSjVFrcJS1Qzgx5/1p0aJnF70odLHecgMO3Qi0Ziqr/s5mYK+rm6Oyxh+U6QcfSTTTT4sXU
+	 DDjSAntyeJXFD8Sh7IdU/yQQCD5BfoRt/DhtZsw4jCj0EWCodoa2Bn/A4toZLiR6SUS5js1nfBSm
+	 RQKHj43tK7IzXPZlutWT9UbBqzGJcfi6bAYQqX8vi6ZmnxjVWM2j1kQXkJYwnRMufVjnEDeTlw4w
+	 dlhPkrlLbH/X/AmMaPgy4l9IxP/0HrWXMytV9Ac6Yin6Oe3vqp0/i/DCoy7G50aml2L9weJdqFzq
+	 xVmDYRIqIMks7gWrJ/Iwnp2k0Kjg2XOGNFyiRbBkAk0Pn9AejjFRZJCeTGqCFDNYflhqo2EOsONC
+	 aO5w10OHE3Z41eu0pytZIRfBHy3PgeMXLR0cNfxSbang35gIL5ZJzZfjzcBHHoh7zNvUEEk5GKyu
+	 9OG1Oa+750EOo/Ss3+qiM7mwfJh7s+YYxz7Hjn1NryFiEcy1X1+lUXiTdWdAI6QateODF9gZdfqL
+	 6DO88EYZOiiqp2Gz7dOCgtvDdgA41QXNYP52m8qAwp9rPh9lRaAqKim0qcV370qVATi4KfkPPxkh
+	 heciVWDC0N0ZBrITD/G/D8CZXvV1BUCA63tHL+LEtvj3/Q3whNLCirhfziQTiWVj8CTjRWpDTinY
+	 LyZi+W0NdccYrpIoe4FZPFoPXFaEGhK1ZzbQBX5ptrucYqMw/TIDQDc0VPjDQcZfMLNUjmtkEjtO
+	 sxsMqtM+ux5BUlmg8=
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+From: Hang Nan <2122295973@qq.com>
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>, liubaolin12138@163.com,
+ ntfs@lists.linux.dev
+Subject:
+ Re: [PATCH v5] ntfs: reject index blocks with a too small entries offset
+Date: Thu, 22 Oct 2026 22:48:51 +0800
+X-OQ-MSGID:
+ <179268053167.16668.10973005603990129571.20261020ntfsv5stable@qq.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,60 +80,25 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <20261020134433.1015126-1-zhanxusheng1024@gmail.com>
-In-Reply-To: <20261020134433.1015126-1-zhanxusheng1024@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 22 Oct 2026 20:58:11 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd86svfoGJdS2aG9CuZOFtsUkabngqpoSP3aP45N29LPMQ@mail.gmail.com>
-X-Gm-Features: AclHuK9YHft1UrOHZ38QcgvC55Aj0IztkVgeNlWXyE1TelTdnUesnAPBg_zIk68
-Message-ID: <CAKYAXd86svfoGJdS2aG9CuZOFtsUkabngqpoSP3aP45N29LPMQ@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: fix u16 truncation of the update sequence array
- count check
-To: Zhan Xusheng <zhanxusheng1024@gmail.com>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>, Bryam Vargas <hexlabsecurity@proton.me>, ntfs@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Zhan Xusheng <zhanxusheng@xiaomi.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 20, 2026 at 10:44=E2=80=AFPM Zhan Xusheng <zhanxusheng1024@gmai=
-l.com> wrote:
->
-> From: Zhan Xusheng <zhanxusheng@xiaomi.com>
->
-> ntfs_check_restart_page_header() bounds the on-disk system page size by
-> recomputing the update sequence array count from it:
->
->         u16 ra_ofs, usa_count, usa_ofs, usa_end =3D 0;
->         ...
->         usa_count =3D 1 + (logfile_system_page_size >> NTFS_BLOCK_SIZE_BI=
-TS);
->         if (usa_count !=3D le16_to_cpu(rp->usa_count))
->                 return false;
->
-> The right hand side is computed in u32 but stored in a u16, so the count
-> wraps once the system page size reaches 0x2000000.  An image claiming any
-> larger power of two passes the check by also claiming usa_count =3D=3D 1.
->
-> Nothing else limits the value, so ntfs_check_and_load_restart_page() goes
-> on to kvzalloc() up to 2 GiB for the restart page and copy that many byte=
-s
-> a page at a time.  The size is only rejected afterwards, by the
-> (size >> NTFS_BLOCK_SIZE_BITS) !=3D usa_count test in post_read_mst_fixup=
-().
->
-> Compute the count in a u32 so the existing check rejects an over-large
-> system page size instead of being defeated by the truncation.  This adds
-> no new limit: the array holds one u16 per protected sector plus the updat=
-e
-> sequence number and must end within the first sector, which caps usa_coun=
-t
-> at 240 and the system page size at 64 KiB.
->
-> Widen ra_ofs and usa_ofs as well, as ntfs_check_restart_area() already
-> does: both are loaded from __le16 on-disk fields and every comparison is
-> against a non-negative value, so no result changes.
->
-> Fixes: 1e9ea7e04472 ("Revert "fs: Remove NTFS classic"")
-> Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
-Applied it to #ntfs-next.
-Thanks!
+Hi Namjae,
+
+Thanks for picking it up.
+
+One thing I should have put in the patch and did not: would you like to
+add
+
+  Cc: stable@vger.kernel.org
+
+The missing entries_offset check comes from 0a8ac0c1fa0b, which is in
+v7.1-rc1, so v7.1 and v7.2 carry it as well.  The bug is an 8-byte
+out-of-bounds heap write past the destination of ntfs_ib_copy_tail(),
+with the contents coming from the mounted image, so the stable trees
+would want it if they are still maintained.
+
+Happy to resend the patch with the tag if that is easier; otherwise
+ignore this and I will only follow linux-next.
+
+Thanks,
+Hang
+
