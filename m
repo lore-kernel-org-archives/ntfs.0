@@ -1,55 +1,55 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792669911;
-	b=VQ/c33Ux0F0hnoW5QjsDq2Au6+s2qQKz+J7KpH0l9pZ3hbfGBIY08j9oy6lM5Fd7ACTD
-	 h7qSq5K3TNBw/wmfWqYKASnwxxmdW/GTX0R+YUe5aNLeVvYDCqHhXIg4a6qUv4OLaFb0O
-	 Nu7DwAcAay9ACzue66iKHbCqH8xKCNDBad2kpgUUlUAfhtDK/foXiTclM1kRsBBee4AHC
-	 cW20JOx2LK84c8Y/nnFTi0Z+8KiDpg8JMV7dKPUgjUYQL04F3jLrwYSHLVQ4C9ScD2WpZ
-	 tjZLSekWLg1YoY9+HnbhPJUnWMznlv/AwAT2nbcoSiAJylkpa16vxYLfinPzl7Ztacw==
+	t=1792670306;
+	b=Qu50ABsP8tS/bt7VC/iZCrF+7K7EoDMi7XuljvR2vMv74gC75nU48y+0NA3rw8VkZMyT
+	 4rtvB5Z/qWPDv0Oy4dxC6w1Wm6piY5TNi8XbpQbEYzdS4vkW4QgnMfc19megfSNJ2Rqeb
+	 b0HL/P4Eqsq2Qgh+1nZyayBkCgigx8iH5ZON0U4BDmDLwr0JjiBkVsKO26s72etYZH+ZA
+	 4hw9G5C4WSiy039eYp+zmW8qOSB9l0pvYNx3dd5SZF/8ytlSpKa46xOv+0ztBM1inKuO3
+	 T6LQe3mi0enrWAN2RJ2RraDsfFuSxxVU73Ji4FeTWV+0Sskn7ahFqOYfxbCAdhr75uw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792669911;
+	a=rsa-sha256; c=relaxed/relaxed; t=1792670306;
 	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
 	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
 	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
 	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=MPj+DRLAk4kNVw5AbVjGbc7EK8+Er0TPFmbITJ0swXo=;
-	b=axTPhDEOIk7QghT7DH0g0zNpPFR5xXitwGC3iwze+s7Z6ONzoBS8kzGKbXAwUf9q3bUd
-	 HHJ5+b0JmA2sb5VmiM7VqJQsL8FNMYQN9MZuTtYBazuD40ZDRtCcYz/SgULariJ2fvT9e
-	 MNe8QAom7OI9NtgKGw+lpjwIAX8fEp4hM+XAUN14mqPCxGs07HqrNryivg/8LoBywyklQ
-	 f/aFs5g0qgGfFPLDfZxTzrvblxR3fYnzbl6rvaCgmNEE50dQXHCrw3e0Povz57RQpSdHB
-	 56YdrI2j+SEucpTsxkS5uBQl6+CQcB+5oyHOhWU8xSo8CK32bkM73ooLVpAu/pg3coA==
+	bh=SKUK5/GdLZFaMvNXAe6hw1LRL0hbCiGKqTHYLhCBoL8=;
+	b=fP4hYL853V9910HNtcay7jG53JGnrzpiyfXSs2BpFpntoAo/QUgP6zSHXcsaflt1ch+L
+	 X7Rapn+JEIPdtMRofiTfxhNsWdUwOKp922xEZPoWH99aiBtzWEnNWnus4bd/DH1hHW29j
+	 VmVyqzQEFD55x1HsrS7hM6VsZ4PIYBOOSlOMi9l/tsbINTPCRbXoQ4GC4owvzqK9Kqaa0
+	 2NEWE0lPuyOOslG3ROnqgMksZEFbq2AZd/C0UPgoDRiAhgOLd1WvfUWDTurMjyXUnTWXy
+	 AFUzKk89AW5mpmSVyLQMXIIw4eJiOg8OBi+B+bqKuCA7kKvj4FHKmxAETJpcw2CykFA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b="NB1/lZDb";
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Hx+8e9pV;
 	arc=none smtp.remote-ip=100.103.45.18
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAA9B606A333
-	for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 11:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2351606A31A
+	for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 11:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NB1/lZDb
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1F801F000C8
-	for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 11:51:45 +0000 (UTC)
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Hx+8e9pV
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E6CF1F000C6
+	for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 11:58:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792669905;
-	bh=MPj+DRLAk4kNVw5AbVjGbc7EK8+Er0TPFmbITJ0swXo=;
+	s=k20260515; t=1792670305;
+	bh=SKUK5/GdLZFaMvNXAe6hw1LRL0hbCiGKqTHYLhCBoL8=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=NB1/lZDbwlKrqWPCDn4t7mGZJVIO+FNSRz3+7hW8yO9kqEx0AzLSyl+Gq5wdvd6+u
-	 fxZJPhgQlF4jleY+GbFjye6NDWwPzgS5u6/r8Bn4UNe1+/vcQjGwHZS5H4KuxHVKan
-	 4Dx+g5mJqEaclKKliJuo6lj1TAQAWkODXX8JDLJaXBLsWYTrrHtQsa5GyVKy3BsvLa
-	 TL5MPRQi3HRIIWWk5oLIzaZr4z+UjmmebaUSJYsPx483rf3sXdW/okPetPCz4fU+qJ
-	 m7sNSIM086j8k/eQKLnczWn++j1fzSuuzocFk4l2hqyU3f5zaAZGDpdRo/y6gRNJ/W
-	 oFDv070kHRmvQ==
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-c414e5d282eso220368066b.1
-        for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 04:51:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBx2QrXDR2Mc3HEBGmt4nVzSV9zWRsiUleG5d/w8Syep3nbXRAsEUHEDlQZqY7WDJXeOzzPb@lists.linux.dev
-X-Gm-Message-State: AFq9FYLdxIrhtaCHa6aWpBgxufpo/eZmMPq29mTHgWhTNJSvFr1YXZnL
-	NcdZQZZJ7WdD4XnsKz4r86PFWlCk/d6QMnYgn/jnHotyHXONzUkfKjVMVYRkf/qcq9WO3G/3lGh
-	v82HeZC4tueWsjekYu7dEcoy2xqXmjwk=
-X-Received: by 2002:a17:906:dc93:b0:c2a:ad55:b3fa with SMTP id
- a640c23a62f3a-c467916d30cmr506355866b.7.1792669904263; Thu, 22 Oct 2026
- 04:51:44 -0700 (PDT)
+	b=Hx+8e9pV38lBaTyI3tnwpq+IlSGLFTHiyP8rn2IEzLvxH12v/6NwwI73UnrjrfHzy
+	 VOw1fXOug/slBHRf4AEyVBc/kf291bXw8X0BrW4pkakmB07PzTFc8hLq9Hw5drsQN8
+	 dFdfwgCUkIexkoNfD3BlYFzjGCf8H+SzzXJibBbJunXezEY6aYqhR80/u/Q8chAnqm
+	 A8I0lGsazB4/dfQNZbTspLuGH9jXf/3a0xFx2/ndV/CMKFhpvhIg42cplnWtOphxMg
+	 OdJuVTUJ9hbAiD2CgTqxi4NMSGNPEkyGal2fX5ivZElCgfQqKiRh0zpRNwB42m5ahq
+	 FFWo0yNyyzLNA==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6b1a86c0316so2325283a12.0
+        for <ntfs@lists.linux.dev>; Thu, 22 Oct 2026 04:58:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvBypEbA7FMQ+fvfwPHlOLvC1x0bzWVhC/BcbDFdEHue8Q2O1pZ0k4Ir7CjxARocF9+AXedZV@lists.linux.dev
+X-Gm-Message-State: AFq9FYLGY2+/JqiDpD+V4AR1QoUHP6gQ3Lyt8a0UIForYR7597pMPNeY
+	N6PB7LBiC36CvTbZRsiqVMpusWiJqLxFp79K49FNZOFdajF8FIolurU/DoiDaOB+SOwlJRU8vmv
+	D6oZeGhmddD37wbWwa+e1md/oZoJsYgg=
+X-Received: by 2002:a17:907:72c2:b0:c2e:7fe7:288e with SMTP id
+ a640c23a62f3a-c4679792b95mr480147666b.32.1792670304103; Thu, 22 Oct 2026
+ 04:58:24 -0700 (PDT)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,48 +59,60 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <tencent_162F22EDEB882D9E2691DEBF38D243CA4A09@qq.com>
-In-Reply-To: <tencent_162F22EDEB882D9E2691DEBF38D243CA4A09@qq.com>
+References: <20261020134433.1015126-1-zhanxusheng1024@gmail.com>
+In-Reply-To: <20261020134433.1015126-1-zhanxusheng1024@gmail.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 22 Oct 2026 20:51:31 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd9h1_j=6VNUGQyfh=arsP97m8T5La4DtewZZ5VUjOefLQ@mail.gmail.com>
-X-Gm-Features: AclHuK_kOD1aIs-LHf0jjdIYB5Kx8UCMWzylJLtp-lH1jhMwffYvMEtjQ17-22Y
-Message-ID: <CAKYAXd9h1_j=6VNUGQyfh=arsP97m8T5La4DtewZZ5VUjOefLQ@mail.gmail.com>
-Subject: Re: [PATCH v5] ntfs: reject index blocks with a too small entries offset
-To: Hang Nan <2122295973@qq.com>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>, liubaolin12138@163.com, ntfs@lists.linux.dev, 
-	security@kernel.org
+Date: Thu, 22 Oct 2026 20:58:11 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd86svfoGJdS2aG9CuZOFtsUkabngqpoSP3aP45N29LPMQ@mail.gmail.com>
+X-Gm-Features: AclHuK9YHft1UrOHZ38QcgvC55Aj0IztkVgeNlWXyE1TelTdnUesnAPBg_zIk68
+Message-ID: <CAKYAXd86svfoGJdS2aG9CuZOFtsUkabngqpoSP3aP45N29LPMQ@mail.gmail.com>
+Subject: Re: [PATCH] ntfs: fix u16 truncation of the update sequence array
+ count check
+To: Zhan Xusheng <zhanxusheng1024@gmail.com>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>, Bryam Vargas <hexlabsecurity@proton.me>, ntfs@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, Zhan Xusheng <zhanxusheng@xiaomi.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 20, 2026 at 5:54=E2=80=AFPM Hang Nan <2122295973@qq.com> wrote:
+On Tue, Oct 20, 2026 at 10:44=E2=80=AFPM Zhan Xusheng <zhanxusheng1024@gmai=
+l.com> wrote:
 >
+> From: Zhan Xusheng <zhanxusheng@xiaomi.com>
 >
-> Index blocks read from the volume are checked for a plausible header, but
-> nothing keeps a block from placing its entries closer to the header than
-> ntfs_ib_alloc() does when it creates one.  The allocation adds the update
-> sequence array, one entry per 512-byte sector plus the terminator, to the
-> index header and aligns the result to 8 bytes, so the first entry of a
-> 4096-byte block starts at offset 40, while a corrupt block may declare 16=
-.
+> ntfs_check_restart_page_header() bounds the on-disk system page size by
+> recomputing the update sequence array count from it:
 >
-> ntfs_ib_copy_tail() then copies the entries that follow the median entry
-> from the source block into a freshly allocated destination.  The tail is
-> sized as index_length minus entries_offset and the median entry, both fro=
-m
-> the source, while the destination only has allocated_size minus the
-> canonical offset of room.  With the values above the tail is 4040 bytes
-> and the destination holds 4032, so the last 8 bytes are written past the
-> end of the new allocation, with contents taken from the mounted image.
+>         u16 ra_ofs, usa_count, usa_ofs, usa_end =3D 0;
+>         ...
+>         usa_count =3D 1 + (logfile_system_page_size >> NTFS_BLOCK_SIZE_BI=
+TS);
+>         if (usa_count !=3D le16_to_cpu(rp->usa_count))
+>                 return false;
 >
-> Reject such a block when it is read: entries_offset must not be smaller
-> than the canonical offset for the block size.  Derive it from block_size
-> rather than from the block's own usa_count, which post_read_mst_fixup()
-> treats as "not protected" when it does not match the block size, and use
-> the same helper in ntfs_ib_alloc() so both stay in sync.
+> The right hand side is computed in u32 but stored in a u16, so the count
+> wraps once the system page size reaches 0x2000000.  An image claiming any
+> larger power of two passes the check by also claiming usa_count =3D=3D 1.
 >
-> Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-> Signed-off-by: Hang Nan <2122295973@qq.com>
-> Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+> Nothing else limits the value, so ntfs_check_and_load_restart_page() goes
+> on to kvzalloc() up to 2 GiB for the restart page and copy that many byte=
+s
+> a page at a time.  The size is only rejected afterwards, by the
+> (size >> NTFS_BLOCK_SIZE_BITS) !=3D usa_count test in post_read_mst_fixup=
+().
+>
+> Compute the count in a u32 so the existing check rejects an over-large
+> system page size instead of being defeated by the truncation.  This adds
+> no new limit: the array holds one u16 per protected sector plus the updat=
+e
+> sequence number and must end within the first sector, which caps usa_coun=
+t
+> at 240 and the system page size at 64 KiB.
+>
+> Widen ra_ofs and usa_ofs as well, as ntfs_check_restart_area() already
+> does: both are loaded from __le16 on-disk fields and every comparison is
+> against a non-negative value, so no result changes.
+>
+> Fixes: 1e9ea7e04472 ("Revert "fs: Remove NTFS classic"")
+> Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
 Applied it to #ntfs-next.
 Thanks!
