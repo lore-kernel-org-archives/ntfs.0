@@ -1,82 +1,82 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.216.41
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792979778;
-	b=bNYb2hRovocRQXTjCTIpFOiTRYFk/MeC9qbE+XdRizf72LUgEhJbzAkl8+kQxfP9ebCL
-	 p6fBYLO6syWP3iisai/HYIcmqvZIZQw77z3EWRG/n+I45nfM8gYpq+M+ZJoy6aR/ZScO/
-	 zvB79I36YMlRNvaUyioov1B7ZnGzQAe9E/izDelnmWfl8FPncfNVDuHm4fajgJv07Mi7j
-	 E4xbCEEKZ6/pFLlCMAf81a3rHUvtlfhRpJqlLyzSLQpex4We9hQYkCIwjz9Rf+7b6fwTp
-	 x13MTWwACVJSLr5oIQkmta1Sinban0fWFY8b+azDbvdTN/8AYzeHU4yqv77sqhFkx8Q==
+	t=1792979794;
+	b=k68M9XZASHZ6grsYUcC+Bc2ASTOz6q5UeWY70RmasmZSpOvLmpcRFuJTcsVY8CjRncON
+	 G3kLz+I+fjABH1oN26RkP/URfEC/pUchnE06UF3CCLInnkIKCpDufgfPN11uqD9qvkrge
+	 ONNrPyjsoKq9VWQ9c9zc9eds7GI4nZ6XRYLkAatwqCuXx9dxTsJynfZsCvZPH23omKbJC
+	 OZlN+KTSC+UbkJyvJGtZz3NwnFTosyVLVwAnLTuCewt1pST/5Ax0GGLpdEdts7K0wIk6c
+	 Dm9zArRwSeOUjKzX1K26nxcNcWJVMDhBPBsa6a4uWuLLIISK4fyEgmKk0SfGmyq0fpg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792979778;
+	a=rsa-sha256; c=relaxed/relaxed; t=1792979794;
 	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
 	 From:To:Cc:Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding;
-	bh=2zkx3GxJ07XxsBtFlQsE6mExven9HQFX53pHIZRuedQ=;
-	b=1ZNT3jynUWTgLKvMvB0u9uRC8y6Ehf10WlwFSnQt9KRs9KHkpBIzi2IxSH7mOi9EIoG8
-	 hukA8mOlcPSF6Er0/suqc9GYyzJFzQXreN2l9JSAeXkgvZL56VrvFD7CqzTSL0RqF5r62
-	 f1Y/MnCplCK8Awz6N2nrkd66CBfxQNAyi0/n9IkvBmWeJIUB/gQD/7JnLunHtZZfLuTr3
-	 v65m6m3xaZSHttwWvvaADcFXKzoMz4nEWhsmGlcx6wqMfSL/6m6W8rF6xewas9AcTuTGF
-	 VJq5zqjC0KV1jEODaMshN6Dj5c0CQPHSeAyTuteOH4qaxo+vQlcRo1lBF15cKftQP6w==
+	bh=FmarotRNBTJapESQa6reZSmrXE0VRisYQBm/EcrfnMU=;
+	b=1E+wMdB3lgrBKAAsFUCiNz+LL9o2Oox+wYWMxZ51/NsgxycXVN7psxIzjduiS1uWQq4t
+	 fV8+R6GTqVlTfHr1sz3/uGmJdTB+qjEXauHRWJPSPJR0xse/nt1XErJ7P+aWVUChOAO/V
+	 lSYhQVw5q1X6q57+Dgl2Xnyk1RlOjYTYKoQ5a9fsOtzaxlwsPptWyW9WEGJZEbTK14BNx
+	 v9rEkk7JVGB9U7U3ExH7Ytn6d9sAw6Rr3PBV5vozKAt74NVsXMnwxsR8+WF7A0mik3sk6
+	 LaIhDO/c97J5ZCHuPvzn6IOiG/kjdEHcA8SBwA2TrxjpEuJgyauofj77KNPXjsMmNpg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=gmail.com;
 	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=U4ENNpaw;
-	arc=none smtp.remote-ip=209.85.216.52
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=rIR4nyq1;
+	arc=none smtp.remote-ip=209.85.216.41
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A92606A31B
-	for <ntfs@lists.linux.dev>; Mon, 26 Oct 2026 01:56:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 47A92606A31B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B935606A31D
+	for <ntfs@lists.linux.dev>; Mon, 26 Oct 2026 01:56:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 5B935606A31D
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=U4ENNpaw
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3ab60ff4273so2023311a91.0
-        for <ntfs@lists.linux.dev>; Sun, 25 Oct 2026 18:56:18 -0700 (PDT)
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=rIR4nyq1
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-3acb512a7a0so1241884a91.1
+        for <ntfs@lists.linux.dev>; Sun, 25 Oct 2026 18:56:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1792979778; x=1793584578; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1792979793; x=1793584593; darn=lists.linux.dev;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=2zkx3GxJ07XxsBtFlQsE6mExven9HQFX53pHIZRuedQ=;
-        b=U4ENNpawW2uzHxGdtvInWL4D8j5IZOH/2sUG7vp94cJRrv7AEBzAOn9Ricb8VMEV1P
-         qZpwpok0EHXaUeog7iZhw3IVzvsXCuMmOTJM3glHXrclTVH4HEAmtXWzU6uAXw/PTTJR
-         Y0rBl0aXWTLZvumVflC6CLp0z9c7CbY733k3MgZQx+/Ic4XVGk3qG0m9vZoIWeTWGIqR
-         Smh7tWABx8s+W3yZCX7R47frKKpB3aKy/ucVnfRRSZ1jkxpfq/rPdtclKtkMCC24nxzT
-         auah+70wc9urK0bitPF3OeABdTCHHnIUQ3AmLvlK5e4j9GYBhyKmRoLBf6FYB/pbmK6q
-         QQPw==
+        bh=FmarotRNBTJapESQa6reZSmrXE0VRisYQBm/EcrfnMU=;
+        b=rIR4nyq1gfJnVfBjWWaLhiUQaTQF5jBW/+ljp2P0Ir4ruROZXQtJdxLz2Tagpp67HJ
+         S/jUjd34HgBLopekjny47IjzfazVR2/k1Gve//QaEEoHV2YVvbVP6BmpO5cGrayv4RF5
+         gVqlCwBuff+aPujARM9ByiTGmvYA+SfT9UEjbZ5pWs4kBPcf4LfzRadB28Is1f8oFTLf
+         oiIXBCOg6INNfBCOIMEmSvc1OG//L1i5EOFTbJ04CPEAbIk51Cr5R7tTSWJNArzB9BF1
+         Wbmn+2I5T2JxzKRu+4UNyoRDrGGlczwsmALtKVuf58z+bkuvMOGHnqHLakD98DbsMKPV
+         R0mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792979778; x=1793584578;
+        d=1e100.net; s=20260707; t=1792979793; x=1793584593;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=2zkx3GxJ07XxsBtFlQsE6mExven9HQFX53pHIZRuedQ=;
-        b=Hv+UMFweN6n7wTqkVBFvwZT69rVPr/rDc5LlsVCyDmZe9Ae84Ored3/9P3ZTsi0gxN
-         q0NxdL/8Q9TvrhiWwEcvMdRc9BDSvbH0cJTy9xzkehvfKwWfVtnX7vytNgisUT9QKHFy
-         WgtSVyuhbNPwGMjIpMH8PZxYIxxwr+Qgn/yxWdpWXViQleH1MNseuCyIGm4lnssT2NMU
-         VOYcPXobYm1gfqp3sQR6lmkZuaK9wAaFR9HY5WaDtDw1xgJEmx1xYnWwzIyuRUs/xnpb
-         MfmAgA8eGzWWLCFmSzzy7zVf3JEpSvKt3PLTSRkS0loVB5mV0GocWctl806bNu4N5RRU
-         iMGw==
-X-Forwarded-Encrypted: i=1; AKwUvBw8uBDi281GH3RHq9S6bglPTbQg6RS/c/8DffvQ5wXRhi8L4clxpGnJg3UN57tReUjpRTKN@lists.linux.dev
-X-Gm-Message-State: AFq9FYL0PAuwuoQkjwMxrRjN/QSaHYCa7Vds7Z8jWvEA2VuHnfzO+vWb
-	bcRCMZjFV9bMGPG5RdWatDmW1vZJo8PvMX/pmbePunvD8hhWqtrl58T0
-X-Gm-Gg: AYBFou0IUfIXMfNdtrkaYkhauDV2u/Kze9gr74OJDW24lUmxRIlGQZH+OAFOQE29TSQ
-	KAYKdhnKhPTgK3iqi0QcdS0uhMY38SdcgSFBTGka1EpfILGxM4X2v36FkqGfCmstQgIHLBcHLEd
-	Poq1kltV9/uIeL4CRBmqXWoZoeif/mz8GyQtD4/IHYUHDVVvBJu2nStt8SUS2jhhwljQ5XEpZVt
-	+gMeEUNxQWrRJSZq69G6pJQAspb3VUF2ApBGUphcqS5UodMWN1DIYntryl71OZnzcGbBgt0IMy+
-	aY8XMxb/ldDE3SGo/Q33qhmz+E3AlacNHc75KwabKu2xz//LwUHuNo7yfSJ4ZG5LNRbQKzjvQRi
-	9NtP1jcPqnNwpXQeNhitaWYFuSkl429WoROyOkW7cX9DzaWo1Ls8SyEIr966P/N1oU/moIU52Ff
-	iAPuShlFlFqoAoG+bls0olt1kIRaaNBAuD/aFJB5COxjaCZUrdZn6zY6DPQmK/b7EulW578spwE
-	qXhOvqVm/4t//CbIskwJwxGc6H+wdRF2m7CPsCpM6YqO7OPCXCeHRT9L7XwyA==
-X-Received: by 2002:a17:90b:58e8:b0:3ac:3e42:60a2 with SMTP id 98e67ed59e1d1-3adead5ca8emr4626405a91.33.1792979777581;
-        Sun, 25 Oct 2026 18:56:17 -0700 (PDT)
+        bh=FmarotRNBTJapESQa6reZSmrXE0VRisYQBm/EcrfnMU=;
+        b=1nvMH8YG4B5W7JWu23B2FVZ+Y6hU9H8LLIOJXRVjMc2vU2oja3Hutv57TNlj2IZTLc
+         zU6uf6UepFewtt7LSX0f0pK0JJH62OdTHCQKOIgAMNpqIcNG8NNNTHQ3dlR3jqIEuZED
+         cK8AaYkIpcftDdNO+P9UMU0/ONVlsH0ju4OSmFBb11FqTDpP81Abtyjd/Nre2OQCUqpD
+         IEbPlo64ymveWHwAu0MmHlA0Jftvy750Iw2nKyzZtRktHvbHJz08VZTASWoFBGer4gG0
+         PeIN22qgZ30qf0cnGoHX5Gd0B4xz+1Idx9oWpIbxZq3VgKeFezpKrAY6qePifS4x2d4K
+         Rmaw==
+X-Forwarded-Encrypted: i=1; AKwUvByRvXlIjllA4DHatsl4kJjeKBPxeLnOnMQcQg5HEYaiEdOLXW1NEy26teT8wFr86ZeXIW5J@lists.linux.dev
+X-Gm-Message-State: AFq9FYIl2kjTfP5JpQfBiIlb338ej8a5TJv8KOLJcxwwnVBsABQlQm5A
+	74ztjPpTaUAevXkHA2K++mod5mgVDrL9Kk6bqmsb2mqYsMkjzInY0+F/
+X-Gm-Gg: AYBFou2bh5cG8eyYIX74EcumXZnHZ29VqPToztAEvY/n5FwgCehnTaHHWhRjnq+XBTk
+	PlOELlDzBHnfiXVDcDO9aCoUl/0bf0xSyBdJF1G+CjMfJUj/RsNzYy+f+KikR6NcHcVayK2OI8j
+	juwQBK64AffFlLl3mVe7xhyn1CCwPQkEUKJCHyUawq1RprFhL65UJlUXxolEtIzqT8/r2FZ/IVQ
+	mDPqDyG+CK22hKRWcp2UO7UsscX84x9ALPAiEj2tr2E0n1N/x8m1iELkxivXY+RqxB5jk9r2yFW
+	uvAZUdsCbfcae1D015zRVb9aeK3xL+rgTezlm66oYnH+gKWki3WGQgb47IyuUDr5LQ5l7OktVjG
+	7KkHLPjtcm+pLTjHc3EA/xEuInYGPu74eEUio55QhVvVy4mUV4KCT29GDWxGdaniKr/irIgcPug
+	bASk+Wu76jyG3MAD/w8V3MRzduUNxGqccWDApKS3/v9WYqWbPYs1Ag7N39B+sN5sVr1EAp0poWn
+	M0aJ8X+WRcvoKtVQxxwZgpthhqro2tuJQWf31QDD4VDQdPctcmFyagSvBQetA==
+X-Received: by 2002:a17:90b:3a48:b0:3ad:6ec8:35cf with SMTP id 98e67ed59e1d1-3adeae70722mr4713682a91.51.1792979793060;
+        Sun, 25 Oct 2026 18:56:33 -0700 (PDT)
 Received: from hyunchul-PC02.lge.net ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3adeb8240b5sm5115612a91.0.2026.10.25.18.56.14
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3adeb8240b5sm5115612a91.0.2026.10.25.18.56.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Oct 2026 18:56:16 -0700 (PDT)
+        Sun, 25 Oct 2026 18:56:32 -0700 (PDT)
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: stable@vger.kernel.org
 Cc: gregkh@linuxfoundation.org,
@@ -85,12 +85,13 @@ Cc: gregkh@linuxfoundation.org,
 	liubaolin@kylinos.cn,
 	zenghongling@kylinos.cn,
 	ntfs@lists.linux.dev
-Subject: [PATCH 7.2.y 1/2] ntfs: fix race between fallocate and mmap reads
-Date: Mon, 26 Oct 2026 10:55:32 +0900
-Message-ID: <20261026015533.1124816-1-hyc.lee@gmail.com>
+Subject: [PATCH 7.2.y 2/2] ntfs: take invalidate_lock in ntfs_filemap_page_mkwrite()
+Date: Mon, 26 Oct 2026 10:55:33 +0900
+Message-ID: <20261026015533.1124816-2-hyc.lee@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <2026102240-impending-elusive-74a7@gregkh>
+In-Reply-To: <20261026015533.1124816-1-hyc.lee@gmail.com>
 References: <2026102240-impending-elusive-74a7@gregkh>
+ <20261026015533.1124816-1-hyc.lee@gmail.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -102,79 +103,82 @@ Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-[ Upstream commit 67aded1da114dc44808315f249bd9e7e440f799d ]
+[ Upstream commit 0fecc393f2060e6bc25138df32cb923ec7071c6b ]
 
-The fallocate implementation only takes invalidate_lock for punch hole,
-collapse range, and insert range operations. For standard allocation modes
-(mode == 0, FALLOC_FL_KEEP_SIZE), the lock is not held.
+ntfs_filemap_page_mkwrite() calls iomap_page_mkwrite() without holding
+mapping->invalidate_lock, so a concurrent truncate or fallocate can be in
+the middle of invalidating pagecache and rewriting the runlist while the write
+fault maps blocks and dirties the folio. This races with ntfs_attr_fallocate(),
+which merges clusters into the in-memory runlist, drops the runlist lock, and
+only afterwards zeroes the newly allocated clusters on disk; and with the
+punch-hole/insert/collapse paths that free clusters after truncating the cache.
 
-During ntfs_attr_fallocate(), new clusters are mapped to the runlist via
-ntfs_attr_map_cluster() before being zeroed by ntfs_dio_zero_range(). This
-creates a window where concurrent mmap page faults can read uninitialized
-disk data.
+Per Documentation/filesystems/locking.rst, ->page_mkwrite() must ensure there
+are no truncate/invalidate races, "usually mapping->invalidate_lock is suitable
+for proper serialization". xfs takes its mmaplock (= the invalidate_lock
+rwsem) shared in exactly this path.
 
-Since mmap uses filemap_fault() which takes invalidate_lock in shared mode,
-it can fault in pages during this window and expose old disk contents to
-userspace. This is an information leak and data integrity issue.
+Take invalidate_lock shared around iomap_page_mkwrite(). The read-only fault
+path is already covered because filemap_fault() itself grabs invalidate_lock
+shared on instantiation/read paths; only page_mkwrite was bypassing it in this
+driver.
 
-Fix by taking invalidate_lock for all fallocate operations, not just for
-punch/collapse/insert modes. This prevents concurrent page faults from
-accessing unzeroed clusters during the allocation window.
-
-Fixes: 495e90fa3348 ("ntfs: update attrib operations")
+Fixes: 9c87959601e8 ("ntfs: update file operations")
 Cc: stable@vger.kernel.org
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+Co-developed-by: Namjae Jeon <linkinjeon@kernel.org>
 Signed-off-by: Namjae Jeon <linkinjeon@kernel.org>
-Stable-dep-of: 0fecc393f206 ("ntfs: take invalidate_lock in ntfs_filemap_page_mkwrite")
 Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 ---
- fs/ntfs/file.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+ fs/ntfs/file.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
 
 diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index fb8e52574397..317bb249150f 100644
+index 317bb249150f..8515560e2a4b 100644
 --- a/fs/ntfs/file.c
 +++ b/fs/ntfs/file.c
-@@ -1061,7 +1061,6 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
- 	struct ntfs_volume *vol = ni->vol;
- 	int err = 0;
- 	loff_t old_size;
--	bool map_locked = false;
+@@ -620,12 +620,20 @@ static ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ static vm_fault_t ntfs_filemap_page_mkwrite(struct vm_fault *vmf)
+ {
+ 	struct inode *inode = file_inode(vmf->vma->vm_file);
++	struct address_space *mapping = inode->i_mapping;
+ 	vm_fault_t ret;
  
- 	if (mode & ~(NTFS_FALLOC_FL_SUPPORTED))
- 		return -EOPNOTSUPP;
-@@ -1090,16 +1089,12 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
+ 	sb_start_pagefault(inode->i_sb);
+ 	file_update_time(vmf->vma->vm_file);
  
- 	inode_lock(vi);
- 	if (NInoCompressed(ni) || NInoEncrypted(ni)) {
--		err = -EOPNOTSUPP;
--		goto out;
-+		inode_unlock(vi);
-+		return -EOPNOTSUPP;
- 	}
- 
- 	inode_dio_wait(vi);
--	if (mode & (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_COLLAPSE_RANGE |
--		    FALLOC_FL_INSERT_RANGE)) {
--		filemap_invalidate_lock(vi->i_mapping);
--		map_locked = true;
--	}
-+	filemap_invalidate_lock(vi->i_mapping);
- 
- 	switch (mode & FALLOC_FL_MODE_MASK) {
- 	case FALLOC_FL_ALLOCATE_RANGE:
-@@ -1124,8 +1119,7 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
++	/*
++	 * Serialize against truncate/fallocate which hold the lock
++	 * exclusively while invalidating pagecache and changing extents.
++	 */
++	filemap_invalidate_lock_shared(mapping);
+ 	ret = iomap_page_mkwrite(vmf, &ntfs_page_mkwrite_iomap_ops, NULL);
++	filemap_invalidate_unlock_shared(mapping);
++
+ 	sb_end_pagefault(inode->i_sb);
+ 	return ret;
+ }
+@@ -1119,13 +1127,13 @@ static long ntfs_fallocate(struct file *file, int mode, loff_t offset, loff_t le
  
  	err = file_modified(file);
  out:
--	if (map_locked)
--		filemap_invalidate_unlock(vi->i_mapping);
-+	filemap_invalidate_unlock(vi->i_mapping);
++	if (!err && mode == 0 && NInoNonResident(ni) &&
++	    offset > old_size) {
++		truncate_pagecache(vi, old_size);
++		pagecache_isize_extended(vi, old_size, offset);
++	}
+ 	filemap_invalidate_unlock(vi->i_mapping);
  	if (!err) {
- 		if (mode == 0 && NInoNonResident(ni) &&
- 		    offset > old_size) {
+-		if (mode == 0 && NInoNonResident(ni) &&
+-		    offset > old_size) {
+-			truncate_pagecache(vi, old_size);
+-			pagecache_isize_extended(vi, old_size, offset);
+-		}
+ 		NInoSetFileNameDirty(ni);
+ 		inode_set_mtime_to_ts(vi, inode_set_ctime_current(vi));
+ 		mark_inode_dirty(vi);
 -- 
 2.43.0
 
