@@ -1,90 +1,72 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=74.125.82.48
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=199.89.1.14
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1792997014;
-	b=HC0ZZjfjcdhqgLc4IYi66pJ4OVOyHqlNOeVtOfy76LqVO1OM6E5v+yjzhrS4IM1jXDKb
-	 rzzWQDST995CVb0wGC2PWSYw527w+y2cD8OCjtJhWlmTE/0V2nb2jKxZembwYX01Vae9s
-	 XMtenA/RLPxsE0wgKhagOySyyQHCe1YbM65MepYNKnk90L7tvVTpJGNZlMfrmHSwebS4O
-	 gKa8G3sL3gj5IG/P+maF4NGKNfLEObCnb99ox2VYcqGb1sGJqhKzhsLSU3A9xScAMA4fK
-	 sHdCYaFzYumfL1ttPti8WV4nR5VK7Fu4zeogSbBi80rJwV3Gx+hzwxYoMJ80sqzXCoQ==
+	t=1793043793;
+	b=1QBXoGTCMv+2T43eU04JCX8v3CIujI/AEfXGI8mif8s5+pU1qS+ktqGykYuFSek2//0u
+	 urdNcq5Mj4/fNN6oSgDuxGpIql6JZuAzi2EpCW3sUWdCVOIi+i9tNLGyfxcjYnXfHkJeH
+	 s76wSSGJhNC8/2gOzgzYY/voAv1bgnGRPnLlCBClS5khkC4YgzyyS4vNq88plWQcrK98j
+	 Yn+PltVo0kUsxWnf74BPrvK8LwEZc5SusT9OwT32367jKYmqFQy2ME03BVxGmmV9lAy98
+	 2AsjMuesBpqNdxX7fAWqYQv/eosQFzpLNF6aRcJK8fUvOQLc54rsW/zjkI5e0r/NAhQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1792997014;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Gm-Gg:X-Received:Received:Date:From:To:Cc:
-	 Subject:Message-ID:References:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:In-Reply-To;
-	bh=xo0KEBYb5YdsP4eUeGdF8z45pvPxvhbxS4t170D8WZg=;
-	b=kTv7vOh6T7vfDW34isWP7Nu+xEcD+BCfA0PbhggUO8R2l9iNSeBj7BY5eUJm3e+c6zdf
-	 dgjukIbTOC9x7ueaDjHJb5K69NPoTTUvbYBwSAvqdW8aKzHpaw+wUlkvD4d559afAOfNs
-	 zVsmBKewDErEV/bEmEA3qmBAOCwcJNOEQzkYvBBP0+xFGxAP2YWwiAn1l+ijSlvytAUq6
-	 LMdMQxeOmc2wuhi4dqq4vBgTlx967umxKBCza1dOllFXX3Yka5zB4woHL33IKOXYnGNgW
-	 PebgUyFviKxnlnSel7sWczMsEUutcPl0i7hyMqXjV40dRrZOFBoDIEMm63Z5ypjsxpw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793043793;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Virus-Scanned:Received:
+	 Received:From:To:Cc:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding;
+	bh=kBMCb7RcCV+8caCyuLc3yIo5s/GTy2aYFC3sl8QUZ0Y=;
+	b=MI4vr2zR2OagjRMlXvKHg/bFbKFFjIDXRo0iHnHd1OhOtcGsSoDUmEczCbzpWfy6kLZB
+	 dgEEUJBr/uAMNPHB9SzfTGtMkW/zrXUHuzYrPTddHvSOUyp/s7Sr+ZxaK+JjjuHVSnUCz
+	 h2WsFs64768e2H/rqvMg6G9afMV0KUAF9wRtGJG3hWvmDwLApQ6Hs/8c/4Staqr6swnpe
+	 Waq4zNthw/lMLDb4kDaixdkGkyU4u3PS3rAZOX5DPEb6dTWIVkoCGcHvJ4TbQa/RK38tf
+	 oWK70TiR1vphiD8QdG7xtbSH6EHWUhrZQZy7ftBA7m8x3wvSD4YkjUHdfJkp+jmCTDw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=Ew0FmS7N;
-	arc=none smtp.remote-ip=74.125.82.48
-Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=pass header.from=acm.org;
+	spf=pass smtp.mailfrom=acm.org;
+	dkim=pass header.d=acm.org header.i=@acm.org header.a=rsa-sha256 header.s=mr01 header.b=NNyeMdLn;
+	arc=none smtp.remote-ip=199.89.1.14
+Received: from 011.lax.mailroute.net (011.lax.mailroute.net [199.89.1.14])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5FD606A31A
-	for <ntfs@lists.linux.dev>; Mon, 26 Oct 2026 06:43:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 8F5FD606A31A
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9EE9606A31A
+	for <ntfs@lists.linux.dev>; Mon, 26 Oct 2026 19:43:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org A9EE9606A31A
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=Ew0FmS7N
-Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-15ea896ddc8so4536868c88.0
-        for <ntfs@lists.linux.dev>; Sun, 25 Oct 2026 23:43:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1792997012; x=1793601812; darn=lists.linux.dev;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=xo0KEBYb5YdsP4eUeGdF8z45pvPxvhbxS4t170D8WZg=;
-        b=Ew0FmS7N9KAvLTNS3TG7JcC4iA2eXLjiLxdM+zv/OOFIpPAKntnhzyh1CMTLY50s/O
-         RHgzJBMmShIMUSYJQ9Kjow0Bsp3RrltQ4W+H6b7sBqoXxEHX954L/qRxMvIqmITQApv5
-         mFuF4BdbPua8mR851FeMVx5ORy0dznAojQG/go24d0P/R79z5SyZgCGJq3KWEcgCB2lT
-         oeAn9QcG2PdXd28Qr17+mCgcywjFpK9cu/ZtUTnGEBOoRUu0NMnswm1Wqm80agK5tDl2
-         btcLskn/mhPdTV/Ya5o0YbQHI5dH1riVaiMg+qszL5dLABWiYR3C7Njbw72jVlv2eAIn
-         Q3bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792997012; x=1793601812;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=xo0KEBYb5YdsP4eUeGdF8z45pvPxvhbxS4t170D8WZg=;
-        b=gabNhEPGGsv+W9epvbJsEK8Hv4M8Y2QZxHA1QpijnJb4NTGHTSRKmx6QN42tkFRnrb
-         lSPtJMfyGpjDb+GmI0qS6gVB0T73102RTtcpnqaUhtNMaIC3A8lqUXcQwWJvDciJfiMh
-         H7az9Po6CpJAbmhSyPEXbTLVYWouQJsMPRc5D+fvqVjFo7fjQvuXXJDQL82rmO4UEmC0
-         R+IntHHznVFxqxB94Fg6rPsCcfC+PHCSTPHat6jXnZlYh15RXSvKms9ylFwzsnhwZR+D
-         TGlDDsVZ6QT4790ZmEvgrH/dXSnRD98Urd8Om5HGd2Jns8HJmiXLRWTgvWYQ1EwJyY8s
-         Wxig==
-X-Gm-Message-State: AFq9FYK5cW/wsddXLnESrDlCZr5EgeoQQemEaF9/V5N6BzWwArDDsxQ3
-	Skr9fuZrH1Lj4Kgitug3BzZXFT+STb2xDBQPhZivMcLcx/1sGXLwlXWu
-X-Gm-Gg: AYBFou2sVnR9wNcJn6+MgtJ7E/ZdokFRIPKFytC8GS/egvq+jDMUOjvtarRrjIGlvKn
-	lH/UEvUV2qlGAoCKQrL/8GfFRUALba21AFBCfozeJYz6PwVo8QjcfDRaYQbd+LHAHooHaF1EQuF
-	PWQzP4wAEmhaG2KVDgk4p9ZwRiu5gOM+L1Ep6B8HIIODrzdIzm1w3cPiiy9nR99ljixRKLGDjek
-	luEKOQB+w2UGYtSF+pt26xzoihomV0HWZRYceZgjJ2qxoVA38runpgefHvi3TZ44AtC2G3Tg4qi
-	Rw2Syf4DAGVOZvKTUrfTi5KadNUl1mbfz7GwWdg853x4zs/lI3G26dZj+HP3uob7IDBQ8JFBkYa
-	v97X39lffcFCC9/BBLAurb8aQiBehuKBFC9KhahETTiwo2mSf3DGRm8jRTJ1xbZUTjalmCFBRNu
-	5IqM1cv8VeXudYc8gJSc+f5PWsyJLBk7L33YaXO09pqSIAQny1s/BxsNp/jn8koRnf6aSbdFu7v
-	0/I3MmZKUFCScDzmUekQ4PHEgWxBWfnj9W+K1ld1TtGvQ==
-X-Received: by 2002:a05:701b:4243:20b0:143:2967:c0b1 with SMTP id a92af1059eb24-19935437c06mr9363564c88.25.1792997012017;
-        Sun, 25 Oct 2026 23:43:32 -0700 (PDT)
-Received: from localhost ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-369e8db7e73sm22893602eec.20.2026.10.25.23.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Oct 2026 23:43:31 -0700 (PDT)
-Date: Mon, 26 Oct 2026 15:43:28 +0900
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Jaidan Brashier <jobrashier@gmail.com>
-Cc: ntfs@lists.linux.dev, linkinjeon@kernel.org
-Subject: Re: ntfs: EIO/stale-reference errors on several volumes and on-disk
- corruption after switching from ntfs3 (Fedora 44 7.2.x)
-Message-ID: <at72kIgNxnK9p1tq@hyunchul-PC02>
-References: <CAPLZLeaXKkev=_EwAb679RaZ-Lcb_XQO1FsAw6RyT=M56rP7zw@mail.gmail.com>
+	dkim=pass (2048-bit key, unprotected) header.d=acm.org header.i=@acm.org header.a=rsa-sha256 header.s=mr01 header.b=NNyeMdLn
+Received: from localhost (localhost [127.0.0.1])
+	by 011.lax.mailroute.net (Postfix) with ESMTP id 4jD3vN0wtBz1XM30g;
+	Mon, 26 Oct 2026 19:43:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
+	content-transfer-encoding:mime-version:x-mailer:message-id:date
+	:date:subject:subject:from:from:received:received; s=mr01; t=
+	1793043789; x=1795635790; bh=kBMCb7RcCV+8caCyuLc3yIo5s/GTy2aYFC3
+	sl8QUZ0Y=; b=NNyeMdLnprhX4NKEJ28lxYFvdlbPHY8vcUiiJmgmFHKL/oNh6fu
+	5/RP7a7dl83Gwhw+HLx8b/9nlcmjs0EakdGe9gd6a+wY0ewY9FgTlPzC6y7t1MIi
+	KNKAE+H360EEit7xFWUYwhzlVF1T/3M5OjAasSOpJhAc4Rh/FWAWVj5Jhugdi9Bt
+	zXFlKTg8FFlFDc0jm0177/lOQGpWhT83hx8ViAE6iEQH9CJMlzMmjBNeMih/Ttbj
+	q0bWAhXlU6evf3P+DoL2cCOgpb06rr9BAoKqEOMKA4vQBib0R4DCVyLJSeiPpuSl
+	2PGivRBBltMmM+BswYWBj6pBrxecHgu2DOg==
+X-Virus-Scanned: by MailRoute
+Received: from 011.lax.mailroute.net ([127.0.0.1])
+ by localhost (011.lax [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
+ id fWQ-iVHGBq7Q; Mon, 26 Oct 2026 19:43:09 +0000 (UTC)
+Received: from bvanassche.c.googlers.com.com (57.237.82.34.bc.googleusercontent.com [34.82.237.57])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bvanassche@acm.org)
+	by 011.lax.mailroute.net (Postfix) with ESMTPSA id 4jD3vK0BVWz1XM4Tl;
+	Mon, 26 Oct 2026 19:43:08 +0000 (UTC)
+From: Bart Van Assche <bvanassche@acm.org>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Bart Van Assche <bvanassche@acm.org>
+Subject: [PATCH] ntfs: Fix error handling in __ntfs_create()
+Date: Mon, 26 Oct 2026 12:43:00 -0700
+Message-ID: <7c0b17f73a031ae5564825ab94909f77eb2387d9.1793043780.git.bvanassche@acm.org>
+X-Mailer: git-send-email 2.56.0.307.g5fe7bd680c-goog
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -94,97 +76,36 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPLZLeaXKkev=_EwAb679RaZ-Lcb_XQO1FsAw6RyT=M56rP7zw@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Jaidan,
+In __ntfs_create(), if ntfs_init_acl() fails before
+ntfs_mft_record_alloc() is called, jumping to err_out frees MFT record
+0 ($MFT), unmaps an unmapped record and unlocks the unheld
+&dir_ni->mrec_lock and &ni->mrec_lock mutexes. Call iput(vi) and
+return ERR_PTR(err) directly instead, matching the
+ntfs_mft_record_alloc() failure path right below it.
 
-On Sat, Oct 24, 2026 at 03:18:21PM -0700, Jaidan Brashier wrote:
-> Hello.
-> Recently on Oct 2, i swapped from ntfs3 to ntfs, and since then I’ve
-> seen recurring EIO/stale-reference errors on four NTFS volumes, a
-> hardlink creation error, and one case of on-disk corruption (repaired
-> by Windows chkdsk) on Oct 23. Logs attached.
-> 
-> Environment
->   OS: Fedora 44 KDE Plasma 6.7. Incidents spanned several boots
-> ranging versions 7.2.8-200.fc44.x86_64 to 7.2.11-200.fc44.x86_64
->   Mount (all 4 drives):    rw,noatime,uid=1000,gid=1000,umask=00,iocharset=utf8,
->             case_sensitive,errors=continue,mft_zone_multiplier=1,
->             windows_names,native_symlink=raw,symlink=wsl
->   Devices:   corruption occurred on a SATA HDD, sdc2, NTFS 3.1, 4k clusters.
->   3 other NTFS drives are present (2 SATA SSDs and another SATA HDD).
->   smartctl and Windows chkdsk /r report no bad sectors on any drive.
-> 
-> Fast Startup has been disabled for months. No volume was ever flagged
-> dirty. Unclean shutdowns occurred on these volumes before the switch;
-> none that I know of since.
-> 
-> Workload
->   Previous issues: General desktop use; I don't know precisely what
-> activities preceded previous errors
->   Most recent issue: Steam Linux Runtime 4.0 update (heavy I/O
-> traffic, lots of temp files, symlinks and hardlinks)
-> 
-> Twice prior, i noted a seemingly random file on my system was refusing
-> to be read, returning an I/O error.
-> Both of those times, I fixed the issue by running `sync && echo 3 |
-> sudo tee /proc/sys/vm/drop_caches`, unmounting the drive, and
-> remounting, in some order (unsure). The underlying files were pristine
-> both times, i therefore suspect the issue was only a stale reference
-> in the cache.
-> 
-> Yesterday (Oct 23) i encountered a much more pronounced error i
-> believe to be of the same kind as, or otherwise some how related to,
-> the previous ones.
-> The Steam client errored while updating its Linux Runtime 4.0 package.
-> After some digging, i found similar EIO messages, and expecting an
-> error of the same kind, i tried unmounting/remounting and clearing
-> drop_caches a few times.
-> Realizing that did not fix the problem this time, I shutdown my
-> machine in preparation to boot up my secondary Windows install to run
-> chkdsk. Shutdown hung for ~10 minutes (normally ~10 seconds), likely
-> on the NTFS volume.
-> 
-> Booting into windows, I ran `chkdsk /f /r /x` on the relevant drive.
-> chkdsk cleaned up the following errors, and more:
->   - ~350 index entries deleted from $R of file 0x1A ($Extend\$Reparse)
->   - Many $I30 entries deleted that pointed at nonexistent records,
->     including runtime library names and Steam appmanifest/appworkshop files
->   - "Recovering orphaned file appworkshop_32470.acf.async217386.tmp
->     (and two more .tmp names) into directory 2B582".
->   - Several libraries (libcurl, libcrypto, libSDL3) recovered into two
->     directories each. Expected hardlinks
->   - Free space marked as allocated in the volume and MFT bitmaps
->   - No bad sectors, cross-links, or security descriptor errors
-> 
-> After this process completed, i ran `chkdsk /f` on all my other
-> drives, which cleaned up some small errors but nothing major.
-> 
-> Attached are 3 logs, of every ntfs error my system has logged since
-> Oct 2, the shutdown hang, and all the times i cleared drop_caches,
-> respectively. You may note that errors ocurred several more times than
-> i noticed and attempted to fix them.
-> 
-> I made a few amateur attempts to recreate the issue, hypothesizing
-> that it might relate to moving and renaming, temp files, symlinks,
-> hardlinks, and possibly full MFT tables, but i was never able to.
-> 
-> If necessary, i can supply the full chkdsk output too, and i'd be
-> happy to test a theoretical patch or supply further debug info.
-> 
-> I wasn't sure who to address, so I addressed all three.
+Fixes: af0db57d4293 ("ntfs: update inode operations")
+Signed-off-by: Bart Van Assche <bvanassche@acm.org>
+---
+ fs/ntfs/namei.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Are you running a service that periodically issues FITRIM, such as
-fstrim.timer? A patch fixing an incorrect FITRIM dicard range was
-released[1], but it is not included in your kernel version. Some of
-the corruption patterns appear consistent with this bug. 
-
-Could you check whether FITRIM ran before the corruption occurred?
-
-[1]: https://lore.kernel.org/stable/20261023163719.159193934@linuxfoundation.org/
--- 
-Thanks,
-Hyunchul
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index 62b01646c262..b46fe44b63b5 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -472,8 +472,10 @@ static struct ntfs_inode *__ntfs_create(const struct=
+ mnt_idmap *idmap, struct in
+ #ifdef CONFIG_NTFS_FS_POSIX_ACL
+ 	if (!S_ISLNK(mode) && (sb->s_flags & SB_POSIXACL)) {
+ 		err =3D ntfs_init_acl(idmap, vi, dir);
+-		if (err)
+-			goto err_out;
++		if (err) {
++			iput(vi);
++			return ERR_PTR(err);
++		}
+ 	} else
+ #endif
+ 	{
