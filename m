@@ -1,94 +1,94 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.216.49
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793080024;
-	b=y5Stx9J7vmI4hnxna/L8bCPfK3BvgkIA2EXQCdLzt/Wz2jYtW+C7Z7PTie9FWhR8umrO
-	 H3Gg+6IcRNW3ZCYXwdaOg8N9m1jngboargPR3bbEf0BN9z9YzV4i9yYuo9NpPyGwFAB34
-	 yP0Mnr1WTMYDTPE1s4RLd1J8pene3t5Spm5i1CnPuDIlM4zabhzLwwcC/UeVJFPrf6OzF
-	 nBB3vn7xnifXgy3mciYPt4762nkI4mN/6FmZcOegNOlBb+aU0JGih+JQ7A8uVnq4KUsYX
-	 vobIeVONcw5RHigDsL042wwKZBdYqjYg7y5bWX3DRqWiCONfn/4HjxAEA5o5kIJ9UbA==
+	t=1793080112;
+	b=Hpv+ydOLsXeU1VOAeiKCML5y+gkVxLozT6XRVOwQSC5Z7mTnto7ipH4oKcfRQQuGGBiZ
+	 p9V38uR+Ny/xTAHI0xfazIh4I+c4DQyw7GIy8AFE/wlb26ykhViGG00MJQvLfLns6nO0L
+	 0af8BPn+jb21/EJlNMsfuYgPnq2F0lwQoPoAMSecjSVNhofy5+rsmqOjltowrdiECMTjC
+	 snTfYQd1agKayseWezna88a05k+vOq3/9Hok8fNX39BgoPpyK7rN8qRphAcwv4pqhRGVm
+	 JETVCAojOjwyYP/VS4E4DDGf9iZKqD3fWjAphUYwaxZdxK8q+J5ftMcqZkw4NqP2pXg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793080024;
+	a=rsa-sha256; c=relaxed/relaxed; t=1793080112;
 	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
 	 Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
 	 Content-Type:Content-Disposition:In-Reply-To;
-	bh=AdM+3NvU13EIF1s02O4+z9d0vDNB4xMv1AhgPFsDih8=;
-	b=V8tZhrf/6lwhHJ8rMAOCtqNlqTEbW4ff5eT99eVTH9jcdSgGPBivNPLuzHLHifPViCuA
-	 U/7u+QiCY+LsoQTnuWdQggB1XvkV5Z+smtYN9PfVRa3lrrnDwC8cYPf2VYx5fmLiqmXPE
-	 PFUk1y+1EwAFfD3ME3BLLBhWI+8Vs6ObuU8Fv98ZcQE1dX9oVLmCMl5hpgTwo7UB834aB
-	 s3bQlYzn2kf6QnmB21ysLVT1Ku/L6ZBw6pYhtyu3Om4JXS1IkTAWJLeVeJYhVXBm48HjQ
-	 Z8V0VhuUGdyxx8lqeRJdiC0qkkbZtf/h1mR1KB2Y+f8gByf9ekvoXgahiQwwpAHn+Fw==
+	bh=3HZ4Fm4AG3rsN53yKwwnj0LhzGAfQLgw5WMO8Bj1+J4=;
+	b=ydnJ1wlc4sMnoo0JsZSkEVCBVFKw4xpFFHLV3Gp3g3x1CRdPe0/PJ1LMI/s8qb/iKAk7
+	 CzG3Q1PSqeTjGkjM7GYvGOQySRbK+LYLjU+NbwRiq0KbJrmTCiSiJaIqz2TWfaOmezyqe
+	 ABXTW5f9TSSZWD0/cVwVelFKgPLp/qhDmhVuS+h5nrQqhAy4CFYQG3Ggxckg74WCy8HMp
+	 wjzM7pRjmHS1vzi/4OstFPS4rbOCWo1TYTex+e6O4a9rmDq6kO7joNjlAG43rgE8Slenq
+	 87qWunkki1Ae3rjfGbzVeZ+dZRR6FZpquVtFSC4JGlBYNseteZ6zK7wuaD5JweT0I1A==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=gmail.com;
 	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b="JrpRJdQ/";
-	arc=none smtp.remote-ip=209.85.214.169
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=PYnV3+FS;
+	arc=none smtp.remote-ip=209.85.216.49
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70836606A31D
-	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 05:47:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 70836606A31D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D35606A31A
+	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 05:48:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 35D35606A31A
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=JrpRJdQ/
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2e977109392so21834415ad.0
-        for <ntfs@lists.linux.dev>; Mon, 26 Oct 2026 22:47:04 -0700 (PDT)
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=PYnV3+FS
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-3adac5c10e3so1944806a91.0
+        for <ntfs@lists.linux.dev>; Mon, 26 Oct 2026 22:48:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1793080024; x=1793684824; darn=lists.linux.dev;
+        d=gmail.com; s=20251104; t=1793080112; x=1793684912; darn=lists.linux.dev;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=AdM+3NvU13EIF1s02O4+z9d0vDNB4xMv1AhgPFsDih8=;
-        b=JrpRJdQ/llcJ6nfNVr07G18AjFlfFmVIzWJZatLgHB/Kf08cBQx5MrRsCrNelWu7AB
-         s+bGcMC2Uc+3U+J7rpx4WWI/B2hSteQlqdcSFpPC/TOXy/i1jb6IFFVtBvtMbnXnP4Z0
-         jduysY7EF30nInC2xgUL1QLpXZEcxXVQrKuEm0nbGJX1pdrDGg/Uq9fCuSRgr/2PhLY4
-         oBNKQLHcaUMhu9cadgwvr1rN2o1HBb3nlz/gxBfwY5k3PFjCYzjzBnNZSm/LqmgyWu22
-         ALaYLgMj1NNGbUqIIVFeLvpe/EtlkxEN/IrDL/x9QvPPilCi4SfNqorTh9x0DkRrKfHr
-         4W+Q==
+        bh=3HZ4Fm4AG3rsN53yKwwnj0LhzGAfQLgw5WMO8Bj1+J4=;
+        b=PYnV3+FSCNOc393rOLuw7zJqkrGn64VMNV3/8jyzc2JVcoPjd4iFHgZZmok5qqU85d
+         xoj5yIqG4Vu1b5/22birPq0dX+8Mf+zOqeit8vwYcad8+pahlLJ+PtEmbgLoY0UARSdH
+         +WQdA41Cs0kQYfv7vTMXP/Xx4wNO/kPVOb9zBhNGrsNMGKdv9CCpP3I6QFiDho12xJfm
+         vxpnDBAW1sPdHsU3HUEMw/yKKTI3r9darxopSeuJp+4mWc9toXIRlVAeg6tWl/CKPX2f
+         HKI6wfycHNtjIQ4glRDZ3sP/ocpRTlOL70+n6yXRfLvo6HdcQ5TAvA2ciWLnIRH8KtXK
+         iudA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793080024; x=1793684824;
+        d=1e100.net; s=20260707; t=1793080112; x=1793684912;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=AdM+3NvU13EIF1s02O4+z9d0vDNB4xMv1AhgPFsDih8=;
-        b=mxE/0FRfGLvWciNt8bLXyNgTntw88knKg4L+eWBhELA1n62QbId86Z3x/OKUTo1gWj
-         4QzNBi3pVpbohCNMr6zjznUfeb9pBYFGvioSR6g7G80togo9oyFwQiTMcOc3YyDJKxoX
-         oOB5v+j5VV70Nd32Z8j0p11dcwW9scYy3iaYXoJDFfIYysTolPHhYwdxgnCeciJmcVHZ
-         0e36AJ00dfoApmaWHw0HDSfMJozXQPWoOUtKzXXNhGuRbfZM1d87zuxmTlzvMW+Yv+vp
-         UCpbta7tLPPjdAYheyrdkT0qNx8o3+0vH1SJCO5bJwW4qMwtsHV7yqQ+dW098Fmmsgw3
-         clLw==
-X-Forwarded-Encrypted: i=1; AKwUvByYYDnoug92UM04vLdKVL9mGOpLfH3hozk7rUNZyzaPl4FtCRVh6BMRDGuDkIJMQnKdOJpy@lists.linux.dev
-X-Gm-Message-State: AFq9FYLUzFg9hx4Kw5LKq6TRdSYAqBgjv7ReJjMfTSBNgAZ7lR2eNHmy
-	V404h5tTu3eWKh61sxgnzNi+tVhq2guNA7u+lj3XrOH1/3H7eND/r5Sm
-X-Gm-Gg: AYBFou2qDfqNcmewMfST4HuXw7ZKKm9XlGW9o1vgWrAE9L8FYUpNCQpJUFVty14TQpF
-	LJ2oQb2GTYzTxbybVowp3f3Edc0S6NbLByPT8GnVg8P1JQkL8NzcXcVHV/Jk5bJhVx+vIux2hCV
-	HGTW4Yr+nyvSrZ/aMRi3vRufwpAnsJ1vC6oN1vHhspaCgJeoc+nSuebTt1/RnNaGa2HdXuJrXVo
-	FlhWpA4SqJvurADc/rv+/ZgVU3r3FAM1Av1TVvLMkiY8FRU81dhWEkU173nYfiYa4SHuwwXc9PA
-	l59D0eWnq8Lebpz2QXxfWPEs96ZqMlsQ870d7GomGFp5X3HLvzbLKzoR9VvUVdJC9XwyqZ1jVb7
-	eXnQA86NFbelSp9VSqV8vtWymHrd+jJfHwN2GZxfbjBoepyZh7WjHnNaeUCjZciEjGCDomwbDVJ
-	/sy++nFXXzTNgEOmqRM3SgbgBK7liuq3eOh5CFo154hl0k0DtM2U+vKJyJQnMzIsCk8H0bk+1dP
-	agafTYOMDNEkJLSxwWG0acMdAB0x/fQBJuT2l0kM+Lcfos=
-X-Received: by 2002:a17:903:3d07:b0:2e5:38bf:cb43 with SMTP id d9443c01a7336-2ea9c03ed08mr77511605ad.2.1793080023467;
-        Mon, 26 Oct 2026 22:47:03 -0700 (PDT)
+        bh=3HZ4Fm4AG3rsN53yKwwnj0LhzGAfQLgw5WMO8Bj1+J4=;
+        b=fP0nei9Ic6g1ERFo8iV/SPg6PaPsEUKNfbvEB3hBdi8ef/uT3fiw8IwaEDE04rfbmO
+         N0HgUdWuklU2jZ8C868HPB8ePS6pGSIXT5XYf8Kj64GFBmHiwYzU4/xCps9xl4wSpAMq
+         gsAHFJIQfWOfJdQVnlRcyHKV63IbyqJ3T8GYlHtJ+UER8iOEL3edgVCowGH4kZOByv1y
+         p41HKioQtEIzYCrXLGXO5lNOD+b2M2Kz2uR8tVwvqRoGjdVpIyr7fMY3WWQIG9ARUwyJ
+         yIiLEMoICk4s/be0JOHa74tTFbgcET99Wgw8CfiGduwBYXJ2ks/yTDkWEGeoejBfzwnI
+         z4Kg==
+X-Forwarded-Encrypted: i=1; AKwUvBy+7ER/328Jp21wWtyNlPo77dQX3qZO8sCbm8R5Y4GrsxLOSK0rGvj9GN0GsRIZno26CkaH@lists.linux.dev
+X-Gm-Message-State: AFq9FYK9fo25U/gUOyv3ZrRcCrE8YP8W9EP4hb9zU/9mPcL4nmS294p9
+	u/2Y5wkwcNHpscMba1tLv2Ps5cep44wXvW+t2X3IU8YrpHTInzEVn0UI
+X-Gm-Gg: AYBFou2TRzRNqio5WPnL3nWJsd+W4ReTgsyGldCqLRE6dDKpmJMFAm0wAGNbmqjFUIx
+	fUCUBFkbXzRiSoYveqpIGtB5Jdj21MuJzoDFCOhuoM6WUJ6q74zoklJ20BMB4BcQR5avqrzgrmE
+	c2oCsKxhrc9wXrxNhs+NF1rw4NtehcYDuMykgChWLwUSkyTTKspIFj71a+MYDShKIvPlzvshJhb
+	o0cdWHDYVpMNU53h27c85H2WDBMYims8LH1QOSIYXtEPWKehqpML4nkdk86j7aqDVF68CcU4w7u
+	axLUPpTLILnvPegj4TOe4hLPwSedLBz03NfWRCs+h8gVQNTEJ7tXS03ZKnzx0kL7YS9rZAB7mXj
+	zdjQn/9DEThRWDxRXjdGg0xSoFH3NRxCg2+9rMGWusCWfyVWX0wDkvaKz+BGnsGCktsqzemSzs9
+	5uCyZik4Dr+110CYUY/JLy1qdp6DV62cxXknnr/Pe9Nlhbhu4R0kTSdVy8V+Xbg+Ic4lWrla4dv
+	v7W40MSCEYWjfI6kauiQRJ3yMd1RXbdz3yuSeWY8ymjgg==
+X-Received: by 2002:a17:90b:3e4c:b0:3ac:9e76:aa98 with SMTP id 98e67ed59e1d1-3adeafc8962mr7575012a91.64.1793080111459;
+        Mon, 26 Oct 2026 22:48:31 -0700 (PDT)
 Received: from localhost ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2eae6c8f24esm3539175ad.57.2026.10.26.22.47.01
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3ae4064f4bdsm2015679a91.11.2026.10.26.22.48.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2026 22:47:01 -0700 (PDT)
-Date: Tue, 27 Oct 2026 14:46:59 +0900
+        Mon, 26 Oct 2026 22:48:30 -0700 (PDT)
+Date: Tue, 27 Oct 2026 14:48:28 +0900
 From: Hyunchul Lee <hyc.lee@gmail.com>
 To: Baolin Liu <liubaolin12138@163.com>
 Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org, wangxuewen@kylinos.cn,
 	wudandan@kylinos.cn
-Subject: Re: [PATCH v4 04/31] ntfs: preserve attribute search context
- initialization errors
-Message-ID: <auA600gtGbVWw_SU@hyunchul-PC02>
+Subject: Re: [PATCH v4 05/31] ntfs: report boot geometry and MFT bootstrap
+ errors
+Message-ID: <auA7LJX2rUZUH8v9@hyunchul-PC02>
 References: <20261020084421.2196486-1-liubaolin12138@163.com>
- <20261020084421.2196486-5-liubaolin12138@163.com>
+ <20261020084421.2196486-6-liubaolin12138@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -100,26 +100,17 @@ Precedence: list
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261020084421.2196486-5-liubaolin12138@163.com>
+In-Reply-To: <20261020084421.2196486-6-liubaolin12138@163.com>
 
-Hi, 
-
-> @@ -5476,7 +5480,7 @@ int ntfs_attr_exist(struct ntfs_inode *ni, const __le32 type, __le16 *name,
->  	ntfs_debug("Entering\n");
+> @@ -2802,7 +2822,8 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
 >  
->  	ctx = ntfs_attr_get_search_ctx(ni, NULL);
-> -	if (!ctx) {
-> +	if (IS_ERR(ctx)) {
->  		ntfs_error(ni->vol->sb, "%s: Failed to get search context",
->  				__func__);
->  		return 0;
+>  	tmp_ino->i_ino = FILE_MFT;
+>  	insert_inode_hash(tmp_ino);
+> -	if (ntfs_read_inode_mount(tmp_ino) < 0) {
+> +	err = ntfs_read_inode_mount(tmp_ino);
 
-ntfs_attr_exist() still turns ntfs_attr_get_search_ctx() errors into
-'attribute absent'.
-
-> -- 
-> 2.51.0
-> 
+There is still one error handling case where ntfs_read_inode_mount()
+returns -1.
 
 -- 
 Thanks,
