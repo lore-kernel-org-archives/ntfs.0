@@ -1,47 +1,47 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793081999;
-	b=MRQrmHG9ntoGMS9S7wHaKcJ3eEpAZLixiFSmTtmvTT4hktGy8nwhxec/OeGFOuvGG0dW
-	 nlYwUGrDRjejhhvlXYpUzgj6Ebhr59c+v3zBG/GuHQG2x3khiAFlc5MdDMnDGcu2v/VK+
-	 LFQOaItoqgs9rY+JPU8gK6LwCJhVTO85xIfbdm4VjIVupH5QTcjjuc3O107HFW1GagJmD
-	 YjZUVNAhE1vwB7q8WF/eYgdWoKTXn3O53stGw3nADivLVGG+Nw1A4qAclTT5gyyFmdNFJ
-	 oFxD98QXF1jm5RVuPGdvHu1XFL3T6GvactUqvdxdcJ/fWj5kX6LfEbEn9frUQM1Lagw==
+	t=1793082084;
+	b=rvde8NVChocY7m35zhRwXa7HIJpXKvILp1TaHvUkW6E/EZwaeHUwACQxUH1b+Y2EuDKy
+	 b6i38pOtKx8Dvx+i8lLNN3mXIx2+E+RTGRzbIZ1eDD0/OAyi/KZJNMUrHh/xGIXuUwClY
+	 RAXQS9oNpxMRMfDpkVPqTkJbURwSGGbQBqhTATKOlNwdFsdlLYpaBN44z0IfulUkCfO8h
+	 ioIakvcf+yHWnaR/ntm6QV03pRIxuOlCwK/Stm6appCqU0lq1L630+irg321P3zJT8bhN
+	 e4w/H/rtBtkFnliTNni6gIB4y0z20rZ2++sKymmTiYyX7rC/4yut5bRPBJKmEws3ecg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793081999;
+	a=rsa-sha256; c=relaxed/relaxed; t=1793082084;
 	h=DMARC-Filter:DKIM-Signature:Message-ID:Date:MIME-Version:User-Agent:
 	 Subject:To:Cc:References:Content-Language:From:In-Reply-To:
 	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
 	 X-Coremail-Antispam:X-CM-SenderInfo;
-	bh=NsW9lqP6rABMoATa428JGCgkGiH4+5hriuKAYji82aA=;
-	b=rEpsHeRWXBgratmmMWtnduua+tbLQwC3T8WO9gwp91FVktBxLTOz42mwgXgsCborJfNE
-	 yWmC/GIq6gS5LUqYromujbKvsvcEyOJrjbhqFbEs6LTmYU++A+Wi/HQO1GAsGJe2zRiJP
-	 vrGmE5cGWJVuNbjmMM4uUOVojGvBA3foBr+R3WUR6miwkxPSaQuAq2JICToo6DvTxuDm6
-	 BFWQXt1+Rht3AGmUcq/J0h8/5pVWMq4/I/bWBTvYi6S5RBFtu529u4pViOibxu6+O55Fw
-	 oCxNJ7FVoQU1AYFX8AiyrjubjGRox3DtjeCdWj4p3tHLC9floUYEz4/htDopLgJzFLg==
+	bh=l9ItIO3RAqtM9QI15WCRAxxgeyUZsdZcJ6WEzUfQrXA=;
+	b=2vEpIGwdjllSyobyMdfPTnrqA+Qz0aQHl0ScfTaYdyxmaGgFKEm5L1cpE9iYsEGmwvtO
+	 iy+X8s+Ss5zYTkWpYm7xCGFMYK63n91lLHemL3XNM2lNP8dYAz8gHMzZIBRgt4Gt6l0r+
+	 HOr1wSh0yVVMSVcPMqIB2iNC2Mn2pMkdOkcNgtuaEHg+sYIR0wnVR1xGXS0n1aywUg5kT
+	 9/UaQA+V/bAKG453Jn7GtSKZznPaom7m17NAY65VnmJhoJ1wQfPFfQnqqjEDbNCBgqK9p
+	 RPY2ZcUS4GwswEvr9ttc0/et7N86NTHRrIiJAnmTGxWyYcGGTz7gWd5ot/zLZPg6PRA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=DigoBkXs;
-	arc=none smtp.remote-ip=220.197.31.4
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=bEF8MrZP;
+	arc=none smtp.remote-ip=117.135.210.5
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCCC606A31A
-	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 06:19:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 8CCCC606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B90E606A332
+	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 06:21:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 3B90E606A332
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=DigoBkXs
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=bEF8MrZP
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
 	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=NsW9lqP6rABMoATa428JGCgkGiH4+5hriuKAYji82aA=;
-	b=DigoBkXsNqAKLX3yBrfwVo+oigu/g0PhI7nZ7zmgzj8H4D+ovzSbBX07WLfqrU
-	ubmyJygVIdn9IEVtoINC5snWE3oNMEM4+R93F5dvXKr2KRQ4lC4syhSL3Ty1zAZO
-	GGPsdVZEcq4HhC1LhtK8DGSu2OsjaMJk2K2KpPN7r+CdI=
-Message-ID: <02ba24ee-7428-4729-83ee-357e05c84233@163.com>
-Date: Tue, 27 Oct 2026 14:19:38 +0800
+	Content-Type; bh=l9ItIO3RAqtM9QI15WCRAxxgeyUZsdZcJ6WEzUfQrXA=;
+	b=bEF8MrZP/kd60zSJA8VDG3qeInKhYMvsoDCd27xqMRDzZwnmtQ3MfyU4R1HoPH
+	LEJpEkOIRdojfPyWPeC4PEKyhY/VunLgpQ87gNSqE87zP+L4YjE1fBzScaOwjxG2
+	OT8dfzKVzYUSqInCWtHRZtKzjnGvvcA13yXpvWVp/gMHQ=
+Message-ID: <fbf185b3-e546-4d37-afc9-9fb509fcbe34@163.com>
+Date: Tue, 27 Oct 2026 14:20:49 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -52,55 +52,40 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/31] ntfs: report required system file and volume
- metadata errors
+Subject: Re: [PATCH v4 28/31] ntfs: report EA metadata and restoration errors
 To: Hyunchul Lee <hyc.lee@gmail.com>
 Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
  linux-kernel@vger.kernel.org, wangxuewen@kylinos.cn, wudandan@kylinos.cn
 References: <20261020084421.2196486-1-liubaolin12138@163.com>
- <20261020084421.2196486-7-liubaolin12138@163.com>
- <auA7imuJoZKDGzpa@hyunchul-PC02>
+ <20261020084421.2196486-29-liubaolin12138@163.com>
+ <auA734yJUBRQPQD_@hyunchul-PC02>
 Content-Language: en-US
 From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <auA7imuJoZKDGzpa@hyunchul-PC02>
+In-Reply-To: <auA734yJUBRQPQD_@hyunchul-PC02>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3f4l7QuBqJbJeDQ--.37379S2
-X-Coremail-Antispam: 1Uf129KBjvdXoWrtFy5Jry5ury3WF4kJr18Zrb_yoWfWFc_Zw
-	1j93Z7Kay8WrWUZ3ZxXF9IyrsrA3Z7Ar1rGr4vya9IkryktwsrCFs7Jwn3XFZ3WasFgF1j
-	yFnFvr1ava15ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUj0Jm5UUUUU==
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RuBTGrgQns6pAAA3S
+X-CM-TRANSID:PygvCgD3h6LBQuBq72NfCQ--.28847S2
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvj4RNEfoUUUUU
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QKTXmrgQsJKWQAA3-
 
 
 
-在 2026/10/27 13:50, Hyunchul Lee 写道:
->> @@ -1685,23 +1718,29 @@ static int load_and_check_badclus(struct ntfs_volume *vol)
->>   	size_t i;
->>   	int err;
+在 2026/10/27 13:51, Hyunchul Lee 写道:
+>> @@ -605,6 +621,8 @@ ssize_t ntfs_listxattr(struct dentry *dentry, char *buffer, size_t size)
+>>   	} while (next > 0 && offset < ea_info_qsize);
 >>   
->> -	base_ino = ntfs_iget(sb, FILE_BadClus);
->> +	base_ino = ntfs_system_iget(vol, FILE_BadClus);
->>   	if (IS_ERR(base_ino))
->>   		return PTR_ERR(base_ino);
->>   	if (!S_ISREG(base_ino->i_mode)) {
->> -		err = -EIO;
->> +		err = -EFSCORRUPTED;
->> +		ntfs_report_metadata_error(vol, -EFSCORRUPTED);
+>>   out:
+>> +	if (err == -EUCLEAN)
+>> +		ntfs_report_file_metadata_error(inode, err);
 > 
-> ntfs_report_*_metadata_error() calls seem to be repeated across serveral
-> functions. Would it be possible to move and call them right before
-> returing from the fucntion? Also, could you apply the same change to the
-> other patches as well?
+> this function appears to reache here with -EIO or -ENOENT.
+> 
+Hi Hyunchul
 
-Hi Hyunchul,
-    Agreed. In v5, I'll consolidate repeated reporting at common error 
-exits where appropriate, including in the other patches.
+    You're right. I'll check the -EIO and -ENOENT paths and fix missing 
+reporting in v5, while keeping normal absence distinct from corruption.
 
 Thanks,
 Baolin.
-
-> 
->>   		goto iput_base;
->>   	}
 
