@@ -1,60 +1,57 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.2
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793093735;
-	b=bge56ibh/N47zW09VWpjeArDMrguZW5zJdkl+/QY7D/qGRJv0QxuM2Rgp4bPHcDKoM5+
-	 dx2fFTw3rD3MjFZWNAQpFgbwLRh4gSha3R5dy8dfFfAQYTIgP8W8PIeDHMhw45Vsgfd/N
-	 VUksroeWtBKqQZkWHf7msWIdHSy4gloOnawMoglfqVviu9avO05XToa6xPA0Mk1Hnf/is
-	 cCS7Wm9+/hL15gRortmSChd0WjUyuWYT2IGNVUVN3wXNfKHnzbmUwV+P2mCIlLsrgvIoW
-	 VyhhJ3V9Y2r3yi/ynxOVlTVHnC9brKSksdDmDUJejd9O/PYSawkIlab4xluPRtLtCjQ==
+	t=1793093736;
+	b=Fut+SdqN8zqBREE8Y87FNyZKpWHj++fVFvu0grO84vchOMjYpdIR1r1WRH7dWIRVjLnI
+	 zyyanVp4SHGEV72/N8YPV3VOUJqwhZiZuGKNFg/x7e3Pgbtw44W3Ly5zvrR0un7Fdve4E
+	 kTCksGRiXjLr5itPw8ZnQBF+BqfRY3koQIYXVYGTFd/TgZqu04kMRUscrewkKxQCzQ6YV
+	 oUrF18COxvAUej5tumNYeIvVQ7GOJP59dfUxOECdrwS0FE48XdcrT0iJWUfXm8Eu9kf4/
+	 H+A4lluEfEtbmuvBylwpss3rlYtgEcrhANvlNEM7uZXnciDuRrCyS21uEb0bcFkccHA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793093735;
+	a=rsa-sha256; c=relaxed/relaxed; t=1793093736;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
-	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
-	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
-	 X-CM-SenderInfo;
-	bh=zO705erkzkkbOFgseM2V3u/J1XcG7q9YV+Ps2I7c14E=;
-	b=2N4IvmGZDT6pR70vABxRrS0YInNuEu9c0Ea+00X83HulM+dHEkqxIzq2IW30ldgcoDIs
-	 i25jbtR/8g5A3iXhJiKnhY8x3ONQ/z1e6JInOPjnU6sPC4bhQmZWQpwT1H+CXU/liKEkk
-	 JGWyxZPW2UqZmIlg3yFyAK/f5nYLtl6YrXzW2p7QlMQ6x0JtOuzisLUGTFWxHBy8+aVfR
-	 YB6IIUiCAhfckdMwvXOlbrhFV2mhSXTYQnyZYE8yy29pz0znOzKzfdfyde709fB9ROWDx
-	 5mdn70dBFoszVO7PCGO9MpFUUyHpEpNGywwkDCfzXAjQLaePuC4JhKCjzvvRVk8Nmtg==
+	 Message-ID:X-Mailer:MIME-Version:Content-Transfer-Encoding:
+	 X-CM-TRANSID:X-Coremail-Antispam:X-CM-SenderInfo;
+	bh=BQSqnrhB0wqKJzkCSZ4Q3xGBVoAa0KEuXEDWeoLBoVo=;
+	b=j/y9pSUTA6v7uzy851kyRS+T9oF1lu8BKEI/2dsOX7QoSb6VJyMHWUyezBbMnMVAGfln
+	 VFEhmpZIMDfoEuHvUSdRQ6HrFoSRrs/PsxISae4x7tFRK1K1l5EZXSZ0RsbGjwUSVnCh3
+	 f+jdbOXLxT0/XFhv1MLfdQ2BlFLS7SP7dqZF1dSshrUcR/hvVrO6LYkCLG30n7AIYMLuv
+	 wLxp9f86M7ckIZ4myVptkhdXcU4YWcFuRi8JHwcIk1QOH6sLOZNvly+Ef0cLF7EF7zomz
+	 ah8RUnStZNyNjhPiwPS4THvgGfcDLfCj1ASOInbGxJ545wvBGofaqYssb13u+33k6zA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Jobqr103;
-	arc=none smtp.remote-ip=220.197.31.2
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=DqQBXtJZ;
+	arc=none smtp.remote-ip=117.135.210.4
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B4F606A31D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93554606A322
 	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 09:35:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 86B4F606A31D
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 93554606A322
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Jobqr103
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=DqQBXtJZ
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=zO
-	705erkzkkbOFgseM2V3u/J1XcG7q9YV+Ps2I7c14E=; b=Jobqr103DL/W7J1swt
-	E1R+k/FAlKCEP4mBiHO/w70n8XWjPLMymXA80U/j2YYeOTfRTgGjzo/3KhHP5VBA
-	YKplEZX72lD+syvtN15lgs+Dhzca+i0TCyiL8SOx80z6D2m+GSNhqbgxpnUSEncB
-	gRjJX2WuArCGQWzCYGpiuVb7Q=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=BQ
+	SqnrhB0wqKJzkCSZ4Q3xGBVoAa0KEuXEDWeoLBoVo=; b=DqQBXtJZaU3VMiRMf/
+	rVVh6kXc72IPVU0X/FitO9tljBnfd0sxOwv4To/s/DFqGtclFwxGSqyaFTwqnExj
+	q40YsecOSpKERz0YESpk84TGvZE7pmGcaFSdl6TG2jJqvDxD+EMBwiSNz27pv39t
+	Wh/AaoEkywyPZbKpwNiFRLbYQ=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD33xFVcOBqdMGFDQ--.18497S3;
-	Tue, 27 Oct 2026 17:35:19 +0800 (CST)
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD33xFVcOBqdMGFDQ--.18497S2;
+	Tue, 27 Oct 2026 17:35:18 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v1 1/5] ntfs: initialize inherited ACLs after allocating the MFT record
-Date: Tue, 27 Oct 2026 17:35:11 +0800
-Message-ID: <20261027093515.344799-2-liubaolin12138@163.com>
+Subject: [PATCH v1 0/5] ntfs: support O_TMPFILE
+Date: Tue, 27 Oct 2026 17:35:10 +0800
+Message-ID: <20261027093515.344799-1-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20261027093515.344799-1-liubaolin12138@163.com>
-References: <20261027093515.344799-1-liubaolin12138@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -65,127 +62,81 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD33xFVcOBqdMGFDQ--.18497S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxury3GrWrJFWxCFWktr17GFg_yoWrZryfpF
-	s3Wr47G39rXF1xWan3tw4Y9r13t395uF4UWr43J3WfAw10gwnIga48tFyjkFyftrZ5K34v
-	qF4UKw17JrWDZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j7Ef5UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RcEzmrgcFdKbQAA3+
+X-CM-TRANSID:_____wD33xFVcOBqdMGFDQ--.18497S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxXr4DJw47tFyDtFyDWFWfZrb_yoW5Cw17pF
+	Z3XrySg3ZrK34xu3s3Zw47Jr1S9a1rGr47Jw15WryUJw1ktFnYva13KF15Ja4xJF93Xw4j
+	qr4qqa47GrZ8A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UQyCAUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RYEzmrgcFZKSAAA3b
 
 From: Baolin Liu <liubaolin@kylinos.cn>
 
-ntfs_init_acl() can write EAs, but __ntfs_create() calls it before
-allocating the new inode's MFT record. An inherited access ACL can appear
-correct in the inode cache and disappear after eviction.
+Hi all,
 
-Initialize the ACL after allocating the MFT record and adding the standard
-attributes. Release the parent and child record locks around the ACL
-helpers to avoid recursive locking, then refresh the local mode from the
-inode. On creation failure, remove any EA and EA_INFORMATION attributes
-before freeing the MFT record.
+This series adds O_TMPFILE support to fs/ntfs. Applications can prepare a
+regular file's contents and metadata without exposing a directory entry,
+then publish the file with linkat(). Unpublished files are reclaimed when
+their last reference is released. O_EXCL prevents publication.
 
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
----
-QEMU tests used the complete five-patch series with NTFS debug and
-lockdep enabled. An ordinary new file inherits an access ACL from a
-parent default ACL containing a named-user entry; that access ACL remains
-readable after inode eviction. An anonymous file's inherited access ACL
-also remains readable after publication, cache eviction, read-only and
-read-write remounts, unmount/mount and a fresh boot. Offline inspection
-confirmed that the recorded base MFT record was freed after an injected
-creation failure following ACL and WSL EA initialization.
+O_TMPFILE reuses the existing inode creation, EA update and hard-link
+paths. The first four patches fix existing bugs in those paths, so that
+anonymous files can inherit ACLs, prepare metadata and be published
+correctly:
 
- fs/ntfs/namei.c | 44 +++++++++++++++++++++++++++++++++-----------
- 1 file changed, 33 insertions(+), 11 deletions(-)
+  1. ACLs must be initialized after allocating the MFT record. Otherwise,
+     an inherited ACL can appear correct in memory but disappear after
+     inode eviction. Anonymous creation uses the same initialization
+     path as ordinary file creation.
 
-diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
-index 0db7da0..0c84a5c 100644
---- a/fs/ntfs/namei.c
-+++ b/fs/ntfs/namei.c
-@@ -422,6 +422,7 @@ static struct ntfs_inode *__ntfs_create(struct mnt_idmap *idmap, struct inode *d
- 	struct ntfs_volume *vol = dir_ni->vol;
- 	struct ntfs_inode *ni;
- 	bool rollback_data = false, rollback_sd = false, rollback_reparse = false;
-+	bool rollback_ea = false;
- 	struct file_name_attr *fn = NULL;
- 	struct standard_information *si = NULL;
- 	int err = 0, fn_len, si_len;
-@@ -429,6 +430,7 @@ static struct ntfs_inode *__ntfs_create(struct mnt_idmap *idmap, struct inode *d
- 	struct mft_record *ni_mrec, *dni_mrec;
- 	struct super_block *sb = dir_ni->vol->sb;
- 	struct inode *rollback_data_vi = NULL, *rollback_sd_vi = NULL;
-+	struct inode *rollback_ea_vi = NULL, *rollback_eai_vi = NULL;
- 	__le64 parent_mft_ref;
- 	u64 child_mft_ref;
- 	__le16 ea_size;
-@@ -469,17 +471,6 @@ static struct ntfs_inode *__ntfs_create(struct mnt_idmap *idmap, struct inode *d
- 
- 	mode = vi->i_mode;
- 
--#ifdef CONFIG_NTFS_FS_POSIX_ACL
--	if (!S_ISLNK(mode) && (sb->s_flags & SB_POSIXACL)) {
--		err = ntfs_init_acl(idmap, vi, dir);
--		if (err)
--			goto err_out;
--	} else
--#endif
--	{
--		vi->i_flags |= S_NOSEC;
--	}
--
- 	if (uid_valid(vol->uid))
- 		vi->i_uid = vol->uid;
- 
-@@ -644,6 +635,24 @@ static struct ntfs_inode *__ntfs_create(struct mnt_idmap *idmap, struct inode *d
- 			goto err_out;
- 	}
- 
-+	/* ACL EAs need the allocated MFT record and initialized attributes. */
-+	rollback_ea = true;
-+#ifdef CONFIG_NTFS_FS_POSIX_ACL
-+	if (!S_ISLNK(mode) && (sb->s_flags & SB_POSIXACL)) {
-+		/* The ACL helpers acquire both the parent's and child's locks. */
-+		mutex_unlock(&dir_ni->mrec_lock);
-+		mutex_unlock(&ni->mrec_lock);
-+		err = ntfs_init_acl(idmap, vi, dir);
-+		mutex_lock_nested(&ni->mrec_lock, NTFS_INODE_MUTEX_NORMAL);
-+		mutex_lock_nested(&dir_ni->mrec_lock, NTFS_INODE_MUTEX_PARENT);
-+		if (err)
-+			goto err_out;
-+		mode = vi->i_mode;
-+	}
-+#endif
-+	if (S_ISLNK(mode) || !(sb->s_flags & SB_POSIXACL))
-+		vi->i_flags |= S_NOSEC;
-+
- 	err = ntfs_ea_set_wsl_inode(vi, dev, &ea_size,
- 			NTFS_EA_UID | NTFS_EA_GID | NTFS_EA_MODE);
- 	if (err)
-@@ -718,6 +727,15 @@ static struct ntfs_inode *__ntfs_create(struct mnt_idmap *idmap, struct inode *d
- 	return ni;
- 
- err_out:
-+	if (rollback_ea) {
-+		if (ntfs_attr_exist(ni, AT_EA, AT_UNNAMED, 0) &&
-+		    ntfs_attr_remove(ni, AT_EA, AT_UNNAMED, 0, &rollback_ea_vi))
-+			ntfs_error(sb, "Failed to roll back EA attribute.");
-+		if (ntfs_attr_exist(ni, AT_EA_INFORMATION, AT_UNNAMED, 0) &&
-+		    ntfs_attr_remove(ni, AT_EA_INFORMATION, AT_UNNAMED, 0,
-+				     &rollback_eai_vi))
-+			ntfs_error(sb, "Failed to roll back EA_INFORMATION attribute.");
-+	}
- 	if (rollback_sd) {
- 		int rollback_err;
- 
-@@ -764,6 +782,10 @@ err_out:
- 	mutex_unlock(&dir_ni->mrec_lock);
- 	mutex_unlock(&ni->mrec_lock);
- 
-+	if (rollback_ea_vi)
-+		iput(rollback_ea_vi);
-+	if (rollback_eai_vi)
-+		iput(rollback_eai_vi);
- 	if (rollback_data_vi)
- 		iput(rollback_data_vi);
- 	if (rollback_sd_vi)
+  2. Publication through linkat() must preserve the file's atime and
+     mtime. The existing hard-link path resets both; the fix updates only
+     the required timestamps and marks the affected inodes dirty.
+
+  3. Files may already have ACLs or other EAs before publication. The
+     hard-link path currently leaves the new FILE_NAME's packed EA size
+     at zero. Initialize it from EA_INFORMATION when adding the link.
+
+  4. Attribute inodes initialized while the base file has zero links
+     also have zero links. They are evicted at the final iput(), discarding
+     dirty pages from nonresident EA writes. Synchronous nonresident
+     writes keep a successful EA update readable after that cache is dropped.
+
+These bugs also affect ordinary creation, hard links and open-unlinked
+files. Keeping the fixes separate allows independent review and use
+without O_TMPFILE. Patch 5 builds on them to add anonymous creation,
+VFS-controlled publication and documentation.
+
+Named-stream ioctls can create or open streams after publication, but
+not while the temporary file remains unpublished.
+
+Tested this five-patch series in QEMU with four CPUs, NTFS debug and
+lockdep. Tests cover creation, publication, permissions, idmapped mounts,
+direct I/O, mmap, allocation, concurrent publication and ENOSPC. Checks
+after cache eviction/remount/reboot covered file contents, EA values,
+access ACL readability, mode and explicitly set atime/mtime. Injected
+ENOSPC at five creation/publication/open sites and checked failure
+behavior and release of the recorded base MFT records. Ordinary file
+operations were also exercised. Individual patch notes describe the tests.
+
+Based on ntfs-next commit e845077350df3862c733ed10a950d49ef4d64b0c.
+
+Thanks,
+Baolin
+
+Baolin Liu (2):
+  ntfs: initialize inherited ACLs after allocating the MFT record
+  ntfs: support O_TMPFILE
+
+Xuewen Wang (3):
+  ntfs: preserve timestamps when creating hard links
+  ntfs: initialize packed EA size when creating hard links
+  ntfs: write unlinked file attributes before dropping their cache
+
+ Documentation/filesystems/ntfs.rst |  15 ++++
+ fs/ntfs/inode.c                    |   8 ++
+ fs/ntfs/namei.c                    | 123 ++++++++++++++++++++++++-----
+ 3 files changed, 126 insertions(+), 20 deletions(-)
+
+
+base-commit: e845077350df3862c733ed10a950d49ef4d64b0c
 
