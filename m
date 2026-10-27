@@ -1,96 +1,99 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=52.42.203.116
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.224
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793100461;
-	b=lxq5OLmZX2/MyNmW6KJ4Mu7g98+tnlYfbS3R1rM5DCX3nCQAkQuidmbPJ4d+bIOLUX/e
-	 P5VPFJGbVjzHjttrHT3oaiRP4cJ7g3kcJHmtsq4NK6JDPAm5C8dfQzQLybSguLLyNcxCp
-	 aYFGf7+zMloSUGqNO8DqkqYHgprTmxHuPFNNw5hKzdrL5BQoYpyqwpP/Ym3bJSklityNo
-	 Y2BA191ohkB1flygx1uhI4W4kPSF0YyUJsqQFELg/rk+A7nUjiCehg/cjzp0JA5d1z+jW
-	 YABPptMZNz0BDDWDzIbP8vWZe6mBefOj7gW81iq3xuAOdEQHDz9zi9kaPhvDc5+X4Xg==
+	t=1793101095;
+	b=qriC2bEJTERLvQofQosLlnPpZlhAuQKTkcTXQOZB84Pj+VlK1PWDYUl/sXucBPJCemkF
+	 /aQfTCnMMU5J47vAAv9dJYzpjB1LYHHXUlTAmW6RHbuuRCngVUMOy5FBUHMPQ+X/oLp7c
+	 UYXK11zpWUu4Jxc9QtkD/bOie2jB7Mfgpjgzvpd+D/i7nhjKNBnLkDd9Naow3gn6bLXlA
+	 /F7P8iag7tpWW47oozKbFsrJ8roHv3n0dBOp9M/9wRoZEkuV1ID1ZjPOOplyDBqiHLTfK
+	 JYdOcgFcseALns2KebHbFLqOnQYdk/iRW6NNPsS83e2ZrjyvH5hiRUKBw5eK1NzVayA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793100461;
-	h=DMARC-Filter:DKIM-Signature:X-CSE-ConnectionGUID:X-CSE-MsgGUID:
-	 X-IronPort-AV:Received:Received:X-Farcaster-Flow-ID:Received:Received:
-	 From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:
-	 MIME-Version:X-Originating-IP:X-ClientProxiedBy:Content-Type:
-	 Content-Transfer-Encoding;
-	bh=5jvQLHxmHD9QuaB15UgfesZNnHvY5cJUMWmBuDVOQiE=;
-	b=mjNEl5LTOc5i/xo/1emYwuso9LUoqtVQRhRk/Op2Rsm0FXZIZV1SQCvmMpUl8qrnADpw
-	 kDgZIbGtvae2Nh+/coGQXwqgnt6ULN/2VhUL9R4dLrC32R1y3s99PNvbXMBzUfRtep4OX
-	 +VBzYG8oHvVbnkGDYDf5I3vXCnDosYxyXw4uZoeiXIhoiJ7wk90joa3x1cSyKsp8tsp5W
-	 +1AxGSQObKXHQfvWNyMaVsFMcyW4nJPZ9cCCL8ut74qrbiVBN/ucLTrEzctAYP5mDkgXR
-	 h+cVzJ2tYfII0unwXsWEbYUPZ2sOT/7clkpmxRK+Guj/KGO7+vDUCJoBKkaelJ5KPrg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793101095;
+	h=DMARC-Filter:dkim-signature:Received:Received:Received:From:To:CC:
+	 Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Type:X-Originating-IP:X-ClientProxiedBy;
+	bh=uAOcN1LcskuRbgaMclCWuwOteHecX2U/xvOnleYVofo=;
+	b=1BEI948vl6Wfnx/ZR4sGv0ezIEDdxclVaEeKSjMS/ZtiTLefrGq38q8gmEwaugelJcyv
+	 O+v1X94bModfIgtukx2DGkdvinPEamBvobeAV92ek5GkuHTlW3R3OIf5UHAvUFhZ7ZZSE
+	 URCaxfkuXuyfbMfdaLk4WzNYesmTglJFxFx98UiP+Y4OIfgNvvxVFvUI7yIdzKF724OBq
+	 gQMX/G2Mmv4IkVS2WqxfF65p1WeJ3EVq6qL+CgfYDJ3EKpiAwgOEmigJlbJ93waCos0Kl
+	 NVfbCJMTfehCr3cWm/SF4ENmTEFGxNazlT1cnaBXg0nt9h3LAktcvqKn31AZbp/LTVw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=amazon.it;
-	spf=pass smtp.mailfrom=amazon.it;
-	dkim=pass header.d=amazon.it header.i=@amazon.it header.a=rsa-sha256 header.s=amazoncorp2 header.b=gHXCpTgu;
-	arc=none smtp.remote-ip=52.42.203.116
-Received: from pdx-out-008.esa.us-west-2.outbound.mail-perimeter.amazon.com (pdx-out-008.esa.us-west-2.outbound.mail-perimeter.amazon.com [52.42.203.116])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	dmarc=pass header.from=huawei.com;
+	spf=pass smtp.mailfrom=huawei.com;
+	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=J75jMg8h;
+	arc=none smtp.remote-ip=113.46.200.224
+Received: from canpmsgout09.his.huawei.com (canpmsgout09.his.huawei.com [113.46.200.224])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7B6606A31F;
-	Tue, 27 Oct 2026 11:27:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org DE7B6606A31F
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.it
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BCEF606A338;
+	Tue, 27 Oct 2026 11:38:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 7BCEF606A338
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=amazon.it header.i=@amazon.it header.a=rsa-sha256 header.s=amazoncorp2 header.b=gHXCpTgu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.it; i=@amazon.it; q=dns/txt; s=amazoncorp2;
-  t=1793100460; x=1824636460;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5jvQLHxmHD9QuaB15UgfesZNnHvY5cJUMWmBuDVOQiE=;
-  b=gHXCpTguIWsdl9d8RkVKtQwEt/9xUwZ2ucZ4pRRTKcCO8f6bLICZPUhq
-   OuS/KxodjtA7Pxk+DCS4RccZTFV9uosn73pdAegrZKsizyaCOJRUkQgzv
-   4NYab8apCot9ctI393RrrmuYBkpUsuOIf3wDAoUuKBja+9ZhrXI2Q9xAq
-   4bs+oMf3aF/noUT9KWsGG19cOyUvOo1net/BGxjegbLa0lka5zjuSF972
-   K2BwPwk7CUCHBmIpuOR6HNzZOArrejX91XULobUoD7RQtfj9hJrjUmxtb
-   qEDh+h9L4m0vwKb2a7XxtgZxTBpYQxk4ct+ZgCFNOUIZoJLCY5B4CNHVC
-   w==;
-X-CSE-ConnectionGUID: YI+tlux6Rs2IrQWu3VD8mQ==
-X-CSE-MsgGUID: F4IqMehCS3avyCB9/1DZ2A==
-X-IronPort-AV: E=Sophos;i="6.27,181,1787011200"; 
-   d="scan'208";a="32381748"
-Received: from ip-10-5-9-48.us-west-2.compute.internal (HELO smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.9.48])
-  by internal-pdx-out-008.esa.us-west-2.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2026 11:27:37 +0000
-Received: from EX19MTAUWB001.ant.amazon.com [205.251.233.104:23383]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.47.193:2525] with esmtp (Farcaster)
- id a8a19a35-cde8-4181-b3c0-7bc5fd266870; Tue, 27 Oct 2026 11:27:37 +0000 (UTC)
-X-Farcaster-Flow-ID: a8a19a35-cde8-4181-b3c0-7bc5fd266870
-Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
- EX19MTAUWB001.ant.amazon.com (10.250.64.248) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.56;
- Tue, 27 Oct 2026 11:27:37 +0000
-Received: from dev-dsk-dipiets-1b-77b833da.eu-west-1.amazon.com
- (10.253.66.177) by EX19D001UWA001.ant.amazon.com (10.13.138.214) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.56; Tue, 27 Oct 2026
- 11:27:30 +0000
-From: Salvatore Dipietro <dipiets@amazon.it>
-To: <akpm@linux-foundation.org>, <linux-mm@kvack.org>
-CC: <ryan.roberts@arm.com>, <abuehaze@amazon.com>, <alisaidi@amazon.com>,
-	<blakgeof@amazon.com>, <dipietro.salvatore@gmail.com>, <rvvandan@amazon.com>,
+	dkim=pass (1024-bit key, unprotected) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=J75jMg8h
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=uAOcN1LcskuRbgaMclCWuwOteHecX2U/xvOnleYVofo=;
+	b=J75jMg8hZVy2GAZ4D2kNOmck3kpIf5S9zVxkocG76YdJoJYsALBYmXy9r4pWO4P5eiDLqV8tI
+	ghC0nU14goKo5/1SHQv9tVtAE4wLkf7n13A9x+w1hNH+lqQEq+bO6+dpEzYooPSprUqBKheNJYf
+	u91C5jjYkhFpmCFWgX0pWKQ=
+Received: from mail.maildlp.com (unknown [172.19.162.92])
+	by canpmsgout09.his.huawei.com (SkyGuard) with ESMTPS id 4jDT536PgRz1cyQv;
+	Tue, 27 Oct 2026 19:37:59 +0800 (CST)
+Received: from whupemk100010.china.huawei.com (unknown [7.152.184.41])
+	by mail.maildlp.com (Postfix) with ESMTPS id 032B240565;
+	Tue, 27 Oct 2026 19:38:06 +0800 (CST)
+Received: from octopus.huawei.com (10.67.174.191) by
+ whupemk100010.china.huawei.com (7.152.184.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Tue, 27 Oct 2026 19:38:00 +0800
+From: Cai Xinchen <caixinchen1@huawei.com>
+To: <mic@digikod.net>, <gnoack@google.com>, <paul@paul-moore.com>,
+	<jmorris@namei.org>, <serge@hallyn.com>, <corbet@lwn.net>,
+	<skhan@linuxfoundation.org>, <utilityemal77@gmail.com>,
+	<caixinchen1@huawei.com>
+CC: <ast@kernel.org>, <daniel@iogearbox.net>, <andrii@kernel.org>,
+	<eddyz87@gmail.com>, <memxor@gmail.com>, <martin.lau@linux.dev>,
+	<song@kernel.org>, <yonghong.song@linux.dev>, <jolsa@kernel.org>,
+	<emil@etsalapatis.com>, <ihor.solodrai@linux.dev>, <rdunlap@infradead.org>,
+	<gregkh@linuxfoundation.org>, <rafael@kernel.org>, <dakr@kernel.org>,
+	<johan@kernel.org>, <dlemoal@kernel.org>, <hch@lst.de>, <axboe@kernel.dk>,
 	<viro@zeniv.linux.org.uk>, <brauner@kernel.org>, <jack@suse.cz>,
-	<linkinjeon@kernel.org>, <sj1557.seo@samsung.com>, <yuezhang.mo@sony.com>,
-	<miklos@szeredi.hu>, <agruenba@redhat.com>, <djwong@kernel.org>,
-	<hyc.lee@gmail.com>, <almaz.alexandrovich@paragon-software.com>,
-	<cem@kernel.org>, <dlemoal@kernel.org>, <naohiro.aota@wdc.com>,
-	<jth@kernel.org>, <willy@infradead.org>, <david@kernel.org>,
-	<ljs@kernel.org>, <liam@infradead.org>, <vbabka@kernel.org>,
-	<rppt@kernel.org>, <surenb@google.com>, <mhocko@suse.com>, <ziy@nvidia.com>,
-	<matthew.brost@intel.com>, <joshua.hahnjy@gmail.com>, <rakie.kim@sk.com>,
-	<byungchul@sk.com>, <gourry@gourry.net>, <ying.huang@linux.alibaba.com>,
-	<apopple@nvidia.com>, <ritesh.list@gmail.com>,
-	<linux-fsdevel@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<exfat@lists.linux.dev>, <fuse-devel@lists.linux.dev>,
-	<gfs2@lists.linux.dev>, <linux-xfs@vger.kernel.org>, <ntfs@lists.linux.dev>,
-	<ntfs3@lists.linux.dev>, <stable@vger.kernel.org>
-Subject: [PATCH 2/2] mm, iomap: account dirty at page granularity for per-block dirty folios
-Date: Tue, 27 Oct 2026 11:27:02 +0000
-Message-ID: <20261027112702.3747009-3-dipiets@amazon.it>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20261027112702.3747009-1-dipiets@amazon.it>
-References: <20261027112702.3747009-1-dipiets@amazon.it>
+	<dhowells@redhat.com>, <code@tyhicks.com>, <linkinjeon@kernel.org>,
+	<sj1557.seo@samsung.com>, <yuezhang.mo@sony.com>,
+	<hirofumi@mail.parknet.co.jp>, <cel@kernel.org>, <jlayton@kernel.org>,
+	<neil@brown.name>, <okorniev@redhat.com>, <Dai.Ngo@oracle.com>,
+	<tom@talpey.com>, <hyc.lee@gmail.com>, <miklos@szeredi.hu>,
+	<amir73il@gmail.com>, <senozhatsky@chromium.org>,
+	<chenxiaosong@chenxiaosong.com>, <dsterba@suse.com>, <mason@kernel.org>,
+	<kpsingh@kernel.org>, <matt@bobrowski.net>, <rostedt@goodmis.org>,
+	<mhiramat@kernel.org>, <mathieu.desnoyers@efficios.com>,
+	<john.johansen@canonical.com>, <georgia.garcia@canonical.com>,
+	<zohar@linux.ibm.com>, <roberto.sassu@huawei.com>,
+	<dmitry.kasatkin@gmail.com>, <eric.snowberg@oracle.com>,
+	<stephen.smalley.work@gmail.com>, <omosnacek@gmail.com>,
+	<casey@schaufler-ca.com>, <takedakn@nttdata.co.jp>,
+	<penguin-kernel@I-love.SAKURA.ne.jp>, <xiujianfeng@huawei.com>,
+	<nanx95726@gmail.com>, <djwong@kernel.org>, <lujialin4@huawei.com>,
+	<bpf@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-security-module@vger.kernel.org>,
+	<driver-core@lists.linux.dev>, <linux-block@vger.kernel.org>,
+	<linux-btrfs@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
+	<netfs@lists.linux.dev>, <ecryptfs@vger.kernel.org>, <exfat@lists.linux.dev>,
+	<linux-nfs@vger.kernel.org>, <ntfs@lists.linux.dev>,
+	<linux-unionfs@vger.kernel.org>, <linux-cifs@vger.kernel.org>,
+	<linux-trace-kernel@vger.kernel.org>, <apparmor@lists.ubuntu.com>,
+	<linux-integrity@vger.kernel.org>, <selinux@vger.kernel.org>,
+	<linux-kselftest@vger.kernel.org>
+Subject: [PATCH v3 -next 01/18] fs: pass struct path to notify_change()
+Date: Tue, 27 Oct 2026 20:11:34 +0800
+Message-ID: <20261027121151.1887650-2-caixinchen1@huawei.com>
+X-Mailer: git-send-email 2.18.0.huawei.25
+In-Reply-To: <20261027121151.1887650-1-caixinchen1@huawei.com>
+References: <20261027121151.1887650-1-caixinchen1@huawei.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -100,457 +103,644 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-X-ClientProxiedBy: EX19D031UWA003.ant.amazon.com (10.13.139.47) To
- EX19D001UWA001.ant.amazon.com (10.13.138.214)
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
+ whupemk100010.china.huawei.com (7.152.184.41)
 
-The mm dirty counters (NR_FILE_DIRTY, NR_ZONE_WRITE_PENDING,
-WB_RECLAIMABLE) are charged per folio, which charges up to 512
-pages for a single dirty 4 kB block of a 2 MB folio.  iomap knows
-exactly which blocks are dirty and writeback only writes those
-ranges, so balance_dirty_pages() ends up throttling writers
-against a dirty count far larger than the data that actually
-needs writeback.
+notify_change() takes a struct mnt_idmap and a struct dentry even though
+all of its callers either already hold a struct path (or a struct file)
+or have to pass &nop_mnt_idmap because no idmapped mount is involved.
+Switch the helper and its declaration to take a struct path instead of
+the dentry, next to the idmap: the dentry is taken from the path, while
+the idmap remains a separate argument, as it must be taken from the
+mount at the time the path is checked and passed down unchanged, so
+that the VFS and the filesystem are guaranteed to see the same idmap.
 
-Charge the counters per dirty page for folios carrying per-block
-dirty state, using the infrastructure from the previous patch:
-struct iomap_folio_state counts the pages holding a dirty block, and
-each dirty bitmap change charges or discharges the difference.  The
-charge survives folio_clear_dirty_for_io() and is dropped when
-writeback or invalidation clears the blocks.  The monotonic
-NR_DIRTIED / WB_DIRTIED / task_io totals are charged only for newly
-dirtied data, and the dirty rate limiters stay per-folio.
+The ntfs named stream support applies metadata changes shared with a
+stream to the base inode's anonymous dentry, for which no struct path
+exists.  Add a __notify_change() variant without the LSM hook call,
+following the __vfs_setxattr_noperm() and __vfs_fileattr_set()
+precedents, and use it for that internal forward: the user-facing
+operation on the stream was already checked by the surrounding
+notify_change() call, so the base inode does not need a second
+security_inode_setattr() check.
 
-Every iomap-based filesystem sets .accounted_dirty_pages alongside
-.dirty_folio = iomap_dirty_folio.
+The security_inode_setattr() call within notify_change() keeps taking
+the idmap and dentry for now; it will be converted together with
+the LSM hook itself in a separate patch.
 
-On pgbench simple-update (1024 clients, XFS, 96-vCPU arm64,
-10 iterations) on v7.3-rc7, the unpatched kernel charges 159 TB
-of dirtied pages while writing 6 TB to the array, a factor of 27;
-with this patch the dirtied pages charged match the data written.
-Unpatched, nr_dirty is above dirty_threshold in ~17% of 5s samples
-and its peak exceeds it in 9 of 10 iterations; patched, it never
-reaches the threshold.
-
-On v7.3-rc7, average throughput rises 46.8% (139.8k -> 205.2k tps)
-and run-to-run variability drops from 23.60% to 3.98% coefficient
-of variation.  The best iteration improves by 8% (199.4k -> 215.9k
-tps); most of the gain comes from the worst iteration, up from 97.9k
-to 191.5k tps, i.e. from throttling episodes that no longer happen.
-
-Fixes: 4ce02c679722 ("iomap: Add per-block dirty state tracking to improve performance")
-Cc: stable@vger.kernel.org # v6.17+
-Signed-off-by: Salvatore Dipietro <dipiets@amazon.it>
-Reviewed-by: Hazem Mohamed Abuelfotoh <abuehaze@amazon.com>
+Signed-off-by: Cai Xinchen <caixinchen1@huawei.com>
 ---
- fs/exfat/inode.c       |   1 +
- fs/fuse/file.c         |   1 +
- fs/gfs2/aops.c         |   1 +
- fs/iomap/buffered-io.c | 167 +++++++++++++++++++++++++++++++++++++++--
- fs/ntfs/aops.c         |   2 +
- fs/ntfs3/inode.c       |   2 +
- fs/xfs/xfs_aops.c      |   1 +
- fs/zonefs/file.c       |   1 +
- include/linux/iomap.h  |   1 +
- 9 files changed, 171 insertions(+), 6 deletions(-)
+ drivers/base/devtmpfs.c  |   6 ++-
+ fs/attr.c                | 109 +++++++++++++++++++++++++++------------
+ fs/coredump.c            |   2 +-
+ fs/ecryptfs/inode.c      |  15 +++---
+ fs/inode.c               |   7 +--
+ fs/namei.c               |   5 +-
+ fs/nfsd/nfs4state.c      |  14 ++---
+ fs/nfsd/nfs4xdr.c        |   2 +-
+ fs/nfsd/state.h          |   2 +-
+ fs/nfsd/vfs.c            |  15 ++++--
+ fs/ntfs/named_stream.c   |   2 +-
+ fs/open.c                |  17 +++---
+ fs/overlayfs/overlayfs.h |   7 ++-
+ fs/smb/server/smb2pdu.c  |   2 +-
+ fs/smb/server/smbacl.c   |   2 +-
+ fs/utimes.c              |   2 +-
+ include/linux/fs.h       |   8 +--
+ 17 files changed, 141 insertions(+), 76 deletions(-)
 
-diff --git a/fs/exfat/inode.c b/fs/exfat/inode.c
-index ccd13630187e..48704fe5d59b 100644
---- a/fs/exfat/inode.c
-+++ b/fs/exfat/inode.c
-@@ -302,6 +302,7 @@ static const struct address_space_operations exfat_aops = {
- 	.readahead		= exfat_readahead,
- 	.writepages		= exfat_writepages,
- 	.dirty_folio		= iomap_dirty_folio,
-+	.accounted_dirty_pages	= iomap_accounted_dirty_pages,
- 	.bmap			= exfat_aop_bmap,
- 	.migrate_folio		= filemap_migrate_folio,
- 	.is_partially_uptodate	= iomap_is_partially_uptodate,
-diff --git a/fs/fuse/file.c b/fs/fuse/file.c
-index 9a36d0329e22..eb7179f854ee 100644
---- a/fs/fuse/file.c
-+++ b/fs/fuse/file.c
-@@ -3101,6 +3101,7 @@ static const struct address_space_operations fuse_file_aops  = {
- 	.writepages	= fuse_writepages,
- 	.launder_folio	= fuse_launder_folio,
- 	.dirty_folio	= iomap_dirty_folio,
-+	.accounted_dirty_pages = iomap_accounted_dirty_pages,
- 	.release_folio	= iomap_release_folio,
- 	.invalidate_folio = iomap_invalidate_folio,
- 	.is_partially_uptodate = iomap_is_partially_uptodate,
-diff --git a/fs/gfs2/aops.c b/fs/gfs2/aops.c
-index 0a7b8076af3a..ea77af00b111 100644
---- a/fs/gfs2/aops.c
-+++ b/fs/gfs2/aops.c
-@@ -713,6 +713,7 @@ static const struct address_space_operations gfs2_aops = {
- 	.read_folio = gfs2_read_folio,
- 	.readahead = gfs2_readahead,
- 	.dirty_folio = iomap_dirty_folio,
-+	.accounted_dirty_pages = iomap_accounted_dirty_pages,
- 	.release_folio = iomap_release_folio,
- 	.invalidate_folio = iomap_invalidate_folio,
- 	.bmap = gfs2_bmap,
-diff --git a/fs/iomap/buffered-io.c b/fs/iomap/buffered-io.c
-index 0a5ebfda90f1..75671b29f7cc 100644
---- a/fs/iomap/buffered-io.c
-+++ b/fs/iomap/buffered-io.c
-@@ -5,6 +5,8 @@
-  */
- #include <linux/iomap.h>
- #include <linux/buffer_head.h>
-+#include <linux/backing-dev.h>
-+#include <linux/task_io_accounting_ops.h>
- #include <linux/writeback.h>
- #include <linux/swap.h>
- #include <linux/migrate.h>
-@@ -24,6 +26,13 @@ struct iomap_folio_state {
- 	unsigned int		read_bytes_pending;
- 	atomic_t		write_bytes_pending;
+diff --git a/drivers/base/devtmpfs.c b/drivers/base/devtmpfs.c
+index 11c70888f38b..410906a66ee9 100644
+--- a/drivers/base/devtmpfs.c
++++ b/drivers/base/devtmpfs.c
+@@ -284,13 +284,14 @@ static int handle_create(const char *nodename, umode_t mode, kuid_t uid,
+ 			dev->devt, NULL);
+ 	if (!err) {
+ 		struct iattr newattrs;
++		struct path attr_path = { .mnt = path.mnt, .dentry = dentry };
  
+ 		newattrs.ia_mode = mode;
+ 		newattrs.ia_uid = uid;
+ 		newattrs.ia_gid = gid;
+ 		newattrs.ia_valid = ATTR_MODE|ATTR_UID|ATTR_GID;
+ 		inode_lock(d_inode(dentry));
+-		notify_change(&nop_mnt_idmap, dentry, &newattrs, NULL);
++		notify_change(&nop_mnt_idmap, &attr_path, &newattrs, NULL);
+ 		inode_unlock(d_inode(dentry));
+ 
+ 		/* mark as kernel-created inode */
+@@ -380,6 +381,7 @@ static int handle_remove(const char *nodename, struct device *dev)
+ 	inode = d_inode(dentry);
+ 	if (dev_mynode(dev, inode)) {
+ 		struct iattr newattrs;
++		struct path attr_path = { .mnt = parent.mnt, .dentry = dentry };
+ 		/*
+ 		 * before unlinking this node, reset permissions
+ 		 * of possible references like hardlinks
+@@ -390,7 +392,7 @@ static int handle_remove(const char *nodename, struct device *dev)
+ 		newattrs.ia_valid =
+ 			ATTR_UID|ATTR_GID|ATTR_MODE;
+ 		inode_lock(d_inode(dentry));
+-		notify_change(&nop_mnt_idmap, dentry, &newattrs, NULL);
++		notify_change(&nop_mnt_idmap, &attr_path, &newattrs, NULL);
+ 		inode_unlock(d_inode(dentry));
+ 		err = vfs_unlink(&nop_mnt_idmap, d_inode(parent.dentry),
+ 				 dentry, NULL);
+diff --git a/fs/attr.c b/fs/attr.c
+index 9706d370f34a..cc06fd676e6b 100644
+--- a/fs/attr.c
++++ b/fs/attr.c
+@@ -397,35 +397,10 @@ int may_setattr(const struct mnt_idmap *idmap, struct inode *inode,
+ }
+ EXPORT_SYMBOL(may_setattr);
+ 
+-/**
+- * notify_change - modify attributes of a filesystem object
+- * @idmap:	idmap of the mount the inode was found from
+- * @dentry:	object affected
+- * @attr:	new attributes
+- * @delegated_inode: returns inode, if the inode is delegated
+- *
+- * The caller must hold the i_rwsem exclusively on the affected object.
+- *
+- * If notify_change discovers a delegation in need of breaking,
+- * it will return -EWOULDBLOCK and return a reference to the inode in
+- * delegated_inode.  The caller should then break the delegation and
+- * retry.  Because breaking a delegation may take a long time, the
+- * caller should drop the i_rwsem before doing so.
+- *
+- * Alternatively, a caller may pass NULL for delegated_inode.  This may
+- * be appropriate for callers that expect the underlying filesystem not
+- * to be NFS exported.  Also, passing NULL is fine for callers holding
+- * the file open for write, as there can be no conflicting delegation in
+- * that case.
+- *
+- * If the inode has been found through an idmapped mount the idmap of
+- * the vfsmount must be passed through @idmap. This function will then
+- * take care to map the inode according to @idmap before checking
+- * permissions. On non-idmapped mounts or if permission checking is to be
+- * performed on the raw inode simply pass @nop_mnt_idmap.
+- */
+-int notify_change(const struct mnt_idmap *idmap, struct dentry *dentry,
+-		  struct iattr *attr, struct delegated_inode *delegated_inode)
++static int do_notify_change(const struct path *const path,
++			    const struct mnt_idmap *const idmap,
++			    struct dentry *const dentry, struct iattr *attr,
++			    struct delegated_inode *delegated_inode)
+ {
+ 	struct inode *inode = dentry->d_inode;
+ 	umode_t mode = inode->i_mode;
+@@ -537,9 +512,16 @@ int notify_change(const struct mnt_idmap *idmap, struct dentry *dentry,
+ 	    !vfsgid_valid(i_gid_into_vfsgid(idmap, inode)))
+ 		return -EOVERFLOW;
+ 
+-	error = security_inode_setattr(idmap, dentry, attr);
+-	if (error)
+-		return error;
 +	/*
-+	 * Pages holding at least one dirty block, the unit the mm dirty counters
-+	 * work in.  Maintained under @state_lock alongside the dirty bits below,
-+	 * so it is what those counters were charged for.
++	 * The LSM checks are only performed for user-facing calls (i.e.
++	 * when @path is set): internal forwards, e.g. from a stacking
++	 * filesystem, were already checked on the user-facing path.
 +	 */
-+	unsigned int		dirty_pages;
-+
++	if (path) {
++		error = security_inode_setattr(idmap, dentry, attr);
++		if (error)
++			return error;
++	}
+ 
  	/*
- 	 * Each block has two bits in this bitmap:
- 	 * Bits [0..blocks_per_folio) has the uptodate status.
-@@ -180,6 +189,89 @@ static unsigned iomap_find_dirty_range(struct folio *folio, u64 *range_start,
- 	return range_end - *range_start;
+ 	 * If ATTR_DELEG is set, then these attributes are being set on
+@@ -564,4 +546,67 @@ int notify_change(const struct mnt_idmap *idmap, struct dentry *dentry,
+ 
+ 	return error;
  }
- 
-+/*
-+ * Count pages in [first_blk, last_blk] holding at least one dirty block.  Callers
-+ * take this before and after flipping the bitmap for an exact delta, so each page
-+ * is scanned over its full block span to land in the same page in both counts.
-+ * state_lock must be held.
-+ */
-+static unsigned int ifs_count_dirty_pages(struct folio *folio,
-+		struct iomap_folio_state *ifs, unsigned int first_blk,
-+		unsigned int last_blk)
-+{
-+	struct inode *inode = folio->mapping->host;
-+	unsigned int blks_per_folio = i_blocks_per_folio(inode, folio);
-+	unsigned int blkbits = inode->i_blkbits;
-+	size_t fsize = folio_size(folio);
-+	size_t start = (size_t)first_blk << blkbits;
-+	size_t end = min(((size_t)last_blk << blkbits) + (1UL << blkbits) - 1,
-+			 fsize - 1);
-+	unsigned long first_pg = start >> PAGE_SHIFT;
-+	unsigned long last_pg = end >> PAGE_SHIFT;
-+	unsigned int dirty_pages = 0;
-+	unsigned long pg;
 +
-+	for (pg = first_pg; pg <= last_pg; pg++) {
-+		size_t pg_start = pg << PAGE_SHIFT;
-+		size_t pg_end = min(pg_start + PAGE_SIZE - 1, fsize - 1);
-+		unsigned int b_lo = pg_start >> blkbits;
-+		unsigned int b_hi = pg_end >> blkbits;
-+		unsigned int b;
-+
-+		for (b = b_lo; b <= b_hi; b++) {
-+			if (test_bit(b + blks_per_folio, ifs->state)) {
-+				dirty_pages++;
-+				break;
-+			}
-+		}
-+	}
-+	return dirty_pages;
-+}
-+
-+/*
-+ * Mirror folio_account_dirtied() in page-sized increments; @nr_pages is positive
-+ * to charge and negative to discharge.
-+ *
-+ * The NR_DIRTIED/WB_DIRTIED/task_io totals are monotonic, so only @new_dirty data
-+ * may charge them; writeback re-marks an already charged folio.
-+ *
-+ * Only the folio lock is held, not i_pages, hence the IRQ-safe stat helpers.
-+ */
-+static void iomap_account_dirty_pages(struct folio *folio, long nr_pages,
-+		bool new_dirty)
-+{
-+	struct address_space *mapping = folio->mapping;
-+	struct inode *inode = mapping->host;
-+	struct wb_lock_cookie cookie = {};
-+	struct bdi_writeback *wb;
-+	bool dirtied = nr_pages > 0 && new_dirty;
-+
-+	if (!nr_pages || !mapping_can_writeback(mapping))
-+		return;
-+
-+	lruvec_stat_mod_folio(folio, NR_FILE_DIRTY, nr_pages);
-+	zone_stat_mod_folio(folio, NR_ZONE_WRITE_PENDING, nr_pages);
-+	if (dirtied)
-+		node_stat_mod_folio(folio, NR_DIRTIED, nr_pages);
-+
-+	/* Pin the wb against a concurrent inode_do_switch_wbs(). */
-+	inode_attach_wb(inode, folio);
-+	wb = unlocked_inode_to_wb_begin(inode, &cookie);
-+	wb_stat_mod(wb, WB_RECLAIMABLE, nr_pages);
-+	if (folio_test_dropbehind(folio))
-+		wb_stat_mod(wb, WB_DONTCACHE_DIRTY, nr_pages);
-+	if (dirtied)
-+		wb_stat_mod(wb, WB_DIRTIED, nr_pages);
-+	unlocked_inode_to_wb_end(inode, &cookie);
-+
-+	if (dirtied) {
-+		task_io_account_write(nr_pages * PAGE_SIZE);
-+	} else if (nr_pages < 0 && !folio_test_writeback(folio)) {
-+		/* truncated or invalidated before reaching disk, so refund */
-+		task_io_account_cancelled_write((-nr_pages) * PAGE_SIZE);
-+	}
-+}
-+
- /*
-  * Clear the per-block dirty bits for the range [@off, @off + @len) within a
-  * folio.  The range is rounded inwards so that only blocks fully covered by
-@@ -195,15 +287,22 @@ static void ifs_clear_range_dirty(struct folio *folio,
- 	unsigned int first_blk = round_up(off, i_blocksize(inode)) >>
- 				 inode->i_blkbits;
- 	unsigned int last_blk = (off + len) >> inode->i_blkbits;
-+	unsigned int before, after;
- 	unsigned long flags;
- 
- 	if (first_blk >= last_blk)
- 		return;
- 
- 	spin_lock_irqsave(&ifs->state_lock, flags);
-+	before = ifs_count_dirty_pages(folio, ifs, first_blk, last_blk - 1);
- 	bitmap_clear(ifs->state, first_blk + blks_per_folio,
- 		     last_blk - first_blk);
-+	after = ifs_count_dirty_pages(folio, ifs, first_blk, last_blk - 1);
-+	ifs->dirty_pages -= before - after;
- 	spin_unlock_irqrestore(&ifs->state_lock, flags);
-+
-+	/* Pages that lost their last dirty block, so before >= after. */
-+	iomap_account_dirty_pages(folio, -(long)(before - after), false);
- }
- 
- static void iomap_clear_range_dirty(struct folio *folio, size_t off, size_t len)
-@@ -222,11 +321,13 @@ static void iomap_clear_range_dirty(struct folio *folio, size_t off, size_t len)
-  * data loss when partial blocks are written.
-  */
- static void ifs_set_range_dirty(struct folio *folio,
--		struct iomap_folio_state *ifs, size_t off, size_t len)
-+		struct iomap_folio_state *ifs, size_t off, size_t len,
-+		bool new_dirty)
- {
- 	struct inode *inode = folio->mapping->host;
- 	unsigned int blks_per_folio = i_blocks_per_folio(inode, folio);
- 	unsigned int first_blk, last_blk;
-+	unsigned int before, after;
- 	unsigned long flags;
- 
- 	if (!len)
-@@ -235,9 +336,15 @@ static void ifs_set_range_dirty(struct folio *folio,
- 	first_blk = off >> inode->i_blkbits;
- 	last_blk = (off + len - 1) >> inode->i_blkbits;
- 	spin_lock_irqsave(&ifs->state_lock, flags);
-+	before = ifs_count_dirty_pages(folio, ifs, first_blk, last_blk);
- 	bitmap_set(ifs->state, first_blk + blks_per_folio,
- 		   last_blk - first_blk + 1);
-+	after = ifs_count_dirty_pages(folio, ifs, first_blk, last_blk);
-+	ifs->dirty_pages += after - before;
- 	spin_unlock_irqrestore(&ifs->state_lock, flags);
-+
-+	/* Pages that gained their first dirty block, so after >= before. */
-+	iomap_account_dirty_pages(folio, (long)(after - before), new_dirty);
- }
- 
- static void iomap_set_range_dirty(struct folio *folio, size_t off, size_t len)
-@@ -245,7 +352,20 @@ static void iomap_set_range_dirty(struct folio *folio, size_t off, size_t len)
- 	struct iomap_folio_state *ifs = folio->private;
- 
- 	if (ifs)
--		ifs_set_range_dirty(folio, ifs, off, len);
-+		ifs_set_range_dirty(folio, ifs, off, len, true);
-+}
-+
-+/*
-+ * Set the dirty bits for blocks that were already dirty, and already counted,
-+ * before this folio had per-block state: the reclaimable counters still move,
-+ * but the dirtied totals must not be charged twice.
-+ */
-+static void iomap_redirty_range(struct folio *folio, size_t off, size_t len)
-+{
-+	struct iomap_folio_state *ifs = folio->private;
-+
-+	if (ifs)
-+		ifs_set_range_dirty(folio, ifs, off, len, false);
- }
- 
- static struct iomap_folio_state *ifs_alloc(struct inode *inode,
-@@ -276,9 +396,13 @@ static struct iomap_folio_state *ifs_alloc(struct inode *inode,
- 	spin_lock_init(&ifs->state_lock);
- 	if (folio_test_uptodate(folio))
- 		bitmap_set(ifs->state, 0, nr_blocks);
--	if (folio_test_dirty(folio))
-+	if (folio_test_dirty(folio)) {
- 		bitmap_set(ifs->state, nr_blocks, nr_blocks);
-+		ifs->dirty_pages = folio_nr_pages(folio);
-+	}
- 	folio_attach_private(folio, ifs);
-+	/* The mm dirty counters are now charged per dirty page for this file. */
-+	mapping_set_dirty_per_block(inode->i_mapping);
- 
- 	return ifs;
- }
-@@ -839,6 +963,11 @@ void iomap_invalidate_folio(struct folio *folio, size_t offset, size_t len)
- 	 */
- 	if (offset == 0 && len == folio_size(folio)) {
- 		WARN_ON_ONCE(folio_test_writeback(folio));
-+		/*
-+		 * Discharge while the bitmap is still attached; ifs_free() below
-+		 * drops the state that records how many pages were charged.
-+		 */
-+		iomap_clear_range_dirty(folio, 0, folio_size(folio));
- 		folio_cancel_dirty(folio);
- 		ifs_free(folio);
- 	} else {
-@@ -854,10 +983,31 @@ bool iomap_dirty_folio(struct address_space *mapping, struct folio *folio)
- 
- 	ifs_alloc(inode, folio, 0);
- 	iomap_set_range_dirty(folio, 0, len);
--	return filemap_dirty_folio(mapping, folio);
-+	return __filemap_dirty_folio(mapping, folio, folio->private);
- }
- EXPORT_SYMBOL_GPL(iomap_dirty_folio);
- 
 +/**
-+ * iomap_accounted_dirty_pages - pages of @folio charged to the dirty counters
-+ * @folio: folio to query
++ * __notify_change - modify attributes of a filesystem object, without
++ *                   the LSM check
++ * @idmap:	idmap of the mount the inode was found from
++ * @dentry:	object affected
++ * @attr:	new attributes
++ * @delegated_inode: returns inode, if the inode is delegated
 + *
-+ * For callers that discharge what iomap charged.  The caller must hold the folio
-+ * lock, and @folio must have per-block state attached.
++ * Like notify_change(), but no security_inode_setattr() hook is called:
++ * this is the variant to use for internal forwards, where the LSM
++ * checks were already performed on the user-facing path.
 + *
-+ * Return: pages of @folio holding at least one dirty block, zero once they have
-+ * been cleared, so a later discharge does not double count.
++ * The caller must hold the i_rwsem exclusively on the affected object.
++ *
++ * If the inode has been found through an idmapped mount, permission
++ * checking is performed based on @idmap.  This function will take care
++ * to map the inode according to the idmap before checking permissions.
++ *
++ * Return: 0 on success, or a negative error on failure.
 + */
-+long iomap_accounted_dirty_pages(struct folio *folio)
++int __notify_change(const struct mnt_idmap *idmap, struct dentry *dentry,
++		    struct iattr *attr, struct delegated_inode *delegated_inode)
 +{
-+	struct iomap_folio_state *ifs = folio->private;
-+
-+	if (WARN_ON_ONCE(!ifs))
-+		return 0;
-+
-+	return ifs->dirty_pages;
++	return do_notify_change(NULL, idmap, dentry, attr, delegated_inode);
 +}
-+EXPORT_SYMBOL_GPL(iomap_accounted_dirty_pages);
++EXPORT_SYMBOL(__notify_change);
 +
- static void
- iomap_write_failed(struct inode *inode, loff_t pos, unsigned len)
- {
-@@ -1137,7 +1287,7 @@ static bool __iomap_write_end(struct inode *inode, loff_t pos, size_t len,
++/**
++ * notify_change - modify attributes of a filesystem object
++ * @idmap:	idmap of the mount the inode was found from
++ * @path:	object affected
++ * @attr:	new attributes
++ * @delegated_inode: returns inode, if the inode is delegated
++ *
++ * The caller must hold the i_rwsem exclusively on the affected object.
++ *
++ * If notify_change discovers a delegation in need of breaking,
++ * it will return -EWOULDBLOCK and return a reference to the inode in
++ * delegated_inode.  The caller should then break the delegation and
++ * retry.  Because breaking a delegation may take a long time, the
++ * caller should drop the i_rwsem before doing so.
++ *
++ * Alternatively, a caller may pass NULL for delegated_inode.  This may
++ * be appropriate for callers that expect the underlying filesystem not
++ * to be NFS exported.  Also, passing NULL is fine for callers holding
++ * the file open for write, as there can be no conflicting delegation in
++ * that case.
++ *
++ * If the inode has been found through an idmapped mount the idmap of
++ * the vfsmount must be passed through @idmap. This function will then
++ * take care to map the inode according to @idmap before checking
++ * permissions. On non-idmapped mounts or if permission checking is to
++ * be performed on the raw inode simply pass @nop_mnt_idmap.
++ *
++ * Return: 0 on success, or a negative error on failure.
++ */
++int notify_change(const struct mnt_idmap *idmap, const struct path *path,
++		  struct iattr *attr, struct delegated_inode *delegated_inode)
++{
++	return do_notify_change(path, idmap, path->dentry, attr,
++				delegated_inode);
++}
+ EXPORT_SYMBOL(notify_change);
+diff --git a/fs/coredump.c b/fs/coredump.c
+index b25ef2ffbdee..6ade29cf7d06 100644
+--- a/fs/coredump.c
++++ b/fs/coredump.c
+@@ -1060,7 +1060,7 @@ static bool coredump_file(struct core_name *cn, struct coredump_params *cprm,
+ 	}
+ 	if (!(file->f_mode & FMODE_CAN_WRITE))
  		return false;
- 	iomap_set_range_uptodate(folio, offset_in_folio(folio, pos), len);
- 	iomap_set_range_dirty(folio, offset_in_folio(folio, pos), copied);
--	filemap_dirty_folio(inode->i_mapping, folio);
-+	__filemap_dirty_folio(inode->i_mapping, folio, folio->private);
+-	if (do_truncate(idmap, file->f_path.dentry, 0, 0, file))
++	if (do_truncate(idmap, &file->f_path, 0, 0, file))
+ 		return false;
+ 
+ 	cprm->file = no_free_ptr(file);
+diff --git a/fs/ecryptfs/inode.c b/fs/ecryptfs/inode.c
+index 48e520960d66..26967e4e4660 100644
+--- a/fs/ecryptfs/inode.c
++++ b/fs/ecryptfs/inode.c
+@@ -732,7 +732,8 @@ upper_size_to_lower_size(struct ecryptfs_crypt_stat *crypt_stat,
+  */
+ static int __ecryptfs_truncate(struct dentry *dentry, const struct iattr *ia)
+ {
+-	struct dentry *lower_dentry = ecryptfs_dentry_to_lower(dentry);
++	struct path lower_path = ecryptfs_lower_path(dentry);
++	struct dentry *lower_dentry = lower_path.dentry;
+ 	struct inode *inode = d_inode(dentry);
+ 	struct ecryptfs_crypt_stat *crypt_stat;
+ 	loff_t i_size = i_size_read(inode);
+@@ -821,7 +822,7 @@ static int __ecryptfs_truncate(struct dentry *dentry, const struct iattr *ia)
+ set_size:
+ 	lower_ia.ia_valid |= ATTR_SIZE;
+ 	inode_lock(d_inode(lower_dentry));
+-	rc = notify_change(&nop_mnt_idmap, lower_dentry, &lower_ia, NULL);
++	rc = notify_change(&nop_mnt_idmap, &lower_path, &lower_ia, NULL);
+ 	inode_unlock(d_inode(lower_dentry));
+ out:
+ 	ecryptfs_put_lower_file(inode);
+@@ -873,7 +874,6 @@ static int ecryptfs_setattr(const struct mnt_idmap *idmap,
+ 			    struct dentry *dentry, struct iattr *ia)
+ {
+ 	struct inode *inode = d_inode(dentry);
+-	struct dentry *lower_dentry = ecryptfs_dentry_to_lower(dentry);
+ 	struct inode *lower_inode = ecryptfs_inode_to_lower(inode);
+ 	struct ecryptfs_crypt_stat *crypt_stat;
+ 	int rc;
+@@ -925,14 +925,15 @@ static int ecryptfs_setattr(const struct mnt_idmap *idmap,
+ 	if (ia->ia_valid & ATTR_SIZE) {
+ 		rc = __ecryptfs_truncate(dentry, ia);
+ 	} else {
++		struct path lower_path = ecryptfs_lower_path(dentry);
+ 		struct iattr lower_ia;
+ 
+ 		ecryptfs_iattr_to_lower(&lower_ia, ia);
+ 
+-		inode_lock(d_inode(lower_dentry));
+-		rc = notify_change(&nop_mnt_idmap, lower_dentry, &lower_ia,
+-				NULL);
+-		inode_unlock(d_inode(lower_dentry));
++		inode_lock(d_inode(lower_path.dentry));
++		rc = notify_change(&nop_mnt_idmap, &lower_path, &lower_ia,
++				   NULL);
++		inode_unlock(d_inode(lower_path.dentry));
+ 	}
+ out:
+ 	fsstack_copy_attr_all(inode, lower_inode);
+diff --git a/fs/inode.c b/fs/inode.c
+index 702f2d5ef459..fe176293fd36 100644
+--- a/fs/inode.c
++++ b/fs/inode.c
+@@ -2357,7 +2357,7 @@ int dentry_needs_remove_privs(const struct mnt_idmap *idmap,
+ }
+ 
+ static int __remove_privs(const struct mnt_idmap *idmap,
+-			  struct dentry *dentry, int kill)
++			  const struct path *path, int kill)
+ {
+ 	struct iattr newattrs;
+ 
+@@ -2366,7 +2366,7 @@ static int __remove_privs(const struct mnt_idmap *idmap,
+ 	 * Note we call this on write, so notify_change will not
+ 	 * encounter any conflicting delegations:
+ 	 */
+-	return notify_change(idmap, dentry, &newattrs, NULL);
++	return notify_change(idmap, path, &newattrs, NULL);
+ }
+ 
+ static int file_remove_privs_flags(struct file *file, unsigned int flags)
+@@ -2387,7 +2387,8 @@ static int file_remove_privs_flags(struct file *file, unsigned int flags)
+ 		if (flags & IOCB_NOWAIT)
+ 			return -EAGAIN;
+ 
+-		error = __remove_privs(file_mnt_idmap(file), dentry, kill);
++		error = __remove_privs(file_mnt_idmap(file), &file->f_path,
++				       kill);
+ 	}
+ 
+ 	if (!error)
+diff --git a/fs/namei.c b/fs/namei.c
+index 96c65940391a..e3961bc336c9 100644
+--- a/fs/namei.c
++++ b/fs/namei.c
+@@ -4297,9 +4297,8 @@ static int handle_truncate(const struct mnt_idmap *idmap, struct file *filp)
+ 
+ 	error = security_file_truncate(filp);
+ 	if (!error) {
+-		error = do_truncate(idmap, path->dentry, 0,
+-				    ATTR_MTIME|ATTR_CTIME|ATTR_OPEN,
+-				    filp);
++		error = do_truncate(idmap, path, 0,
++				    ATTR_MTIME|ATTR_CTIME|ATTR_OPEN, filp);
+ 	}
+ 	put_write_access(inode);
+ 	return error;
+diff --git a/fs/nfsd/nfs4state.c b/fs/nfsd/nfs4state.c
+index 1de6c6d757c3..3a08c56a27c6 100644
+--- a/fs/nfsd/nfs4state.c
++++ b/fs/nfsd/nfs4state.c
+@@ -10477,8 +10477,10 @@ bool nfsd4_vet_deleg_time(struct timespec64 *req, const struct timespec64 *orig,
  	return true;
  }
  
-@@ -2001,8 +2151,13 @@ int iomap_writeback_folio(struct iomap_writepage_ctx *wpc, struct folio *folio)
+-static int cb_getattr_update_times(struct dentry *dentry, struct nfs4_delegation *dp)
++static int cb_getattr_update_times(const struct path *path,
++				   struct nfs4_delegation *dp)
+ {
++	struct dentry *dentry = path->dentry;
+ 	struct inode *inode = d_inode(dentry);
+ 	struct nfs4_cb_fattr *ncf = &dp->dl_cb_fattr;
+ 	struct iattr attrs = { };
+@@ -10508,7 +10510,7 @@ static int cb_getattr_update_times(struct dentry *dentry, struct nfs4_delegation
  
- 	if (i_blocks_per_folio(inode, folio) > 1) {
- 		if (!ifs) {
-+			/*
-+			 * Dirtied before it had per-block state, so charged
-+			 * per-folio.  Re-mark the blocks for the walk below,
-+			 * paired with the clear at the end of this function.
-+			 */
- 			ifs = ifs_alloc(inode, folio, 0);
--			iomap_set_range_dirty(folio, 0, end_pos - pos);
-+			iomap_redirty_range(folio, 0, end_pos - pos);
+ 	attrs.ia_valid |= ATTR_DELEG;
+ 	inode_lock(inode);
+-	ret = notify_change(&nop_mnt_idmap, dentry, &attrs, NULL);
++	ret = notify_change(&nop_mnt_idmap, path, &attrs, NULL);
+ 	inode_unlock(inode);
+ 	return ret;
+ }
+@@ -10531,7 +10533,7 @@ static int cb_getattr_update_times(struct dentry *dentry, struct nfs4_delegation
+  * caller must put the reference.
+  */
+ __be32
+-nfsd4_deleg_getattr_conflict(struct svc_rqst *rqstp, struct dentry *dentry,
++nfsd4_deleg_getattr_conflict(struct svc_rqst *rqstp, const struct path *path,
+ 			     struct nfs4_delegation **pdp)
+ {
+ 	struct nfsd_thread_local_info *ntli = rqstp->rq_private;
+@@ -10539,7 +10541,7 @@ nfsd4_deleg_getattr_conflict(struct svc_rqst *rqstp, struct dentry *dentry,
+ 	struct nfs4_delegation *dp = NULL;
+ 	struct file_lease *fl;
+ 	struct nfs4_cb_fattr *ncf;
+-	struct inode *inode = d_inode(dentry);
++	struct inode *inode = d_inode(path->dentry);
+ 	__be32 status;
+ 
+ 	ctx = locks_inode_context(inode);
+@@ -10603,7 +10605,7 @@ nfsd4_deleg_getattr_conflict(struct svc_rqst *rqstp, struct dentry *dentry,
+ 		 * not update the file's metadata with the client's
+ 		 * modified size
+ 		 */
+-		err = cb_getattr_update_times(dentry, dp);
++		err = cb_getattr_update_times(path, dp);
+ 		if (err) {
+ 			status = nfserrno(err);
+ 			goto out_status;
+@@ -10789,7 +10791,7 @@ void nfsd_update_cmtime_attr(struct file *f, unsigned int flags)
+ 	};
+ 
+ 	inode_lock(inode);
+-	ret = notify_change(&nop_mnt_idmap, f->f_path.dentry, &attr, NULL);
++	ret = notify_change(&nop_mnt_idmap, &f->f_path, &attr, NULL);
+ 	inode_unlock(inode);
+ 	if (ret)
+ 		pr_notice_ratelimited("nfsd: Unable to update timestamps on "
+diff --git a/fs/nfsd/nfs4xdr.c b/fs/nfsd/nfs4xdr.c
+index 84161dbecd1c..2a86b69b2ae9 100644
+--- a/fs/nfsd/nfs4xdr.c
++++ b/fs/nfsd/nfs4xdr.c
+@@ -4083,7 +4083,7 @@ nfsd4_encode_fattr4(struct svc_rqst *rqstp, struct xdr_stream *xdr,
+ 	    (attrmask[1] & (FATTR4_WORD1_TIME_ACCESS |
+ 			    FATTR4_WORD1_TIME_MODIFY |
+ 			    FATTR4_WORD1_TIME_METADATA))) {
+-		status = nfsd4_deleg_getattr_conflict(rqstp, dentry, &dp);
++		status = nfsd4_deleg_getattr_conflict(rqstp, &path, &dp);
+ 		if (status)
+ 			goto out;
+ 	}
+diff --git a/fs/nfsd/state.h b/fs/nfsd/state.h
+index cd9294f024bb..183123f0b91f 100644
+--- a/fs/nfsd/state.h
++++ b/fs/nfsd/state.h
+@@ -1018,7 +1018,7 @@ static inline bool try_to_expire_client(struct nfs4_client *clp)
+ }
+ 
+ extern __be32 nfsd4_deleg_getattr_conflict(struct svc_rqst *rqstp,
+-		struct dentry *dentry, struct nfs4_delegation **pdp);
++		const struct path *path, struct nfs4_delegation **pdp);
+ 
+ struct nfsd4_get_dir_delegation;
+ struct nfs4_delegation *nfsd_get_dir_deleg(struct nfsd4_compound_state *cstate,
+diff --git a/fs/nfsd/vfs.c b/fs/nfsd/vfs.c
+index 56c49b5bc5bb..54440029c235 100644
+--- a/fs/nfsd/vfs.c
++++ b/fs/nfsd/vfs.c
+@@ -455,7 +455,7 @@ nfsd_get_write_access(struct svc_fh *fhp)
+ 	return nfserrno(get_write_access(d_inode(fhp->fh_dentry)));
+ }
+ 
+-static int __nfsd_setattr(struct dentry *dentry, struct iattr *iap)
++static int __nfsd_setattr(const struct path *path, struct iattr *iap)
+ {
+ 	int host_err;
+ 
+@@ -475,7 +475,8 @@ static int __nfsd_setattr(struct dentry *dentry, struct iattr *iap)
+ 		if (iap->ia_size < 0)
+ 			return -EFBIG;
+ 
+-		host_err = notify_change(&nop_mnt_idmap, dentry, &size_attr, NULL);
++		host_err = notify_change(&nop_mnt_idmap, path, &size_attr,
++					  NULL);
+ 		if (host_err)
+ 			return host_err;
+ 		iap->ia_valid &= ~ATTR_SIZE;
+@@ -501,7 +502,7 @@ static int __nfsd_setattr(struct dentry *dentry, struct iattr *iap)
+ 	if (!(iap->ia_valid & ATTR_DELEG))
+ 		iap->ia_valid |= ATTR_CTIME;
+ 
+-	return notify_change(&nop_mnt_idmap, dentry, iap, NULL);
++	return notify_change(&nop_mnt_idmap, path, iap, NULL);
+ }
+ 
+ /**
+@@ -524,6 +525,7 @@ nfsd_setattr(struct svc_rqst *rqstp, struct svc_fh *fhp,
+ {
+ 	struct dentry	*dentry;
+ 	struct inode	*inode;
++	struct path	path;
+ 	struct iattr	*iap = attr->na_iattr;
+ 	int		accmode = NFSD_MAY_SATTR;
+ 	umode_t		ftype = 0;
+@@ -569,6 +571,11 @@ nfsd_setattr(struct svc_rqst *rqstp, struct svc_fh *fhp,
+ 	dentry = fhp->fh_dentry;
+ 	inode = d_inode(dentry);
+ 
++	path = (struct path){
++		.mnt	= fhp->fh_export->ex_path.mnt,
++		.dentry	= dentry,
++	};
++
+ 	nfsd_sanitize_attrs(inode, iap);
+ 
+ 	/*
+@@ -612,7 +619,7 @@ nfsd_setattr(struct svc_rqst *rqstp, struct svc_fh *fhp,
+ 		 * copy for every loop iteration.
+ 		 */
+ 		attrs = *iap;
+-		host_err = __nfsd_setattr(dentry, &attrs);
++		host_err = __nfsd_setattr(&path, &attrs);
+ 		if (host_err != -EAGAIN || !retries--)
+ 			break;
+ 		if (!nfsd_wait_for_delegreturn(rqstp, inode))
+diff --git a/fs/ntfs/named_stream.c b/fs/ntfs/named_stream.c
+index 95a3c05f9821..f0b577a6f7c3 100644
+--- a/fs/ntfs/named_stream.c
++++ b/fs/ntfs/named_stream.c
+@@ -897,7 +897,7 @@ static int ntfs_stream_setattr_common(const struct mnt_idmap *idmap,
+ 			goto out;
  		}
+ 		if (base_attr.ia_valid)
+-			err = notify_change(idmap, base_dentry, &base_attr,
++			err = __notify_change(idmap, base_dentry, &base_attr,
+ 					NULL);
+ 		else
+ 			err = 0;
+diff --git a/fs/open.c b/fs/open.c
+index bf398105f03a..294d0ea7488e 100644
+--- a/fs/open.c
++++ b/fs/open.c
+@@ -36,10 +36,11 @@
  
- 		iomap_writeback_init(inode, folio);
-diff --git a/fs/ntfs/aops.c b/fs/ntfs/aops.c
-index 517d9a1563e7..d26ddd5ae118 100644
---- a/fs/ntfs/aops.c
-+++ b/fs/ntfs/aops.c
-@@ -308,6 +308,7 @@ const struct address_space_operations ntfs_aops = {
- 	.readahead		= ntfs_readahead,
- 	.writepages		= ntfs_writepages,
- 	.dirty_folio		= iomap_dirty_folio,
-+	.accounted_dirty_pages	= iomap_accounted_dirty_pages,
- 	.bmap			= ntfs_bmap,
- 	.migrate_folio		= filemap_migrate_folio,
- 	.is_partially_uptodate	= iomap_is_partially_uptodate,
-@@ -322,6 +323,7 @@ const struct address_space_operations ntfs_mft_aops = {
- 	.readahead		= ntfs_readahead,
- 	.writepages		= ntfs_mft_writepages,
- 	.dirty_folio		= iomap_dirty_folio,
-+	.accounted_dirty_pages	= iomap_accounted_dirty_pages,
- 	.bmap			= ntfs_bmap,
- 	.migrate_folio		= filemap_migrate_folio,
- 	.is_partially_uptodate	= iomap_is_partially_uptodate,
-diff --git a/fs/ntfs3/inode.c b/fs/ntfs3/inode.c
-index 4ac26c80bd34..509570091e48 100644
---- a/fs/ntfs3/inode.c
-+++ b/fs/ntfs3/inode.c
-@@ -2301,6 +2301,7 @@ const struct address_space_operations ntfs_aops = {
- 	.writepages	= ntfs_writepages,
- 	.bmap		= ntfs_bmap,
- 	.dirty_folio	= iomap_dirty_folio,
-+	.accounted_dirty_pages = iomap_accounted_dirty_pages,
- 	.migrate_folio	= filemap_migrate_folio,
- 	.release_folio	= iomap_release_folio,
- 	.invalidate_folio = iomap_invalidate_folio,
-@@ -2309,6 +2310,7 @@ const struct address_space_operations ntfs_aops = {
- const struct address_space_operations ntfs_aops_cmpr = {
- 	.read_folio	= ntfs_read_folio,
- 	.dirty_folio	= iomap_dirty_folio,
-+	.accounted_dirty_pages = iomap_accounted_dirty_pages,
- 	.release_folio	= iomap_release_folio,
- 	.invalidate_folio = iomap_invalidate_folio,
- };
-diff --git a/fs/xfs/xfs_aops.c b/fs/xfs/xfs_aops.c
-index 8b6119776fb3..869248241f3b 100644
---- a/fs/xfs/xfs_aops.c
-+++ b/fs/xfs/xfs_aops.c
-@@ -682,6 +682,7 @@ const struct address_space_operations xfs_address_space_operations = {
- 	.readahead		= xfs_vm_readahead,
- 	.writepages		= xfs_vm_writepages,
- 	.dirty_folio		= iomap_dirty_folio,
-+	.accounted_dirty_pages	= iomap_accounted_dirty_pages,
- 	.release_folio		= iomap_release_folio,
- 	.invalidate_folio	= iomap_invalidate_folio,
- 	.bmap			= xfs_vm_bmap,
-diff --git a/fs/zonefs/file.c b/fs/zonefs/file.c
-index 5b34849be7a2..9847ce9cd68b 100644
---- a/fs/zonefs/file.c
-+++ b/fs/zonefs/file.c
-@@ -192,6 +192,7 @@ const struct address_space_operations zonefs_file_aops = {
- 	.readahead		= zonefs_readahead,
- 	.writepages		= zonefs_writepages,
- 	.dirty_folio		= iomap_dirty_folio,
-+	.accounted_dirty_pages	= iomap_accounted_dirty_pages,
- 	.release_folio		= iomap_release_folio,
- 	.invalidate_folio	= iomap_invalidate_folio,
- 	.migrate_folio		= filemap_migrate_folio,
-diff --git a/include/linux/iomap.h b/include/linux/iomap.h
-index bc7ae6327dbf..fbf6480ac928 100644
---- a/include/linux/iomap.h
-+++ b/include/linux/iomap.h
-@@ -444,6 +444,7 @@ bool iomap_release_folio(struct folio *folio, gfp_t gfp_flags);
- void iomap_invalidate_folio(struct folio *folio, size_t offset, size_t len);
- bool iomap_dirty_folio(struct address_space *mapping, struct folio *folio);
- void iomap_folio_mark_uptodate(struct folio *folio);
-+long iomap_accounted_dirty_pages(struct folio *folio);
- int iomap_file_unshare(struct inode *inode, loff_t pos, loff_t len,
- 		const struct iomap_ops *ops,
- 		const struct iomap_write_ops *write_ops);
+ #include "internal.h"
+ 
+-int do_truncate(const struct mnt_idmap *idmap, struct dentry *dentry,
++int do_truncate(const struct mnt_idmap *idmap, const struct path *path,
+ 		loff_t length, unsigned int time_attrs, struct file *filp)
+ {
+ 	int ret;
++	struct dentry *dentry = path->dentry;
+ 	struct iattr newattrs;
+ 
+ 	/* Not pretty: "inode->i_size" shouldn't really be signed. But it is. */
+@@ -65,7 +66,7 @@ int do_truncate(const struct mnt_idmap *idmap, struct dentry *dentry,
+ 		return ret;
+ 
+ 	/* Note any delegations or leases have already been broken: */
+-	ret = notify_change(idmap, dentry, &newattrs, NULL);
++	ret = notify_change(idmap, path, &newattrs, NULL);
+ 	inode_unlock(dentry->d_inode);
+ 	return ret;
+ }
+@@ -115,7 +116,7 @@ int vfs_truncate(const struct path *path, loff_t length)
+ 
+ 	error = security_path_truncate(path);
+ 	if (!error)
+-		error = do_truncate(idmap, path->dentry, length, 0, NULL);
++		error = do_truncate(idmap, path, length, 0, NULL);
+ 
+ put_write_and_out:
+ 	put_write_access(inode);
+@@ -191,8 +192,8 @@ int do_ftruncate(struct file *file, loff_t length, unsigned int flags)
+ 		return error;
+ 
+ 	scoped_guard(super_write, inode->i_sb)
+-		return do_truncate(file_mnt_idmap(file), dentry, length,
+-				   ATTR_MTIME | ATTR_CTIME, file);
++		return do_truncate(file_mnt_idmap(file), &file->f_path,
++				   length, ATTR_MTIME | ATTR_CTIME, file);
+ }
+ 
+ int ksys_ftruncate(unsigned int fd, loff_t length, unsigned int flags)
+@@ -683,8 +684,8 @@ int chmod_common(const struct path *path, umode_t mode)
+ 		goto out_unlock;
+ 	newattrs.ia_mode = (mode & S_IALLUGO) | (inode->i_mode & ~S_IALLUGO);
+ 	newattrs.ia_valid = ATTR_MODE | ATTR_CTIME;
+-	error = notify_change(mnt_idmap(path->mnt), path->dentry,
+-			      &newattrs, &delegated_inode);
++	error = notify_change(mnt_idmap(path->mnt), path, &newattrs,
++			      &delegated_inode);
+ out_unlock:
+ 	inode_unlock(inode);
+ 	if (is_delegated(&delegated_inode)) {
+@@ -822,7 +823,7 @@ int chown_common(const struct path *path, uid_t user, gid_t group)
+ 		from_vfsuid(idmap, fs_userns, newattrs.ia_vfsuid),
+ 		from_vfsgid(idmap, fs_userns, newattrs.ia_vfsgid));
+ 	if (!error)
+-		error = notify_change(idmap, path->dentry, &newattrs,
++		error = notify_change(idmap, path, &newattrs,
+ 				      &delegated_inode);
+ 	inode_unlock(inode);
+ 	if (is_delegated(&delegated_inode)) {
+diff --git a/fs/overlayfs/overlayfs.h b/fs/overlayfs/overlayfs.h
+index 92da556598da..0d5699ffadea 100644
+--- a/fs/overlayfs/overlayfs.h
++++ b/fs/overlayfs/overlayfs.h
+@@ -208,7 +208,12 @@ static inline int ovl_do_notify_change(struct ovl_fs *ofs,
+ 				       struct dentry *upperdentry,
+ 				       struct iattr *attr)
+ {
+-	return notify_change(ovl_upper_mnt_idmap(ofs), upperdentry, attr, NULL);
++	struct path path = {
++		.mnt = ovl_upper_mnt(ofs),
++		.dentry = upperdentry,
++	};
++
++	return notify_change(ovl_upper_mnt_idmap(ofs), &path, attr, NULL);
+ }
+ 
+ static inline int ovl_do_rmdir(struct ovl_fs *ofs,
+diff --git a/fs/smb/server/smb2pdu.c b/fs/smb/server/smb2pdu.c
+index f5fe3cf8ba32..45275b8f23b6 100644
+--- a/fs/smb/server/smb2pdu.c
++++ b/fs/smb/server/smb2pdu.c
+@@ -8780,7 +8780,7 @@ static int set_file_basic_info(struct ksmbd_file *fp,
+ 			return -EACCES;
+ 
+ 		inode_lock(inode);
+-		rc = notify_change(idmap, dentry, &attrs, NULL);
++		rc = notify_change(idmap, &filp->f_path, &attrs, NULL);
+ 		inode_unlock(inode);
+ 	}
+ 	return rc;
+diff --git a/fs/smb/server/smbacl.c b/fs/smb/server/smbacl.c
+index 664f01263611..c79aa9863c85 100644
+--- a/fs/smb/server/smbacl.c
++++ b/fs/smb/server/smbacl.c
+@@ -1749,7 +1749,7 @@ int set_info_sec(struct ksmbd_conn *conn, struct ksmbd_tree_connect *tcon,
+ 	}
+ 
+ 	inode_lock(inode);
+-	rc = notify_change(idmap, path->dentry, &newattrs, NULL);
++	rc = notify_change(idmap, path, &newattrs, NULL);
+ 	inode_unlock(inode);
+ 	if (rc)
+ 		goto out;
+diff --git a/fs/utimes.c b/fs/utimes.c
+index e22664e4115f..5193d504d289 100644
+--- a/fs/utimes.c
++++ b/fs/utimes.c
+@@ -64,7 +64,7 @@ int vfs_utimes(const struct path *path, struct timespec64 *times)
+ 	}
+ retry_deleg:
+ 	inode_lock(inode);
+-	error = notify_change(mnt_idmap(path->mnt), path->dentry, &newattrs,
++	error = notify_change(mnt_idmap(path->mnt), path, &newattrs,
+ 			      &delegated_inode);
+ 	inode_unlock(inode);
+ 	if (is_delegated(&delegated_inode)) {
+diff --git a/include/linux/fs.h b/include/linux/fs.h
+index 3e240579e2b5..960334128b83 100644
+--- a/include/linux/fs.h
++++ b/include/linux/fs.h
+@@ -2490,8 +2490,8 @@ static inline bool is_idmapped_mnt(const struct vfsmount *mnt)
+ }
+ 
+ int vfs_truncate(const struct path *, loff_t);
+-int do_truncate(const struct mnt_idmap *, struct dentry *, loff_t start,
+-		unsigned int time_attrs, struct file *filp);
++int do_truncate(const struct mnt_idmap *, const struct path *,
++		loff_t length, unsigned int time_attrs, struct file *filp);
+ extern int vfs_fallocate(struct file *file, int mode, loff_t offset,
+ 			loff_t len);
+ int do_sys_open(int dfd, const char __user *filename, int flags,
+@@ -2714,7 +2714,9 @@ static inline int bmap(struct inode *inode,  sector_t *block)
+ }
+ #endif
+ 
+-int notify_change(const struct mnt_idmap *, struct dentry *,
++int __notify_change(const struct mnt_idmap *, struct dentry *,
++		    struct iattr *, struct delegated_inode *);
++int notify_change(const struct mnt_idmap *, const struct path *,
+ 		  struct iattr *, struct delegated_inode *);
+ int inode_permission(const struct mnt_idmap *, struct inode *, int);
+ int generic_permission(const struct mnt_idmap *, struct inode *, int);
 -- 
-2.50.1
-
-
-
-
-AMAZON DEVELOPMENT CENTER ITALY SRL, viale Monte Grappa 3/5, 20124 Milano, Italia, Registro delle Imprese di Milano Monza Brianza Lodi REA n. 2504859, Capitale Sociale: 10.000 EUR i.v., Cod. Fisc. e P.IVA 10100050961, Societa con Socio Unico
-
-
+2.18.0.huawei.25
 
