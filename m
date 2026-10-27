@@ -1,55 +1,60 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793093001;
-	b=QD2MNRZHL/5u/nWjviJUHFVhAZjbzTFa23R8C3hCPbjNAwvo76gDMIniQCL07l1IPpxU
-	 EO8abBK+jw//gLDuBuLu8Dx8kN0BM+AbeKUC01iwQxHw2U6fjGxyQjML7KGRrWyLT5uvN
-	 /aPNPYYcOqaDKLbOVBf0hpCXFgL/EYsmFYKtkhu/nYxug+5VoXbFKQ9hKmM61e4RvNZtd
-	 lXBZAN423lNHL8Zo8j/ZuySJ5nOYxnASa+3etMFZGjBHtrQW6LaA0JhwyUL6V9rRrgWhk
-	 fLBEPoU7UHFZODzNkC5ojo8FaQZgLT42Gaobfb86MXBn9HcEQNYLhixP9Exc5XKc21Q==
+	t=1793093734;
+	b=gJih5VXRm/pa5KTZB3IFcRNmb5SsRwV5uRu3sejJGTEiGKtNJp75TTdBmv9fYBo/UPAJ
+	 KEo6UW9MCoM2p6xvjUl3H/+0PM3MrT0Qbw9juSR7T3VUMAxMDvxb9RvCDctkxePLcrt7L
+	 lqcGVi6T58QnB0Sgwk34NalyF7RiLr4RhtwgGGr/gnSCeHoy/cSQ0E+7cmavMFm1bS6Wz
+	 m0CtHk7SraIjEqK03leTnf5vzhMJ5bp5IAnYA8QgRkl0f+MBVQDNb31olz9vbPetBXwI/
+	 agI/JESF8WfVsY+CbtX0eALtHqlVHcipChmln4mrtWs0qeoV2kzvH4kFReuPYgv+qGw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793093001;
-	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
-	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=ZpmrUqEHskHm7Yfzl2QMlE2cj/pVeGl7eiRLC9pfoCo=;
-	b=QTk3FdUy09MS87FA6KrPAR1hg47OsDbDMLS+FYb+j/yrHq/Tz6a4+1c3HCCCU+9JexTD
-	 9dDXkiTvjXpfTXG7vUF9VhgwT4gt+74JO0+M1gv9o7WnzZBi/Ht124xuaRnEMv9j24ASA
-	 kkgQBOOJGtcAZgxvuX16e8BVSqX7HCqYPMBL7+QipGSstIr0IiSY4wrWIS0NongV7QlFG
-	 iG8qv11JaUMjwTdA7699oErJtm8vtfgpDB6PyE9lhHIZYCkgF5y7/Z9ItmkBmqawJhVk+
-	 Go7YDI5PLVec8WFzhgv7KH3CdOCh2NgEFnLa1ftz4ysNNeRBLz3ts004tucyRivSclA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793093734;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-CM-SenderInfo;
+	bh=9PFg1tiFxtrMY3H3LlJpJ8GZvRMHcfHEPOcGYZAAP8I=;
+	b=mMJLt8P1/iiQp5WwYAdBJt0cpNXSioL8BCzKMmg9WOGE0Dqetlp0l0k7qZ0TmBQJm4FB
+	 uyXCVJDmH99VEB0B1DaMsW89J7e6RttmMroPb12qt5qq30fpIYRipMRgRAu/Ry3lewlyz
+	 VbXUObEoWpKeKxlBjkygk/UYvI1+cdNURb324uAacqwGrumlag47cOprbKQsvmlU2sMv/
+	 tJi+87bsXgkVledEvAskChihLFXKAivDwPSYIqD4VJ7N9s9hyGxsj5MAEs04unjlC3vxL
+	 ymSnMlu8avSL5uSO0WWwEIAe+eaKE4kKJ0zYxW9uy6K3fhDPXpEmdfvbm3bHARNBaeg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EpfbwKG0;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Ow5KUI8g;
+	arc=none smtp.remote-ip=220.197.31.5
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ACCB606A31B
-	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 09:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B0B606A328
+	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 09:35:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 19B0B606A328
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EpfbwKG0
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2501D1F031E1
-	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 09:23:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793093001;
-	bh=ZpmrUqEHskHm7Yfzl2QMlE2cj/pVeGl7eiRLC9pfoCo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=EpfbwKG0eOtmWr3qkD0KLNU4slcgf8jGwVDQBLW70jgfx4I4/AgaXkSpdWaLbKSZ+
-	 xp7Z0oZnETGKAnQkwbXb0MV3QCyA/vpbC8m9aC1KzZg0Ctd9qit0ZjqQ4VBiZ7yelp
-	 2g+PpZHmQ+2nN2W9QqTEj7mpz7fYt4b9plZ4I9HRmgB7PnsfaeNY3kbDOV0ey/1liO
-	 ojb2CwIHuw4vuUkqNmStVCzYrksamGf1HSCW7dlJwMGR/aBVO1R6QVM/xc/BWc2PQb
-	 mng5wuslyXcIiSq3SVPAKtN+XaA7QbPkrL4HYIKCiC1vCggXPvEoXWLZ9um9SUISgv
-	 ONGmlIWwKquXw==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-c247f6687dcso590591066b.2
-        for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 02:23:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBwihEBinuKQGCj9peqaoHSE2AvObatmgnPExXgSn9XcRG4kkI/m9xBpkcsLlsi4t4OUerTG@lists.linux.dev
-X-Gm-Message-State: AFq9FYLi4uFnA9XHL2Skm271IxlGVeOxd1eseVhferwkZN7SJXB1pyey
-	uaOXjVjVR1XDTDAlmQg/7DgQfw/ImYxys9hSitdrw/blSaAO8AEgN+/cY3LI+Q5PQ7TxcE6Fosh
-	CGrytm3AzA3mEwV2wehrN9gI6gqBbgUk=
-X-Received: by 2002:a17:907:3949:b0:c49:9231:5518 with SMTP id
- a640c23a62f3a-c4992316908mr380586866b.21.1793092999740; Tue, 27 Oct 2026
- 02:23:19 -0700 (PDT)
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Ow5KUI8g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=9P
+	Fg1tiFxtrMY3H3LlJpJ8GZvRMHcfHEPOcGYZAAP8I=; b=Ow5KUI8gBHEyjgPA00
+	9HgdRwMKZDMwS87xncR0jHj/0ibsWfXxk/A7mbjfn//1Qlu5Iq7gCOrRDtb4slse
+	i+MA4KtqvQjzWBdKkqzhOWAWl+OQ9/nEZcC8gBULd7Qz69TbVzjxK7xEQQyLWfQR
+	5xYOTjsyI4VryWoEBzfHT4sOg=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD33xFVcOBqdMGFDQ--.18497S4;
+	Tue, 27 Oct 2026 17:35:19 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Xuewen Wang <wangxuewen@kylinos.cn>
+Subject: [PATCH v1 2/5] ntfs: preserve timestamps when creating hard links
+Date: Tue, 27 Oct 2026 17:35:12 +0800
+Message-ID: <20261027093515.344799-3-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261027093515.344799-1-liubaolin12138@163.com>
+References: <20261027093515.344799-1-liubaolin12138@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,30 +64,54 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <7c0b17f73a031ae5564825ab94909f77eb2387d9.1793043780.git.bvanassche@acm.org>
-In-Reply-To: <7c0b17f73a031ae5564825ab94909f77eb2387d9.1793043780.git.bvanassche@acm.org>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Tue, 27 Oct 2026 18:23:07 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd9Pbf7r3YF2rOZpo6sOX-3UbbNr1h7KGQJ0fh9M03UMeA@mail.gmail.com>
-X-Gm-Features: AclHuK_w6Ld8kHOPNQuIC5yXLVGjtNE2R34EhtGj44KaJOMahykBSf3-rMwBjrU
-Message-ID: <CAKYAXd9Pbf7r3YF2rOZpo6sOX-3UbbNr1h7KGQJ0fh9M03UMeA@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: Fix error handling in __ntfs_create()
-To: Bart Van Assche <bvanassche@acm.org>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD33xFVcOBqdMGFDQ--.18497S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF4fZrW5Gr45Jr1DGryUWrg_yoW8Wryrpr
+	W3J34DKwn5CrW7u392yFsrXFn2gayxWF4xJFZ8A3W7Awn8KFnaqF1rtryUX3WfAr95Wr12
+	grsYg34UXryYyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jk2-nUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RcEzmrgcFdKfgAA3t
 
-On Tue, Oct 27, 2026 at 4:43=E2=80=AFAM Bart Van Assche <bvanassche@acm.org=
-> wrote:
->
-> In __ntfs_create(), if ntfs_init_acl() fails before
-> ntfs_mft_record_alloc() is called, jumping to err_out frees MFT record
-> 0 ($MFT), unmaps an unmapped record and unlocks the unheld
-> &dir_ni->mrec_lock and &ni->mrec_lock mutexes. Call iput(vi) and
-> return ERR_PTR(err) directly instead, matching the
-> ntfs_mft_record_alloc() failure path right below it.
->
-> Fixes: af0db57d4293 ("ntfs: update inode operations")
-> Signed-off-by: Bart Van Assche <bvanassche@acm.org>
-Applied it to #ntfs-next.
-Thanks!
+From: Xuewen Wang <wangxuewen@kylinos.cn>
+
+ntfs_link() resets atime, mtime and ctime on both the source file and
+the destination directory after creating a hard link. This overwrites
+the source file's atime and mtime and the directory's atime.
+
+Update only the source ctime and the destination directory mtime/ctime.
+Mark both inodes dirty so these changes are queued for writeback instead
+of relying on the earlier FILE_NAME write.
+
+Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+---
+Tested with the complete five-patch series in QEMU. Explicitly assigned
+atime and mtime are preserved across ordinary hard-link creation and
+O_TMPFILE publication. A separate persistence check set and synced
+atime/mtime on the published file, then verified those values after
+cache eviction, remount and a fresh boot.
+
+ fs/ntfs/namei.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index 0c84a5c..4442e1d 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -1663,12 +1663,13 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
+ 	}
+ 
+ 	inode_inc_iversion(dir);
+-	simple_inode_init_ts(dir);
++	inode_set_mtime_to_ts(dir, inode_set_ctime_current(dir));
++	mark_inode_dirty(dir);
+ 
+ 	inode_inc_iversion(vi);
+-	simple_inode_init_ts(vi);
++	inode_set_ctime_current(vi);
++	mark_inode_dirty(vi);
+ 
+-	/* timestamp is already written, so mark_inode_dirty() is unneeded. */
+ 	d_instantiate(dentry, vi);
+ 	mutex_unlock(&dir_ni->mrec_lock);
+ 	mutex_unlock(&ni->mrec_lock);
+
