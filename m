@@ -1,66 +1,94 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=128.30.2.78
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=34.218.115.239
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793100348;
-	b=f3lK/Fcf/TGdIiMzVVNRGkBKkDkhT3qL5HNtI8VIEVfCr0ThEnOs/YDp7q1tou5RqZm8
-	 RulGIoOmwB8HZvoG6xLQH73VF9IjayNoLF6QQJ5cCX2gVhlK4wImdRjoGG9ajMaKaqqIh
-	 dst4nnKBkI5PF+MKoR72Ei5DfxaMB9k6bLkrzIb+GDGmrB4GsA7cy3RYBYK2HUx5f0dEo
-	 r9vQfbHZnZE8PTYUMED+mGoQ9fF9qx+7zvnv+8vmbtKwPCDAPKHKwRjZNwvw9cBRbkj54
-	 kd5NErDVYvE56DY7XhS2YngXB93vbZ+ruwvriNq6D+CFxT3pKdFtQm6BATjOoAmaZdg==
+	t=1793100447;
+	b=bw642b18g4QHlWbdnav6SZTNy+rB+aXeHQYvFfcy2z/S5lltyi4VgpQnTgH+5ncGdvzP
+	 tJxdQ5pZohXwOspFM8pDl3/HM+NODzFrsJJRYkOaw0dd8C3StLzDH6BuRb9HqLwRg2ZjW
+	 qu1IhLilrIjszymKbMuVjokpuwoZQxYa3K1qrKRGEtdNW3mM89BK7OJcV6zPmA1u6NwNG
+	 /8DOPk/9BDUvPOJr6nDdyImEkB9+q+NLeMBgMVSweALqkXO6la9P3l3cDz9m8bWcHvMqF
+	 ar+bee26yg2rbgGef/L7Q0Nlp+0QGh06moI68COjSgKTFrxoTf4hV3h8sq3Q93hv0yg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793100348;
-	h=DMARC-Filter:DKIM-Signature:Received:Received:To:cc:From:Reply-To:
-	 Subject:Date:Message-ID;
-	bh=j1BeC2kgX54K6qiUDJA1TwYDTwD4lopuyQeHJtfm+Eo=;
-	b=JpY1Xb6rl22rbv4ImS9egZ5jnJsKEpJjQbGXmLWVrq3KHNqIm8F4WGqWt6zp39otw7Mx
-	 uJl2P9+6cVD2N6BIKHdLww6RPkExM/q5BHYat12Jqq+DqA2MU8xppbMn7l2BZjUxVvppd
-	 LE3odW2zCclxReSTOO52AO9wSjVAAzLiOYqgiby6xN+PVW5xhxwa3BuWxoHBMppRUfLNF
-	 L9cAjDR14K1ER0lPpugYgQb1H8T6sYRyWv/rF2kBX25RJZq/rWabX7yRGlrrFxbAYSnrh
-	 oUfP4RQtYqCxkbKC1h7ZMB7f//9UxP+TOTmHZkqF79U58LiutwKY0jI9wx95XIpPlkA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793100447;
+	h=DMARC-Filter:DKIM-Signature:X-CSE-ConnectionGUID:X-CSE-MsgGUID:
+	 X-IronPort-AV:Received:Received:X-Farcaster-Flow-ID:Received:Received:
+	 From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+	 X-Originating-IP:X-ClientProxiedBy:Content-Type:
+	 Content-Transfer-Encoding;
+	bh=Zhv98/DMFgaVHqthgMh+5047LoW5P9chJ9n6zONF7MI=;
+	b=THzaXZ9eJ5F28rjingUNX5+wyypJs9tHG1Z1tO+E/MPrHslzdAJhleNziHaRYfzI2cHV
+	 fxpu7b81lAroudFyDd/Cci2pL4MrjDLI55LpVm9UQNFTB3as5qTtN2HamC7izZBFfTXhA
+	 f9P40AKrrB9Oibr+6PUlHmm4kLlD0gWAYWOmJgQj4SVi/c2DtQfHq1Une21nvCkVuTf5u
+	 orKWAH05uHOOWig0R7D/fbB73cn8xY/GLsHak9u8KSPLXJjP/KFlgiaUT7+yFx5HOZQ9W
+	 Bcqfz/Doe0NF/e0M4R38sIzbE//tRW1u+lDzMjvhMG6a/DQqnE4NWaClSUXFzJcQjXQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=csail.mit.edu;
-	spf=pass smtp.mailfrom=csail.mit.edu;
-	dkim=pass header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.a=rsa-sha256 header.s=test20231205 header.b="H7zUwf/G";
-	arc=none smtp.remote-ip=128.30.2.78
-Received: from outgoing2021.csail.mit.edu (outgoing2021.csail.mit.edu [128.30.2.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
+	dmarc=pass header.from=amazon.it;
+	spf=pass smtp.mailfrom=amazon.it;
+	dkim=pass header.d=amazon.it header.i=@amazon.it header.a=rsa-sha256 header.s=amazoncorp2 header.b=IltX4WvW;
+	arc=none smtp.remote-ip=34.218.115.239
+Received: from pdx-out-013.esa.us-west-2.outbound.mail-perimeter.amazon.com (pdx-out-013.esa.us-west-2.outbound.mail-perimeter.amazon.com [34.218.115.239])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5368B606A335
-	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 11:25:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 5368B606A335
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csail.mit.edu
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1252B606A325;
+	Tue, 27 Oct 2026 11:27:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 1252B606A325
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.it
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.a=rsa-sha256 header.s=test20231205 header.b=H7zUwf/G
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=outgoing.csail.mit.edu; s=test20231205; h=Message-ID:Date:Subject:Reply-To:
-	From:cc:To:Sender:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=j1BeC2kgX54K6qiUDJA1TwYDTwD4lopuyQeHJtfm+Eo=; t=1793100347; x=1793964347; 
-	b=H7zUwf/G7/kxMG+H2ClWoq+iiMsIsHOx65XIn9J2naGFapgM6y7nSWexbxYTEl3Pna6tBZlinKV
-	Lg680ZEpAIHYSaehi+VPFGJa35XA65530gAhcXd8hbKSNTgP60ciSVen1ktmDjFPKzFSfDDcgLnqh
-	rCmL0COSD5aAm2wq4guups7zsvuRI1I2E2SSIEf/leULEVOMcQ/To7CXnvW24StMcN5a9/0p10EYr
-	FuJgLFjUvCDfMUShKVz/RDdSeXPw3ivC78W5OA1cQ/UDZXaWcBBr8jqSNI37e6qpArIHsl6YcY7HQ
-	jVO4RrwqPwHjzURrZFcKD5mSKW2L/cufQ0SQ==;
-Received: from [24.147.175.133] (helo=crash.local)
-	by outgoing2021.csail.mit.edu with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <rtm@csail.mit.edu>)
-	id 1xLfJI-00B2m4-Ts;
-	Tue, 27 Oct 2026 07:25:44 -0400
-Received: from localhost (localhost [127.0.0.1])
-	by crash.local (Postfix) with ESMTP id 1A22F3E89EBE;
-	Tue, 27 Oct 2026 07:25:44 -0400 (EDT)
-To: Namjae Jeon <linkinjeon@kernel.org>,
-    Hyunchul Lee <hyc.lee@gmail.com>
-cc: ntfs@lists.linux.dev
-From: rtm@csail.mit.edu
-Reply-To: rtm@csail.mit.edu
-Subject: huge VCN in ntfs can result in a kernel page fault
-Date: Tue, 27 Oct 2026 07:25:44 -0400
-Message-ID: <10091.1793100344@localhost>
+	dkim=pass (2048-bit key, unprotected) header.d=amazon.it header.i=@amazon.it header.a=rsa-sha256 header.s=amazoncorp2 header.b=IltX4WvW
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.it; i=@amazon.it; q=dns/txt; s=amazoncorp2;
+  t=1793100447; x=1824636447;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Zhv98/DMFgaVHqthgMh+5047LoW5P9chJ9n6zONF7MI=;
+  b=IltX4WvW3H3ycZ7wCFSQqyDNe4Y+xWvxTgcIY+6vUBdGODne72kql64E
+   WihUJbBgtJp3M2B9lqNPFMsfGlOCqnpDYTC5kZOsq+f/y190fx+64YDJT
+   xovtX/K021EAEMTiQwragoHYdK8n/rA1/syQu7jayt3Px6oVD4VEBVioQ
+   goIoLKz6greU3ZX+25qk4b8BVq+hGq805jv2LNIIdYQWFY5MsDUeYI0uC
+   YfXYLO8olTtMzUzU1C39AHcLLWQtbJ05BHmEkwNKuJlNkzCQ33IWqFpN7
+   Md/07FdddF3dSYrY4oBEA6jqVRjsx1ADkOcVtNaYn+Wga6g81t7lghlKf
+   A==;
+X-CSE-ConnectionGUID: cBtv+tbPSuaYbQZrAgM8pQ==
+X-CSE-MsgGUID: fKISb3HxQf+nFB973LWUPA==
+X-IronPort-AV: E=Sophos;i="6.27,181,1787011200"; 
+   d="scan'208";a="32129592"
+Received: from ip-10-5-0-115.us-west-2.compute.internal (HELO smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.0.115])
+  by internal-pdx-out-013.esa.us-west-2.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2026 11:27:24 +0000
+Received: from EX19MTAUWB002.ant.amazon.com [205.251.233.111:27038]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.29.97:2525] with esmtp (Farcaster)
+ id 11a1da28-eaf2-40b1-b48f-53da0e26ce8e; Tue, 27 Oct 2026 11:27:24 +0000 (UTC)
+X-Farcaster-Flow-ID: 11a1da28-eaf2-40b1-b48f-53da0e26ce8e
+Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
+ EX19MTAUWB002.ant.amazon.com (10.250.64.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.56;
+ Tue, 27 Oct 2026 11:27:24 +0000
+Received: from dev-dsk-dipiets-1b-77b833da.eu-west-1.amazon.com
+ (10.253.66.177) by EX19D001UWA001.ant.amazon.com (10.13.138.214) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.56; Tue, 27 Oct 2026
+ 11:27:17 +0000
+From: Salvatore Dipietro <dipiets@amazon.it>
+To: <akpm@linux-foundation.org>, <linux-mm@kvack.org>
+CC: <ryan.roberts@arm.com>, <abuehaze@amazon.com>, <alisaidi@amazon.com>,
+	<blakgeof@amazon.com>, <dipietro.salvatore@gmail.com>, <rvvandan@amazon.com>,
+	<viro@zeniv.linux.org.uk>, <brauner@kernel.org>, <jack@suse.cz>,
+	<linkinjeon@kernel.org>, <sj1557.seo@samsung.com>, <yuezhang.mo@sony.com>,
+	<miklos@szeredi.hu>, <agruenba@redhat.com>, <djwong@kernel.org>,
+	<hyc.lee@gmail.com>, <almaz.alexandrovich@paragon-software.com>,
+	<cem@kernel.org>, <dlemoal@kernel.org>, <naohiro.aota@wdc.com>,
+	<jth@kernel.org>, <willy@infradead.org>, <david@kernel.org>,
+	<ljs@kernel.org>, <liam@infradead.org>, <vbabka@kernel.org>,
+	<rppt@kernel.org>, <surenb@google.com>, <mhocko@suse.com>, <ziy@nvidia.com>,
+	<matthew.brost@intel.com>, <joshua.hahnjy@gmail.com>, <rakie.kim@sk.com>,
+	<byungchul@sk.com>, <gourry@gourry.net>, <ying.huang@linux.alibaba.com>,
+	<apopple@nvidia.com>, <ritesh.list@gmail.com>,
+	<linux-fsdevel@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<exfat@lists.linux.dev>, <fuse-devel@lists.linux.dev>,
+	<gfs2@lists.linux.dev>, <linux-xfs@vger.kernel.org>, <ntfs@lists.linux.dev>,
+	<ntfs3@lists.linux.dev>
+Subject: [PATCH 0/2] mm, iomap: account dirty at page granularity for per-block dirty folios
+Date: Tue, 27 Oct 2026 11:27:00 +0000
+Message-ID: <20261027112702.3747009-1-dipiets@amazon.it>
+X-Mailer: git-send-email 2.50.1
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -69,56 +97,145 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
+MIME-Version: 1.0
+X-ClientProxiedBy: EX19D031UWA003.ant.amazon.com (10.13.139.47) To
+ EX19D001UWA001.ant.amazon.com (10.13.138.214)
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-If the 64-bit VCN in an index entry would have the the high bit set if
-shifted left by icx->vcn_size_bits, ntfs_index_walk_down() will pass
-that vcn to ntfs_ib_read(), which shifts it left and passes it (via pos)
-to ntfs_inode_attr_pread(), which checks s64 pos for too big but not too
-small:
+Since iomap gained per-block dirty tracking, a large folio can be
+partially dirty: struct iomap_folio_state records exactly which
+blocks are dirty, and writeback only writes those ranges.  The mm
+dirty accounting, however, still charges the whole folio even if a
+single block is dirty (up to 512x over-accounting for a 2 MB folio
+over 4 KB blocks).
 
-        if (pos > isize) {
-                mutex_unlock(&mrec_ni->mrec_lock);
-                return -EINVAL;
-        }
+balance_dirty_pages() then throttles writers against a number that
+is unrelated to how much data actually needs writing back.  On
+workloads that repeatedly dirty small ranges of large folios --
+e.g. PostgreSQL, which writes mostly 8/16 KB pages -- dirty_thresh
+is crossed and writers are throttled long before the real dirty data
+justifies it.  On the benchmark below, run on v7.3-rc7, the
+unpatched kernel charges ~159 TB of dirtied pages while writing
+~6 TB to the array, a factor of 27; with this series the dirtied
+pages charged match the data actually written.
 
-and then passes a bad pointer to memcpy() (line 3801 of ntfs/inode.c):
+This series makes iomap charge and discharge the mm dirty counters
+per dirty page for folios that carry per-block dirty state, so a
+partially dirty large folio is accounted for the dirty part only:
 
-                memcpy(buf, (u8 *)attr + pos, count);
+  - Patch 1 adds the mm infrastructure: an AS_DIRTY_PER_BLOCK
+    mapping flag, an @accounted argument to __folio_mark_dirty()
+    and __filemap_dirty_folio() to skip the generic per-folio
+    charge, and an address_space_operations::accounted_dirty_pages()
+    callback used by the discharge and migration paths instead of
+    folio_nr_pages().  No filesystem opts in, so it is a no-op on
+    its own.
 
-# wget http://www.rtmrtm.org/rtm/ntfs23g.img.gz
-# gunzip ntfs23g.img.gz 
-# mount -t ntfs -o loop,rw ntfs23g.img /mnt
-# ls -l /mnt
-ntfs: (device loop0): ntfs_lookup_inode_by_name(): Corrupt directory.  Aborting lookup.
-ntfs: (device loop0): check_windows_hibernation_status(): Failed to find inode number for hiberfil.sys.
-ntfs: (device loop0): load_system_files(): Failed to determine if Windows is hibernated.  Mounting read-only.  Run chkdsk.
-Oops: general protection fault, probably for non-canonical address 0x7fffc039131f1c50: 0000 [#1] SMP DEBUG_PAGEALLOC PTI
-CPU: 4 UID: 0 PID: 1475 Comm: ls Not tainted 7.3.0-16472-gd135ab453a74 #46 PREEMPT(full)
-Hardware name: FreeBSD BHYVE/BHYVE, BIOS 14.0 10/17/2021
-RIP: 0010:memcpy_orig+0x16/0x140
-Code: 00 00 66 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 48 89 f8 48 83 fa 20 72 7e 40 38 fe 7c 35 48 83 ea 20 48 83 ea 20 <4c> 8b 06 4c 8b 4e 08 4c 8b 56 10 4c 8b 5e 18 48 8d 76 20 4c 89 07
-RSP: 0018:ffffc90000b27ce8 EFLAGS: 00010206
-RAX: ffff888104869000 RBX: 800037b810010000 RCX: ffff8881056fa140
-RDX: 0000000000000fc0 RSI: 7fffc039131f1c50 RDI: ffff888104869000
-RBP: ffffc90000b27d48 R08: ffff8881056fa140 R09: 0000000000000000
-R10: 0000000000000018 R11: ffffffff817f16b6 R12: 0000000000000000
-R13: ffff888104869000 R14: ffff8881056fa140 R15: 0000000000001000
-FS:  00007fe46c7a5800(0000) GS:ffff8884aa47e000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00005646e478fb68 CR3: 0000000108cd4001 CR4: 00000000003706f0
-Call Trace:
- <TASK>
- ? ntfs_inode_attr_pread+0x33c/0x410
- ntfs_ib_read+0x5f/0xf0
- ntfs_index_walk_down+0x76/0x120
- ntfs_readdir+0x8ae/0xba0
- ? selinux_file_permission+0x127/0x190
- iterate_dir+0x80/0x190
- __x64_sys_getdents64+0x77/0x110
- ? __pfx_filldir64+0x10/0x10
- x64_sys_call+0x96b/0x2220
- do_syscall_64+0xdd/0x4a0
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
+  - Patch 2 makes iomap charge per dirty page from the per-block
+    dirty bitmap and wires iomap_accounted_dirty_pages() into every
+    iomap-based filesystem.
 
-Robert Morris
-rtm@mit.edu
+This was benchmarked with PostgreSQL using the pgbench simple-update
+workload on v7.3-rc7.  Average throughput rises 46.8% (139.8k ->
+205.2k tps) and run-to-run variability drops from a 23.60% to a
+3.98% coefficient of variation: the worst iteration improves from
+97.9k to 191.5k tps, while the best gains 8%, 199.4k -> 215.9k.
+
+Ten iterations per kernel, same database and workload (tps):
+
+  Kernel                     Avg     Min     Max      CV   iters   iters
+                                                             1-5    6-10
+  ______________________  ______  ______  ______  ______  ______  ______
+  v7.3-rc7                139.8k   97.9k  199.4k  23.60%  164.4k  115.2k
+  v7.3-rc7 + this series  205.2k  191.5k  215.9k   3.98%  200.1k  210.2k
+
+On unpatched v7.3-rc7 the worst iteration lands ~51% below the best,
+and throughput decays as the run progresses: iterations 6-10 average
+30% below iterations 1-5.  With this series the decay is gone -- the
+second half is similar to the first -- and the coefficient of
+variation stays at 3.98%.
+
+The over-accounting has existed since commit 4ce02c679722 ("iomap: Add
+per-block dirty state tracking to improve performance"), merged in
+v6.6, where the ifs bitmap started recording partial dirty state while
+the mm counters kept charging whole folios.
+
+The throughput collapse bisects to the v6.17 readahead series, first
+bad commit c4602f9fa77f ("mm/readahead: store folio order in struct
+file_ra_state"), which lets readahead stay at the largest folio order
+once it has ramped up, so a single dirty block charges far more than
+is written.  Patch 2 therefore carries:
+
+  Fixes: 4ce02c679722 ("iomap: Add per-block dirty state tracking to improve performance")
+  Cc: stable@vger.kernel.org # v6.17+
+
+Test environment:
+
+  Hardware:  2x AWS EC2 m8g.24xlarge
+             (SUT with 12x 1TB io2, 32000 IOPS each, RAID0, XFS)
+  OS:        AL2023
+  Kernels:   v7.3-rc7, v7.3-rc7 + this series
+  Database:  PostgreSQL 17 (with huge_pages=on)
+  Workload:  pgbench simple-update
+             1024 clients, 96 threads, 600s duration
+             scale factor 8470, fillfactor=90, prepared protocol
+  Runs:      10 iterations per configuration
+
+How to replicate results:
+
+This script starts two AWS EC2 m8g.24xlarge instances (SUT + driver),
+then installs, loads and benchmarks PostgreSQL using the
+repro-collection repository.  To run it:
+
+  # Reproducer code (dirty-folio-regression branch):
+  git clone -b dirty-folio-regression \
+    https://github.com/aws/repro-collection.git ~/repro-collection
+
+  # Concatenate patches 1 and 2 of this series, in order, into one file:
+  cat 0001-*.patch 0002-*.patch > dirty-per-block.patch
+
+  # Setup and start PostgreSQL benchmark:
+  KERNEL_REPO="https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git" \
+  KERNEL_BRANCH="v7.3-rc7" \
+  ITERS=10 \
+  PLACEMENT_GROUP="pg-test" \
+  KEY="$HOME/.ssh/id_rsa" \
+  KEYPAIR="<aws keypair>" \
+  ./repros/repro-postgresql-dirty-folios/folio-reproduce.sh <benchmark name> \
+  --patch="<path to dirty-per-block.patch>"
+
+Salvatore Dipietro (2):
+  mm: add infrastructure for per-dirty-page accounting
+  mm, iomap: account dirty at page granularity for per-block dirty
+    folios
+
+ fs/buffer.c             |   4 +-
+ fs/exfat/inode.c        |   1 +
+ fs/fuse/file.c          |   1 +
+ fs/gfs2/aops.c          |   1 +
+ fs/iomap/buffered-io.c  | 167 ++++++++++++++++++++++++++++++++++++++--
+ fs/ntfs/aops.c          |   2 +
+ fs/ntfs3/inode.c        |   2 +
+ fs/xfs/xfs_aops.c       |   1 +
+ fs/zonefs/file.c        |   1 +
+ include/linux/fs.h      |   7 ++
+ include/linux/iomap.h   |   1 +
+ include/linux/pagemap.h |  20 ++++-
+ mm/internal.h           |   3 +
+ mm/migrate.c            |  17 +++-
+ mm/page-writeback.c     |  91 +++++++++++++++++-----
+ 15 files changed, 286 insertions(+), 33 deletions(-)
+
+
+base-commit: 24a19b953e2a3d0ea5a8c4951a0ab8f32720c907
+-- 
+2.50.1
+
+
+
+
+AMAZON DEVELOPMENT CENTER ITALY SRL, viale Monte Grappa 3/5, 20124 Milano, Italia, Registro delle Imprese di Milano Monza Brianza Lodi REA n. 2504859, Capitale Sociale: 10.000 EUR i.v., Cod. Fisc. e P.IVA 10100050961, Societa con Socio Unico
+
+
+
