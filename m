@@ -1,70 +1,56 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=71.18.227.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793203516;
-	b=pgT05EwDTzLWTBs1MVU39IplQlB9hFWkiIDGu8R0IQeu9+eCqPxyob7XH9enwVpLvyC+
-	 jlu4h1gZMkiPQ9xquEFCBTRpnOG/C02PEWAC21ICSLKWGaQmDoQNQCdl0tqt8Gie//n1Y
-	 T+dNs2jv6/14UnX4XBtY2FWW69lU/rv5HMmk5f9NstMEQ27rTEoV5bnVRbgnIyxzpb9e7
-	 oqbic5Vw1F17dNZVTCQh7ZzkpRzs/TyiQzJek8B9MUKaDVK+NSD6f6LTSmahQiJT/q8tX
-	 WGXGWG91lkhHzv1lR8pKmkwng+jNRUOzrE+NWiHDwX/OD2V7N/7qlGx/B1WUpk6ZEQw==
+	t=1793218170;
+	b=n2f7MO+xcpAUCJxRbNfT7FhqPZeIIBoYdPBI5I2M2D1HwZUkUnqqS+PVyZb8UzLN/c2w
+	 TdtEcKVmeMJcb8Vea+EC6t8ffr3VPM2xSRZSj9Xm3p/7dZvBitCdDvpotMNbzVT+gNIRS
+	 iZ5lwDyJNvYxu5zlkNqJ1CMeJPWXBM1U+tgHhfERsY2HJiUvb6Y7z80FJCo7o3owayf/X
+	 lMSnUgLtDLjP/yemv2HlSjHGtyiU8zdw9vvYgfR7QlTFaIDRnPG01hFDCU1tIWI9mxmAn
+	 WrTJ4GMONKbrvTyI2HHxp6Dg78YxKG+qPKDQVDi/LvzJCN2THjccbH0cH1f7IQ1r/sw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793203516;
-	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:X-Mailer:
-	 In-Reply-To:References:MIME-Version:X-Developer-Signature:
-	 X-Developer-Key:Content-Transfer-Encoding;
-	bh=88sfbrcRMagQo5uewTZLqJVOWmvLIZ7ZDDHfajCvQ8w=;
-	b=b3efSz0M7kC/RNoRtfrO4IoFCeCwElBH+4/+7s8r/KV2dMMNRGnjOiGAxBC7QSz8cPcr
-	 xV34w14tS50zT1NyCPhR94CH4Xr3gG3hKt4qXrFoRxLp2rUygmaN6Mwm5z2VX3wOAhkJL
-	 X1/AIoPdJWKOWvgC4tG599EfVobpPrc8wCFz/GtCfQ5KMGdIGq4g5RmVdvEByQCWYG1LE
-	 nUNoMzyD/aQVSUMl3F/g5+k+AV6nxEZo+rUE77w8XtvxaBii/WOJ4kKH2+uMikiHXDaaG
-	 wNmqqgQ4y8NmbQqvwITNxLf6IN96MwxMJTTaohpGNj5QAxeYwk1oIt/CLLTQ3AyQhRg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793218170;
+	h=DMARC-Filter:DKIM-Signature:X-B4-Tracking:Content-Type:
+	 Content-Transfer-Encoding:X-Lms-Return-Path:From:Date:Cc:Message-Id:
+	 Mime-Version:X-Mailer:X-Original-From:X-Change-Id:Received:To:
+	 Subject;
+	bh=P9v5gomtHM+UM7ktgSnN33eoEYmTkj5Bo7NGWriI0nc=;
+	b=v/siaYE8MwSPqN1GAL8jxcVm8On4KZ0g2BwBH3vILH4mQyzyU6zWawVP0GWE9k6RTJ5P
+	 p2iL4Dcddn6rlH18hhCa/xjjQlSMYHnnd2BuMfNxEVvv753jzdPD3YjM5nR60cThILRaH
+	 F6CkUfAxn9O2zGZeGLgiU4ELNVnxVbtjD3a/4gw/cBhMPuF7QT29DYnBipGSezskhuGYO
+	 /M2AE7fYF+mhYNjtJlSsq3g/yGJbbFJP3yWroeP7wmCAiRo6rlsaafPJY4ccYPMfiZZjn
+	 kD9ZxLDcrNrCBNiTJk5e5nVnKiPFbmZCZbfbCE1JnV7R9IQ/9A8UYCVb4w96mI99rlw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iEGdvb86;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	dmarc=pass header.from=cherr.cc;
+	spf=pass smtp.mailfrom=cherr.cc;
+	arc=none smtp.remote-ip=71.18.227.4
+Received: from sg-2-4.ptr.blmpb.com (sg-2-4.ptr.blmpb.com [71.18.227.4])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8F2606AA59;
-	Wed, 28 Oct 2026 16:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iEGdvb86
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C57CF1F01285;
-	Wed, 28 Oct 2026 16:05:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793203515;
-	bh=88sfbrcRMagQo5uewTZLqJVOWmvLIZ7ZDDHfajCvQ8w=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=iEGdvb862gVq48UUgyRl/Xm6JMHFkS0Jzxlmh1uQ/FP154kv0/TjitiGESsor5WdQ
-	 C8Ve/mHow4xmhrJmq+PhbjqnTBi5ymT89KYt5rqJvqLtaHs91auSgZty38iRzuAaNY
-	 sGOGJMPqaSegYASCqriuMvHoyhSXhrWH0cznQKI8Z8TELXfHtMN7ZKOD1MT2ckz4xo
-	 lCT7U8xwgQPyPE/kc4kGz4PVC7PcOGpFDQc0DU1uHdID0r52NAIP/kj47a3WIfts6K
-	 K+2/BYbdOrzkQy31h86d4L7UB6r0C0qvkhbPm3Kgu+qXygGQYSsxvoxsYUNq3oppIg
-	 lKbUPV9aoH+oA==
-From: Christian Brauner <brauner@kernel.org>
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: Christian Brauner <brauner@kernel.org>,
-	Jan Kara <jack@suse.com>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	ecryptfs@vger.kernel.org,
-	linux-ext4@vger.kernel.org,
-	jfs-discussion@lists.sourceforge.net,
-	linux-nilfs@vger.kernel.org,
-	exfat@lists.linux.dev,
-	linux-fsdevel@vger.kernel.org,
-	ntfs@lists.linux.dev,
-	ocfs2-devel@lists.linux.dev,
-	linux-btrfs@vger.kernel.org,
-	gfs2@lists.linux.dev,
-	linux-efi@vger.kernel.org,
-	linux-mtd@lists.infradead.org,
-	linux-xfs@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH RFC 14/28] ntfs: don't set SB_RDONLY after filesystem errors
-Date: Wed, 28 Oct 2026 17:05:06 +0100
-Message-ID: <20261028-fixstern-halunken-skelett-fb3cd0824159@brauner>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <atW1VhJXAIvtYPfd@hyunchul-PC02>
-References: <20261012-work-fs-sb_rdonly-v1-0-60743a3dc326@kernel.org> <20261012-work-fs-sb_rdonly-v1-14-60743a3dc326@kernel.org> <atW1VhJXAIvtYPfd@hyunchul-PC02>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE5560A2615
+	for <ntfs@lists.linux.dev>; Wed, 28 Oct 2026 20:09:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org DEE5560A2615
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cherr.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherr.cc
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=feishu2604220257; d=cherr.cc; t=1793218163; h=from:subject:
+ mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
+ mime-version:in-reply-to:message-id;
+ bh=P9v5gomtHM+UM7ktgSnN33eoEYmTkj5Bo7NGWriI0nc=;
+ b=XcC1dZxCpezEigz/exLwbpTt8YPBE+Iw/METqBr+UwNl/EN9xKZPS4RNCbkoy6tJHOsW4O
+ InmVNrqPI7y71335YRnjoi2b2BwTtVGeYjEFEvv9PGT6Gwb0f7Xxhm02fdZGsB2zlZdxsR
+ WUXpCpxVPdCAJWWiImlnN1jI4hSq/JAHkhCSZTZD/rnG9ygUlVegrw4JKidogVrrxkomkP
+ docqjpylhzbnadVymLeKCPWBYdlhj/GD2xKkkYthzcKYdLEKETi7YUuQODUa+iq3JXz6OM
+ auUYmiKHH9+em/jGWdmvqztCpGBhz/nmOsFizlAT8grHU+nLyjdKgXahmiAULA==
+X-B4-Tracking: v=1; b=H4sIAG1W4moC/yXMwQ6CMAwA0F8hPduELQODv2I8dKPTapxknWJC+ HcHHt/lLaCchRVOzQKZP6LyShXm0EC4UboyylgNtrW9ae2A3mEqUdFLedKEc5bCnsIDZ5KCo+t 6E6lzYThCPabMUb77f778rW9/51C2FNb1B/jXAemBAAAA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Lms-Return-Path: <lba+26ae25671+1f4ddb+lists.linux.dev+me@cherr.cc>
+From: "Shengzhuo Wei" <me@cherr.cc>
+Date: Thu, 29 Oct 2026 04:09:18 +0800
+Cc: <ntfs@lists.linux.dev>, <linux-kernel@vger.kernel.org>, 
+	<linux-fsdevel@vger.kernel.org>, <stable@vger.kernel.org>, 
+	"Shengzhuo Wei" <me@cherr.cc>
+Message-Id: <20261029-b4-ntfs-bitmap-writeback-wait-v1-1-e2ba711b2dbf@cherr.cc>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -73,47 +59,115 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2009; i=brauner@kernel.org; h=from:subject:message-id; bh=p94qtq7P6Iyb9ro/ig3qsXfneKNkQl3vnYSgqxFYI4M=; b=owGbwMvMwCU28Zj0gdSKO4sYT6slMWQ9kjX5zM8Xn3WMa65c5ROjC84Wi7I8Vdelxp8Uknu7e NHt2DMXO0pZGMS4GGTFFFkc2k3C5ZbzVGw2ytSAmcPKBDKEgYtTACbSfZDhvxvLvOPaJy5+bO6u aPynfMBQpNjbPaLkmuimi/UFjT7r0xgZDpy9vTtgcu3kQxtM9P637q1UPByx2Tj5+w2OmuViLbe MGQA=
-X-Developer-Key: i=brauner@kernel.org; a=openpgp; fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+X-Mailer: b4 0.16.0
+X-Original-From: Shengzhuo Wei <me@cherr.cc>
+X-Change-Id: 20261029-b4-ntfs-bitmap-writeback-wait-d4561fa54c97
+Received: from [127.0.1.1] ([111.42.148.156]) by smtp.feishu.cn with ESMTPS; Thu, 29 Oct 2026 04:09:20 +0800
+To: "Namjae Jeon" <linkinjeon@kernel.org>, 
+	"Hyunchul Lee" <hyc.lee@gmail.com>
+Subject: [PATCH] ntfs: wait for bitmap folio writeback before modifying it
 
-On Mon, Oct 19, 2026 at 03:14:46PM +0900, Hyunchul Lee wrote:
-> Before this patch, SB_RDONLY is set, so remount,rw returned -EROFS. With
-> this patch, sb_rdonly(sb) is false, so remount,rw skips the check and
-> return success even though writes are rejected with -EROFS.
+The bitmap update paths lock their page cache folios before modifying
+them, but the folio lock does not wait for an earlier writeback to
+finish.  Writeback can release the lock while its BIO still references
+the folio memory, allowing bitmap changes to race with that I/O and
+expose partially updated contents to it.
 
-Yes, that's intended. ntfs_reconfigure() only refuses the transition
-from ro to rw. After an error with errors=remount-ro
-ntfs_handle_error() sets NV_Errors and NV_EmergencyRO. A remount to
-read-only works and a remount to read-write after that fails with
--EROFS. A "mount -o remount,rw" of a volume that is still read-write
-isn't a transition. It returns 0 but doesn't change anything.
+Wait for existing writeback after locking each folio and before
+modifying it in ntfs_attr_set(), both bitmap setter loops, the cluster
+allocator, and the two MFT bitmap allocation paths.  This follows the
+lock-then-wait sequence already used for attribute and raw MFT updates.
 
-That's how ext4 behaves since commit d3476f3dad4a ("ext4: don't set
-SB_RDONLY after filesystem errors"). __ext4_remount() only looks at
-ext4_emergency_state() if the read-only state changes. And every other
-filesystem in this series does the same.
+Cc: stable@vger.kernel.org
+Signed-off-by: Shengzhuo Wei <me@cherr.cc>
+---
+The change was checked against the existing attribute/MFT waits and
+the iomap completion path.  Existing base and patched NTFS object
+builds with W=1 and CONFIG_WERROR=y complete without warnings.  No
+runtime reproduction or filesystem stress test was performed.
+---
+ fs/ntfs/attrib.c   | 2 ++
+ fs/ntfs/bitmap.c   | 4 ++++
+ fs/ntfs/lcnalloc.c | 2 ++
+ fs/ntfs/mft.c      | 4 ++++
+ 4 files changed, 12 insertions(+)
 
-> I think that the condition should be test NVolErrors(), for example
->
->     if ((sb_rdonly(sb) || NVolErrors(vol)) &&
->         !(fc->sb_flags & SB_RDONLY)) {
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index fce7144d7bef..b460d2223314 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -2332,6 +2332,8 @@ int ntfs_attr_set(struct ntfs_inode *ni, s64 ofs, s64 cnt, const u8 val)
+ 		attr_len = min_t(size_t, (size_t)cnt, folio_size(folio) - offset);
+ 
+ 		folio_lock(folio);
++		if (folio_test_writeback(folio))
++			folio_wait_writeback(folio);
+ 		addr = kmap_local_folio(folio, offset);
+ 		memset(addr, val, attr_len);
+ 		kunmap_local(addr);
+diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
+index af86fb1c199b..057b315789ec 100644
+--- a/fs/ntfs/bitmap.c
++++ b/fs/ntfs/bitmap.c
+@@ -213,6 +213,8 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
+ 	}
+ 
+ 	folio_lock(folio);
++	if (folio_test_writeback(folio))
++		folio_wait_writeback(folio);
+ 	kaddr = kmap_local_folio(folio, 0);
+ 
+ 	/* Set @pos to the position of the byte containing @start_bit. */
+@@ -277,6 +279,8 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
+ 		}
+ 
+ 		folio_lock(folio);
++		if (folio_test_writeback(folio))
++			folio_wait_writeback(folio);
+ 		kaddr = kmap_local_folio(folio, 0);
+ 		/*
+ 		 * Depending on @value, modify all remaining whole bytes in the
+diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
+index 3ebcac4c2864..aac8627a9283 100644
+--- a/fs/ntfs/lcnalloc.c
++++ b/fs/ntfs/lcnalloc.c
+@@ -348,6 +348,8 @@ struct runlist_element *ntfs_cluster_alloc(struct ntfs_volume *vol, const s64 st
+ 		}
+ 
+ 		folio_lock(folio);
++		if (folio_test_writeback(folio))
++			folio_wait_writeback(folio);
+ 		buf = kmap_local_folio(folio, 0) + pg_off;
+ 		ntfs_debug("Before inner while loop: buf_size %i, lcn 0x%llx, bmp_pos 0x%llx, need_writeback %i.",
+ 				buf_size, lcn, bmp_pos, need_writeback);
+diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
+index 89288b794348..b8aa8b0891dc 100644
+--- a/fs/ntfs/mft.c
++++ b/fs/ntfs/mft.c
+@@ -1206,6 +1206,8 @@ static s64 mft_bitmap_alloc_free_rec(struct ntfs_volume *vol,
+ 				return PTR_ERR(folio);
+ 			}
+ 			folio_lock(folio);
++			if (folio_test_writeback(folio))
++				folio_wait_writeback(folio);
+ 			buf = (u8 *)kmap_local_folio(folio, 0) + folio_ofs;
+ 			bit = data_pos & 7;
+ 			data_pos &= ~7ull;
+@@ -1402,6 +1404,8 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
+ 
+ 	down_write(&vol->lcnbmp_lock);
+ 	folio_lock(folio);
++	if (folio_test_writeback(folio))
++		folio_wait_writeback(folio);
+ 	b = (u8 *)kmap_local_folio(folio, 0) + (ll & ~PAGE_MASK);
+ 	tb = 1 << (lcn & 7ull);
+ 	/*
 
-NV_Errors is the wrong bit for this. It's also set outside of
-ntfs_handle_error() no matter what errors= says. map_mft_record_folio()
-sets it when an mft record fails its checks and ntfs_read_locked_inode()
-when it marks an inode bad. So with errors=continue (which is the
-default?) a single corrupt mft record leaves NV_Errors set on a volume that is
-still writable.
+---
+base-commit: d135ab453a7400a34930bdda1ef4bdc8acfac80e
+change-id: 20261029-b4-ntfs-bitmap-writeback-wait-d4561fa54c97
 
-With your change every remount that keeps such a volume read-write, e.g. just
-to change another option, would fail with "Volume has errors and is read-only".
-
-If you really want ntfs to refuse remount,rw in the emergency state then
-NVolEmergencyRO() is the bit to test. But then ntfs would behave
-differently from ext4 and the rest of this series. So I'd rather keep it
-as is.
-
-Fwiw, in the next version reconfigure_super() refuses the transition to
-read-write itself. It uses the generic emergency read-only state Jan asked for.
+Best regards,
+--  
+Shengzhuo Wei <me@cherr.cc>
