@@ -1,56 +1,69 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=71.18.227.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793218170;
-	b=n2f7MO+xcpAUCJxRbNfT7FhqPZeIIBoYdPBI5I2M2D1HwZUkUnqqS+PVyZb8UzLN/c2w
-	 TdtEcKVmeMJcb8Vea+EC6t8ffr3VPM2xSRZSj9Xm3p/7dZvBitCdDvpotMNbzVT+gNIRS
-	 iZ5lwDyJNvYxu5zlkNqJ1CMeJPWXBM1U+tgHhfERsY2HJiUvb6Y7z80FJCo7o3owayf/X
-	 lMSnUgLtDLjP/yemv2HlSjHGtyiU8zdw9vvYgfR7QlTFaIDRnPG01hFDCU1tIWI9mxmAn
-	 WrTJ4GMONKbrvTyI2HHxp6Dg78YxKG+qPKDQVDi/LvzJCN2THjccbH0cH1f7IQ1r/sw==
+	t=1793224778;
+	b=4a7WyEeC/CXFaycOjHtwmAw3bpxRxdkupsobEa5szR2kN5qx+aylbCSUMbDuO8dRMc1V
+	 5Bmkb5IQ4iSKkoeYxMy4VGdbKw20RTFV46JXrbotO/Rs1qhP5d3uVBMBnRaXiwrX3FNW6
+	 lRYIHv2G6L5o5BWRTpHL1T3Hg8xFk599jK4C1hGYaNUygo3v6ySzlnumN2t6ZuTeJK+2Y
+	 X67rbWlA8ADu6mtbgmnobdSfFpeTHFTHArx6xWF05aQv2S0r81qeiEx2ldWcjDBofDOrZ
+	 lNZJ0qnDAlpN7TJVAMpcMh6HVvkrILvLFHIQ5ZWe32WGjcxDzEcfvRmm5HyhLo6zXsg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793218170;
-	h=DMARC-Filter:DKIM-Signature:X-B4-Tracking:Content-Type:
-	 Content-Transfer-Encoding:X-Lms-Return-Path:From:Date:Cc:Message-Id:
-	 Mime-Version:X-Mailer:X-Original-From:X-Change-Id:Received:To:
-	 Subject;
-	bh=P9v5gomtHM+UM7ktgSnN33eoEYmTkj5Bo7NGWriI0nc=;
-	b=v/siaYE8MwSPqN1GAL8jxcVm8On4KZ0g2BwBH3vILH4mQyzyU6zWawVP0GWE9k6RTJ5P
-	 p2iL4Dcddn6rlH18hhCa/xjjQlSMYHnnd2BuMfNxEVvv753jzdPD3YjM5nR60cThILRaH
-	 F6CkUfAxn9O2zGZeGLgiU4ELNVnxVbtjD3a/4gw/cBhMPuF7QT29DYnBipGSezskhuGYO
-	 /M2AE7fYF+mhYNjtJlSsq3g/yGJbbFJP3yWroeP7wmCAiRo6rlsaafPJY4ccYPMfiZZjn
-	 kD9ZxLDcrNrCBNiTJk5e5nVnKiPFbmZCZbfbCE1JnV7R9IQ/9A8UYCVb4w96mI99rlw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793224778;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
+	bh=KN0FgIJMajTdk9Ymv64LA7EQejo37NTwYsXl8rzrDcw=;
+	b=fo9inZ7VJsv9/W6lLZfxb/eKhwbQeBnuaBTV4905NK8eMRLCDth6/9tsZa5xP909KJ5E
+	 g3MaN1JD+Cit1GuQGE/LDDD6gUtgUSgIyezgKFJ0/wovqZ9Sz463ZLBZih6XtuoMP3DjT
+	 vGqS77mbgkr2gmivJQ77muw/LM90ia2jTxwp+e8Izb22weYgz/L2yNBiFla06wE4WdQ7i
+	 TXDotrItejKZdgCCX+XYB3i0Jus4KKI1PGY3mChJdNLzsIaqu+GZgV2Wbb8DDSo1ldlJe
+	 GMMijEqydnNxCRzY+h5OhjFDrYZ4Tne0lO38+UP09KbEhpYVTiW2KW+5kk6X/JjqAoA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=cherr.cc;
-	spf=pass smtp.mailfrom=cherr.cc;
-	arc=none smtp.remote-ip=71.18.227.4
-Received: from sg-2-4.ptr.blmpb.com (sg-2-4.ptr.blmpb.com [71.18.227.4])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=a3RA0sBt;
+	arc=none smtp.remote-ip=100.103.45.18
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE5560A2615
-	for <ntfs@lists.linux.dev>; Wed, 28 Oct 2026 20:09:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org DEE5560A2615
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cherr.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherr.cc
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=feishu2604220257; d=cherr.cc; t=1793218163; h=from:subject:
- mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
- mime-version:in-reply-to:message-id;
- bh=P9v5gomtHM+UM7ktgSnN33eoEYmTkj5Bo7NGWriI0nc=;
- b=XcC1dZxCpezEigz/exLwbpTt8YPBE+Iw/METqBr+UwNl/EN9xKZPS4RNCbkoy6tJHOsW4O
- InmVNrqPI7y71335YRnjoi2b2BwTtVGeYjEFEvv9PGT6Gwb0f7Xxhm02fdZGsB2zlZdxsR
- WUXpCpxVPdCAJWWiImlnN1jI4hSq/JAHkhCSZTZD/rnG9ygUlVegrw4JKidogVrrxkomkP
- docqjpylhzbnadVymLeKCPWBYdlhj/GD2xKkkYthzcKYdLEKETi7YUuQODUa+iq3JXz6OM
- auUYmiKHH9+em/jGWdmvqztCpGBhz/nmOsFizlAT8grHU+nLyjdKgXahmiAULA==
-X-B4-Tracking: v=1; b=H4sIAG1W4moC/yXMwQ6CMAwA0F8hPduELQODv2I8dKPTapxknWJC+ HcHHt/lLaCchRVOzQKZP6LyShXm0EC4UboyylgNtrW9ae2A3mEqUdFLedKEc5bCnsIDZ5KCo+t 6E6lzYThCPabMUb77f778rW9/51C2FNb1B/jXAemBAAAA
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Lms-Return-Path: <lba+26ae25671+1f4ddb+lists.linux.dev+me@cherr.cc>
-From: "Shengzhuo Wei" <me@cherr.cc>
-Date: Thu, 29 Oct 2026 04:09:18 +0800
-Cc: <ntfs@lists.linux.dev>, <linux-kernel@vger.kernel.org>, 
-	<linux-fsdevel@vger.kernel.org>, <stable@vger.kernel.org>, 
-	"Shengzhuo Wei" <me@cherr.cc>
-Message-Id: <20261029-b4-ntfs-bitmap-writeback-wait-v1-1-e2ba711b2dbf@cherr.cc>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC24606A334;
+	Wed, 28 Oct 2026 21:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=a3RA0sBt
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 735ED1F01825;
+	Wed, 28 Oct 2026 21:59:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793224777;
+	bh=KN0FgIJMajTdk9Ymv64LA7EQejo37NTwYsXl8rzrDcw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=a3RA0sBt4j+5IOAxEQxpVDoeAzK+P2lBLhl6gq2sX+rpplyk7XL+xEh8DUFIe7llV
+	 7Xwjeho+6cJzY+Al3GxT+KpIrqYT4GruKZzBB1gefgy9Gm6mRgcxx4CtoAIwqa9gCk
+	 ZOb2MydTxzI70JvhNAi/zd7B3b/0uyaMJCy5gjs666f5X12czMgE5UGdw6HEM9/HmT
+	 roFeNjsFe73Sd1FC9UdXdQNt04xT8PcR2DZKB6YITl5USRXo3YWmrLpEotk9nHElM9
+	 23qPe0bvRd63mi3/Y0Yk+bs/cjlLa1pNzQg1YCqRV+kfADzUNXig3J22jjQPaJ76zt
+	 b5A4bYdaO7/sw==
+Date: Thu, 29 Oct 2026 08:59:20 +1100
+From: Dave Chinner <dgc@kernel.org>
+To: Salvatore Dipietro <dipiets@amazon.it>
+Cc: akpm@linux-foundation.org, linux-mm@kvack.org, ryan.roberts@arm.com,
+	abuehaze@amazon.com, alisaidi@amazon.com, blakgeof@amazon.com,
+	dipietro.salvatore@gmail.com, rvvandan@amazon.com,
+	viro@zeniv.linux.org.uk, brauner@kernel.org, jack@suse.cz,
+	linkinjeon@kernel.org, sj1557.seo@samsung.com, yuezhang.mo@sony.com,
+	miklos@szeredi.hu, agruenba@redhat.com, djwong@kernel.org,
+	hyc.lee@gmail.com, almaz.alexandrovich@paragon-software.com,
+	cem@kernel.org, dlemoal@kernel.org, naohiro.aota@wdc.com,
+	jth@kernel.org, willy@infradead.org, david@kernel.org,
+	ljs@kernel.org, liam@infradead.org, vbabka@kernel.org,
+	rppt@kernel.org, surenb@google.com, mhocko@suse.com, ziy@nvidia.com,
+	matthew.brost@intel.com, joshua.hahnjy@gmail.com, rakie.kim@sk.com,
+	byungchul@sk.com, gourry@gourry.net, ying.huang@linux.alibaba.com,
+	apopple@nvidia.com, ritesh.list@gmail.com,
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	exfat@lists.linux.dev, fuse-devel@lists.linux.dev,
+	gfs2@lists.linux.dev, linux-xfs@vger.kernel.org,
+	ntfs@lists.linux.dev, ntfs3@lists.linux.dev
+Subject: Re: [PATCH 0/2] mm, iomap: account dirty at page granularity for
+ per-block dirty folios
+Message-ID: <auJwOJ-dQCHLAvMq@dread>
+References: <20261027112702.3747009-1-dipiets@amazon.it>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,115 +72,145 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-Mime-Version: 1.0
-X-Mailer: b4 0.16.0
-X-Original-From: Shengzhuo Wei <me@cherr.cc>
-X-Change-Id: 20261029-b4-ntfs-bitmap-writeback-wait-d4561fa54c97
-Received: from [127.0.1.1] ([111.42.148.156]) by smtp.feishu.cn with ESMTPS; Thu, 29 Oct 2026 04:09:20 +0800
-To: "Namjae Jeon" <linkinjeon@kernel.org>, 
-	"Hyunchul Lee" <hyc.lee@gmail.com>
-Subject: [PATCH] ntfs: wait for bitmap folio writeback before modifying it
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261027112702.3747009-1-dipiets@amazon.it>
 
-The bitmap update paths lock their page cache folios before modifying
-them, but the folio lock does not wait for an earlier writeback to
-finish.  Writeback can release the lock while its BIO still references
-the folio memory, allowing bitmap changes to race with that I/O and
-expose partially updated contents to it.
+On Tue, Oct 27, 2026 at 11:27:00AM +0000, Salvatore Dipietro wrote:
+> Since iomap gained per-block dirty tracking, a large folio can be
+> partially dirty: struct iomap_folio_state records exactly which
+> blocks are dirty, and writeback only writes those ranges.  The mm
+> dirty accounting, however, still charges the whole folio even if a
+> single block is dirty (up to 512x over-accounting for a 2 MB folio
+> over 4 KB blocks).
+> 
+> balance_dirty_pages() then throttles writers against a number that
+> is unrelated to how much data actually needs writing back.  On
+> workloads that repeatedly dirty small ranges of large folios --
+> e.g. PostgreSQL, which writes mostly 8/16 KB pages -- dirty_thresh
+> is crossed and writers are throttled long before the real dirty data
+> justifies it.  On the benchmark below, run on v7.3-rc7, the
+> unpatched kernel charges ~159 TB of dirtied pages while writing
+> ~6 TB to the array, a factor of 27; with this series the dirtied
+> pages charged match the data actually written.
+> 
+> This series makes iomap charge and discharge the mm dirty counters
+> per dirty page for folios that carry per-block dirty state, so a
+> partially dirty large folio is accounted for the dirty part only:
+> 
+>   - Patch 1 adds the mm infrastructure: an AS_DIRTY_PER_BLOCK
+>     mapping flag, an @accounted argument to __folio_mark_dirty()
+>     and __filemap_dirty_folio() to skip the generic per-folio
+>     charge, and an address_space_operations::accounted_dirty_pages()
+>     callback used by the discharge and migration paths instead of
+>     folio_nr_pages().  No filesystem opts in, so it is a no-op on
+>     its own.
+> 
+>   - Patch 2 makes iomap charge per dirty page from the per-block
+>     dirty bitmap and wires iomap_accounted_dirty_pages() into every
+>     iomap-based filesystem.
 
-Wait for existing writeback after locking each folio and before
-modifying it in ntfs_attr_set(), both bitmap setter loops, the cluster
-allocator, and the two MFT bitmap allocation paths.  This follows the
-lock-then-wait sequence already used for attribute and raw MFT updates.
+This feels to me like a pretty gross layering violation.
 
-Cc: stable@vger.kernel.org
-Signed-off-by: Shengzhuo Wei <me@cherr.cc>
----
-The change was checked against the existing attribute/MFT waits and
-the iomap completion path.  Existing base and patched NTFS object
-builds with W=1 and CONFIG_WERROR=y complete without warnings.  No
-runtime reproduction or filesystem stress test was performed.
----
- fs/ntfs/attrib.c   | 2 ++
- fs/ntfs/bitmap.c   | 4 ++++
- fs/ntfs/lcnalloc.c | 2 ++
- fs/ntfs/mft.c      | 4 ++++
- 4 files changed, 12 insertions(+)
+iomap is tracking dirty filesystem block state, for the purposes of
+efficiently writing back dirty blocks.
 
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index fce7144d7bef..b460d2223314 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -2332,6 +2332,8 @@ int ntfs_attr_set(struct ntfs_inode *ni, s64 ofs, s64 cnt, const u8 val)
- 		attr_len = min_t(size_t, (size_t)cnt, folio_size(folio) - offset);
- 
- 		folio_lock(folio);
-+		if (folio_test_writeback(folio))
-+			folio_wait_writeback(folio);
- 		addr = kmap_local_folio(folio, offset);
- 		memset(addr, val, attr_len);
- 		kunmap_local(addr);
-diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
-index af86fb1c199b..057b315789ec 100644
---- a/fs/ntfs/bitmap.c
-+++ b/fs/ntfs/bitmap.c
-@@ -213,6 +213,8 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
- 	}
- 
- 	folio_lock(folio);
-+	if (folio_test_writeback(folio))
-+		folio_wait_writeback(folio);
- 	kaddr = kmap_local_folio(folio, 0);
- 
- 	/* Set @pos to the position of the byte containing @start_bit. */
-@@ -277,6 +279,8 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
- 		}
- 
- 		folio_lock(folio);
-+		if (folio_test_writeback(folio))
-+			folio_wait_writeback(folio);
- 		kaddr = kmap_local_folio(folio, 0);
- 		/*
- 		 * Depending on @value, modify all remaining whole bytes in the
-diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
-index 3ebcac4c2864..aac8627a9283 100644
---- a/fs/ntfs/lcnalloc.c
-+++ b/fs/ntfs/lcnalloc.c
-@@ -348,6 +348,8 @@ struct runlist_element *ntfs_cluster_alloc(struct ntfs_volume *vol, const s64 st
- 		}
- 
- 		folio_lock(folio);
-+		if (folio_test_writeback(folio))
-+			folio_wait_writeback(folio);
- 		buf = kmap_local_folio(folio, 0) + pg_off;
- 		ntfs_debug("Before inner while loop: buf_size %i, lcn 0x%llx, bmp_pos 0x%llx, need_writeback %i.",
- 				buf_size, lcn, bmp_pos, need_writeback);
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 89288b794348..b8aa8b0891dc 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -1206,6 +1206,8 @@ static s64 mft_bitmap_alloc_free_rec(struct ntfs_volume *vol,
- 				return PTR_ERR(folio);
- 			}
- 			folio_lock(folio);
-+			if (folio_test_writeback(folio))
-+				folio_wait_writeback(folio);
- 			buf = (u8 *)kmap_local_folio(folio, 0) + folio_ofs;
- 			bit = data_pos & 7;
- 			data_pos &= ~7ull;
-@@ -1402,6 +1404,8 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 
- 	down_write(&vol->lcnbmp_lock);
- 	folio_lock(folio);
-+	if (folio_test_writeback(folio))
-+		folio_wait_writeback(folio);
- 	b = (u8 *)kmap_local_folio(folio, 0) + (ll & ~PAGE_MASK);
- 	tb = 1 << (lcn & 7ull);
- 	/*
+iomap was designed to keep filesystem state entirely separate from
+the page cache, including the tracking of sub-page dirty filesystem
+state.  One of the underlying design principles of iomap (all those
+years ago) was to avoid needing the page cache to know anything
+about filesystem block sizes at all. having the page cache track
+anything at filesystem block granularity was inefficient, wasteful
+in terms of memory needed to track each block, had coherency
+problems with filesystem state vs cached mm/pagecache state, etc.
 
----
-base-commit: d135ab453a7400a34930bdda1ef4bdc8acfac80e
-change-id: 20261029-b4-ntfs-bitmap-writeback-wait-d4561fa54c97
+iomap tracks block dirty state per folio for writeback efficiency,
+not for pagecache drity tracking optimisation. Large folios are a
+pagecache optimisation, and they were really only made possible by
+the isolation iomap provides between filesystem state and page cache
+state.
 
-Best regards,
---  
-Shengzhuo Wei <me@cherr.cc>
+Pushing the mm dirty folio accounting implementations directly into
+iomap breaks that isolation - it once again tightly couples the
+filesystem dirty block tracking to mm pagecache accounting and
+accounting. Hence I think this approach is a non-starter - nothing
+should bleed across the filemap interfaces in either direction....
+
+> This was benchmarked with PostgreSQL using the pgbench simple-update
+> workload on v7.3-rc7.  Average throughput rises 46.8% (139.8k ->
+> 205.2k tps) and run-to-run variability drops from a 23.60% to a
+> 3.98% coefficient of variation: the worst iteration improves from
+> 97.9k to 191.5k tps, while the best gains 8%, 199.4k -> 215.9k.
+
+If postgresql is only doing 8/16kb writes, then how is it getting
+the page cache populated with large folios? That's the underlying
+fundamental problem here, yes?
+
+I ask, because iomap caps the folio size to the write() IO length,
+so for 8/16kB writes it will only be asking for 8-16kB folios and so
+there won't be huge 2MB folios in the page cache to cause
+issues. Hence there must be something else populating the cache
+first....
+
+> Ten iterations per kernel, same database and workload (tps):
+> 
+>   Kernel                     Avg     Min     Max      CV   iters   iters
+>                                                              1-5    6-10
+>   ______________________  ______  ______  ______  ______  ______  ______
+>   v7.3-rc7                139.8k   97.9k  199.4k  23.60%  164.4k  115.2k
+>   v7.3-rc7 + this series  205.2k  191.5k  215.9k   3.98%  200.1k  210.2k
+> 
+> On unpatched v7.3-rc7 the worst iteration lands ~51% below the best,
+> and throughput decays as the run progresses: iterations 6-10 average
+> 30% below iterations 1-5.  With this series the decay is gone -- the
+> second half is similar to the first -- and the coefficient of
+> variation stays at 3.98%.
+> 
+> The over-accounting has existed since commit 4ce02c679722 ("iomap: Add
+> per-block dirty state tracking to improve performance"), merged in
+> v6.6, where the ifs bitmap started recording partial dirty state while
+> the mm counters kept charging whole folios.
+> 
+> The throughput collapse bisects to the v6.17 readahead series, first
+> bad commit c4602f9fa77f ("mm/readahead: store folio order in struct
+> file_ra_state"), which lets readahead stay at the largest folio order
+> once it has ramped up, so a single dirty block charges far more than
+> is written.
+
+.... and that implies there is a sequential read portion of the
+benchmark that is first populating the page cache with large folios.
+
+Do you get the same sort of improvement if you make postgres use
+POSIX_FADV_RANDOM on these files? This will cap the size of folios
+in the cache to whatever the postgresql read() IO size is. Yes, it
+will slow down whatever the sequential read portion of the benchmark
+is, but I don't care about that right now.
+
+What I want to know is if the application preventing readahead from
+populating large folios gets you back all the write performance
+without needing to modify any kernel code at all.  i.e. if we make a
+different choice for initial folio sizes in readahead, then does the
+write performance improve?
+
+Alternatively, if there is distinct sequential read vs random write
+phases to postgres behaviour, then does issuing POSIX_FADV_DONTNEED
+between them restore the random write performance?
+
+If choosing smaller folios for readhaead makes the problem go away,
+then the answer may be to add FADV_RANDOM_WRITE which allows full
+readahead but caps page cache folio size to, say, 64kB.  That would
+allow sequential buffered reads to run at full speed, prevent the
+worst of the issues with PAGE_SIZE folios in the page cache, but
+also not perform terribly for random 8-16kB writes....
+
+Indeed, we could use the fadvise64(count) parameter for something
+like FADV_RANDOM_WRITE to provide an IO size hint that would be used
+to derive the folio size we use for that file during readahead....
+
+Cheers,
+
+Dave.
+-- 
+Dave Chinner
+dgc@kernel.org
