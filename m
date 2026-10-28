@@ -1,54 +1,97 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.210.71
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.214.180
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793142654;
-	b=ovtFPh0M8/ONW3sQHbLzRxhVK2Z7or3X+ZaTOblHtBc+lYyvhrdvq01waTOF1R3Fi0fB
-	 7EY/1O5IGQ+qvKQ2nm1Yg+JdtqEBxwglwfwdiR2TjiuDtfjmXUfZbbF8CCiST6Ea27VOo
-	 IFBbUzVFABWfXdCI3rE8Qgp3dTmYECDUlbZqPctn8rHhEoyp+xTWLQXLWa8NKwmEICvrM
-	 +PaylZjrEsz6egRywjOQiNfPikuDiah/Y7aZXye/JLUQCWEZm6kxNcvoqXlOM/BuOKQkP
-	 kHFaUrtbhgzcpYb1RQIs/qvqKAC6h823psyf7Q7hvyhEidF/6WA1bIJfhah6yn1Z56w==
+	t=1793174767;
+	b=ZF0PVq5CnvLe/7BQrVmtWUPoCDTJGTETepyGOWH1J/ZV9lBCvoPNTsPQd3KBXZEFXOZY
+	 IxUcXTpyrgov7+FFcC9T4ymKpzqrw006QvtbtXljkgqTPSD/7z+RQow4Q0LzTciSzMJ/x
+	 dLhvfVlXl7e/w/QfRWV3xJjYRphV3RivEz4gomcCw0oXBjDN9U0dBlaael80KRy/tjUQP
+	 x0c5fVOpKG43rhw61lG3jt5mNQFcvXuzi6/j4KVenTcIxYxska2iyRMDHetq1Tj34gXtP
+	 UGwazTPqA1vKq2ZBMTz5ZXmH0mECu2NYjEaNIZaRJ4McJSrngkOuedCkGZP4VEg2nNg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793142654;
-	h=DMARC-Filter:Received:X-Google-DKIM-Signature:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:MIME-Version:X-Received:Date:In-Reply-To:
-	 X-Google-Appengine-App-Id:X-Google-Appengine-App-Id-Alias:Message-ID:
-	 Subject:From:To:Cc:Content-Type;
-	bh=A3E77K8iCCovhISJvCAtXH/UuMVbqTit6GWjoYdyLWE=;
-	b=Ijpi5fUJlwCgJAmCF6vwHEu3JMj0SIi/mgn9uPc5kgP/Ebi1c7IZlfoXLM5IDHTTcIzP
-	 AgtwKq4GZzxK3Mw17yfTQzaKLTzxkIGmsUyodxCMETV8VpfZGhZ3qI6QDXwwsDCVNzbKs
-	 qrq8JK5vkmVYOoG3ctvJ7U8p+T6SgYnoTAAajCjwsW1iF6evXYmqNFFptl7ln8m0PIMJ/
-	 fCJIq8VeeSBQ4/9kEnyyoGg6Eg3KsRz20FZN7pxtD3rAqFmmeGQDEAKYuPE2bjAvl/jV+
-	 YCsr/1Me6AnsDtsANGz1BNdGB0bSfcwzJfr670LFbCN/VRq0KnjUTx2Acuo+oSrKx1g==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793174767;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Gm-Gg:X-Received:Received:Date:From:To:Cc:
+	 Subject:Message-ID:References:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:In-Reply-To;
+	bh=7GXB1xr1jAmuWjPzMKbNea9peth8B4l67mgjM85gBCI=;
+	b=g3/8HLa1hEFZmrSNBHmjr9ER/Kk1lD3I/dLh8CmUtz3srC8QfriVTIVfOSmFvFi696nz
+	 uA8XjWLI2Ix37WiPfryTt4KWUcjGQaBPM2IsMo9HLQypvgpJAJl9g5Q0tpllI+eBe5B4L
+	 RLZ/fbj4iTWQO4wqVv7B6+mTI+THzvhuJPTeyvpWOOazbeDioQd0fROCVKwhR3TUHGbS2
+	 ZhslREaLK/47ZDHpAsVivnQemRbAk65FlnszkYjflGM8XRiwRE0CGpQ7edvHEH6QJdfPr
+	 YED9E3ahyhGs4xzvpC+mqdiZoC44KEGHhN2AAuyHxujj/gSPFJhUS8wpqKzT0vYLGZQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=fail header.from=syzkaller.appspotmail.com;
-	spf=pass smtp.mailfrom=M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com;
-	arc=none smtp.remote-ip=209.85.210.71
-Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com [209.85.210.71])
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VJSCFUBx;
+	arc=none smtp.remote-ip=209.85.214.180
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE462606A323
-	for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 23:10:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org BE462606A323
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=syzkaller.appspotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com
-Received: by mail-ot1-f71.google.com with SMTP id 46e09a7af769-823d73ffca1so610037a34.2
-        for <ntfs@lists.linux.dev>; Tue, 27 Oct 2026 16:10:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3751B606A31A
+	for <ntfs@lists.linux.dev>; Wed, 28 Oct 2026 08:06:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 3751B606A31A
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VJSCFUBx
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2e9ae391a05so4457695ad.1
+        for <ntfs@lists.linux.dev>; Wed, 28 Oct 2026 01:06:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1793174766; x=1793779566; darn=lists.linux.dev;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=7GXB1xr1jAmuWjPzMKbNea9peth8B4l67mgjM85gBCI=;
+        b=VJSCFUBxSoQ+M8dGxWrjYhCxzq4IQnfm+Zcz/3Mku8JyTn7oJoskAGiSbF1q3vHT2u
+         D4OU01O/SfUnFZs1/SLVtZpU8hmaubNMLEiJXg1Bxm0u+V/Z5WzHHEM3FB61bTMvcFo4
+         lRD8HAk7axcrxGL21L1OUQIelMIQhAwEd/YkW7ERzCd6AT+ZlyJ3ib8uqEGmoyXNx9vi
+         VujWk+nx4PJ61ShjUKYabyBt0dR5X1Nrz1HCUUqr9s1rEoukWTqpxVONcF2Y+yZqBKI8
+         0TdMG0spRLGwEL/DRxXO156j/U5n9tvfd1nQeKjliN4WgOB/Xvj4s5b1Vgh4LjSFIkcc
+         gwZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793142653; x=1793747453;
-        h=content-type:cc:to:from:subject:message-id:in-reply-to:date
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20260707; t=1793174766; x=1793779566;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to:content-type;
-        bh=A3E77K8iCCovhISJvCAtXH/UuMVbqTit6GWjoYdyLWE=;
-        b=xbjtbSmazIyCJHIkjF4nwm/tVncx/UopZQZbMphn1T66DsWzBpiA2waAcWKtt4/Opo
-         OtsvV/TaVFddhBzc4YabScafgkpTEAXni8rtibv0w1BJHPW4dpO81fXOIURvUhGMZd3K
-         Gr1FD24vwZqn3asZ+cCTBTrpPIoCHr23BdtMcL3g63WfxHlGrz9WaNRheObMp+eEGp9K
-         njHU9pFT7nj1wCFRXFEYvQ+OmfWAFYuRI1uHebGmJMeiHm7XNMXv6l9NhYHGMuZKbp4a
-         TVbRoS2MWDrRBuw7FtbjG06dFWn/02nntxwawuhZ0BmGKmtZhJHBM40hhr8LmH8OmsQK
-         X2cQ==
-X-Forwarded-Encrypted: i=1; AKwUvByFabie8tCykWLAVVo08j0kD6e8Z7xKagP4TK06tJfCk8pXVoOUKYP9X86eR+evwPAjnWJg@lists.linux.dev
-X-Gm-Message-State: AFq9FYIMGRFX7XBNpBboOcClQ0Q6914VGBCxpS7Q2d1HZtJ5TZT50BAh
-	qvWfBwb4PEMHEIBSYELT/ay3Q4p8V1ZRzMMDP1l55uruhwPc6el40lxFokpRPNP1udv3T20HjDF
-	nkwoV6JKFvOc4+d8taRgyQoHDBuZFMKFoRw9xvdWnB95QYDqvbqFtUYz6z8g=
+        bh=7GXB1xr1jAmuWjPzMKbNea9peth8B4l67mgjM85gBCI=;
+        b=JphW/6yZRU1QPInh26wmdNxdYJY5ZcUlqw8EwmkoB3HJVNjs7VTRyM/UwW5IBs+hRz
+         CVhAIDJyhHrRdDkMh13zQ6G9xaEnmAMB6IDsS5dRi5ngG9f6eqUnhAYu6WmoGerSiq0U
+         c1pNK/wu8910C5R6wueoyYJyHazI5YdslW9AthKc89SdA8N5bBoKqvJHRTfnzFuIXBmq
+         GxLkxBFbffGodrj+HpRm+5cL87JXinGR/60luzoU4w0T2lnI0ru10RtZr1WaHenZ9t9R
+         ej/2CAgInaIeMl29I8uB1gYw69K+qNO3HQhcA3MV8/M4EwTULVuFt5++s+LVJ7jq5phG
+         JLrA==
+X-Gm-Message-State: AFq9FYI34oTXc7PcsQblPzintA6eViXyY+K/Nj9kQbq7ukm8ciu7N7qH
+	w1TtAWWcIh/1lmddu3P33EbZUavmpS94ZoRVLTVUqbiSSpja7guz3A8b
+X-Gm-Gg: AYBFou1eIcvE/aD8jAeQZkj0KVjJrbMaH3SVwbfIEDSYziUO2YrS28oHzZousi19xXb
+	CwclRq3X5BIWrP/CzWzB3Cdfe1bJUTK0w8e9XqD440bLZr9PT0ZgYVSXBqRMGemLP6Dy8ygcBJ3
+	iL1KssDpmUfIS3x8aUyd7isvNF3NS0vE/8FGlgOp+9Pa6IBdhm56ZJ5GAVJx58/5PZ5n7HyAMtG
+	/Rwx27CJJ6E2lBLbpGzGao5KbzqkWhqSzWbDRBsJ5hcRAFBLBVNrTr6yjnXohgNtz6+rBfkWHNX
+	v1U3NozX1EWgW5qoT+OfQxSHZzfIP+ZJM+fyKOPZgLyNuuUrvnBI2FUMUZ701wwUV0yufPszz+Y
+	SVYHhuQs9DWB6kboz0o2m7081+q9yxE2DHKPDqiKNtNZflpSRhzQxeG3jRLhT4foxKuMpLfJ7oX
+	Z0Wb1PAYGtnOtWY9dID4JPymGIrqdcYpYFffEuRDj/7AZmfANhAHjnMuK/2wul/IQfJhGOpJNiP
+	9Wr3EvIP9uVifAMEKnzlfS0XQTs5qb1OBBCdDSJofOHvamYsscVD0Sx7FHL5/0xoaEcbwAgEA0/
+	IN5hKt//0HauyIEUUSvqmqPH8WvY139DYTFhQKUj
+X-Received: by 2002:a17:903:2382:b0:2e7:67ad:8e9d with SMTP id d9443c01a7336-2eb074e2ed8mr2790815ad.30.1793174766107;
+        Wed, 28 Oct 2026 01:06:06 -0700 (PDT)
+Received: from localhost ([27.122.242.71])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2eae6ce3b4fsm18666925ad.73.2026.10.28.01.06.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Oct 2026 01:06:03 -0700 (PDT)
+Date: Wed, 28 Oct 2026 17:05:59 +0900
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: Jaidan Brashier <jobrashier@gmail.com>
+Cc: ntfs@lists.linux.dev, linkinjeon@kernel.org
+Subject: Re: ntfs: EIO/stale-reference errors on several volumes and on-disk
+ corruption after switching from ntfs3 (Fedora 44 7.2.x)
+Message-ID: <auGs5wycYstmw13c@hyunchul-PC02>
+References: <CAPLZLeaXKkev=_EwAb679RaZ-Lcb_XQO1FsAw6RyT=M56rP7zw@mail.gmail.com>
+ <at72kIgNxnK9p1tq@hyunchul-PC02>
+ <CAPLZLeYo6AhBLcCBeZgDAs5Duv08B4i1rdFNFH5ikTXhcueMAg@mail.gmail.com>
+ <auA-MOGIj-J4dLGF@hyunchul-PC02>
+ <CAPLZLeaVAoFefe06b+7MaoLHVMJbAZ+PaDuVkiPMAry6TKpE0w@mail.gmail.com>
+ <auBtMq76Vj47NGPu@hyunchul-PC02>
+ <CAPLZLeZtObeMVNY=Q_-hRkyL-ycruuaRsPRwtUUxWPuTWC+McA@mail.gmail.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -58,437 +101,389 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-X-Received: by 2002:a05:6808:c1f4:b0:55c:836:597e with SMTP id
- 5614622812f47-56383e9013amr518556b6e.31.1793142652810; Tue, 27 Oct 2026
- 16:10:52 -0700 (PDT)
-Date: Tue, 27 Oct 2026 16:10:52 -0700
-In-Reply-To: <20261027112702.3747009-1-dipiets@amazon.it>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <6ae12f7c.768774f5.3237ab.002d.GAE@google.com>
-Subject: [syzbot ci] Re: mm, iomap: account dirty at page granularity for
- per-block dirty folios
-From: syzbot ci <syzbot+ci96d4e003e13d8147@syzkaller.appspotmail.com>
-To: abuehaze@amazon.com, agruenba@redhat.com, akpm@linux-foundation.org, 
-	alisaidi@amazon.com, almaz.alexandrovich@paragon-software.com, 
-	apopple@nvidia.com, blakgeof@amazon.com, brauner@kernel.org, byungchul@sk.com, 
-	cem@kernel.org, david@kernel.org, dipietro.salvatore@gmail.com, 
-	dipiets@amazon.it, djwong@kernel.org, dlemoal@kernel.org, 
-	exfat@lists.linux.dev, fuse-devel@lists.linux.dev, gfs2@lists.linux.dev, 
-	gourry@gourry.net, hyc.lee@gmail.com, jack@suse.cz, joshua.hahnjy@gmail.com, 
-	jth@kernel.org, liam@infradead.org, linkinjeon@kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mm@kvack.org, linux-xfs@vger.kernel.org, ljs@kernel.org, 
-	matthew.brost@intel.com, mhocko@suse.com, miklos@szeredi.hu, 
-	naohiro.aota@wdc.com, ntfs3@lists.linux.dev, ntfs@lists.linux.dev, 
-	rakie.kim@sk.com, ritesh.list@gmail.com, rppt@kernel.org, rvvandan@amazon.com, 
-	ryan.roberts@arm.com, sj1557.seo@samsung.com, stable@vger.kernel.org, 
-	surenb@google.com, vbabka@kernel.org, viro@zeniv.linux.org.uk, 
-	willy@infradead.org, ying.huang@linux.alibaba.com, yuezhang.mo@sony.com, 
-	ziy@nvidia.com
-Cc: syzbot@lists.linux.dev, syzkaller-bugs@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPLZLeZtObeMVNY=Q_-hRkyL-ycruuaRsPRwtUUxWPuTWC+McA@mail.gmail.com>
 
-syzbot ci has tested the following series
+On Tue, Oct 27, 2026 at 04:12:03AM -0700, Jaidan Brashier wrote:
+> I agree that FITRIM is related to the SSD issues, I'm not sure how i
+> missed that initial time line-up. Maybe i read the log wrong the first
+> time.
+> 
+> Regarding the full logs for 2026-10-01, I am hesitant to post entire
+> logs possibly containing sensitive information, especially details
+> like my MAC and IP addresses, to a public forum. If you'd like, I can
+> send those just to you. Also, I'm unsure if you meant the logs from
+> that specific day only, or the logs from the entire boot session that
+> included that day. I'm also not sure how useful the full -b log from
+> that whole boot would be, as it is a 67.5MiB, 530,000-line plaintext
+> file full of mostly repetitive logged input requests from apps and
+> similar entries, but I can supply it if you want it.
+> 
+> Attached are the boot list and lsblk output.
 
-[v1] mm, iomap: account dirty at page granularity for per-block dirty folios
-https://lore.kernel.org/all/20261027112702.3747009-1-dipiets@amazon.it
-* [PATCH 1/2] mm: add infrastructure for per-dirty-page accounting
-* [PATCH 2/2] mm, iomap: account dirty at page granularity for per-block dirty folios
+I understand your concern, and I appreciate your help.
+As you mentioned, I only need targeted logs from October 1 through
+October 24, not the entire boot session.
 
-and found the following issues:
-* KASAN: slab-out-of-bounds Read in folio_accounted_dirty_pages
-* KASAN: slab-use-after-free Read in folio_accounted_dirty_pages
+Please send the resulting files to me privately.
 
-Full report is available here:
-https://ci.syzbot.org/series/05041e6c-d357-4fc5-9bbe-6aae1760d639
+journalctl -k \
+      --since "2026-10-01 07:00:00 UTC" \
+      --until "2026-10-24 07:00:00 UTC" \
+      -o short-iso-precise --no-pager \
+      > kernel.log
 
-***
+journalctl \
+      --since "2026-10-01 07:00:00 UTC" \
+      --until "2026-10-24 07:00:00 UTC" \
+      _PID=1 -o short-iso-precise --no-pager \
+      > systemd-lifecycle.log
 
-KASAN: slab-out-of-bounds Read in folio_accounted_dirty_pages
+journalctl -u fstrim.service -u fstrim.timer \
+      --since "2026-10-01 07:00:00 UTC" \
+      --until "2026-10-24 07:00:00 UTC" \
+      -o short-iso-precise --no-pager \
+      > fstrim.log
 
-tree:      axboe
-URL:       https://kernel.googlesource.com/pub/scm/linux/kernel/git/axboe/linux.git
-base:      24a19b953e2a3d0ea5a8c4951a0ab8f32720c907
-arch:      amd64
-compiler:  Debian clang version 22.1.8 (1~deb13u4), Debian LLD 22.1.8
-config:    https://ci.syzbot.org/builds/9865cf75-69fb-4fbd-b5fe-d0be9cd03802/config
-syz repro: https://ci.syzbot.org/findings/98cdf846-0b4c-4f94-8430-3b7db9efe057/syz_repro
+journalctl -u udisks2.service \
+      --since "2026-10-01 07:00:00 UTC" \
+      --until "2026-10-24 07:00:00 UTC" \
+      -o short-iso-precise --no-pager \
+      > udisks2.log
 
-==================================================================
-BUG: KASAN: slab-out-of-bounds in instrument_atomic_read include/linux/instrumented.h:82 [inline]
-BUG: KASAN: slab-out-of-bounds in _test_bit include/asm-generic/bitops/instrumented-non-atomic.h:141 [inline]
-BUG: KASAN: slab-out-of-bounds in mapping_dirty_per_block include/linux/pagemap.h:319 [inline]
-BUG: KASAN: slab-out-of-bounds in folio_accounted_dirty_pages+0x53/0x1f0 mm/page-writeback.c:2654
-Read of size 8 at addr ffff888168669f89 by task syz.1.47/5860
+journalctl -u systemd-udevd.service \
+      --since "2026-10-01 07:00:00 UTC" \
+      --until "2026-10-24 07:00:00 UTC" \
+      -o short-iso-precise --no-pager \
+      > systemd-udevd.log
 
-CPU: 0 UID: 0 PID: 5860 Comm: syz.1.47 Not tainted syzkaller #0 PREEMPT(full) 
-Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.2-debian-1.16.2-1 04/01/2014
-Call Trace:
- <TASK>
- dump_stack_lvl+0xe8/0x150 lib/dump_stack.c:120
- print_address_description+0x55/0x1e0 mm/kasan/report.c:378
- print_report+0x58/0x70 mm/kasan/report.c:482
- kasan_report+0x117/0x150 mm/kasan/report.c:595
- check_region_inline mm/kasan/generic.c:-1 [inline]
- kasan_check_range+0x264/0x2c0 mm/kasan/generic.c:200
- instrument_atomic_read include/linux/instrumented.h:82 [inline]
- _test_bit include/asm-generic/bitops/instrumented-non-atomic.h:141 [inline]
- mapping_dirty_per_block include/linux/pagemap.h:319 [inline]
- folio_accounted_dirty_pages+0x53/0x1f0 mm/page-writeback.c:2654
- __folio_migrate_mapping+0x3d0/0x2830 mm/migrate.c:624
- __migrate_folio mm/migrate.c:893 [inline]
- migrate_folio+0x10a/0x1a0 mm/migrate.c:920
- move_to_new_folio+0x1ed/0x460 mm/migrate.c:1135
- migrate_folio_move mm/migrate.c:1401 [inline]
- migrate_folios_move mm/migrate.c:1758 [inline]
- migrate_pages_batch+0x30b3/0x4f50 mm/migrate.c:2014
- migrate_pages_sync mm/migrate.c:2044 [inline]
- migrate_pages+0x1b9f/0x2920 mm/migrate.c:2153
- migrate_to_node mm/mempolicy.c:1322 [inline]
- do_migrate_pages+0x656/0x8b0 mm/mempolicy.c:1421
- kernel_migrate_pages mm/mempolicy.c:1935 [inline]
- __do_sys_migrate_pages mm/mempolicy.c:1953 [inline]
- __se_sys_migrate_pages+0xaa2/0xc90 mm/mempolicy.c:1949
- do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
- do_syscall_64+0x166/0x520 arch/x86/entry/syscall_64.c:84
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
-RIP: 0033:0x7f04fcf9f559
-Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007f04fc5fe028 EFLAGS: 00000246 ORIG_RAX: 0000000000000100
-RAX: ffffffffffffffda RBX: 00007f04fd225fa0 RCX: 00007f04fcf9f559
-RDX: 0000200000000040 RSI: 0000000000000009 RDI: 0000000000000000
-RBP: 00007f04fd036b20 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000200000000380 R11: 0000000000000246 R12: 0000000000000000
-R13: 00007f04fd226038 R14: 00007f04fd225fa0 R15: 00007ffc667db8b8
- </TASK>
+> 
+> 
+> On Tue, Oct 27, 2026 at 2:21 AM Hyunchul Lee <hyc.lee@gmail.com> wrote:
+> >
+> > On Mon, Oct 26, 2026 at 11:21:26PM -0700, Jaidan Brashier wrote:
+> > > I accidentally addressed only Hyunchul in my last message. I have
+> > > copied to reply properly including the mailing list, sorry for
+> > > duplicate mail:
+> > >
+> > > Absolutely!
+> > > Find attached all the logs i looked at plus the one you requested
+> > >
+> >
+> > I believe FITRIM caused the corruptions on sda2 and sdb2.
+> >
+> > The logs show that FITRIM was applied to both /dev/sda2 and /dev/sdb2,
+> > and the NTFS corruption messages appear after that:
+> >
+> > Oct 05 01:05:41 GRIDBUG systemd[1]: Starting fstrim.service - Discard unused blocks on filesystems from /etc/fstab...
+> > Oct 05 01:13:29 GRIDBUG fstrim[234714]: /mnt/Chronos: 98.2 GiB (105433657344 bytes) trimmed on /dev/sdb2
+> > Oct 05 01:13:29 GRIDBUG fstrim[234714]: /mnt/Xtra: 227.7 GiB (244457193472 bytes) trimmed on /dev/sda2
+> >
+> > 2026-10-05T01:05:46-07:00 GRIDBUG kernel: ntfs: (device sdb2): ntfs_lookup(): Found stale reference to inode 0x2ef8 (reference sequence number = 0x635, inode sequence number = 0x0), returning -EIO. Run chkdsk.
+> > 2026-10-06T21:35:01-07:00 GRIDBUG kernel: ntfs: (device sda2): ntfs_mapping_pairs_decompress(): Corrupt mapping pairs array in non-resident attribute.
+> > 2026-10-06T21:35:01-07:00 GRIDBUG kernel: ntfs: (device sda2): ntfs_non_resident_attr_expand(): ntfs_attr_map_whole_runlist failed
+> >
+> > However, it is difficult to determine the casue of the sdc2 failure from
+> > the provided logs.
+> >
+> > Would it possible to provide the complete, unedited journal logs
+> > from 2026-10-01?  If so, we would really appreciate it.
+> > * journalctl --list-boots
+> > * journalctl -k -b <boot-id>
+> > * journalctl -b <boot-id>
+> > * the output of lsblk -o NAME,PHY-SEC,LOG-SEC
+> >
+> > > On Mon, Oct 26, 2026 at 11:01 PM Hyunchul Lee <hyc.lee@gmail.com> wrote:
+> > > >
+> > > > On Mon, Oct 26, 2026 at 09:55:17PM -0700, Jaidan Brashier wrote:
+> > > > > Hello Hyunchul,
+> > > > > Thank you for your timely response!
+> > > > >
+> > > > > I do have fstrim.timer enabled. According to my logs, since Oct 2, it
+> > > > > has issued fstrim requests 4 times:
+> > > > > Oct 05 01:05:41,
+> > > > > Oct 12 06:59:03,
+> > > > > Oct 19 09:35:47,
+> > > > > Oct 26 01:20:31 (today).
+> > > > >
+> > > > > Cross-referencing these times with when the issues occurred, I do not
+> > > > > believe there is significant correlation.
+> > > > >
+> > > > > Additionally, fstrim.timer only operates on drives that have
+> > > > > discarding enabled, which my two HDDs do not, including sdc2, the site
+> > > > > of the major corruption.
+> > > > > The fstrim activity logs confirm that while it has been operating, it
+> > > > > has only operated on my SSDs; therefore, it cannot be the sole culprit
+> > > > > behind the issue that has spanned both drive types.
+> > > > > I can post these logs as well if you'd like.
+> > > >
+> > > > Thanks, this is very useful information.
+> > > > However, just to double-check, could you please share those logs and
+> > > > the output of the following command?
+> > > >
+> > > > lsblk -o NAME,TYPE,FSTYPE,DISC-GRAN,DISC-MAX,MOUNTPOINTS
+> > > >
+> > > > >
+> > > > > On Sun, Oct 25, 2026 at 11:43 PM Hyunchul Lee <hyc.lee@gmail.com> wrote:
+> > > > > >
+> > > > > > Hi Jaidan,
+> > > > > >
+> > > > > > On Sat, Oct 24, 2026 at 03:18:21PM -0700, Jaidan Brashier wrote:
+> > > > > > > Hello.
+> > > > > > > Recently on Oct 2, i swapped from ntfs3 to ntfs, and since then I’ve
+> > > > > > > seen recurring EIO/stale-reference errors on four NTFS volumes, a
+> > > > > > > hardlink creation error, and one case of on-disk corruption (repaired
+> > > > > > > by Windows chkdsk) on Oct 23. Logs attached.
+> > > > > > >
+> > > > > > > Environment
+> > > > > > >   OS: Fedora 44 KDE Plasma 6.7. Incidents spanned several boots
+> > > > > > > ranging versions 7.2.8-200.fc44.x86_64 to 7.2.11-200.fc44.x86_64
+> > > > > > >   Mount (all 4 drives):    rw,noatime,uid=1000,gid=1000,umask=00,iocharset=utf8,
+> > > > > > >             case_sensitive,errors=continue,mft_zone_multiplier=1,
+> > > > > > >             windows_names,native_symlink=raw,symlink=wsl
+> > > > > > >   Devices:   corruption occurred on a SATA HDD, sdc2, NTFS 3.1, 4k clusters.
+> > > > > > >   3 other NTFS drives are present (2 SATA SSDs and another SATA HDD).
+> > > > > > >   smartctl and Windows chkdsk /r report no bad sectors on any drive.
+> > > > > > >
+> > > > > > > Fast Startup has been disabled for months. No volume was ever flagged
+> > > > > > > dirty. Unclean shutdowns occurred on these volumes before the switch;
+> > > > > > > none that I know of since.
+> > > > > > >
+> > > > > > > Workload
+> > > > > > >   Previous issues: General desktop use; I don't know precisely what
+> > > > > > > activities preceded previous errors
+> > > > > > >   Most recent issue: Steam Linux Runtime 4.0 update (heavy I/O
+> > > > > > > traffic, lots of temp files, symlinks and hardlinks)
+> > > > > > >
+> > > > > > > Twice prior, i noted a seemingly random file on my system was refusing
+> > > > > > > to be read, returning an I/O error.
+> > > > > > > Both of those times, I fixed the issue by running `sync && echo 3 |
+> > > > > > > sudo tee /proc/sys/vm/drop_caches`, unmounting the drive, and
+> > > > > > > remounting, in some order (unsure). The underlying files were pristine
+> > > > > > > both times, i therefore suspect the issue was only a stale reference
+> > > > > > > in the cache.
+> > > > > > >
+> > > > > > > Yesterday (Oct 23) i encountered a much more pronounced error i
+> > > > > > > believe to be of the same kind as, or otherwise some how related to,
+> > > > > > > the previous ones.
+> > > > > > > The Steam client errored while updating its Linux Runtime 4.0 package.
+> > > > > > > After some digging, i found similar EIO messages, and expecting an
+> > > > > > > error of the same kind, i tried unmounting/remounting and clearing
+> > > > > > > drop_caches a few times.
+> > > > > > > Realizing that did not fix the problem this time, I shutdown my
+> > > > > > > machine in preparation to boot up my secondary Windows install to run
+> > > > > > > chkdsk. Shutdown hung for ~10 minutes (normally ~10 seconds), likely
+> > > > > > > on the NTFS volume.
+> > > > > > >
+> > > > > > > Booting into windows, I ran `chkdsk /f /r /x` on the relevant drive.
+> > > > > > > chkdsk cleaned up the following errors, and more:
+> > > > > > >   - ~350 index entries deleted from $R of file 0x1A ($Extend\$Reparse)
+> > > > > > >   - Many $I30 entries deleted that pointed at nonexistent records,
+> > > > > > >     including runtime library names and Steam appmanifest/appworkshop files
+> > > > > > >   - "Recovering orphaned file appworkshop_32470.acf.async217386.tmp
+> > > > > > >     (and two more .tmp names) into directory 2B582".
+> > > > > > >   - Several libraries (libcurl, libcrypto, libSDL3) recovered into two
+> > > > > > >     directories each. Expected hardlinks
+> > > > > > >   - Free space marked as allocated in the volume and MFT bitmaps
+> > > > > > >   - No bad sectors, cross-links, or security descriptor errors
+> > > > > > >
+> > > > > > > After this process completed, i ran `chkdsk /f` on all my other
+> > > > > > > drives, which cleaned up some small errors but nothing major.
+> > > > > > >
+> > > > > > > Attached are 3 logs, of every ntfs error my system has logged since
+> > > > > > > Oct 2, the shutdown hang, and all the times i cleared drop_caches,
+> > > > > > > respectively. You may note that errors ocurred several more times than
+> > > > > > > i noticed and attempted to fix them.
+> > > > > > >
+> > > > > > > I made a few amateur attempts to recreate the issue, hypothesizing
+> > > > > > > that it might relate to moving and renaming, temp files, symlinks,
+> > > > > > > hardlinks, and possibly full MFT tables, but i was never able to.
+> > > > > > >
+> > > > > > > If necessary, i can supply the full chkdsk output too, and i'd be
+> > > > > > > happy to test a theoretical patch or supply further debug info.
+> > > > > > >
+> > > > > > > I wasn't sure who to address, so I addressed all three.
+> > > > > >
+> > > > > > Are you running a service that periodically issues FITRIM, such as
+> > > > > > fstrim.timer? A patch fixing an incorrect FITRIM dicard range was
+> > > > > > released[1], but it is not included in your kernel version. Some of
+> > > > > > the corruption patterns appear consistent with this bug.
+> > > > > >
+> > > > > > Could you check whether FITRIM ran before the corruption occurred?
+> > > > > >
+> > > > > > [1]: https://lore.kernel.org/stable/20261023163719.159193934@linuxfoundation.org/
+> > > > > > --
+> > > > > > Thanks,
+> > > > > > Hyunchul
+> > > >
+> > > > --
+> > > > Thanks,
+> > > > Hyunchul
+> >
+> > > Destructacon@GRIDBUG:~$ systemctl status fstrim.timer
+> > > ● fstrim.timer - Discard unused filesystem blocks once a week
+> > >      Loaded: loaded (/usr/lib/systemd/system/fstrim.timer; enabled; preset: enabled)
+> > >      Active: active (waiting) since Sun 2026-10-25 18:29:37 PDT; 1 day 4h ago
+> > >  Invocation: 2c41b84c97d3454dbe41de1934c43f4a
+> > >     Trigger: Mon 2026-11-02 00:22:00 PST; 6 days left
+> > >    Triggers: ● fstrim.service
+> > >        Docs: man:fstrim
+> > >
+> > > Oct 25 18:29:37 GRIDBUG systemd[1]: Started fstrim.timer - Discard unused filesystem blocks once a week.
+> > > Destructacon@GRIDBUG:~$ systemctl list-timers | grep fstrim
+> > > Mon 2026-11-02 00:22:00 PST   6 days Mon 2026-10-26 01:20:31 PDT      12h ago fstrim.timer                 fstrim.service
+> > > Destructacon@GRIDBUG:~$ journalctl -u fstrim.service --since "2026-10-02"
+> > > Oct 05 01:05:41 GRIDBUG systemd[1]: Starting fstrim.service - Discard unused blocks on filesystems from /etc/fstab...
+> > > Oct 05 01:13:29 GRIDBUG fstrim[234714]: /mnt/Chronos: 98.2 GiB (105433657344 bytes) trimmed on /dev/sdb2
+> > > Oct 05 01:13:29 GRIDBUG fstrim[234714]: /mnt/Xtra: 227.7 GiB (244457193472 bytes) trimmed on /dev/sda2
+> > > Oct 05 01:13:29 GRIDBUG fstrim[234714]: /boot/efi: 578.7 MiB (606842880 bytes) trimmed on /dev/nvme0n1p1
+> > > Oct 05 01:13:29 GRIDBUG fstrim[234714]: /boot: 1.3 GiB (1381433344 bytes) trimmed on /dev/nvme0n1p2
+> > > Oct 05 01:13:29 GRIDBUG fstrim[234714]: /: 688.8 GiB (739545485312 bytes) trimmed on /dev/nvme0n1p3
+> > > Oct 05 01:13:29 GRIDBUG systemd[1]: fstrim.service: Deactivated successfully.
+> > > Oct 05 01:13:29 GRIDBUG systemd[1]: Finished fstrim.service - Discard unused blocks on filesystems from /etc/fstab.
+> > > Oct 05 01:13:29 GRIDBUG systemd[1]: fstrim.service: Consumed 2.245s CPU time over 7min 47.949s wall clock time, 46.1M memory peak.
+> > > -- Boot adb54a13efe149098d12251c0fdaad43 --
+> > > Oct 12 06:59:03 GRIDBUG systemd[1]: Starting fstrim.service - Discard unused blocks on filesystems from /etc/fstab...
+> > > Oct 12 07:06:37 GRIDBUG fstrim[66865]: /mnt/Chronos: 98.2 GiB (105430089728 bytes) trimmed on /dev/sdb2
+> > > Oct 12 07:06:37 GRIDBUG fstrim[66865]: /mnt/Xtra: 226.5 GiB (243247431680 bytes) trimmed on /dev/sda2
+> > > Oct 12 07:06:37 GRIDBUG fstrim[66865]: /boot/efi: 578.7 MiB (606842880 bytes) trimmed on /dev/nvme0n1p1
+> > > Oct 12 07:06:37 GRIDBUG fstrim[66865]: /boot: 1.3 GiB (1386246144 bytes) trimmed on /dev/nvme0n1p2
+> > > Oct 12 07:06:37 GRIDBUG fstrim[66865]: /: 665.8 GiB (714850619392 bytes) trimmed on /dev/nvme0n1p3
+> > > Oct 12 07:06:37 GRIDBUG systemd[1]: fstrim.service: Deactivated successfully.
+> > > Oct 12 07:06:37 GRIDBUG systemd[1]: Finished fstrim.service - Discard unused blocks on filesystems from /etc/fstab.
+> > > Oct 12 07:06:37 GRIDBUG systemd[1]: fstrim.service: Consumed 2.188s CPU time over 7min 33.638s wall clock time, 43.6M memory peak.
+> > > -- Boot 96460ff0097c418784dd3cf8e398bbbf --
+> > > Oct 19 09:35:47 GRIDBUG systemd[1]: Starting fstrim.service - Discard unused blocks on filesystems from /etc/fstab...
+> > > Oct 19 09:43:16 GRIDBUG fstrim[65662]: /mnt/Chronos: 98.2 GiB (105427058688 bytes) trimmed on /dev/sdb2
+> > > Oct 19 09:43:16 GRIDBUG fstrim[65662]: /mnt/Xtra: 226.3 GiB (242984091648 bytes) trimmed on /dev/sda2
+> > > Oct 19 09:43:16 GRIDBUG fstrim[65662]: /boot/efi: 578.7 MiB (606842880 bytes) trimmed on /dev/nvme0n1p1
+> > > Oct 19 09:43:16 GRIDBUG fstrim[65662]: /boot: 1.3 GiB (1385877504 bytes) trimmed on /dev/nvme0n1p2
+> > > Oct 19 09:43:16 GRIDBUG fstrim[65662]: /: 655.2 GiB (703479914496 bytes) trimmed on /dev/nvme0n1p3
+> > > Oct 19 09:43:16 GRIDBUG systemd[1]: fstrim.service: Deactivated successfully.
+> > > Oct 19 09:43:16 GRIDBUG systemd[1]: Finished fstrim.service - Discard unused blocks on filesystems from /etc/fstab.
+> > > Oct 19 09:43:16 GRIDBUG systemd[1]: fstrim.service: Consumed 2.812s CPU time over 7min 28.705s wall clock time, 46.3M memory peak.
+> > > -- Boot 29d2f12d90914b1c80ca78c8427aed64 --
+> > > Oct 26 01:20:31 GRIDBUG systemd[1]: Starting fstrim.service - Discard unused blocks on filesystems from /etc/fstab...
+> > > Oct 26 01:27:33 GRIDBUG fstrim[44163]: /mnt/Chronos: 95.9 GiB (102955753472 bytes) trimmed on /dev/sdb2
+> > > Oct 26 01:27:33 GRIDBUG fstrim[44163]: /mnt/Xtra: 225.6 GiB (242284789760 bytes) trimmed on /dev/sda2
+> > > Oct 26 01:27:33 GRIDBUG fstrim[44163]: /boot/efi: 578.7 MiB (606842880 bytes) trimmed on /dev/nvme0n1p1
+> > > Oct 26 01:27:33 GRIDBUG fstrim[44163]: /boot: 1.3 GiB (1385877504 bytes) trimmed on /dev/nvme0n1p2
+> > > Oct 26 01:27:33 GRIDBUG fstrim[44163]: /: 634.3 GiB (681097322496 bytes) trimmed on /dev/nvme0n1p3
+> > > Oct 26 01:27:33 GRIDBUG systemd[1]: fstrim.service: Deactivated successfully.
+> > > Oct 26 01:27:33 GRIDBUG systemd[1]: Finished fstrim.service - Discard unused blocks on filesystems from /etc/fstab.
+> > > Oct 26 01:27:33 GRIDBUG systemd[1]: fstrim.service: Consumed 2.426s CPU time over 7min 1.609s wall clock time, 46.8M memory peak.
+> > > Destructacon@GRIDBUG:~$ lsblk -D
+> > > NAME        DISC-ALN DISC-GRAN DISC-MAX DISC-ZERO
+> > > sda                0      512B       2G         0
+> > > ├─sda1             0      512B       2G         0
+> > > └─sda2             0      512B       2G         0
+> > > sdb                0      512B       2G         0
+> > > ├─sdb1             0      512B       2G         0
+> > > ├─sdb2             0      512B       2G         0
+> > > ├─sdb3             0      512B       2G         0
+> > > └─sdb4             0      512B       2G         0
+> > > sdc                0        0B       0B         0
+> > > ├─sdc1             0        0B       0B         0
+> > > ├─sdc2             0        0B       0B         0
+> > > └─sdc3             0        0B       0B         0
+> > > sdd                0        0B       0B         0
+> > > └─sdd1             0        0B       0B         0
+> > > zram0              0        4K       2T         0
+> > > nvme0n1            0      512B       2T         0
+> > > ├─nvme0n1p1        0      512B       2T         0
+> > > ├─nvme0n1p2        0      512B       2T         0
+> > > └─nvme0n1p3        0      512B       2T         0
+> > > Destructacon@GRIDBUG:~$ lsblk -o NAME,TYPE,FSTYPE,DISC-GRAN,DISC-MAX,MOUNTPOINTS
+> > > NAME        TYPE FSTYPE DISC-GRAN DISC-MAX MOUNTPOINTS
+> > > sda         disk             512B       2G
+> > > ├─sda1      part             512B       2G
+> > > └─sda2      part ntfs        512B       2G /mnt/Xtra
+> > > sdb         disk             512B       2G
+> > > ├─sdb1      part ntfs        512B       2G
+> > > ├─sdb2      part ntfs        512B       2G /mnt/Chronos
+> > > ├─sdb3      part vfat        512B       2G
+> > > └─sdb4      part ntfs        512B       2G
+> > > sdc         disk               0B       0B
+> > > ├─sdc1      part ntfs          0B       0B
+> > > ├─sdc2      part ntfs          0B       0B /mnt/Lore
+> > > └─sdc3      part ntfs          0B       0B
+> > > sdd         disk               0B       0B
+> > > └─sdd1      part ntfs          0B       0B /mnt/SpinningSlowly
+> > > zram0       disk swap          4K       2T [SWAP]
+> > > nvme0n1     disk             512B       2T
+> > > ├─nvme0n1p1 part vfat        512B       2T /boot/efi
+> > > ├─nvme0n1p2 part ext4        512B       2T /boot
+> > > └─nvme0n1p3 part btrfs       512B       2T /home
+> > >                                            /
+> >
+> >
+> > --
+> > Thanks,
+> > Hyunchul
 
-Allocated by task 5729:
- kasan_save_stack mm/kasan/common.c:57 [inline]
- kasan_save_track+0x3e/0x80 mm/kasan/common.c:78
- unpoison_slab_object mm/kasan/common.c:351 [inline]
- __kasan_slab_alloc+0x6c/0x80 mm/kasan/common.c:377
- kasan_slab_alloc include/linux/kasan.h:253 [inline]
- slab_post_alloc_hook mm/slub.c:4683 [inline]
- slab_alloc_node mm/slub.c:4996 [inline]
- kmem_cache_alloc_noprof+0x2b9/0x600 mm/slub.c:5010
- anon_vma_alloc mm/rmap.c:94 [inline]
- anon_vma_fork+0x88/0x540 mm/rmap.c:395
- dup_mmap+0x954/0x1dc0 mm/mmap.c:1781
- dup_mm kernel/fork.c:1543 [inline]
- copy_mm+0x115/0x480 kernel/fork.c:1595
- copy_process+0x1e79/0x4400 kernel/fork.c:2311
- kernel_clone+0x2d7/0x940 kernel/fork.c:2771
- __do_sys_clone kernel/fork.c:2913 [inline]
- __se_sys_clone kernel/fork.c:2897 [inline]
- __x64_sys_clone+0x1b6/0x230 kernel/fork.c:2897
- do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
- do_syscall_64+0x166/0x520 arch/x86/entry/syscall_64.c:84
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
-
-The buggy address belongs to the object at ffff888168669e70
- which belongs to the cache anon_vma of size 200
-The buggy address is located 81 bytes to the right of
- allocated 200-byte region [ffff888168669e70, ffff888168669f38)
-
-The buggy address belongs to the physical page:
-page: refcount:0 mapcount:0 mapping:0000000000000000 index:0xffff888168669108 pfn:0x168669
-memcg:ffff88816db0e201
-flags: 0x57ff00000000200(workingset|node=1|zone=2|lastcpupid=0x7ff)
-page_type: f5(slab)
-raw: 057ff00000000200 ffff888101687140 ffff88816040c7c8 ffffea0005b62950
-raw: ffff888168669108 00000002000f000b 00000000f5000000 ffff88816db0e201
-page dumped because: kasan: bad access detected
-page_owner tracks the page as allocated
-page last allocated via order 0, migratetype Unmovable, gfp_mask 0xd2cc0(GFP_KERNEL|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_NOMEMALLOC), pid 5535, tgid 5535 (rm), ts 43255388535
- set_page_owner include/linux/page_owner.h:33 [inline]
- post_alloc_hook+0x1f9/0x250 mm/page_alloc.c:1871
- prep_new_page mm/page_alloc.c:1879 [inline]
- get_page_from_freelist+0x2209/0x2280 mm/page_alloc.c:3943
- __alloc_frozen_pages_noprof+0x217/0x5a0 mm/page_alloc.c:5436
- alloc_slab_page mm/slub.c:3347 [inline]
- allocate_slab+0x7d/0x620 mm/slub.c:3462
- new_slab mm/slub.c:3513 [inline]
- refill_objects+0x2d5/0x350 mm/slub.c:7418
- refill_sheaf mm/slub.c:2885 [inline]
- __pcs_replace_empty_main+0x2c8/0x6c0 mm/slub.c:4774
- alloc_from_pcs mm/slub.c:4850 [inline]
- slab_alloc_node mm/slub.c:4984 [inline]
- kmem_cache_alloc_noprof+0x399/0x600 mm/slub.c:5010
- anon_vma_alloc mm/rmap.c:94 [inline]
- __anon_vma_prepare+0x10e/0x4d0 mm/rmap.c:201
- __vmf_anon_prepare mm/memory.c:3961 [inline]
- vmf_anon_prepare mm/internal.h:572 [inline]
- do_anonymous_page mm/memory.c:5478 [inline]
- do_pte_missing+0x2f18/0x34b0 mm/memory.c:4698
- handle_pte_fault mm/memory.c:6558 [inline]
- __handle_mm_fault mm/memory.c:6707 [inline]
- handle_mm_fault+0x1a53/0x3750 mm/memory.c:6876
- do_user_addr_fault+0xa4f/0x1340 arch/x86/mm/fault.c:1343
- handle_page_fault arch/x86/mm/fault.c:1483 [inline]
- exc_page_fault+0x6a/0xc0 arch/x86/mm/fault.c:1536
- asm_exc_page_fault+0x26/0x30 arch/x86/include/asm/idtentry.h:595
-page last free pid 5049 tgid 5049 ts 18476194117 stack trace:
- reset_page_owner include/linux/page_owner.h:26 [inline]
- __free_pages_prepare mm/page_alloc.c:1418 [inline]
- __free_frozen_pages+0xc93/0xd90 mm/page_alloc.c:2962
- __slab_free+0x274/0x2c0 mm/slub.c:5823
- qlink_free mm/kasan/quarantine.c:163 [inline]
- qlist_free_all+0x99/0x100 mm/kasan/quarantine.c:179
- kasan_quarantine_reduce+0x148/0x160 mm/kasan/quarantine.c:286
- __kasan_slab_alloc+0x22/0x80 mm/kasan/common.c:361
- kasan_slab_alloc include/linux/kasan.h:253 [inline]
- slab_post_alloc_hook mm/slub.c:4683 [inline]
- slab_alloc_node mm/slub.c:4996 [inline]
- kmem_cache_alloc_node_noprof+0x354/0x610 mm/slub.c:5068
- __alloc_skb+0x1db/0x7a0 net/core/skbuff.c:704
- alloc_skb include/linux/skbuff.h:1384 [inline]
- alloc_skb_with_frags+0xc6/0x760 net/core/skbuff.c:6803
- sock_alloc_send_pskb+0x878/0x990 net/core/sock.c:3022
- unix_dgram_sendmsg+0x4da/0x17b0 net/unix/af_unix.c:2144
- sock_sendmsg_nosec+0x13a/0x180 net/socket.c:800
- __sock_sendmsg net/socket.c:815 [inline]
- sock_write_iter+0x2de/0x3e0 net/socket.c:1266
- new_sync_write fs/read_write.c:595 [inline]
- vfs_write+0x612/0xba0 fs/read_write.c:687
- ksys_write+0x150/0x270 fs/read_write.c:739
- do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
- do_syscall_64+0x166/0x520 arch/x86/entry/syscall_64.c:84
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
-
-Memory state around the buggy address:
- ffff888168669e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- ffff888168669f00: 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc
->ffff888168669f80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
-                      ^
- ffff88816866a000: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
- ffff88816866a080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fc fc
-==================================================================
-
-
-***
-
-KASAN: slab-use-after-free Read in folio_accounted_dirty_pages
-
-tree:      axboe
-URL:       https://kernel.googlesource.com/pub/scm/linux/kernel/git/axboe/linux.git
-base:      24a19b953e2a3d0ea5a8c4951a0ab8f32720c907
-arch:      amd64
-compiler:  Debian clang version 22.1.8 (1~deb13u4), Debian LLD 22.1.8
-config:    https://ci.syzbot.org/builds/9865cf75-69fb-4fbd-b5fe-d0be9cd03802/config
-syz repro: https://ci.syzbot.org/findings/f9e47a91-9c37-465b-b43c-7404e404cbfd/syz_repro
-
-==================================================================
-BUG: KASAN: slab-use-after-free in instrument_atomic_read include/linux/instrumented.h:82 [inline]
-BUG: KASAN: slab-use-after-free in _test_bit include/asm-generic/bitops/instrumented-non-atomic.h:141 [inline]
-BUG: KASAN: slab-use-after-free in mapping_dirty_per_block include/linux/pagemap.h:319 [inline]
-BUG: KASAN: slab-use-after-free in folio_accounted_dirty_pages+0x53/0x1f0 mm/page-writeback.c:2654
-Read of size 8 at addr ffff888111a3d539 by task syz.0.17/5870
-
-CPU: 0 UID: 0 PID: 5870 Comm: syz.0.17 Not tainted syzkaller #0 PREEMPT(full) 
-Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.2-debian-1.16.2-1 04/01/2014
-Call Trace:
- <TAS
- <TASK>
- dump_stack_lvl+0xe8/0x150 lib/dump_stack.c:120
- print_address_description+0x55/0x1e0 mm/kasan/report.c:378
- print_report+0x58/0x70 mm/kasan/report.c:482
- kasan_report+0x117/0x150 mm/kasan/report.c:595
- check_region_inline mm/kasan/generic.c:-1 [inline]
- kasan_check_range+0x264/0x2c0 mm/kasan/generic.c:200
- instrument_atomic_read include/linux/instrumented.h:82 [inline]
- _test_bit include/asm-generic/bitops/instrumented-non-atomic.h:141 [inline]
- mapping_dirty_per_block include/linux/pagemap.h:319 [inline]
- folio_accounted_dirty_pages+0x53/0x1f0 mm/page-writeback.c:2654
- __folio_migrate_mapping+0x3d0/0x2830 mm/migrate.c:624
- __migrate_folio mm/migrate.c:893 [inline]
- migrate_folio+0x10a/0x1a0 mm/migrate.c:920
- move_to_new_folio+0x1ed/0x460 mm/migrate.c:1135
- migrate_folio_move mm/migrate.c:1401 [inline]
- migrate_folios_move mm/migrate.c:1758 [inline]
- migrate_pages_batch+0x30b3/0x4f50 mm/migrate.c:2014
- migrate_pages_sync mm/migrate.c:2044 [inline]
- migrate_pages+0x1b9f/0x2920 mm/migrate.c:2153
- migrate_to_node mm/mempolicy.c:1322 [inline]
- do_migrate_pages+0x656/0x8b0 mm/mempolicy.c:1421
- kernel_migrate_pages mm/mempolicy.c:1935 [inline]
- __do_sys_migrate_pages mm/mempolicy.c:1953 [inline]
- __se_sys_migrate_pages+0xaa2/0xc90 mm/mempolicy.c:1949
- do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
- do_syscall_64+0x166/0x520 arch/x86/entry/syscall_64.c:84
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
-RIP: 0033:0x7f600f39f559
-Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007f6010302028 EFLAGS: 00000246 ORIG_RAX: 0000000000000100
-RAX: ffffffffffffffda RBX: 00007f600f625fa0 RCX: 00007f600f39f559
-RDX: 0000200000000040 RSI: 0000000000000009 RDI: 0000000000000000
-RBP: 00007f600f436b20 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000200000000380 R11: 0000000000000246 R12: 0000000000000000
-R13: 00007f600f626038 R14: 00007f600f625fa0 R15: 00007ffcbfa14028
- </TASK>
-
-Allocated by task 5645:
- kasan_save_stack mm/kasan/common.c:57 [inline]
- kasan_save_track+0x3e/0x80 mm/kasan/common.c:78
- unpoison_slab_object mm/kasan/common.c:351 [inline]
- __kasan_slab_alloc+0x6c/0x80 mm/kasan/common.c:377
- kasan_slab_alloc include/linux/kasan.h:253 [inline]
- slab_post_alloc_hook mm/slub.c:4683 [inline]
- slab_alloc_node mm/slub.c:4996 [inline]
- kmem_cache_alloc_noprof+0x2b9/0x600 mm/slub.c:5010
- anon_vma_alloc mm/rmap.c:94 [inline]
- __anon_vma_prepare+0x10e/0x4d0 mm/rmap.c:201
- __vmf_anon_prepare mm/memory.c:3961 [inline]
- vmf_anon_prepare mm/internal.h:572 [inline]
- do_anonymous_page mm/memory.c:5478 [inline]
- do_pte_missing+0x2f18/0x34b0 mm/memory.c:4698
- handle_pte_fault mm/memory.c:6558 [inline]
- __handle_mm_fault mm/memory.c:6707 [inline]
- handle_mm_fault+0x1a53/0x3750 mm/memory.c:6876
- do_user_addr_fault+0xa4f/0x1340 arch/x86/mm/fault.c:1343
- handle_page_fault arch/x86/mm/fault.c:1483 [inline]
- exc_page_fault+0x6a/0xc0 arch/x86/mm/fault.c:1536
- asm_exc_page_fault+0x26/0x30 arch/x86/include/asm/idtentry.h:595
-
-Freed by task 5646:
- kasan_save_stack mm/kasan/common.c:57 [inline]
- kasan_save_track+0x3e/0x80 mm/kasan/common.c:78
- kasan_save_free_info+0x40/0x50 mm/kasan/generic.c:584
- poison_slab_object mm/kasan/common.c:264 [inline]
- __kasan_slab_free+0x5c/0x80 mm/kasan/common.c:296
- kasan_slab_free include/linux/kasan.h:235 [inline]
- slab_free_hook mm/slub.c:2748 [inline]
- slab_free_after_rcu_debug+0x12a/0x220 mm/slub.c:6571
- rcu_do_batch kernel/rcu/tree.c:2650 [inline]
- rcu_core+0x926/0x1260 kernel/rcu/tree.c:2919
- handle_softirqs+0x226/0x860 kernel/softirq.c:645
- __do_softirq kernel/softirq.c:679 [inline]
- invoke_softirq kernel/softirq.c:519 [inline]
- __irq_exit_rcu+0xcb/0x220 kernel/softirq.c:758
- irq_exit_rcu+0x9/0x30 kernel/softirq.c:775
- instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
- sysvec_apic_timer_interrupt+0xa6/0xc0 arch/x86/kernel/apic/apic.c:1062
- asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
-
-Last potentially related work creation:
- kasan_save_stack+0x3e/0x60 mm/kasan/common.c:57
- kasan_record_aux_stack+0xbd/0xd0 mm/kasan/generic.c:556
- slab_free_hook mm/slub.c:2709 [inline]
- slab_free mm/slub.c:6509 [inline]
- kmem_cache_free+0x45e/0x650 mm/slub.c:6636
- anon_vma_free mm/rmap.c:137 [inline]
- __put_anon_vma+0x12b/0x2d0 mm/rmap.c:2974
- put_anon_vma mm/internal.h:293 [inline]
- unlink_anon_vmas+0x544/0x720 mm/rmap.c:540
- free_pgtables+0x663/0xb70 mm/memory.c:401
- unmap_region+0x29d/0x330 mm/vma.c:534
- vms_clear_ptes mm/vma.c:1383 [inline]
- vms_complete_munmap_vmas+0x427/0xbe0 mm/vma.c:1425
- do_vmi_align_munmap+0x3b7/0x4b0 mm/vma.c:1684
- do_vmi_munmap+0x252/0x2d0 mm/vma.c:1732
- __vm_munmap+0x241/0x3e0 mm/vma.c:3415
- __do_sys_munmap mm/mmap.c:1094 [inline]
- __se_sys_munmap mm/mmap.c:1091 [inline]
- __x64_sys_munmap+0x60/0x70 mm/mmap.c:1091
- do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
- do_syscall_64+0x166/0x520 arch/x86/entry/syscall_64.c:84
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
-
-The buggy address belongs to the object at ffff888111a3d528
- which belongs to the cache anon_vma of size 200
-The buggy address is located 17 bytes inside of
- freed 200-byte region [ffff888111a3d528, ffff888111a3d5f0)
-
-The buggy address belongs to the physical page:
-page: refcount:0 mapcount:0 mapping:0000000000000000 index:0xffff888111a3d528 pfn:0x111a3d
-memcg:ffff888111a3df79
-flags: 0x17ff00000000200(workingset|node=0|zone=2|lastcpupid=0x7ff)
-page_type: f5(slab)
-raw: 017ff00000000200 ffff888101688140 ffff8881006957c8 ffffea00047d6bd0
-raw: ffff888111a3d528 00000002000f0009 00000000f5000000 ffff888111a3df79
-page dumped because: kasan: bad access detected
-page_owner tracks the page as allocated
-page last allocated via order 0, migratetype Unmovable, gfp_mask 0xd2cc0(GFP_KERNEL|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_NOMEMALLOC), pid 5634, tgid 5634 (syz-executor), ts 59634551582
- set_page_owner include/linux/page_owner.h:33 [inline]
- post_alloc_hook+0x1f9/0x250 mm/page_alloc.c:1871
- prep_new_page mm/page_alloc.c:1879 [inline]
- get_page_from_freelist+0x2209/0x2280 mm/page_alloc.c:3943
- __alloc_frozen_pages_noprof+0x217/0x5a0 mm/page_alloc.c:5436
- alloc_slab_page mm/slub.c:3347 [inline]
- allocate_slab+0x7d/0x620 mm/slub.c:3462
- new_slab mm/slub.c:3513 [inline]
- refill_objects+0x2d5/0x350 mm/slub.c:7418
- refill_sheaf mm/slub.c:2885 [inline]
- __pcs_replace_empty_main+0x2c8/0x6c0 mm/slub.c:4774
- alloc_from_pcs mm/slub.c:4850 [inline]
- slab_alloc_node mm/slub.c:4984 [inline]
- kmem_cache_alloc_noprof+0x399/0x600 mm/slub.c:5010
- anon_vma_alloc mm/rmap.c:94 [inline]
- anon_vma_fork+0x88/0x540 mm/rmap.c:395
- dup_mmap+0x954/0x1dc0 mm/mmap.c:1781
- dup_mm kernel/fork.c:1543 [inline]
- copy_mm+0x115/0x480 kernel/fork.c:1595
- copy_process+0x1e79/0x4400 kernel/fork.c:2311
- kernel_clone+0x2d7/0x940 kernel/fork.c:2771
- __do_sys_clone kernel/fork.c:2913 [inline]
- __se_sys_clone kernel/fork.c:2897 [inline]
- __x64_sys_clone+0x1b6/0x230 kernel/fork.c:2897
- do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
- do_syscall_64+0x166/0x520 arch/x86/entry/syscall_64.c:84
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
-page last free pid 805 tgid 805 ts 42732995302 stack trace:
- reset_page_owner include/linux/page_owner.h:26 [inline]
- __free_pages_prepare mm/page_alloc.c:1418 [inline]
- __free_frozen_pages+0xc93/0xd90 mm/page_alloc.c:2962
- __slab_free+0x274/0x2c0 mm/slub.c:5823
- qlink_free mm/kasan/quarantine.c:163 [inline]
- qlist_free_all+0x99/0x100 mm/kasan/quarantine.c:179
- kasan_quarantine_reduce+0x148/0x160 mm/kasan/quarantine.c:286
- __kasan_slab_alloc+0x22/0x80 mm/kasan/common.c:361
- kasan_slab_alloc include/linux/kasan.h:253 [inline]
- slab_post_alloc_hook mm/slub.c:4683 [inline]
- slab_alloc_node mm/slub.c:4996 [inline]
- __kmalloc_cache_noprof+0x29f/0x600 mm/slub.c:5559
- _kmalloc_noprof include/linux/slab.h:991 [inline]
- _kzalloc_noprof include/linux/slab.h:1312 [inline]
- drm_atomic_commit_alloc+0xa9/0x100 drivers/gpu/drm/drm_atomic.c:258
- drm_atomic_helper_dirtyfb+0x129/0xfd0 drivers/gpu/drm/drm_damage_helper.c:128
- drm_fbdev_shmem_helper_fb_dirty+0x160/0x310 drivers/gpu/drm/drm_fbdev_shmem.c:117
- drm_fb_helper_fb_dirty drivers/gpu/drm/drm_fb_helper.c:339 [inline]
- drm_fb_helper_damage_work+0x84c/0xf20 drivers/gpu/drm/drm_fb_helper.c:365
- process_one_work kernel/workqueue.c:3396 [inline]
- process_scheduled_works+0xc3d/0x1630 kernel/workqueue.c:3479
- worker_thread+0xa47/0xfb0 kernel/workqueue.c:3560
- kthread+0x38b/0x480 kernel/kthread.c:436
- ret_from_fork+0x514/0xb70 arch/x86/kernel/process.c:158
- ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
-
-Memory state around the buggy address:
- ffff888111a3d400: fc fc fc fc 00 00 00 00 00 00 00 00 00 00 00 00
- ffff888111a3d480: 00 00 00 00 00 00 00 00 00 00 00 00 00 fc fc fc
->ffff888111a3d500: fc fc fc fc fc fa fb fb fb fb fb fb fb fb fb fb
-                                        ^
- ffff888111a3d580: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fc fc
- ffff888111a3d600: fc fc fc fc fc fc fa fb fb fb fb fb fb fb fb fb
-==================================================================
+> Destructacon@GRIDBUG:~$ journalctl --list-boots
+> IDX BOOT ID                          FIRST ENTRY                 LAST ENTRY
+> -33 e190c0caaf0a48aba57899c864c204ea Sat 2026-08-15 22:48:26 PDT Thu 2026-08-20 12:37:46 PDT
+> -32 ca70297c5df6485aa5e99e1b2c06f7f9 Thu 2026-08-20 05:39:49 PDT Thu 2026-08-20 12:40:11 PDT
+> -31 e04f4c4a79b74a13be350cf9db025e50 Thu 2026-08-20 05:40:34 PDT Thu 2026-08-20 12:47:16 PDT
+> -30 2805483bbafc4103a3bbac0bad4ba936 Thu 2026-08-20 05:47:39 PDT Fri 2026-08-28 03:47:06 PDT
+> -29 cdab25b455fe4b328bfc501e5cbaaa57 Thu 2026-08-27 20:48:03 PDT Sat 2026-08-29 03:04:58 PDT
+> -28 9e4a700b327c4997acef168a8708d288 Fri 2026-08-28 20:22:14 PDT Sat 2026-08-29 03:28:09 PDT
+> -27 33efe6888f36479ab039bea1416cd254 Fri 2026-08-28 21:12:41 PDT Sun 2026-09-06 17:15:22 PDT
+> -26 a1b2789105a54b699992d58fb7c90298 Sun 2026-09-06 10:16:21 PDT Thu 2026-09-10 23:38:38 PDT
+> -25 cc4f8863b15448d98acbebe69c3a8c07 Thu 2026-09-10 16:39:01 PDT Thu 2026-09-10 23:39:29 PDT
+> -24 cc230cb574c84ecf95f7315dc8d7c0f7 Fri 2026-09-11 02:45:45 PDT Fri 2026-09-11 10:07:02 PDT
+> -23 c2013bada2be4833b6f954c79794bd06 Fri 2026-09-11 03:08:06 PDT Fri 2026-09-11 10:16:36 PDT
+> -22 62caec6933264bb9977fdd8a8f2ca34e Fri 2026-09-11 03:16:59 PDT Fri 2026-09-11 10:36:39 PDT
+> -21 7d1b28bb3336413db1c573f19320fe54 Fri 2026-09-11 03:37:03 PDT Fri 2026-09-18 18:13:39 PDT
+> -20 1a4d411be623477b89d84dfe198dbae1 Fri 2026-09-18 11:14:03 PDT Tue 2026-09-22 19:14:01 PDT
+> -19 bdc4cd4d498d442281638586f8d97bb4 Tue 2026-09-22 12:14:25 PDT Tue 2026-09-22 19:18:27 PDT
+> -18 f2c35fc2e07c4f73926921e943ce51ee Tue 2026-09-22 12:19:07 PDT Wed 2026-09-23 00:47:31 PDT
+> -17 208fc44e5eb445a9959927f65738a59f Tue 2026-09-22 17:52:14 PDT Fri 2026-09-25 03:50:33 PDT
+> -16 93d5b637460a4abf92044d21eb827b89 Thu 2026-09-24 20:59:01 PDT Fri 2026-09-25 04:27:12 PDT
+> -15 a5bb7c56324a42d0a8d961b7af4d4685 Fri 2026-09-25 08:15:36 PDT Tue 2026-09-29 14:49:10 PDT
+> -14 66c30ed2ec6d4eb88700bee01f97f7bf Tue 2026-09-29 07:50:12 PDT Wed 2026-09-30 00:58:14 PDT
+> -13 1bdf3cd7ea5546a9ba9e785444ccb067 Tue 2026-09-29 17:58:52 PDT Wed 2026-09-30 01:02:10 PDT
+> -12 a7103cc057b14cb8afca1373a11a940b Tue 2026-09-29 18:02:43 PDT Wed 2026-09-30 01:41:42 PDT
+> -11 c5cb5064bce54d03b3ce16bca4867b17 Tue 2026-09-29 18:42:13 PDT Fri 2026-10-02 01:42:10 PDT
+> -10 a70cb7a4cdcb43d0a1d0452bb092eb07 Thu 2026-10-01 18:43:00 PDT Mon 2026-10-05 13:20:13 PDT
+>  -9 02b9018835054ca7b1d880f4229de31b Mon 2026-10-05 06:20:37 PDT Wed 2026-10-07 18:18:02 PDT
+>  -8 b4b92258b0e247e49b6b2b6480c6d1c7 Wed 2026-10-07 11:18:26 PDT Sat 2026-10-10 23:00:49 PDT
+>  -7 adb54a13efe149098d12251c0fdaad43 Sun 2026-10-11 00:58:38 PDT Wed 2026-10-14 20:49:12 PDT
+>  -6 cbf1829d5ada455a81381c766a7b3194 Fri 2026-10-16 11:02:16 PDT Fri 2026-10-16 19:04:14 PDT
+>  -5 86eb511b02644ea2990b4f2652dfeb78 Fri 2026-10-16 12:04:58 PDT Sun 2026-10-18 05:18:56 PDT
+>  -4 96460ff0097c418784dd3cf8e398bbbf Sun 2026-10-18 05:16:31 PDT Tue 2026-10-20 03:38:13 PDT
+>  -3 538b082ae475413aa713d73cac5c784d Tue 2026-10-20 02:19:02 PDT Fri 2026-10-23 16:33:23 PDT
+>  -2 b1be8d5451fc4477b1bfc7ae39ae9b06 Fri 2026-10-23 12:22:34 PDT Fri 2026-10-23 19:28:54 PDT
+>  -1 6873d05f1c2d4246a2d58a7f97d75bda Fri 2026-10-23 12:30:33 PDT Sun 2026-10-25 18:10:59 PDT
+>   0 29d2f12d90914b1c80ca78c8427aed64 Sun 2026-10-25 11:29:30 PDT Tue 2026-10-27 03:25:07 PDT
+> 
+> 
+> Destructacon@GRIDBUG:~$  lsblk -o NAME,PHY-SEC,LOG-SEC
+> NAME        PHY-SEC LOG-SEC
+> sda             512     512
+> ├─sda1          512     512
+> └─sda2          512     512
+> sdb             512     512
+> ├─sdb1          512     512
+> ├─sdb2          512     512
+> ├─sdb3          512     512
+> └─sdb4          512     512
+> sdc             512     512
+> ├─sdc1          512     512
+> ├─sdc2          512     512
+> └─sdc3          512     512
+> sdd            4096     512
+> └─sdd1         4096     512
+> zram0          4096    4096
+> nvme0n1         512     512
+> ├─nvme0n1p1     512     512
+> ├─nvme0n1p2     512     512
+> └─nvme0n1p3     512     512
 
 
-***
-
-If these findings have caused you to resend the series or submit a
-separate fix, please add the following tag to your commit message:
-  Tested-by: syzbot@syzkaller.appspotmail.com
-
----
-This report is generated by a bot. It may contain errors.
-syzbot ci engineers can be reached at syzkaller@googlegroups.com.
-
-To test a fix for this bug, please reply with `#syz test`
-(on a separate line) and attach the patch to the email.
-
-Notes:
-- The patch will be applied on top of the tested series (as an
-  incremental fix).
-- To test a new version of the whole series, please send it directly
-  to syzbot@lists.linux.dev.
-- Arguments like custom git repos and branches are not supported.
+-- 
+Thanks,
+Hyunchul
