@@ -1,54 +1,54 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793263910;
-	b=pZokhCr83Rg2j0h+/sLj+KOUb9O94GKRb95uicb2Nu5z/EfeyQENUXJ+TgnasEleuNqw
-	 ELYRj7KPjVR3utgYbNhei1HDRzgjcw263a/UsvvPONGwC12AmRLedyfr/VoN+c8sRlzzu
-	 SEvLyOX0rGijw2CSs6cj8rEu97WOossW+Yzvk/mEC+GuprRfnSAxHpCiaVac4SR8vvVW1
-	 eA2T0Yq/CALGiQNvx/gsv7bInRda+8d0hdLt6vTQhzr1FYRmedFHFrj4cf/hcfSTyczzS
-	 dDgJIZ4LRwbXmLSGz+kHhACQQdim/LqNVYUHOphx/aob9YMyyUEYEQZAIXhqznOFGdg==
+	t=1793263929;
+	b=zayDVb32bymxJansUOI/CR8xHecQ8nfZqhzr3PfTKNHsSzWwVVIVCGoLJCWs3z2O+8YJ
+	 ivowTkwr3NBL2DIBiWT2fyLZJqxEhbj4JjESXF7QtTYtb5XkHvYskmkUtJfP4UbIZnzzZ
+	 aHZYLnVIr5Zyf2FnK2ItEYxQIH58bpMmJOMIS1wC+X9NY1102s1nZpSldSu81HLGdUC4+
+	 mYsvmS8jojLnKuxMeo9dXwwW9U1538P2NHezq0k7+kNBdUaZbXSF5ZbejVLIl7v+Os8IC
+	 /xQuaqh24IJuI1j/8CyA/4qeIaEtzB9wTIb4QLQYI/E+ZIPUzmbIfhbzLwSW1xBzICQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793263910;
+	a=rsa-sha256; c=relaxed/relaxed; t=1793263929;
 	h=Received:DKIM-Signature:Received:X-Gm-Message-State:X-Received:
 	 MIME-Version:References:In-Reply-To:From:Date:
 	 X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:Subject:To:Cc:
 	 Content-Type:Content-Transfer-Encoding;
-	bh=pclombH8pIwL2luY6jIkPmnhV06RjHgkrYeNPq3qvCA=;
-	b=LKNoNmBl3CClXlnCEE1++3hydFN+Wv9Th6fCW/JQhKBm+F22MKHhiRdUvc0Pgj0nh1h/
-	 SK5A4LYBPHyxeFT1tgKJcEx4cYQMucLTxYJB2aojrN6RGFQQdFileJ2xRnQ/Du5cxekDF
-	 65MRYhO3Gns8/UEr7KfO6xw8+tzoAUZ3bi447JJPGjGURFeFldigQgU/TclmhVbaRIYkM
-	 Nz8U2ONaZ5lavHjC9np186lXY1dbDDxvvYoWmMf8T73mDrCyeHi7ZXqfu+m/lm2BP46JI
-	 sAdJrURMcmyIXkHyoHs9SHdjqQb5yyI9H+HHqPOu/sTBfKL5djCRp8fs+6sT6Yb9+mw==
+	bh=RxXVX0u1tST1sM7oKsZpCNSl7HkkkNyoIU3jrvUDIvc=;
+	b=v6+G1SRMjf2k/jxgalLdWJH3D3cx1fWt0uh3NGhOVu5zDqFWG4DUBLdD2lcfKJ82NSG7
+	 Pg5QZ/TU91B+f0MKi05j6cKmJQNs4YkahfNAlv7RPWNOVw2cGfnNfuAMQmFH+AvTzEWw0
+	 PYBoP5wN/CtSDwBLc6OA+Ww9o6ff4OswePObWWcjiTr9Qyh7y0Ngn2QXAKR4KDYuM5RUK
+	 6BcQ/Gn4VSkXzVF1zMALnmd/7HJqt3HvDPS8Dhd/wVGN4dwFXwpJ+nTTBvxsLhM8TDNGN
+	 tUy91Cd6PIMkaKlvi8hMc9x+KjGLH/xWuxlqqKjitNBTyw+UQCl9kkqagfmGlLge4Iw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dB6ralE3;
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eQULNa9e;
 	arc=none smtp.remote-ip=100.103.45.18
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D469E606A335
-	for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 08:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA03606A31E
+	for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 08:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dB6ralE3
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74C571F01828
-	for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 08:51:49 +0000 (UTC)
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eQULNa9e
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 346B91F031E0
+	for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 08:52:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793263909;
-	bh=pclombH8pIwL2luY6jIkPmnhV06RjHgkrYeNPq3qvCA=;
+	s=k20260515; t=1793263929;
+	bh=RxXVX0u1tST1sM7oKsZpCNSl7HkkkNyoIU3jrvUDIvc=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=dB6ralE3BayiaSghaL52vT02W52LObLesJpizcUPoj/vJYNqHp4oQ1eNNpeOki3XQ
-	 p8BsNuo7wYTFOoMQSliA3lYwRAPLPHx17ImH1RWonoQqVT5qkqp85+9W6apdWAcCQ/
-	 xKPFYn+q+lktu4gbfOHg1vLuK5KAmiJ1RC10BTHYw07pVLp5gAim1mU5EdbvIYq0Lm
-	 +2JCKhfvl2ZVSVjaEPoW0zWkIn6n+vv0G0jN8TrJyOT63+euqV9HRX9quwrYGpkOSQ
-	 OSDL6MJ5DWt0d1kH6m5zYZ2Ayqt1AyZymgg4hiHiSoIYq+buP4wyv4y3K5zqHBQlAd
-	 a6AB5IzV/9Ebg==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-c423b145922so263186566b.3
-        for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 01:51:49 -0700 (PDT)
-X-Gm-Message-State: AFq9FYLmx3ZefnZBGJDcou+/JTKE3dmCzLjoMuYSpy5BCbLLVnRwxqu5
-	qnX9XCP/3JecSxI5Rm+41nRarxtrclrZkV/eBEnnp3x9qUi0+x7UDbvBhBnqGciLqKH+13IS4wc
-	ZGVYrboKc0YsqMg4VPJ6TQV/bLh2duLc=
-X-Received: by 2002:a17:907:961a:b0:c21:9b4b:2690 with SMTP id
- a640c23a62f3a-c49bdeab69cmr391548666b.17.1793263908146; Thu, 29 Oct 2026
- 01:51:48 -0700 (PDT)
+	b=eQULNa9eoHxwmePWErE2XHDPO+stE6AEGVgiQsJ+vHzR57W8T5YiHeKrI/oy59sWd
+	 nnrTCQqN2r6LCESRwZ2mE10tzNxic2+uwRZbzdQ8hsz7j2UWIyuX1f5zs7MuglTg+Z
+	 r0+T3L2lp27manlNf7dN+FZgB5hlxTR5jM7sKCYATvSdVF0Xaj+NYjm7cLFDoPwq8z
+	 WmJ0KfdV4kbTJtM0ATpYk7SWUvVVdQraiWT6U4FWkQWPGDxIt6LdFU4AT97wFuWRXo
+	 G5zNNUDHL8CZO3R1JU2Ko4cxzENCv5G3aUQezXnkDwhFlMWrw+fmykZ+i5vEUloVgT
+	 SLwv3vNjUqN6A==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-c4322d310e7so270079866b.0
+        for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 01:52:09 -0700 (PDT)
+X-Gm-Message-State: AFq9FYIm/5wlLeEavctG8ARPNO26XPLtOZltsg/0QLcIudlV6Nu8iNaw
+	KcVQzp7FuksIOqepAlyK0oiyW+K5+4gJB1mPNnix4p8peCsmKHcQCZidou1r/8JEqnBaMnqVUrD
+	cN7KgYxqs4b8yISI+eTn3FaMDvHtPErk=
+X-Received: by 2002:a17:907:86a4:b0:c46:9d7b:37d with SMTP id
+ a640c23a62f3a-c49bdecee42mr399552466b.17.1793263927893; Thu, 29 Oct 2026
+ 01:52:07 -0700 (PDT)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -58,14 +58,14 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <20261028084248.2149976-1-hyc.lee@gmail.com> <20261028084248.2149976-2-hyc.lee@gmail.com>
-In-Reply-To: <20261028084248.2149976-2-hyc.lee@gmail.com>
+References: <20261028084248.2149976-1-hyc.lee@gmail.com> <20261028084248.2149976-3-hyc.lee@gmail.com>
+In-Reply-To: <20261028084248.2149976-3-hyc.lee@gmail.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 29 Oct 2026 17:51:35 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd-PGACtJ18da-A2d0piMhoytF-=_GZGAtHnwKU0PdkSOQ@mail.gmail.com>
-X-Gm-Features: AclHuK_YuReqoBhT3Ui8sNFTiWujtuyuEuCuGoCeMA1xL9Tvyd5LR97piPwq2Ag
-Message-ID: <CAKYAXd-PGACtJ18da-A2d0piMhoytF-=_GZGAtHnwKU0PdkSOQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] ntfs: initialize VCN when inserting index entries
+Date: Thu, 29 Oct 2026 17:51:54 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd9f0LWsaEXXE4_Of=H_jP=jkafKS2BmrHPCe9BTsdN=Zg@mail.gmail.com>
+X-Gm-Features: AclHuK8QzMDzeiYpFhLLr4Kwb00K6t3Ho7Ri6b_T0zgg0ISHCkQ6Rdefwgbk894
+Message-ID: <CAKYAXd9f0LWsaEXXE4_Of=H_jP=jkafKS2BmrHPCe9BTsdN=Zg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ntfs: avoid overflow when limiting attribute read length
 To: Hyunchul Lee <hyc.lee@gmail.com>
 Cc: ntfs@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
@@ -74,14 +74,12 @@ Content-Transfer-Encoding: quoted-printable
 On Wed, Oct 28, 2026 at 5:43=E2=80=AFPM Hyunchul Lee <hyc.lee@gmail.com> wr=
 ote:
 >
-> When a leaf index entry is promoted during a split,
-> ntfs_ih_insert() extends a copied entry with the NODE VCN field.
-> Initialize that field before copying the new entry into the parent
-> index. The promoted entry must reference the old child VCN, while
-> the existing parent entry is updated to reference the newly allocated
-> right child.
+> ntfs_inode_attr_pread() limits a read to the attribute size using
+> pos + count. A large count can overflow the signed sum and bypass
+> the attribute EOF boundary check. Compare count with isize - pos
+> instead, after validating pos, so the read length limit cannot wrap.
 >
-> Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+> Fixes: af0db57d4293 ("ntfs: update inode operations")
 > Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
 Applied it to #ntfs-next.
 Thanks!
