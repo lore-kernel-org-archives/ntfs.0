@@ -1,57 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=124.126.103.232
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793238292;
-	b=jr9FSQHFkfwmP8QJ19gJI7aGdB93MhkJK29p7J8CeZ/OE313RAwGcX/h/kUBo0E8U8iD
-	 xUkwMdaiguU97XRu6jdyc8XtRJRx0mUn4/pN0D0AEIu/H/0kHf2IjDW1xTSXVwxv1Asll
-	 6pwwCto203viTxBniOZjvBGkaAWZxJ9l1MO9EvDSyysssfqQXEZgQtplcAAFXmeSh6pl/
-	 KJ/V7ei27tUchlALvvMESaSOSUh+VjaV9FkNt3uNOI5UETCMTjYF+Uahe6GzNsX4vYT53
-	 Qn4CG5aYiV8O+zqJSecgCTXarxHYxq3rBzJ2Bv/FwxvufMtXdoJSU03JJb8lwXPhdzQ==
+	t=1793238566;
+	b=3TvVzBpoLRD0W8dGH49+un/z9WKWSG7CMGKD5BPoGiDeTmj84lpP1ZBeeDSfnUObohBN
+	 Zlj/xsPFAUvNw6Pe4iu3aqxP7EYO0NBv+PSOFvpifpF73JbqQm0BGlvqVQtE4nkoiHm1b
+	 IEFigMHWSTLWgkmngc+BJIuBALD2xwCJtsLXWRAdN1yzfjSSCdWscluIui6rF/4sREjVC
+	 h5Nq4CwKaPhIOxanYODjE1nt54tXu73me1TQi+uTj6NasqbN188NAtCMlM++u9xO/Tw0C
+	 76SGBga0dqovnvU1cjp4uzuFj1esOWgkucLRspYwDtdWPNFdRs4I7jDbCK+ZlUwLKbQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793238292;
-	h=DMARC-Filter:X-UUID:X-CID-P-RULE:X-CID-O-INFO:X-CID-META:X-CID-BVR:
-	 X-CID-BAS:X-CID-FACTOR:X-CID-RHF:X-UUID:X-User:Received:Message-ID:
-	 Date:MIME-Version:User-Agent:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=fsImNdWrr83N8+F7M3ohrBELj1nHC3un4eFEu4YBSFs=;
-	b=HzVzPPiWGqQaYeGRHCQ1MeydntwXpc4iUyOZkFvIbcQtd8RBKdy5lG/tzcHNN9wM7e+I
-	 fv+yIkh+ZXOt8YQuu5B6BDUpqZYQAfeDrNMocI5AL0Js4iHs7dh17Hzmo17TrS8ldaUEo
-	 ErvV1OTRSNNhZyrj+atxa4NHG+0H5IykxGcMbG9ryv1Pf1ccK0fT/9PVBL9lAamnp9GgA
-	 YnDL1+pYRYCQ7EF6PbJAStQO6h6SKoanvA12k0lAId0rBMKtdnt0DvnKw1o1GWNDR646Y
-	 mek8CpeZgDvdQadD2VCJREOj+ypbCDgE187QGCjISLxIvIl6NiYT/7Yynkfk5LokSvQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793238566;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=7Y+Nxfb8E05KTxopERSwje+mXc60ODixr4br2J1rWwU=;
+	b=SufCtwkI6ARVlvPI/sqCZa76JBcOCvytMwgTdHJ91bZzk2Izu2Jm0P1lzgot6wp8B542
+	 uLbXWFIqFoYXFaBWdFN92IJiuvL1Wxtl8FMz3ktlykNXZVIbV8MglIYk3oK5S8f36ohgN
+	 LB4EWgCuKZDVmUInX8Dj6Hb5N1AQKJ4b6uVGfXMo6J6OXruarfdxWTiTHGrg3S0dtignP
+	 /BoLgZPP/CloLobq6Q0ozb5Qa7pj5KngKdGiykrj6zCUKZv3IzTCHsuzq+SdUjwrtWCgQ
+	 DAo2h4NJR2vswqcoMwWq9ghgJfrDXXoqN9QDNLdClXko4KXMSJM8D7NaIEKdIl/UefA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=none header.from=kylinos.cn;
-	spf=pass smtp.mailfrom=kylinos.cn;
-	arc=none smtp.remote-ip=124.126.103.232
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=lt0QuNJd;
+	arc=none smtp.remote-ip=117.135.210.4
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4EB1606A31A
-	for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 01:44:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org C4EB1606A31A
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 51742f00d33a11f19a56ed5b684f684d-20261029
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.19,REQID:7c6f379b-36a0-4ef1-9455-98e168291740,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:7db8b62,CLOUDID:ea4b5ef0005654da332220e8719846a7,BulkI
-	D:nil,BulkQuantity:0,SF:80|81|82|83|102|865|898,TC:nil,Content:0|15|52|99,
-	EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 51742f00d33a11f19a56ed5b684f684d-20261029
-X-User: wangxuewen@kylinos.cn
-Received: from [172.30.70.102] [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <wangxuewen@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_128_GCM_SHA256 128/128)
-	with ESMTP id 1064201557; Thu, 29 Oct 2026 09:44:45 +0800
-Message-ID: <b9a48416-8052-4bc4-b002-d7766895121b@kylinos.cn>
-Date: Thu, 29 Oct 2026 09:44:41 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12D8606A31A
+	for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 01:49:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org A12D8606A31A
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=lt0QuNJd
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=7Y+Nxfb8E05KTxopERSwje+mXc60ODixr4br2J1rWwU=;
+	b=lt0QuNJdH5MqHGb/zQn/Kn1SQqpe8KXWcSeEKkgMR6RwnD6VYXKz0AT+KHRr8E
+	IV2ECi7FZpOsguxYBpwFllUhPbkWhJ1Zc1L7tTcnBdIzv1LtGAtzXhvlSlTB2IY4
+	vEsc9ecmvqEiBlyQaOhLnf/vit+cPbesaUqnrxxp8cKX0=
+Received: from [IPV6:2409:8900:1fd1:c0be:78be:cbf2:dfd7:c36a] (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id PigvCgCncjcSpuJqGYPtCg--.13001S2;
+	Thu, 29 Oct 2026 09:49:07 +0800 (CST)
+Message-ID: <a81b1308-dc85-4d93-beb0-17d728e85f11@163.com>
+Date: Thu, 29 Oct 2026 09:49:06 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -63,15 +56,23 @@ Precedence: list
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v1 2/5] ntfs: preserve timestamps when creating hard links
-To: Hyunchul Lee <hyc.lee@gmail.com>, Baolin Liu <liubaolin12138@163.com>
-Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Xuewen Wang <wangxuewen@kylinos.cn>
 References: <20261027093515.344799-1-liubaolin12138@163.com>
  <20261027093515.344799-3-liubaolin12138@163.com>
  <auKQCM-vwM5RPYDc@hyunchul-PC02>
-From: wangxuewen <wangxuewen@kylinos.cn>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
 In-Reply-To: <auKQCM-vwM5RPYDc@hyunchul-PC02>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PigvCgCncjcSpuJqGYPtCg--.13001S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF43Zr45AF1xZrykWFyrXrb_yoW8uw47pr
+	Z5Ga4DK3WkJrW7CF92yrsxXFyvgayIgF4xJFs8J3W7A3Z5K3ZYqF40gFyUuFy0kr95Wr1I
+	vF4qgryUXw1Y9FJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U24iUUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hMBy2riphNGIQAA3p
 
 
 
@@ -121,13 +122,17 @@ Content-Transfer-Encoding: 8bit
 > appears to retains the old ctime.
 > 
 > Additionaly, could you run run xfstests generic/004 and generic/389?
+
+ >
 Hi Hyunchul,
 
-Thanks for your review. Baolin and I will make modifications and run 
+    Thanks for your review. Xuewen and I will make modifications and run 
 tests per your comments, and submit the v2 patch afterwards.
 
-Regards,
-Xuewen>
+Thanks,
+Baolin.
+
+> 
 >>   
 >> -	/* timestamp is already written, so mark_inode_dirty() is unneeded. */
 >>   	d_instantiate(dentry, vi);
