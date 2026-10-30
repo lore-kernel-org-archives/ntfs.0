@@ -1,96 +1,49 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=115.124.30.99
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793329034;
-	b=htfQiAq6tknCNxG2p3kw03BOGi64glkdYucRXkPg/S6sjvckGpHnTpV/vgf1oNee21bL
-	 Pu6L4OxoznNQ4cOT/hXDHwdkzko+Fh+2rTzoABI4De7Ij1tinwP/sYwQjXFSobbDKLLPv
-	 qlIc2muipcfPdFv7d/o8MGTRwiLxoFZ9gL695qCnU1yPclZmYUWjYnuArVvUDi7zaPOxd
-	 4oZJlSBUAjI3Yc6Jzzsquuha8RRZuUspJE+P1wivNmmMtYLPT3PT9kvlwRe60YnDiiFMz
-	 ETWL6YToPFykv6zzEQ0cLa3eJa/s8cPVq2zV2Hq8T6luW7e7dkYPvuusoj0k45KQD/w==
+	t=1793329145;
+	b=Z9T6i4haIjSUkd0BSdj6lJtyV9k1YoH34Y7NbQqkg/PyTZvO2J52ojpzJmKUjZTQOzWT
+	 aYjUNk8v68F6KUdOPXImywK5PFxmZstmI1x4UxvqNARpHBKzV9g27OpuOWA2vj2Xd+ntt
+	 a1Z4Z1Dt/ko2d0IR5jq53Wq3GyN0WqVQ34j2/VONcJ5MpQLa/tz5QyThk0BreOpMyXP9L
+	 /w/i/OY2SInedaMQUPPvIN9HUkrj65dZ5vcJWs89kJEOdbs674xw5nFtvhrDbm2CkhgdT
+	 dM2heiRivU/hzuu3XZDpGFAUVcLSy/DiqlnsUDqei3mIT3WUFrvQTcno1eF9LKa4H7w==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793329034;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:Content-Transfer-Encoding:
-	 In-Reply-To;
-	bh=/ZdXC9RaNc34pyVI5ALRxFES86jLTzutVsfPjdP/KMA=;
-	b=sLDKA/IHDFlY0vhRo80grroloF2aE4pGlA/GTJ33pCJygyzUax1087RHuZg3mzl6Btmg
-	 iMQROobx4X7Mi/r0vo7FBGetQx+JEZPv+pAOKoTz8FQCwZFL1Kz0ftxrxC2SEsKgi4+Jc
-	 denrly5B7l9m3g/FN9Or1QsoPwcA1x/mz4IxMUah9iGV3ytIedb9G8D8Sr8j2pKyAhftK
-	 2aEYD5mP6/I3rN0h3xhsAauF9X3hl/Is15ysSrsozOXOe1Pnu267JeoDAIkduao4VnEa7
-	 86cYxXcgydO5rUkVNUxKlvIwODJQrs8YvwqXEhq2WOupEv8+JbeLFrC3eT/+S/g2rxA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793329145;
+	h=DMARC-Filter:DKIM-Signature:X-Alimail-AntiSpam:Received:Message-ID:
+	 Date:MIME-Version:User-Agent:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	bh=w/Jd2p/prMhPtETNelJfTcFSgzTHlHRnVEoen9y0JaA=;
+	b=mPrEm5xpBnXg7uvPdBUpnJNx5J5mTi9aYeBh4Gh357QubdCnhtBobh3UqdL3g9p+9vNt
+	 Mxz5i2t4ao0I1eYTJumlpQMT+NRJ+VULxHd0l4RlM0g+KtouBoD2zvO2Wvu7hYaw5WtZn
+	 fVSWt9gGGag7k+l9DWULNOUnXC/FFJXq2M0qdmDKX5PGxFpW0VLKEDyKLAQjZsRYr/qtb
+	 cDMP1C2wOgpMduotwWXtY5zD3BBFvAitubMDqI2uqyMhGeRAWWm4JOuJuH8QajTaNgCIb
+	 oyiT4VFQjvtm85Mv5X9dFwznzO8fcemKs3kgUWxL4xGT/Xb4BD34l8gD5gtoKfDv0GA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=afsQPX0w;
-	arc=none smtp.remote-ip=209.85.210.177
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=pass header.from=linux.alibaba.com;
+	spf=pass smtp.mailfrom=linux.alibaba.com;
+	dkim=pass header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=hSHEsgsY;
+	arc=none smtp.remote-ip=115.124.30.99
+Received: from out30-99.freemail.mail.aliyun.com (out30-99.freemail.mail.aliyun.com [115.124.30.99])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F43606A31D
-	for <ntfs@lists.linux.dev>; Fri, 30 Oct 2026 02:57:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 74F43606A31D
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC2C606A31E;
+	Fri, 30 Oct 2026 02:59:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 2DC2C606A31E
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=afsQPX0w
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-8a05f2d5cd3so70656b3a.0
-        for <ntfs@lists.linux.dev>; Thu, 29 Oct 2026 19:57:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793329034; x=1793933834; darn=lists.linux.dev;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=/ZdXC9RaNc34pyVI5ALRxFES86jLTzutVsfPjdP/KMA=;
-        b=afsQPX0wqAvN/KiEkIkJYCBXNXO53epmyJUNAT6edwYCaD80ZlFc28CVCw9m7cH6lr
-         bv9zhcwhcQgghOmPZEgvTfGg65o3DeaJJ6mV+yg2T0TDpHGF6NIonkvoeCrwLKB2M7L+
-         t1gP5SLvpU8WiNtQNywTw3q8lfUVNQ8kvP4p1LB5UOouw4xbY0iL5wFd8vZ8egMaFVoB
-         M8rEGxHK9i6dwj/eWY7MnB0qmBJAr0XHA2m8APoenMY5srpRbP2BkU8NBfpd28bcG1yM
-         /lk8Ly9uZ5F8T4tyjASZ+qQNpTCpv84pC+K+h+QzPKwkLyoRrZySpJOQ8gM8t/4aUEwL
-         PNvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793329034; x=1793933834;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=/ZdXC9RaNc34pyVI5ALRxFES86jLTzutVsfPjdP/KMA=;
-        b=fgexTEZZALu9hliX7OKccvn03WhcC2nkVNlbWpxRVRbAG2BtAXFPGYDbAy4zDkiZsc
-         ypSXRptf7U6BooyFzNokEJhdcy7/+EXsBraPS1H6QGzDIwvQxBtsr/LQGYTHx5c0L41D
-         tfwYByR2bE6PrHZaH5qdAaCa3VZxMZaZ2jW9hcrZ00rgtN1ZathWRAAYv+pd4B5wa4L1
-         64Tzok4EyglzZaUht6UL92DKzUnSf9mW5RXgUGuCPR1e3aqykqyYCRIzIotOD8z4yyrC
-         q4LJnOHxzzd3Fn1BrExbzzeQ8Tus927o6/63IXiHgVUQeSsRocbc+b1flTpuYViFSzC8
-         dhLw==
-X-Forwarded-Encrypted: i=1; AKwUvBwlI/yoCRV8SJrNg3Lfp5ifgG/qfLvp/dbtwTGaF0mB4FackuS4oWC2zau+pGiocwUw9iuH@lists.linux.dev
-X-Gm-Message-State: AFq9FYJRZ/jkcNMRwa3n1kmlParldQ6y8mLy+sPjlQvGb7U69+OXEN+A
-	LMEgTQOFzqIWWj0rPkdDo3wSyt940GZe0CKVk9wNGaaENAQ+448/AUWJ
-X-Gm-Gg: AYBFou2gl7XOnyLvXVZEOva/4IG3TSVJt+10d9caaUZ1mm36vISBJirLoYUT/0QEnXI
-	u8dWJCcJyuvjMh0Hbmb1O2BYQ2uGMasPB1TUP61e4vlbLlfL7MrMVNuBOApYQHwl1lBMPaKQXRu
-	fgezlTTmzjpYpaaVG0XSUhGYk6hdRZfG5hWsWYWef0MjPgSdqSer1nwPV9bl+3jgdlE1sxJwPm2
-	Sk7XL4w4I7BEmPq18+W11TZRlKG1YDalT4q+1F4xmYZ+l2xYHr9mRIQ12ujfdpiFKMngxAPkJ/Q
-	pEvqJ0muh/xr9GYcy0W+76SA0eZpEnIRHv+BSPtApEdu7gzJsP/84cxkFTz9b1K66iISZUeqveg
-	4w+YZzx1E5VK0h4+OHrlFLXQsUBw9hlonmE+sdHCqD0PbsASW1kwsOMV+mnHnMs4+E1iXfszYH1
-	gkyi6uVL+QEBWjpeG3Rjn8b9tubdpdHnxSkqvaK+Fj+Wn3FDIKMC1OwfdXLhLnnefjuCaypK6qB
-	/qVv1xo7oDcJ8x1g2f7rlSbhtp0QekL5IEgloYO4Et37DLgt7CyojQfnw6YUPgGy3gx0YCfxYKb
-	9G+QiEY2Qa/+NPOwabTtx90bzRdVgKeldki9ZXJt
-X-Received: by 2002:a05:6a00:290f:b0:8a3:df84:4c14 with SMTP id d2e1a72fcca58-8a9bee525bbmr794496b3a.57.1793329033656;
-        Thu, 29 Oct 2026 19:57:13 -0700 (PDT)
-Received: from localhost ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8a9eef95cb5sm162643b3a.9.2026.10.29.19.57.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2026 19:57:12 -0700 (PDT)
-Date: Fri, 30 Oct 2026 11:57:10 +0900
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Shengzhuo Wei <me@cherr.cc>
-Cc: liubaolin <liubaolin12138@163.com>, Namjae Jeon <linkinjeon@kernel.org>,
-	ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] ntfs: wait for bitmap folio writeback before modifying it
-Message-ID: <auQHhmnBbntRem3o@hyunchul-PC02>
-References: <20261029-b4-ntfs-bitmap-writeback-wait-v1-1-e2ba711b2dbf@cherr.cc>
- <374bf856-f880-4fa2-abec-c4b2a063bf57@163.com>
- <auLlFEHMZvANXUvU@kernel>
+	dkim=pass (1024-bit key, unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=hSHEsgsY
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux.alibaba.com; s=default;
+	t=1793329134; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	bh=w/Jd2p/prMhPtETNelJfTcFSgzTHlHRnVEoen9y0JaA=;
+	b=hSHEsgsYOl/knZoiaKmOo9/szTsdb243LBtAHNpX/8InfeQ+O8kqyPkUuu0Awv2qPGL1dtHu80lxiinShoX3C//q9xO3uJS7nJ9pA7n/Uvoqx9PjlbXVT4MQjJDtbupw0uuaN9Pd4ZUnz3XFWW920V7V0LBApZUCRivWHHA722Q=
+X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R961e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037026112;MF=joseph.qi@linux.alibaba.com;NM=1;PH=DS;RN=17;SR=0;TI=SMTPD_---0XDkufcn_1793329132;
+Received: from 30.221.129.214(mailfrom:joseph.qi@linux.alibaba.com fp:SMTPD_---0XDkufcn_1793329132 cluster:ay36)
+          by smtp.aliyun-inc.com;
+          Fri, 30 Oct 2026 10:58:53 +0800
+Message-ID: <0a8576a4-e397-4a49-ab0e-8f0f32bf2642@linux.alibaba.com>
+Date: Fri, 30 Oct 2026 10:58:52 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -100,82 +53,96 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <auLlFEHMZvANXUvU@kernel>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 19/34] ocfs2: keep the current mount options on remount
+To: Christian Brauner <brauner@kernel.org>, linux-fsdevel@vger.kernel.org,
+ Jan Kara <jack@suse.com>
+Cc: Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org,
+ linux-ext4@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
+ linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, linux-mm@kvack.org,
+ ntfs@lists.linux.dev, ocfs2-devel@lists.linux.dev,
+ linux-btrfs@vger.kernel.org, gfs2@lists.linux.dev,
+ linux-efi@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-xfs@vger.kernel.org
+References: <20261029-work-fs-sb_rdonly-v2-0-2f44f64f0b66@kernel.org>
+ <20261029-work-fs-sb_rdonly-v2-19-2f44f64f0b66@kernel.org>
+From: Joseph Qi <joseph.qi@linux.alibaba.com>
+In-Reply-To: <20261029-work-fs-sb_rdonly-v2-19-2f44f64f0b66@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Shengzhuo,
 
-On Thu, Oct 29, 2026 at 02:17:56PM +0800, Shengzhuo Wei wrote:
-> On 2026-10-29 10:07, liubaolin wrote:
+
+On 10/30/26 12:07 AM, Christian Brauner wrote:
+> ocfs2_init_fs_context() doesn't inherit the current mount options for a
+> reconfigure. But ocfs2_check_set_options() insists on exactly one
+> heartbeat mode and ocfs2_reconfigure() refuses to change the data mode.
+> So every remount without heartbeat= fails with EINVAL, including
+> emergency remount (sysrq u) which passes no options at all, and that
+> WARNs for every ocfs2 mounted read-write. A remount that does pass
+> heartbeat= silently resets every option it doesn't repeat, e.g. noacl,
+> errors=, barrier= and preferred_slot=.
+> 
+> So start a reconfigure from the current options like exfat and gfs2 do.
+> Asking for a different data or heartbeat mode still fails with EINVAL.
+> 
+> The next patch stops ocfs2 from setting SB_RDONLY after errors. An
+> errored ocfs2 then stays read-write and emergency remount would run into
+> this as well.
+> 
+> Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
+> ---
+>  fs/ocfs2/super.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/fs/ocfs2/super.c b/fs/ocfs2/super.c
+> index 0af2245ae303..67283244426e 100644
+> --- a/fs/ocfs2/super.c
+> +++ b/fs/ocfs2/super.c
+> @@ -1222,6 +1222,19 @@ static int ocfs2_init_fs_context(struct fs_context *fc)
+>  	mopt->resv_level = OCFS2_DEFAULT_RESV_LEVEL;
+>  	mopt->dir_resv_level = -1;
 >  
-> > Hi Shengzhuo,
-> >    Could this deadlock during MFT bitmap
-> > expansion？ntfs_mft_bitmap_extend_allocation_nolock() can recurse into MFT
-> > record allocation while holding mftbmp_ni->runlist.lock.
-> > 
-> >   With L being that lock, could we get the following interleaving?
-> > A and B are $MFT::$BITMAP folios; B is outside the cached iomap.
-> > Time flows downwards.
-> > 
-> >   Writeback                        Bitmap expansion
-> >   ---------                        ----------------
-> >   lock A
-> >   set PG_writeback(A)
-> >   map A (take/release L)
-> >   add A to wpc->wb_ctx
-> >   unlock A
-> >   [BIO still unsubmitted]
-> >                                    take L
-> >                                    extend bitmap mapping pairs
-> >                                    need another extent record
-> >                                    ntfs_mft_record_alloc()
-> >                                      mft_bitmap_alloc_free_rec()
-> >                                        lock A
-> >                                        folio_wait_writeback(A)
-> >                                    [wait for A's I/O, holding L]
-> > 
-> >   lock B
-> >   set PG_writeback(B)
-> >   ntfs_writeback_range(B)
-> >     __ntfs_write_iomap_begin()
-> >       down_write(L)
-> >       [blocked on L]
-> > 
-> >   Cannot reach iomap_add_to_ioend()
-> >   to submit A's pending BIO.        Cannot release L until
-> >                                    A's writeback completes.
-> > 
-> >    ntfs_writeback_range() obtains the next mapping before
-> > iomap_add_to_ioend() can submit the pending BIO.
-> >    Would we need to submit that BIO before taking the mapping locks?
-> > 
-> > Thanks,
-> > Baolin.
-> > 
-> 
-> Hi Baolin,
-> 
-> Thanks for the analysis. I checked the paths and agree with you.
-> 
-> Following your suggestion, I prepared a change to submit the pending
-> ioend before obtaining a new mapping in ntfs_writeback_range(), clearing
-> wpc->wb_ctx even on error to avoid resubmission. I plan to make this a
-> prerequisite for v2, retaining all six waits.
-> 
-> One concern is that submitting at mapping boundaries may reduce BIO
-> aggregation, including for ordinary file writeback. The change has
-> passed object builds, but has not been runtime- or performance-tested.
-> 
-> Does this approach look reasonable to you?
+> +	/*
+> +	 * Start from the current options so a remount only changes what it
+> +	 * specifies, emergency remount passes none at all.
+> +	 */
+> +	if (fc->purpose == FS_CONTEXT_FOR_RECONFIGURE) {
+> +		struct ocfs2_super *osb = OCFS2_SB(fc->root->d_sb);
+> +
+> +		mopt->mount_opt = osb->s_mount_opt;
+> +		mopt->atime_quantum = osb->s_atime_quantum;
+> +		mopt->slot = osb->preferred_slot;
+> +		mopt->user_stack = ocfs2_userspace_stack(osb);
+> +	}
 
-I think the early submit should be limited to $MFT:$BITMAP only.
+ocfs2_reconfigure() decides the transition from fc->sb_flags alone without
+sb_flags_mask test, unlike reconfigure_super(). And fspick() passes
+fs_context_for_reconfigure(target.dentry, 0, 0). So on a read-only mount:
 
-> 
-> Thanks,
-> Shengzhuo
+  fspick(AT_FDCWD, "/mnt", 0)        sb_flags 0, sb_flags_mask 0
+  fsconfig(fd, FSCONFIG_SET_STRING, "atime_quantum", "30", 0)
+  fsconfig(fd, FSCONFIG_CMD_RECONFIGURE)
+    reconfigure_super()
+      ocfs2_reconfigure()
+        (bool)(0 & SB_RDONLY) != sb_rdonly(sb)  -> 0 != 1, enters
+        fc->sb_flags & SB_RDONLY                -> 0, takes the rw branch
+        sb->s_flags &= ~SB_RDONLY
+        osb->osb_flags &= ~OCFS2_OSB_SOFT_RO
+        ocfs2_enable_quotas(osb)                -> writes the quota files
 
--- 
+The final WRITE_ONCE(sb->s_flags, ...) in reconfigure_super() then
+leaves it cleared, because SB_RDONLY is not in sb_flags_mask. The same
+falls out of a legacy remount whose flags omit MS_RDONLY.
+
+So it seems we should test sb_flags_mask as well?
+
 Thanks,
-Hyunchul
+Joseph
+
+> +
+>  	fc->fs_private = mopt;
+>  	fc->ops = &ocfs2_context_ops;
+>  
+> 
+
