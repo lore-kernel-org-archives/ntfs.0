@@ -1,58 +1,57 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793424566;
-	b=eORcRFtFjVhWZm+BBMYVu7ldiOUkRTpb27tmSYkq/uZz4PLZGF4R3E01i74f6kybHNZ2
-	 spDekPABXNaz+1uT/aokkngiSz+FG+XjOvEYKugEeavHWh5wC9IscDSPLGxhubz2Ij7Pj
-	 ffQ0jHku50OufQs0LrJQz3yqVLAsaCHHorUmU1ofABR3GrWjWP9XCuSuIO/0QmBEDIH5V
-	 jZKv8hf6pTMynBQPXNaBcs7Qc7DYTbhmgmnRnzhZRvnbQ7nNkMRxjZt5UC6VZS864zbUv
-	 HglWmM4h/27OzmVIVkEcdJDYowH/cMGKY2n6emTtlnRKJH9YAKbFaXEBPBQ5c87PtIg==
+	t=1793424569;
+	b=RLM9/xF2N/essgdf+4wslsoilm8XQAbC/SO+vDTeJBr6ckwYG1Z6a3GbmiEgdsTWjVBD
+	 3RDeJaicje8PqTz39+WNxq13FZ6bqfL2ChxT2qm5cdtF8Zhb+dP3A8dpBfxYdk/3WwG4t
+	 CI9IwSz0tK2JglPUaa2LlpB+PYW2IkI3mltKHb/cLJIeuGgUfVrZf6duEXmlXO07zu7Qy
+	 OjRkdqvFIgRXXxqn5Z06SInXJlSTTXnKZtjLVMvDhY7Yrw2hhCI5WMlWfhV430jJMSz6l
+	 7lQ71PS/SaG9IxyMgRM6e/NWXY/0vlER1UyBULweJbYvBWyu7VrDeW5E+qEU2YnJFTQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793424566;
+	a=rsa-sha256; c=relaxed/relaxed; t=1793424569;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-Originating-IP:X-CM-SenderInfo;
-	bh=I7frXlGnMCDV3UFrGk5yfnthPFUH9+/nnSFzMhXI7Yo=;
-	b=OaSsFTOqKVdkkTyuBZrVmZ1IaxKH78VeRoaiLiL5j8oqALLPPjbrwxdrydiEWxu1dssR
-	 dYN62Q6Epuih/qUGep5zwDsYzlkeWpNTALgn9oSlpZEyyDtewWA7I2l8zSXIY/Zs1tIHD
-	 5ZrHJlX6269DuwvVTfb4zrWEWjkxU8BAGeKM5ROq96w3XGVLzZJGpkxoX292FknFBCUAU
-	 FKNRyT+hH6p0mSfmy7LHni86qa9ktsyWoJMwVksTHABHwFs7SQ2OK2bSzxWFY/lCcMfvr
-	 Erfi/f/DYfDVjvHt76qarw+ik4hGY88rjVy8PFif7SITLsOKpJN2uNoGNjfFsM+rUGA==
+	bh=PoEJOz6BO3EABg6aGcSf6huZBWcr0145a9Y7my193cA=;
+	b=waRlDgikwpokkL/7d6Q+qBqNtBC8OyhFel06zuLFiSzVxYVt0RcmFj8OD8b3N5oN1+UQ
+	 /QDKdNJWTBil7xLj7d2bPXRL8NHraCVNp1t130Bb/CdzQQG+UqV35zVhD+AxhmJ1S5BTE
+	 CunB1oKY31x/s1G0w0Q7Rc6xGCioHyF2hJlPTC/lvN+JOZeHoN4DzE7nBl4HSDwivc5yW
+	 0ioOb4//7AcYMgCdKH2yC9CZMSQDz12bdg+ZMtAIew+8C5nJlH/I/q6HXETN0rt0/I9lI
+	 /uVRyVgmiDQZtKiwmKrPmZAeDHOzH85hsBRA0YRJjN6GC0TCVJvvFDbVFSqeMyuDHtQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=kL0XuHHV;
-	arc=none smtp.remote-ip=220.197.31.3
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b="o/hSwahP";
+	arc=none smtp.remote-ip=117.135.210.3
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11DC9606A31A
-	for <ntfs@lists.linux.dev>; Sat, 31 Oct 2026 05:29:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 11DC9606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2128F606A320
+	for <ntfs@lists.linux.dev>; Sat, 31 Oct 2026 05:29:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 2128F606A320
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=kL0XuHHV
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=o/hSwahP
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=I7
-	frXlGnMCDV3UFrGk5yfnthPFUH9+/nnSFzMhXI7Yo=; b=kL0XuHHVL2R2IwA03t
-	JyiZw8KeBrt7+wfuMXXWeQXUe5fTx3dSES5e8X97QoG8FQO5a9g64SYlUmaFg+Ja
-	HjTT71F1MNCv0QroF3XvmxAAL7aIoJgFolAI1ez5JVK4F9rAw0ijnZNOpj/HaUeB
-	2F3KEz/TW82eJJbnNUsFKXQNY=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Po
+	EJOz6BO3EABg6aGcSf6huZBWcr0145a9Y7my193cA=; b=o/hSwahPWdzxf1Tc4Y
+	JNq+LrWv9DwXJJtZHNiQLivtJAb88/8QgZLcFboo7SB3C8nTWhLYJ40MjrEuw5yv
+	MXLehcmA6lVwfC/1EIXri++r4n4EnDd3lmlSnSnJDFjEWoY9IUwTyUFTXjB9RRY0
+	E7vwp23hHoCMfBt0QQqQGyWx0=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzsmtp5 (Coremail) with SMTP id QCgvCgDX37adfOVqFDprDA--.9490S5;
+	by gzsmtp5 (Coremail) with SMTP id QCgvCgDX37adfOVqFDprDA--.9490S4;
 	Sat, 31 Oct 2026 13:29:05 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Xuewen Wang <wangxuewen@kylinos.cn>,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v2 3/5] ntfs: initialize packed EA size when creating hard links
-Date: Sat, 31 Oct 2026 13:28:55 +0800
-Message-ID: <20261031052857.1542936-4-liubaolin12138@163.com>
+	Xuewen Wang <wangxuewen@kylinos.cn>
+Subject: [PATCH v2 2/5] ntfs: preserve timestamps when creating hard links
+Date: Sat, 31 Oct 2026 13:28:54 +0800
+Message-ID: <20261031052857.1542936-3-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261031052857.1542936-1-liubaolin12138@163.com>
 References: <20261031052857.1542936-1-liubaolin12138@163.com>
@@ -66,62 +65,116 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:QCgvCgDX37adfOVqFDprDA--.9490S5
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Ar4xtF1DAFyrKF1xWF18AFb_yoW8AF43pF
-	Z3Gryfta17Xry2kF9Iyr42vF1Sq3yxCF4UGr4xKr12y3ZYg3Z0ga48Kry5Zrn3Aay8u34Y
-	qF45t3y7WryUu3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jlCJQUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gJbJmrlfKJp8QAA3c
+X-CM-TRANSID:QCgvCgDX37adfOVqFDprDA--.9490S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxXr48uF43Xr17XFW7Ar48Crg_yoWrCFW3pF
+	W3Kw1DKr4xXrW7Wrn2yF4DZFySga4I9FW7JFWUKw13Aan0qw18tF1Iqry7ZF1rtrZ5Wr1j
+	qa1Fgr1UWw1UG3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jyxRhUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gFbJmrlfKFp4QAA3M
 
 From: Xuewen Wang <wangxuewen@kylinos.cn>
 
-A new hard link has a zero packed EA size in its FILE_NAME even when
-the source file already has extended attributes.
+ntfs_link() resets atime, mtime and ctime on both the source file and
+the destination directory after creating a hard link. This overwrites
+the source file's atime and mtime and the directory's atime.
 
-For files with EAs and no reparse point, read EA_INFORMATION and check
-its attribute length before adding the name. Copy its ea_length into
-the new FILE_NAME's packed_ea_size. Skip this assignment for reparse
-points, where the same storage holds the reparse-point tag.
+Update only the source ctime and the destination directory mtime/ctime.
+Use the same timestamp for the new FILE_NAME attribute, its directory
+index entry and the source inode, so the new name does not retain the
+old ctime. Set the inode's ctime only after the link succeeds and mark
+both inodes dirty to queue their timestamps for writeback.
 
-Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
+Keep the rename caller's existing timestamp behavior unchanged.
+
 Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
 ---
-Tested the standalone five-patch series in QEMU. Prepared EAs remained
-readable after publishing the temporary file and after cache eviction,
-remount and reboot.
+Tested the standalone five-patch series in QEMU. The requested unchanged
+xfstests generic/004 and generic/389 passed. Hard-link tests checked that
+prepared atime/mtime remained unchanged and source ctime advanced.
+Offline checks compared STANDARD_INFORMATION, the new FILE_NAME and
+the directory index ctime.
 
-No functional change from v1.
+Changes in v2:
+- Use the same new ctime for the inode, FILE_NAME and directory index,
+  as requested in review.
+- Update inode ctime only after the link succeeds.
 
- fs/ntfs/namei.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ fs/ntfs/namei.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
 diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
-index a83a648c8ff8..5124e7a3e124 100644
+index 14eaf7204ead..a83a648c8ff8 100644
 --- a/fs/ntfs/namei.c
 +++ b/fs/ntfs/namei.c
-@@ -1318,6 +1318,24 @@ static int __ntfs_link(struct ntfs_inode *ni, struct ntfs_inode *dir_ni,
+@@ -1244,6 +1244,7 @@ static int ntfs_rmdir(struct inode *dir, struct dentry *dentry)
+  * @dir_ni:	ntfs inode for directory in which new link should be placed
+  * @name:	unicode name of the new link
+  * @name_len:	length of the name in unicode characters
++ * @ctime:	metadata change time for the new FILE_NAME
+  *
+  * Create a new hard link. This involves adding an entry to the directory
+  * index and adding a new FILE_NAME attribute to the target inode.
+@@ -1251,7 +1252,7 @@ static int ntfs_rmdir(struct inode *dir, struct dentry *dentry)
+  * Return 0 on success and -errno on error.
+  */
+ static int __ntfs_link(struct ntfs_inode *ni, struct ntfs_inode *dir_ni,
+-		__le16 *name, u8 name_len)
++		__le16 *name, u8 name_len, struct timespec64 ctime)
+ {
+ 	struct super_block *sb;
+ 	struct inode *vi = VFS_I(ni);
+@@ -1313,7 +1314,7 @@ static int __ntfs_link(struct ntfs_inode *ni, struct ntfs_inode *dir_ni,
+ 
+ 	fn->creation_time = utc2ntfs(ni->i_crtime);
+ 	fn->last_data_change_time = utc2ntfs(inode_get_mtime(vi));
+-	fn->last_mft_change_time = utc2ntfs(inode_get_ctime(vi));
++	fn->last_mft_change_time = utc2ntfs(ctime);
  	fn->last_access_time = utc2ntfs(inode_get_atime(vi));
  	memcpy(fn->file_name, name, name_len * sizeof(__le16));
  
-+	if (NInoHasEA(ni) && !(ni->flags & FILE_ATTR_REPARSE_POINT)) {
-+		struct ea_information *info;
-+		s64 size;
-+
-+		info = ntfs_attr_readall(ni, AT_EA_INFORMATION, AT_UNNAMED, 0, &size);
-+		if (IS_ERR(info)) {
-+			err = PTR_ERR(info);
-+			goto err_out;
-+		}
-+		if (size != sizeof(*info))
-+			err = -EUCLEAN;
-+		else
-+			fn->type.ea.packed_ea_size = info->ea_length;
-+		kvfree(info);
-+		if (err)
-+			goto err_out;
-+	}
-+
- 	/* Add FILE_NAME attribute to index. */
- 	err = ntfs_index_add_filename(dir_ni, fn, MK_MREF(ni->mft_no,
- 					le16_to_cpu(ni_mrec->sequence_number)));
+@@ -1464,7 +1465,8 @@ static int ntfs_rename(const struct mnt_idmap *idmap, struct inode *old_dir,
+ 			goto err_out;
+ 	}
+ 
+-	err = __ntfs_link(old_ni, new_dir_ni, uname_new, new_name_len);
++	err = __ntfs_link(old_ni, new_dir_ni, uname_new, new_name_len,
++			  inode_get_ctime(old_inode));
+ 	if (err)
+ 		goto err_out;
+ 
+@@ -1630,6 +1632,7 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
+ 	int uname_len;
+ 	int err;
+ 	struct ntfs_inode *ni = NTFS_I(vi), *dir_ni = NTFS_I(dir);
++	struct timespec64 ctime;
+ 
+ 	if (NVolShutdown(vol))
+ 		return -EIO;
+@@ -1654,7 +1657,8 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
+ 	ihold(vi);
+ 	mutex_lock_nested(&ni->mrec_lock, NTFS_INODE_MUTEX_NORMAL);
+ 	mutex_lock_nested(&dir_ni->mrec_lock, NTFS_INODE_MUTEX_PARENT);
+-	err = __ntfs_link(NTFS_I(vi), NTFS_I(dir), uname, uname_len);
++	ctime = current_time(vi);
++	err = __ntfs_link(ni, dir_ni, uname, uname_len, ctime);
+ 	if (err) {
+ 		mutex_unlock(&dir_ni->mrec_lock);
+ 		mutex_unlock(&ni->mrec_lock);
+@@ -1664,12 +1668,13 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
+ 	}
+ 
+ 	inode_inc_iversion(dir);
+-	simple_inode_init_ts(dir);
++	inode_set_mtime_to_ts(dir, inode_set_ctime_current(dir));
++	mark_inode_dirty(dir);
+ 
+ 	inode_inc_iversion(vi);
+-	simple_inode_init_ts(vi);
++	inode_set_ctime_to_ts(vi, ctime);
++	mark_inode_dirty(vi);
+ 
+-	/* timestamp is already written, so mark_inode_dirty() is unneeded. */
+ 	d_instantiate(dentry, vi);
+ 	mutex_unlock(&dir_ni->mrec_lock);
+ 	mutex_unlock(&ni->mrec_lock);
 
