@@ -1,73 +1,61 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.216
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793331744;
-	b=lp6eJzU6s5ErSwux3KrtIq5wwfn7UPlqMzSiKww6rMKbTDL454syR9xa5ML7eOvcgEUJ
-	 HSPSpwre9T35dcQ2aPtdICFLcB/EdFm/smTClfl4yRjCfcD27N171Xj+pbfkCllTK1FK2
-	 ZOI9/35QvCcnBtiKUKPIpSh5dJFCsePjH7iI9SlnASxsCzGG4QPGq7doIV5v7Eic2KzlZ
-	 7PL84LgcFKhfpr0aQLQE198oagjIALrAkGdinFhIEgGa3oPioHNr3fycH8MdEjZU6fnVM
-	 3xt3fBE5FqRupbeiA/LPwiHIYLRsavSAMqUvJmH9lPsyAx93lQrpLO0uKRr04S2KSrg==
+	t=1793424566;
+	b=eORcRFtFjVhWZm+BBMYVu7ldiOUkRTpb27tmSYkq/uZz4PLZGF4R3E01i74f6kybHNZ2
+	 spDekPABXNaz+1uT/aokkngiSz+FG+XjOvEYKugEeavHWh5wC9IscDSPLGxhubz2Ij7Pj
+	 ffQ0jHku50OufQs0LrJQz3yqVLAsaCHHorUmU1ofABR3GrWjWP9XCuSuIO/0QmBEDIH5V
+	 jZKv8hf6pTMynBQPXNaBcs7Qc7DYTbhmgmnRnzhZRvnbQ7nNkMRxjZt5UC6VZS864zbUv
+	 HglWmM4h/27OzmVIVkEcdJDYowH/cMGKY2n6emTtlnRKJH9YAKbFaXEBPBQ5c87PtIg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793331744;
-	h=DMARC-Filter:dkim-signature:Received:Received:Received:Subject:To:CC:
-	 References:From:Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-Originating-IP:
-	 X-ClientProxiedBy;
-	bh=lyCCkGxsVqCH5Jxp2Gx73Ra2R6gYJ0X0+xLM8KV7Nyw=;
-	b=Kk288FfcczKYOlaC+Y2PreX6Ud1zWvM8rnWj5wbJ9jCuaPR8IgLMm2bZLOO5PT3HlqLm
-	 JBYCRnQNtw6zLlFHw104hBW5k5fy9+oG2A+f1JQ3AJ/ai2KM+RyL7/FaxWlLvvvi0Kdce
-	 d6bZX+oLl+YSe1NrWgivh524Kxyy4skVTeNq/GtX6XT3meCN4Git6mxG9AXTxk4UYnYdP
-	 e8/3v/hO6a5oMP0R5B0yZ5K3RvpZd2wua3KObLopcCe9Go0ToOuTKpTNFGFhnD49v/1xn
-	 5DzduuZNhZZ8apIfoBgn8xLnqGDI/miGMMWeo+qoHJv+XBGurQZ/nJ9XmFa5wFL709A==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793424566;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-Originating-IP:X-CM-SenderInfo;
+	bh=I7frXlGnMCDV3UFrGk5yfnthPFUH9+/nnSFzMhXI7Yo=;
+	b=OaSsFTOqKVdkkTyuBZrVmZ1IaxKH78VeRoaiLiL5j8oqALLPPjbrwxdrydiEWxu1dssR
+	 dYN62Q6Epuih/qUGep5zwDsYzlkeWpNTALgn9oSlpZEyyDtewWA7I2l8zSXIY/Zs1tIHD
+	 5ZrHJlX6269DuwvVTfb4zrWEWjkxU8BAGeKM5ROq96w3XGVLzZJGpkxoX292FknFBCUAU
+	 FKNRyT+hH6p0mSfmy7LHni86qa9ktsyWoJMwVksTHABHwFs7SQ2OK2bSzxWFY/lCcMfvr
+	 Erfi/f/DYfDVjvHt76qarw+ik4hGY88rjVy8PFif7SITLsOKpJN2uNoGNjfFsM+rUGA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=huawei.com;
-	spf=pass smtp.mailfrom=huawei.com;
-	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=6lgTf+Ts;
-	arc=none smtp.remote-ip=113.46.200.216
-Received: from canpmsgout01.his.huawei.com (canpmsgout01.his.huawei.com [113.46.200.216])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=kL0XuHHV;
+	arc=none smtp.remote-ip=220.197.31.3
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC24606A31A;
-	Fri, 30 Oct 2026 03:42:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 2EC24606A31A
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11DC9606A31A
+	for <ntfs@lists.linux.dev>; Sat, 31 Oct 2026 05:29:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 11DC9606A31A
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=6lgTf+Ts
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=lyCCkGxsVqCH5Jxp2Gx73Ra2R6gYJ0X0+xLM8KV7Nyw=;
-	b=6lgTf+Ts1V+YHSBCrEFvDEXDhiMC9GXMq3b2wsOqtZVSt4aNi9cNouzzS6JDieVJF34tbk3Eh
-	hET2+S5R51zLlg3+fDdAp58YFcw5B6/T2rmuCau0hbz720kofk1l0vMy/ktC5xSYSNUX71IMs/h
-	Me1Uuzuu58wyIDDAb/XNnkQ=
-Received: from mail.maildlp.com (unknown [172.19.162.140])
-	by canpmsgout01.his.huawei.com (SkyGuard) with ESMTPS id 4jG6NZ0f5mz1T4G5;
-	Fri, 30 Oct 2026 11:42:06 +0800 (CST)
-Received: from whupemo200011.china.huawei.com (unknown [7.152.185.179])
-	by mail.maildlp.com (Postfix) with ESMTPS id 483B3202E6;
-	Fri, 30 Oct 2026 11:42:18 +0800 (CST)
-Received: from [10.174.178.46] (10.174.178.46) by
- whupemo200011.china.huawei.com (7.152.185.179) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Fri, 30 Oct 2026 11:42:16 +0800
-Subject: Re: [PATCH v2 28/34] ubifs: don't set SB_RDONLY after errors
-To: Christian Brauner <brauner@kernel.org>, <linux-fsdevel@vger.kernel.org>,
-	Jan Kara <jack@suse.com>
-CC: Al Viro <viro@zeniv.linux.org.uk>, <ecryptfs@vger.kernel.org>,
-	<linux-ext4@vger.kernel.org>, <jfs-discussion@lists.sourceforge.net>,
-	<linux-nilfs@vger.kernel.org>, <exfat@lists.linux.dev>, <linux-mm@kvack.org>,
-	<ntfs@lists.linux.dev>, <ocfs2-devel@lists.linux.dev>,
-	<linux-btrfs@vger.kernel.org>, <gfs2@lists.linux.dev>,
-	<linux-efi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-	<linux-xfs@vger.kernel.org>
-References: <20261029-work-fs-sb_rdonly-v2-0-2f44f64f0b66@kernel.org>
- <20261029-work-fs-sb_rdonly-v2-28-2f44f64f0b66@kernel.org>
-From: Zhihao Cheng <chengzhihao1@huawei.com>
-Message-ID: <0d472865-6cbb-cbb5-b361-1f2bf71dd528@huawei.com>
-Date: Fri, 30 Oct 2026 11:42:15 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=kL0XuHHV
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=I7
+	frXlGnMCDV3UFrGk5yfnthPFUH9+/nnSFzMhXI7Yo=; b=kL0XuHHVL2R2IwA03t
+	JyiZw8KeBrt7+wfuMXXWeQXUe5fTx3dSES5e8X97QoG8FQO5a9g64SYlUmaFg+Ja
+	HjTT71F1MNCv0QroF3XvmxAAL7aIoJgFolAI1ez5JVK4F9rAw0ijnZNOpj/HaUeB
+	2F3KEz/TW82eJJbnNUsFKXQNY=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzsmtp5 (Coremail) with SMTP id QCgvCgDX37adfOVqFDprDA--.9490S5;
+	Sat, 31 Oct 2026 13:29:05 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Xuewen Wang <wangxuewen@kylinos.cn>,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v2 3/5] ntfs: initialize packed EA size when creating hard links
+Date: Sat, 31 Oct 2026 13:28:55 +0800
+Message-ID: <20261031052857.1542936-4-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261031052857.1542936-1-liubaolin12138@163.com>
+References: <20261031052857.1542936-1-liubaolin12138@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -77,106 +65,63 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-In-Reply-To: <20261029-work-fs-sb_rdonly-v2-28-2f44f64f0b66@kernel.org>
-Content-Type: text/plain; charset="gbk"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
- whupemo200011.china.huawei.com (7.152.185.179)
+X-CM-TRANSID:QCgvCgDX37adfOVqFDprDA--.9490S5
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Ar4xtF1DAFyrKF1xWF18AFb_yoW8AF43pF
+	Z3Gryfta17Xry2kF9Iyr42vF1Sq3yxCF4UGr4xKr12y3ZYg3Z0ga48Kry5Zrn3Aay8u34Y
+	qF45t3y7WryUu3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jlCJQUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gJbJmrlfKJp8QAA3c
 
-ÔÚ 2026/10/30 0:07, Christian Brauner Ð´µÀ:
-> ubifs_ro_mode() sets c->ro_error and SB_RDONLY from whatever context hit
-> the error, e.g. a failing write, and without holding s_umount. UBIFS
-> can't be frozen but that still races with everyone else changing
-> sb->s_flags. And c->ro_error alone already makes every write fail with
-> EROFS.
-> 
-> So only set SB_RDONLY while the filesystem is still being mounted and
-> call sb_set_emergency_ro() after that. The xattr setters check
-> c->ro_error as well because ecryptfs calls them without write access on
-> the lower mount and they change the inode in memory first.
-> 
-> So far a remount to read-only after an error was refused and a remount
-> to read-write went through and cleared SB_RDONLY again because
-> c->ro_mount was never set. Now going read-only works and its writes fail
-> with EROFS before any I/O, and going read-write is refused by the VFS.
-> fsync() fails with EROFS instead of taking ubifs_fsync()'s read-only
-> shortcut.
-> 
-> Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
-> ---
->   fs/ubifs/io.c    | 9 ++++++++-
->   fs/ubifs/super.c | 5 +----
->   fs/ubifs/xattr.c | 6 ++++++
->   3 files changed, 15 insertions(+), 5 deletions(-)
-> 
-> diff --git a/fs/ubifs/io.c b/fs/ubifs/io.c
-> index 6c6d68242779..7a59aa1ea5ce 100644
-> --- a/fs/ubifs/io.c
-> +++ b/fs/ubifs/io.c
-> @@ -72,7 +72,14 @@ void ubifs_ro_mode(struct ubifs_info *c, int err)
->   	if (!c->ro_error) {
->   		c->ro_error = 1;
->   		c->no_chk_data_crc = 0;
-> -		c->vfs_sb->s_flags |= SB_RDONLY;
-> +		/*
-> +		 * Before SB_BORN the mounter holds s_umount, later see
-> +		 * sb_set_emergency_ro().
-> +		 */
-> +		if (!(c->vfs_sb->s_flags & SB_BORN))
-> +			c->vfs_sb->s_flags |= SB_RDONLY;
-> +		else
-> +			sb_set_emergency_ro(c->vfs_sb);
->   		ubifs_warn(c, "switched to read-only mode, error %d", err);
->   		dump_stack();
->   	}
-> diff --git a/fs/ubifs/super.c b/fs/ubifs/super.c
-> index 38972786817e..ef39da4e780b 100644
-> --- a/fs/ubifs/super.c
-> +++ b/fs/ubifs/super.c
-> @@ -1977,10 +1977,7 @@ static int ubifs_reconfigure(struct fs_context *fc)
->   		if (err)
->   			return err;
->   	} else if (!c->ro_mount && (fc->sb_flags & SB_RDONLY)) {
-> -		if (c->ro_error) {
-> -			ubifs_msg(c, "cannot re-mount R/O due to prior errors");
-> -			return -EROFS;
-> -		}
-> +		/* After an error ubifs_remount_ro() can't write but still works. */
+From: Xuewen Wang <wangxuewen@kylinos.cn>
 
-Hi, Brauner
-If we remove the c->ro_error check, ubifs_remount_ro->ubifs_wbuf_sync 
-will return EROFS and trigger ubifs_ro_mode() again, I think we can 
-retain the pre-check placement to trigger more error printing.
-BTW, a remount to read-write after an error is refused too.
->   		ubifs_remount_ro(c);
->   	}
->   
-> diff --git a/fs/ubifs/xattr.c b/fs/ubifs/xattr.c
-> index 3b0e8a270f59..572f6f3e52ad 100644
-> --- a/fs/ubifs/xattr.c
-> +++ b/fs/ubifs/xattr.c
-> @@ -260,6 +260,9 @@ int ubifs_xattr_set(struct inode *host, const char *name, const void *value,
->   	if (check_lock)
->   		ubifs_assert(c, inode_is_locked(host));
->   
-> +	if (c->ro_error)
-> +		return -EROFS;
-> +
->   	if (size > UBIFS_MAX_INO_DATA)
->   		return -ERANGE;
->   
-> @@ -564,6 +567,9 @@ static int ubifs_xattr_remove(struct inode *host, const char *name)
->   
->   	ubifs_assert(c, inode_is_locked(host));
->   
-> +	if (c->ro_error)
-> +		return -EROFS;
-> +
->   	if (fname_len(&nm) > UBIFS_MAX_NLEN)
->   		return -ENAMETOOLONG;
->   
-> 
-The sb_rdonly won't affect the sync_fs_one_sb() after an error, and 
-sb_emergency_ro check in not added into sync_fs_one_sb, should we add 
-the c->ro_error check in ubifs_sync_fs() to prevent the failure 
-ubifs_wbuf_sync executing?
+A new hard link has a zero packed EA size in its FILE_NAME even when
+the source file already has extended attributes.
+
+For files with EAs and no reparse point, read EA_INFORMATION and check
+its attribute length before adding the name. Copy its ea_length into
+the new FILE_NAME's packed_ea_size. Skip this assignment for reparse
+points, where the same storage holds the reparse-point tag.
+
+Suggested-by: Baolin Liu <liubaolin@kylinos.cn>
+Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+---
+Tested the standalone five-patch series in QEMU. Prepared EAs remained
+readable after publishing the temporary file and after cache eviction,
+remount and reboot.
+
+No functional change from v1.
+
+ fs/ntfs/namei.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index a83a648c8ff8..5124e7a3e124 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -1318,6 +1318,24 @@ static int __ntfs_link(struct ntfs_inode *ni, struct ntfs_inode *dir_ni,
+ 	fn->last_access_time = utc2ntfs(inode_get_atime(vi));
+ 	memcpy(fn->file_name, name, name_len * sizeof(__le16));
+ 
++	if (NInoHasEA(ni) && !(ni->flags & FILE_ATTR_REPARSE_POINT)) {
++		struct ea_information *info;
++		s64 size;
++
++		info = ntfs_attr_readall(ni, AT_EA_INFORMATION, AT_UNNAMED, 0, &size);
++		if (IS_ERR(info)) {
++			err = PTR_ERR(info);
++			goto err_out;
++		}
++		if (size != sizeof(*info))
++			err = -EUCLEAN;
++		else
++			fn->type.ea.packed_ea_size = info->ea_length;
++		kvfree(info);
++		if (err)
++			goto err_out;
++	}
++
+ 	/* Add FILE_NAME attribute to index. */
+ 	err = ntfs_index_add_filename(dir_ni, fn, MK_MREF(ni->mft_no,
+ 					le16_to_cpu(ni_mrec->sequence_number)));
+
