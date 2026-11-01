@@ -1,66 +1,150 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=128.30.2.78
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=74.125.224.42
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793479238;
-	b=XEbYJ3kdSb9Ye5J3XKsZS22LkX2K3Czgo8+uK86RHx20kRCon0TJiiVhl3YPahBK/ygU
-	 PTA9gcdl7AOqJlITXBG6pNyEymSl0iOeTDe/CwWcWyvHgSTSIJDP4TEb+ZDxEF4gkKDhl
-	 eX4xqwbvPAUZ2IqXT6ot30YMGx0/Iq1myELj9LscK+RrpOO2NUfrl8llc4dONNkoGB+bs
-	 3NCaZkGkaHFQZGilfxLNF0foXeIi0qwiuIfPR8MukZeeqZyl/jqjjOqGDjns02kMUOiHo
-	 EXasyOOxUD5Z3Fpj+h5teB8Gsna9qJOkgupvBIpLYCwE067/TR6qYeZ7+ECgJjgzhFA==
+	t=1793493222;
+	b=W7AAYsJGTXJJmYjoIRPROmyIdLdNCLgG7CxjQAFO1FNs3EYD5+14J7SF/nlpPYsWiCrp
+	 Dpc/kbM7ZuTrnmmRBcZqYkQEVSl3eXI5W4p/EtHAY3/NGLNwhR4qkFHHH1Q+o6CVnqE6w
+	 NCnCyU0oWzkCkQ5hu1oKLUgolpDbsQP7pBrWrsFmhtlqYU+XYaEuVO6WGEQNOMVXMR9rZ
+	 lDbdOx1m2XM8//DsqfW/6EZAmVxi19FysmA4v5CgHFLVZu1z8hYz+HTX+ks6dTAXzFRdc
+	 Xo92O/6PsljxUZFoap060GV4yEIkPjNi+R0AV+wIr3gUpO7giBnmtNPOUjG3KZzGYzg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793479238;
-	h=DMARC-Filter:DKIM-Signature:Received:Received:To:cc:From:Reply-To:
-	 Subject:Date:Message-ID;
-	bh=AtLbwE1xAdj1WPpMga0h7LUVIHErN58xx/e7te9aEQU=;
-	b=h2Dui5jwiGv+fQv6VM9RYI/JdxdOE1O634OXmIFyx1pzrb9Yn7CMmGhY3QfCMcDTEI5y
-	 oL5K26iZhUVtd/6B8jZkat45FQ4A/JQT2SzNlBUoChWEgFdedZ0rT0zV2RAowwfT2EjEh
-	 epzGeF0hHtIUqTBWpacaVe6UyW05+gLDCS2RNDx13VUbwso2PCCMuvOCTyVPTaTrPK//g
-	 N+7P10xTOjPvZHzeG9RoWLTBBoJeiDSU2/QCUe0JxihqLUrU73Z1/2gfnNi0ra8H61TWn
-	 sXf3bTPAynWiWHSn8ICqEcFhdrtbfbet4nVH65+AwSpIdauF1u0WQ1ibhpd9kzGwGdg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793493222;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
+	 Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:Autocrypt:
+	 Content-Type:Content-Transfer-Encoding:User-Agent:MIME-Version;
+	bh=/OyNuE+u9LVqbLjPn4c642Wjld5y0QKeGGJuFQ0QfKY=;
+	b=PkJHqqLvC6+HKvDxyVqN0dVRf/XEIR4B2Od5+P6kbzQylRKUMJJxesK+0QafJHTlb4Io
+	 HARH3a/5foAegt6FGfnHQb8VNWS+MCK1Mlx96FiD8Wg8+REUT5b8cnjcVxvHGqaTzWHgb
+	 JSn31j51MV9gulSiWhOJEz00pVD8SeBGJtLUhPZkV7iVSjm033SOKyW6Q3+zz2S8XJPQw
+	 EqumK1eH9+eyy/0j0mb2Hiif33DaDsE1i98H+8CtclMBwxNYQeGOC1tqIkhqIC0cRspBN
+	 6orz1qzl5D3KAE4eJajoI8G0tn+lthdDu/FhglZDsdq+Lz4SeXWHLuYzWxEBSJjdYXQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=csail.mit.edu;
-	spf=pass smtp.mailfrom=csail.mit.edu;
-	dkim=pass header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.a=rsa-sha256 header.s=test20231205 header.b="o0Wgi/Ap";
-	arc=none smtp.remote-ip=128.30.2.78
-Received: from outgoing2021.csail.mit.edu (outgoing2021.csail.mit.edu [128.30.2.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
+	dmarc=none header.from=dubeyko.com;
+	spf=pass smtp.mailfrom=dubeyko.com;
+	dkim=pass header.d=dubeyko-com.20260707.gappssmtp.com header.i=@dubeyko-com.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=Nyu9pDl5;
+	arc=none smtp.remote-ip=74.125.224.42
+Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C74606A31A
-	for <ntfs@lists.linux.dev>; Sat, 31 Oct 2026 20:40:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 60C74606A31A
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csail.mit.edu
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52D3606A31C
+	for <ntfs@lists.linux.dev>; Sun,  1 Nov 2026 00:33:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org D52D3606A31C
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dubeyko.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dubeyko.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.a=rsa-sha256 header.s=test20231205 header.b=o0Wgi/Ap
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=outgoing.csail.mit.edu; s=test20231205; h=Message-ID:Date:Subject:Reply-To:
-	From:cc:To:Sender:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=AtLbwE1xAdj1WPpMga0h7LUVIHErN58xx/e7te9aEQU=; t=1793479237; x=1794343237; 
-	b=o0Wgi/ApuYcgqM6vjPJFbH3fHRzRaCf+D0UvRBwSJHzCIB9IxCnio1eU+QljqRktZYzTSRy2xgk
-	xqSLx4BnGvEYNurf9ThdJzaVxRiBDk/PcCuNEgyrS4bmYBJxQzvaVBjerxcGL9exvbWpNLp/70pCe
-	UvjUyzEBpk8U+t+7xQs+oBST3hwlJ4ifiTMnUwbHFKz9YfiKqjybXYiX3VCF7HR4SEoqzmr4nWPhr
-	/Wqgn9I5ZA/HG919QXZTSLDI//LOwXV2tn79JPkNXTP3OrYcctuNVqThim21ytDJcyirVFtrCBFK0
-	nnYD9gsy8jaMBiN1j++usxsULSVIK4bKzNVg==;
-Received: from [24.147.175.133] (helo=crash.local)
-	by outgoing2021.csail.mit.edu with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <rtm@csail.mit.edu>)
-	id 1xNFsR-00Fbnf-3G;
-	Sat, 31 Oct 2026 16:40:35 -0400
-Received: from localhost (localhost [127.0.0.1])
-	by crash.local (Postfix) with ESMTP id 4F74F3EBBA0B;
-	Sat, 31 Oct 2026 16:40:34 -0400 (EDT)
-To: Namjae Jeon <linkinjeon@kernel.org>,
-    Hyunchul Lee <hyc.lee@gmail.com>
-cc: ntfs@lists.linux.dev
-From: rtm@csail.mit.edu
-Reply-To: rtm@csail.mit.edu
-Subject: ntfs_resident_attr_value_resize() uses value_offset w/o check
-Date: Sat, 31 Oct 2026 16:40:34 -0400
-Message-ID: <72452.1793479234@localhost>
+	dkim=pass (2048-bit key, unprotected) header.d=dubeyko-com.20260707.gappssmtp.com header.i=@dubeyko-com.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=Nyu9pDl5
+Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-679a420b5afso1544122d50.3
+        for <ntfs@lists.linux.dev>; Sat, 31 Oct 2026 17:33:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dubeyko-com.20260707.gappssmtp.com; s=20260707; t=1793493221; x=1794098021; darn=lists.linux.dev;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :autocrypt:references:in-reply-to:date:cc:to:from:subject:message-id
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=/OyNuE+u9LVqbLjPn4c642Wjld5y0QKeGGJuFQ0QfKY=;
+        b=Nyu9pDl5RAYyLcjZHkzxoDxgvvvBoMiIGD8J47kzds2AH5Jn14oTQYXDptuKQ4ImAq
+         Jgf44bJ3KEj+pJ8exgOpoKlh+nZavej70q4WQD4flfpQ8IpYY8tDxXz9cEgrFDsKEKqX
+         ZkkWZSudNGWJ9zpBDXqQ0Ei2q4wXVVA6jC/6JG75DcfbEYRsBd1Bod2/9eNWEXi7TBWa
+         h5uPjEcYBcq9m0btLP3ThyteXLaJGsLLE3hTntQs41QlW/uUZEeisJnh+2OOrh/mFeJo
+         qm3etrmlojwbvidlI52oKn6MhHjR8k4AXuoeQ/EwAwfQV9171gSb6o4PGgvgEht4J6m0
+         m90g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793493221; x=1794098021;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :autocrypt:references:in-reply-to:date:cc:to:from:subject:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=/OyNuE+u9LVqbLjPn4c642Wjld5y0QKeGGJuFQ0QfKY=;
+        b=isSsdjRltQlY3vcRFLhoGLMfgZ7qze5TDupQXB4959hrz8fc2Ge+4MqpW+q4mCyNFi
+         W4+UO7apYuQte+7yYDUebPuir8p/KfHtbjhGSIWF1gvhoMw0Nrp69toRbnFHlGq6kf/f
+         nDcJV15cqqvmcTeLwLR+XnWnPndWDA1pN2j7reKYHb7vNAmjI3AfINHlKO2b0USQczZs
+         3Azr7d861PVpVkGBBOzjAQPCcZeSeK2TmgQR2SjOF4Mr3ZRR5ae9vqzFCoKw6fBgOSBl
+         uLakYOHH9OXuAgM8w477Dcha1RNuoxztKaIJUb3fv+R/06nFB7UjWPFBTG5xeB9oYEyq
+         +0+A==
+X-Forwarded-Encrypted: i=1; AKwUvBwYCswJdIkq2dk+VELk+OOpkavk6OKyIiyVybiTfFO8goJ/3JbMXqMao/Uzytj5RscoeJA+@lists.linux.dev
+X-Gm-Message-State: APuU4Z9LrCqdcQT7p73Qok5a2XNypMrnFLe+Qpv4lAlnwI1IYolPAT/z
+	QL1d/6Wb4hbI308uY9jbB8Jsn6QTjCPL5SXN7Sti38gVWtZkaLFDPrS2PAh0eUdadzA=
+X-Gm-Gg: AYBFou33EvwN7EWBl8UFsObi4fvk5eCExJ3ohlV/tlsMRzUMcFaWKVQdow/BcYsVUJ0
+	0n2REjrJOvyMHuiaD4N+onoAYDmB4696Z5Gieau3Wqe29JTI7s7Dxny6qXUHn+9+ej78xQF+Egn
+	iGpF9qqomBoYJ2F2lzGL9e9pVgq2NHKVhfcnzI0d2bruCikDhhKh5Ea4Aa2HK86O/tCH0diebJc
+	Xn1M4Ei2ZdkB8WduEajU3hvlkH2ZEDL4sb0sybLwKl6iR6QM1aAuzixzBRyhIyszQbY6KuTIG3k
+	rgjHo7+T9ME+LTUZEfYEeNmYwx7XbC1ugBsmr6ZLSJ1gxvl9k2n4eD29pL+dK/q1TAxvQn5Yxh+
+	vW02hrGXqRauhRVH3UHJDXVC4RZDy3Sa4H77PSLIYLjYIzRbEP6aqbciU+8iNNcmcOTETgwX28h
+	Xiz0nYw8NSFWisBQbw7umLmrWax4//OFfTqqTD/EXz4f+hodEZVS1F5QF1TcSLALkq1cUsxBFiJ
+	X+QMAZx0x81Aaw4jIuOOPq2BFkO7k8UGQMtdiV+UpIb5mAb0AFYtWqcnHn7LnCpb/tHMUtCS5Q0
+	MJ5BC9Ll6e3D4QVFaBK+0FIlNHYP+N8o5vPT1u3jiAFx/V4uXLJ6bzUrFEt5ZO5xTCDzGhGN0yk
+	+0jAiSg8k1Movfx7xTwHHUOpjm33Z1qHM9BlAo0Dk5fnRrfxhFDFQc3fcK7cLu5ha56YmR6h9QW
+	qPAtCGbXbaUGP3EHjGAYE=
+X-Received: by 2002:a05:690e:140e:b0:675:3d40:3c34 with SMTP id 956f58d0204a3-67bb3041657mr1552875d50.68.1793493220725;
+        Sat, 31 Oct 2026 17:33:40 -0700 (PDT)
+Received: from ?IPv6:2600:1700:6476:1430:6f84:fe3e:51d2:f3cd? ([2600:1700:6476:1430:6f84:fe3e:51d2:f3cd])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-8b2b7198c65sm28593177b3.36.2026.10.31.17.33.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Oct 2026 17:33:39 -0700 (PDT)
+Message-ID: <39d08fa0b0e45c61dbb4f57ccc911d1235ff9b5f.camel@dubeyko.com>
+Subject: Re: [PATCH v2 13/34] hfsplus: don't set SB_RDONLY when creating the
+ attributes tree
+From: Viacheslav Dubeyko <slava@dubeyko.com>
+To: Christian Brauner <brauner@kernel.org>, linux-fsdevel@vger.kernel.org, 
+ Jan Kara <jack@suse.com>
+Cc: Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, 
+	linux-ext4@vger.kernel.org, jfs-discussion@lists.sourceforge.net, 
+	linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, linux-mm@kvack.org, 
+	ntfs@lists.linux.dev, ocfs2-devel@lists.linux.dev,
+ linux-btrfs@vger.kernel.org, 	gfs2@lists.linux.dev,
+ linux-efi@vger.kernel.org, linux-mtd@lists.infradead.org, 
+	linux-xfs@vger.kernel.org
+Date: Sat, 31 Oct 2026 17:33:37 -0700
+In-Reply-To: <20261029-work-fs-sb_rdonly-v2-13-2f44f64f0b66@kernel.org>
+References: <20261029-work-fs-sb_rdonly-v2-0-2f44f64f0b66@kernel.org>
+	 <20261029-work-fs-sb_rdonly-v2-13-2f44f64f0b66@kernel.org>
+Autocrypt: addr=slava@dubeyko.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.1 (by Flathub.org) 
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -69,77 +153,149 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
+MIME-Version: 1.0
 
-In ntfs/attrib.c's ntfs_resident_attr_value_resize():
+On Thu, 2026-10-29 at 17:07 +0100, Christian Brauner wrote:
+> hfs_btree_open() sets SB_RDONLY when the map record of a b-tree
+> doesn't
+> mark the header node as used. That's fine while mounting. But
+> hfsplus_create_attributes_file() calls it too when the first extended
+> attribute is set on a filesystem that has no attributes file yet.
+> That
+> runs on the live filesystem without s_umount and a filesystem must
+> not
+> change SB_RDONLY behind the VFS' back.
+>=20
+> hfsplus_create_attributes_file() opens a tree it has just created
+> itself
+> with the header node marked as used, so there's nothing to check
+> there.
+> Move the check into hfsplus_fill_super() and do it for every tree it
+> opens. No functional changes.
+>=20
+> Suggested-by: Viacheslav Dubeyko <slava@dubeyko.com>
+> Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
+> ---
+> =C2=A0fs/hfsplus/btree.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 42 +++++++++++++=
++++++++++++++++-----------
+> ---
+> =C2=A0fs/hfsplus/hfsplus_fs.h |=C2=A0 1 +
+> =C2=A0fs/hfsplus/super.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 +++++
+> =C2=A03 files changed, 34 insertions(+), 14 deletions(-)
+>=20
+> diff --git a/fs/hfsplus/btree.c b/fs/hfsplus/btree.c
+> index bd4dbdbc8f98..4a67569050e3 100644
+> --- a/fs/hfsplus/btree.c
+> +++ b/fs/hfsplus/btree.c
+> @@ -270,7 +270,6 @@ struct hfs_btree *hfs_btree_open(struct
+> super_block *sb, u32 id)
+> =C2=A0	struct hfs_btree *tree;
+> =C2=A0	struct hfs_btree_header_rec *head;
+> =C2=A0	struct address_space *mapping;
+> -	struct hfs_bnode *node;
+> =C2=A0	struct inode *inode;
+> =C2=A0	struct page *page;
+> =C2=A0	unsigned int size;
+> @@ -381,19 +380,6 @@ struct hfs_btree *hfs_btree_open(struct
+> super_block *sb, u32 id)
+> =C2=A0	kunmap_local(head);
+> =C2=A0	put_page(page);
+> =C2=A0
+> -	node =3D hfs_bnode_find(tree, HFSPLUS_TREE_HEAD);
+> -	if (IS_ERR(node))
+> -		goto free_inode;
+> -
+> -	if (!hfs_bmap_test_bit(node, 0)) {
+> -		pr_warn("(%s): %s (cnid 0x%x) map record invalid or
+> bitmap corruption detected, forcing read-only.\n",
+> -				sb->s_id, hfs_btree_name(id), id);
+> -		pr_warn("Run fsck.hfsplus to repair.\n");
+> -		sb->s_flags |=3D SB_RDONLY;
+> -	}
+> -
+> -	hfs_bnode_put(node);
+> -
+> =C2=A0	return tree;
+> =C2=A0
+> =C2=A0 fail_page:
+> @@ -407,6 +393,34 @@ struct hfs_btree *hfs_btree_open(struct
+> super_block *sb, u32 id)
+> =C2=A0	return NULL;
+> =C2=A0}
+> =C2=A0
+> +/*
+> + * Check the map record of a b-tree at mount. hfs_btree_open() can't
+> do it
+> + * because hfsplus_create_attributes_file() calls it on the live
+> filesystem
+> + * where SB_RDONLY must not be set.
+> + */
+> +int hfsplus_btree_check_map(struct hfs_btree *tree)
+> +{
+> +	struct super_block *sb =3D tree->sb;
+> +	struct hfs_bnode *node;
+> +
+> +	node =3D hfs_bnode_find(tree, HFSPLUS_TREE_HEAD);
+> +	if (IS_ERR(node)) {
+> +		pr_err("failed to load %s header node\n",
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 hfs_btree_name(tree->cnid));
+> +		return PTR_ERR(node);
+> +	}
+> +
+> +	if (!hfs_bmap_test_bit(node, 0)) {
+> +		pr_warn("(%s): %s (cnid 0x%x) map record invalid or
+> bitmap corruption detected, forcing read-only.\n",
+> +				sb->s_id, hfs_btree_name(tree-
+> >cnid), tree->cnid);
+> +		pr_warn("Run fsck.hfsplus to repair.\n");
+> +		sb->s_flags |=3D SB_RDONLY;
+> +	}
+> +
+> +	hfs_bnode_put(node);
+> +	return 0;
+> +}
+> +
+> =C2=A0/* Release resources used by a btree */
+> =C2=A0void hfs_btree_close(struct hfs_btree *tree)
+> =C2=A0{
+> diff --git a/fs/hfsplus/hfsplus_fs.h b/fs/hfsplus/hfsplus_fs.h
+> index 6f240f87f8ff..58c780b09b6f 100644
+> --- a/fs/hfsplus/hfsplus_fs.h
+> +++ b/fs/hfsplus/hfsplus_fs.h
+> @@ -362,6 +362,7 @@ int hfsplus_block_free(struct super_block *sb,
+> u32 offset, u32 count);
+> =C2=A0u32 hfsplus_calc_btree_clump_size(u32 block_size, u32 node_size, u6=
+4
+> sectors,
+> =C2=A0				=C2=A0 int file_id);
+> =C2=A0struct hfs_btree *hfs_btree_open(struct super_block *sb, u32 id);
+> +int hfsplus_btree_check_map(struct hfs_btree *tree);
+> =C2=A0void hfs_btree_close(struct hfs_btree *tree);
+> =C2=A0int hfs_btree_write(struct hfs_btree *tree);
+> =C2=A0int hfs_bmap_reserve(struct hfs_btree *tree, u32 rsvd_nodes);
+> diff --git a/fs/hfsplus/super.c b/fs/hfsplus/super.c
+> index ff7d6b3336a6..532f23502df3 100644
+> --- a/fs/hfsplus/super.c
+> +++ b/fs/hfsplus/super.c
+> @@ -564,6 +564,11 @@ static int hfsplus_fill_super(struct super_block
+> *sb, struct fs_context *fc)
+> =C2=A0	}
+> =C2=A0	sb->s_xattr =3D hfsplus_xattr_handlers;
+> =C2=A0
+> +	if (hfsplus_btree_check_map(sbi->ext_tree) ||
+> +	=C2=A0=C2=A0=C2=A0 hfsplus_btree_check_map(sbi->cat_tree) ||
+> +	=C2=A0=C2=A0=C2=A0 (sbi->attr_tree && hfsplus_btree_check_map(sbi-
+> >attr_tree)))
+> +		goto out_close_attr_tree;
+> +
+> =C2=A0	inode =3D hfsplus_iget(sb, HFSPLUS_ALLOC_CNID);
+> =C2=A0	if (IS_ERR(inode)) {
+> =C2=A0		pr_err("failed to load allocation file\n");
 
-        old_size = le32_to_cpu(a->data.resident.value_length);
-        if (new_size > old_size)
-                memset((u8 *)a + le16_to_cpu(a->data.resident.value_offset) +
-                                old_size, 0, new_size - old_size);
 
-A corrupt NTFS image could have value_offset greater than the
-attribute length, so that memset() zeros outside of the allocated
-memory.
+Looks good.
 
-A demo:
+Reviewed-by: Viacheslav Dubeyko <slava@dubeyko.com>
 
-# wget http://www.rtmrtm.org/rtm/ntfs40e.img.gz
-# gunzip ntfs40e.img.gz
-# cp ntfs40e.img junk
-# mount -t ntfs -o loop,rw junk /mnt
-# echo b >> /mnt/a
-
-You'll need to add a printk to ntfs_resident_attr_value_resize() to
-see the problem (unless you get lucky and the memset() disturbs some
-critical kernel data).
-
-(gdb) where
-#0  ntfs_resident_attr_value_resize (m=<optimized out>, a=0xffffffd6059ce548, 
-    new_size=new_size@entry=4) at fs/ntfs/attrib.c:1982
-#1  0xffffffff804c0ab0 in ntfs_resident_attr_resize (
-    attr_ni=attr_ni@entry=0xffffffd603ded000, newsize=newsize@entry=4, 
-    prealloc_size=prealloc_size@entry=0, holes=1) at fs/ntfs/attrib.c:4918
-#2  0xffffffff804c1814 in ntfs_attr_expand_locked (
-    ni=ni@entry=0xffffffd603ded000, newsize=newsize@entry=4, 
-    prealloc_size=prealloc_size@entry=0, locked_ni=locked_ni@entry=0x0)
-    at fs/ntfs/attrib.c:5207
-#3  0xffffffff804c18c0 in ntfs_attr_expand (ni=ni@entry=0xffffffd603ded000, 
-    newsize=newsize@entry=4, prealloc_size=prealloc_size@entry=0)
-    at fs/ntfs/attrib.c:5224
-#4  0xffffffff804c786a in ntfs_expand_for_write (end=4, ni=0xffffffd603ded000)
-    at fs/ntfs/file.c:850
-#5  ntfs_file_write_iter (iocb=0xffffffc600253dc8, from=0xffffffc600253da0)
-    at fs/ntfs/file.c:923
-#6  0xffffffff803031d2 in new_sync_write (ppos=0xffffffc600253e40, len=2, 
-    buf=0x2aaaae3620 <error: Cannot access memory at address 0x2aaaae3620>, 
-    filp=0xffffffd6049351c0) at fs/read_write.c:595
-#7  vfs_write (file=file@entry=0xffffffd6049351c0, 
-    buf=buf@entry=0x2aaaae3620 <error: Cannot access memory at address 0x2aaaae3620>, count=count@entry=2, pos=pos@entry=0xffffffc600253e40)
-    at fs/read_write.c:687
-#8  0xffffffff803035fa in ksys_write (fd=<optimized out>, 
-    buf=0x2aaaae3620 <error: Cannot access memory at address 0x2aaaae3620>, 
-    count=2) at fs/read_write.c:739
-#9  0xffffffff80303678 in __do_sys_write (count=<optimized out>, 
-    buf=<optimized out>, fd=<optimized out>) at fs/read_write.c:750
-#10 __se_sys_write (count=<optimized out>, buf=<optimized out>, 
-    fd=<optimized out>) at fs/read_write.c:747
-#11 __riscv_sys_write (regs=<optimized out>) at fs/read_write.c:747
-#12 0xffffffff80ebc0ce in syscall_handler (syscall=<optimized out>, 
-    regs=0xffffffc600253ee0) at ./arch/riscv/include/asm/syscall.h:112
-(gdb) print old_size
-$1 = 3
-(gdb) print new_size
-$2 = 4
-(gdb) print *a
-$3 = {type = 128, length = 8, non_resident = 255 '\377', 
-  name_length = 255 '\377', name_offset = 65535, flags = 0, instance = 0, 
-  data = {resident = {value_length = 3, value_offset = 48925, 
-      flags = 0 '\000', reserved = 0 '\000'}, non_resident = {
-      lowest_vcn = 210131274956803, highest_vcn = 4294904417, 
-      mapping_pairs_offset = 65535, compression_unit = 255 '\377', 
-      reserved = "\377\000\000\000", allocated_size = 210131274956803, 
-      data_size = 0, initialized_size = 0, compressed_size = 0}}}
-
-Robert Morris
-rtm@mit.edu
-
+Thanks,
+Slava.
