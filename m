@@ -1,55 +1,66 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=128.30.2.78
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793627910;
-	b=aqH+ZRW3/j7U2xZyXuofAmOnYIwDGjffKexjD4mUQRGLBJeovqizh2fXDFJ3xXp7fLMt
-	 AuZYpIvWiDVSW+hP2Q92inaj+NuWo0lk9D5wr/srpDPlsi3Fq+EYqvEacgwrIolu0QyfH
-	 pnim/8PmYg7TP9wMWVMBMyRNy0r4sM+DbSpmrEs4Lt9zitX+EgOp48I/HEpCl3AaZyvel
-	 MFAcG/p1AXgei3l1j79VQRvOTty+hDA6qVMg5a+mQOBQkj14NR38fsRNSNWtsC+FD+4gm
-	 FuRnJ8+DE/lc5NOkz9/fi3+lcoollQB43BqJA1wa5TdE39wR++fGyFsgZ8marZjpfVw==
+	t=1793640362;
+	b=C5jrO+N7cJ6d9MZDd2j6HZrvCNIn0ZJt/Ndf+LOQPVMD7nIBhXl5rh8inK6QhNeRDgvQ
+	 OcEDVzB80TwyGstxaKCgCtW6MgZBrxLvwSbjFHquvEIbkRDD1wh1+Yqe53u5g8g1psMvH
+	 34GVDzewd+BA9/RFhDJlf7OzvGYbsGa9R3rl3EgtWbxgX6sv5an/HqNwCxJmbDjJKyStt
+	 ts0n99vyNfCyvLBBqGVRZfmwj9Sw+ajgP3aZZ3aLOTJOW0PxvxVeTvRgxWteJns4/jcWc
+	 hSvPqbdgNYOo5YSS+4qAFCqqp9hhZKxlcKsi8K1vj+06VCz4CMDGPZiT0sxebgEPnPA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793627910;
-	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
-	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=0B2e2A6J6CcyMvYVfZjLEsMV3nr/MkV2RVJAVx6NxkY=;
-	b=tEJpKweGjQBwcY7VY1YihzBajrQhPvBY5aot5esVjdQ9fSkL0xi3WRjHcHe6XwrMpj//
-	 OOSeRUU1kAGwvQz4Sa60IpLKaZbMiGR8ke6jwFRNNB9ZBE/cuWUC/9LUF1rXvXmLH8AF/
-	 +Tp+FYuBmbmXkMM4wW6BMbYpRwYWlUyrkl/ALn7M/LQHccGQ+Jbri3VNbVTLbuy1awmKw
-	 bqXPCfDF+TWMhafL+5e/ojXPaIpL1YNSN2ajfERohiAtAgEugmH1msP9fPcP5xqH+4grl
-	 56lb7BnwDWNvq2nIp3gDlF2f/O7jfeHk+Sm0oKevfZ8nhTmBsLJDAt9lPqMpYpiaQ0w==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793640362;
+	h=DMARC-Filter:DKIM-Signature:Received:Received:To:cc:From:Reply-To:
+	 Subject:In-reply-to:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:Date:Message-ID;
+	bh=osbSXKztPZBhEKnrxbKeMlB+PsTxeEC3iHJZ6HpZnP8=;
+	b=lPFsbGxsqEylHH6lgXl25woBrfOGyndlqsdvyobkKcsv0+zM1hVp8JB15uxOd7Z1ncwV
+	 vbd862guGLzUhjTB8azPCryzBeYGaCSMGwEdHMis94w6vtXxYY8hUEc6DQwXR3h85rA/B
+	 s4OfcKrlM6pmaedsOO2gWoN6Ex03JQUjysmRMAOfswtlyrvRcOedCXMxs87drWEdpOo6f
+	 1C9FLEB/02XTyra0R+Uqx94LIVL2EFcNpXJUjZtvd4jyvysgunH33hTaQXQszC3rL136o
+	 YcLjliKgYfpn4DZ/p+v1XQabYaGHxZvEw5eCUms30oP12Pf4evDhEpIJrRQcfKzbP7w==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZRjoxj3z;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	dmarc=pass header.from=csail.mit.edu;
+	spf=pass smtp.mailfrom=csail.mit.edu;
+	dkim=pass header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.a=rsa-sha256 header.s=test20231205 header.b=XsMc+uMy;
+	arc=none smtp.remote-ip=128.30.2.78
+Received: from outgoing2021.csail.mit.edu (outgoing2021.csail.mit.edu [128.30.2.78])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5FB606A335
-	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 13:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBBEC606A329
+	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 17:26:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org DBBEC606A329
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=csail.mit.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csail.mit.edu
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZRjoxj3z
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 334A31F00A18
-	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 13:58:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793627910;
-	bh=0B2e2A6J6CcyMvYVfZjLEsMV3nr/MkV2RVJAVx6NxkY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=ZRjoxj3z8OYzSGULLKCmvztPh94ZYVQvWzpL5NJrmV4P3EpmRvPf9ul/oYHK4aDGn
-	 rhUiIgDwEdxEsjgblJBbVEHVWhN0oVrTfRD7Hf5DGpu+nH4ScWWvfA/6V4k5iS8iHT
-	 i/9mUHYRyE7VKgno/cWFqe465teGs3a6yVIgbexCcy4HaWLA7I0vViC/Tr3lTsiGZ6
-	 Q8goUO78Cdw+U+q5YG1V5mlda7kFnbbnR8Gs+8McgW3+vzI53DthhtFA8Inz4/ywq+
-	 /JpV8odc2EHAPu25aTikXKnnKV8fMzS7kTlKHL18BE0SOmEiPZPfMaEOE9J7Sq6zVu
-	 7dnnsB7LNcSNg==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-c4395d31228so467969566b.1
-        for <ntfs@lists.linux.dev>; Mon, 02 Nov 2026 05:58:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AKwUvBwUZyxSoGo3KlwGs4fYGx4ioZrLaJYljGyuc2dPdvfaehMZUZ4J6j863Jm1TRzl4MdkiW2q@lists.linux.dev
-X-Gm-Message-State: AFq9FYKUPro9xpQ1kN26IZ81uNMG2QnUbCA82mTQ21hjoYJC+JNESYi5
-	1mYXu9fpJ2NNrhnh4SLog/ytcMZ6pvAnlbjOFLyeqk42AJIvKU8E8F2RHvIK3O85JnULbtNI1N2
-	Ce5DarCUI16DvMDMFDoN+83bGIcjNjSg=
-X-Received: by 2002:a17:907:3f1b:b0:c46:5973:2a1c with SMTP id
- a640c23a62f3a-c4ca7aada3dmr812890766b.37.1793627908877; Mon, 02 Nov 2026
- 05:58:28 -0800 (PST)
+	dkim=pass (2048-bit key, unprotected) header.d=outgoing.csail.mit.edu header.i=@outgoing.csail.mit.edu header.a=rsa-sha256 header.s=test20231205 header.b=XsMc+uMy
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=outgoing.csail.mit.edu; s=test20231205; h=Message-ID:Date:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:In-reply-to:Subject:
+	Reply-To:From:cc:To:Sender:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+	List-Archive; bh=osbSXKztPZBhEKnrxbKeMlB+PsTxeEC3iHJZ6HpZnP8=; t=1793640361;
+	x=1794504361; b=XsMc+uMy+PAp9G9vKReKtaPVcSjo6ikeJWJUdty5Z2ym04VRpGT1p40N8fkIu
+	bBPgtxMgi25J2NiDro8kR8g0R4W9mGzGBQUI2clrJSNpV4dC6bD4rrp6xICq/rQHImDombopbkc0Q
+	qtnyB8a/WEVIDxW1YgOgcw23AHzdp1PH9XXnTd19+opHJiSdiwIaesuVkrTOAtNAq+xw5ETTzRIxK
+	zkLYIqfpMuzVOXTaYa/ZehUHWhd2SghPgY9FX9oAGDe/WQBx+ncA+H66miqbAMart9G1F/SAtXunh
+	+8YUOVaIcLbEC/gUwjAJzQ/EZs2eJN8bV4VKxKulQFWY4dsGxQ==;
+Received: from 30-11-166.wireless.csail.mit.edu ([128.30.11.166])
+	by outgoing2021.csail.mit.edu with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <rtm@csail.mit.edu>)
+	id 1xNvn8-007ZUg-Ew;
+	Mon, 02 Nov 2026 12:25:54 -0500
+Received: from 30-11-166.wireless.csail.mit.edu (localhost [127.0.0.1])
+	by 30-11-166.wireless.csail.mit.edu (Postfix) with ESMTP id 30FD63ECEE53;
+	Mon, 02 Nov 2026 12:25:54 -0500 (EST)
+To: Namjae Jeon <linkinjeon@kernel.org>
+cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev
+From: rtm@csail.mit.edu
+Reply-To: rtm@csail.mit.edu
+Subject: Re: ntfs_resident_attr_value_resize() uses value_offset w/o check
+In-reply-to: Your message of "Mon, 02 Nov 2026 22:51:17 +0900."
+             <CAKYAXd_bgSCP0SvZrXJ1c1V1Mt9xQ443sgxaRSu1-iDxZrCYrg@mail.gmail.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,44 +70,33 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <20261102093543.1199671-1-zhanxusheng1024@gmail.com>
-In-Reply-To: <20261102093543.1199671-1-zhanxusheng1024@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Mon, 2 Nov 2026 22:58:16 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8fARb5Ow27WSa3wA3nEkini8j1rEYvWY2Xf+12M7x1ZA@mail.gmail.com>
-X-Gm-Features: AclHuK_p0GkJn1d8FnoGiSqpwVEvXw3gnNIBGTj2sIJBhrIpyHP4RefuVBBIWF4
-Message-ID: <CAKYAXd8fARb5Ow27WSa3wA3nEkini8j1rEYvWY2Xf+12M7x1ZA@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: don't allow compression on volumes with clusters
- larger than 4K
-To: Zhan Xusheng <zhanxusheng1024@gmail.com>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	zhanxusheng@xiaomi.com, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Date: Mon, 02 Nov 2026 12:25:54 -0500
+Message-ID: <15350.1793640354@30-11-166.wireless.csail.mit.edu>
 
-On Mon, Nov 2, 2026 at 6:35=E2=80=AFPM Zhan Xusheng <zhanxusheng1024@gmail.=
-com> wrote:
->
-> From: Zhan Xusheng <zhanxusheng@xiaomi.com>
->
-> On a volume made with "mkntfs -c 8192", a user can set
-> FILE_ATTR_COMPRESSED on an empty file through system.ntfs_attrib.
-> Writing to the file and reading it back after dropping the page cache
-> then crashes:
->
->   BUG: KASAN: slab-out-of-bounds in ntfs_read_compressed_block+0xa2c/0x20=
-40
->   Read of size 8192 at addr ffff88804355a000 by task dd/106
->
-> The read path only handles clusters up to 4K. It copies each cluster
-> out of a single page, and a compression block of 16 8K clusters does
-> not fit in the 64K ntfs_compression_buffer. Loading an inode already
-> rejects compressed data on such volumes.
->
-> Reject the flag change the same way.
->
-> Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
-Applied it to #ntfs-next.
-Thanks!
+Yes -- this patch does indeed make the problem go away for me.
+
+Robert
+
+> From: Namjae Jeon <linkinjeon@kernel.org>
+> Date: Mon, 2 Nov 2026 22:51:17 +0900
+> Subject: Re: ntfs_resident_attr_value_resize() uses value_offset w/o check
+> To: rtm@csail.mit.edu
+> Cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev
+>=20
+> On Sun, Nov 1, 2026 at 5:40=E2=80=AFAM <rtm@csail.mit.edu> wrote:
+> >
+> > In ntfs/attrib.c's ntfs_resident_attr_value_resize():
+> >
+> >         old_size =3D le32_to_cpu(a->data.resident.value_length);
+> >         if (new_size > old_size)
+> >                 memset((u8 *)a + le16_to_cpu(a->data.resident.value_off=
+set) +
+> >                                 old_size, 0, new_size - old_size);
+> >
+> > A corrupt NTFS image could have value_offset greater than the
+> > attribute length, so that memset() zeros outside of the allocated
+> > memory.
+> Please check the attached patch.
+> Thanks for the report!
