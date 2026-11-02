@@ -1,50 +1,61 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.3
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793602839;
-	b=TyxC1VYPPaH9PYVDghOqSzsTFdr/51cBcra5YVQLxskt9ROWCXcHrQ8kRsPfPBtlA8RQ
-	 6PcGU6tA1MvBUAuUObkjm8iULiaPPtwPKhzRtiHcLGIXq83nMG26tlwOqVeyogPiuqJQF
-	 39bGixh3qEkgTGVkxuQRUXVY2yjfyxFk4S4jpBpD59voo3SPio+LKu81rPy/gmVQleZSn
-	 HXUA3J0lMGYL6MMsGcvI9T6iSsJLiA37NSt/c79bilCHbqvXj+S3nu1Saj6rtTZQQWgo/
-	 4qu2cx6F3TRcKdwNxR7a1qUtqgMSwdibRyzmWyhk2EdGW3M1z+RCAYxgpJUspnw8lmg==
+	t=1793604950;
+	b=qxeZKKtoHt1+P7yP4uG6i+4sgjmt/Td2cZKKP0M/ZsmAGmP+MrtCgR5xMsdwtIjCChH+
+	 ZBDnTijugklOwCf8JXlXPJbMzhKaloZ3VEKTorNcGr/M+rIBpjBqzpvfI0n/0D+8pH2Wi
+	 VuADcmq/qM9T8jfOVQ8cmZaxkJI2dJa98W/Tai+fpdtMwIWU1sqgP4mdm+hHopYOrXrBd
+	 9ZrSx3cD0q2gIA/+7ZgETehcdNV1/h3s92ZfdCcfpRuBZHJ4mKF4kolEdG4Fr741Ici2n
+	 mv6AydkQmfniigS2Va2jbJESXwZTmfFe01XbhgxpiUjVKoBm/iHEd1X8XCpYLh9hxyw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793602839;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
-	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
-	bh=9FuBhOUoafYas5YMuPBrLXu56DIDcQY6sekzUrrW8do=;
-	b=RaLxcmmHdBZOWq18s247SgXW9uuu32N01wu0aejmoV9ziPkRKoLbln9xeeKtf5nxe8ot
-	 +3N9GgDI/ohdZHXpfytDvZn0krAbAn3YBUlig/Q4yby9RbjiZII9Uv4BLRdLl31JiPG0F
-	 X9uVzajuHYkTZtgZEXi1Dr10DlHtIiAXQECcKrSdkyU0aPpPlJkN9pJyYfFX/NCSkIMNk
-	 Ky3BsgdhmB1NjWpy0AGLvor47kc3SUhIENcOnVs7XFH4ZWBJ+Fe1xhYvumZHC+hSWJLa5
-	 mGdD9kMkIjeKUmE1ZH625qGIMBp4pIegQJQ2/tuYI7OGTA6UUjM2e5ZHw5NCxju0dHw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793604950;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-Id:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-CM-SenderInfo;
+	bh=51GJfDoCzuReIlNFPJ+C9lrZC55gMznOOZPXIJc4KUY=;
+	b=0f6cxlYfPitNkgM3M2XDRMwa0YImPLVfx6FuAhVT0klBf48JrbvBcBvHVXCfU2kyMDgT
+	 +PcW/dT7Ydk8XVMZBSvbdtqbjVx8lTdSZvxX6aKPWk2GYWQEC3zlgK9zaxiqFE4Bf2enX
+	 lD5zS9KzxWPjktCQmZIs5QHbTUqdSvXL4CB96IPENb/emTZQg5hqfhUurw2zbRdol8b1M
+	 00PRiyHqDv5T3uQChacRHmO3vJ3D8FYRtieLCzTT3bvFmblqmoWtTaAG3uIQuZV/Pezjj
+	 0mUiA3s7JP4EsImV48ohcyB2nPqCVC3VMi1Lo3PR+3CODdq68qi5BmUfwB8H7OIX4Pg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=bRRH1UEH;
-	arc=none smtp.remote-ip=117.135.210.3
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b="cBQhD/39";
+	arc=none smtp.remote-ip=220.197.31.5
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95A2D606A324
-	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 07:00:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 95A2D606A324
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFFDE606A324
+	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 07:35:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org EFFDE606A324
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=bRRH1UEH
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=cBQhD/39
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=9FuBhOUoafYas5YMuPBrLXu56DIDcQY6sekzUrrW8do=;
-	b=bRRH1UEHijwHiuDMLEo4Q7aYUesjQzuIR6yYYtu6BVzNOGBvMreQPj2RMKrA7a
-	WZlrOKnTZCD5yYBvKoMTCcxaph9nLSJx3525OVTRYLi/x9opx5K4qiMUFXKvQgxt
-	3xmm5ObZyEK4LJbG65HI6kvqbkyK3afyycjc+wFpEapS0=
-Received: from [IPV6:2409:8900:1ec1:a6a9:727d:9e69:8b60:aebe] (unknown [])
-	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wD3f4UCNehq+dR4Eg--.33924S2;
-	Mon, 02 Nov 2026 15:00:21 +0800 (CST)
-Message-ID: <aa1d14cc-91eb-4101-a70e-b4ae5d1717db@163.com>
-Date: Mon, 2 Nov 2026 15:00:18 +0800
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=51
+	GJfDoCzuReIlNFPJ+C9lrZC55gMznOOZPXIJc4KUY=; b=cBQhD/39HqoOgLNuNG
+	QHTlfzNwBsYtueB9Xl++IWr5ObipRbbM8iuR+yHSP8WavlWJGZDEb6ETjQXY/wno
+	W1Ya8GBMzSl0oJ+uF25fN/7K3cVsWT8K0nN29ldHIMzdMz8lVjqRrTBufgpk0vHj
+	7ZkgNFKet12IYWkmg30dW0SMs=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3f5hGPehqi52fEw--.9836S4;
+	Mon, 02 Nov 2026 15:35:36 +0800 (CST)
+From: Xuewen Wang <wangxuewen_ky@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: wangxuewen_ky@163.com,
+	ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v5 02/31] ntfs: preserve cluster-free counts in attribute cleanup
+Date: Mon,  2 Nov 2026 15:35:03 +0800
+Message-Id: <20261102073532.98873-3-wangxuewen_ky@163.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20261102073532.98873-1-wangxuewen_ky@163.com>
+References: <20261102073532.98873-1-wangxuewen_ky@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -54,127 +65,119 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Bug report] ntfs: initialized_size from $LogFile $DATA drives an
- unvalidated loop bound in ntfs_empty_logfile() - UBSAN shift-out-of-bounds
- (ilog2) at rw-mount
-To: Guikun Yang <yangguikun19@qq.com>, ntfs@lists.linux.dev,
- Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org
-References: <tencent_5C7F8B8D303ABD994244C1F814473DA5B60A@qq.com>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <tencent_5C7F8B8D303ABD994244C1F814473DA5B60A@qq.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3f4UCNehq+dR4Eg--.33924S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJF4fJw4kKrWDWrWUCF1fXrb_yoWrZr45pa
-	9xJrs5tr4q9ryjkwnFkw1xK34Svw1kJFWUur95Zry7Z395Grnaqr1UKrW5uayIkws5ta1v
-	yayDWws2krn5ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U24iUUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QUj7WroNQU4FgAA3+
+X-CM-TRANSID:_____wD3f5hGPehqi52fEw--.9836S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuryxtr4kWw1UZFW3Cr4rXwb_yoWrWrW8pa
+	yxCr1fK3y7X3srWrs7Kw1DZa4Sgay0gFyjgryDJw1Sy3Z0qw1xtFy2yrW8uF4fKrWUGwn5
+	Xr4jk3y7ua1DX37anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j89N3UUUUU=
+X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzQg2H2roPUj5vQAA3f
 
+From: Baolin Liu <liubaolin@kylinos.cn>
 
+ntfs_cluster_free() returns a signed 64-bit cluster count on success,
+not an integer status. Several attribute cleanup paths truncate that
+count or treat a positive count as an error. ntfs_attr_rm() can even
+return the count to callers that expect zero on success.
 
-在 2026/10/31 20:00, Guikun Yang 写道:
-> Hi,
-> 
-> While fuzzing single-byte corruptions of NTFS metadata with an automated
-> mount harness, we found that ntfs_empty_logfile() trusts the on-disk
-> initialized_size of the LogFile's $DATA attribute as a loop bound without
-> any check against the runlist or the volume size, and a single flipped
-> byte in a read-write mount sends the kernel into a shift-out-of-bounds
-> panic inside the readahead path.
-> 
-> The code (fs/ntfs/logfile.c, ntfs_empty_logfile()):
-> 
->      end_vcn = (log_ni->initialized_size + vol->cluster_size_mask) >>
->            vol->cluster_size_bits;
->      ...
->      if (rl[1].vcn > end_vcn)
->          len = end_vcn - rl->vcn;
->      end = NTFS_CLU_TO_B(vol, lcn + len);
-> 
->      page_cache_sync_readahead(sb->s_bdev->bd_mapping, ra, NULL,
->          start >> PAGE_SHIFT, (end - start) >> PAGE_SHIFT);
->      ...
->      } while ((++rl)->vcn < end_vcn);
-> 
-> The inode loader does validate the on-disk trio against each other
-> (ntfs_non_resident_sizes_inconsistent(): initialized_size >= 0,
-> initialized_size <= data_size, data_size <= allocated_size,
-> allocated_size cluster-aligned). What is missing is any relation between
-> those sizes and the runlist length or the volume size: initialized_size
-> is used directly as end_vcn, and the readahead/loop bounds follow it out
-> of the volume. For comparison, ntfs_check_logfile() scans the LogFile
-> using i_size (= data_size) truncated to MaxLogFileSize, but that
-> truncation happens on a local variable only, and ntfs_empty_logfile()
-> runs afterwards on the untruncated initialized_size.
-> 
-> Trigger: one byte. In a mkntfs-created 64MB image, flip byte 0x4947 in
-> MFT record 2 (a high byte of the $DATA non-resident size fields) to
-> 0xFF and mount read-write:
-> 
->      UBSAN: shift-out-of-bounds in ./include/linux/log2.h:57:13
->      shift exponent 64 is too large for 64-bit type 'long unsigned int'
->      Call Trace:
->       ...
->       page_cache_sync_ra.cold+0x19/0x46
->       ntfs_empty_logfile+0x763/0xd50
->       ntfs_fill_super+0x4085/0x71d0
->       ...
->      Kernel panic - not syncing: UBSAN: panic_on_warn set ...
-> 
-> Reproduced 3/3 runs on a self-built 7.3.0 kernel (CONFIG_NTFS_FS=y,
-> CONFIG_UBSAN=y) under QEMU/KVM. The function and the missing
-> runlist/volume bound are unchanged in current mainline.
-> 
-> Notes:
-> 
-> - ntfs_check_logfile() scans with i_size (= data_size, still sane), finds
->    no restart pages, reports the LogFile as not empty; the emptying then
->    runs anyway on the crafted initialized_size. The panic happens inside
->    mount(), before any other syscall.
-> - A natural fix is to reject or clamp initialized_size (and the derived
->    end_vcn) against the runlist extent or the volume size when the inode
->    is loaded or when the emptying loop starts. Happy to test a patch.
-> - This needs a crafted image, like the rest of our NTFS corruption
->    testing; we are reporting it because it is a kernel-crashing UBSAN
->    violation reachable from mount, the class of bug syzkaller-style
->    fuzzing of mount images finds and fixes routinely.
-> 
-> The reproducer bundle (image after the single-byte flip, clean control
-> image, a moderate-value variant that mounts cleanly, the flip harness,
-> guest init, and a README with field offsets and expected output) is
-> available on request.
-> 
-> Environment: QEMU/KVM x86_64, 1 vCPU, self-built 7.3.0 with
-> CONFIG_NTFS_FS=y, CONFIG_KASAN_GENERIC=y, CONFIG_UBSAN=y. The driver is
-> fs/ntfs as merged in 7.3.
-> 
-> Thanks,
-> Guikun Yang
+Store the result in s64 variables, test negative results for failure,
+and compare the full count when validating an allocation rollback.
+Return zero from ntfs_attr_rm() after successful removal. This keeps
+successful deallocation from being misclassified by later reporting.
 
-Hi Guikun,
+Fixes: 495e90fa3348 ("ntfs: update attrib operations")
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+ fs/ntfs/attrib.c | 27 +++++++++++++++------------
+ 1 file changed, 15 insertions(+), 12 deletions(-)
 
-    Thanks for the report.
-    I had a look at the latest ntfs-next and think this may already be 
-addressed by two commits.
-
-    8e9137915220 (“ntfs: reject non-resident attributes whose sizes 
-exceed their allocation”) adds the size checks you mentioned. With the 
-layout you described, setting byte 0x4947 to 0xff would make 
-initialized_size negative, so loading the LogFile inode should fail 
-before we get to ntfs_empty_logfile().
-    Also, 749357bd48c16 (“ntfs: mount hibernated volumes read-only 
-regardless of errors=”) makes the mount read-only if errors were 
-recorded earlier. This includes a failed LogFile check, so the case 
-where no restart pages are found should no longer proceed to emptying 
-the logfile, even with errors=continue.
-
-    Could you retest with the latest ntfs-next and see whether it still 
-happens? The current tip is 564c77536477.
-
-Thanks,
-Baolin.
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index fce7144d7bef..0be410973176 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -4164,7 +4164,7 @@ static int ntfs_attr_make_resident(struct ntfs_inode *ni, struct ntfs_attr_searc
+ 	struct super_block *sb = vol->sb;
+ 	struct attr_record *a = ctx->attr;
+ 	int name_ofs, val_ofs, err;
+-	s64 arec_size;
++	s64 arec_size, freed;
+ 
+ 	ntfs_debug("Entering for inode 0x%llx, attr 0x%x.\n",
+ 			(unsigned long long)ni->mft_no, ni->type);
+@@ -4252,8 +4252,8 @@ static int ntfs_attr_make_resident(struct ntfs_inode *ni, struct ntfs_attr_searc
+ 	 * the whole run list and thus it doesn't matter that the attribute
+ 	 * record is in a transiently corrupted state at this moment in time.
+ 	 */
+-	err = ntfs_cluster_free(ni, 0, -1, ctx);
+-	if (err) {
++	freed = ntfs_cluster_free(ni, 0, -1, ctx);
++	if (freed < 0) {
+ 		ntfs_error(sb, "Eeek! Failed to release allocated clusters");
+ 		ntfs_debug("Ignoring error and leaving behind wasted clusters.\n");
+ 	}
+@@ -4496,6 +4496,7 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
+ 	struct ntfs_attr_search_ctx *ctx = NULL;
+ 	struct runlist_element *rl, *rln;
+ 	s64 org_alloc_size, org_compressed_size;
++	s64 freed;
+ 	int err, err2;
+ 	struct ntfs_inode *base_ni;
+ 	struct super_block *sb = ni->vol->sb;
+@@ -4760,9 +4761,9 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
+ 		down_write(&ni->runlist.lock);
+ rollback_locked:
+ 	/* Free allocated clusters. */
+-	err2 = ntfs_cluster_free(ni, ntfs_bytes_to_cluster(vol, org_alloc_size),
+-				-1, ctx);
+-	if (err2)
++	freed = ntfs_cluster_free(ni, ntfs_bytes_to_cluster(vol, org_alloc_size),
++				  -1, ctx);
++	if (freed < 0)
+ 		ntfs_debug("Leaking clusters");
+ 
+ 	/*
+@@ -5229,6 +5230,7 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
+ 	struct runlist_element *rl, *rlc;
+ 	struct runlist_element *old_rl = NULL;
+ 	s64 vcn = vcn_start, lcn, clu_count;
++	s64 freed;
+ 	s64 lcn_seek_from = -1;
+ 	int err = 0;
+ 	size_t new_rl_count, old_rl_count;
+@@ -5359,10 +5361,8 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
+ 		ntfs_attr_reinit_search_ctx(ctx);
+ 		err = ntfs_attr_update_mapping_pairs_locked(ni, 0, ni);
+ 		if (err) {
+-			int err2;
+-
+-			err2 = ntfs_cluster_free(ni, vcn, clu_count, ctx);
+-			if (err2 < 0 || err2 != clu_count) {
++			freed = ntfs_cluster_free(ni, vcn, clu_count, ctx);
++			if (freed < 0 || freed != clu_count) {
+ 				ntfs_error(vol->sb,
+ 					   "Failed to free cluster allocation. Leaving inconsistent metadata.\n");
+ 				NVolSetErrors(vol);
+@@ -5410,6 +5410,7 @@ int ntfs_attr_rm(struct ntfs_inode *ni)
+ {
+ 	struct ntfs_attr_search_ctx *ctx;
+ 	int err = 0, ret = 0;
++	s64 freed = 0;
+ 	struct ntfs_inode *base_ni;
+ 	struct super_block *sb = ni->vol->sb;
+ 
+@@ -5431,10 +5432,12 @@ int ntfs_attr_rm(struct ntfs_inode *ni)
+ 			return -ENOMEM;
+ 		}
+ 
+-		ret = ntfs_cluster_free(ni, 0, -1, ctx);
+-		if (ret < 0)
++		freed = ntfs_cluster_free(ni, 0, -1, ctx);
++		if (freed < 0) {
++			ret = freed;
+ 			ntfs_error(sb,
+ 				"Failed to free cluster allocation. Leaving inconstant metadata.\n");
++		}
+ 		ntfs_attr_put_search_ctx(ctx);
+ 	}
+ 
 
