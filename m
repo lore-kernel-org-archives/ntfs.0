@@ -1,75 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=203.205.221.164
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793556291;
-	b=fj12Ynrxdml1McHsfDuBMpFAvkYvHlb2fSG39/u2y9qN0tCAsdO6yOb6EfgD0l8TgEqG
-	 nWPRkF9jJ/9turqdUOxbaVjaUNZ7umMsZ0ndmbkY15lB8h4NJ3HbudiYCGxT5beYq9TeZ
-	 oAnSX7aPaQg/0+khYkSwGcZtCuTwbapzc6fWLYIketzSqH3Fl3eIryCyQp8XpggN9JLa8
-	 IX6Envq8zbEzvnrsCIBZuos1HRUhTdxRgxTxNQXh6iIHJzrbSNhYrlw4uB7npDY+0B+bw
-	 pMjEKPDNP+UfFOES6IfoGKdkt+QCQVx24UrCHCIFr834SJpeS/ReeHN6iczcETewLKA==
+	t=1793582863;
+	b=bhncpq0PrgrfeAiiifojy4QAysCqhTAnoRqpqd/dGVtnTCPbFhc8DBwp2T1C33EXGTbh
+	 vLm2L61Cw7XikIoCpJgQWoFJMzZ5lL3rfjESyO+rfAs3C8qZc0fa9KQxg254OYvjozPaG
+	 W6CFutZC/o+svqVUYRr25nPU0lSB49sRV+JQVNEdlhjAKe4ckARhYkmdOicuf+K0nVY0e
+	 AhnXVUzk9KGl3WZt7Qj1ieiO0qHaCnNVx69Wd1Try23XEpLPuMeyqIy+keU5lX/UHviZu
+	 5nKtXOAJOVRchg7Fkgjhg74vRy0Xw1rxYA92kh0TnyoBeWlfqO/PacKVtbB9hI07xkQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793556291;
-	h=DMARC-Filter:DKIM-Signature:Received:X-QQ-mid:Message-ID:
-	 X-QQ-XMAILINFO:X-QQ-XMRINFO:From:To:Cc:Subject:X-OQ-MSGID:Date:
-	 Content-Type:Content-Transfer-Encoding:MIME-Version;
-	bh=LYyqboXdIBzGq/CwwE0/RCPQD2DfivCnnBGtlUgka8A=;
-	b=rYHyeFbSSSSOUah8XHyCLcJqlHlypo1CKsZvL3CYLmGmP+88EQiT4gpFRP3fvQBvd5DU
-	 5GsVUsDbf61GMpQarJ+8HrGkInjm2AUF+u1Uk/XQ7txjyJObJq/kGrZlkRHZlTFxKL7Dh
-	 LH2KfghXGUfXpps5bXNQJjfEyLSCE7A7d0Ev2wPpltRmNI0tMWi2+YNnv98YtFzJ527Kv
-	 52GSJ0AOwkU37So3u74+7L8nrMths/hMZwis9bAk+qujpcF2CDJaqrzZFWXwGdjQBUvLc
-	 S5Uw5H+TAp0qezgDZuZ6XyS1dPNSHbWX97nwY0VgdndDEpgZCWiFSW1J/mpPVl7S7SQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793582863;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=9MdEfYVNw4UaXqvoxSqg3QZ/2+jK+uQAvsgyvu2Lk2c=;
+	b=4Ex1uhBOeWvU7EUHbQ6bBp17wrogz7AYU6YXCyi9/FUb7iTwQtO5yU9I+KkLxXVOvUus
+	 /gIqrgH16MwIyqsD1wfu+fzL//QvkcKzFHE3n1CTiXSVjQZaXXsv+w9DlBwaBp3wvxKcf
+	 /EKGc7wvAceLu1mYSDJ+E1D+PJwOavwKNYD670suIK88knKkaWG9Rvy8qdfx4AI5e8W/9
+	 Xd/6dtg/Nveys7ADsyt4574/ZLgu405v0h71/ku+eGoiQMf6XpL64AGVwo8zDIP7Fwu03
+	 FiydGlXWQd1AoMAyfRARTZVg9UjwwegZUUpqsLJ0mn+12VcXBfg9SdSr9wNkT8GA4Bw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=qq.com;
-	spf=pass smtp.mailfrom=qq.com;
-	dkim=pass header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=afqooPYA;
-	arc=none smtp.remote-ip=203.205.221.164
-Received: from out203-205-221-164.mail.qq.com (out203-205-221-164.mail.qq.com [203.205.221.164])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Z2jNwbD1;
+	arc=none smtp.remote-ip=220.197.31.4
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F78B606A325
-	for <ntfs@lists.linux.dev>; Sun,  1 Nov 2026 18:04:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 5F78B606A325
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBADA606A334
+	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 01:27:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org EBADA606A334
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=afqooPYA
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1793556280; bh=LYyqboXdIBzGq/CwwE0/RCPQD2DfivCnnBGtlUgka8A=;
-	h=From:To:Cc:Subject:Date;
-	b=afqooPYAmxQH5F1YRVAj2pBrnLRT1197zCJt7xor4IsGSKBHnFXBVi8JbQ2ufPHQB
-	 xb0JPYiitbd8YVaT0ItColuq07Ho9Q+C4V/LXpAZMleW/mHnlqbCWvSj2LLMPraRsZ
-	 Ik0CMqSRYyHTDSLU/lXXsS9+Crojq1QHw3yIKwgw=
-Received: from [172.18.4.77] ([111.31.227.58])
-	by newxmesmtplogicsvrszc56-0.qq.com (NewEsmtp) with SMTP
-	id 1258B23B; Mon, 02 Nov 2026 02:04:37 +0800
-X-QQ-mid: xmsmtpt1793556277tco5hrfpg
-Message-ID: <tencent_5C7F8B8D303ABD994244C1F814473DA5B60A@qq.com>
-X-QQ-XMAILINFO: NC4p7XQIBeahkpsAabajIhOpaIENfCc12td3HavyUmzdgLXtc/MdrH3oMVGlBZ
-	 B3SOvdJyT3d2PxlQ/Igc505LEvU9m/LRGnLTYrlqbz4/rNZvdiuK51cUSx+mwNDgINIF/0RWc26j
-	 98DtjEv6OelHteu/TNsSJtlMwonR0KFpFRn9YvikFHz9fAsmvNtQ6ri1/aCRJZf/Wm6Z2/gbiWRG
-	 Z7YSOfJFhJq5fMxdVaw83UiWQjlduY0R03rel3B4AXeIWPPe8ArYm7jIbFp5hDUJ/6gegtIwe1SD
-	 J42yT79/pHom8QIjzIsIovl6iHfqocaEQPqyTQCuJsMe/qookhnaLhZFgv7hRQOxfnaApcbP5THh
-	 zxV6mg9YsICzI3ayv81CXvj2E3Z3GSPKiuSkGgpKzUbwPSg5e1HwsXePEQPueaHdv7Y5khWQQ9Rl
-	 bAknmmWeCtZ8Gepwsqb6Nw+pBTShKDLeAUpEgoOKrl+2BJ2r/WJP+bQpr1ho89ttUtdNgScwqy9M
-	 xmTzUlKsLHsy/w9sEV2YxNRjujfJABd3nxhW7Rs7kfAcNbW0ZTnnpSEjaKTgrvsUE2miX+iwB5RR
-	 n9Krq28tHzVH4t+JFFgwvOL3fmR5SZJ00XfWFoA+qOXIEhEBIibgI0heNudIiE46j1HQcuj/HaRg
-	 6j5Xcn8W3c5ZQGcgSyWQtdhZYhysklDsMYUWX8BRggV53b/B1+yE1tohOM9pcCGj8RAa4CUrv21a
-	 Q1xeQy+iQDSVqlRN8BlUZMy7Ba+HAVKk/bHp4ymsvuJ6Hgs3FQ//6d0TTfvEQmYfJmoVrXUxZjiw
-	 IBdN2ARO+sAw/IFYejVemRK5PUAU9VxKqfjlzArHXxza3j6nY1chyFOMKE+NKUaKcwfS5+T4K57O
-	 AwVioMDobsfk/uke4vCKuR3KGZfvl9dKveBPL4b3KkspLm4tzk2uHfjR0SVClaQm1xvhsCnMJTvD
-	 CQkRVapFZM0wShYcBI+zOP4KrARE3Pie7UNwRU+CPHTzNiuFk0YEGQXPUAcqhcoBamj+Dmc97zvT
-	 70b0wDkwqFxS57YCOKorfsaGUPAjlfnSqtjBypYnT7reuCjW+c
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
-From: Guikun Yang <yangguikun19@qq.com>
-To: ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>,
- Hyunchul Lee <hyc.lee@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org
-Subject: [Bug report] ntfs: initialized_size from $LogFile $DATA drives an
- unvalidated loop bound in ntfs_empty_logfile() - UBSAN shift-out-of-bounds
- (ilog2) at rw-mount
-X-OQ-MSGID: <c7-ntfs-logfile-ubsan-20261031@qq.com>
-Date: Sat, 31 Oct 2026 20:00:00 +0800
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Z2jNwbD1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=9MdEfYVNw4UaXqvoxSqg3QZ/2+jK+uQAvsgyvu2Lk2c=;
+	b=Z2jNwbD1MXQI6Ofy2WeMGsGgZ7+3h10eKw7V9KTvHNMOTmhhaLk3nc7u8EfFA2
+	RRtC8UmR3aJctPU6DlpoxqUQpMMgq2C18KD8K7/T64tMn3mdi5bQ9HJj+oUKAvdG
+	MCu33XppR64H+qb9U0aVt3cyIn00CTcORbe5WgZOF0PDo=
+Received: from [IPV6:2409:8900:1ec1:a6a9:20b7:ad53:8d1b:95af] (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgC3hmzm5udqUTzWDQ--.41251S2;
+	Mon, 02 Nov 2026 09:27:04 +0800 (CST)
+Message-ID: <3c2206e2-158c-4e0c-af9c-116c3a77b1d7@163.com>
+Date: Mon, 2 Nov 2026 09:27:02 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -79,89 +54,111 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: ntfs_resident_attr_value_resize() uses value_offset w/o check
+To: rtm@csail.mit.edu, Namjae Jeon <linkinjeon@kernel.org>,
+ Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev
+References: <72452.1793479234@localhost>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <72452.1793479234@localhost>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PygvCgC3hmzm5udqUTzWDQ--.41251S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJF4UArW8Xr4UZrWrGryrtFb_yoWrWFW5pr
+	WSyFn8Gr40qw1UWrsFgFs8J3WFkw1v9ayUWr9rW34Fvr43uw1a9a4xK3yUWrZ7trykGr47
+	JF4vq3yxAr15WaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRQTmgUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QqIU2rn5uoIuwAA3K
 
-To: ntfs@lists.linux.dev
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-    Namjae Jeon, Hyunchul Lee
-Subject: [Bug report] ntfs: initialized_size from $LogFile $DATA drives an
- unvalidated loop bound in ntfs_empty_logfile() - UBSAN
- shift-out-of-bounds (ilog2) at rw-mount
 
-Hi,
 
-While fuzzing single-byte corruptions of NTFS metadata with an automated
-mount harness, we found that ntfs_empty_logfile() trusts the on-disk
-initialized_size of the LogFile's $DATA attribute as a loop bound without
-any check against the runlist or the volume size, and a single flipped
-byte in a read-write mount sends the kernel into a shift-out-of-bounds
-panic inside the readahead path.
+在 2026/11/1 04:40, rtm@csail.mit.edu 写道:
+> In ntfs/attrib.c's ntfs_resident_attr_value_resize():
+> 
+>          old_size = le32_to_cpu(a->data.resident.value_length);
+>          if (new_size > old_size)
+>                  memset((u8 *)a + le16_to_cpu(a->data.resident.value_offset) +
+>                                  old_size, 0, new_size - old_size);
+> 
+> A corrupt NTFS image could have value_offset greater than the
+> attribute length, so that memset() zeros outside of the allocated
+> memory.
+> 
+> A demo:
+> 
+> # wget http://www.rtmrtm.org/rtm/ntfs40e.img.gz
+> # gunzip ntfs40e.img.gz
+> # cp ntfs40e.img junk
+> # mount -t ntfs -o loop,rw junk /mnt
+> # echo b >> /mnt/a
+> 
+> You'll need to add a printk to ntfs_resident_attr_value_resize() to
+> see the problem (unless you get lucky and the memset() disturbs some
+> critical kernel data).
+> 
+> (gdb) where
+> #0  ntfs_resident_attr_value_resize (m=<optimized out>, a=0xffffffd6059ce548,
+>      new_size=new_size@entry=4) at fs/ntfs/attrib.c:1982
+> #1  0xffffffff804c0ab0 in ntfs_resident_attr_resize (
+>      attr_ni=attr_ni@entry=0xffffffd603ded000, newsize=newsize@entry=4,
+>      prealloc_size=prealloc_size@entry=0, holes=1) at fs/ntfs/attrib.c:4918
+> #2  0xffffffff804c1814 in ntfs_attr_expand_locked (
+>      ni=ni@entry=0xffffffd603ded000, newsize=newsize@entry=4,
+>      prealloc_size=prealloc_size@entry=0, locked_ni=locked_ni@entry=0x0)
+>      at fs/ntfs/attrib.c:5207
+> #3  0xffffffff804c18c0 in ntfs_attr_expand (ni=ni@entry=0xffffffd603ded000,
+>      newsize=newsize@entry=4, prealloc_size=prealloc_size@entry=0)
+>      at fs/ntfs/attrib.c:5224
+> #4  0xffffffff804c786a in ntfs_expand_for_write (end=4, ni=0xffffffd603ded000)
+>      at fs/ntfs/file.c:850
+> #5  ntfs_file_write_iter (iocb=0xffffffc600253dc8, from=0xffffffc600253da0)
+>      at fs/ntfs/file.c:923
+> #6  0xffffffff803031d2 in new_sync_write (ppos=0xffffffc600253e40, len=2,
+>      buf=0x2aaaae3620 <error: Cannot access memory at address 0x2aaaae3620>,
+>      filp=0xffffffd6049351c0) at fs/read_write.c:595
+> #7  vfs_write (file=file@entry=0xffffffd6049351c0,
+>      buf=buf@entry=0x2aaaae3620 <error: Cannot access memory at address 0x2aaaae3620>, count=count@entry=2, pos=pos@entry=0xffffffc600253e40)
+>      at fs/read_write.c:687
+> #8  0xffffffff803035fa in ksys_write (fd=<optimized out>,
+>      buf=0x2aaaae3620 <error: Cannot access memory at address 0x2aaaae3620>,
+>      count=2) at fs/read_write.c:739
+> #9  0xffffffff80303678 in __do_sys_write (count=<optimized out>,
+>      buf=<optimized out>, fd=<optimized out>) at fs/read_write.c:750
+> #10 __se_sys_write (count=<optimized out>, buf=<optimized out>,
+>      fd=<optimized out>) at fs/read_write.c:747
+> #11 __riscv_sys_write (regs=<optimized out>) at fs/read_write.c:747
+> #12 0xffffffff80ebc0ce in syscall_handler (syscall=<optimized out>,
+>      regs=0xffffffc600253ee0) at ./arch/riscv/include/asm/syscall.h:112
+> (gdb) print old_size
+> $1 = 3
+> (gdb) print new_size
+> $2 = 4
+> (gdb) print *a
+> $3 = {type = 128, length = 8, non_resident = 255 '\377',
+>    name_length = 255 '\377', name_offset = 65535, flags = 0, instance = 0,
+>    data = {resident = {value_length = 3, value_offset = 48925,
+>        flags = 0 '\000', reserved = 0 '\000'}, non_resident = {
+>        lowest_vcn = 210131274956803, highest_vcn = 4294904417,
+>        mapping_pairs_offset = 65535, compression_unit = 255 '\377',
+>        reserved = "\377\000\000\000", allocated_size = 210131274956803,
+>        data_size = 0, initialized_size = 0, compressed_size = 0}}}
+> 
+> Robert Morris
+> rtm@mit.edu
 
-The code (fs/ntfs/logfile.c, ntfs_empty_logfile()):
+Hi Robert,
+    Thanks for reporting this issue. I checked the latest ntfs-next, and 
+the issue is still present.
+    The fix should validate the resident value offset before resizing, 
+and reject any resize that would make the attribute record smaller than 
+its header. This prevents a corrupt offset from causing the resize to 
+overwrite the attribute header before the code clears the newly extended 
+value.
+    If you’re interested, please feel free to submit a patch. We’d be 
+happy to review it.
 
-    end_vcn = (log_ni->initialized_size + vol->cluster_size_mask) >>
-          vol->cluster_size_bits;
-    ...
-    if (rl[1].vcn > end_vcn)
-        len = end_vcn - rl->vcn;
-    end = NTFS_CLU_TO_B(vol, lcn + len);
-
-    page_cache_sync_readahead(sb->s_bdev->bd_mapping, ra, NULL,
-        start >> PAGE_SHIFT, (end - start) >> PAGE_SHIFT);
-    ...
-    } while ((++rl)->vcn < end_vcn);
-
-The inode loader does validate the on-disk trio against each other
-(ntfs_non_resident_sizes_inconsistent(): initialized_size >= 0,
-initialized_size <= data_size, data_size <= allocated_size,
-allocated_size cluster-aligned). What is missing is any relation between
-those sizes and the runlist length or the volume size: initialized_size
-is used directly as end_vcn, and the readahead/loop bounds follow it out
-of the volume. For comparison, ntfs_check_logfile() scans the LogFile
-using i_size (= data_size) truncated to MaxLogFileSize, but that
-truncation happens on a local variable only, and ntfs_empty_logfile()
-runs afterwards on the untruncated initialized_size.
-
-Trigger: one byte. In a mkntfs-created 64MB image, flip byte 0x4947 in
-MFT record 2 (a high byte of the $DATA non-resident size fields) to
-0xFF and mount read-write:
-
-    UBSAN: shift-out-of-bounds in ./include/linux/log2.h:57:13
-    shift exponent 64 is too large for 64-bit type 'long unsigned int'
-    Call Trace:
-     ...
-     page_cache_sync_ra.cold+0x19/0x46
-     ntfs_empty_logfile+0x763/0xd50
-     ntfs_fill_super+0x4085/0x71d0
-     ...
-    Kernel panic - not syncing: UBSAN: panic_on_warn set ...
-
-Reproduced 3/3 runs on a self-built 7.3.0 kernel (CONFIG_NTFS_FS=y,
-CONFIG_UBSAN=y) under QEMU/KVM. The function and the missing
-runlist/volume bound are unchanged in current mainline.
-
-Notes:
-
-- ntfs_check_logfile() scans with i_size (= data_size, still sane), finds
-  no restart pages, reports the LogFile as not empty; the emptying then
-  runs anyway on the crafted initialized_size. The panic happens inside
-  mount(), before any other syscall.
-- A natural fix is to reject or clamp initialized_size (and the derived
-  end_vcn) against the runlist extent or the volume size when the inode
-  is loaded or when the emptying loop starts. Happy to test a patch.
-- This needs a crafted image, like the rest of our NTFS corruption
-  testing; we are reporting it because it is a kernel-crashing UBSAN
-  violation reachable from mount, the class of bug syzkaller-style
-  fuzzing of mount images finds and fixes routinely.
-
-The reproducer bundle (image after the single-byte flip, clean control
-image, a moderate-value variant that mounts cleanly, the flip harness,
-guest init, and a README with field offsets and expected output) is
-available on request.
-
-Environment: QEMU/KVM x86_64, 1 vCPU, self-built 7.3.0 with
-CONFIG_NTFS_FS=y, CONFIG_KASAN_GENERIC=y, CONFIG_UBSAN=y. The driver is
-fs/ntfs as merged in 7.3.
-
-Thanks,
-Guikun Yang
+Regards,
+Baolin.
 
