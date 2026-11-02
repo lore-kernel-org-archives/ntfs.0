@@ -1,47 +1,47 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793605162;
-	b=FMMgNSUR18mhKIbFT611S0LWx/oY/SD+sD+b8fvx2EDEa6oc2ciKe/odrfDHX6LRsY4r
-	 hoLPLpJj3pO+s6Ydh4Up2WH152tPf+eFrBOOJOKuCtER5/JWdbZoPE/Nh6U3N2E/z8Fdx
-	 TXVeTLL2aC+bvVfN3A2HzvVJvze5q3pzBo+ZDKznLX6h5dOdqXm/UK8uwPDr9YKoRUy+Q
-	 +SNWR7IwbzSyf7cCZtRFncrXPs4YWY4cp3nPmu//zcShFEj5W/svXSjDdcbDtbnXHXgzj
-	 wUZC6TOzeDbaZcLcKgNOHBYi39AXU4CZKhJU9CZUw5c3SwgGo9pp04VwE2HXd4zSZ3w==
+	t=1793605164;
+	b=CnP/srgAuBG6O9xILpHJRZ0EzGv/G7vLAqP4fFJA2PoujInDSF6VzXcoRu3oHFfP9Av+
+	 N1GzHwk5ioBJ5c+jcCNAyNb5KPL013kt8QT+x3i6xeCYZ5BEA3nI2syssoA5MeIXpf598
+	 xtptg68/4SdkF5LnZi0hUay8r1GQul4VkIjoXRvi0HJKYdA9jSW0c1YXLCrPtiNshFho7
+	 HK88BZoulGwIPcJO8J5p8ENqsPCp/7FvttCpdl5j4bPXVL3h+aJHHNmk3AppkzG3lDRxe
+	 /s+G5Pl2MWd2yey3BnsZPqDYKaw7STvXLb7D8+6SCWD9YhsBFD6E/mbARl3itLvGNHw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793605162;
+	a=rsa-sha256; c=relaxed/relaxed; t=1793605164;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-Id:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-CM-SenderInfo;
-	bh=UZkhM64B3iVTj0d2Nfd0iog7sOl8qjtMQX36hh/0U30=;
-	b=jJdBYgYHrv2FnwvGKX+vYDhnCAMSYcOTEvR+sDvJI/AZjnfhMwWNJl/fmdRxBsptqtLv
-	 APCZeT0vZ9J2Xz0m3GUjomNfdbOOJHw5cQCwAgRy2BK+dITiInNUeI1cY+Z5guNfcLtN8
-	 H9PpmwHu6Dcy5OjNRDJ1s5I7U2TfDEXl86BlI/WQPS2TFz2xnFYvxmMsH/hxKwktov4Ci
-	 4WY0QiNVNuULm4B9svQ4EeaafHT3biw64ubpmPk+Pd2xEzeIdhD0pFrhBvO/1ye/inhjs
-	 DCSFX5WQF9XtpfIVOQMzXxyzXMGG8MMEg+swknyUcl6F7MSPoljEy58ewB3mkWKOINQ==
+	bh=A0kDpm3Fq4IPqPv6r7rDrNqAtnYQKwl5OJ653qPszw4=;
+	b=ngRWcZ1XEqJ2yhAlTwObjMnN+0FPywyMfJRfldM77CPG6PueriLZ9jdParWbPxQILIDm
+	 FXxDmVMmdXCly6oOGdGxxzbc7q7yN/LMf1+xVAk36vZZSp2KZjaMA+fQQW+7AyiIR9Cz4
+	 p0Fn3au3zYCeiuhNQIZzbGcEPrY2PG2rxyIzLp2JeXOlY8cHo0HUR6dZWi8noXidgIR5Y
+	 hHPSX5zeOg1vYzfHWEBEuKZj/0qWiB3p85HgjpbJojGkOkDGhyZqzZYlfBTdSrGNn3JLw
+	 c1DcxyLUw03kcZzYtmKP/vTgI71c9SYbJbB6IOY+w0DLH6nqgZsDhhOlg794NEwa/3g==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b="E8PGOw/W";
-	arc=none smtp.remote-ip=220.197.31.4
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b="CVV/EDib";
+	arc=none smtp.remote-ip=220.197.31.3
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 416C760A2629
-	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 07:39:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 416C760A2629
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C529D606A338
+	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 07:39:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org C529D606A338
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=E8PGOw/W
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=CVV/EDib
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=UZ
-	khM64B3iVTj0d2Nfd0iog7sOl8qjtMQX36hh/0U30=; b=E8PGOw/WG0/5pitMpn
-	jUl2H7GLR55T0xdp3fPec3z7c1ooGqkmhYrdra/XzNeRHR/6Mg/4EFh/NxQf35X7
-	qWNmRl6EZnD79dNAMj5jUvM16oRK31vAcbN2wEVAmlwy+HcSCHcc/ZPlFmYlGU3f
-	b1FIGol8tNHX3KDYKWpkVczRg=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=A0
+	kDpm3Fq4IPqPv6r7rDrNqAtnYQKwl5OJ653qPszw4=; b=CVV/EDibNJCmfQmBXa
+	3T43oVcj9a8sxqQq6B/B4GpMVN0bVtayzTL+C4XIRP5ZfO+uMZrLhhkPxkN5m//s
+	7EZrPC6PzAlYXW8k0Yug18yIX8VDbgMGBWTYoiMX8nfpciwGG2NwTdq4thf7bBWR
+	8+PK9xRuBMZek8N6vR59o59qw=
 Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3nygJPuhqucJHEg--.56690S8;
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3nygJPuhqucJHEg--.56690S9;
 	Mon, 02 Nov 2026 15:38:53 +0800 (CST)
 From: Xuewen Wang <wangxuewen_ky@163.com>
 To: linkinjeon@kernel.org,
@@ -49,10 +49,10 @@ To: linkinjeon@kernel.org,
 Cc: wangxuewen_ky@163.com,
 	ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Xuewen Wang <wangxuewen@kylinos.cn>
-Subject: [PATCH v5 30/31] ntfs: report reparse and object ID metadata errors
-Date: Mon,  2 Nov 2026 15:35:31 +0800
-Message-Id: <20261102073532.98873-31-wangxuewen_ky@163.com>
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v5 31/31] ntfs: report each shutdown transition once
+Date: Mon,  2 Nov 2026 15:35:32 +0800
+Message-Id: <20261102073532.98873-32-wangxuewen_ky@163.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261102073532.98873-1-wangxuewen_ky@163.com>
 References: <20261102073532.98873-1-wangxuewen_ky@163.com>
@@ -66,340 +66,107 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3nygJPuhqucJHEg--.56690S8
-X-Coremail-Antispam: 1Uf129KBjvJXoWfGw4kXryrCF4kXr13Jr43Jrb_yoWDuryUpF
-	9rGwn3t3yxtr1I9392ya1jvr13Kw1Ig3yUGrZ3J3WSy3WYvr18tF42qryYgryFkrW8A3sx
-	tF45J398CF4UXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UWMKNUUUUU=
-X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzQ1nUGroPg0L8wAA3+
+X-CM-TRANSID:_____wD3nygJPuhqucJHEg--.56690S9
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGr17tr4xAF43Xr4kGryxuFg_yoW5tFW3pF
+	97Ar93K3s2qFy2vwsrtw43AFy0yFn7uw4UKr4UGw12gw1kKrnYqF4kKF1F9FyFgasYgw4U
+	X3Wjgws8ur47ZrUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UAnYcUUUUU=
+X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbC7w1nUGroPg1c-gAA3G
 
-From: Xuewen Wang <wangxuewen@kylinos.cn>
+From: Baolin Liu <liubaolin@kylinos.cn>
 
-Report missing required reparse/ObjectID indexes or entries, short stored
-values and missing reparse attributes. Use EFSCORRUPTED for corruption
-while preserving read errors. Keep new zero-tag reparse placeholders
-valid before index insertion.
+The existing shutdown sites set NV_Shutdown without notifying filesystem
+error listeners. Add ntfs_report_shutdown() and use it for forced
+shutdown, device removal, EA restoration and named-stream rollback.
 
-Return error pointers from reparse-index lookup to preserve specific
-errors instead of replacing them with EINVAL. Retain best-effort handling
-of index-removal lookup failures.
+Use test_and_set_bit(NV_Shutdown, &vol->flags) to set the flag atomically
+and call the generic shutdown reporter only when the bit was previously
+clear. Concurrent callers therefore initiate one report per transition.
+Keep the existing conditions that trigger shutdown.
 
-Report failed reparse writes when replacing existing data or after a
-partial write, and failures in the existing index-insertion rollback.
-Keep the initiating error separate from cleanup errors.
-
-Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
 ---
- fs/ntfs/object_id.c | 50 ++++++++++++++++++------
- fs/ntfs/reparse.c   | 93 ++++++++++++++++++++++++++++++++++++---------
- 2 files changed, 113 insertions(+), 30 deletions(-)
+ fs/ntfs/ea.c           |  2 +-
+ fs/ntfs/named_stream.c |  2 +-
+ fs/ntfs/super.c        | 12 +++++++++---
+ fs/ntfs/volume.h       |  1 +
+ 4 files changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/fs/ntfs/object_id.c b/fs/ntfs/object_id.c
-index 89002c3759df..557c58fc6d11 100644
---- a/fs/ntfs/object_id.c
-+++ b/fs/ntfs/object_id.c
-@@ -37,15 +37,16 @@ __le16 objid_index_name[] = {cpu_to_le16('$'), cpu_to_le16('O'), 0};
- 
- /*
-  * open_object_id_index - Open the $Extend/$ObjId file and its index
-- * @vol: NTFS volume structure
-+ * @ni: NTFS inode with an existing object ID attribute
-  *
-  * Opens the $ObjId system file and retrieves its index context.
-  *
-  * Return: The index context if opened successfully, or NULL if an error
-  *	   occurred.
-  */
--static struct ntfs_index_context *open_object_id_index(struct ntfs_volume *vol)
-+static struct ntfs_index_context *open_object_id_index(struct ntfs_inode *ni)
- {
-+	struct ntfs_volume *vol = ni->vol;
- 	struct inode *dir_vi, *vi;
- 	struct ntfs_inode *dir_ni;
- 	struct ntfs_index_context *xo = NULL;
-@@ -62,6 +63,8 @@ static struct ntfs_index_context *open_object_id_index(struct ntfs_volume *vol)
- 	/* do not use path_name_to inode - could reopen root */
- 	dir_vi = ntfs_iget(vol->sb, FILE_Extend);
- 	if (IS_ERR(dir_vi)) {
-+		if (vol->major_ver >= 3 && PTR_ERR(dir_vi) == -ENOENT)
-+			ntfs_report_metadata_error(vol, -EFSCORRUPTED);
- 		kmem_cache_free(ntfs_name_cache, uname);
- 		return NULL;
- 	}
-@@ -72,12 +75,19 @@ static struct ntfs_index_context *open_object_id_index(struct ntfs_volume *vol)
- 	mutex_unlock(&dir_ni->mrec_lock);
- 	kfree(name);
- 	kmem_cache_free(ntfs_name_cache, uname);
--	if (IS_ERR_MREF(mref))
-+	if (IS_ERR_MREF(mref)) {
-+		if (MREF_ERR(mref) == -ENOENT)
-+			ntfs_report_file_metadata_error(VFS_I(ni),
-+							-EFSCORRUPTED);
- 		goto put_dir_vi;
-+	}
- 
- 	vi = ntfs_iget(vol->sb, MREF(mref));
--	if (IS_ERR(vi))
-+	if (IS_ERR(vi)) {
-+		if (PTR_ERR(vi) == -ENOENT)
-+			ntfs_report_file_metadata_error(dir_vi, -EFSCORRUPTED);
- 		goto put_dir_vi;
-+	}
- 
- 	xo = ntfs_index_ctx_get(NTFS_I(vi), objid_index_name, 2);
- 	if (!xo)
-@@ -99,22 +109,38 @@ static struct ntfs_index_context *open_object_id_index(struct ntfs_volume *vol)
-  */
- static int remove_object_id_index(struct ntfs_inode *ni, struct ntfs_index_context *xo)
- {
-+	int report_err = 0;
- 	struct object_id_index_key key = {0};
- 	s64 size;
-+	int err;
- 
--	if (ni->data_size == 0)
--		return -ENODATA;
-+	if (ni->data_size == 0) {
-+		report_err = -EFSCORRUPTED;
-+		err = -EFSCORRUPTED;
-+		goto out;
-+	}
- 
- 	/* read the existing object id attribute */
- 	size = ntfs_inode_attr_pread(VFS_I(ni), 0, sizeof(struct guid),
- 				     (char *)&key);
--	if (size != sizeof(struct guid))
--		return -ENODATA;
-+	if (size != sizeof(struct guid)) {
-+		if (size >= 0 || size == -EIO)
-+			report_err = size < 0 ? (int)size : -EFSCORRUPTED;
-+		err = size < 0 ? size : -EFSCORRUPTED;
-+		goto out;
-+	}
- 
--	if (!ntfs_index_lookup(&key, sizeof(struct object_id_index_key), xo))
-+	err = ntfs_index_lookup(&key, sizeof(struct object_id_index_key), xo);
-+	if (!err)
- 		return ntfs_index_rm(xo);
--
--	return 0;
-+	if (err == -ENOENT)
-+		report_err = -EFSCORRUPTED;
-+
-+	err = 0;
-+out:
-+	if (report_err)
-+		ntfs_report_file_metadata_error(VFS_I(ni), report_err);
-+	return err;
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index 2fec8bfcdd89..7aa4e7a70efa 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -385,7 +385,7 @@ static int ntfs_set_ea(struct inode *inode, const char *name, size_t name_len,
+ 				ntfs_report_file_metadata_error(inode, ea_err);
+ 			if (info_err)
+ 				ntfs_report_file_metadata_error(inode, info_err);
+-			NVolSetShutdown(ni->vol);
++			ntfs_report_shutdown(ni->vol);
+ 			ntfs_error(inode->i_sb,
+ 				   "Failed to restore EAs of inode 0x%llx (%d, %d); shutting down.",
+ 				   ni->mft_no, ea_err, info_err);
+diff --git a/fs/ntfs/named_stream.c b/fs/ntfs/named_stream.c
+index 788a581d854b..a66375081684 100644
+--- a/fs/ntfs/named_stream.c
++++ b/fs/ntfs/named_stream.c
+@@ -665,7 +665,7 @@ struct inode *ntfs_create_named_stream(const struct mnt_idmap *idmap,
+ 				} else {
+ 					ntfs_report_file_metadata_error(base_vi,
+ 									rollback_err);
+-					NVolSetShutdown(base_ni->vol);
++					ntfs_report_shutdown(base_ni->vol);
+ 					err = -EIO;
+ 				}
+ 			}
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 481d528884ad..51355ec2b1c4 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -455,6 +455,12 @@ void ntfs_report_file_metadata_error(struct inode *inode, int error)
+ 		fserror_report_file_metadata(inode, error, GFP_ATOMIC);
  }
  
- /*
-@@ -139,7 +165,7 @@ int ntfs_delete_object_id_index(struct ntfs_inode *ni)
- 	/*
- 	 * read the existing object id and un-index it
- 	 */
--	xo = open_object_id_index(ni->vol);
-+	xo = open_object_id_index(ni);
- 	if (xo) {
- 		xoni = xo->idx_ni;
- 		mutex_lock_nested(&xoni->mrec_lock, NTFS_EXTEND_MUTEX_PARENT);
-diff --git a/fs/ntfs/reparse.c b/fs/ntfs/reparse.c
-index f6cac20081e1..d3cd1d28fc6e 100644
---- a/fs/ntfs/reparse.c
-+++ b/fs/ntfs/reparse.c
-@@ -586,6 +586,7 @@ static int set_reparse_index(struct ntfs_inode *ni, struct ntfs_index_context *x
- static int remove_reparse_index(struct inode *rp, struct ntfs_index_context *xr,
- 				__le32 *preparse_tag)
- {
-+	int report_err = 0;
- 	struct reparse_index_key key;
- 	u64 file_id_cpu;
- 	__le64 file_id;
-@@ -598,26 +599,39 @@ static int remove_reparse_index(struct inode *rp, struct ntfs_index_context *xr,
- 
- 	/* read the existing reparse_tag */
- 	size = ntfs_inode_attr_pread(rp, 0, 4, (char *)preparse_tag);
--	if (size != 4)
--		return -ENODATA;
-+	if (size != 4) {
-+		if (size >= 0 || size == -EIO)
-+			report_err = size < 0 ? (int)size : -EFSCORRUPTED;
-+		ret = size < 0 ? size : -EFSCORRUPTED;
-+		goto out;
-+	}
- 
- 	file_id_cpu = MK_MREF(ni->mft_no, ni->seq_no);
- 	file_id = cpu_to_le64(file_id_cpu);
- 	key.reparse_tag = *preparse_tag;
- 	/* danger on processors which require proper alignment! */
- 	memcpy(&key.file_id, &file_id, 8);
--	if (!ntfs_index_lookup(&key, sizeof(struct reparse_index_key), xr)) {
-+	err = ntfs_index_lookup(&key, sizeof(struct reparse_index_key), xr);
-+	if (!err) {
- 		err = ntfs_index_rm(xr);
- 		if (err)
- 			ret = err;
-+	} else if (err == -ENOENT && *preparse_tag) {
-+		/* A newly created attribute has a zero tag and is not indexed yet. */
-+		report_err = -EFSCORRUPTED;
- 	}
-+out:
-+	if (report_err)
-+		ntfs_report_file_metadata_error(rp, report_err);
- 	return ret;
- }
- 
- /*
-  * Open the $Extend/$Reparse file and its index
-+ * @inode is non-NULL when existing reparse metadata requires the index.
-  */
--static struct ntfs_index_context *open_reparse_index(struct ntfs_volume *vol)
-+static struct ntfs_index_context *open_reparse_index(struct ntfs_volume *vol,
-+						     struct inode *inode)
- {
- 	struct ntfs_index_context *xr = NULL;
- 	u64 mref;
-@@ -628,14 +642,19 @@ static struct ntfs_index_context *open_reparse_index(struct ntfs_volume *vol)
- 
- 	/* do not use path_name_to inode - could reopen root */
- 	dir_vi = ntfs_iget(vol->sb, FILE_Extend);
--	if (IS_ERR(dir_vi))
--		return NULL;
-+	if (IS_ERR(dir_vi)) {
-+		if (vol->major_ver >= 3 && PTR_ERR(dir_vi) == -ENOENT) {
-+			ntfs_report_metadata_error(vol, -EFSCORRUPTED);
-+			dir_vi = ERR_PTR(-EFSCORRUPTED);
-+		}
-+		return ERR_CAST(dir_vi);
-+	}
- 
- 	uname_len = ntfs_nlstoucs(vol, "$Reparse", 8, &uname,
- 				  NTFS_MAX_NAME_LEN);
- 	if (uname_len < 0) {
- 		iput(dir_vi);
--		return NULL;
-+		return ERR_PTR(uname_len);
- 	}
- 
- 	mutex_lock_nested(&NTFS_I(dir_vi)->mrec_lock, NTFS_EXTEND_MUTEX_PARENT);
-@@ -644,16 +663,30 @@ static struct ntfs_index_context *open_reparse_index(struct ntfs_volume *vol)
- 	mutex_unlock(&NTFS_I(dir_vi)->mrec_lock);
- 	kfree(name);
- 	kmem_cache_free(ntfs_name_cache, uname);
--	if (IS_ERR_MREF(mref))
-+	if (IS_ERR_MREF(mref)) {
-+		if (MREF_ERR(mref) == -ENOENT && inode) {
-+			ntfs_report_file_metadata_error(inode, -EFSCORRUPTED);
-+			mref = ERR_MREF(-EFSCORRUPTED);
-+		}
-+		xr = ERR_PTR(MREF_ERR(mref));
- 		goto put_dir_vi;
-+	}
- 
- 	vi = ntfs_iget(vol->sb, MREF(mref));
--	if (IS_ERR(vi))
-+	if (IS_ERR(vi)) {
-+		if (PTR_ERR(vi) == -ENOENT) {
-+			ntfs_report_file_metadata_error(dir_vi, -EFSCORRUPTED);
-+			vi = ERR_PTR(-EFSCORRUPTED);
-+		}
-+		xr = ERR_CAST(vi);
- 		goto put_dir_vi;
-+	}
- 
- 	xr = ntfs_index_ctx_get(NTFS_I(vi), reparse_index_name, 2);
--	if (!xr)
-+	if (!xr) {
- 		iput(vi);
-+		xr = ERR_PTR(-ENOMEM);
-+	}
- put_dir_vi:
- 	iput(dir_vi);
- 	return xr;
-@@ -678,8 +711,14 @@ static int update_reparse_data(struct ntfs_inode *ni, struct ntfs_index_context
- 	struct ntfs_inode *rp_ni;
- 
- 	rp_inode = ntfs_attr_iget(VFS_I(ni), AT_REPARSE_POINT, AT_UNNAMED, 0);
--	if (IS_ERR(rp_inode))
-+	if (IS_ERR(rp_inode)) {
-+		if (PTR_ERR(rp_inode) == -ENOENT) {
-+			ntfs_report_file_metadata_error(VFS_I(ni),
-+							-EFSCORRUPTED);
-+			rp_inode = ERR_PTR(-EFSCORRUPTED);
-+		}
- 		return PTR_ERR(rp_inode);
-+	}
- 	rp_ni = NTFS_I(rp_inode);
- 
- 	/* remove the existing reparse data */
-@@ -693,19 +732,26 @@ static int update_reparse_data(struct ntfs_inode *ni, struct ntfs_index_context
- 	written = ntfs_inode_attr_pwrite(rp_inode, 0, size, value, false);
- 	if (written != size) {
- 		ntfs_error(ni->vol->sb, "Failed to update reparse data\n");
--		err = -EIO;
-+		if (oldsize > 0 || written > 0)
-+			ntfs_report_file_metadata_error(VFS_I(ni),
-+							written < 0 ? (int)written : -EIO);
-+		err = written < 0 ? written : -EIO;
- 		goto put_rp_inode;
- 	}
- 
- 	err = set_reparse_index(ni, xr,
- 				((const struct reparse_point *)value)->reparse_tag);
- 	if (err && oldsize > 0) {
-+		int rollback_err;
++void ntfs_report_shutdown(struct ntfs_volume *vol)
++{
++	if (!test_and_set_bit(NV_Shutdown, &vol->flags))
++		fserror_report_shutdown(vol->sb, GFP_ATOMIC);
++}
 +
- 		/*
- 		 * If cannot index, try to remove the reparse
- 		 * data and log the error. There will be an
- 		 * inconsistency if removal fails.
- 		 */
--		ntfs_attr_rm(rp_ni);
-+		rollback_err = ntfs_attr_rm(rp_ni);
-+		if (rollback_err)
-+			ntfs_report_file_metadata_error(VFS_I(ni), rollback_err);
- 		ntfs_error(ni->vol->sb,
- 			   "Failed to index reparse data. Possible corruption.\n");
+ void ntfs_handle_error(struct super_block *sb)
+ {
+ 	struct ntfs_volume *vol = NTFS_SB(sb);
+@@ -471,7 +477,7 @@ void ntfs_handle_error(struct super_block *sb)
+ 		      sb->s_id);
+ 	} else if (vol->on_errors == ON_ERRORS_CONTINUE) {
+ 		if (errseq_check(&sb->s_wb_err, vol->wb_err) == -ENODEV) {
+-			NVolSetShutdown(vol);
++			ntfs_report_shutdown(vol);
+ 			vol->wb_err = sb->s_wb_err;
+ 		}
  	}
-@@ -732,14 +778,24 @@ int ntfs_delete_reparse_index(struct ntfs_inode *ni)
- 		return 0;
- 
- 	vi = ntfs_attr_iget(VFS_I(ni), AT_REPARSE_POINT, AT_UNNAMED, 0);
--	if (IS_ERR(vi))
-+	if (IS_ERR(vi)) {
-+		if (PTR_ERR(vi) == -ENOENT) {
-+			ntfs_report_file_metadata_error(VFS_I(ni),
-+							-EFSCORRUPTED);
-+			vi = ERR_PTR(-EFSCORRUPTED);
-+		}
- 		return PTR_ERR(vi);
-+	}
- 
- 	/*
- 	 * read the existing reparse data (the tag is enough)
- 	 * and un-index it
- 	 */
--	xr = open_reparse_index(ni->vol);
-+	xr = open_reparse_index(ni->vol, VFS_I(ni));
-+	if (IS_ERR(xr)) {
-+		err = PTR_ERR(xr);
-+		goto out;
-+	}
- 	if (xr) {
- 		xrni = xr->idx_ni;
- 		mutex_lock_nested(&xrni->mrec_lock, NTFS_EXTEND_MUTEX_PARENT);
-@@ -785,9 +841,10 @@ static int ntfs_set_ntfs_reparse_data(struct ntfs_inode *ni, char *value, size_t
- 	if (valid_reparse_data(ni, (const struct reparse_point *)value, size) == false)
+@@ -2369,10 +2375,10 @@ int ntfs_force_shutdown(struct super_block *sb, u32 flags)
+ 		if (ret)
+ 			return ret;
+ 		bdev_thaw(sb->s_bdev);
+-		NVolSetShutdown(vol);
++		ntfs_report_shutdown(vol);
+ 		break;
+ 	case FS_SHUTDOWN_FLAGS_NOLOGFLUSH:
+-		NVolSetShutdown(vol);
++		ntfs_report_shutdown(vol);
+ 		break;
+ 	default:
  		return -EINVAL;
+diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
+index 27f58beb4b2d..95ca0019906e 100644
+--- a/fs/ntfs/volume.h
++++ b/fs/ntfs/volume.h
+@@ -264,6 +264,7 @@ DEFINE_NVOL_BIT_OPS(StreamsWindows)
  
--	xr = open_reparse_index(ni->vol);
--	if (!xr)
--		return -EINVAL;
-+	xr = open_reparse_index(ni->vol,
-+				ni->flags & FILE_ATTR_REPARSE_POINT ? VFS_I(ni) : NULL);
-+	if (IS_ERR(xr))
-+		return PTR_ERR(xr);
- 	xrni = xr->idx_ni;
+ void ntfs_report_metadata_error(struct ntfs_volume *vol, int error);
+ void ntfs_report_file_metadata_error(struct inode *inode, int error);
++void ntfs_report_shutdown(struct ntfs_volume *vol);
  
- 	err = ntfs_attr_exist(ni, AT_REPARSE_POINT, AT_UNNAMED, 0);
+ static inline void ntfs_inc_free_clusters(struct ntfs_volume *vol, s64 nr)
+ {
 
