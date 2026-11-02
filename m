@@ -1,48 +1,48 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.2
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793605077;
-	b=wjtcjnQGkwzA+Q9SkzK34sSq4gdry6Cr1aslv4PJs1lMi5XiIORdkiwmzthm1HuSId2O
-	 z+tQ3If37hi7HV+swwhbTx3K8Du8vZ7RzkMGePcIEVEud4Ifn3Z0pGTyVyHbd1TmEjsKD
-	 TJNHsTQ3ljgp7hINNbpiC55CKf8JL03NLzkP9LZhP6f5/RqonmCBqoN1nJeBxZ7eDXkjw
-	 3q0uKrAyzOV5M6TSeNJISU8ntyQi3wjmAHLiy9+p3UpdnYrkeuE+kjb5a3jfXCm6m/oWQ
-	 ysCADBVKlnTScEs9TuPJBO7VcqId3ZTdvZJvpfx1/ut09UFLNtUPEkh9cTwxCOa/Hhw==
+	t=1793605078;
+	b=TSZY2POWXUVV5/ixM+iGwjEpzh99UvN99MTVl5CT1hKWmL13/zNw8NDmWtIWWDqBBnO0
+	 r85va8QL9MGNicoZJKB5YlDRRcc66rizgvMiky7vTTCg96+HyCmzqPDD9kqpYn/Nx6CFX
+	 kOW4L7XEumh9GIz+MJSV9vL66nem+Lnr1+W9fCgL9QFhLABDtyNvISYlnvyWTg00KLB4R
+	 0mVj5sBHrB/qAeb3S6HNpu5Nlwms0uc1IALYRWMoezSUxutoPZDazc/X6iJERxXmUSLEt
+	 r9r5tRcnKNFDBJAfSIvKJdnS/qLou47m38uqORnoO8uTY5q3vMSnKRWbK/5G7fO+IqQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793605077;
+	a=rsa-sha256; c=relaxed/relaxed; t=1793605078;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-Id:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-CM-SenderInfo;
-	bh=6q8IXgZwpEf7ZNg6CIKYluhisxJxQV0jt3wbOYxstLA=;
-	b=YRGIAYpc40ShfduzcuxbXOnspU5iI5SfLmsHMoOmfYbsBUhOkehu5dySvaY/864L+evS
-	 8/PKgwx2I1+EbOYW3ch7Ez8bIqWkRYoyputQO6BWNX39OU1qzZHJ8K6S0Wrl/JzrJMLMn
-	 7W/7e3MRBGy6V17sRYrA6lS18ZY+E8owwdaotNa9NvS/lNgCv8rtSy7Pyb36QmV9vxu63
-	 55l7fLQ77t9z6hSIdXfC0q8NG6W67xwlZqgWY/sq8xYQzJTga7w4IQYRR4C7QNwO7ThmN
-	 plUagt0BH9hyK0AEAEN/bn4JD0Y7Fp6Bs6/kBBy88WNh5ULQAZv49wvaV7tVYQoSDWA==
+	bh=L7QKOFu0gDyxciz6uxR1t/9m3fWCnDoxj4F7dIcxigQ=;
+	b=iAu+nqbl8MjRARfBDTP83aUR6ClDuT+MZzhUVxSakjw7wbscx9BprrYhQDcQxQ8CeNOv
+	 IUx2KepYqZAZNykhQPLQyPiZciPOOmP+xcmkM7gdEN1zBxcreCCN2Pg5gJOGcb9LOyMmk
+	 hQpoj3dUfzO6Kw+GNfEpCTCit2M3YOVX4mTLxFWS3MkkTaCR+NmNrtBbmcRrGqWmiV3dH
+	 8vm65vlhV2LpunubPRAybmqFAcaDNssC4FOWt0yrPTWhigHvfIXlDCnJwvLlDk2GJHH4W
+	 EuZku/92hmC+QHuI6txiBYi79pruPYGx6UDdSGGQMRAfIzJjTF6sXIxbavnNpch5Zzg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=kC8qrGaU;
-	arc=none smtp.remote-ip=220.197.31.2
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=QAc4Weaf;
+	arc=none smtp.remote-ip=220.197.31.3
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9796F606A326
-	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 07:37:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 9796F606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6FE4606A327
+	for <ntfs@lists.linux.dev>; Mon,  2 Nov 2026 07:37:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org C6FE4606A327
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=kC8qrGaU
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=QAc4Weaf
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=6q
-	8IXgZwpEf7ZNg6CIKYluhisxJxQV0jt3wbOYxstLA=; b=kC8qrGaUS5qnZ8Oz3f
-	3eFYFkhw/79mWTJ67fevhVe4UZymxytAX9QGhF3F4HcoKxJBtH04HezEx4TNCPeG
-	Y6LA1+y9WlL42nZ0PtaUHmnEcT1xHwz7UhpCWYWruDaJ87HqwOAE2T9vPXiGMUmT
-	0M/T8DlR8JHiwih7hJh/owEZU=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=L7
+	QKOFu0gDyxciz6uxR1t/9m3fWCnDoxj4F7dIcxigQ=; b=QAc4Weaf4SMOpghHjc
+	p4qCPbgjAEv06TmWGXyWidJSoX4PN+wc/4weJKYdrAouRSStbpP2jVbjbw5uVy8m
+	WDLZemVOoBX7tK0cJbYFF+6OODuoes+c0ILBfT2HTMzLs8btXHb/OSw5svx5lPMy
+	h4VFfkzqVRpS5Cv7TAOXvYQww=
 Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3N9rIPehqahKgEw--.3981S3;
-	Mon, 02 Nov 2026 15:37:45 +0800 (CST)
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3N9rIPehqahKgEw--.3981S6;
+	Mon, 02 Nov 2026 15:37:47 +0800 (CST)
 From: Xuewen Wang <wangxuewen_ky@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -50,9 +50,9 @@ Cc: wangxuewen_ky@163.com,
 	ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Dandan Wu <wudandan@kylinos.cn>
-Subject: [PATCH v5 17/31] ntfs: report incomplete attribute range updates
-Date: Mon,  2 Nov 2026 15:35:18 +0800
-Message-Id: <20261102073532.98873-18-wangxuewen_ky@163.com>
+Subject: [PATCH v5 20/31] ntfs: preserve index traversal errors and directory retries
+Date: Mon,  2 Nov 2026 15:35:21 +0800
+Message-Id: <20261102073532.98873-21-wangxuewen_ky@163.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261102073532.98873-1-wangxuewen_ky@163.com>
 References: <20261102073532.98873-1-wangxuewen_ky@163.com>
@@ -66,337 +66,464 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3N9rIPehqahKgEw--.3981S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW3KF48trW8GrW8Cw1fCF1rJFb_yoWkJw4fpa
-	4fC39xKw4rX3s7Wwn7tws09w4akw1Igry8GrW7GwnFvrsYyw1xtF1agF4qga1ftrWkGry5
-	XrW2g3y3ZF47Za7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Up6wtUUUUU=
-X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbC7wlWP2roPclWugAA3V
+X-CM-TRANSID:_____wD3N9rIPehqahKgEw--.3981S6
+X-Coremail-Antispam: 1Uf129KBjvAXoW3Cr43ZF1rCFykZry7ArWfuFg_yoW8GrW8Zo
+	WfArs09wn5uryUAF129w12qFy7ZayDG3y5tw48Gr4kuwsrCw4DCw47G345X3y3uw4rWFs8
+	Zr1Iqwn3JFZ7Jry8n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUFjgxDUUUU
+X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbC8AtWP2roPcvkfQAA3-
 
 From: Dandan Wu <wudandan@kylinos.cn>
 
-Range insertion, collapse, hole punching and preallocation can fail
-after changing runlists or allocation without reporting the unfinished
-metadata update. Report mapping-update and cluster-release failures
-against the affected file.
+Index-root and allocation lookups collapse errors into NULL, and
+tree traversal can turn failures into EIO or EOF. Return error pointers
+and update all callers together, including both tree-walk directions.
+Report missing or malformed required index metadata as EFSCORRUPTED.
 
-Use EFSCORRUPTED for missing required attributes and invalid runlist
-state. Report context and lookup failures after a range update, including
-ENOMEM, while keeping ordinary early allocation failures unreported.
-
-After validating the requested range, treat EINVAL from the runlist
-editing helpers as corruption and report it. Reject negative starts
-and nonpositive lengths separately, preserving EINVAL for bad input
-and ENOMEM for allocation failures.
-
-Track whether insertion split or merged an existing run before its
-runlist allocation failed. Report that unfinished update while leaving
-ENOMEM before any mutation unreported; do not change rollback behavior.
+Let readdir return traversal errors without marking the directory as
+exhausted. Resume from the insertion position after a saved key is
+deleted, advance past consumed entries before a partial result, and
+retain the saved key when lookup fails before consuming it.
 
 Signed-off-by: Dandan Wu <wudandan@kylinos.cn>
 ---
-Validation:
-- Thirty cases use the real insert, collapse and punch-hole helpers,
-  covering malformed terminators and gaps, valid operations, allocation
-  failures and invalid ranges.
-- Malformed runlists return and report EUCLEAN. Three cases verify
-  reporting of mutation before ENOMEM during a split or either merge.
-- All pass under ASan/UBSan with balanced allocation tracking in an
-  extracted-source userspace harness with controlled dependencies.
+ fs/ntfs/dir.c   |  19 +++++--
+ fs/ntfs/index.c | 141 ++++++++++++++++++++++++++++++------------------
+ 2 files changed, 103 insertions(+), 57 deletions(-)
 
- fs/ntfs/attrib.c  | 84 +++++++++++++++++++++++++++++++++++++++--------
- fs/ntfs/runlist.c |  7 +++-
- fs/ntfs/runlist.h |  3 +-
- 3 files changed, 79 insertions(+), 15 deletions(-)
-
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index aa0ee311a7e7..36ea7a2d1f36 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -5975,9 +5975,12 @@ int ntfs_non_resident_attr_insert_range(struct ntfs_inode *ni, s64 start_vcn, s6
- 	struct ntfs_attr_search_ctx *ctx;
- 	int ret;
- 	size_t new_rl_count;
-+	bool modified;
+diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
+index afee30f8b501..7854a06a83b5 100644
+--- a/fs/ntfs/dir.c
++++ b/fs/ntfs/dir.c
+@@ -805,7 +805,9 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
+ 		err = ntfs_index_lookup(private->key,
+ 					le16_to_cpu(private->key_length),
+ 					ictx);
+-		if (!err) {
++		if (!err || err == -ENOENT) {
++			/* A deleted resume key leaves the next entry in the context. */
++			err = 0;
+ 			next = ictx->entry;
+ 			/*
+ 			 * Update ie_pos with private->curr_pos
+@@ -819,6 +821,8 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
+ 					goto out;
+ 			}
  
- 	if (ni->type != AT_DATA)
- 		return -EOPNOTSUPP;
-+	if (start_vcn < 0 || len <= 0)
-+		return -EINVAL;
- 	if (start_vcn > ntfs_bytes_to_cluster(vol, ni->allocated_size))
- 		return -EINVAL;
++			if (next->flags & INDEX_ENTRY_END)
++				goto next_entry;
+ 			goto nextdir;
+ 		} else {
+ 			goto out;
+@@ -879,8 +883,9 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
  
-@@ -6003,15 +6006,24 @@ int ntfs_non_resident_attr_insert_range(struct ntfs_inode *ni, s64 start_vcn, s6
- 	if (!rl) {
- 		up_write(&ni->runlist.lock);
- 		kfree(hole_rl);
--		return -EIO;
-+		ret = -EFSCORRUPTED;
-+		goto report_error;
+ 	if (next->flags & INDEX_ENTRY_NODE) {
+ 		ictx->ia_ni = ntfs_ia_open(ictx, ictx->idx_ni);
+-		if (!ictx->ia_ni) {
+-			err = -EINVAL;
++		if (IS_ERR(ictx->ia_ni)) {
++			err = PTR_ERR(ictx->ia_ni);
++			ictx->ia_ni = NULL;
+ 			goto out;
+ 		}
+ 
+@@ -901,6 +906,7 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
+ 		goto nextdir;
+ 
+ 	while (1) {
++next_entry:
+ 		next = ntfs_index_next(next, ictx);
+ 		if (IS_ERR(next)) {
+ 			err = PTR_ERR(next);
+@@ -989,7 +995,11 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
+ 			private->key_length = next->key_length;
+ 			break;
+ 		}
++		/* The saved key is consumed; retry from the next offset. */
++		kfree(private->key);
++		private->key = NULL;
+ 		ie_pos += le16_to_cpu(next->length);
++		actor->pos = ie_pos;
  	}
  
- 	rl = ntfs_rl_insert_range(ni->runlist.rl, (int)ni->runlist.count,
--				  hole_rl, 1, &new_rl_count);
-+				  hole_rl, 1, &new_rl_count, &modified);
- 	if (IS_ERR(rl)) {
- 		up_write(&ni->runlist.lock);
- 		kfree(hole_rl);
--		return PTR_ERR(rl);
-+		ret = PTR_ERR(rl);
-+		/* Splitting or merging a run can precede allocation failure. */
-+		if (modified)
-+			goto report_error;
-+		if (ret != -EINVAL)
-+			return ret;
-+		/* A valid range must be covered by the fully mapped runlist. */
-+		ret = -EFSCORRUPTED;
-+		goto report_error;
+ 	if (!err)
+@@ -1015,9 +1025,8 @@ static int ntfs_readdir(struct file *file, struct dir_context *actor)
+ 	if (err) {
+ 		if (private) {
+ 			private->curr_pos = actor->pos;
+-			private->end_in_iterate = true;
++			private->end_in_iterate = false;
+ 		}
+-		err = 0;
  	}
- 	ni->runlist.rl =  rl;
- 	ni->runlist.count = new_rl_count;
-@@ -6023,19 +6035,20 @@ int ntfs_non_resident_attr_insert_range(struct ntfs_inode *ni, s64 start_vcn, s6
- 	ret = ntfs_attr_update_mapping_pairs_locked(ni, 0, ni);
- 	up_write(&ni->runlist.lock);
- 	if (ret)
--		return ret;
-+		goto report_error;
- 
- 	ctx = ntfs_attr_get_search_ctx(base_ni, NULL);
- 	if (IS_ERR(ctx)) {
- 		ret = PTR_ERR(ctx);
--		return ret;
-+		ctx = NULL;
-+		goto report_error;
- 	}
- 
- 	ret = ntfs_attr_lookup(ni->type, ni->name, ni->name_len,
- 			       CASE_SENSITIVE, 0, NULL, 0, ctx);
- 	if (ret) {
- 		ntfs_attr_put_search_ctx(ctx);
--		return ret;
-+		goto report_error;
- 	}
- 
- 	ctx->attr->data.non_resident.data_size = cpu_to_le64(ni->data_size);
-@@ -6045,6 +6058,13 @@ int ntfs_non_resident_attr_insert_range(struct ntfs_inode *ni, s64 start_vcn, s6
- 	mark_mft_record_dirty(ctx->ntfs_ino);
- 	ntfs_attr_put_search_ctx(ctx);
- 	return ret;
-+
-+report_error:
-+	if (ret == -ENOENT)
-+		ret = -EFSCORRUPTED;
-+	/* Corruption or an unfinished update requires a report. */
-+	ntfs_report_file_metadata_error(VFS_I(base_ni), ret);
-+	return ret;
- }
- 
- int ntfs_non_resident_attr_collapse_range(struct ntfs_inode *ni, s64 start_vcn, s64 len)
-@@ -6060,6 +6080,8 @@ int ntfs_non_resident_attr_collapse_range(struct ntfs_inode *ni, s64 start_vcn,
- 
- 	if (ni->type != AT_DATA)
- 		return -EOPNOTSUPP;
-+	if (start_vcn < 0 || len <= 0)
-+		return -EINVAL;
- 
- 	end_vcn = ntfs_bytes_to_cluster(vol, ni->allocated_size);
- 	if (start_vcn >= end_vcn)
-@@ -6078,14 +6100,20 @@ int ntfs_non_resident_attr_collapse_range(struct ntfs_inode *ni, s64 start_vcn,
- 	rl = ntfs_rl_find_vcn_nolock(ni->runlist.rl, start_vcn);
- 	if (!rl) {
- 		up_write(&ni->runlist.lock);
--		return -EIO;
-+		ret = -EFSCORRUPTED;
-+		goto report_error;
- 	}
- 
- 	rl = ntfs_rl_collapse_range(ni->runlist.rl, dst_cnt + 1,
- 				    start_vcn, len, &punch_rl, &new_rl_cnt);
- 	if (IS_ERR(rl)) {
- 		up_write(&ni->runlist.lock);
--		return PTR_ERR(rl);
-+		ret = PTR_ERR(rl);
-+		if (ret != -EINVAL)
-+			return ret;
-+		/* A valid range must be covered by the fully mapped runlist. */
-+		ret = -EFSCORRUPTED;
-+		goto report_error;
- 	}
- 	ni->runlist.rl = rl;
- 	ni->runlist.count = new_rl_cnt;
-@@ -6139,8 +6167,14 @@ int ntfs_non_resident_attr_collapse_range(struct ntfs_inode *ni, s64 start_vcn,
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
- out_rl:
-+	if (ret == -ENOENT)
-+		ret = -EFSCORRUPTED;
- 	kvfree(punch_rl);
- 	mark_mft_record_dirty(base_ni);
-+
-+report_error:
-+	if (ret)
-+		ntfs_report_file_metadata_error(VFS_I(base_ni), ret);
- 	return ret;
- }
- 
-@@ -6156,6 +6190,8 @@ int ntfs_non_resident_attr_punch_hole(struct ntfs_inode *ni, s64 start_vcn, s64
- 
- 	if (ni->type != AT_DATA)
- 		return -EOPNOTSUPP;
-+	if (start_vcn < 0 || len <= 0)
-+		return -EINVAL;
- 
- 	end_vcn = ntfs_bytes_to_cluster(vol, ni->allocated_size);
- 	if (start_vcn >= end_vcn)
-@@ -6174,14 +6210,20 @@ int ntfs_non_resident_attr_punch_hole(struct ntfs_inode *ni, s64 start_vcn, s64
- 	rl = ntfs_rl_find_vcn_nolock(ni->runlist.rl, start_vcn);
- 	if (!rl) {
- 		up_write(&ni->runlist.lock);
--		return -EIO;
-+		ret = -EFSCORRUPTED;
-+		goto report_error;
- 	}
- 
- 	rl = ntfs_rl_punch_hole(ni->runlist.rl, dst_cnt + 1,
- 				start_vcn, len, &punch_rl, &new_rl_count);
- 	if (IS_ERR(rl)) {
- 		up_write(&ni->runlist.lock);
--		return PTR_ERR(rl);
-+		ret = PTR_ERR(rl);
-+		if (ret != -EINVAL)
-+			return ret;
-+		/* A valid range must be covered by the fully mapped runlist. */
-+		ret = -EFSCORRUPTED;
-+		goto report_error;
- 	}
- 	ni->runlist.rl = rl;
- 	ni->runlist.count = new_rl_count;
-@@ -6190,7 +6232,7 @@ int ntfs_non_resident_attr_punch_hole(struct ntfs_inode *ni, s64 start_vcn, s64
- 	up_write(&ni->runlist.lock);
- 	if (ret) {
- 		kvfree(punch_rl);
--		return ret;
-+		goto report_error;
- 	}
- 
- 	ret = ntfs_cluster_free_from_rl(vol, punch_rl);
-@@ -6199,11 +6241,16 @@ int ntfs_non_resident_attr_punch_hole(struct ntfs_inode *ni, s64 start_vcn, s64
- 
- 	kvfree(punch_rl);
- 	mark_mft_record_dirty(base_ni);
-+
-+report_error:
-+	if (ret)
-+		ntfs_report_file_metadata_error(VFS_I(base_ni), ret);
- 	return ret;
- }
- 
- int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bool keep_size)
+ 	ntfs_index_ctx_put(ictx);
+ 	kfree(name);
+diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+index cd9f31da5189..4a6084b884d9 100644
+--- a/fs/ntfs/index.c
++++ b/fs/ntfs/index.c
+@@ -599,36 +599,47 @@ int ntfs_index_root_inconsistent(struct ntfs_volume *vol,
+ static struct index_root *ntfs_ir_lookup(struct ntfs_inode *ni, __le16 *name,
+ 		u32 name_len, struct ntfs_attr_search_ctx **ctx)
  {
 +	int report_err = 0;
- 	struct ntfs_inode *base_ni = ntfs_base_inode(ni);
- 	struct ntfs_volume *vol = ni->vol;
- 	struct mft_record *mrec;
-@@ -6244,7 +6291,10 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
- 	err = ntfs_attr_lookup(ni->type, ni->name, ni->name_len,
- 			CASE_SENSITIVE, 0, NULL, 0, ctx);
- 	if (err) {
--		err = -EIO;
+ 	struct attr_record *a;
+-	struct index_root *ir = NULL;
++	struct index_root *ir;
++	int err;
+ 
+ 	ntfs_debug("Entering\n");
+ 	*ctx = ntfs_attr_get_search_ctx(ni, NULL);
+ 	if (IS_ERR(*ctx)) {
+ 		ntfs_error(ni->vol->sb, "%s, Failed to get search context", __func__);
++		err = PTR_ERR(*ctx);
+ 		*ctx = NULL;
+-		return NULL;
++		return ERR_PTR(err);
+ 	}
+ 
+-	if (ntfs_attr_lookup(AT_INDEX_ROOT, name, name_len, CASE_SENSITIVE,
+-				0, NULL, 0, *ctx)) {
++	err = ntfs_attr_lookup(AT_INDEX_ROOT, name, name_len, CASE_SENSITIVE,
++			       0, NULL, 0, *ctx);
++	if (err) {
 +		if (err == -ENOENT) {
 +			err = -EFSCORRUPTED;
 +			report_err = -EFSCORRUPTED;
 +		}
- 		goto out_unmap;
+ 		ntfs_error(ni->vol->sb, "Failed to lookup $INDEX_ROOT");
+ 		goto err_out;
  	}
  
-@@ -6259,7 +6309,9 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
- 					CASE_SENSITIVE, 0, NULL, 0,
- 					ctx);
- 			if (err) {
--				err = -EIO;
-+				if (err == -ENOENT)
-+					err = -EFSCORRUPTED;
-+				report_err = err;
- 				goto out_unmap;
- 			}
- 			ni->data_size = old_data_size;
-@@ -6345,6 +6397,10 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
- 			}
- 		} else {
- 			err = -EIO;
-+			if (rl_lcn < LCN_HOLE) {
-+				err = -EFSCORRUPTED;
-+				report_err = err;
-+			}
- 			goto out;
- 		}
+ 	a = (*ctx)->attr;
+ 	if (a->non_resident) {
++		report_err = -EFSCORRUPTED;
+ 		ntfs_error(ni->vol->sb, "Non-resident $INDEX_ROOT detected");
++		err = -EFSCORRUPTED;
+ 		goto err_out;
  	}
-@@ -6384,6 +6440,8 @@ int ntfs_attr_fallocate(struct ntfs_inode *ni, loff_t start, loff_t byte_len, bo
- 	unmap_mft_record(base_ni);
- 	mutex_unlock(&base_ni->mrec_lock);
- out:
+ 
+ 	ir = (struct index_root *)((char *)a + le16_to_cpu(a->data.resident.value_offset));
+-err_out:
+-	if (!ir) {
+-		ntfs_attr_put_search_ctx(*ctx);
+-		*ctx = NULL;
+-	}
+ 	return ir;
++err_out:
++	ntfs_attr_put_search_ctx(*ctx);
++	*ctx = NULL;
 +	if (report_err)
-+		ntfs_report_file_metadata_error(VFS_I(base_ni), report_err);
- 	return err >= 0 ? 0 : err;
- signal_out:
- 	if (!err)
-diff --git a/fs/ntfs/runlist.c b/fs/ntfs/runlist.c
-index 606a30ab9fa7..088a9e03e79b 100644
---- a/fs/ntfs/runlist.c
-+++ b/fs/ntfs/runlist.c
-@@ -1790,13 +1790,15 @@ static inline bool ntfs_rle_contain(struct runlist_element *rle, s64 vcn)
++		ntfs_report_file_metadata_error(VFS_I(ni), report_err);
++	return ERR_PTR(err);
+ }
  
- struct runlist_element *ntfs_rl_insert_range(struct runlist_element *dst_rl, int dst_cnt,
- 				      struct runlist_element *src_rl, int src_cnt,
--				      size_t *new_rl_cnt)
-+				      size_t *new_rl_cnt, bool *modified)
+ static struct index_root *ntfs_ir_lookup2(struct ntfs_inode *ni, __le16 *name, u32 len)
+@@ -637,7 +648,7 @@ static struct index_root *ntfs_ir_lookup2(struct ntfs_inode *ni, __le16 *name, u
+ 	struct index_root *ir;
+ 
+ 	ir = ntfs_ir_lookup(ni, name, len, &ctx);
+-	if (ir)
++	if (!IS_ERR(ir))
+ 		ntfs_attr_put_search_ctx(ctx);
+ 	return ir;
+ }
+@@ -650,8 +661,8 @@ static int ntfs_ir_move_to_base(struct ntfs_index_context *icx)
+ 	int ret = 0;
+ 
+ 	ir = ntfs_ir_lookup(icx->idx_ni, icx->name, icx->name_len, &ctx);
+-	if (!ir)
+-		return -ENOENT;
++	if (IS_ERR(ir))
++		return PTR_ERR(ir);
+ 
+ 	if (ctx->ntfs_ino->mft_no != icx->idx_ni->mft_no) {
+ 		ret = ntfs_attr_record_move_to(ctx, icx->idx_ni);
+@@ -768,7 +779,7 @@ struct ntfs_inode *ntfs_ia_open(struct ntfs_index_context *icx, struct ntfs_inod
+ 		ntfs_error(icx->idx_ni->vol->sb,
+ 				"Failed to open index allocation of inode %llu",
+ 				(unsigned long long)ni->mft_no);
+-		return NULL;
++		return ERR_CAST(ia_vi);
+ 	}
+ 
+ 	return NTFS_I(ia_vi);
+@@ -868,6 +879,7 @@ static int ntfs_icx_parent_dec(struct ntfs_index_context *icx)
+  */
+ int ntfs_index_lookup(const void *key, const u32 key_len, struct ntfs_index_context *icx)
  {
- 	struct runlist_element *i_rl, *new_rl, *src_rl_origin = src_rl;
- 	struct runlist_element dst_rl_split;
- 	s64 start_vcn;
- 	int new_1st_cnt, new_2nd_cnt, new_3rd_cnt, new_cnt;
++	int report_err = 0;
+ 	s64 old_vcn, vcn;
+ 	struct ntfs_inode *ni = icx->idx_ni;
+ 	struct super_block *sb = ni->vol->sb;
+@@ -884,12 +896,13 @@ int ntfs_index_lookup(const void *key, const u32 key_len, struct ntfs_index_cont
+ 	}
  
-+	/* Tell the caller if an error leaves the original runlist changed. */
-+	*modified = false;
- 	if (!dst_rl || !src_rl || !new_rl_cnt)
- 		return ERR_PTR(-EINVAL);
- 	if (dst_cnt <= 0 || src_cnt <= 0)
-@@ -1833,6 +1835,7 @@ struct runlist_element *ntfs_rl_insert_range(struct runlist_element *dst_rl, int
- 		i_rl[0].vcn = start_vcn;
- 		i_rl[0].length -= dst_rl_split.length;
- 		i_rl[0].lcn += dst_rl_split.length;
-+		*modified = true;
- 	} else {
- 		struct runlist_element *dst_rle, *src_rle;
- merge_src_rle:
-@@ -1846,6 +1849,7 @@ struct runlist_element *ntfs_rl_insert_range(struct runlist_element *dst_rl, int
- 		if (new_1st_cnt > 0 && ntfs_rle_lcn_contiguous(dst_rle, src_rle)) {
- 			WARN_ON(dst_rle->vcn + dst_rle->length != src_rle->vcn);
- 			dst_rle->length += src_rle->length;
-+			*modified = true;
- 			src_rl++;
- 			src_cnt--;
+ 	ir = ntfs_ir_lookup(ni, icx->name, icx->name_len, &icx->actx);
+-	if (!ir)
+-		return -EIO;
++	if (IS_ERR(ir))
++		return PTR_ERR(ir);
+ 
+ 	icx->block_size = le32_to_cpu(ir->index_block_size);
+ 	if (icx->block_size < NTFS_BLOCK_SIZE) {
+-		err = -EINVAL;
++		report_err = -EFSCORRUPTED;
++		err = -EFSCORRUPTED;
+ 		ntfs_error(sb,
+ 			"Index block size (%d) is smaller than the sector size (%d)",
+ 			icx->block_size, NTFS_BLOCK_SIZE);
+@@ -923,8 +936,9 @@ int ntfs_index_lookup(const void *key, const u32 key_len, struct ntfs_index_cont
+ 
+ 	/* Child node present, descend into it. */
+ 	icx->ia_ni = ntfs_ia_open(icx, ni);
+-	if (!icx->ia_ni) {
+-		err = -EIO;
++	if (IS_ERR(icx->ia_ni)) {
++		err = PTR_ERR(icx->ia_ni);
++		icx->ia_ni = NULL;
+ 		goto err_out;
+ 	}
+ 
+@@ -959,7 +973,7 @@ int ntfs_index_lookup(const void *key, const u32 key_len, struct ntfs_index_cont
+ 
+ 	if ((ib->index.flags & NODE_MASK) == LEAF_NODE) {
+ 		err = -EFSCORRUPTED;
+-		ntfs_report_file_metadata_error(VFS_I(ni), -EFSCORRUPTED);
++		report_err = -EFSCORRUPTED;
+ 		ntfs_error(icx->idx_ni->vol->sb,
+ 			"Index entry with child node found in a leaf node in inode 0x%llx.\n",
+ 			(unsigned long long)ni->mft_no);
+@@ -975,6 +989,8 @@ int ntfs_index_lookup(const void *key, const u32 key_len, struct ntfs_index_cont
+ 	kvfree(ib);
+ 	if (!err)
+ 		err = -EIO;
++	if (report_err)
++		ntfs_report_file_metadata_error(VFS_I(ni), report_err);
+ 	return err;
+ done:
+ 	icx->entry = ie;
+@@ -1184,7 +1200,8 @@ static s64 ntfs_ibm_get_free(struct ntfs_index_context *icx)
+ 	return vcn;
+ }
+ 
+-static struct index_block *ntfs_ir_to_ib(struct index_root *ir, s64 ib_vcn)
++static struct index_block *ntfs_ir_to_ib(struct ntfs_index_context *icx,
++					 struct index_root *ir, s64 ib_vcn)
+ {
+ 	struct index_block *ib;
+ 	struct index_entry *ie_last;
+@@ -1196,7 +1213,7 @@ static struct index_block *ntfs_ir_to_ib(struct index_root *ir, s64 ib_vcn)
+ 
+ 	ib = ntfs_ib_alloc(ib_vcn, le32_to_cpu(ir->index_block_size), LEAF_NODE);
+ 	if (!ib)
+-		return NULL;
++		return ERR_PTR(-ENOMEM);
+ 
+ 	ies_start = (char *)ntfs_ie_get_first(&ir->index);
+ 	ies_end   = (char *)ntfs_ie_get_end(&ir->index);
+@@ -1211,9 +1228,11 @@ static struct index_block *ntfs_ir_to_ib(struct index_root *ir, s64 ib_vcn)
+ 	ib_cap = le32_to_cpu(ib->index.allocated_size) -
+ 			le32_to_cpu(ib->index.entries_offset);
+ 	if ((u32)i > ib_cap) {
++		ntfs_report_file_metadata_error(VFS_I(icx->idx_ni),
++						-EFSCORRUPTED);
+ 		ntfs_error(NULL, "Entries (%d B) exceed IB capacity", i);
+ 		kvfree(ib);
+-		return NULL;
++		return ERR_PTR(-EFSCORRUPTED);
+ 	}
+ 
+ 	memcpy(ntfs_ie_get_first(&ib->index), ies_start, i);
+@@ -1323,8 +1342,11 @@ static int ntfs_ia_add(struct ntfs_index_context *icx)
+ 	}
+ 
+ 	icx->ia_ni = ntfs_ia_open(icx, icx->idx_ni);
+-	if (!icx->ia_ni)
+-		return -ENOENT;
++	if (IS_ERR(icx->ia_ni)) {
++		ret = PTR_ERR(icx->ia_ni);
++		icx->ia_ni = NULL;
++		return ret;
++	}
+ 
+ 	return 0;
+ }
+@@ -1344,8 +1366,8 @@ static int ntfs_ir_reparent(struct ntfs_index_context *icx)
+ 	ntfs_debug("Entering\n");
+ 
+ 	ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
+-	if (!ir) {
+-		ret = -ENOENT;
++	if (IS_ERR(ir)) {
++		ret = PTR_ERR(ir);
+ 		goto out;
+ 	}
+ 
+@@ -1362,14 +1384,15 @@ static int ntfs_ir_reparent(struct ntfs_index_context *icx)
+ 	}
+ 
+ 	ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
+-	if (!ir) {
+-		ret = -ENOENT;
++	if (IS_ERR(ir)) {
++		ret = PTR_ERR(ir);
+ 		goto clear_bmp;
+ 	}
+ 
+-	ib = ntfs_ir_to_ib(ir, new_ib_vcn);
+-	if (ib == NULL) {
+-		ret = -EIO;
++	ib = ntfs_ir_to_ib(icx, ir, new_ib_vcn);
++	if (IS_ERR(ib)) {
++		ret = PTR_ERR(ib);
++		ib = NULL;
+ 		ntfs_error(icx->idx_ni->vol->sb, "Failed to move index root to index block");
+ 		goto clear_bmp;
+ 	}
+@@ -1380,8 +1403,8 @@ static int ntfs_ir_reparent(struct ntfs_index_context *icx)
+ 
+ retry:
+ 	ir = ntfs_ir_lookup(icx->idx_ni, icx->name, icx->name_len, &ctx);
+-	if (!ir) {
+-		ret = -ENOENT;
++	if (IS_ERR(ir)) {
++		ret = PTR_ERR(ir);
+ 		goto clear_bmp;
+ 	}
+ 
+@@ -1502,8 +1525,8 @@ static int ntfs_ir_truncate(struct ntfs_index_context *icx, int data_size)
+ 	if (!ret) {
+ 		i_size_write(VFS_I(icx->idx_ni), icx->idx_ni->initialized_size);
+ 		icx->ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
+-		if (!icx->ir)
+-			return -ENOENT;
++		if (IS_ERR(icx->ir))
++			return PTR_ERR(icx->ir);
+ 
+ 		if (!shrink)
+ 			icx->ir->index.allocated_size = cpu_to_le32(data_size);
+@@ -1605,8 +1628,8 @@ static int ntfs_ir_insert_median(struct ntfs_index_context *icx, struct index_en
+ 	ntfs_debug("Entering\n");
+ 
+ 	icx->ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
+-	if (!icx->ir)
+-		return -ENOENT;
++	if (IS_ERR(icx->ir))
++		return PTR_ERR(icx->ir);
+ 
+ 	new_size = le32_to_cpu(icx->ir->index.index_length) +
+ 		le16_to_cpu(median->length);
+@@ -1618,8 +1641,8 @@ static int ntfs_ir_insert_median(struct ntfs_index_context *icx, struct index_en
+ 		return ret;
+ 
+ 	icx->ir = ntfs_ir_lookup2(icx->idx_ni, icx->name, icx->name_len);
+-	if (!icx->ir)
+-		return -ENOENT;
++	if (IS_ERR(icx->ir))
++		return PTR_ERR(icx->ir);
+ 
+ 	return ntfs_ih_insert(&icx->ir->index, median, new_vcn,
+ 			ntfs_icx_parent_pos(icx));
+@@ -1999,8 +2022,11 @@ static int ntfs_index_rm_node(struct ntfs_index_context *icx)
+ 
+ 	if (!icx->ia_ni) {
+ 		icx->ia_ni = ntfs_ia_open(icx, icx->idx_ni);
+-		if (!icx->ia_ni)
+-			return -EINVAL;
++		if (IS_ERR(icx->ia_ni)) {
++			ret = PTR_ERR(icx->ia_ni);
++			icx->ia_ni = NULL;
++			return ret;
++		}
+ 	}
+ 
+ 	ib = kvzalloc(icx->block_size, GFP_NOFS);
+@@ -2214,11 +2240,13 @@ struct index_entry *ntfs_index_walk_down(struct index_entry *ie, struct ntfs_ind
+ 
+ 		ictx->parent_pos[ictx->pindex] = 0;
+ 		ictx->parent_vcn[ictx->pindex] = vcn;
+-		if (!ntfs_ib_read(ictx, vcn, ictx->ib)) {
++		err = ntfs_ib_read(ictx, vcn, ictx->ib);
++		if (!err) {
+ 			ictx->entry = ntfs_ie_get_first(&ictx->ib->index);
+ 			entry = ictx->entry;
+-		} else
+-			entry = ERR_PTR(-EIO);
++		} else {
++			entry = ERR_PTR(err);
++		}
+ 	} while (!IS_ERR(entry) && (entry->flags & INDEX_ENTRY_NODE));
+ 
+ 	return entry;
+@@ -2236,6 +2264,7 @@ static struct index_entry *ntfs_index_walk_up(struct index_entry *ie,
+ {
+ 	struct index_entry *entry = ie;
+ 	s64 vcn;
++	int err;
+ 
+ 	if (ictx->pindex <= 0)
+ 		return NULL;
+@@ -2252,21 +2281,23 @@ static struct index_entry *ntfs_index_walk_up(struct index_entry *ie,
+ 				ntfs_attr_put_search_ctx(ictx->actx);
+ 			ictx->ir = ntfs_ir_lookup(ictx->idx_ni, ictx->name,
+ 						  ictx->name_len, &ictx->actx);
+-			if (ictx->ir)
++			if (!IS_ERR(ictx->ir))
+ 				entry = ntfs_ie_get_by_pos(
+ 					&ictx->ir->index,
+ 					ictx->parent_pos[ictx->pindex]);
+ 			else
+-				entry = NULL;
++				return ERR_CAST(ictx->ir);
  		} else {
-@@ -1855,6 +1859,7 @@ struct runlist_element *ntfs_rl_insert_range(struct runlist_element *dst_rl, int
- 
- 			if (ntfs_rle_lcn_contiguous(dst_rle, src_rle)) {
- 				dst_rle->length += src_rle->length;
-+				*modified = true;
- 				src_cnt--;
- 			}
+ 			/* up into non-root node */
+ 			vcn = ictx->parent_vcn[ictx->pindex];
+-			if (!ntfs_ib_read(ictx, vcn, ictx->ib)) {
++			err = ntfs_ib_read(ictx, vcn, ictx->ib);
++			if (!err) {
+ 				entry = ntfs_ie_get_by_pos(
+ 					&ictx->ib->index,
+ 					ictx->parent_pos[ictx->pindex]);
+-			} else
+-				entry = NULL;
++			} else {
++				return ERR_PTR(err);
++			}
  		}
-diff --git a/fs/ntfs/runlist.h b/fs/ntfs/runlist.h
-index 85073f9fb6ec..14a2a626ba56 100644
---- a/fs/ntfs/runlist.h
-+++ b/fs/ntfs/runlist.h
-@@ -89,7 +89,8 @@ int ntfs_rl_truncate_nolock(const struct ntfs_volume *vol,
- int ntfs_rl_sparse(struct runlist_element *rl);
- s64 ntfs_rl_get_compressed_size(struct ntfs_volume *vol, struct runlist_element *rl);
- struct runlist_element *ntfs_rl_insert_range(struct runlist_element *dst_rl, int dst_cnt,
--		struct runlist_element *src_rl, int src_cnt, size_t *new_cnt);
-+		struct runlist_element *src_rl, int src_cnt, size_t *new_cnt,
-+		bool *modified);
- struct runlist_element *ntfs_rl_punch_hole(struct runlist_element *dst_rl, int dst_cnt,
- 		s64 start_vcn, s64 len, struct runlist_element **punch_rl,
- 		size_t *new_rl_cnt);
+ 		ictx->entry = entry;
+ 	} while (entry && (ictx->pindex > 0) &&
+@@ -2276,7 +2307,7 @@ static struct index_entry *ntfs_index_walk_up(struct index_entry *ie,
+ 
+ /*
+  * ntfs_index_next - get next entry in an index according to collating sequence.
+- * Returns next entry or NULL if none.
++ * Returns the next entry, NULL if none, or an error pointer.
+  *
+  * Sample layout :
+  *
+@@ -2326,8 +2357,11 @@ struct index_entry *ntfs_index_next(struct index_entry *ie, struct ntfs_index_co
+ 		if (flags & INDEX_ENTRY_NODE) {
+ 			if (!ictx->ia_ni) {
+ 				ictx->ia_ni = ntfs_ia_open(ictx, ictx->idx_ni);
+-				if (!ictx->ia_ni)
+-					return ERR_PTR(-EIO);
++				if (IS_ERR(ictx->ia_ni)) {
++					next = ERR_CAST(ictx->ia_ni);
++					ictx->ia_ni = NULL;
++					return next;
++				}
+ 			}
+ 
+ 			next = ntfs_index_walk_down(next, ictx);
+@@ -2341,6 +2375,9 @@ struct index_entry *ntfs_index_next(struct index_entry *ie, struct ntfs_index_co
+ 		}
+ 	}
+ 
++	if (IS_ERR(next))
++		return next;
++
+ 	/* return NULL if stuck at end of a block */
+ 	if (next && (next->flags & INDEX_ENTRY_END))
+ 		next = NULL;
 
