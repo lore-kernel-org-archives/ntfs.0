@@ -1,112 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793870531;
-	b=DZWEwTvs5d4SVbTLnEJbBXeyr64DBhlfaxOhXbMo0Q9q58acrmMmiC3SPIXD1LdQcNTL
-	 EWTnXp3P5CQ9i8nOnr63z4Ie6xiYcYWVic1z9l4dt3jq8JjFvxAS1eDuh8TkzuYD9JfM6
-	 RSfOyXfDDdHp37k2GpbUWMIPDkOUNvFhaef3Hjo/hNy8yJ88DMt6qg7LH9mwgd2ixpH9d
-	 ZWbbAyk8LqLU2+ADxY1Q9gcExH5S73wlSOvy4n5craSoWtR3PQIDBT9kfarf7liAS1aX8
-	 bFoc5zThBX/8DwhwBJrf0tXkWHD7EKYtzjgtmlGn/lWXchNSNlg2bCLosyLlCmeqzzw==
+	t=1793870831;
+	b=4bpoxiTnV/3BICA+DI9wEcv40Hlk4TJph9R+rk6+bbrWToWO77RSRtOuMbOCae+JjntF
+	 eZ8SE38U02yvowDhdQW4bwVQgqImX6C2rz0rWX/ANMxiMquz4CTuWm9xEo7se9Cs+ZBLs
+	 XYqgnkFmmh9ruTADWYmVCqw/i6HtD82N0+cywM/Q3aWy88cKNZwuI9NxPWvWJWzZGl0Wn
+	 AgNOZ2F4eNGaNlQE2BYDloYY8sE7poO0Ya1hmbEq4+3xrOuGMzKtvTZWT+WbHyIVmoGCf
+	 jQGyq4+r53z9blI70GjKJSwOMT3ZNnzCjcYNnL+JJlGWISOyu0UOcnuHWDA9UmaISpQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793870531;
-	h=DMARC-Filter:Received:DKIM-Signature:DKIM-Signature:DKIM-Signature:
-	 DKIM-Signature:Received:Received:Received:Date:From:To:Cc:Subject:
-	 Message-ID:References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To:X-Spamd-Result:X-Spam-Score:X-Spam-Level:X-Spam-Flag;
-	bh=9ORTIcajMvJ+OWgJyNOSohDPENY0WS7vKpG0J7UU3y4=;
-	b=Pi7PGrN1ZBDCymW3RoH4I3VpAqMHdi1rjZGc6Qz1hsBj7bxpu6SJrVWINlwGIs4VAwpm
-	 clSbWucx9JY2Uf1TtQrN3lsRQC2BwPMojoq+MPyr81FVGRRPqhKVrzia8Jxg9OJzLpzN2
-	 OHAZS5F0CpyErll6dFRFnJIP8lS/YzXuvkGNlnZCpXJruvWg6YWETB1A/4tbwW1ByBlZP
-	 tpQW40mGXaQ/biOjJleFOE418skgJSo9yzfMbkeC4vCgo/sCMzby86gPxp5P9T+TFKeqw
-	 ZF4xffDmoCA19Bb2jYnVpxv8tGIVRWMjmibJhT8Af5mqWvDzgOgOV0zun9PEq78DcmA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793870831;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=S8OhL0sWlaiu9HTVuPROxOXwPJKrkeDv120Lpyg3CIo=;
+	b=gqubNXI20DydoRrdddWye/5y3O4iiY93tvPIK081xT23iZuWoyiBuuv0TWDLc6z09tSC
+	 V9B12arQ/ppYpnA3St8POztkW3eTHsAtA1vNR7yAq1TKrQKplK6ktsygqkQUEUzevD9e9
+	 2HzQkBWGJDXIxVGtJiOtd+usBPBDAjeVUDexO3Oweb/iYnyA08nwrEVlcGFyuDxJTcSYD
+	 IryexOfqU9L4OUw7FC4b1ELUlnbE5AQh01qa1qtakNWnM7SH+CG2qLMX0o7aztC3qi4fV
+	 2IhdrLmZoylxD+76rlRFZqvuiwlaELG8eff9FJA1Q6PHxkI67/vrMSPWD0hvQQIpmTw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=none header.from=suse.cz;
-	spf=pass smtp.mailfrom=suse.cz;
-	dkim=pass header.d=suse.cz header.i=@suse.cz header.a=rsa-sha256 header.s=susede2_rsa header.b=n50o8Nho;
-	dkim=pass header.d=suse.cz header.i=@suse.cz header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=vEObjVwj;
-	dkim=pass header.d=suse.cz header.i=@suse.cz header.a=rsa-sha256 header.s=susede2_rsa header.b=2cOYoXtK;
-	dkim=neutral header.d=suse.cz header.i=@suse.cz header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=xNpdsHrD;
-	arc=none smtp.remote-ip=195.135.223.130
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=GlwtRxbi;
+	arc=none smtp.remote-ip=117.135.210.5
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97DCB606A31B;
-	Thu,  5 Nov 2026 09:22:10 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 97DCB606A31B
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=suse.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.cz
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6925D606A331
+	for <ntfs@lists.linux.dev>; Thu,  5 Nov 2026 09:27:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 6925D606A331
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=suse.cz header.i=@suse.cz header.a=rsa-sha256 header.s=susede2_rsa header.b=n50o8Nho;
-	dkim=pass header.d=suse.cz header.i=@suse.cz header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=vEObjVwj;
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.a=rsa-sha256 header.s=susede2_rsa header.b=2cOYoXtK;
-	dkim=neutral header.d=suse.cz header.i=@suse.cz header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=xNpdsHrD
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id F1BB621E6B;
-	Thu,  5 Nov 2026 09:22:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-	t=1793870529; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9ORTIcajMvJ+OWgJyNOSohDPENY0WS7vKpG0J7UU3y4=;
-	b=n50o8NhoUcr4RCi/B4rIsia/X2BPL0xvAZqFp6JcVaXbZfzT/RTxiBntW4h00kVQGa6Adw
-	BoZgFvLF8XedTFomzkc3T1PyMdrQx7jS1R9+mgt1K6CyVCzEcEHQMaqYV1coIn8BosvIE6
-	1mdP0qlalo/s/vwRKzpCaU5hyRKm15E=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1793870529;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9ORTIcajMvJ+OWgJyNOSohDPENY0WS7vKpG0J7UU3y4=;
-	b=vEObjVwj9IoYCWGtblG300EgQss9NlqG2oQadAEYX85TWpmXLFO3Kp4hDBJ5PF1rLfqJsZ
-	UQBKm7Amz6f/XsBg==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-	t=1793870528; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9ORTIcajMvJ+OWgJyNOSohDPENY0WS7vKpG0J7UU3y4=;
-	b=2cOYoXtKQsnGxKetXHmlYmsgdtzx4dKmzc4TKkHro1fVmuXVkT6aeMOQnia12G6yDV2PP8
-	3d1d5nW7OM8023OYjhcxzn4r5MBadUUW/5fKMphJggjyFhvt6zOxv0YmYZBEEwDfWpx6eG
-	o2RmagT5J5MIADePkoerRdmpGGEJ0aw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1793870528;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9ORTIcajMvJ+OWgJyNOSohDPENY0WS7vKpG0J7UU3y4=;
-	b=xNpdsHrD+svQDtDWU8bkw0RsFYdBqvO0lz4aSu1a0Q9BoRVeC++GKGYW8dvo9pxsLw8pv9
-	oK8gPfGxFQDXWCDg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C188F134F4;
-	Thu,  5 Nov 2026 09:22:07 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 0RUpJ79K7GoMZQAAD6G6ig
-	(envelope-from <jack@suse.cz>); Thu, 05 Nov 2026 09:22:07 +0000
-Received: by quack.suse.cz (Postfix, from userid 1000)
-	id 52E39B65F; Thu, 05 Nov 2026 10:22:07 +0100 (CET)
-Date: Thu, 5 Nov 2026 10:22:07 +0100
-From: Jan Kara <jack@suse.cz>
-To: Christian Brauner <brauner@kernel.org>
-Cc: linux-fsdevel@vger.kernel.org, Jan Kara <jack@suse.com>, 
-	Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, linux-ext4@vger.kernel.org, 
-	jfs-discussion@lists.sourceforge.net, linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, 
-	linux-mm@kvack.org, ntfs@lists.linux.dev, ocfs2-devel@lists.linux.dev, 
-	linux-btrfs@vger.kernel.org, gfs2@lists.linux.dev, linux-efi@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-xfs@vger.kernel.org, 
-	Karl Mehltretter <kmehltretter@gmail.com>
-Subject: Re: [PATCH v2 04/34] ext2: don't set SB_RDONLY after filesystem
- errors
-Message-ID: <5qefa4mracb3x2z4vsdejmkyyfrhdcrixmmnooz4rzwcdfoejm@mqkvixj6afwp>
-References: <20261029-work-fs-sb_rdonly-v2-0-2f44f64f0b66@kernel.org>
- <20261029-work-fs-sb_rdonly-v2-4-2f44f64f0b66@kernel.org>
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=GlwtRxbi
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=S8OhL0sWlaiu9HTVuPROxOXwPJKrkeDv120Lpyg3CIo=;
+	b=GlwtRxbijzUXJNq0K8qSjdS3z5kMtIMdNd4guz9kWdeoQhFysajAt3d6VgJwf1
+	uki9EnDa5V9fgFGSOZFxJWHXyeJGk+XXhnX/TNoFKxRF+CfJi9gSuNqpEdPP8fzs
+	A3Z8XV3IEOV4NpkOrhsudlykaTrHvF1b/KGZ3HWEFxHcA=
+Received: from [IPV6:2409:8900:1fc3:1c4:3f62:6239:6a4a:222a] (unknown [])
+	by gzsmtp5 (Coremail) with SMTP id QCgvCgBnaJHYS+xqZ2xoEA--.8144S2;
+	Thu, 05 Nov 2026 17:26:50 +0800 (CST)
+Message-ID: <470adc85-93ad-4e75-9e72-ab35362373bd@163.com>
+Date: Thu, 5 Nov 2026 17:26:48 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -116,119 +54,133 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261029-work-fs-sb_rdonly-v2-4-2f44f64f0b66@kernel.org>
-X-Spamd-Result: default: False [-11.30 / 50.00];
-	SUSE_INTERNAL_BYPASS(-9.00)[];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MID_RHS_NOT_FQDN(0.50)[];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	RCVD_COUNT_THREE(0.00)[3];
-	DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	URIBL_BLOCKED(0.00)[imap1.dmz-prg2.suse.org:helo,suse.com:email];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,suse.com,zeniv.linux.org.uk,lists.sourceforge.net,lists.linux.dev,kvack.org,lists.infradead.org,gmail.com];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:email,imap1.dmz-prg2.suse.org:helo]
-X-Spam-Score: -11.30
-X-Spam-Level: 
-X-Spam-Flag: NO
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ntfs: fix out-of-bounds write race in
+ NTFS_IOC_LIST_STREAMS
+To: Xingyuan Mo <hdthky0@gmail.com>, Namjae Jeon <linkinjeon@kernel.org>,
+ Hyunchul Lee <hyc.lee@gmail.com>
+Cc: "open list:NTFS FILESYSTEM" <ntfs@lists.linux.dev>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20261105073353.433854-1-hdthky0@gmail.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261105073353.433854-1-hdthky0@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:QCgvCgBnaJHYS+xqZ2xoEA--.8144S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCF43Xw4rtFW3Gw4UJrWrKrg_yoWrCF15pF
+	y3K3ySqrs7Jr1xArs7ta1Y9ry093Z2gw4UKrZagFy2va13Xr1aqF17K3y8Wry8CrZ8uFyU
+	Aas0q39xWw1Uua7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U24iUUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hreqWrsS9pZagAA3j
 
-On Thu 29-10-26 17:06:55, Christian Brauner wrote:
-> With errors=remount-ro ext2_error() sets SB_RDONLY from whatever context
-> hit the error and without holding s_umount. That races with everyone
-> else changing sb->s_flags and it breaks freezing. If it happens while
-> the filesystem is frozen thaw_super() sees a read-only superblock and
-> leaves the s_writers rwsems locked so every writer hangs. A lookup in a
-> corrupted directory is enough. Karl proposed teaching thaw_super() about
-> it but Jan preferred fixing the filesystems (cf. [1]) like ext4 and f2fs
-> already did.
+
+
+在 2026/11/5 15:34, Xingyuan Mo 写道:
+> NTFS_IOC_LIST_STREAMS walks the base inode's MFT attributes twice:
+> a first pass sizes the output buffer, a second pass fills it, both
+> times filtering out streams that ntfs_stream_unlinked() reports as
+> unlinked.  That filter is the culprit: it treats a stream inode that
+> is no longer in the inode hash as live, which is precisely the state
+> a stream being deleted ends up in.
 > 
-> So call sb_set_emergency_ro() instead and let the VFS refuse
-> modifications. ext2 still refuses allocations, ext2_write_inode(),
-> ext2_sync_fs() and ext2_xattr_set() itself. The superblock isn't written
-> after the error is recorded and unlinked inodes are left to e2fsck.
-> ext2_handle_dirsync() treats EROFS as success in that state because the
-> entry was already changed.
+> When a base file is deleted while one of its named streams is still
+> open, ntfs_cleanup_deleted_inode() sets NInoStreamUnlinked on the
+> stream inode and removes it from the inode hash after dropping the
+> MFT record lock.  Nothing serializes this against the ioctl's two
+> passes, so if the flag and the unhash land between them, the first
+> pass excludes the stream while the second pass includes it, and the
+> ioctl writes an entry the allocation never accounted for.
 > 
-> A remount to read-write fails until umount and writes through file
-> descriptors opened before the error fail with EROFS.
+> The per-entry bounds check cannot catch this divergence, because
+> "offset > required - entry_size" underflows when entry_size exceeds
+> required.  With a 1-character stream sizing the buffer at 48 bytes and
+> a 250-character stream surfacing only in the second pass, a 544-byte
+> entry is written into the 48-byte kmalloc-64 allocation.
 > 
-> [1]: https://lore.kernel.org/r/hyhuckyohsabx2suvq3z7uy3pbgmihva6wgzxr3op7pzcrlu33@p7zzlgp2ehjf
+> Close the hole in two steps:
 > 
-> Reported-by: Karl Mehltretter <kmehltretter@gmail.com>
-> Link: https://lore.kernel.org/r/20260903060855.4610-1-kmehltretter@gmail.com
-> Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
+> - Reject base inodes that are being deleted before walking their
+>    attributes, like the other named stream entry points in this file
+>    already do.  This also stops the listing from reporting streams of a
+>    deleted base file as live, which is reproducible even without the
+>    race.
+> 
+> - Make the bounds check underflow-safe so any remaining divergence
+>    between the passes can only produce -EOVERFLOW, never an
+>    out-of-bounds write.
+> 
+> KASAN report from the reproducer (timestamps stripped):
+> 
+> BUG: KASAN: slab-out-of-bounds in ntfs_ioctl_list_streams+0x7a9/0xa00
+> Write of size 500 at addr ffff88800b1931a8 by task ntfs_ads_race/305
+> CPU: 2 UID: 0 PID: 305 Comm: ntfs_ads_race
+> Hardware name: QEMU Ubuntu 24.04 PC v2 (i440FX + PIIX, arch_caps fix, 1996), BIOS 1.16.3-debian-1.16.3-2 04/01/2014
+> Call Trace:
+>   <TASK>
+>   dump_stack_lvl+0x73/0xb0
+>   print_report+0xd1/0x610
+>   kasan_report+0xff/0x130
+>   kasan_check_range+0x10c/0x1c0
+>   __asan_memcpy+0x3f/0x70
+>   ntfs_ioctl_list_streams+0x7a9/0xa00
+>   ntfs_ioctl+0x3b6/0x420
+>   __x64_sys_ioctl+0xd1/0x120
+>   x64_sys_call+0x2a5/0x2220
+>   do_syscall_64+0x109/0x5e0
+>   entry_SYSCALL_64_after_hwframe+0x77/0x7f
+>   </TASK>
+> 
+> Allocated by task 305:
+>   kasan_save_stack+0x3d/0x60
+>   kasan_save_track+0x18/0x40
+>   kasan_save_alloc_info+0x3b/0x50
+>   __kasan_kmalloc+0x9c/0xa0
+>   __kvmalloc_node_noprof+0x2dd/0x800
+>   ntfs_ioctl_list_streams+0x57f/0xa00
+>   ntfs_ioctl+0x3b6/0x420
+>   __x64_sys_ioctl+0xd1/0x120
+>   x64_sys_call+0x2a5/0x2220
+>   do_syscall_64+0x109/0x5e0
+>   entry_SYSCALL_64_after_hwframe+0x77/0x7f
+> 
+> The buggy address belongs to the object at ffff88800b193180
+>   which belongs to the cache kmalloc-64 of size 64
+> The buggy address is located 40 bytes inside of
+>   allocated 48-byte region [ffff88800b193180, ffff88800b1931b0)
+> 
+> Fixes: 48996054b706 ("ntfs: add named stream ioctls support")
+> Signed-off-by: Xingyuan Mo <hdthky0@gmail.com>
+> ---
+>   fs/ntfs/named_stream.c | 6 +++++-
+>   1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/fs/ntfs/named_stream.c b/fs/ntfs/named_stream.c
+> index 95a3c05f9821..70c589207713 100644
+> --- a/fs/ntfs/named_stream.c
+> +++ b/fs/ntfs/named_stream.c
+> @@ -1632,6 +1632,10 @@ int ntfs_ioctl_list_streams(struct file *filp, unsigned long arg)
+>   	ubuf = (void __user *)arg + sizeof(hdr);
+>   
+>   	mutex_lock(&ni->mrec_lock);
+> +	if (NInoBeingDeleted(ni) || !inode->i_nlink) {
+> +		mutex_unlock(&ni->mrec_lock);
+> +		return -ENOENT;
+> +	}
+>   	actx = ntfs_attr_get_search_ctx(ni, NULL);
+>   	if (!actx) {
+>   		mutex_unlock(&ni->mrec_lock);
+> @@ -1731,7 +1735,7 @@ int ntfs_ioctl_list_streams(struct file *filp, unsigned long arg)
+>   		}
+>   
+>   		entry_size = ALIGN(name_offset + name_len, 8);
+> -		if (offset > required - entry_size) {
+> +		if (offset > required || entry_size > required - offset) {
+>   			ret = -EOVERFLOW;
+>   			kfree(sn);
+>   			sn = NULL;
 
-Nothing critical but couple of points for discussion:
+Looks good to me.
 
-> @@ -1287,6 +1287,10 @@ static int ext2_sync_fs(struct super_block *sb, int wait)
->  	struct ext2_sb_info *sbi = EXT2_SB(sb);
->  	struct ext2_super_block *es = EXT2_SB(sb)->s_es;
->  
-> +	/* Nothing may be written after an error made us read-only. */
-> +	if (sb_emergency_ro(sb))
-> +		return 0;
-> +
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 
-So shouldn't we just modify the sb_rdonly() check in sync_filesystem() to
-use also sb_emergency_ro() and don't bother with modifying individual
-filesystems?
-
-> @@ -1307,6 +1311,9 @@ static int ext2_freeze(struct super_block *sb)
->  {
->  	struct ext2_sb_info *sbi = EXT2_SB(sb);
->  
-> +	if (sb_emergency_ro(sb))
-> +		return 0;
-> +
-
-Also if we have the check in sync_filesystem(), then freeze_super() is
-generally going to fail so this check could trigger only if
-sb_emergency_ro() was set after sync_filesystem() ran and before we called
-->freeze_fs(). Since sb_emergency_ro() checking is pretty much guaranteed
-to be racy (it is just a best effort framework to limit damage), we
-probably don't have to bother with checking in ->freeze_fs() handlers.
-
-> @@ -1349,7 +1356,9 @@ static int ext2_reconfigure(struct fs_context *fc)
->  	int flags = fc->sb_flags;
->  	int err;
->  
-> -	sync_filesystem(sb);
-> +	/* Nothing may be written after an error made us read-only. */
-> +	if (!sb_emergency_ro(sb))
-> +		sync_filesystem(sb);
-
-If there's a check in sync_filesystem(), this change can go away.
-
-> diff --git a/fs/ext2/xattr.c b/fs/ext2/xattr.c
-> index 8f608930a48c..12dfffff189c 100644
-> --- a/fs/ext2/xattr.c
-> +++ b/fs/ext2/xattr.c
-> @@ -429,6 +429,8 @@ ext2_xattr_set(struct inode *inode, int name_index, const char *name,
->  	ea_idebug(inode, "name=%d.%s, value=%p, value_len=%ld",
->  		  name_index, name, value, (long)value_len);
->  
-> +	if (sb_emergency_ro(sb))
-> +		return -EROFS;
-
-Is this really needed? All the xattr operations go through mnt_want_write()
-/ mnt_want_write_file() so this should be caught in VFS...
-
-								Honza
--- 
-Jan Kara <jack@suse.com>
-SUSE Labs, CR
