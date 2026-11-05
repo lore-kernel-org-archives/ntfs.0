@@ -1,55 +1,91 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=74.125.82.49
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793882049;
-	b=N64Q9t9VaYkeJhLsfHKUPlZhsHomIPPUVy4QAiUDCSk3ukfI03KTH50KWP1Lkl05O4r4
-	 +m0iJbqsNC1cYWg3lokhAq+gfQFVpv6Vz00RrBzte2hMlatS9Rr9Ym8K5S3HwN/RDDS0/
-	 XwwlD8NrEolSBMque1u7Efoi+Vqot4IkLnKOpWTvLBub06rzgw3gph4iCdsgAK64HFrER
-	 ywPZ3dV/lxkbXfDXmgJre/Ypzy+8CaHg2gtDskmMVMbaH69Yevf0SlRVogq9WdNWMX12o
-	 L6Vr93Tj0n8idwQm2TCLPl0un+k8nZNX9l9fgjvPTlEHrvi4gEJ2jWCcH8uAxCnsYVA==
+	t=1793883725;
+	b=CEok0Leogn3HVq7QqqmDr7zfyGI2QZiVvMxD91/Z4DloGWyDF0dfqRFo+X2JMnlB/Wgk
+	 u5NwL02/GHotLaKBaf1uQY1pN235ImvL9w3GclzursOQkr+uNe9raSUmQWWncDiS74H5z
+	 Eg4i3Jd4nRGxbrrV1XB5IS7uf50Vxa/wJXFvPUuNPdS9P6VQYYb8quqU/kQbeH5WTMIk4
+	 W0P/VsomF+8UeedgUMq7MQ/zA2YMCF15iXj1pSXcLBwU43Kuo2G02pQZOpnlwW4bCV7o1
+	 a/ufKu4NmgYeaADaWrIA64PVlojKY0uVgHpmqXXefk2KDi12b10UinHRygm1+jmCqCA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793882049;
-	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
-	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=zKSd7uSYmQzY/5LR3ZcH+eQTdOP9XMXjOKWyQWrdLhQ=;
-	b=QjofmiLkqzkvBcolt6RmaVt8VCwWNUCFB1E6vfVbsJ2ldrbBn7kYc8iiLoORqi8E9j4z
-	 xxt9CShcSiuY0C8vfdFzC17MuBO2QB4dQPtF19vhnqK5TVf+1lBvLe1jv+gH9WeBh8taZ
-	 bRbClGEzXyfIDcFslEBTgReTsDsmhsrfXfiabrJa/lx+6gJ909kf8/S4mHZix9847Dwc7
-	 /smyDzgNVZ01yxGUfZJcIs+rBfVO99fJ/qsG0NNZKUcmtwkEAUjPb9ASq+kL6CK0xV3S5
-	 OS9y3XYuHRz0iGNL6wmkrSG9bilUx58HDeRisgu060qB2r0vJERZOwEundHi5Rq6YjA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793883725;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Gm-Gg:X-Received:Received:From:To:Cc:Subject:
+	 Date:Message-ID:X-Mailer:MIME-Version:Content-Transfer-Encoding;
+	bh=zaZo2IN21mSc8I602pjnEtUM9ME8C1zumOrQwc4EBXg=;
+	b=QvWd+k9ckzvc9w+QShWasDrsRKUgxcDtv7qnv15rgM5qyLPYpZxMP3dP3cm3Ou7ONnpb
+	 l8QoBUB1s7aPq8nnIwSsNEkPm2OkKvAEj1EvXWV+HfkQ3BnzM9kbsCwgJxCUOpr783JvH
+	 TzHF3Y/Wh2LRABWgLcMVPE6OnqOdivTSzqMiwpw3sbz/NvO+yEyDGsVkhfJId9/vcqBOj
+	 L3MDZK+9Qkfd8Qf+ycLJI1od90Ax7ikS5dhcERAOpfi4yr9cGttP9SBGCknub8Gr3hpkE
+	 NOfB0ESFdXso9MmYNrtBDOLtbx0PItFmSmYs0sUqhxusDI5ANVQtkK7zq2WfGOgIF6Q==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GpEbYDcv;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Oy5DMWK4;
+	arc=none smtp.remote-ip=74.125.82.49
+Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DC5606D801
-	for <ntfs@lists.linux.dev>; Thu,  5 Nov 2026 12:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B910C606A328
+	for <ntfs@lists.linux.dev>; Thu,  5 Nov 2026 13:02:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org B910C606A328
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GpEbYDcv
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 225D71F00A16
-	for <ntfs@lists.linux.dev>; Thu,  5 Nov 2026 12:34:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793882048;
-	bh=zKSd7uSYmQzY/5LR3ZcH+eQTdOP9XMXjOKWyQWrdLhQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=GpEbYDcvtKF5H26PDy/Lw5I9p0v54rNuyYd3zHUKwHgSrPdSEvRIE/E3AkfFswFIM
-	 iljXoGutg4xvnEHaiGhG/WXyCWvrUgoAryY7Ae2tcuqkwJcHPBNBwkBBUgHOuXPHWl
-	 MpoD5damQFSW6AoSqW92Ep9mNWMwNH2LFZxgpNtvIDCXvywq6BTIiAPlNgsfqOLOP5
-	 j9z/y3GPF4Y/H/DRxiR7BUPMQyXDNvJb+61jc1Z1BEex+Yd/lvRS4/brbi9V1SkqF5
-	 1Rcx7oRkMa3581yx2SirUckrrUPnPqJbQhZhocT5zr0KN7xBp3X7XmTKh6rUKIo6nM
-	 O36dL+t7d4aYg==
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6ae305e3bd9so2987123a12.0
-        for <ntfs@lists.linux.dev>; Thu, 05 Nov 2026 04:34:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AKwUvBw01+264wbETzB/lnW4AwG/qj4tRy1PgbenSGSJ0r42+BFXMjIw2JEA5DI/o47wHt2xi2iR@lists.linux.dev
-X-Gm-Message-State: APuU4Z/rL/YRwhlbEyIEso3na0tJF29/b842PyGItJD1vjkcDYDQpzt6
-	Rn2Ck5do2Q15ny+iDQ5/GThqtLlkKbj22RqkcNYt8Y/A4DUhgS++7wgph3JF79kuHD6EOWeK52r
-	KMWE7T3sBF76v97XA8KJkxlYJxT/XNvw=
-X-Received: by 2002:a17:907:3ea2:b0:c44:16ad:c31d with SMTP id
- a640c23a62f3a-c4ca793563emr1703802466b.4.1793882046812; Thu, 05 Nov 2026
- 04:34:06 -0800 (PST)
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Oy5DMWK4
+Received: by mail-dl1-f49.google.com with SMTP id a92af1059eb24-1a2af4c8d00so657450c88.0
+        for <ntfs@lists.linux.dev>; Thu, 05 Nov 2026 05:02:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1793883724; x=1794488524; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=zaZo2IN21mSc8I602pjnEtUM9ME8C1zumOrQwc4EBXg=;
+        b=Oy5DMWK4qWmsUrFqQy04sOMx7qhuzYcHzz3TSa63nnWF5dxww1qYv/VH+Fv+rUCKca
+         68bxzChh86OHm6VdN41uiLkcPfAKNywfSltTGgoZxFEoj7DhcoOTpqhaPJBvplUZBeKz
+         OqNEY4isOB1FSKabBWGnjHixZTD8GQQu3Q0EIJubW6VnuySIi4m6AAq0rv+uR7ak8Vji
+         mvP+hzJh9SXfvES9GNGEpADuVPJfSvRiQgQxubhokj53kcYvXljuhhuREFFdl65fmbXX
+         JWQOZlnxfJd2bK8u6Rl5ZdkoQw0OrXwr8tDkGWGG+WoQNMJAYag6qW2Gqv6dj/gMqdI3
+         tj0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793883724; x=1794488524;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=zaZo2IN21mSc8I602pjnEtUM9ME8C1zumOrQwc4EBXg=;
+        b=EuVSUOmqKw3+aPv1cN7eQOnMUeS/DzaIuclYBjkso8wVE53AmOnOvuYiFVDbxwpHHT
+         iB72KQlrWaXpZuljs4ruiqXEqViSoES5dEFR5UuNUnjMUWSmo3bxf9j3NYw7JnKJpv5I
+         PIWkOQLnJlOhf1IGSqXiw/aeeLQlw11iKEyfPpOEeuvU/7QCYgIG+hk7wCrpSFwj+q9H
+         NbiYJHWraGRZb5V/DPvGOvvfqtJJclXUbK04F8UiDQANkvcYweWUDCiMGGaSh9T9jLdE
+         f1eRn1BQ9OR4uEO/Akx2QktyzVXW2dXTdMpLXIaTLU0hEHZOFDeZzUkZAQTIw+BXLfMb
+         qtBw==
+X-Gm-Message-State: APuU4Z8LB5evFSdclx477i+EW6eZhh/90o0p330RcCPjdHgeldKdKmNf
+	iXwRCVRyBkrTBdl5Sd49kgOmzC5k89biRv9xTp2Yvsu6O2YPZrv34Oce
+X-Gm-Gg: AYBFou2hAHOgB0B5ahdy4LOHUkxMK1wf5mPqjPeUZ0ewT7DwY8dq4L28YluSaYiMANv
+	UMt8FFWSCUb1DCxGdVvB2i2acdtMh18rCFjIBSfYjLMS2Wi9FiM0rs8xTaArlxO+Ve7m7vkQjhc
+	GGpnX/+cbVLd+Sc9M7H9tKd+iNXxofYkxQ3XWRECGzrNZG3FxAjv862hvMEEWdWM0aH88o5ye27
+	+ZBNdBuegP0Wp19SZZvk9GcmL3A/vZalrdf4Im/xYbqu6Y5tajk+f5m8famSZe9GKNwev0ltyTE
+	FoVdETTxn9WXGJ08KLM1N1wwno+XUoetzDHAblBGhbfz88Oso+rAT1IYXjDfT1bR7qjTnf488rI
+	hyBPO6u2PoYkrYSOPoTqgWNJShkZXJN9lpkj52Je/QzOpmqTIf0UOQQT19RCUVDYp5xQXHI9rBK
+	bPeUom4BwQ+sCrnX0Lo8kVv5oKupUmHMRNG4p6vbSe4s4TpaBNhDWLgpmjdE4GHYmvFsuYeK+OP
+	B/XTANxRGwllavOZ1l3Rg2yDJGV2x3TNRobcdZ2xvkI4tGLoPntbRG9iU5V2hLIiK3FjGiRy6pn
+	R8ktIbH4epcIaQOk/SHBiYETYJeiOidOepC7tk6GNrxZsg==
+X-Received: by 2002:a05:701b:4512:10b0:181:73fc:e53 with SMTP id a92af1059eb24-1ac5b7e21fdmr29165905c88.29.1793883723317;
+        Thu, 05 Nov 2026 05:02:03 -0800 (PST)
+Received: from osman.mioffice.cn ([43.224.245.178])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b245c6f0dcsm22945048c88.21.2026.11.05.05.02.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2026 05:02:02 -0800 (PST)
+From: Zhan Xusheng <zhanxusheng1024@gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	zhanxusheng@xiaomi.com,
+	stable@vger.kernel.org
+Subject: [PATCH 1/2] ntfs: don't write a compression block after a short copy
+Date: Thu,  5 Nov 2026 21:01:58 +0800
+Message-ID: <f385711f8772132f64462e1d6c13efadadc51bc2.1793874221.git.zhanxusheng@xiaomi.com>
+X-Mailer: git-send-email 2.43.0
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,97 +95,66 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <20261105073353.433854-1-hdthky0@gmail.com>
-In-Reply-To: <20261105073353.433854-1-hdthky0@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 5 Nov 2026 21:33:53 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd-E0NP2wipYr71y-u0n8oPHJ4ivvp9TiTiwTycoq1uY=g@mail.gmail.com>
-X-Gm-Features: AclHuK9Cv-3G-5Ief9HsBr-5pctSH_ukS4ZJ8HtQYsGzEnIp8CDT1FNqbc-lcl0
-Message-ID: <CAKYAXd-E0NP2wipYr71y-u0n8oPHJ4ivvp9TiTiwTycoq1uY=g@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: fix out-of-bounds write race in NTFS_IOC_LIST_STREAMS
-To: Xingyuan Mo <hdthky0@gmail.com>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>, "open list:NTFS FILESYSTEM" <ntfs@lists.linux.dev>, 
-	open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 5, 2026 at 4:34=E2=80=AFPM Xingyuan Mo <hdthky0@gmail.com> wrot=
-e:
->
-> NTFS_IOC_LIST_STREAMS walks the base inode's MFT attributes twice:
-> a first pass sizes the output buffer, a second pass fills it, both
-> times filtering out streams that ntfs_stream_unlinked() reports as
-> unlinked.  That filter is the culprit: it treats a stream inode that
-> is no longer in the inode hash as live, which is precisely the state
-> a stream being deleted ends up in.
->
-> When a base file is deleted while one of its named streams is still
-> open, ntfs_cleanup_deleted_inode() sets NInoStreamUnlinked on the
-> stream inode and removes it from the inode hash after dropping the
-> MFT record lock.  Nothing serializes this against the ioctl's two
-> passes, so if the flag and the unhash land between them, the first
-> pass excludes the stream while the second pass includes it, and the
-> ioctl writes an entry the allocation never accounted for.
->
-> The per-entry bounds check cannot catch this divergence, because
-> "offset > required - entry_size" underflows when entry_size exceeds
-> required.  With a 1-character stream sizing the buffer at 48 bytes and
-> a 250-character stream surfacing only in the second pass, a 544-byte
-> entry is written into the 48-byte kmalloc-64 allocation.
->
-> Close the hole in two steps:
->
-> - Reject base inodes that are being deleted before walking their
->   attributes, like the other named stream entry points in this file
->   already do.  This also stops the listing from reporting streams of a
->   deleted base file as live, which is reproducible even without the
->   race.
->
-> - Make the bounds check underflow-safe so any remaining divergence
->   between the passes can only produce -EOVERFLOW, never an
->   out-of-bounds write.
->
-> KASAN report from the reproducer (timestamps stripped):
->
-> BUG: KASAN: slab-out-of-bounds in ntfs_ioctl_list_streams+0x7a9/0xa00
-> Write of size 500 at addr ffff88800b1931a8 by task ntfs_ads_race/305
-> CPU: 2 UID: 0 PID: 305 Comm: ntfs_ads_race
-> Hardware name: QEMU Ubuntu 24.04 PC v2 (i440FX + PIIX, arch_caps fix, 199=
-6), BIOS 1.16.3-debian-1.16.3-2 04/01/2014
-> Call Trace:
->  <TASK>
->  dump_stack_lvl+0x73/0xb0
->  print_report+0xd1/0x610
->  kasan_report+0xff/0x130
->  kasan_check_range+0x10c/0x1c0
->  __asan_memcpy+0x3f/0x70
->  ntfs_ioctl_list_streams+0x7a9/0xa00
->  ntfs_ioctl+0x3b6/0x420
->  __x64_sys_ioctl+0xd1/0x120
->  x64_sys_call+0x2a5/0x2220
->  do_syscall_64+0x109/0x5e0
->  entry_SYSCALL_64_after_hwframe+0x77/0x7f
->  </TASK>
->
-> Allocated by task 305:
->  kasan_save_stack+0x3d/0x60
->  kasan_save_track+0x18/0x40
->  kasan_save_alloc_info+0x3b/0x50
->  __kasan_kmalloc+0x9c/0xa0
->  __kvmalloc_node_noprof+0x2dd/0x800
->  ntfs_ioctl_list_streams+0x57f/0xa00
->  ntfs_ioctl+0x3b6/0x420
->  __x64_sys_ioctl+0xd1/0x120
->  x64_sys_call+0x2a5/0x2220
->  do_syscall_64+0x109/0x5e0
->  entry_SYSCALL_64_after_hwframe+0x77/0x7f
->
-> The buggy address belongs to the object at ffff88800b193180
->  which belongs to the cache kmalloc-64 of size 64
-> The buggy address is located 40 bytes inside of
->  allocated 48-byte region [ffff88800b193180, ffff88800b1931b0)
->
-> Fixes: 48996054b706 ("ntfs: add named stream ioctls support")
-> Signed-off-by: Xingyuan Mo <hdthky0@gmail.com>
-Applied it to #ntfs-next.
-Thanks!
+From: Zhan Xusheng <zhanxusheng@xiaomi.com>
+
+ntfs_compress_write() does not read in the folios of a compression
+block that the write covers completely. If the copy from user space
+then comes up short, the rest of those folios still holds whatever
+the memory held before; ntfs_write_cb() compresses that to disk and
+the folios are marked uptodate.
+
+The copy can come up short after fault_in_iov_iter_readable() has
+succeeded if the source buffer is unmapped in between. On a volume
+with 4K clusters, writing 64K at offset 0 of a compressed file while
+another thread unmaps and remaps the last page of the buffer leaves
+61440 new bytes followed by 4096 bytes of another process's freed
+memory in the file. The write returns -EFAULT.
+
+Treat a short copy into a full block like a copy that made no
+progress.
+
+Fixes: 5b676a77f3e4 ("ntfs: skip reads for full compression unit overwrites")
+Cc: stable@vger.kernel.org
+Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
+---
+Tested in QEMU on ntfs-next with KASAN, 4K clusters, page cache
+dropped and freed memory filled with 'Z' before each write:
+
+  before: 16 of 41 writes failed, 3 of them changed the file, each
+          time bytes 61440-65535 read back as 0x5a
+  after:  286 of 731 writes failed, none changed the file
+
+The same loop on rootfs gives short writes and no corruption. I can
+send the reproducer if it helps.
+
+ fs/ntfs/compress.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/fs/ntfs/compress.c b/fs/ntfs/compress.c
+index 82c7c7d29073..287bd47282d9 100644
+--- a/fs/ntfs/compress.c
++++ b/fs/ntfs/compress.c
+@@ -1567,6 +1567,16 @@ int ntfs_compress_write(struct ntfs_inode *ni, loff_t pos, size_t count,
+ 			}
+ 		}
+ 
++		/*
++		 * The folios of a full compression block are not read in, so
++		 * after a short copy the rest of the block holds whatever the
++		 * folios contained.  Don't write that out.
++		 */
++		if (full_cb && copied < cb_size) {
++			iov_iter_revert(from, copied);
++			copied = 0;
++		}
++
+ 		if (!copied) {
+ 			err = -EFAULT;
+ 			goto release_pages;
+
+base-commit: 564c7753647731d19170914c1c637d3b33d88d3b
+-- 
+2.43.0
+
