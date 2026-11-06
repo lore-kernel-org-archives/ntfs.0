@@ -1,97 +1,60 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=74.125.82.43
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793941051;
-	b=m+WZEQrZV9pTcM8/wOrYGqvXTEUk+CVmor76KWfcwNpKMvdCDxJuveOpuILiUXcoaEs+
-	 AkPDA+56H4ukyT6xVRx8mHp7jaq1X4LHsaX4wH+p1/ey/zdQiTf/S6dzf0yVawCqOWx4U
-	 Cv11D3i6XLYqO1Ul6tx8XovF7br6FNz5A4fEhhdxxiru8uJCggpGn0F7prykvdqX0z08b
-	 GgRmqnOnQmqOQqTQ/1rniAHbVw9VR5qIrLltc8Cm/KJDAx1sgX0O+j1X12Tn8027pA5CB
-	 x42EIoMdfsO7dCef9Xr4jU7XvKSEyTq5i6aNjAAiIfUwuIYU9+FGzUjnDuQTCbftXpQ==
+	t=1793946718;
+	b=Z1GB7HwL3IlM1vrxy2oZJ642vQDMlwtohqMP+3SC1+ERHmLmYDUd4/JXJE9VKfZKjjR5
+	 7WcMlb9nXdDMGSZF86D55gFSG0Trq/sgzMSkIU5azvBjMZFN+scl27+qvGx9u36Ufm62J
+	 T1hnMi0QMR6BqVHuTIt0IQIxIGsxGO1irwTQ3FGr00wjOIHf8RkP0kVrWS3PWb9KKUShu
+	 YAh8yt6Op6hsxxPWFgJTQcBsuEmxtBDDHOnY07/fLXjN1dOCzupjSwjcA6ZdapA3yFPDB
+	 X6XtFtN21H4trcpOUEJTOj/CcR3gMZuW0h2ZsckcQcowLwCILh33KSn2kVQFtTCwatg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793941051;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 From:To:Cc:Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding;
-	bh=6NWM9VuPZ6/E/oWJvm69QVGVJxdjPEsFNw978dAXWSo=;
-	b=U5Mffa0mhEK6on5kBnXXhPyy1jjMwBIXpfdyZgRIOG1O+XBz5cEcBXqr9LBw8FT+h0CS
-	 X5lHHelj2oKcw1bgbyTU+zDouPpMrNlAskQb1BFjaIJE8Dj/QPz0kK663JLpB7rewHzpP
-	 4vWBj0+JjZOIufpS3tESizwVKhiJLYz+y9RyRAh02TrkCm4rD3m/C+EiEWEmYv7Dd+7ZW
-	 hsXq4xk5j0Ezrf07uEuI0VJjplAN23hVk9NXVDQTBeZnvYBUnoJwxTciE1zowHVz/uHIB
-	 QtEAFcSvrESJw2TazbaYAynqJZdk5G0w+s31dwCwFu6d3Qqc2d4SsioZ/iwvT/IeixQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793946718;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-Originating-IP:X-CM-SenderInfo;
+	bh=Fb+q51bOA1/agFgSpH19AS5xfMfZU+6VgliKRFUf71g=;
+	b=u9JUgDpZKeXSj4vZiPyUWeHxEksiM+jYx3/+pgUxSqyVh8JqD80qEXBzwhT2vwuQ7dXX
+	 +r6yHSS1ocuYWZ5xO//coSPOf0WfecrpfK0RR6vs0I/3XF0ZmzbjapiwgjKrXtCCXYN3h
+	 sTwV9rAGr0b2YaoLWYB5yryXEFPXj7aX0Bvh2OF8BKBn+LDjr+sp9NsfjUs31ePmYvbp8
+	 SpaybMFyNxyVg6XUE71Eq7So8VBMZdZWmGr8iOBIkiWBUMDTUgAYL/IqBhS1lEhJs8iGK
+	 Z7BCXwF1Kc6tBKeyIiSZhBP3o61inbJs/cvHXbs3CmOgZUP0d3YoeCyj/TBsM4dZCVA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jl5QzA1y;
-	arc=none smtp.remote-ip=74.125.82.43
-Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b="AH/rq1d1";
+	arc=none smtp.remote-ip=117.135.210.5
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E12606A32C
-	for <ntfs@lists.linux.dev>; Fri,  6 Nov 2026 04:57:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 32E12606A32C
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C63E606A328
+	for <ntfs@lists.linux.dev>; Fri,  6 Nov 2026 06:31:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 9C63E606A328
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jl5QzA1y
-Received: by mail-dl1-f43.google.com with SMTP id a92af1059eb24-1ae18eb9ad0so402875c88.1
-        for <ntfs@lists.linux.dev>; Thu, 05 Nov 2026 20:57:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793941050; x=1794545850; darn=lists.linux.dev;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=6NWM9VuPZ6/E/oWJvm69QVGVJxdjPEsFNw978dAXWSo=;
-        b=jl5QzA1yFvFgZL/Malgkt91yRyAfc/WojSwTLb43TWehSH27bnrCjSuIXTn5Bn6ut8
-         snfiWCNK0tK2e+Rvfxpces33K/igCOM09N9YCBT5XHv+tRnllt1Ded/nKH2Mbs30qJ0t
-         SObST2mUCsV19M3pdPOQgqfdA1dAn+/gQ0y5yzKSzX6Psi4LExCEJ/hPCXiOti9S1mfk
-         HWiy+3nsxhkcmSuAVnmxjSNTVzH9WwxMMgSgiXMG3ZTZH0mq9L7/EOY9ZoscghMCmvis
-         6Q4w5uQh4dctq7OM04gl6CeS5gPv30Lacbw+ttUWc+gWpanYmA4+eDNVyLZUR3S7Cjth
-         2SMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793941050; x=1794545850;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=6NWM9VuPZ6/E/oWJvm69QVGVJxdjPEsFNw978dAXWSo=;
-        b=siZMqJ1gQlSYe6FKlpHP7ZBjN1kVNOq9jP0qYjHfqZJnRxQxgGNyNm7YYaiFLJFUEG
-         VNn4pOwUwlSdwpu8tGgKlJqBKHGiLULl5RKPF8FboCqF6aCtHoZXN4azG0PHFd4bKZX1
-         cY61lOrE5JA+BGjT8D7HbX6CfyY0kZ4wSWCw5EVBeIUpX+jlSLZrEAcp5m2+J4rZmuw8
-         3lS2+ZpCzP5Y8RDVbbGV4/zxJuUA8hlquOJjM2FFXL31pyApjM2Hg5EdRbgT1VIVWdu9
-         t30MFIjFvMbF2tDA9iBqTP2RAhlXlDD6ouvYyrqQbpUk6wpGCXX8FsQtVziB5cgdR3aw
-         26Jw==
-X-Forwarded-Encrypted: i=1; AKwUvBypV1bghlp3NHYZr30VFn2WtAFVUXUf1e5ke6QUIBXP/a7ZqHhE9hNEVAyQ2+LQzZ245BWl@lists.linux.dev
-X-Gm-Message-State: APuU4Z/5UXr7/y+DDsE16WZG8AkEEqdQnm16GtKzhPPcxTrq77uq7JiI
-	EXCBvOboWYKznLMgG2ZTf7EVRuvQMdoPOlZOfzMogtD2ScmHKKPZ3iGC
-X-Gm-Gg: AYBFou3sWvL0U1WWONAmDLeH+hDG2ZtkkNp58VhNgsRG0bhPqeLBUct9hgb0P9YBnka
-	YGJxigdBCU17pxr6k44CB/iPDCeEa3xy3kBPZGV8MCENjtB9/rR4i56v9Up0VY3DyinpP2PrHBf
-	/lJElbapmCD0RKR6Pb+n5PrbWjNiEJj1JFmY5aTPmyhsSXv3+nwsgTGK+w2Rz8+bxYByPkK47ws
-	II5FRnJ7ZY8Qf9cNfhL7P/TWSAaH6BnHi9dX4qsyd/2GxlYfUpVaHd5Qi++iUGsmLxDL+GPhtfG
-	W16i6lO42zAaWhKEg2viUUI3y8Ule1+1cXENA3IiwSDZUVkhwdlbENpQHdyYTdo4Ea9HrSPiUvg
-	8jRB/c5ZLy5Xg432vKuJcrRTsmfJEvShAqLkdJAg1zXl3aCB0GjzIUApJjRCM7TOvGkpeRYfRdI
-	Dvi5JhUnTz4aJ1l1NBz7LMWd1sdiJDpJU8IuC32rLOID4AoWYJ7wlHtpTnqFaDJQSGVpuEk3qOQ
-	pHINjxVg7wJExhZE0HTg1szEeFJl87JwqjV5xVdjEM8BGezReYQm8g7YT0ZB23z53thKiqbfGm8
-	gKqdbBWOxSvjiCJtTG9A1LcnbADxdclL3F4brwS0eP9TuA==
-X-Received: by 2002:a05:7022:f51c:b0:1b2:43b3:a90c with SMTP id a92af1059eb24-1b25d3153femr1419262c88.9.1793941050171;
-        Thu, 05 Nov 2026 20:57:30 -0800 (PST)
-Received: from osman.mioffice.cn ([43.224.245.178])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b25e4c41eesm3038969c88.15.2026.11.05.20.57.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2026 20:57:29 -0800 (PST)
-From: Zhan Xusheng <zhanxusheng1024@gmail.com>
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: Namjae Jeon <linkinjeon@kernel.org>,
-	ntfs@lists.linux.dev,
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=AH/rq1d1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Fb
+	+q51bOA1/agFgSpH19AS5xfMfZU+6VgliKRFUf71g=; b=AH/rq1d1ZDZSZmVN+C
+	DtFmirkfbEbq9UB4F9WlK7TYI/ky5e1xfZ4AzJ+vSL8pG6klP99olfw1PnnA8+3T
+	adn6Klg6liWsXr7YTmyN15M+KZe5CT5zLexv63kHb7nIktV8sZtzlR2HWRXqphZN
+	cC4NfAeRZLq66+vWUL3w9f1GU=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3lzdFdO1qwIxJFg--.3403S3;
+	Fri, 06 Nov 2026 14:31:36 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org,
-	zhanxusheng@xiaomi.com,
-	Zhan Xusheng <zhanxusheng1024@gmail.com>
-Subject: Re: [PATCH 1/2] ntfs: don't write a compression block after a short copy
-Date: Fri,  6 Nov 2026 12:57:25 +0800
-Message-ID: <20261106045725.3047943-1-zhanxusheng1024@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <au0zsi-oLfcprQxI@hyunchul-PC02>
-References: <au0zsi-oLfcprQxI@hyunchul-PC02>
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v3 1/5] ntfs: initialize inherited ACLs after allocating the MFT record
+Date: Fri,  6 Nov 2026 14:30:55 +0800
+Message-ID: <20261106063059.2904988-2-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261106063059.2904988-1-liubaolin12138@163.com>
+References: <20261106063059.2904988-1-liubaolin12138@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -102,14 +65,140 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3lzdFdO1qwIxJFg--.3403S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW3Gr1xZFyruFyfJw1UKr4kJFb_yoW7Xr4rpF
+	Z3WrW7JrsxXr1Sg3Z3tw45uw13t3ykurWUWr47J3WfA3WFgw1Sga4xKryjkF93trZ5G3sr
+	XF4UK3y7JrZ8u3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j718kUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6ghFEGrtdEj2TwAA31
 
-Hi Hyunchul,
+From: Baolin Liu <liubaolin@kylinos.cn>
 
-> This patch looks good to me. But the second patch in this series
-> appears to be missing.
+ntfs_init_acl() can write EAs, but __ntfs_create() calls it before
+allocating the new inode's MFT record. An inherited access ACL can appear
+correct in the inode cache and disappear after eviction.
 
-Thanks. My mistake, I dropped 2/2 before sending; this patch stands
-on its own.
+Initialize the ACL after allocating the MFT record and adding the standard
+attributes. Release the parent and child record locks around the ACL
+helpers to avoid recursive locking, then refresh the local mode from the
+inode. On creation failure, remove any EA and EA_INFORMATION attributes
+before freeing the MFT record.
 
-Thanks,
-Zhan Xusheng
+Initialize the new FILE_NAME ctime from the inode after ACL setup, since
+writing the inherited ACL may advance the inode ctime. This also keeps
+the directory index copy consistent with STANDARD_INFORMATION.
+
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+Tested in QEMU with four CPUs, NTFS debug and lockdep enabled. Ordinary
+files inherited access ACLs; published temporary-file ACLs survived
+cache eviction, remount and reboot. Tests used cached default ACLs;
+the pre-existing cold-cache ACL defect is left to the follow-up series.
+
+ fs/ntfs/namei.c | 49 +++++++++++++++++++++++++++++++++++--------------
+ 1 file changed, 35 insertions(+), 14 deletions(-)
+
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index b46fe44b63b5..14eaf7204ead 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -422,6 +422,7 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 	struct ntfs_volume *vol = dir_ni->vol;
+ 	struct ntfs_inode *ni;
+ 	bool rollback_data = false, rollback_sd = false, rollback_reparse = false;
++	bool rollback_ea = false;
+ 	struct file_name_attr *fn = NULL;
+ 	struct standard_information *si = NULL;
+ 	int err = 0, fn_len, si_len;
+@@ -429,6 +430,7 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 	struct mft_record *ni_mrec, *dni_mrec;
+ 	struct super_block *sb = dir_ni->vol->sb;
+ 	struct inode *rollback_data_vi = NULL, *rollback_sd_vi = NULL;
++	struct inode *rollback_ea_vi = NULL, *rollback_eai_vi = NULL;
+ 	__le64 parent_mft_ref;
+ 	u64 child_mft_ref;
+ 	__le16 ea_size;
+@@ -469,19 +471,6 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 
+ 	mode = vi->i_mode;
+ 
+-#ifdef CONFIG_NTFS_FS_POSIX_ACL
+-	if (!S_ISLNK(mode) && (sb->s_flags & SB_POSIXACL)) {
+-		err = ntfs_init_acl(idmap, vi, dir);
+-		if (err) {
+-			iput(vi);
+-			return ERR_PTR(err);
+-		}
+-	} else
+-#endif
+-	{
+-		vi->i_flags |= S_NOSEC;
+-	}
+-
+ 	if (uid_valid(vol->uid))
+ 		vi->i_uid = vol->uid;
+ 
+@@ -646,6 +635,24 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 			goto err_out;
+ 	}
+ 
++	/* ACL EAs need the allocated MFT record and initialized attributes. */
++	rollback_ea = true;
++#ifdef CONFIG_NTFS_FS_POSIX_ACL
++	if (!S_ISLNK(mode) && (sb->s_flags & SB_POSIXACL)) {
++		/* The ACL helpers acquire both the parent's and child's locks. */
++		mutex_unlock(&dir_ni->mrec_lock);
++		mutex_unlock(&ni->mrec_lock);
++		err = ntfs_init_acl(idmap, vi, dir);
++		mutex_lock_nested(&ni->mrec_lock, NTFS_INODE_MUTEX_NORMAL);
++		mutex_lock_nested(&dir_ni->mrec_lock, NTFS_INODE_MUTEX_PARENT);
++		if (err)
++			goto err_out;
++		mode = vi->i_mode;
++	}
++#endif
++	if (S_ISLNK(mode) || !(sb->s_flags & SB_POSIXACL))
++		vi->i_flags |= S_NOSEC;
++
+ 	err = ntfs_ea_set_wsl_inode(vi, dev, &ea_size,
+ 			NTFS_EA_UID | NTFS_EA_GID | NTFS_EA_MODE);
+ 	if (err)
+@@ -679,7 +686,8 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 	if (NVolHideDotFiles(vol) && name_len > 0 && name[0] == cpu_to_le16('.'))
+ 		fn->file_attributes |= FILE_ATTR_HIDDEN;
+ 	fn->creation_time = fn->last_data_change_time = utc2ntfs(ni->i_crtime);
+-	fn->last_mft_change_time = fn->last_access_time = fn->creation_time;
++	fn->last_mft_change_time = utc2ntfs(inode_get_ctime(vi));
++	fn->last_access_time = fn->creation_time;
+ 	memcpy(fn->file_name, name, name_len * sizeof(__le16));
+ 
+ 	/* Add FILE_NAME attribute to inode. */
+@@ -720,6 +728,15 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 	return ni;
+ 
+ err_out:
++	if (rollback_ea) {
++		if (ntfs_attr_exist(ni, AT_EA, AT_UNNAMED, 0) &&
++		    ntfs_attr_remove(ni, AT_EA, AT_UNNAMED, 0, &rollback_ea_vi))
++			ntfs_error(sb, "Failed to roll back EA attribute.");
++		if (ntfs_attr_exist(ni, AT_EA_INFORMATION, AT_UNNAMED, 0) &&
++		    ntfs_attr_remove(ni, AT_EA_INFORMATION, AT_UNNAMED, 0,
++				     &rollback_eai_vi))
++			ntfs_error(sb, "Failed to roll back EA_INFORMATION attribute.");
++	}
+ 	if (rollback_sd) {
+ 		int rollback_err;
+ 
+@@ -766,6 +783,10 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 	mutex_unlock(&dir_ni->mrec_lock);
+ 	mutex_unlock(&ni->mrec_lock);
+ 
++	if (rollback_ea_vi)
++		iput(rollback_ea_vi);
++	if (rollback_eai_vi)
++		iput(rollback_eai_vi);
+ 	if (rollback_data_vi)
+ 		iput(rollback_data_vi);
+ 	if (rollback_sd_vi)
+
