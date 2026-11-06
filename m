@@ -1,55 +1,55 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793965054;
-	b=R/Y9Idf9eek1iKVY4QSE02hInyPiZQCTLemtVhMDp38h4yI8D8hMXDmStjuJHRdXB3RO
-	 UeTkfNFROeoyGG/k0IQgqj4p+uDAtVGyTXSzyfDzLzY3MAlOxwm2lIw6/SPueaW9D1WH1
-	 yWGKXTEwsD2kaW6ndSoEp5doNWGgL2p/l/YI8uxAfS2prJCEaQ9S8mWLTWB3hwjZ+7Epe
-	 qHjfA3EJHwWDlZdw7+SVMvqTPcYP65UHYQ6yKH8iLsMl7nHGfpwbzci97cCUiLRySDqkw
-	 g1/DgbSzu4pFnEsy0zb4QiWWhe/BIcOw/X3xeplkmFVR85+JAVo59uaJJTY/ftzXd8g==
+	t=1793968068;
+	b=eaH6MLPe+pwov63yc97qwHJIDoTGi5PXSOZUV+UNG+8FnsYIm2jH5fvGbvBkrfum7XwK
+	 cGM4/9r/pBa1KRKefVxMt1q4IbOjzbIt967zix5wcw/XPwMMgF4trC2CoetLgcDwYz4fh
+	 bD5Ocg9V/GS4s1l4SXDQ0zKbeZNpZQhv+G1PcoKOvc/iHdKoGBrrpPZp9LHYd5lDIeqHb
+	 sRMWP5UQLNguV0+W+2jqtV53ocxPn9NvIwbZKiMUswAw+1hUMU3M0EEol5TjtRjAQgpy9
+	 lnzmXzUFWCtBW8ZWiaQViHXDTfYlGl2J6tTpA5h5gku58U7nUUoA3z/eL2kS/44rAUA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793965054;
+	a=rsa-sha256; c=relaxed/relaxed; t=1793968068;
 	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
 	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
 	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
 	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=Q5vDhha9k2TtVDKsmQFVY/wIbznxiix0TX92NWVOtSE=;
-	b=fB4sJujRH1Az0CRy4FKavLhCyLKY0c1Uvak5T84U+qPvWjgvKyyB7wOa4enmmOLE9I3E
-	 9c+TpeKBTWK4ip1jlnQPnzEsN1raP6AwhdVPOqYHStVrFd31w8kwglKxhSrDG7cSMHN3r
-	 XIkvJrWvdpbDbpUYUwKZasI2AsWBTAQ0GtDew9fq9glZQDMsuWZgW5HpcyfGocBZixWjG
-	 xT4qoEE8ZN0qH5yVYpSM2//ULQHDxqnffS6tPtsKQrbU8eM9OHeGG+CXW6aqQZHnOUpm5
-	 Px1MUq+OAjLw6hT9edDyTL6GcN3z5ERhvpvYak4YuSlfskNx5zthX8sRpzanyPgz0Iw==
+	bh=gXaYki6uWSOGEqG2nnwjkCld7NyYwmbFRUn/nj+UBJk=;
+	b=gB21b7N+lRbzeuSS4flC+OtnGdcxL3lB5MvP3Sc4DMcqOYeM4IMgnrCEZLyR6cANBODv
+	 NPACiOKoewrqVaiGKOp3ksravmnhZOhwpTW4XrAisNQaBt1FnueZcsvENCqQfpeSoeZu8
+	 NI+6Ya7Z18Izh9SwCxnjBvpVvPV8Rre51Hwa4/7LMbWQaZpqulQmCqZzAosyDEJpBrvks
+	 nQz2/sunQUf0a0++DAr58XQeznwKutoZf3n1RE76/BPzI9Kck35qzFF0LOhaolrTaWy+O
+	 CnG7OOQ02a6HAlCaxoyBLdmU6aioz2et+I0EoFd152Y0+JBzaxXtEfktbc9q22h6UBA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BWAEE05y;
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WRCNHhnj;
 	arc=none smtp.remote-ip=100.103.45.18
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6404B606A33E
-	for <ntfs@lists.linux.dev>; Fri,  6 Nov 2026 11:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2242606A33B
+	for <ntfs@lists.linux.dev>; Fri,  6 Nov 2026 12:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BWAEE05y
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E962C1F008A4
-	for <ntfs@lists.linux.dev>; Fri,  6 Nov 2026 11:37:33 +0000 (UTC)
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WRCNHhnj
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20E0B1F008BF
+	for <ntfs@lists.linux.dev>; Fri,  6 Nov 2026 12:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793965053;
-	bh=Q5vDhha9k2TtVDKsmQFVY/wIbznxiix0TX92NWVOtSE=;
+	s=k20260515; t=1793968062;
+	bh=gXaYki6uWSOGEqG2nnwjkCld7NyYwmbFRUn/nj+UBJk=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=BWAEE05yHLR5HaHKRTx9ZFdNsjIl+dKu2dEgzAooIFMDECdjMc4PO86e4TdV6zVIX
-	 BurOLIiK8gs6P5y54BxkVKSJzGzY3rxFLiImE5aGMubeO5BP8jzLDPJ2CtL3iKa1rp
-	 4a9u6o+KZBUwJguj3wzgLOHhvxZJIsr58cRXcGSHlxgXz27jEycWTihFYAcFaJm4Wh
-	 C1A46tQELellL/6Uqn77oT9xJz8QS9REKKvaBKS1G5QrTP2874yoKbdkx8uAQsMxq1
-	 ZAvuflJ+YqgNZqk6Z6iayW3a/t5S3bn7mx8NhW26dGGXmrUa045HQCeEPFGVHSfOJG
-	 XEuzTFoJ/+ofg==
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-c4ceaee6770so65725066b.0
-        for <ntfs@lists.linux.dev>; Fri, 06 Nov 2026 03:37:33 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AKwUvBx/4NDmdqpE9APhPWXQRdoCAu9fmpazpfvom4SrkJsdQ2pWcD4hLMBMOhb/dG9SL00C2BYq@lists.linux.dev
-X-Gm-Message-State: APuU4Z+jddvhARRiwAxA4XIBZOfcuobkDp2pgmNV0FRxXlKualsxNr2r
-	03h3nSwP+sr9+Elm3IreudfZHhGRxGwTB+GUKn/BoBGs9wbOlT6ZLU0c0ULcV9Vh+JhGtdiSrdX
-	3Yyef0avw+QDdDKVa0VEYUzz/2BrGUck=
-X-Received: by 2002:a17:907:94d1:b0:c4d:31ad:9de9 with SMTP id
- a640c23a62f3a-c4d3552e0fcmr223184466b.42.1793965052540; Fri, 06 Nov 2026
- 03:37:32 -0800 (PST)
+	b=WRCNHhnjK2/U6cTw19O5vG9KnmkI3EATjgbS8Vp12vvdhMZw0bS6+u2k25MpIX5OL
+	 DijLA0057PexK4ZzikC7TgmkBtj2z12XbLzUGW1HtdyFQM7tci5jDlubuBkxlYXlVW
+	 e4FxoCwwLEn+FCeZwcv17e4QFwMJv7QlTSaT3WvBrn4YjYa00g/SxWMlat3hOZtwzy
+	 jtfgUoSW489vYcpneHL6LHI2uSsRtrRndthhPlDUwBXQhtZt8S5+7nyTNxlEccLcsY
+	 pbB7E9esK+k5zo8A9LhxD0KUVVz3dYp249aLeA2wpE2QfWs7O8vYd4C4rnePrtv72K
+	 AJEfXS5X32zrw==
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-c4d473cfff6so44979366b.0
+        for <ntfs@lists.linux.dev>; Fri, 06 Nov 2026 04:27:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AKwUvBz+ZdytT+EQgBn+tiq4AYqh3Zq6e2MaxcPUS3KbK1oW+ps8IQpiuuEoPOtOe2K9EazEqIeF@lists.linux.dev
+X-Gm-Message-State: APuU4Z+zRlQ0JpUMhGfZy2HfmNxZ1DdQQWoGoQyIF+YO2GD06wEeMKfY
+	B90lOz8g7THcyT/FODtR95CEoANNXL0ODV1pCs6TxYYhDZGwJ6lFwm8cwbV83qIqLppSCm/lxct
+	nB96DaenSUJCdi9GlTiX40s1L26/EUSg=
+X-Received: by 2002:a17:907:1b2a:b0:c42:102f:15e8 with SMTP id
+ a640c23a62f3a-c4d35413244mr208015366b.14.1793968060730; Fri, 06 Nov 2026
+ 04:27:40 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,130 +59,59 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <20261106063059.2904988-1-liubaolin12138@163.com>
-In-Reply-To: <20261106063059.2904988-1-liubaolin12138@163.com>
+References: <20261106091420.2461683-1-wahidzk0091@gmail.com>
+In-Reply-To: <20261106091420.2461683-1-wahidzk0091@gmail.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Fri, 6 Nov 2026 20:37:19 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8JHaJcs8j-Jbf3UecDD-SKEnhAsMd_7XJ1eh8HcC=UpA@mail.gmail.com>
-X-Gm-Features: AclHuK-24WFzQvAxOc4B5VSNDDggIGmwCpTdCS96N05fR7zUzm5zFz5Cf6aIijU
-Message-ID: <CAKYAXd8JHaJcs8j-Jbf3UecDD-SKEnhAsMd_7XJ1eh8HcC=UpA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] ntfs: support O_TMPFILE
-To: Baolin Liu <liubaolin12138@163.com>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	Baolin Liu <liubaolin@kylinos.cn>
+Date: Fri, 6 Nov 2026 21:27:28 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd_te6K0uKmJNQDzi9E5=-wqrQ6Vc7MP_cZpGCQZK1JaGQ@mail.gmail.com>
+X-Gm-Features: AclHuK9pyTUmpj4YjLkVERCMkUy0IHDLyx8Ch1ej0-bKsscvef4Mm_oafumewPk
+Message-ID: <CAKYAXd_te6K0uKmJNQDzi9E5=-wqrQ6Vc7MP_cZpGCQZK1JaGQ@mail.gmail.com>
+Subject: Re: [PATCH 0/3] ntfs: three fixes for crafted images, found by fuzzing
+To: Wahid Khan <wahidzk0091@gmail.com>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 6, 2026 at 3:31=E2=80=AFPM Baolin Liu <liubaolin12138@163.com> =
-wrote:
+On Fri, Nov 6, 2026 at 6:14=E2=80=AFPM Wahid Khan <wahidzk0091@gmail.com> w=
+rote:
 >
-> From: Baolin Liu <liubaolin@kylinos.cn>
-Hi Baolin,
+> I fuzz the new fs/ntfs driver with mutated images: an image from mkntfs
+> populated with ntfs-3g (directories, streams, sparse files, long names), =
+a
+> few bytes changed, then mount, walk the tree and write, under KASAN.
+> Three problems from that are still present in ntfs-next (e62b384ca).
+> Each patch has its own trace and the reproduction steps.
 >
-> This series adds O_TMPFILE support to fs/ntfs. Applications can prepare a
-> regular file's contents and metadata before publishing it with linkat().
-> Unpublished files are reclaimed when their last reference is released.
-> O_EXCL prevents publication.
+> 1. ntfs: do not read an index block outside $INDEX_ALLOCATION
+>    A directory without a usable $INDEX_ALLOCATION hangs on its first
+>    lookup. The task waits for an mft record lock that it already holds.
+>    It needs one changed byte in a crafted image.
 >
-> The series keeps the same five changes and ordering as v1 and v2:
+> 2. ntfs: open the index allocation before reading or writing an index blo=
+ck
+>    NULL pointer dereference in ntfs_ib_write() on link() when the lookup
+>    ended in the index root. This is not the path fixed by 9365c4a1357e.
+>    It needs one changed byte in a crafted image.
 >
->   1. Initialize inherited ACLs after allocating the new MFT record.
->      Anonymous creation needs its inherited ACL stored before returning.
->   2. Preserve prepared atime and mtime when publishing the inode through
->      the hard-link path.
->   3. Initialize the new FILE_NAME's packed EA size, since a temporary
->      file may already have EAs when it is published.
->   4. Complete unlinked-file attribute writes before dropping the cache,
->      including EAs and data copied during resident-to-nonresident
->      conversion before publication.
->   5. Add O_TMPFILE creation and publication support.
+> 3. ntfs: open a named $DATA stream by name when making room in a record
+>    WARN_ON() in ntfs_attr_make_non_resident(). This one does not need a
+>    damaged volume: a file with an alternate data stream and a full mft
+>    record is enough.
 >
-> As requested in review, patch 2 gives the new FILE_NAME and directory
-> index entry the same ctime as the inode. The inode ctime is updated only
-> after the link succeeds. Patch 1 also initializes a newly created
-> FILE_NAME's ctime after inherited ACL setup, fixing a timestamp mismatch
-> caused by moving ACL initialization later in v1.
+> All three need an image to be mounted, so a crafted image, not a remote
+> attacker. I can send the images (about 380 KB each, compressed) if they
+> are useful.
 >
-> In v3, patch 4 also preserves data copied by
-> ntfs_attr_make_non_resident(). As reported in review, growing DATA in a
-> nearly full MFT record can convert SECURITY_DESCRIPTOR and leave its
-> contents only in a dirty folio. Evicting the zero-link attribute inode
-> then discards those contents.
 >
-> Write the resident value to the newly allocated clusters before
-> committing the conversion. If that write fails, release the new clusters
-> and retain the original resident value. Propagate the error to the caller
-> instead of continuing with another attribute. Patches 1-3 and 5 are
-> unchanged in code from v2.
->
-> While implementing and testing O_TMPFILE, we also found pre-existing
-> NTFS bugs in attribute rollback and ACL lookup. These include stale
-> attribute inodes left cached after failed creation, which can cause
-> subsequent creation to return EIO even after space is freed, incorrect
-> ACL inheritance when the default ACL is not cached, and a fixed-size
-> read buffer that cannot handle larger ACL values. The underlying bugs
-> predate this series.
->
-> To keep this series focused on O_TMPFILE support and review
-> feedback, we are leaving these existing bugs to a separate bug-fix
-> series. We plan to submit those fixes after this series is accepted and
-> merged. These issues remain present with this series applied.
->
-> Tested this five-patch series in QEMU with four CPUs, NTFS debug and
-> lockdep enabled. The requested unchanged xfstests generic/004 and
-> generic/389 passed. Tests covered creation, publication, last-reference
-> cleanup, O_EXCL, normal idmapped ownership, named streams, nonresident
-> EAs, direct I/O, mmap, allocation and concurrent publication. Published
-> data and metadata were checked after cache eviction, remount and reboot.
-> Offline inspection compared hard-link ctime in STANDARD_INFORMATION,
-> the new FILE_NAME and the directory index.
->
-> The conversion regression uses 1 KiB MFT records and varies EA sizes
-> before writing 4 KiB to anonymous and ordinary files. Offline inspection
-> compares SECURITY_DESCRIPTOR contents with the original resident value.
-> The v2 kernel loses converted security descriptors and some EAs; v3
-> preserves them with 512-byte, 4 KiB and 8 KiB clusters, including after a
-> fresh boot. An injected block write error returns EIO and leaves the
-> resident security descriptor and EA intact. Free space is unchanged after
-> that failure, and retrying the write succeeds.
->
-> Changes in v3:
-> - Extend patch 4 to write converted attribute data before switching the
->   record to nonresident form, addressing the v2 review.
-> - Preserve the resident value on conversion write failure and propagate
->   conversion errors.
-> - Add conversion and I/O-error regression tests and rerun generic/004
->   and generic/389.
-> - No code changes to patches 1-3 and 5; add Hyunchul Lee's Reviewed-by.
->
-> Changes in v2:
-> - Update FILE_NAME and index ctime as requested in review.
-> - Set the source inode ctime only after successful hard-link creation.
-> - Initialize creation FILE_NAME ctime after inherited ACL setup.
-> - Run generic/004 and generic/389 on the standalone five-patch series.
-> - Rebase onto ntfs-next commit
->   564c7753647731d19170914c1c637d3b33d88d3b, including the const mnt_idmap
->   tmpfile callback signature and documentation context.
-> - Resolve patch 1 against the updated early ACL error handling in
->   __ntfs_create(); the relocated ACL failure still uses MFT/EA rollback.
-> - Keep the original five-patch scope; submit fixes for the pre-existing
->   attribute rollback and ACL lookup bugs separately after this series
->   is merged.
-> - No functional changes to patches 3 and 4.
->
-> Baolin Liu (2):
->   ntfs: initialize inherited ACLs after allocating the MFT record
->   ntfs: support O_TMPFILE
->
-> Xuewen Wang (3):
->   ntfs: preserve timestamps when creating hard links
->   ntfs: initialize packed EA size when creating hard links
->   ntfs: write unlinked file attributes before dropping their cache
+> Wahid Khan (3):
+>   ntfs: do not read an index block outside $INDEX_ALLOCATION
+>   ntfs: open the index allocation before reading or writing an index
+>     block
+>   ntfs: open a named $DATA stream by name when making room in a record
+Please check Sashiko's review comments:
 
-Can you check Sashiko's review comments? I think some of the points
-raised in Sashiko=E2=80=99s review are worth looking into.
-
-https://sashiko.dev/#/patchset/20261106063059.2904988-1-liubaolin12138%4016=
-3.com
+https://sashiko.dev/#/patchset/20261106091420.2461683-1-wahidzk0091%40gmail=
+.com
 
 Thanks.
