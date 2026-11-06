@@ -1,60 +1,91 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=74.125.82.44
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1793946752;
-	b=DLlXG1rh/D1BBFLOc6dFSEaKlghCq0EGNg1/OT/eEjdcgt3kyu09n5otXXWmlSE26kkp
-	 E8y5FeUx31xWX0vN0cZQxwzQrykA09imBd9O7EQfSSMr78wwgcAZM38SrBa3+v8A+KSGR
-	 xvA4vGnAkcP6FZv6cP7wGIxrOVQuBrrwK6a2bKKa04788+P8gNNQcYpI7/WQAAafwp2Nl
-	 gfEWVj+yexGZO0/yS5t0WZ6yzXvaQNlenddkzx/LwKh1XSJd18vK/JZhcCfLljdkX6zm+
-	 gCToF6c0G2FWNslg9fenc8uCDgEJs3zDRP3DCcfKmSwGyY+ppScupmcD4QR3ZkC5wEg==
+	t=1793956473;
+	b=QWFbH0GnoTLHb+shbIZO0xEZRUCuA92PLIBDO6ByqkywhA/v5J2QPfbPQvP5Bgvkm4QJ
+	 LZICE1xEyydf/asIWW70DEcGPxfloBBBiXCmyv++QFwE/Fbi9IdwHYWFHqA1XqNLx338b
+	 keB6aNCjsi7nYsq9pCXFo34SaCxeK/KmfdUoA1BSy5QZHP5vQG5/bZtz9fzgRJ06oohIo
+	 1p4P0g0jw3FSLikAe733pZ2gi5ta37J6X3z3q3djWbVerV218rsAvoKL7PNlkqKwEVaGL
+	 RFKqvm12WNgWudChPheKrEe0kcbP5COIpjWit5CPFn7ELR9pWwIyksuE4rf2clQcCVw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1793946752;
-	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
-	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
-	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
-	 X-Originating-IP:X-CM-SenderInfo;
-	bh=YcyzVpUqGgHbS0DEuw8VL9w2ojotbaIZJKlqcjhQGkk=;
-	b=Tqj3WWLlxueer+z0tpdWUdWcVLOyvpdHFbQxd/oFU43i9Ssh+/ceULS8J6oRtpE8Z3Tz
-	 f/XCWJUtAuXEJEE/iUnFRsE/VnjUXh1p/RWsjYu7cYb5TezJs9DxTxUDMUtWiapJXGFyI
-	 RraJccSS8oeSgX/Yu/0tvvZxbReMuXaGnUxZpPT+dbSA7VYjfc5VCjskkgYP3GwUT/E/n
-	 ywETDCet+2sOG0VNc9e2IHs6gE0pm8BPWntgA92Zl31hO2NRYo0dLhtL26uA+dHDbnWsj
-	 BwoLGJfRLzI3UIpbPI2dK1mQQEuEmgVCO0lSAthANqW6tMcwZdBAgN05ABkWecx7kWw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1793956473;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Gm-Gg:X-Received:Received:From:To:Cc:Subject:
+	 Date:Message-ID:X-Mailer:MIME-Version:Content-Transfer-Encoding;
+	bh=hYxjyPXBHKTCAiV1LvERXcwFBgtg5JptbqNlrk95z/U=;
+	b=ePsHK1Xxlg+vn8kmFviuvFqgZuptukfjsroM9Y4IsFCzpt9qUJSjeD8T0ly1QZaAcfY1
+	 NyUAuuhim+DnHE5kufY9gVBF7SXaHQQHOwkHNMHM7LQPvG/L1iqAlv0+TVV1eQfTe69lE
+	 6cWTOiDcX4cx6h3uVCEdqyrKU7uQKrYAaS4a93yyZRpZ/3Ysw0YYp4WmmQvsNj4ub4Faq
+	 EmxJGExxOHYTBcbq3J4FKmyJk7cAotSNv46XyIzAbvTz8IFj46jEVSesauYE3W0Q0ypi0
+	 7PKyRBB+y+ZMHL1iHzLdHi33q0IRY8FUjVmQf4ex6O+gY4mDpErJICI+oaq459BRq9g==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Mql5wE22;
-	arc=none smtp.remote-ip=117.135.210.4
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mHfsRgNa;
+	arc=none smtp.remote-ip=74.125.82.44
+Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44ABC606A326
-	for <ntfs@lists.linux.dev>; Fri,  6 Nov 2026 06:32:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 44ABC606A326
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943F2606A328
+	for <ntfs@lists.linux.dev>; Fri,  6 Nov 2026 09:14:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 943F2606A328
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Mql5wE22
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Yc
-	yzVpUqGgHbS0DEuw8VL9w2ojotbaIZJKlqcjhQGkk=; b=Mql5wE220JU6YHQ+If
-	2jvEeO5M7EiYd9m7VckxrRCyP891zBJkVSocLyN4/xN1YlvMY7s++78j021bxBdo
-	lgFRz+0cNzoMY2+Njmn2dDNRC0qkfIyYwzYawG9hazwUwEDs8IEXxvcw5Imh40t+
-	JWkvECdQb4SpdjSsa2DkmEMnU=
-Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3lzdFdO1qwIxJFg--.3403S7;
-	Fri, 06 Nov 2026 14:31:39 +0800 (CST)
-From: Baolin Liu <liubaolin12138@163.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mHfsRgNa
+Received: by mail-dl1-f44.google.com with SMTP id a92af1059eb24-1a3c08d6928so772166c88.0
+        for <ntfs@lists.linux.dev>; Fri, 06 Nov 2026 01:14:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1793956472; x=1794561272; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=hYxjyPXBHKTCAiV1LvERXcwFBgtg5JptbqNlrk95z/U=;
+        b=mHfsRgNa+TVPbbifs04Vo2Ijy7fjmMAVqjkuSbmZL5T3e3Wstp0DxNmdX2TSR5Rxye
+         Vv9BqwznOQ80BEpLCr4IXWDsWPEo8qNZiEoxq/TuD2zKD2HcAYf0F+alRhk0P5oBgc/h
+         hXIPWN5hsDIbdeYFn8we9W5LwO96bo158Ndktv8/kIwNR1fr2Pv5gdt7N+46rK+hdXAB
+         +Zw5eXhecbeEwLHoJZLvWCJY7Al40LSib3avKgdbaHMHqZ5yV7Facn+m19SR5WzhbpF3
+         KHmSq09DRpYQPwCNzzeT31MGUpMQeWvtZif2E1BB6obh+f8OazXq7nX1HGX9UgxnoK0J
+         D+Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793956472; x=1794561272;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=hYxjyPXBHKTCAiV1LvERXcwFBgtg5JptbqNlrk95z/U=;
+        b=IpmgE8jYAdrlG27tM/dXjaNdM5nAwSICsPai5D44+aHm2Y7DAItp1nXA+5FZfHe36o
+         dJzk4LI8TnD4IiM1Sr0VicnxblUrPUclq9bRtpeECglTPYDCF2e6/Dp04UGO59t+biN5
+         eQOBbkXy9x9gZG7Bw9tYxBt8I3i9lgmKiHvKH3OaOtV1vB1g4GnZq6+roByz8V5+i8nH
+         eLP2Tx2TfOcStp/24Bz/ntH/965EOPqhsDmELtYtjFZaOcw6mIb1yxP8Ijjlv1WzVoj1
+         rfOYaLLUm2grM6SlHn1AQ2mKuhGuS13uZXfBk4d3ZsZyUAzGUehd29G0OJqc49j48dop
+         LkXQ==
+X-Gm-Message-State: APuU4Z/oThp5qKTnfqcLnflCOo2aSPPyUsnR7IRR0LI+Yn6UpZOAs5ma
+	zgXCoJHuRTb9O3qHbxH/tJwhiJVm8iE1ApKOkChRx6p5sfvQbC0bJXbB
+X-Gm-Gg: AYBFou1pZ5OafVe6RuYdbeyBSnzYwgXol6DMUKNkxadeMwghuD5F+wI2ipzsoaMeY3o
+	EaP9KmnD7oMQqYntdaBw4cAxk6Gmy54eBrpF0giyNWXQYNMxw6unWSM+q8DnkEqggHik1ipK2u4
+	0EDSV2Hu1rQDv1yWsrwtI2xVpz+u9Z2/tXJZBwon6xs9BcYWg4zBU0aVNWKo0t/e8ysz+TUq1Ny
+	PA8NcPEJI0PgJsRAUAH8tKNjzI1NkVYLerivqc6k8cW1Gif2N2BHWq+Q0q2oX0HN9Z4Uzm9OuVB
+	BqwVdxm0lz88lomk3RIVnsiv0HE2W+fytiIs29huhHZ4tqsaRGBZi1kcjKuheVb6a2pObJ7hVtq
+	ckKNJ+uqQV2e+hHVgbsBuCrsRNF8GvCkoikhOqBko1iqogprCYT2kovHr4DjyUdCasLHeNSemdk
+	dgm6IPSTrl8K0paop3GgIQ1p8kQPTJ/aeSYoxz0d9qKgYDU02n+s2J0grq2GpjyYZSBUaCVw9+9
+	HskqyKbknWLtEw1lh2V7HRTZ0tzABAbb6XGAdvh9Y+pH0bYoi4g9nXeV68QU24lpNkh4lzQOblY
+	m0RS0MWibc561GY5FzMX3oNeThNMhLCt7+wN0b4JKWyZpxXaEz5ptjxn62Wi0mhrDw==
+X-Received: by 2002:a05:7022:1102:b0:14d:c7ae:85df with SMTP id a92af1059eb24-1b25d31ef97mr2084289c88.12.1793956471465;
+        Fri, 06 Nov 2026 01:14:31 -0800 (PST)
+Received: from anon-laptop ([103.187.196.159])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b25e485ce2sm4200968c88.7.2026.11.06.01.14.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Nov 2026 01:14:30 -0800 (PST)
+From: Wahid Khan <wahidzk0091@gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+	Hyunchul Lee <hyc.lee@gmail.com>
 Cc: ntfs@lists.linux.dev,
+	linux-fsdevel@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v3 5/5] ntfs: support O_TMPFILE
-Date: Fri,  6 Nov 2026 14:30:59 +0800
-Message-ID: <20261106063059.2904988-6-liubaolin12138@163.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20261106063059.2904988-1-liubaolin12138@163.com>
-References: <20261106063059.2904988-1-liubaolin12138@163.com>
+	Wahid Khan <wahidzk0091@gmail.com>
+Subject: [PATCH 0/3] ntfs: three fixes for crafted images, found by fuzzing
+Date: Fri,  6 Nov 2026 14:44:17 +0530
+Message-ID: <20261106091420.2461683-1-wahidzk0091@gmail.com>
+X-Mailer: git-send-email 2.56.0
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -65,195 +96,44 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3lzdFdO1qwIxJFg--.3403S7
-X-Coremail-Antispam: 1Uf129KBjvJXoWxtr43Ww4xGryfurykXr1UZFb_yoWxWr4kpF
-	sxWryfGws7Jry2g392ka1UZr4Sgayxur4UXrW8W3W3A3Z0qw1FgF1xtFy5uF1fKrWrur4q
-	qF4UK34Uur1UZwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07URCJQUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QtFEGrtdEtCdAAA35
 
-From: Baolin Liu <liubaolin@kylinos.cn>
+I fuzz the new fs/ntfs driver with mutated images: an image from mkntfs
+populated with ntfs-3g (directories, streams, sparse files, long names), a
+few bytes changed, then mount, walk the tree and write, under KASAN.
+Three problems from that are still present in ntfs-next (e62b384ca).
+Each patch has its own trace and the reproduction steps.
 
-Allow regular files to be created without a FILE_NAME attribute or
-a directory index entry. Keep their on-disk link count at zero and use
-d_tmpfile() to attach the inode to the anonymous dentry. Clear the base
-inode's in-memory link count before initializing EAs so that attribute
-inodes inherit zero links and can be evicted rather than pinning an
-unpublished file in cache.
+1. ntfs: do not read an index block outside $INDEX_ALLOCATION
+   A directory without a usable $INDEX_ALLOCATION hangs on its first
+   lookup. The task waits for an mft record lock that it already holds.
+   It needs one changed byte in a crafted image.
 
-Allow the first hard link of a zero-link inode only when the VFS marks
-it I_LINKABLE. Existing deletion checks remain in place, and the VFS
-controls O_EXCL and clears I_LINKABLE after publication. Reuse the
-zero-link eviction path for unpublished files.
+2. ntfs: open the index allocation before reading or writing an index block
+   NULL pointer dereference in ntfs_ib_write() on link() when the lookup
+   ended in the index root. This is not the path fixed by 9365c4a1357e.
+   It needs one changed byte in a crafted image.
 
-Document the interface and the named-stream restriction before
-publication.
+3. ntfs: open a named $DATA stream by name when making room in a record
+   WARN_ON() in ntfs_attr_make_non_resident(). This one does not need a
+   damaged volume: a file with an alternate data stream and a full mft
+   record is enough.
 
-Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
----
-Tested in QEMU with four CPUs, NTFS debug and lockdep enabled. Creation,
-publication, cleanup, O_EXCL, permissions, idmapped ownership, named
-streams, nonresident EAs, direct I/O, mmap, allocation and concurrent
-publication passed. Data and metadata survived cache eviction, remount
-and reboot; generic/004 and generic/389 passed.
+All three need an image to be mounted, so a crafted image, not a remote
+attacker. I can send the images (about 380 KB each, compressed) if they
+are useful.
 
-The basic ENOSPC test passed. Full-volume ACL creation failures remain
-subject to the pre-existing rollback bugs described in the cover letter.
 
- Documentation/filesystems/ntfs.rst | 15 +++++++++
- fs/ntfs/namei.c                    | 54 ++++++++++++++++++++++++++----
- 2 files changed, 63 insertions(+), 6 deletions(-)
+Wahid Khan (3):
+  ntfs: do not read an index block outside $INDEX_ALLOCATION
+  ntfs: open the index allocation before reading or writing an index
+    block
+  ntfs: open a named $DATA stream by name when making room in a record
 
-diff --git a/Documentation/filesystems/ntfs.rst b/Documentation/filesystems/ntfs.rst
-index d5819da6ab53..635301117807 100644
---- a/Documentation/filesystems/ntfs.rst
-+++ b/Documentation/filesystems/ntfs.rst
-@@ -10,6 +10,7 @@ The Linux NTFS filesystem driver
-    - Overview
-    - Utilities support
-    - Linux file attributes
-+   - Temporary files
-    - Supported mount options
- 
- 
-@@ -63,6 +64,20 @@ These Linux flags are enforced by Linux. Storing them in an NTFS EA does
- not make Windows enforce immutable, append-only, nodump or noatime semantics.
- 
- 
-+Temporary files
-+===============
-+
-+The driver supports ``O_TMPFILE`` for regular files. The file has no
-+directory entry until it is linked with linkat(2); ``O_EXCL`` prevents
-+this publication. Ownership and mode follow normal file creation rules.
-+With ACLs enabled, the file's access ACL is derived from the creation
-+directory's default ACL. Unpublished files are reclaimed when their last
-+reference is released.
-+
-+Named stream ioctls cannot create or open streams on an unpublished
-+temporary file. They can be used after the file has been linked.
-+
-+
- Supported mount options
- =======================
- 
-diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
-index 5124e7a3e124..a8bfc732b558 100644
---- a/fs/ntfs/namei.c
-+++ b/fs/ntfs/namei.c
-@@ -489,9 +489,11 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
- 	simple_inode_init_ts(vi);
- 	ni->i_crtime = inode_get_ctime(vi);
- 
--	inode_set_mtime_to_ts(dir, ni->i_crtime);
--	inode_set_ctime_to_ts(dir, ni->i_crtime);
--	mark_inode_dirty(dir);
-+	if (name) {
-+		inode_set_mtime_to_ts(dir, ni->i_crtime);
-+		inode_set_ctime_to_ts(dir, ni->i_crtime);
-+		mark_inode_dirty(dir);
-+	}
- 
- 	err = ntfs_mft_record_alloc(dir_ni->vol, mode, &ni, NULL,
- 			&ni_mrec, -1);
-@@ -513,6 +515,10 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
- 	inode_set_iversion(vi, 1);
- 	insert_inode_hash(vi);
- 
-+	/* Attribute inodes must not pin an unpublished file in cache. */
-+	if (!name)
-+		clear_nlink(vi);
-+
- 	mutex_lock_nested(&ni->mrec_lock, NTFS_INODE_MUTEX_NORMAL);
- 	mutex_lock_nested(&dir_ni->mrec_lock, NTFS_INODE_MUTEX_PARENT);
- 	if (NInoBeingDeleted(dir_ni)) {
-@@ -658,6 +664,12 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
- 	if (err)
- 		goto err_out;
- 
-+	if (!name) {
-+		ni_mrec->link_count = 0;
-+		mark_mft_record_dirty(ni);
-+		goto done;
-+	}
-+
- 	/* Create FILE_NAME attribute. */
- 	fn_len = sizeof(struct file_name_attr) + name_len * sizeof(__le16);
- 	fn = kzalloc(fn_len, GFP_NOFS);
-@@ -710,12 +722,13 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
- 		goto err_out;
- 	}
- 
-+	ni->flags = fn->file_attributes |
-+		    (ni->flags & FILE_ATTRIBUTE_RECALL_ON_OPEN);
-+done:
- 	unmap_mft_record(ni);
- 	mutex_unlock(&dir_ni->mrec_lock);
- 	mutex_unlock(&ni->mrec_lock);
- 
--	ni->flags = fn->file_attributes |
--		    (ni->flags & FILE_ATTRIBUTE_RECALL_ON_OPEN);
- 	/* Set the sequence number. */
- 	vi->i_generation = ni->seq_no;
- 	set_nlink(vi, 1);
-@@ -783,6 +796,8 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
- 	mutex_unlock(&dir_ni->mrec_lock);
- 	mutex_unlock(&ni->mrec_lock);
- 
-+	/* The MFT record has already been freed above. */
-+	set_nlink(vi, 1);
- 	if (rollback_ea_vi)
- 		iput(rollback_ea_vi);
- 	if (rollback_eai_vi)
-@@ -857,6 +872,31 @@ static int ntfs_create(const struct mnt_idmap *idmap, struct inode *dir,
- 	return 0;
- }
- 
-+static int ntfs_tmpfile(const struct mnt_idmap *idmap, struct inode *dir,
-+			struct file *file, umode_t mode)
-+{
-+	struct ntfs_volume *vol = NTFS_SB(dir->i_sb);
-+	struct ntfs_inode *ni;
-+	struct inode *inode;
-+	int err;
-+
-+	if (NVolShutdown(vol))
-+		return -EIO;
-+
-+	err = ntfs_set_volume_flags(vol, VOLUME_IS_DIRTY);
-+	if (err)
-+		return err;
-+
-+	ni = __ntfs_create(idmap, dir, NULL, 0, mode, 0, NULL, 0);
-+	if (IS_ERR(ni))
-+		return PTR_ERR(ni);
-+
-+	inode = VFS_I(ni);
-+	d_tmpfile(file, inode);
-+	unlock_new_inode(inode);
-+	return finish_open_simple(file, 0);
-+}
-+
- static int ntfs_check_unlinkable_dir(struct ntfs_attr_search_ctx *ctx, struct file_name_attr *fn)
- {
- 	int link_count;
-@@ -1272,7 +1312,8 @@ static int __ntfs_link(struct ntfs_inode *ni, struct ntfs_inode *dir_ni,
- 		goto err_out;
- 	}
- 
--	if (le16_to_cpu(ni_mrec->link_count) == 0) {
-+	if (!ni_mrec->link_count &&
-+	    !(inode_state_read_once(vi) & I_LINKABLE)) {
- 		err = -ENOENT;
- 		goto err_out;
- 	}
-@@ -1708,6 +1749,7 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
- const struct inode_operations ntfs_dir_inode_ops = {
- 	.lookup		= ntfs_lookup,	/* VFS: Lookup directory. */
- 	.create		= ntfs_create,
-+	.tmpfile	= ntfs_tmpfile,
- 	.unlink		= ntfs_unlink,
- 	.mkdir		= ntfs_mkdir,
- 	.rmdir		= ntfs_rmdir,
+ fs/ntfs/attrib.c |  2 +-
+ fs/ntfs/dir.c    | 14 ++++++++++++++
+ fs/ntfs/index.c  | 17 +++++++++++++++++
+ 3 files changed, 32 insertions(+), 1 deletion(-)
+
+-- 
+2.53.0
 
