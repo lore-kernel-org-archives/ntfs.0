@@ -1,50 +1,77 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794291411;
-	b=1foaktkvE/5K2zyZrh772spyAxsqeoAtJKe/JyYA4EPj5kf+MPwgoyR0TcQAhH0h+sm1
-	 Z4GdPfn9zq9diyammSUfXde7ziP5bE5BsovA4r88J0qdo9IW6H77AIUEYF2SOQ9fpRAXb
-	 Gk+0RNMEDnLk63wJe0h87k6Fy1zqml52z+13i+W5s4z0iT8PlDQ7fmXqUQp1rU1wOyPLP
-	 uWwu6j5VgdfSmDLlho50XOZHa6jixcs1z3eETUJx5/2ikaFzmcVMv1EBEkaVCcTWj4MoR
-	 zJr31xrQpXeD1dycPojWRdn+SXJJs2zT2htZwOFd0IefMN4NY2hnLziynilncinaLbg==
+	t=1794329543;
+	b=MqUrDRKNkm5LTuWw/p72EmWMN8y5gRS7IKO9coqAv0GrbEWIJsBAT987R4Icfg+VWKI2
+	 uo4ni/3H9tbkzcfyK89ILbPx2po3H4aJt8bADreecaLh6FLcAahbfvoewTUJCStR54Bk0
+	 JkbQES+PqiCgbMDyF1EAIJilLbna8+LZHRvL2MPVmcTpyKzzbXa2rQF+IWXQEj0blP8ym
+	 WgivW55NuDvwXCrregevCDHueABXJ1HvJA+1Z++6bstcMbA/95HTL3+D31s3o6SMuwFgR
+	 VlIH7aw/1GBxOdCm8o9fF+QmMVKT9YNCFkJQeswK5esi27KX1ayMXXTXdDTj4VVAQYA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794291411;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
-	 X-Originating-IP:X-CM-SenderInfo;
-	bh=UIZDNCKJFBnLliUxyVc+tzcUJWCa2maP27Vh8koY6Tk=;
-	b=g84/NqaKWsDZvHFrl8pYWOLnpWzaQIO9AR+0i8ydSu8ehfsZe1kitYOzcEFokDzjUL+t
-	 wqY18OEW1SeJ1encAw8r6zp2uOCgGxZEHfQOYqgL87liWRtrjl6lxgUvVPdCOXpJIab5c
-	 Q150H57Z1jlBVuUS9J1qSh6rCur4MXuTyWoJO8FDn9pPWdahsfFi2P6DZeX+y8lJcnnDz
-	 DgqNZt5qascAGN5ctdbMfndsTejIgn71N3TQMaFDG9OJcOVFdP/SudbbRwfsRv4r1xJo0
-	 p8I/PX4ro55pCmw7HuxFQ/5rL1+L4iMw9yw23Os8lhFGp+0zyvjPLHWN44t3jGAo3cg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794329543;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
+	bh=KyDcpTwF2G84cUTe+PVKDz9G3rULU78GRC2w0kOsrLc=;
+	b=l4aw2tre8GbBz5g9LuX5bM4yQTz96CFbLG8LsM7VKIXayuVmXV30ZQ32DPTyLKLklvnF
+	 fYFQ3zY+xdGIl+RC9ylnA/C7J49VUkApYGigBDyRkZo5czIM8Cqw8hUKbFZyn1/IgtQ3m
+	 Z/RGVRymJUJsoZqE4xFLoNPCFQbl09Pa3uiRQy/26ID/0+MFb3/zKlbTzp+JvVrStnzwK
+	 eWITQsh2iQT/0NCBfg5oKIZVh3Q6CWsgmG0dT0HwHYfcy3NvJnhpa5fox9BM20Ijf/wdi
+	 YYcsCHji+6Oik6v5hEeEl7hh1kCC4piXf0Q3DTWANagDf07zGSFRMlxB9cJ+9m6KinQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=ih0l8f7E;
-	arc=none smtp.remote-ip=220.197.31.5
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b="WSR4/meg";
+	arc=none smtp.remote-ip=100.103.45.18
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F38606A339
-	for <ntfs@lists.linux.dev>; Tue, 10 Nov 2026 06:16:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 03F38606A339
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57DB6606A330;
+	Tue, 10 Nov 2026 16:52:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=ih0l8f7E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=UIZDNCKJFBnLliUxyVc+tzcUJWCa2maP27Vh8koY6Tk=;
-	b=ih0l8f7ETd3bK43WgqUhi8TkM+nI6KOrPVF77BO7VXg2k2WkVOWES/b70WU6wb
-	tfH0QIH8VKqQ5J3hj3uir5cz43Y3Nnkchwm7QAyAk7SzZmRup1VugdgsUUzh59NC
-	yK/P5XD7Hn85nh5AGM8OYkJpdrlFFOp6Cdz5vt856QIwk=
-Received: from [IPV6:2409:8900:21e7:a7e6:58ae:f310:d857:2255] (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3H72ntvJqZdtqGA--.63897S2;
-	Tue, 10 Nov 2026 14:16:09 +0800 (CST)
-Message-ID: <c89e2306-dbf6-4e7b-ad37-3d493215c2fd@163.com>
-Date: Tue, 10 Nov 2026 14:16:07 +0800
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WSR4/meg
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C6B21F0089F;
+	Tue, 10 Nov 2026 16:52:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794329543;
+	bh=KyDcpTwF2G84cUTe+PVKDz9G3rULU78GRC2w0kOsrLc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=WSR4/megdggMO9wsDWOY+uoQSmNtO3j2yfbZkG8wNi5rB7hE651wqOzDxlgDXK7Ew
+	 RmAWiz2VBpllg4ynVFTcPIjgzyk7nAxhySjvb+byysmSgsCnpkfEzxkJqRWKHq9/mc
+	 YNAQhE0ikpxZ0sqlywqGqK0vnkiWmSjRjigl1fL7x76Q0lUOnOc+fEhl7WUDNrnt2X
+	 Hda+VOxkwzLr8arHFGMZFn9v/vCdMOGy5b+eY24hGBQ3e42uhb8xHhCF/aPlSMJPft
+	 3tCywwxXOQqTXxdhv8EqxUpg5QCSLRW2i8oyD+4B0ftty6ddfdgKmdarmtnmAcuyq1
+	 heVa4ehNncfYw==
+Date: Tue, 10 Nov 2026 17:52:03 +0100
+From: Christian Brauner <brauner@kernel.org>
+To: Cai Xinchen <caixinchen1@huawei.com>
+Cc: mic@digikod.net, gnoack@google.com, paul@paul-moore.com, 
+	jmorris@namei.org, serge@hallyn.com, corbet@lwn.net, skhan@linuxfoundation.org, 
+	utilityemal77@gmail.com, ast@kernel.org, daniel@iogearbox.net, andrii@kernel.org, 
+	eddyz87@gmail.com, memxor@gmail.com, martin.lau@linux.dev, song@kernel.org, 
+	yonghong.song@linux.dev, jolsa@kernel.org, emil@etsalapatis.com, ihor.solodrai@linux.dev, 
+	rdunlap@infradead.org, gregkh@linuxfoundation.org, rafael@kernel.org, dakr@kernel.org, 
+	johan@kernel.org, dlemoal@kernel.org, hch@lst.de, axboe@kernel.dk, 
+	viro@zeniv.linux.org.uk, jack@suse.cz, dhowells@redhat.com, code@tyhicks.com, 
+	linkinjeon@kernel.org, sj1557.seo@samsung.com, yuezhang.mo@sony.com, 
+	hirofumi@mail.parknet.co.jp, cel@kernel.org, jlayton@kernel.org, neil@brown.name, 
+	okorniev@redhat.com, Dai.Ngo@oracle.com, tom@talpey.com, hyc.lee@gmail.com, 
+	miklos@szeredi.hu, amir73il@gmail.com, senozhatsky@chromium.org, 
+	chenxiaosong@chenxiaosong.com, dsterba@suse.com, mason@kernel.org, kpsingh@kernel.org, 
+	matt@bobrowski.net, rostedt@goodmis.org, mhiramat@kernel.org, 
+	mathieu.desnoyers@efficios.com, john.johansen@canonical.com, georgia.garcia@canonical.com, 
+	zohar@linux.ibm.com, roberto.sassu@huawei.com, dmitry.kasatkin@gmail.com, 
+	eric.snowberg@oracle.com, stephen.smalley.work@gmail.com, omosnacek@gmail.com, 
+	casey@schaufler-ca.com, takedakn@nttdata.co.jp, penguin-kernel@i-love.sakura.ne.jp, 
+	xiujianfeng@huawei.com, nanx95726@gmail.com, djwong@kernel.org, lujialin4@huawei.com, 
+	bpf@vger.kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-security-module@vger.kernel.org, driver-core@lists.linux.dev, linux-block@vger.kernel.org, 
+	linux-btrfs@vger.kernel.org, linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev, 
+	ecryptfs@vger.kernel.org, exfat@lists.linux.dev, linux-nfs@vger.kernel.org, 
+	ntfs@lists.linux.dev, linux-unionfs@vger.kernel.org, linux-cifs@vger.kernel.org, 
+	linux-trace-kernel@vger.kernel.org, apparmor@lists.ubuntu.com, linux-integrity@vger.kernel.org, 
+	selinux@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v3 -next 00/18] landlock: Add READ_METADATA and
+ WRITE_METADATA access rights
+Message-ID: <20261110-rekonstruieren-erbfolge-vollversammlung-26be74966211@brauner>
+References: <20261027121151.1887650-1-caixinchen1@huawei.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -54,80 +81,27 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 11/31] ntfs: handle source record removal failure
- during attribute moves
-To: Namjae Jeon <linkinjeon@kernel.org>
-Cc: Hyunchul Lee <hyc.lee@gmail.com>, ntfs@lists.linux.dev,
- linux-kernel@vger.kernel.org, Xuewen Wang <wangxuewen@kylinos.cn>
-References: <20261102073532.98873-1-wangxuewen_ky@163.com>
- <20261102073532.98873-12-wangxuewen_ky@163.com>
- <avEwnT6CAgeCj2oo@hyunchul-PC02>
- <5f5302d9-729b-4008-b19e-f7012232e755@163.com>
- <CAKYAXd_qho6vncFoY=x4XVriXn8b-F7hgg=xbTTfJXH8nns5yQ@mail.gmail.com>
-From: Xuewen Wang <wangxuewen_ky@163.com>
-In-Reply-To: <CAKYAXd_qho6vncFoY=x4XVriXn8b-F7hgg=xbTTfJXH8nns5yQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3H72ntvJqZdtqGA--.63897S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7urWkWFyDGw48ur1DZFy7Wrg_yoW8Cw48pa
-	s8Jas5Kws8try7A3Z29r4ay3W0v34xGF45Xrn8Kr129wn0qF1Iqr40qrWUuF98urn5Kw42
-	qw48W39xWF4DZFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j35r7UUUUU=
-X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbC7wkvGGrytqlyBAAA3g
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261027121151.1887650-1-caixinchen1@huawei.com>
 
+On Tue, Oct 27, 2026 at 08:11:33PM +0800, Cai Xinchen wrote:
+> - The idmap is passed separately from the struct path again, instead
+>   of being derived from path->mnt inside the helpers and the hooks.
+>   As Christian explains in his review of patch 1, the idmap must be
+>   taken of the mount at the time it was checked and passed down to
+>   the filesystem so that the VFS and the filesystem are guaranteed
+>   to see the same idmap.
 
+This regresses AT_EMPTY_PATH. fchmodat2(), fchownat() and utimensat()
+with an empty path now go through CLASS(fd) which is fdget() and that 
+refuses O_PATH file descriptors. IOW, this is very very broken.
 
-在 2026/11/10 12:11, Namjae Jeon 写道:
-> On Tue, Nov 10, 2026 at 12:13 PM Xuewen Wang <wangxuewen_ky@163.com> wrote:
->>
->>
->>
->> 在 2026/11/9 10:31, Hyunchul Lee 写道:
->>> On Mon, Nov 02, 2026 at 03:35:12PM +0800, Xuewen Wang wrote:
->>>> From: Xuewen Wang <wangxuewen@kylinos.cn>
->>>>
->>>> ntfs_attr_record_move_to() ignores failure to remove the source attribute
->>>> after copying it. It can update the attribute-list reference and report
->>>> success with both copies present.
->>>>
->>>> Check removal before changing the list entry. On failure, attempt to
->>>> remove the destination copy, mark its record dirty and unmap it, leaving
->>>> the list pointing to the source. Report destination cleanup failure
->>>> separately.
->>>>
->>>> Shrinking a record to zero needs no extra space, so failure indicates
->>>> inconsistent record accounting. Return and report EFSCORRUPTED even if
->>>> cleanup also fails.
->>>>
->>>> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
->>>
->>> This patch has the Fixes tag, but it calls
->>> ntfs_report_file_metadata_error(), which is introduced in patch 3.
->>> If this patch is backported to a stable tree with patch 3, it could fail
->>> to build.
->>>
->> Hi Hyunchul,
->>
->> Thank you for your review. You are right about the dependency.
->>
->> Would it make sense to reorganize the series so that the bug-fix patches
->> come first and use the existing error-handling mechanisms, without
->> depending on the new reporting helpers?
-> Yes. So I would like to apply error handling patches first and check
-> new report helpers later.
->>
->> I would then add calls to the new helpers at those sites in a separate
->> patch at the end of the series.
-> Okay.
->>
->> Would this approach work for you?
-> Yes, Please do that.
-> Thanks.
-Hi Namjae,
-Thanks for your reply. Baolin, Dandan and I will proceed with the 
-changes following this plan and send out v6 as soon as possible.
+Please also go through Sashiko's review of v3 (cf. [1]). The new struct
+file arguments need __nullable or bpf programs can dereference NULL,
+and the ntfs3 stream setattr and overlayfs fileattr paths that bypass
+the hooks need treatment.
 
-Thanks,
-Xuewen
+[1]: https://sashiko.dev/#/patchset/20261027121151.1887650-1-caixinchen1%40huawei.com
 
+-- 
