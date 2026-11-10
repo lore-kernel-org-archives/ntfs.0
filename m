@@ -1,96 +1,47 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=74.125.82.170
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794245561;
-	b=K7lviBdB0yzrPX0MEdG/gsdPRwbgaFzXzW4iBK//vtl9OnXnf+NLvWEBvKQWzmACeGXa
-	 4aXuXz2o0ml+m5nsFFzEwEKwMkJC6F7xa2lef2i4af4Ybx8ibkhLvAbhKLkALBeC/QOF5
-	 TcS1UZlrLUDZSAv46MwdTxW9FJxnAEL0bJPom0QptRZrvgoB8lDKrY7h7GcYBNt21JCZD
-	 2h7QRAUCtL+HRfjKdc5gnSFgKnncSWyGw40ewlLeAWOCQLKELCpLn472EO2SpjhSa6au9
-	 5sBGVwHNfV1LK9Wf+RLuGGKe4itRAKihZIqfzO8HuH7p/L09nrgovYXvqGq7TOi/eDA==
+	t=1794280438;
+	b=p7kSR/w3bRUw7YcAdVQmcMEu8MyjaR+sWfPWlgkU5KjrRE3RBqExWw/sapoQYd2ZYuxS
+	 YopPd3+TXIIGlUV+APblCRilS5guWTtWylsz8rj2Qm4NYy88rvthLQUPbH0D1EPEz1LRH
+	 gFZoR5UHIcQRZlfLmy6feaMPZ1LGTUUuflyZb2Jlxgob72LFEx0JfP+c7poSnvsVGoAVh
+	 REt2D6VNLA3I6LjtbWA9q06Om4gWQm4DAC06lx9I/4AJttIuOuDvuPnKjcq+rpNbrfNOV
+	 Wwh78NIIm+yxyAemE2gfjXYrSolOLKU9rO/COalKjdz2NWrIKcvXdzvIrzqDm7XRiMQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794245561;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 From:To:Cc:Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding;
-	bh=8q9/bGCaBlutXPqwHx7AArWRooQhTMYyrXK72i+SUgE=;
-	b=swPLEjwD7qsq1HuD+gpISby35Vf4srEuRzKGHM9CtlwkDuJbWm8mV42uPpygWFy20NSZ
-	 OtlhUJeathh9kUe7NPq/jEsknebxf1CffbxmyGodV9B8MsNQgCzO7/YvRF/kIgsqfydxD
-	 v4DB6YysiteS+2I0nfONPqEGOnn5R6GEDyC9QxkeOT1OKH+V7glRIvZDKDy/0y11nK94/
-	 /KY02f8U0kmx5cWea/OO2cD91dfP29x6EgGw72U8zwy3xeCBok+DjncfXYEWOQgkuHFNP
-	 pmSdxwJtTNn2rpiP3/3zRVtLGxjltleWQtj7MZ6hD6YdljQOCnCl7z0j9ZCvDbmq/MQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794280438;
+	h=DMARC-Filter:DKIM-Signature:Message-ID:Date:MIME-Version:User-Agent:
+	 Subject:To:Cc:References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-CM-SenderInfo;
+	bh=CbN16mwkgK9F6G/Di5zJrLdhBzzUcEl4Z6zcZAy4sKI=;
+	b=BIqli4tyLQIt+ESCSbN/kkgFCBkc2Q99/C0Apq0soixpqRb+9salLdaeQJSfDT/YaXl5
+	 WmsjyiYgXOdYLq8App64V4k/GpkhrfmccQAHWEmzY4/F2RJPm0XHLR3Wd2IncmI74czOD
+	 FWr+t750et0BJUHBF/lvUfMg/9dBcr9syStIruKjq/PXG/ESkkO6wUbdtQq/hzDqP6wMg
+	 HCqrRaKBZVsnB+Dx7Wc4KdugggsG2Qw7Af/Zl4FEfjXHdXNtCfxooArnxY/3cP1VGtfSu
+	 eKeFU+ZfNpDpy2/xrF/7ouqJ7ALY2fnxSxqNHIuoROutd5OKaVnqzbOhX/kvjg+98Dg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=uSVsWM5+;
-	arc=none smtp.remote-ip=74.125.82.170
-Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com [74.125.82.170])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=IvulfXzy;
+	arc=none smtp.remote-ip=220.197.31.5
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C842606A32A
-	for <ntfs@lists.linux.dev>; Mon,  9 Nov 2026 17:32:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 4C842606A32A
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F053606E62E
+	for <ntfs@lists.linux.dev>; Tue, 10 Nov 2026 03:13:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 5F053606E62E
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=uSVsWM5+
-Received: by mail-dy1-f170.google.com with SMTP id 5a478bee46e88-372bdb942dbso1582691eec.1
-        for <ntfs@lists.linux.dev>; Mon, 09 Nov 2026 09:32:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794245559; x=1794850359; darn=lists.linux.dev;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=8q9/bGCaBlutXPqwHx7AArWRooQhTMYyrXK72i+SUgE=;
-        b=uSVsWM5+uxuv823/sCF58qTi8xIn7M1n20ct2MZajsZWEL1g028Iakj9Lv1ywsULhE
-         fiPwbsKHbk5DdJxG+uMqCAO59PKCnJ5CJDkWIX7n95/WWVSK4egCHVJ+ZaDwBEGQeECa
-         T/dgKkuprciEV6QY01Ss++CB/12jCWdd5Gyqlrt/WWMB3DnQvi6cfG/bFufRWbEMWrJ8
-         Q5QuhwrKTar/EY4ek8XwtpJU5J+drtklDmFxbNyxfF+hxfZ8msCGF0PbD4LB0aiiKKb6
-         gB/mZ4K5ZDJxMHeBvmMorWUs6NegS+fOKNV5ASeIyQCP9owXGaXhStEr9MQWGdTI9Mzy
-         cZ0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794245559; x=1794850359;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=8q9/bGCaBlutXPqwHx7AArWRooQhTMYyrXK72i+SUgE=;
-        b=VKstpzZ5BI6Qhn6owXS/YeD/f2/6PbnDdP7uWKdV9ZR02hDzlMr9R4Sdn5FuFxpCGL
-         Di9NtCpCrYe3QYwY6z0Yo1VSiKv3wtUyroGl+eUUeY1PTlIru3131BiHM+qwGdWKLiZL
-         UoyXX+LdWGJnKbsjWSvI95KyWfCAUa0W0fjkDnHFqI2Dlisvu8mShiLcMZwocK2/VJy5
-         54hX7OTJt0oF71Go7EPjh9y6tTOt8DcSdpvbonafedPJwX2i0NsudWSq/MlPCXzC+nZ+
-         LHHwW99sZaWDpaglBqGcTD4UYQtiR4TVp0Y8wLEqh4cYZM9tQ0gBGJALIuVjecqJFHwt
-         lDEA==
-X-Forwarded-Encrypted: i=1; AL+hErHrDa46sPEv42Tf59eypcT//sZ3NAlotj2VNheu/H1Qbx2qB5xsqgxoCvNrcRZDq9Tck1X/@lists.linux.dev
-X-Gm-Message-State: APuU4Z8RIpTftQREWE7Svm9b6UmioLwwuhIVm5Cdqz+DmS1gyWn609Xs
-	qDUJWoOsVuhf+ivmBmjgAXKdkH8gKYvKB+VV+PelQvI7S6jurMEOShnZ
-X-Gm-Gg: AYBFou2/uVIVfxkvUWgneuVLxKuofqmi9JWFSvIHOcXDsOdWnSAKqylW44IfJeCkC+/
-	QgMaLz07Ru33XkhXhTSlMu+cfLSoR8XyMnclkjfqlEchzp28AOwC3xgz+UmdERP0KG6Zr7HybUi
-	w9epAHVnalbEUQc+kJ6ZObPMwEsAaBKfk5ch/HjrskCVbnyZz+9nAP8zK70qE6/MmSppU5iHYwR
-	Z5j63xxZrUoY8BnQr/09Uu9yFULL3H1fGfbUeSnsyWSgHsh2NNdeAhd4zubXvA1fq5G3mqfjVnS
-	QGH+SkT5c4ubrnpEIzwUzGCXQzGIdg/ULr/QWXFltcwfjM1HJmKKcFZNTvHXb+U3h8r/57Sa4Ya
-	egTb/WcYdEV+/BrUZveGP7xxUR8u3al6AomBu7Gb/2pRgp15B6n5OWO6Wy9pcZHqLzVX1lEy5fL
-	wXPEG5VEiqP0YbMfWpH/WJEhelRERNIe2kLhoiiS1ruhs98WlWqjbvWOvRnc/bpIlnk9uA8E//8
-	BukaHxUSGfKK337VBYI2yzKgsFgwqJepPmiQHN0YXthdBaxbqgL1Z5fEDTZOd9F8sGL1ZPPlT01
-	+bgcNFicp9ixGWgAqN3/V6pHz+Pm2+vCi8a2e1aR+oFURqOA6t1iYFRo/4cXGTr+QQ==
-X-Received: by 2002:a05:7300:e5cb:b0:370:d6e4:e8aa with SMTP id 5a478bee46e88-3725826f58cmr8146878eec.41.1794245559036;
-        Mon, 09 Nov 2026 09:32:39 -0800 (PST)
-Received: from anon-laptop ([103.187.196.132])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37265efd2dcsm14234472eec.17.2026.11.09.09.32.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 09:32:38 -0800 (PST)
-From: Wahid Khan <wahidzk0091@gmail.com>
-To: linkinjeon@kernel.org
-Cc: hyc.lee@gmail.com,
-	ntfs@lists.linux.dev,
-	linux-fsdevel@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH v8] ntfs: convert a named $DATA stream safely when making room in a record
-Date: Mon,  9 Nov 2026 23:02:29 +0530
-Message-ID: <20261109173229.1921147-1-wahidzk0091@gmail.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261109142429.1741882-1-wahidzk0091@gmail.com>
-References: <20261109142429.1741882-1-wahidzk0091@gmail.com>
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=IvulfXzy
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=CbN16mwkgK9F6G/Di5zJrLdhBzzUcEl4Z6zcZAy4sKI=;
+	b=IvulfXzyUJOtsPQr72CGOLAVCdEFXGLmw/m+SP2GbF+wZWVKB17YRrfTsGepTs
+	syBYUEnS9HJ0f/tt7hxF9hfuhSDBoqlnzF3/1pUYT8TKh8PBR2g9gNoGZGcWxvGk
+	Aczv6Qnj4XYeSFkz5J+eDmCjIYrZc8xqqrps6xhl/JJv0=
+Message-ID: <5f5302d9-729b-4008-b19e-f7012232e755@163.com>
+Date: Tue, 10 Nov 2026 11:13:41 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -100,340 +51,96 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 11/31] ntfs: handle source record removal failure
+ during attribute moves
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: linkinjeon@kernel.org, ntfs@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Xuewen Wang <wangxuewen@kylinos.cn>
+References: <20261102073532.98873-1-wangxuewen_ky@163.com>
+ <20261102073532.98873-12-wangxuewen_ky@163.com>
+ <avEwnT6CAgeCj2oo@hyunchul-PC02>
+From: Xuewen Wang <wangxuewen_ky@163.com>
+In-Reply-To: <avEwnT6CAgeCj2oo@hyunchul-PC02>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3X1Xli_JqaAO2GA--.18829S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxAr4rZw4rGry7Cw47tF1kXwb_yoW5GF1kpF
+	9xJF9xKa98Jr12y3ZI9F45ta40v34xG3WUXry5Kr12kFs0q3WIqrW8tF10gFyIkF95Kw4U
+	Zw4UW39xCayUZFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jsJ5OUUUUU=
+X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzQdzXGryi+c5oAAA3I
 
-When an attribute has to grow and the mft record is full,
-ntfs_resident_attr_resize() walks the other resident attributes and
-converts them to non-resident ones. For $DATA it always opens the
-unnamed data inode of the base inode, even if the attribute found is a
-named stream:
 
-  tvi = ntfs_iget(sb, base_ni->mft_no);
-  ntfs_attr_make_non_resident(NTFS_I(tvi), value_len);
 
-value_len is the length of the stream, so it does not match the
-attribute that ntfs_attr_make_non_resident() looks up for the unnamed
-inode, and the WARN_ON() on entry fires:
+在 2026/11/9 10:31, Hyunchul Lee 写道:
+> On Mon, Nov 02, 2026 at 03:35:12PM +0800, Xuewen Wang wrote:
+>> From: Xuewen Wang <wangxuewen@kylinos.cn>
+>>
+>> ntfs_attr_record_move_to() ignores failure to remove the source attribute
+>> after copying it. It can update the attribute-list reference and report
+>> success with both copies present.
+>>
+>> Check removal before changing the list entry. On failure, attempt to
+>> remove the destination copy, mark its record dirty and unmap it, leaving
+>> the list pointing to the source. Report destination cleanup failure
+>> separately.
+>>
+>> Shrinking a record to zero needs no extra space, so failure indicates
+>> inconsistent record accounting. Return and report EFSCORRUPTED even if
+>> cleanup also fails.
+>>
+>> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
+> 
+> This patch has the Fixes tag, but it calls
+> ntfs_report_file_metadata_error(), which is introduced in patch 3.
+> If this patch is backported to a stable tree with patch 3, it could fail
+> to build.
+> 
+Hi Hyunchul,
 
-  WARNING: fs/ntfs/attrib.c:2115 at ntfs_attr_make_non_resident
-   ntfs_resident_attr_resize
-   ntfs_attr_expand_locked
-   ntfs_expand_for_write
-   ntfs_file_write_iter
-   vfs_write
+Thank you for your review. You are right about the dependency.
 
-It does not need a damaged volume. A file with an alternate data stream
-whose record has no room left is enough.
+Would it make sense to reorganize the series so that the bug-fix patches 
+come first and use the existing error-handling mechanisms, without 
+depending on the new reporting helpers?
 
-Open a named stream by name with ntfs_attr_iget(), as is done for the
-other attribute types in this loop, and keep ntfs_iget() for the
-unnamed one. The loop runs with the mft record lock held and takes no
-lock of the stream inode, so converting a stream from here needs more
-care than the plain lookup gives:
+I would then add calls to the new helpers at those sites in a separate 
+patch at the end of the series.
 
-- A reader of the stream holds the folio lock and then takes the mft
-  record lock in ntfs_read_iomap_begin_resident(), the conversion takes
-  them the other way round and waits for folio 0. Take the folio with
-  FGP_NOWAIT in this loop and skip the attribute if it is busy. The loop
-  only tries to free space. The same inversion exists for the conversion
-  of the attribute being resized, which waited for folio 0 with the lock
-  held and hangs against an mmap fault or splice reader. Use FGP_NOWAIT
-  there too. The resize then fails with -ENOSPC while such a reader is
-  stuck on the lock, instead of hanging.
-  Do not look for room in other attributes either: the reader keeps the
-  folio until the lock is dropped, so the attribute can neither be
-  converted nor written without waiting for it, and the loop would only
-  convert other attributes for nothing.
-  FGP_NOWAIT also fails when the folio can not be allocated, so on
-  failure look the folio up: only one that is there means a busy folio,
-  otherwise return -ENOMEM.
+Would this approach work for you?
 
-- A stream that is in the inode cache can be open, being written, being
-  removed or already unlinked. A write that passed its residency check
-  before the conversion carries on with a non-resident attribute, and
-  a stream in the middle of ntfs_stream_finish_remove() is converted
-  under its feet. Convert only a stream that is not cached.
-
-- An attribute inode of a file that has no links left is evicted on the
-  last iput() with its dirty folio, so what was converted is lost and
-  an open file reads its extended attributes back as missing. Convert
-  nothing, of any type, in a file that is being deleted or has no links
-  left.
-
-- The unnamed data is converted through the file's own inode, whose
-  i_rwsem only a resize of the unnamed data itself holds. When a stream
-  or an extended attribute is being resized, a writer of the file can
-  have passed its residency check and carry on with a non-resident
-  attribute (iomap_iter warnings, recursive mrec_lock). When the
-  unnamed data is the attribute being resized, its conversion was just
-  tried by the caller. Do not convert the unnamed data from this loop.
-
-- Do not convert the attribute that is being resized either. Its
-  conversion was just tried and failed, for instance on a busy folio,
-  and a second try that succeeds leaves the resize to go on with the
-  resident layout of a record that is now non-resident.
-
-- The lookup of a stream ignores case, so a stream whose name differs
-  only in case from an earlier one resolves to that one and the length
-  does not match again. Compare the names exactly.
-
-Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-Cc: stable@vger.kernel.org # v7.1+
-Signed-off-by: Wahid Khan <wahidzk0091@gmail.com>
----
-v8: Sashiko's review of v7: the fall-through on a busy folio could still
-    convert other attributes for nothing, also below the record size (the
-    attribute may not fit resident either), and a resident write that
-    follows waits for folio 0 under mrec_lock. A busy folio on the
-    resized attribute now fails the resize with -ENOSPC at any size,
-    nothing is converted. A forced -EAGAIN while growing an EA to 800
-    bytes now fails and the EA keeps its old value, also after a remount.
-    Also: FGP_NOWAIT fails with -EAGAIN when it can not allocate the folio
-    too, which would have shown up as a bogus -ENOSPC under memory
-    pressure. Now only a folio that is in the cache means busy, otherwise
-    -ENOMEM.
-v7: Sashiko's review of v6: when the resized attribute cannot be resident
-    at the new size (newsize >= mft record size), a busy folio (-EAGAIN,
-    mapped to -ENOSPC) still ran the make-room loop and converted the other
-    streams before the resize failed with -ENOSPC anyway. Reproduced with a
-    forced -EAGAIN (setxattr of 1500 bytes fails, two streams converted),
-    fixed: the resize fails right away and nothing is converted.
-v6: Sashiko's review of v5: when the conversion of the resized attribute
-    returns -EAGAIN (busy folio) and is mapped to -ENOSPC, the loop could
-    reach that attribute itself, convert it and resize its record as if it
-    were resident. Reproduced with one forced -EAGAIN (the EA is lost, the
-    resize fails with -EINVAL), fixed: the attribute being resized is never
-    converted from the loop, and neither is the unnamed data (its branch
-    was dead code once that is skipped).
-v5: Sashiko's review of v4 found more, each reproduced with a forced make-room
-    pass and a debug delay, fails before and passes after:
-    - the WofCompressedData stream of a WOF file was converted, and the
-      file read stale clusters until writeback (249 of 250 bytes wrong)
-    - an attribute converted in a file with no links left was evicted
-      with its dirty folio (open file reads its EA back as missing)
-    - a resize of a stream converted the unnamed data under a writer of
-      the file (iomap_iter WARNs, recursive mrec_lock)
-    - the conversion of the resized attribute itself waited for folio 0
-      with mrec_lock held (hung task against mmap fault and splice)
-    The six v4 scenarios still pass.
-v4: v3 (convert a named stream via ntfs_attr_iget()) can deadlock against
-    a reader of the stream and has other races with an open or removed
-    stream. Each is reproduced with a forced make-room pass and a debug
-    delay, fails on v3 and passes here: reader/converter deadlock
-    (hung task), write continuing on a converted attribute (iomap_iter
-    WARNINGs, recursive locking), unlinked file with an open stream (mft
-    record reported corrupt), stream converted during its own removal,
-    and a stream pair that differs only in case (WARN in
-    ntfs_attr_make_non_resident).
-v3: use ntfs_attr_iget() for a named stream instead of skipping it (v2).
- fs/ntfs/attrib.c | 105 +++++++++++++++++++++++++++++++++++++++++++----
- fs/ntfs/inode.c  |  19 +++++++++
- fs/ntfs/inode.h  |   2 +
- 3 files changed, 117 insertions(+), 9 deletions(-)
-
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index ce7c1b524180..eb4376e2a2fd 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -1975,7 +1975,21 @@ int ntfs_resident_attr_value_resize(struct mft_record *m, struct attr_record *a,
-  * inode i_size is that this is not necessarily uptodate.  This happens when
-  * ntfs_attr_make_non_resident() is called in the ->truncate call path(s).
-  */
-+static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size,
-+		bool nowait);
-+
- int ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size)
-+{
-+	return __ntfs_attr_make_non_resident(ni, data_size, false);
-+}
-+
-+/*
-+ * With @nowait the folio lock is only tried: a caller that holds mrec_lock
-+ * must not wait for a folio lock, the read path takes them the other way
-+ * round. Fails with -EAGAIN if the folio is locked.
-+ */
-+static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size,
-+		bool nowait)
- {
- 	s64 new_size;
- 	struct inode *vi = VFS_I(ni);
-@@ -2056,10 +2070,23 @@ int ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size)
- 		 * outside all ntfs locks, we need to get the folio now.
- 		 */
- 		folio = __filemap_get_folio(vi->i_mapping, 0,
--					    FGP_CREAT | FGP_LOCK,
-+					    FGP_CREAT | FGP_LOCK |
-+					    (nowait ? FGP_NOWAIT : 0),
- 					    mapping_gfp_mask(vi->i_mapping));
- 		if (IS_ERR(folio)) {
- 			err = -ENOMEM;
-+			if (nowait) {
-+				/*
-+				 * FGP_NOWAIT also fails when it can not
-+				 * allocate the folio. Only a folio that is
-+				 * there and locked means a busy folio.
-+				 */
-+				folio = filemap_get_folio(vi->i_mapping, 0);
-+				if (!IS_ERR(folio)) {
-+					folio_put(folio);
-+					err = -EAGAIN;
-+				}
-+			}
- 			goto err_out;
- 		}
- 
-@@ -4895,8 +4922,19 @@ static int ntfs_resident_attr_resize(struct ntfs_inode *attr_ni, const s64 newsi
- 	/* There is not enough space in the mft record to perform the resize. */
- 
- 	/* Make the attribute non-resident if possible. */
--	err = ntfs_attr_make_non_resident(attr_ni,
--			le32_to_cpu(ctx->attr->data.resident.value_length));
-+	err = __ntfs_attr_make_non_resident(attr_ni,
-+			le32_to_cpu(ctx->attr->data.resident.value_length), true);
-+	/*
-+	 * A reader holding folio 0 waits for mrec_lock, which we hold. Do not
-+	 * wait for it and do not look for room elsewhere either: the reader
-+	 * keeps the folio until we drop the lock, so the attribute can neither
-+	 * be converted nor written without waiting for it, and the loop below
-+	 * would only convert other attributes for nothing.
-+	 */
-+	if (err == -EAGAIN) {
-+		err = -ENOSPC;
-+		goto put_err_out;
-+	}
- 	if (!err) {
- 		mark_mft_record_dirty(ctx->ntfs_ino);
- 		ntfs_attr_put_search_ctx(ctx);
-@@ -4913,12 +4951,14 @@ static int ntfs_resident_attr_resize(struct ntfs_inode *attr_ni, const s64 newsi
- 	while (!(err = ntfs_attr_lookup(AT_UNUSED, NULL, 0, 0, 0, NULL, 0, ctx))) {
- 		struct inode *tvi;
- 		struct attr_record *a;
-+		__le16 *name;
- 		u32 value_len;
- 
- 		a = ctx->attr;
- 		if (a->non_resident || a->type == AT_ATTRIBUTE_LIST)
- 			continue;
- 		value_len = le32_to_cpu(a->data.resident.value_length);
-+		name = (__le16 *)((u8 *)a + le16_to_cpu(a->name_offset));
- 
- 		if (ntfs_attr_can_be_non_resident(vol, a->type))
- 			continue;
-@@ -4933,18 +4973,65 @@ static int ntfs_resident_attr_resize(struct ntfs_inode *attr_ni, const s64 newsi
- 		if (a->type == AT_DATA && !value_len)
- 			continue;
- 
--		if (a->type == AT_DATA)
--			tvi = ntfs_iget(sb, base_ni->mft_no);
--		else
--			tvi = ntfs_attr_iget(VFS_I(base_ni), a->type,
--				(__le16 *)((u8 *)a + le16_to_cpu(a->name_offset)),
-+		/*
-+		 * The attribute inode of an unlinked file is evicted on the
-+		 * last iput() together with its dirty folio.
-+		 */
-+		if (NInoBeingDeleted(base_ni) || !VFS_I(base_ni)->i_nlink)
-+			continue;
-+
-+		/*
-+		 * Not the attribute being resized. Its conversion was tried
-+		 * above and failed, for instance on a busy folio, and
-+		 * converting it here would leave the resize to go on with the
-+		 * resident layout of a non-resident record.
-+		 */
-+		if (a->type == attr_ni->type &&
-+		    a->name_length == attr_ni->name_len &&
-+		    (!a->name_length ||
-+		     !memcmp(name, attr_ni->name,
-+			     a->name_length * sizeof(__le16))))
-+			continue;
-+
-+		/*
-+		 * Not the unnamed data either. Only the resize of the unnamed
-+		 * data itself holds its i_rwsem, a writer of the file can be
-+		 * between its residency check and the mft record lock.
-+		 */
-+		if (a->type == AT_DATA && !a->name_length)
-+			continue;
-+
-+		/*
-+		 * A named $DATA stream is converted only if nobody has it open:
-+		 * an open one can be unlinked, being removed or in use. A WOF
-+		 * file reads its stream from the device, so the stream must
-+		 * stay resident.
-+		 */
-+		if (a->type == AT_DATA) {
-+			if (NInoWofCompressed(base_ni))
-+				continue;
-+			tvi = ntfs_attr_ilookup(VFS_I(base_ni), a->type,
-+					name, a->name_length);
-+			if (tvi) {
-+				iput(tvi);
-+				continue;
-+			}
-+		}
-+		tvi = ntfs_attr_iget(VFS_I(base_ni), a->type, name,
- 				a->name_length);
-+		/* the lookup ignores case for streams, ours does not */
-+		if (!IS_ERR(tvi) && a->type == AT_DATA &&
-+		    memcmp(NTFS_I(tvi)->name, name,
-+			   a->name_length * sizeof(__le16))) {
-+			iput(tvi);
-+			continue;
-+		}
- 		if (IS_ERR(tvi)) {
- 			ntfs_error(sb, "Couldn't open attribute");
- 			continue;
- 		}
- 
--		if (ntfs_attr_make_non_resident(NTFS_I(tvi), value_len)) {
-+		if (__ntfs_attr_make_non_resident(NTFS_I(tvi), value_len, true)) {
- 			iput(tvi);
- 			continue;
- 		}
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 62dd5bd5bb81..ec9c7b219192 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -287,6 +287,25 @@ struct inode *ntfs_attr_iget(struct inode *base_vi, __le32 type,
- 	return vi;
- }
- 
-+/*
-+ * ntfs_attr_ilookup - find an attribute inode that is already in the cache
-+ *
-+ * Like ntfs_attr_iget() but never reads anything. Returns the inode with an
-+ * increased reference count, or NULL if it is not cached.
-+ */
-+struct inode *ntfs_attr_ilookup(struct inode *base_vi, __le32 type,
-+		__le16 *name, u32 name_len)
-+{
-+	struct ntfs_attr na = {
-+		.mft_no = base_vi->i_ino,
-+		.type = type,
-+		.name = name,
-+		.name_len = name_len,
-+	};
-+
-+	return ilookup5(base_vi->i_sb, na.mft_no, ntfs_test_inode, &na);
-+}
-+
- /*
-  * ntfs_index_iget - obtain a struct inode corresponding to an index
-  * @base_vi:	vfs base inode containing the index related attributes
-diff --git a/fs/ntfs/inode.h b/fs/ntfs/inode.h
-index a18cbcf1c631..7ea52c59c04b 100644
---- a/fs/ntfs/inode.h
-+++ b/fs/ntfs/inode.h
-@@ -326,6 +326,8 @@ struct ntfs_attr {
- int ntfs_test_inode(struct inode *vi, void *data);
- int ntfs_test_inode_rcu(struct inode *vi, void *data);
- struct inode *ntfs_iget(struct super_block *sb, u64 mft_no);
-+struct inode *ntfs_attr_ilookup(struct inode *base_vi, __le32 type,
-+		__le16 *name, u32 name_len);
- struct inode *ntfs_attr_iget(struct inode *base_vi, __le32 type,
- 		__le16 *name, u32 name_len);
- struct inode *ntfs_index_iget(struct inode *base_vi, __le16 *name,
--- 
-2.56.0
+Thanks,
+Xuewen
+>> Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
+>> ---
+>>   fs/ntfs/attrib.c | 12 +++++++++++-
+>>   1 file changed, 11 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+>> index 5af8ac41af17..f1c99e0d8dca 100644
+>> --- a/fs/ntfs/attrib.c
+>> +++ b/fs/ntfs/attrib.c
+>> @@ -3578,7 +3578,17 @@ int ntfs_attr_record_move_to(struct ntfs_attr_search_ctx *ctx, struct ntfs_inode
+>>   	nctx->attr->instance = nctx->mrec->next_attr_instance;
+>>   	nctx->mrec->next_attr_instance =
+>>   		cpu_to_le16((le16_to_cpu(nctx->mrec->next_attr_instance) + 1) & 0xffff);
+>> -	ntfs_attr_record_resize(ctx->mrec, a, 0);
+>> +	err = ntfs_attr_record_resize(ctx->mrec, a, 0);
+>> +	if (err) {
+>> +		err = -EFSCORRUPTED;
+>> +		ntfs_report_file_metadata_error(VFS_I(ni), -EFSCORRUPTED);
+>> +		if (ntfs_attr_record_resize(ni_mrec, nctx->attr, 0))
+>> +			ntfs_report_file_metadata_error(VFS_I(ni),
+>> +							-EFSCORRUPTED);
+>> +		mark_mft_record_dirty(ni);
+>> +		unmap_mft_record(ni);
+>> +		goto put_err_out;
+>> +	}
+>>   	mark_mft_record_dirty(ctx->ntfs_ino);
+>>   	mark_mft_record_dirty(ni);
+>>   
+>>
+>>
+> 
 
