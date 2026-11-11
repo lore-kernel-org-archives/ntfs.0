@@ -1,91 +1,116 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=74.125.82.171
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=195.135.223.130
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794389705;
-	b=C3jpXAOxf1bnpU5QmiAZAujAiIVQCYVr/eViCAb2om8/oOVo6H43UYPQsmN6q0FlAgqA
-	 JrJa7cyz6XAijX4r2jQXpUTKIv7DEEcfieCtPLZRMkJgUFDg90ihkjg0nD5/s+V9FWrGl
-	 gWlpXcdGHOYJFkjGIWNFZ0jtZjqV+LHyiedEG/H0DhBm4ABEVR3AsOxZOiCD4Mrb+qTN0
-	 ZkWsAA/9ZLylxaE4t9Q8BeX9SjWLT7GcvYJ3DA822IA4M5hXj5kNvNv30C1zhzQZaNksi
-	 gWfe/gD11u5NGOcfvfVN65ZTbfGeQn9ftC09+1VFfYkcT+ubYSWHqU1kw66n2Gkf5hw==
+	t=1794406515;
+	b=m996nXMbKhBZyO7DThjabhd7iNyCGbs/44IO7Ryp6fkuTPGcBVUIIDBk/kLe8Y8aaVO2
+	 oGmEwjgv+JR+dPX5i7vGW3RqCQqYL/aD7vJsi51ZrAORFwiWAoEEncxynT4GI2a3lBCzM
+	 o5oZbdELjzX2PClo566MNmIHmo4cZWK8u+xwPs1XOJbwjdoOVNWw2jwmBZ6aqhpsyelgm
+	 UGk5ctTd9Sx4J1yaEAJ6BDjGr+PI5Xqr4AwXrCadGPLdhBW18MWNioKxrTAwW/MdFY8bV
+	 XQknvNFjO8AXl3o+d0QlyeabkmQ5o68TnhaD53+y62xxbNFRgusdwjdUPd4GDJ5rPQw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794389705;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Gm-Gg:X-Received:Received:From:To:Cc:Subject:
-	 Date:Message-ID:X-Mailer:MIME-Version:Content-Transfer-Encoding;
-	bh=7/ak2wJxgQz/GEeeix3feX0c94ZhF3VpppiIw7196jw=;
-	b=VIkppyP5zgeUTbG0tawMbv7SBHMcUMwMrj56Z9iCN4jhU6trI+U5vrbHnCWJIEQNxhtH
-	 TxYgkMaZaCp7n4jsXr/kOfjhWEElbEU2oCMUekKPLihHC1J9P4XVPUFDpzIFb0Zb+RgHl
-	 cG4b48AuzznvFx8SgttVbRD9etUBzY825K93352rWwBSHMv6tefDpu/437RGwG8xEvZkb
-	 rZQ3uLLDnH1T8Syj28F7f10A1uCpRcYPtiLJmMzX/+6eecO2wzwb4XNiVVoQxG/xww80r
-	 4Y8V8fzX5yaLjMa0LLkbAc84dtq8YF1hWY4oPfzHo4UncIiDX/4PppIEeJHX56n8f3Q==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794406515;
+	h=DMARC-Filter:Received:DKIM-Signature:DKIM-Signature:DKIM-Signature:
+	 DKIM-Signature:Received:Received:Received:Date:From:To:Cc:Subject:
+	 Message-ID:References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To:X-Rspamd-Queue-Id:X-Spam-Level:X-Rspamd-Server:
+	 X-Rspamd-Action:X-Spam-Flag:X-Spamd-Result:X-Spam-Score;
+	bh=iEM9kPeISwrg1hp3zFsHM5gU3S8hitOkRPQJum2vFMU=;
+	b=ZiK73kegivisxJpVK2LXkC1RYLocW5xSvj3pTcjD8448vL5b+UkV8tAvKouN6RROPVxD
+	 Vtu+r6qbw5p0Vcu1htkjyxI+kgNukTzPQPhfF36101J0drA6R8Rn3REUbUOswcf4Z/Olt
+	 Ttfok9rcej1iUYxtdyfXG1fwsE/PBE3r8CfMCmhal/NkxcH9WbHCRD85bH7KlIwJHl8dP
+	 LVPsspF4VWGjFptPweyLbNG5KwnAa/itd/JjesrWlEsKpDv4yOiev8tfS1+8OuIIJ+Ed4
+	 wLpwhmVMSq1rDdgWW1wLT6ndhk3EKtdXW6XnH+UadbirKGVzI9VfKMpyQvvzARJHFQw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mmFVBL4P;
-	arc=none smtp.remote-ip=74.125.82.171
-Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=none header.from=suse.cz;
+	spf=pass smtp.mailfrom=suse.cz;
+	dkim=pass header.d=suse.cz header.i=@suse.cz header.a=rsa-sha256 header.s=susede2_rsa header.b=r58BF0D8;
+	dkim=pass header.d=suse.cz header.i=@suse.cz header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=15TlV9Nr;
+	dkim=pass header.d=suse.cz header.i=@suse.cz header.a=rsa-sha256 header.s=susede2_rsa header.b=r58BF0D8;
+	dkim=neutral header.d=suse.cz header.i=@suse.cz header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=15TlV9Nr;
+	arc=none smtp.remote-ip=195.135.223.130
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CCF9606A321
-	for <ntfs@lists.linux.dev>; Wed, 11 Nov 2026 09:35:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 1CCF9606A321
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE34606A889;
+	Wed, 11 Nov 2026 14:15:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 3FE34606A889
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=suse.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.cz
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mmFVBL4P
-Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-33fb4680717so2880635eec.1
-        for <ntfs@lists.linux.dev>; Wed, 11 Nov 2026 01:35:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794389704; x=1794994504; darn=lists.linux.dev;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=7/ak2wJxgQz/GEeeix3feX0c94ZhF3VpppiIw7196jw=;
-        b=mmFVBL4P+94BNWynp1inDnwQwk8RO8An4HVmdeYkKKNOwyZ/oST58+69c7RceVF8Wx
-         bb8yDeDMysXnCmYwpuASWM74kCpCrp6OuystT1F5IFmU3O26Wk2P5yFGnVEIbYoZSGbC
-         6Il0SGMtKAwaUJpnMKuxyu4HBayW9OM0Ms0n9oei17BO8m4S9f/mvjEzuFOa0z1TbSxv
-         3B+fEtTWpTlCLABh1rZh/KGFPfEucff5FzUD6TcsconWvlbCXAG0KEsY7W0+hysS+abX
-         p11c81to8FUsTyVZhgRAh+ZpuiL0Ci8gGV5Vu3P/1FisjuLX1RiQ3PtTAJXHyp8gl5sD
-         XMCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794389704; x=1794994504;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=7/ak2wJxgQz/GEeeix3feX0c94ZhF3VpppiIw7196jw=;
-        b=PuSd1e/HasDDo5uuyRoT5YzNQVY7TTdgOdLTOndao8d0mTX7uHRJi0y8GbeftPSfuK
-         tg+Wv8yuGbeFVmZTnEWFYdW7LtV/XykD0RPNsVb/JzDug8KNfXvp4N3nexbl+/r8qArf
-         brtkxxo5zA+q2oHQ3isTmwoSTFpnR9LZk3RMWLr0f8wJS0J2sRLyyjSv8qfdBMxKF4gg
-         OZHZbELA+zAxcdpLZPJB0N0eWykLuenwXuskRy94pL54lJdAwxDx/7x6k9LA1bqRrdWd
-         V+hSsnyfq2gMqIiXEDH/Ne9iC6SIiweWCSbQyXjqRw1CFRxCpTpk0YbF7NR9k1TIgMOy
-         Kmfg==
-X-Gm-Message-State: APuU4Z/Zi6063v6lTpX1Hp2H8Hzv3W4I8a1V4uvqWsycoLkhrKAtrEfK
-	6296Dr1jqdT8SYHxcWXYCC29LKA3ULzGaki8kgL2VrqwjFddDoiLCf7a
-X-Gm-Gg: AYBFou0zcqNgOw7w18HqHLqeDdXDDeGJ72bm0bz6b8IdLek1tP188LTZ5AGWP9f5dNs
-	e2UJyL+MTq5DiR0WRnkDpxhxySZBY3+UdaiaGYqZV8rl3+TIk/otFAahqfI+GU5XXP9fcVBIOSC
-	KB6z87SHBkZ94WnBjZlPHXIHqFQTooYdzY2dlwx+wYVaEPSTeFZjfSnCRqYQDbDh/bjjJv0UVv3
-	FObHaKRoGv0xhTx43TTNYXEhwLsdWs5gcdYtvHedhGGXb/zcsllcS289HuKyIv+1WU0O4+L83XI
-	H+LjJqBa9g5H/sgOXilwqd6hnXJt2ZHyEaL5stOazJjsPaNG1qx1Nm8kIlwMXlggOeCXD0iiOzy
-	SnJK5Q4UDixG2fF1te/w2HgwyWkD1qx6KmZEDyNaswWgNLgOGQDz+drueBIcRol9CFsIl20yHfT
-	a7veXJLGfBl2aRyxHpEA4d9CniseNd3Uv1k96/3gE/uJedziw+jVIurd6ijXIeE0LecIrdcCsr7
-	aMsToPA+dDv3GaxQ0F5TqCNZDeuGYHycy646XN0Op6Lf6KGsmEe9nwRIUnqmhrexq3vCV+ByK1e
-	mH0wZdjepOR1d/yY6liAZ13tSNGKn8mvxCdhaZivqbaSig==
-X-Received: by 2002:a05:7301:2424:b0:36a:21b8:b6c4 with SMTP id 5a478bee46e88-376851ce3acmr2539201eec.8.1794389703938;
-        Wed, 11 Nov 2026 01:35:03 -0800 (PST)
-Received: from osman.mioffice.cn ([43.224.245.178])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3751fe3261csm12625718eec.4.2026.11.11.01.35.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 01:35:03 -0800 (PST)
-From: Zhan Xusheng <zhanxusheng1024@gmail.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	zhanxusheng@xiaomi.com,
-	stable@vger.kernel.org
-Subject: [PATCH] ntfs: trim the sizes after a short write
-Date: Wed, 11 Nov 2026 17:34:59 +0800
-Message-ID: <20261111093459.660484-1-zhanxusheng1024@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.a=rsa-sha256 header.s=susede2_rsa header.b=r58BF0D8;
+	dkim=pass header.d=suse.cz header.i=@suse.cz header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=15TlV9Nr;
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.a=rsa-sha256 header.s=susede2_rsa header.b=r58BF0D8;
+	dkim=neutral header.d=suse.cz header.i=@suse.cz header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=15TlV9Nr
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 09F3E22A5E;
+	Wed, 11 Nov 2026 14:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+	t=1794406512; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iEM9kPeISwrg1hp3zFsHM5gU3S8hitOkRPQJum2vFMU=;
+	b=r58BF0D8W8gzgIAphVb7+yXG4Wp0CzJfQUUtsAILSsDExswBBX2Vz1DZhrqDcoIpRX0ZTt
+	0gBD9RMFaruNOsM+g+SXe7YVni3W376lEjHWkMsC8cv+03B46mcbwzWMdN6eutgUbVcR1I
+	skb2yG6nBdMmWTQD7PkbKOeYbn2js8w=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+	s=susede2_ed25519; t=1794406512;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iEM9kPeISwrg1hp3zFsHM5gU3S8hitOkRPQJum2vFMU=;
+	b=15TlV9Nrfb6fbwPB+XQGAF9gQF4YSshvgg4Qr4JwuaNYvo4isPqFDJlR8PRYTR3/TFQArE
+	KUe4A2NvjL7x2ZAw==
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.cz header.s=susede2_rsa header.b=r58BF0D8;
+	dkim=pass header.d=suse.cz header.s=susede2_ed25519 header.b=15TlV9Nr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+	t=1794406512; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iEM9kPeISwrg1hp3zFsHM5gU3S8hitOkRPQJum2vFMU=;
+	b=r58BF0D8W8gzgIAphVb7+yXG4Wp0CzJfQUUtsAILSsDExswBBX2Vz1DZhrqDcoIpRX0ZTt
+	0gBD9RMFaruNOsM+g+SXe7YVni3W376lEjHWkMsC8cv+03B46mcbwzWMdN6eutgUbVcR1I
+	skb2yG6nBdMmWTQD7PkbKOeYbn2js8w=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+	s=susede2_ed25519; t=1794406512;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iEM9kPeISwrg1hp3zFsHM5gU3S8hitOkRPQJum2vFMU=;
+	b=15TlV9Nrfb6fbwPB+XQGAF9gQF4YSshvgg4Qr4JwuaNYvo4isPqFDJlR8PRYTR3/TFQArE
+	KUe4A2NvjL7x2ZAw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BD61B134E5;
+	Wed, 11 Nov 2026 14:15:11 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id oMu1Jm949GpWAQAAD6G6ig
+	(envelope-from <jack@suse.cz>); Wed, 11 Nov 2026 14:15:11 +0000
+Received: by quack.suse.cz (Postfix, from userid 1000)
+	id 475D422933; Wed, 11 Nov 2026 15:15:11 +0100 (CET)
+Date: Wed, 11 Nov 2026 15:15:11 +0100
+From: Jan Kara <jack@suse.cz>
+To: Christian Brauner <brauner@kernel.org>
+Cc: Jan Kara <jack@suse.cz>, linux-fsdevel@vger.kernel.org, 
+	Jan Kara <jack@suse.com>, Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, 
+	linux-ext4@vger.kernel.org, jfs-discussion@lists.sourceforge.net, 
+	linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, linux-mm@kvack.org, ntfs@lists.linux.dev, 
+	ocfs2-devel@lists.linux.dev, linux-btrfs@vger.kernel.org, gfs2@lists.linux.dev, 
+	linux-efi@vger.kernel.org, linux-mtd@lists.infradead.org, linux-xfs@vger.kernel.org, 
+	Karl Mehltretter <kmehltretter@gmail.com>
+Subject: Re: [PATCH v2 04/34] ext2: don't set SB_RDONLY after filesystem
+ errors
+Message-ID: <za33axmgzmuzsj3zmfeh43fkphtcsqtkhhrauwuvs7aiftelgp@dzl6z322st5f>
+References: <20261029-work-fs-sb_rdonly-v2-0-2f44f64f0b66@kernel.org>
+ <20261029-work-fs-sb_rdonly-v2-4-2f44f64f0b66@kernel.org>
+ <5qefa4mracb3x2z4vsdejmkyyfrhdcrixmmnooz4rzwcdfoejm@mqkvixj6afwp>
+ <20261110-kargheit-impfen-pausieren-881763d28b19@brauner>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -95,106 +120,92 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261110-kargheit-impfen-pausieren-881763d28b19@brauner>
+X-Rspamd-Queue-Id: 09F3E22A5E
+X-Spam-Level: 
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Flag: NO
+X-Spamd-Result: default: False [-11.51 / 50.00];
+	SUSE_INTERNAL_BYPASS(-9.00)[];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+	RCVD_COUNT_THREE(0.00)[3];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	MIME_TRACE(0.00)[0:+];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	ARC_NA(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[suse.cz:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[suse.cz,vger.kernel.org,suse.com,zeniv.linux.org.uk,lists.sourceforge.net,lists.linux.dev,kvack.org,lists.infradead.org,gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.cz:dkim]
+X-Spam-Score: -11.51
 
-From: Zhan Xusheng <zhanxusheng@xiaomi.com>
+On Tue 10-11-26 22:50:47, Christian Brauner wrote:
+> On Thu, Nov 05, 2026 at 10:22:07AM +0100, Jan Kara wrote:
+> > So shouldn't we just modify the sb_rdonly() check in sync_filesystem() to
+> > use also sb_emergency_ro() and don't bother with modifying individual
+> > filesystems?
+> 
+> The VFS patch I posted in v1 thread did that. I dropped it because
+> of jfs. jfs keeps anonymous tlocks for every allocation that writeback
+> hasn't committed yet. If sync_filesystem() bails after the error nothing
+> commits them before evict_inodes() and jfs_evict_inode() hits the
+> BUG_ON() for a non-empty anon_inode_list on umount.
+> 
+> Which is what happened before the series because the error set
+> SB_RDONLY. jfs_reconfigure() relies on the same sync_filesystem() call
+> when going read-only after the error.
+> 
+> jfs could commit them itself before evict_inodes() but that means a
+> ->kill_sb() wrapper and a txQuiesce()-like walk over the global
+> anon_list filtered by superblock. I don't think that's worth it.
 
-ntfs_file_write_iter() moves the data size and, for a non-resident
-uncompressed file, the initialized size to pos + count before the copy.
-__ntfs_extend_initialized_size() only zeroes [old initialized size, pos),
-so the range [pos, pos + count) is initialized only by the copy itself.
-When iomap_file_buffered_write() copies less than count, it returns a
-positive short count and the error rollback at out: does not run.  The
-file keeps the size pos + count, and [pos + ret, pos + count) reads back
-whatever the freed clusters held before, also after a remount.  A local
-user can read the old contents of freed clusters this way.
+OK, so instead of BUGing in jfs_evict_inode(), shouldn't JFS just do
+something like:
 
-Run the existing rollback for a short write as well, and roll the two
-sizes back to the end of what was written instead of to the old sizes.
+-	BUG_ON(!list_empty(&ji->anon_inode_list));
++	if (!list_empty(&ji->anon_inode_list)) {
++		WARN_ON_ONCE(!sb_emergency_ro(inode->i_sb));
++		/* This needs helper in fs/jfs/jfs_txnmgr.c */
++		TXN_LOCK();
++		list_del_init(&ji->anon_inode_list);
++		TXN_UNLOCK();
++	}
 
-Fixes: b041ca562526 ("ntfs: update iomap and address space operations")
-Cc: stable@vger.kernel.org
-Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
----
-A reproducer is available on request.
+So that JFS doesn't block everybody else? Because conceptually, once sb is
+marked as emergency read-only, we really want to stop writeback so letting
+sync_inodes() run seems moot.
 
-Tested in a VM on mainline b3dfbde62cf1, with the free space filled
-with a known pattern first.  Short append of 4M that stops after
-1056768 bytes:
+> > Is this really needed? All the xattr operations go through mnt_want_write()
+> > / mnt_want_write_file() so this should be caught in VFS...
+> 
+> Not the ones ecryptfs does on the lower filesystem...
+> Hm, maybe we should make ecryptfs get write access to the lower mount
+> instead and drop the xattr checks from the filesystems. Not sure.
 
-                     write()   size grows by   old data readable
-  before             1056768   4194304         3137536 bytes
-  after              1056768   1056768         0
+Argh, also NFS I assume. OK, that won't be easy to get rid of AFAICT (we
+generally don't have mount available there).
 
-A short write 1M past EOF gives the same results.  Full writes and
-compressed files are unchanged.
----
- fs/ntfs/file.c | 25 ++++++++++++++++++-------
- 1 file changed, 18 insertions(+), 7 deletions(-)
-
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 3213a0c9f96b..98bb3d5d420e 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -928,10 +928,21 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
- 		ret = iomap_file_buffered_write(iocb, from, &ntfs_write_iomap_ops,
- 				&ntfs_iomap_folio_ops, NULL);
- out:
--	if (ret < 0 && ret != -EIOCBQUEUED) {
-+	/*
-+	 * Both sizes were moved to end before the copy, so a short write,
-+	 * like a failed one, must take back what it did not write.
-+	 */
-+	if (ret < count && ret != -EIOCBQUEUED) {
-+		loff_t new_init_size = old_init_size;
-+		loff_t new_data_size = old_data_size;
- 		int init_err = 0;
- 		int data_err = 0;
- 
-+		if (ret > 0) {
-+			new_init_size = max(old_init_size, pos + ret);
-+			new_data_size = max(old_data_size, pos + ret);
-+		}
-+
- 		/*
- 		 * Like ntfs_setattr_size(): __ntfs_attr_truncate_vfs()
- 		 * expects the invalidate lock held across the size
-@@ -940,13 +951,13 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
- 		filemap_invalidate_lock(vi->i_mapping);
- 
- 		/* ntfs_attr_set_initialized_size() rejects a resident one. */
--		if (ni->initialized_size != old_init_size &&
-+		if (ni->initialized_size != new_init_size &&
- 		    NInoNonResident(ni)) {
- 			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
- 
- 			mutex_lock(&mrec_ni->mrec_lock);
- 			init_err = ntfs_attr_set_initialized_size(ni,
--					old_init_size);
-+					new_init_size);
- 			mutex_unlock(&mrec_ni->mrec_lock);
- 		}
- 		/*
-@@ -955,13 +966,13 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
- 		 * the uninitialized tail, so skip it unless the rollback
- 		 * above restored that size.
- 		 */
--		if (ni->data_size != old_data_size && !init_err) {
-+		if (ni->data_size != new_data_size && !init_err) {
- 			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
- 
--			truncate_setsize(vi, old_data_size);
-+			truncate_setsize(vi, new_data_size);
- 			mutex_lock(&mrec_ni->mrec_lock);
--			data_err = __ntfs_attr_truncate_vfs(ni, old_data_size,
--					old_data_size);
-+			data_err = __ntfs_attr_truncate_vfs(ni, new_data_size,
-+					new_data_size);
- 			mutex_unlock(&mrec_ni->mrec_lock);
- 			/* Like ntfs_setattr_size(): stay on the durable size. */
- 			if (data_err)
-
-base-commit: b025f526c5d04929212c9d5fb7ffc96608f3eacc
+								Honza
 -- 
-2.43.0
-
+Jan Kara <jack@suse.com>
+SUSE Labs, CR
