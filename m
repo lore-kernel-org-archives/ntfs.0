@@ -1,75 +1,55 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.226
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794362043;
-	b=Pwq2M48eE2Zw/I6jv+ruF9Zu6NddOendnNGuGAdZt8ARhEiENQICisgsbTIFgcm3+B7b
-	 JCo7jOlZWqAn2NbUOPq76zyzbctd1iaYMd9L/MFdm/99GS8AOz5WtvQ7GGT4ReQMq7eR3
-	 hQdUkkqU1BjgX5YqqajVDIkT0SOI9E4NHIIHutW4bVSfkvfLIcvosLeV+C1aAylf2gSTf
-	 ydv7P2bvvmAehbrQ0xvBhJZKSO9Hq8R1d0Lzd/+O1jvcfH4bPZXDEjlTGzH3SzZRKN+y7
-	 12J+/LGT6frtG0n1wDG1cwLWgPQBZOTVHOCFr5lxkVGUb72f9BZm+MybwqiBayCVXBw==
+	t=1794362876;
+	b=2DmicKZDj3lfyvOyYz0RU3lJsl8A35URWhc4yctJMPuLHDrY/inIJGDED7VKH5oJVn7F
+	 buU2G+BJF2f4lYT+TuZvxWUUzetuav7j44Msw4uOg2+w8IVG+abI+cMREKaRxtEj2/3Gv
+	 pwaQU5oFCIf3qGWn/vuUc0c/Cz439p98iSkMu8c4tJp4SsThUurinvH1Wceu//p7+tDrf
+	 3aNZsqcHyfHJJhGYiosrSkHLVpXVzfhLZIbDRlPgFrEGforx7dLthFE3Pre8TghYlnt7P
+	 FyugSyi0JEAHjBc42IV5JUaj9ATHJHShasLtNeGvNH1doDqJWHNj/OVYieI39AlQzpw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794362043;
-	h=DMARC-Filter:dkim-signature:Received:Received:Received:Subject:To:CC:
-	 References:From:Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-Originating-IP:
-	 X-ClientProxiedBy;
-	bh=3j8i2RMfXjq7ikEdRoC0M7EhfQxRKXJ1iTD8fT2y+DU=;
-	b=3H6X1v7ZxU8bboJiwMFiOpeEwMc9c3eMkg37LRNAVrplekRwPUPK5av/h2ZphQFdQER6
-	 q+nASDWDWcoyeqnTiUIo6W4H+90yIKZKKJ8X1+AU6WUCOHsyyOQ5/aYGBYWqwMQA6FShF
-	 KNjrkjdho6svz5W+lasYSShzCKa72VQOluu+Z9EfIOsYmcCXwyyRMjpJaNJb9hQznTYc1
-	 2ftlbYNAAORxfYHJEJY1FxyiqQo2NRUUTMFKHVsSxvttBHq49A76DK0t6d6GKoI7rZr/s
-	 FLSGsGg+YboQOVVDah1uZ8N0m7C9EycxExeRvBGeuhbxGaOLosWLtx6LE7PVXt9cW1Q==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794362876;
+	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
+	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
+	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
+	 Subject:To:Cc:Content-Type;
+	bh=bs+aVi1+6hDy1HNy6v6dzYMiqPyVoyHt4w4ufaPFezs=;
+	b=33X76keDHf/3YplCQTkW+j8ONWbnHchwkKP0tGX9+6rtDNwAz8+3biPYiY9nWvBEsbRt
+	 I7IXz2/Q2YO6kd4xaOlnM1ivgudn8zG1VXMwwRFAQJDylm/9oa3wBO4aFrw4ibDXEVwc/
+	 KNxV5EuItn3C/vfIOdivywflNjTsRJ4s2ZudWPmm1l62QudhX+OPuHMMqdNpDd8NXfUC+
+	 +n1EnhZchsmxB5162P2955gV5M2CB7Fnwu67UDOUGth/rOnHZdsZxZTBDw1QWeJ8AaAWK
+	 A5MukWMMMXSdjnUzuhe8b6QJk5bBxYof3k6qxEOSueQP6tSfi/JTZ9sJaQT37FyUcVQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=huawei.com;
-	spf=pass smtp.mailfrom=huawei.com;
-	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=u8WJaF3q;
-	arc=none smtp.remote-ip=113.46.200.226
-Received: from canpmsgout11.his.huawei.com (canpmsgout11.his.huawei.com [113.46.200.226])
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ShtsgSig;
+	arc=none smtp.remote-ip=100.103.45.18
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74108606A327;
-	Wed, 11 Nov 2026 01:54:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 74108606A327
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50454606A334
+	for <ntfs@lists.linux.dev>; Wed, 11 Nov 2026 02:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=u8WJaF3q
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=3j8i2RMfXjq7ikEdRoC0M7EhfQxRKXJ1iTD8fT2y+DU=;
-	b=u8WJaF3qwa/K+ecI0wenMsNXgYb0HrhprmHkE4QJODjrBSe4+EjL0OlYwiEG9frJzY+4PPxby
-	qRrA9VhuhNZ4ggwJdtZrkD6d3YGfwh7W6Pdcao/OwZASKxUTbOa+r99DHhX+1mx0w7PHC/IOtLO
-	utdxMg8JLCv/gqi4hb5i1Kc=
-Received: from mail.maildlp.com (unknown [172.19.163.200])
-	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4jPRQ61DyGzKm6m;
-	Wed, 11 Nov 2026 09:53:50 +0800 (CST)
-Received: from whupemo200011.china.huawei.com (unknown [7.152.185.179])
-	by mail.maildlp.com (Postfix) with ESMTPS id F100C4055B;
-	Wed, 11 Nov 2026 09:53:59 +0800 (CST)
-Received: from [10.174.178.46] (10.174.178.46) by
- whupemo200011.china.huawei.com (7.152.185.179) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 11 Nov 2026 09:53:57 +0800
-Subject: Re: [PATCH v2 28/34] ubifs: don't set SB_RDONLY after errors
-To: Christian Brauner <brauner@kernel.org>, <linux-fsdevel@vger.kernel.org>,
-	Jan Kara <jack@suse.com>
-CC: Al Viro <viro@zeniv.linux.org.uk>, <ecryptfs@vger.kernel.org>,
-	<linux-ext4@vger.kernel.org>, <jfs-discussion@lists.sourceforge.net>,
-	<linux-nilfs@vger.kernel.org>, <exfat@lists.linux.dev>, <linux-mm@kvack.org>,
-	<ntfs@lists.linux.dev>, <ocfs2-devel@lists.linux.dev>,
-	<linux-btrfs@vger.kernel.org>, <gfs2@lists.linux.dev>,
-	<linux-efi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-	<linux-xfs@vger.kernel.org>
-References: <20261029-work-fs-sb_rdonly-v2-0-2f44f64f0b66@kernel.org>
- <20261029-work-fs-sb_rdonly-v2-28-2f44f64f0b66@kernel.org>
- <0d472865-6cbb-cbb5-b361-1f2bf71dd528@huawei.com>
- <20261110-erfanden-dossier-zahntechnik-efcb7a6439b0@brauner>
-From: Zhihao Cheng <chengzhihao1@huawei.com>
-Message-ID: <7cc1871c-9209-51ee-9d0e-c46e5adfaf1e@huawei.com>
-Date: Wed, 11 Nov 2026 09:53:56 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ShtsgSig
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E178B1F00A06
+	for <ntfs@lists.linux.dev>; Wed, 11 Nov 2026 02:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794362875;
+	bh=bs+aVi1+6hDy1HNy6v6dzYMiqPyVoyHt4w4ufaPFezs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=ShtsgSigYIYS02Dgo3ulYttIR6NWLDZHXsS+qvuEfybQsNYFpMApFz42nPGouZlP+
+	 pjIHBRIBjBgcAKZpeqgyvk2XANMh2uei0s7EbTlBt5GZaoprhHHvMpuhhJW7xW2wpQ
+	 B1+AP8fzjmifGmgoTWoG56L25HdHLlw6PKCs57hPQOVxx08zgpjtBx+oxFKjlPIPem
+	 d5md7EN2vVJKGaZyYwr2bR7wgfb6yqOdKBr0VPoz7vfbWTc9hukUT8Tc8XjSvSMi9U
+	 DOt5i1Eoqid5UDTlPGd//SwVBMLr5wxW/8KUC23jzT/ghYgy2LEqDh+pHcle+9xuYe
+	 CgbFYE1dzYerg==
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6b5973a4b4cso3200114a12.2
+        for <ntfs@lists.linux.dev>; Tue, 10 Nov 2026 18:07:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErFc0O49oe/YYAtKU6pUtRPhU8XfY9Ye7hYUWxzurxDdWvgVutw/8ZBXXtWirIZKrkK/RjcP@lists.linux.dev
+X-Gm-Message-State: APuU4Z8VUMGOhm4Ivh1IzhXeqOyc6nCqjENbhvU9dTGwIcejEWZqgN5f
+	1rlbFRoe5wyI7lbQHpWT6jO2KWqmIkRnp0jmY6bz5vdO0Onk2uYMYgetE/K2ro2P0X4UGg70ohu
+	tD+D/EOEcFhrw+TuZGV8TKr89zH2KViY=
+X-Received: by 2002:a17:907:728f:b0:c50:5e10:71aa with SMTP id
+ a640c23a62f3a-c5066afced2mr70360266b.14.1794362874533; Tue, 10 Nov 2026
+ 18:07:54 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -79,46 +59,38 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-In-Reply-To: <20261110-erfanden-dossier-zahntechnik-efcb7a6439b0@brauner>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems200001.china.huawei.com (7.221.188.67) To
- whupemo200011.china.huawei.com (7.152.185.179)
+References: <20261109142429.1741882-1-wahidzk0091@gmail.com> <20261109173229.1921147-1-wahidzk0091@gmail.com>
+In-Reply-To: <20261109173229.1921147-1-wahidzk0091@gmail.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Wed, 11 Nov 2026 11:07:41 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd-n+zGBq4i7rfLyX+_Y6zEMLTCCqb2vAgcnmavqKxtiHA@mail.gmail.com>
+X-Gm-Features: AclHuK8X-dE1jij8Odw14OGuXlOkUvdVf6LdzFcz6clCkOfLe7qi0UBLqneoZto
+Message-ID: <CAKYAXd-n+zGBq4i7rfLyX+_Y6zEMLTCCqb2vAgcnmavqKxtiHA@mail.gmail.com>
+Subject: Re: [PATCH v8] ntfs: convert a named $DATA stream safely when making
+ room in a record
+To: Wahid Khan <wahidzk0091@gmail.com>
+Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-在 2026/11/11 5:54, Christian Brauner 写道:
-> On Fri, Oct 30, 2026 at 11:42:15AM +0800, Zhihao Cheng wrote:
->> If we remove the c->ro_error check, ubifs_remount_ro->ubifs_wbuf_sync
->> will return EROFS and trigger ubifs_ro_mode() again, I think we can
->> retain the pre-check placement to trigger more error printing.
-> 
-> ubifs_ro_mode() doesn't do anything once c->ro_error is set so that
-> won't print anything again. But there's no point in syncing the
-> write-buffers and writing the master node after an error.
-> 
-Agreed
-> So I'll skip both in ubifs_remount_ro() when c->ro_error is set like
-> ubifs_put_super() does and only cancel the write-buffer timers. The
-> remount to read-only itself has to keep working because the error
-> doesn't set SB_RDONLY anymore.
-Agreed.
-
-> 
->> BTW, a remount to read-write after an error is refused too.
-> 
-> Only if c->ro_mount is set. ubifs_ro_mode() sets SB_RDONLY but never
-> c->ro_mount. So after an error on a read-write mount ubifs_reconfigure()
-> takes neither branch and reconfigure_super() clears SB_RDONLY again.
-Oh, I understand now, you mean the SB_RDONLY flag in vfs layer.
-> 
->> The sb_rdonly won't affect the sync_fs_one_sb() after an error, and
->> sb_emergency_ro check in not added into sync_fs_one_sb, should we add
->> the c->ro_error check in ubifs_sync_fs() to prevent the failure
->> ubifs_wbuf_sync executing?
-> 
-> Yes, I'll return -EROFS from ubifs_sync_fs() when c->ro_error is set.
-> After the !wait check so sync_filesystem() still gets to sync_inodes_sb().
-Great.
-> 
-> .
-> 
-
+> @@ -4895,8 +4922,19 @@ static int ntfs_resident_attr_resize(struct ntfs_inode *attr_ni, const s64 newsi
+>         /* There is not enough space in the mft record to perform the resize. */
+>
+>         /* Make the attribute non-resident if possible. */
+> -       err = ntfs_attr_make_non_resident(attr_ni,
+> -                       le32_to_cpu(ctx->attr->data.resident.value_length));
+> +       err = __ntfs_attr_make_non_resident(attr_ni,
+> +                       le32_to_cpu(ctx->attr->data.resident.value_length), true);
+> +       /*
+> +        * A reader holding folio 0 waits for mrec_lock, which we hold. Do not
+> +        * wait for it and do not look for room elsewhere either: the reader
+> +        * keeps the folio until we drop the lock, so the attribute can neither
+> +        * be converted nor written without waiting for it, and the loop below
+> +        * would only convert other attributes for nothing.
+> +        */
+> +       if (err == -EAGAIN) {
+> +               err = -ENOSPC;
+Please explain why -EAGAIN should be changed to -ENOSPC.
+Thanks.
+> +               goto put_err_out;
+> +       }
