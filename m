@@ -1,75 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=162.62.57.87
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.2
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794454177;
-	b=t1rtHrPk3RTEiAj/mXLqGh90X9MSvsUnt5v1jtWiE0FdNh0v8hcw7izWNZLFTsmpSJWg
-	 Ajt2LNXVCZTdSWZXmlmABAH7xBd6sZIJFcRo2/LmjqnSgGm9g8ABtDclFavaCI0hj16p6
-	 oj4phfk0N4Xl5NyEPbaaC9jEf8cyJxMq3BiIdvqj8r5Hbi75bVUm2rXKz7T0sFE1RqwSq
-	 gg+3cReedBEIm9A/Zg+MK4ucBKXFLpQdBREXZJbaenx45hKsxwIOqEeQqIoUBqIhBcJsl
-	 qreCX8XL0B7nk05Vpyvfvbhnxu3DYvWKCYVJVJiitw0IfOJQ8gK9uqZsuTkc7JuUhEA==
+	t=1794464644;
+	b=dDcyptpX4mRyOHBB26wxy1UAZpSZ4an6y4/07HIMYYLeLNi+tsjJds+H1ngNRhPEtRva
+	 Ts6MZibtC6/u/UY8jesvJiJ+3r3KcTOpjJOH2FlppgDVZuWgZjJuRu1sUTiVdGGAE3MTT
+	 FHtZBtqVQrH93hFkZlTLT9hQDOut9MW/v0oMAJa8LzMGedxVoYV7S0Ghazv8cyytjou6A
+	 Prg64h3svPpeDmNJPAxL7YKDV1wZpZJS28UTLQ2BxRZnnkd6JCJkObRvXvM29WEb+jWy+
+	 jwrSDbB2W0+rUvxJVFtXNTmInnjqmqF5z87FcML45diSx+pegUgmWClX4ZO7SUjbFgw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794454177;
-	h=DMARC-Filter:DKIM-Signature:Received:X-QQ-mid:Message-ID:
-	 X-QQ-XMAILINFO:X-QQ-XMRINFO:From:To:Cc:Subject:Date:X-OQ-MSGID:
-	 X-Mailer:MIME-Version:Content-Transfer-Encoding;
-	bh=en7Tbht2dmop2bF3nUwlEjx2VKq37OQWrIhBa9ge3PA=;
-	b=XdsXv9lusXZYgtiwE6Wfc5GnJBQpdTomm4rBLWIqlg29MaU1YiFc4LY1RIhlsbkdiSjv
-	 ouDJqLsp0o51v92tF+L6vTJNNqOuc+yj7uayv1+RcKd68wOkqpr44q4lbFuAAmveKySeJ
-	 Qb3BIds4N5/qxGGJQV0rgoZp6oRuRf/Stk3Ikggx1L26Rng1xioRf5B8jrnPHCaN1G5+L
-	 exj7Rdj/QOvHCLxEiVpsDast6yc8+YrUXC3qSBMrt4xZeVDzep/06Rals6yN6D41Iv/El
-	 6/d6MLrm/gtE/CUiPSVtZBzTXg82hnvGxIq/nQK+CjkBHasiqkZcLC3yOcwgjfsjJSg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794464644;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=aetu5cj6UdOKu42A/Y+FDN7Lw54rxn0+iQWvtHhl8Tc=;
+	b=BJGRPP7HZ4ped3mJXMijfJjfxmXRVbciq51eTiOQHQzLBfh4aygxCAmuHYyIIAVtZbB1
+	 6wb6VHFYD/FLSujTE+bfuK+zSgHas5YLXUwoO6E9EDvFwsB+cVv1S5tkN/GI9XQbRqPbG
+	 /6qqOekK+DYEg3S5sYXOqw4SIWA2k8Ga667VoMjiNgRTlEsZLSdate7+0m0GxLDhjNEkD
+	 NxmmqepFOa5Om2SMuZpAlVvZiuoKOLseWVKZrJ1nlCd+gn+ZUWN/wMUzU1DUXx/q5ImCV
+	 wPzLX0iOj4oWslHw3oED6Y0acuZSqSq75eqeqwSNFpiRG0nQ/cWf7mApB0e4YK4KS1Q==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=qq.com;
-	spf=pass smtp.mailfrom=qq.com;
-	dkim=pass header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=SwxsxlD6;
-	arc=none smtp.remote-ip=162.62.57.87
-Received: from out162-62-57-87.mail.qq.com (out162-62-57-87.mail.qq.com [162.62.57.87])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=D7zkoCCD;
+	arc=none smtp.remote-ip=220.197.31.2
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87968606A323
-	for <ntfs@lists.linux.dev>; Thu, 12 Nov 2026 03:29:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 87968606A323
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E026606A323
+	for <ntfs@lists.linux.dev>; Thu, 12 Nov 2026 06:24:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 9E026606A323
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=SwxsxlD6
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1794454172; bh=en7Tbht2dmop2bF3nUwlEjx2VKq37OQWrIhBa9ge3PA=;
-	h=From:To:Cc:Subject:Date;
-	b=SwxsxlD6QQ5C6FbxiY4oWWhIxoqjZ2dlr2Pa00fxaPUfm8AQw+MCGVjR/TURNnv56
-	 tPg8NWwyswkLEWO7HN5JqQAgxqQKriDY5wvCGOSvOXKmZdque5BFm3J+jBVDLYK7RE
-	 SbxRS4vpWVU4TYWl5Y8rEI8EOdSRvlTAeWuMDJ0s=
-Received: from xkeyc-nixos ([119.97.45.41])
-	by newxmesmtplogicsvrszc50-0.qq.com (NewEsmtp) with SMTP
-	id 75E02033; Thu, 12 Nov 2026 11:29:30 +0800
-X-QQ-mid: xmsmtpt1794454170txip94pe1
-Message-ID: <tencent_AF42E4D94D935F34EB985032150C6AD0DF08@qq.com>
-X-QQ-XMAILINFO: M2SvzgchpLqfFMgBlCtNkzBOKuSq4KAmK0cUIbN/kzoT9TpnMSWzIIQPTkq1Ls
-	 ZVXO/7L5VkHEkCTn9FrYckzZ9qW1X9n9cMCqUNJG2v36uvHEXCobeb7tLqPjyeLb/vJe61aZ8ECV
-	 niBAJE5wlgpKPhNoCf9HmSbF7MQ5xjRiIvVyEvbFTG5hFxRfX2mCkToXNv12zk5ftLIMP3Eul7I3
-	 vn1CIgQNFbqsTANiDt/ZxWfPeFH5foidcFabSBTJafNMJ4rAR2PsuMMCMt0EZ2irgc/QSJmJ0L+W
-	 HjQ1b/PAJ1Z83uSgxRXSP6JxRGVMKILw935CMzV+7S0J6vtnZKSMv7GIew2sfFZHzjlv10ZAoCza
-	 BFq2y/0B/fjkNK9442uykMhh7XIsfhjVdgGy4DyijaEW/Jo14kO0TsIXQlygR89+hcYCwoundg8R
-	 hae2Ic11JQoopWyIl6hy9zopomUBlnhmXuZlFFJ6PLPVs6+kK04ryksLl+K4sEJOzLxafNUjdkjw
-	 8xTlc8+cYrOkKJTOQJjFzPE4IhUqlgg1HKz+vDkpIna8wl2Jzy5VvMDUjBtak15itm/Y+pzkR+sq
-	 Jbk7hKlxd8oMJhltvCl71TioQ8emGFAwW5u/HMTNj1iGOihexUe2/QBagRY6CB0PaeEKapQ21AVm
-	 REWT+HWHsmTX+TNX7XGPrUBpQnxznNZPjfJgQBLU3pfuIzn3qBMh+9K/eiWffGXrWrU8CfWE8qRs
-	 2lxmHKcXQ6Bky6uObqbtOhCSL09302a2wcoCYSB3PO1X47Ons15tBUgYA7JHEEApv2r5jSykfeEl
-	 70QZzCh9hQAoxGoXSeWtt141ALHQkyybNH4/4NLuGKXDSJ5f70tHZHOgT73TiavMGdVnGyNltf1z
-	 gi480jO57VBlEhAeS4/WbFDNod6R2H48eD7HLO8JKsjADLk2UpKVipSVSQXiJC8PThMiQLAADR5F
-	 O9HKDc0cBm2N1+N2VOOnh8uUt2O5Pa6CNKZiIB62Dlm+NqzmLyIvpLxgHOyfGeovh4ZXp52M7fDX
-	 MmNUU+xVlBU5hBsB1XRE5Dp6oQITu49rxtp7ZmJjoD/1ct/MNarguX5P92kSqXx3YW/iWxSA==
-X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
-From: xkeyC <xkeyc@qq.com>
-To: Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	xkeyC <xkeyc@qq.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v2] ntfs: don't let a fatal signal interrupt metadata reads
-Date: Thu, 12 Nov 2026 11:29:26 +0800
-X-OQ-MSGID: <20261112032926.35057-1-xkeyc@qq.com>
-X-Mailer: git-send-email 2.56.0
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=D7zkoCCD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=aetu5cj6UdOKu42A/Y+FDN7Lw54rxn0+iQWvtHhl8Tc=;
+	b=D7zkoCCDeunCBO9j58cC4cQtzcBG/TL9gVdM1uJTd/K2bx19TMH5mbkEAEMpfn
+	Y2W0VOEBpFa+5/jq62MuiL5341f1X4Qg15UVZI8alnf0eljZO3D/L44LgIcyaAf3
+	w8B1YadC5FajO9yY8oCAJ8eIGpN22wt5O5ZsaIREae33Q=
+Received: from [IPV6:2409:8900:1a93:3634:9bae:9736:f6e5:b25c] (unknown [])
+	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wD3jyZxW_Vqzv1vHA--.25271S2;
+	Thu, 12 Nov 2026 14:23:47 +0800 (CST)
+Message-ID: <0b10e6be-f8ae-4b30-ac71-5cc6ede29103@163.com>
+Date: Thu, 12 Nov 2026 14:23:45 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -79,441 +54,172 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ntfs: trim the sizes after a short write
+To: Zhan Xusheng <zhanxusheng1024@gmail.com>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ zhanxusheng@xiaomi.com, stable@vger.kernel.org
+References: <20261112030815.982026-1-zhanxusheng1024@gmail.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261112030815.982026-1-zhanxusheng1024@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3jyZxW_Vqzv1vHA--.25271S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuw45Wry7Ar18Gr13KFyfJFb_yoW7tFWfpr
+	ya9r45trWkXrWxGrnxGa47XFWYqFWrWF1Uua45WFn3Arn3CrnIgF1Ut3yF9FWktrWkA3Wr
+	tF4qqrZ5Wrn8ZaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTCJQUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hML1Wr1W3N2nAAA36
 
-read_mapping_folio() returns -EINTR when the caller has a fatal signal
-pending while it waits for the read it submitted. ntfs reads its metadata
-through it and treats the failure as a volume error, so killing a task
-that waits on a metadata read turns the volume read-only with
-errors=remount-ro. A read that is part of an update also stops the update
-half way: killing an rm can leave clusters allocated in $Bitmap, an MFT
-record in use without a directory entry, or a directory index with
-entries that point to freed records. Killing a mount makes it fail with
-bogus $AttrDef and $UpCase errors, or leaves the volume mounted read-only
-with a bogus $MFTMirr or $BadClus error.
 
-Add ntfs_read_metadata_folio(), which waits for the read uninterruptibly,
-and use it for metadata reads. Named stream contents, compressed data and
-the read-only bitmap scans through ntfs_get_locked_folio(), whose callers
-do not report a volume error, keep using read_mapping_folio(). A named
-stream write that is interrupted that way no longer reports a volume
-error either. A killed task now waits for its metadata read to complete,
-as it does on filesystems that use the buffer cache.
 
-Closes: https://github.com/namjaejeon/linux-ntfs/issues/98
-Fixes: 11ccc9107dc4 ("ntfs: update runlist handling and cluster allocator")
-Fixes: 115380f9a2f9 ("ntfs: update mft operations")
-Fixes: af0db57d4293 ("ntfs: update inode operations")
-Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-Fixes: 5218cd102aec ("ntfs: update misc operations")
-Fixes: 6251f0b0de7d ("ntfs: update super block operations")
-Fixes: 8506a8031ebf ("ntfs: validate and reserve bad clusters at mount")
-Cc: stable@vger.kernel.org
-Signed-off-by: xkeyC <xkeyc@qq.com>
----
-v2:
-- Keep reads of named stream contents killable in writes too, and don't
-  report -EINTR from them as a volume error (Hyunchul)
-- Also convert the mount-time reads of $LogFile, $MFTMirr, hiberfil.sys,
-  $AttrDef, $UpCase and $BadClus (Hyunchul)
-- Add the missing Fixes tags (Hyunchul)
+在 2026/11/12 11:08, Zhan Xusheng 写道:
+> From: Zhan Xusheng <zhanxusheng@xiaomi.com>
+> 
+> ntfs_file_write_iter() moves the data size and, for a non-resident
+> uncompressed file, the initialized size to pos + count before the copy.
+> __ntfs_extend_initialized_size() only zeroes [old initialized size, pos),
+> so the range [pos, pos + count) is initialized only by the copy itself.
+> When iomap_file_buffered_write() copies less than count, it returns a
+> positive short count and the error rollback at out: does not run.  The
+> file keeps the size pos + count, and [pos + ret, pos + count) reads back
+> whatever the freed clusters held before, also after a remount.  A local
+> user can read the old contents of freed clusters this way.
+> 
+> Run the existing rollback for a short write as well, and roll the two
+> sizes back to the end of what was written instead of to the old sizes.
+> A short copy that ends inside a block can also leave the rest of that
+> block cached as read from disk, so clear the page cache beyond the new
+> initialized size before shrinking it.
+> 
+> Fixes: b041ca562526 ("ntfs: update iomap and address space operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
+> ---
+> v2: also clear the cached tail of the last block, which v1 left in
+> place when the write stayed inside the old data size (Baolin).
+> 
+> v1: https://lore.kernel.org/all/20261111093459.660484-1-zhanxusheng1024@gmail.com/
+> 
+> Tested in a VM on ntfs-next b025f526c5d0, with all free space filled
+> with a known pattern first.  Short buffered writes of 4M, old data
+> readable after drop_caches and after remount, 3 runs each:
+> 
+>                                      unfixed    v1     v2
+>    fallocated, ends block-aligned    3137536    0      0
+>    fallocated, ends inside a block   3141332    212    0
+>    fallocated, unaligned start       3137536    412    0
+>    append                            3137536    0      0
+> 
+> A short write 1M past EOF, O_DIRECT, resident and compressed files and
+> full writes give the same results with v2 as with v1.
+> ---
+>   fs/ntfs/file.c | 33 ++++++++++++++++++++++++++-------
+>   1 file changed, 26 insertions(+), 7 deletions(-)
+> 
+> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+> index 3213a0c9f96b..1779110a0c4f 100644
+> --- a/fs/ntfs/file.c
+> +++ b/fs/ntfs/file.c
+> @@ -928,10 +928,21 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		ret = iomap_file_buffered_write(iocb, from, &ntfs_write_iomap_ops,
+>   				&ntfs_iomap_folio_ops, NULL);
+>   out:
+> -	if (ret < 0 && ret != -EIOCBQUEUED) {
+> +	/*
+> +	 * Both sizes were moved to end before the copy, so a short write,
+> +	 * like a failed one, must take back what it did not write.
+> +	 */
+> +	if (ret < count && ret != -EIOCBQUEUED) {
+> +		loff_t new_init_size = old_init_size;
+> +		loff_t new_data_size = old_data_size;
+>   		int init_err = 0;
+>   		int data_err = 0;
+>   
+> +		if (ret > 0) {
+> +			new_init_size = max(old_init_size, pos + ret);
+> +			new_data_size = max(old_data_size, pos + ret);
+> +		}
+> +
+>   		/*
+>   		 * Like ntfs_setattr_size(): __ntfs_attr_truncate_vfs()
+>   		 * expects the invalidate lock held across the size
+> @@ -940,13 +951,21 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		filemap_invalidate_lock(vi->i_mapping);
+>   
+>   		/* ntfs_attr_set_initialized_size() rejects a resident one. */
+> -		if (ni->initialized_size != old_init_size &&
+> +		if (ni->initialized_size != new_init_size &&
+>   		    NInoNonResident(ni)) {
+>   			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+>   
+> +			/*
+> +			 * A short copy can leave the rest of the last block
+> +			 * cached as read from disk.  Clear what is no longer
+> +			 * initialized before shrinking the initialized size.
+> +			 */
+> +			if (ni->initialized_size > new_init_size)
+> +				truncate_pagecache_range(vi, new_init_size,
+> +						ni->initialized_size - 1);
 
-v1: https://lore.kernel.org/ntfs/tencent_2859327A0C68D0D0429ED90F931234059808@qq.com/
+Hi Xusheng,
+    Could the upper bound here still leave cached bytes beyond the 
+temporarily extended initialized size?
 
-Reproducers and logs: https://github.com/xkeyC/linux-ntfs/tree/eintr-repro
+   For example, with 512-byte blocks and 4 KiB pages, consider an 
+allocated file with:
+   old_data_size = 8192
+   old_init_size = 0
+   pos           = 0
+   count         = 5000
+   ret           = 4200
 
-In QEMU (KASAN, lockdep, reads throttled), killing rm, ls -l, fallocate,
-dd, a named stream write or mount partway through turned the volume
-read-only or failed the mount within a few runs without this patch, and
-ntfsck found damage after rm. With it, 20 runs of each kept the volume
-read-write and ntfsck clean. The reporter of the GitHub issue confirmed
-that v1 fixes the cases there.
+   Before copying, initialized_size becomes 5000. When preparing the 
+last partial page, __iomap_write_begin() can read [4096, 5120) and mark 
+those blocks uptodate. After the short-copy retry, the successful write 
+ends at 4200. ntfs_iomap_put_folio_non_resident() still sees 
+initialized_size == 5000, which lies beyond the last successfully 
+written block, so it does not clear the tail.
 
-Developed with an AI coding assistant (Claude Code), which wrote the
-change and the reproducers and ran the tests.
+   This call then clears only [4200, 5000), leaving [5000, 5120) cached 
+with the contents read from disk. Since data_size remains 8192, the 
+later truncate_setsize() is skipped, and a subsequent buffered read can 
+still return those cached bytes.
 
- fs/ntfs/aops.c     | 58 ++++++++++++++++++++++++++++++++++++++++++++++
- fs/ntfs/attrib.c   |  2 +-
- fs/ntfs/bdev-io.c  |  2 +-
- fs/ntfs/bitmap.c   |  7 +++---
- fs/ntfs/dir.c      |  4 ++--
- fs/ntfs/inode.c    | 21 ++++++++++++++---
- fs/ntfs/lcnalloc.c |  2 +-
- fs/ntfs/logfile.c  |  4 ++--
- fs/ntfs/mft.c      | 20 ++++++++--------
- fs/ntfs/ntfs.h     |  4 ++++
- fs/ntfs/super.c    | 14 +++++------
- 11 files changed, 107 insertions(+), 31 deletions(-)
+   Could we extend the cache cleanup through EOF, using an upper bound 
+such as max_t(loff_t, i_size_read(vi), ni->initialized_size) - 1, 
+similar to the cleanup in __ntfs_extend_initialized_size()?
 
-diff --git a/fs/ntfs/aops.c b/fs/ntfs/aops.c
-index ad781674fe..767aecf423 100644
---- a/fs/ntfs/aops.c
-+++ b/fs/ntfs/aops.c
-@@ -7,6 +7,7 @@
-  * Copyright (c) 2025 LG Electronics Co., Ltd.
-  */
- 
-+#include <linux/swap.h>
- #include <linux/writeback.h>
- 
- #include "attrib.h"
-@@ -304,6 +305,63 @@ static int ntfs_swap_activate(struct swap_info_struct *sis,
- 			&ntfs_read_iomap_ops);
- }
- 
-+/**
-+ * ntfs_read_metadata_folio - read a metadata folio, ignoring fatal signals
-+ * @mapping:	address space of the metadata inode or block device
-+ * @index:	page cache index to read
-+ *
-+ * Like read_mapping_folio(), but the wait for the read cannot be interrupted,
-+ * so a fatal signal cannot fail a metadata read in the middle of an update.
-+ * The caller must not hold the lock of the folio at @index.
-+ *
-+ * Return: the uptodate folio with a reference held, or an ERR_PTR().
-+ */
-+struct folio *ntfs_read_metadata_folio(struct address_space *mapping,
-+				       pgoff_t index)
-+{
-+	struct folio *folio;
-+	bool read_failed = false;
-+	int err;
-+
-+	folio = filemap_get_folio(mapping, index);
-+	if (!IS_ERR(folio)) {
-+		if (folio_test_uptodate(folio))
-+			goto out;
-+		folio_put(folio);
-+	}
-+repeat:
-+	folio = __filemap_get_folio(mapping, index, FGP_LOCK | FGP_CREAT,
-+				    mapping_gfp_mask(mapping));
-+	if (IS_ERR(folio))
-+		return folio;
-+	/* $MFT updates clear uptodate under the folio lock, so check it locked. */
-+	if (folio_test_uptodate(folio)) {
-+		folio_unlock(folio);
-+		goto out;
-+	}
-+	if (read_failed) {
-+		folio_unlock(folio);
-+		folio_put(folio);
-+		return ERR_PTR(-EIO);
-+	}
-+
-+	/* ->read_folio() unlocks the folio when the read completes. */
-+	err = mapping->a_ops->read_folio(NULL, folio);
-+	if (err) {
-+		folio_put(folio);
-+		if (err == AOP_TRUNCATED_PAGE)
-+			goto repeat;
-+		return ERR_PTR(err);
-+	}
-+	folio_wait_locked(folio);
-+	read_failed = !folio_test_uptodate(folio);
-+	folio_put(folio);
-+	goto repeat;
-+out:
-+	folio_mark_accessed(folio);
-+	return folio;
-+}
-+
- const struct address_space_operations ntfs_aops = {
- 	.read_folio		= ntfs_read_folio,
- 	.readahead		= ntfs_readahead,
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 800e53df57..cf73fa4c33 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -2323,7 +2323,7 @@ int ntfs_attr_set(struct ntfs_inode *ni, s64 ofs, s64 cnt, const u8 val)
- 
- 	index = ofs >> PAGE_SHIFT;
- 	while (cnt) {
--		folio = read_mapping_folio(mapping, index, NULL);
-+		folio = ntfs_read_metadata_folio(mapping, index);
- 		if (IS_ERR(folio)) {
- 			ret = PTR_ERR(folio);
- 			ntfs_error(VFS_I(ni)->i_sb, "Failed to read a page %lu for attr %#x: %ld",
-diff --git a/fs/ntfs/bdev-io.c b/fs/ntfs/bdev-io.c
-index 4f27eed3b0..afb1d1df37 100644
---- a/fs/ntfs/bdev-io.c
-+++ b/fs/ntfs/bdev-io.c
-@@ -99,7 +99,7 @@ int ntfs_bdev_write(struct super_block *sb, void *buf, loff_t start, size_t size
- 	for (; idx < idx_end; idx++, from = 0) {
- 		u32 len;
- 
--		folio = read_mapping_folio(sb->s_bdev->bd_mapping, idx, NULL);
-+		folio = ntfs_read_metadata_folio(sb->s_bdev->bd_mapping, idx);
- 		if (IS_ERR(folio)) {
- 			ntfs_error(sb, "Unable to read %ld page", idx);
- 			return PTR_ERR(folio);
-diff --git a/fs/ntfs/bitmap.c b/fs/ntfs/bitmap.c
-index af86fb1c19..0ad80255d6 100644
---- a/fs/ntfs/bitmap.c
-+++ b/fs/ntfs/bitmap.c
-@@ -36,8 +36,7 @@ int ntfs_bitmap_check_used(struct ntfs_volume *vol, s64 start, s64 count,
- 		return -EROFS;
- 
- 	while (count) {
--		folio = read_mapping_folio(mapping,
--					   start >> (PAGE_SHIFT + 3), NULL);
-+		folio = ntfs_read_metadata_folio(mapping, start >> (PAGE_SHIFT + 3));
- 		if (IS_ERR(folio))
- 			return PTR_ERR(folio);
- 
-@@ -203,7 +202,7 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
- 
- 	/* Get the page containing the first bit (@start_bit). */
- 	mapping = vi->i_mapping;
--	folio = read_mapping_folio(mapping, index, NULL);
-+	folio = ntfs_read_metadata_folio(mapping, index);
- 	if (IS_ERR(folio)) {
- 		if (!is_rollback)
- 			ntfs_error(vi->i_sb,
-@@ -267,7 +266,7 @@ int __ntfs_bitmap_set_bits_in_run(struct inode *vi, const s64 start_bit,
- 		folio_unlock(folio);
- 		kunmap_local(kaddr);
- 		folio_put(folio);
--		folio = read_mapping_folio(mapping, ++index, NULL);
-+		folio = ntfs_read_metadata_folio(mapping, ++index);
- 		if (IS_ERR(folio)) {
- 			ntfs_error(vi->i_sb,
- 				   "Failed to map subsequent page (error %li), aborting.",
-diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
-index 9fb5bb3d35..ce87799a28 100644
---- a/fs/ntfs/dir.c
-+++ b/fs/ntfs/dir.c
-@@ -327,8 +327,8 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
- 	 * of PAGE_SIZE and map the page cache page, reading it from
- 	 * disk if necessary.
- 	 */
--	folio = read_mapping_folio(ia_mapping, vcn <<
--			dir_ni->itype.index.vcn_size_bits >> PAGE_SHIFT, NULL);
-+	folio = ntfs_read_metadata_folio(ia_mapping, vcn <<
-+			dir_ni->itype.index.vcn_size_bits >> PAGE_SHIFT);
- 	if (IS_ERR(folio)) {
- 		ntfs_error(sb, "Failed to map directory index page, error %ld.",
- 				-PTR_ERR(folio));
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 62dd5bd5bb..b7fb57d084 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -3773,8 +3773,14 @@ s64 ntfs_inode_attr_pread(struct inode *vi, s64 pos, s64 count, u8 *buf)
- 
- 	index = pos >> PAGE_SHIFT;
- 	do {
--		/* Update @index and get the next folio. */
--		folio = read_mapping_folio(mapping, index, NULL);
-+		/*
-+		 * Update @index and get the next folio.  The contents of a named
-+		 * stream are user data, so a fatal signal may still stop that read.
-+		 */
-+		if (ntfs_inode_is_named_stream(ni))
-+			folio = read_mapping_folio(mapping, index, NULL);
-+		else
-+			folio = ntfs_read_metadata_folio(mapping, index);
- 		if (IS_ERR(folio)) {
- 			err = PTR_ERR(folio);
- 			break;
-@@ -3926,9 +3932,18 @@ static s64 __ntfs_inode_non_resident_attr_pwrite(struct inode *vi,
- 				break;
- 			}
- 		} else {
--			folio = read_mapping_folio(mapping, index, NULL);
-+			/*
-+			 * Named stream contents are user data; keep that read
-+			 * killable, as in ntfs_inode_attr_pread().
-+			 */
-+			if (ntfs_inode_is_named_stream(ni))
-+				folio = read_mapping_folio(mapping, index, NULL);
-+			else
-+				folio = ntfs_read_metadata_folio(mapping, index);
- 			if (IS_ERR(folio)) {
- 				ret = PTR_ERR(folio);
-+				if (ret == -EINTR)
-+					break;
- 				ntfs_error(vi->i_sb, "Failed to read a page %lu for attr %#x: %ld",
- 						index, ni->type, PTR_ERR(folio));
- 				break;
-diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
-index 3ebcac4c28..7e00016f42 100644
---- a/fs/ntfs/lcnalloc.c
-+++ b/fs/ntfs/lcnalloc.c
-@@ -340,7 +340,7 @@ struct runlist_element *ntfs_cluster_alloc(struct ntfs_volume *vol, const s64 st
- 		if (vol->lcn_empty_bits_per_page[index] == 0)
- 			goto next_bmp_pos;
- 
--		folio = read_mapping_folio(mapping, index, NULL);
-+		folio = ntfs_read_metadata_folio(mapping, index);
- 		if (IS_ERR(folio)) {
- 			err = PTR_ERR(folio);
- 			ntfs_error(vol->sb, "Failed to map page.");
-diff --git a/fs/ntfs/logfile.c b/fs/ntfs/logfile.c
-index 2f27ae7a39..cdc951309d 100644
---- a/fs/ntfs/logfile.c
-+++ b/fs/ntfs/logfile.c
-@@ -367,7 +367,7 @@ static int ntfs_check_and_load_restart_page(struct inode *vi,
- 		to_read = le32_to_cpu(rp->system_page_size) - size;
- 		idx = (pos + size) >> PAGE_SHIFT;
- 		do {
--			folio = read_mapping_folio(vi->i_mapping, idx, NULL);
-+			folio = ntfs_read_metadata_folio(vi->i_mapping, idx);
- 			if (IS_ERR(folio)) {
- 				ntfs_error(vi->i_sb, "Error mapping LogFile page (index %lu).",
- 						idx);
-@@ -514,7 +514,7 @@ bool ntfs_check_logfile(struct inode *log_vi, struct restart_page_header **rp)
- 				kunmap_local(kbase);
- 				folio_put(folio);
- 			}
--			folio = read_mapping_folio(mapping, idx, NULL);
-+			folio = ntfs_read_metadata_folio(mapping, idx);
- 			if (IS_ERR(folio)) {
- 				ntfs_error(vol->sb, "Error mapping LogFile page (index %lu).",
- 						idx);
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 89288b7943..3601f77eee 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -143,7 +143,7 @@ static inline struct mft_record *map_mft_record_folio(struct ntfs_inode *ni)
- 	}
- 
- 	/* Read, map, and pin the folio. */
--	folio = read_mapping_folio(mft_vi->i_mapping, index, NULL);
-+	folio = ntfs_read_metadata_folio(mft_vi->i_mapping, index);
- 	if (!IS_ERR(folio)) {
- 		u8 *addr;
- 
-@@ -549,8 +549,8 @@ static int ntfs_sync_mft_mirror_unit(struct ntfs_volume *vol,
- 	if (unit->folio_ofs + unit->len > folio_size(source))
- 		return -EIO;
- 
--	mirror = read_mapping_folio(vol->mftmirr_ino->i_mapping,
--				    mirror_file_ofs >> PAGE_SHIFT, NULL);
-+	mirror = ntfs_read_metadata_folio(vol->mftmirr_ino->i_mapping,
-+					  mirror_file_ofs >> PAGE_SHIFT);
- 	if (IS_ERR(mirror))
- 		return PTR_ERR(mirror);
- 
-@@ -1023,7 +1023,7 @@ static bool mft_reserved_is_free(struct ntfs_volume *vol,
- 	if (!m)
- 		return false;
- 
--	folio = read_mapping_folio(vol->mft_ino->i_mapping, index, NULL);
-+	folio = ntfs_read_metadata_folio(vol->mft_ino->i_mapping, index);
- 	if (IS_ERR(folio))
- 		goto free_m;
- 
-@@ -1199,8 +1199,8 @@ static s64 mft_bitmap_alloc_free_rec(struct ntfs_volume *vol,
- 		 * for a zero bit.
- 		 */
- 		if (size) {
--			folio = read_mapping_folio(mftbmp_mapping,
--					ofs >> PAGE_SHIFT, NULL);
-+			folio = ntfs_read_metadata_folio(mftbmp_mapping,
-+							 ofs >> PAGE_SHIFT);
- 			if (IS_ERR(folio)) {
- 				ntfs_error(vol->sb, "Failed to read mft bitmap, aborting.");
- 				return PTR_ERR(folio);
-@@ -1392,8 +1392,8 @@ static int ntfs_mft_bitmap_extend_allocation_nolock(struct ntfs_volume *vol)
- 	 * to us.
- 	 */
- 	ll = lcn >> 3;
--	folio = read_mapping_folio(vol->lcnbmp_ino->i_mapping,
--			ll >> PAGE_SHIFT, NULL);
-+	folio = ntfs_read_metadata_folio(vol->lcnbmp_ino->i_mapping,
-+					 ll >> PAGE_SHIFT);
- 	if (IS_ERR(folio)) {
- 		up_write(&mftbmp_ni->runlist.lock);
- 		ntfs_error(vol->sb, "Failed to read from lcn bitmap.");
-@@ -2207,7 +2207,7 @@ static int ntfs_mft_record_format(const struct ntfs_volume *vol, const s64 mft_n
- 	}
- 
- 	/* Read, map, and pin the folio containing the mft record. */
--	folio = read_mapping_folio(mft_vi->i_mapping, index, NULL);
-+	folio = ntfs_read_metadata_folio(mft_vi->i_mapping, index);
- 	if (IS_ERR(folio)) {
- 		ntfs_error(vol->sb, "Failed to map page containing mft record to format 0x%llx.",
- 				(long long)mft_no);
-@@ -2725,7 +2725,7 @@ int ntfs_mft_record_alloc(struct ntfs_volume *vol, const int mode,
- 	index = NTFS_MFT_NR_TO_PIDX(vol, bit);
- 	ofs = NTFS_MFT_NR_TO_POFS(vol, bit);
- 	/* Read, map, and pin the folio containing the mft record. */
--	folio = read_mapping_folio(vol->mft_ino->i_mapping, index, NULL);
-+	folio = ntfs_read_metadata_folio(vol->mft_ino->i_mapping, index);
- 	if (IS_ERR(folio)) {
- 		ntfs_error(vol->sb, "Failed to map page containing allocated mft record 0x%llx.",
- 				bit);
-diff --git a/fs/ntfs/ntfs.h b/fs/ntfs/ntfs.h
-index fac72d40f5..f33df986f5 100644
---- a/fs/ntfs/ntfs.h
-+++ b/fs/ntfs/ntfs.h
-@@ -294,6 +294,10 @@ static inline int ntfs_ffs(int x)
- 	return r;
- }
- 
-+/* From fs/ntfs/aops.c */
-+struct folio *ntfs_read_metadata_folio(struct address_space *mapping,
-+				       pgoff_t index);
-+
- /* From fs/ntfs/bdev-io.c */
- int ntfs_bdev_read(struct block_device *bdev, char *data, loff_t start, size_t size);
- int ntfs_bdev_write(struct super_block *sb, void *buf, loff_t start, size_t size);
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 71f0aea46b..af97afe6a7 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -1187,8 +1187,8 @@ static bool check_mft_mirror(struct ntfs_volume *vol)
- 				folio_put(mft_folio);
- 			}
- 			/* Get the $MFT page. */
--			mft_folio = read_mapping_folio(vol->mft_ino->i_mapping,
--					index, NULL);
-+			mft_folio = ntfs_read_metadata_folio(vol->mft_ino->i_mapping,
-+							     index);
- 			if (IS_ERR(mft_folio)) {
- 				ntfs_error(sb, "Failed to read $MFT.");
- 				return false;
-@@ -1196,8 +1196,8 @@ static bool check_mft_mirror(struct ntfs_volume *vol)
- 			kmft_base = kmap_local_folio(mft_folio, 0);
- 			kmft = kmft_base;
- 			/* Get the $MFTMirr page. */
--			mirr_folio = read_mapping_folio(vol->mftmirr_ino->i_mapping,
--					index, NULL);
-+			mirr_folio = ntfs_read_metadata_folio(vol->mftmirr_ino->i_mapping,
-+							      index);
- 			if (IS_ERR(mirr_folio)) {
- 				ntfs_error(sb, "Failed to read $MFTMirr.");
- 				goto mft_unmap_out;
-@@ -1395,7 +1395,7 @@ static int check_windows_hibernation_status(struct ntfs_volume *vol)
- 		goto iput_out;
- 	}
- 
--	folio = read_mapping_folio(vi->i_mapping, 0, NULL);
-+	folio = ntfs_read_metadata_folio(vi->i_mapping, 0);
- 	if (IS_ERR(folio)) {
- 		ntfs_error(vol->sb, "Failed to read from hiberfil.sys.");
- 		ret = PTR_ERR(folio);
-@@ -1460,7 +1460,7 @@ static bool load_and_init_attrdef(struct ntfs_volume *vol)
- 	while (index < max_index) {
- 		/* Read the attrdef table and copy it into the linear buffer. */
- read_partial_attrdef_page:
--		folio = read_mapping_folio(ino->i_mapping, index, NULL);
-+		folio = ntfs_read_metadata_folio(ino->i_mapping, index);
- 		if (IS_ERR(folio))
- 			goto free_iput_failed;
- 		addr = kmap_local_folio(folio, 0);
-@@ -1526,7 +1526,7 @@ static bool load_and_init_upcase(struct ntfs_volume *vol)
- 	while (index < max_index) {
- 		/* Read the upcase table and copy it into the linear buffer. */
- read_partial_upcase_page:
--		folio = read_mapping_folio(ino->i_mapping, index, NULL);
-+		folio = ntfs_read_metadata_folio(ino->i_mapping, index);
- 		if (IS_ERR(folio))
- 			goto iput_upcase_failed;
- 		addr = kmap_local_folio(folio, 0);
+Thanks,
+Baolin.
 
-base-commit: 2b4bb6d6d8fe8315a655cb63f186013bfb45dd21
--- 
-2.56.0
+>   			mutex_lock(&mrec_ni->mrec_lock);
+>   			init_err = ntfs_attr_set_initialized_size(ni,
+> -					old_init_size);
+> +					new_init_size);
+>   			mutex_unlock(&mrec_ni->mrec_lock);
+>   		}
+>   		/*
+> @@ -955,13 +974,13 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		 * the uninitialized tail, so skip it unless the rollback
+>   		 * above restored that size.
+>   		 */
+> -		if (ni->data_size != old_data_size && !init_err) {
+> +		if (ni->data_size != new_data_size && !init_err) {
+>   			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+>   
+> -			truncate_setsize(vi, old_data_size);
+> +			truncate_setsize(vi, new_data_size);
+>   			mutex_lock(&mrec_ni->mrec_lock);
+> -			data_err = __ntfs_attr_truncate_vfs(ni, old_data_size,
+> -					old_data_size);
+> +			data_err = __ntfs_attr_truncate_vfs(ni, new_data_size,
+> +					new_data_size);
+>   			mutex_unlock(&mrec_ni->mrec_lock);
+>   			/* Like ntfs_setattr_size(): stay on the durable size. */
+>   			if (data_err)
+> 
+> base-commit: b025f526c5d04929212c9d5fb7ffc96608f3eacc
 
