@@ -1,63 +1,57 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794489665;
-	b=r4/y09Y2V67qI+fvpyDaSffrCmwLQz6YeLUoxdKM+gh10n2qf3YFMEWHYe6vwJvlPrRY
-	 wrT8Xu2LvKxuA0rW5gv4o9d8PXLur9WsEv4ovA+AGfBABY9U7qK+1S6vh3jlALtef3cjK
-	 DC5FgoKxHKOFynv9LwsOovbgcu3GPVMhr8Hvz3+criX48oshWcH+QWvE+h1V+ESwlACro
-	 eIPK+j32lU9cXcHVoGvF6Q20tS0b7qAGzrAF4TEWAaaJuUEl1NAOAvh3aA1lj5x9RKOsI
-	 9ui4Y+1KSnMyOGJhAsouTXF7cudH7oIr7orpzefYuMU5/fPcJTdYVXXMvJiOgrQhKLw==
+	t=1794490870;
+	b=iCvMgV/y4OzDVQ7QjcuVrO3G0xceAc/3+F5NxK+HA2BnWj56KQyPs5YEsNxsftMI0Sbu
+	 EnYoSMmxFeezep451NiVSJEEfOsS7cD5jSzVyuIsGzfnGuA1HuREOgGfwhEvWjng6wZnr
+	 UL38G7ZWLYyx4/px0ad3z/XMxscE75wnILmSh2GfGScuSkyjs5oN6Lx6t+vLdGSwoP/fu
+	 AqJ0alxEC4cC12a4m8TL7xgz3N/tSHaqLsJBvOb7tQ3oIp+/n06A5/DX/+XeqgDoy4N13
+	 5+YGGlrIRO/O/LpfGMcjiMp1ZfgEKrGzdjURkSWLcU+jDRqiU3/M7tGN62tSD/ED+Qg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794489665;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
-	bh=2TVb8qDZ4KT/CTu1G3B1wlWvG0RXp8XP3qjnuNYzjOg=;
-	b=u700fACwqvVEU56bLfh8WQT77aVbb9Za0mlXenYTObhpIcmBSILWk40+I6+1h1NmC+RF
-	 huz/poklpHrmwoDwgjybIIh0AmKpa0U41NrHSPjR8+IclCi5MfsGF61glld/l+Eowd+Ki
-	 NqG1oKHSm1vx2uyvO6EJ/DOtfSZ46Y10owoeHL3UDF4vTu/MzdlaIRy+UIEMb00dQuWcQ
-	 q4pMD/AEwkxECTtg575SYulwVJEOw2SllwI0Sy4Wzr54DvYBG+SRV88Wi+4gPevbxGbzR
-	 ppOKyqwrSFE/arHyDwL3EpG1mFzRmJmrxXYkQG2GLtEBORkFaP1qaC15uaT2hEzc9rg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794490870;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-ID:X-Mailer:MIME-Version:Content-Transfer-Encoding:
+	 X-CM-TRANSID:X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=Cj/sN5gWLFL8+X6KNAdHeNr0leCmTaxFBgtc+cpBvcY=;
+	b=t3SCKugyQgMyM9hFU153ECFQZp8EeB8gu/oECWpzGa3lN6jqNc622dmTFg5NHo23azs0
+	 m9yrgCH/msD3BhzL+fMb1rHtEO4qI2gwxHOpzV+rYWHgK2SpyTp8iA+dpZEeEWH9oRI6s
+	 dKhxJ6oncyqN4RZjavLHl25f+IjSuFKZHg4ZB4OHVSQuh0GuJOAvkf5nxjwTe2fsI1GvD
+	 XBxYU9vw82zYPOPfm/TpR7I0LzyjFN8z9QBYkI07EUDeFCe+qK2OyVLnRTbrgh2tUCrq3
+	 cytR6NKt/HEpbucTg2rDZyM7a7pfsPg8dz7MtCYp6vY4G8N1rcOZXJJKaIgAVqVgj8g==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MmvF84R0;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=mzwr5Gz5;
+	arc=none smtp.remote-ip=117.135.210.5
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08BC2606A330;
-	Thu, 12 Nov 2026 13:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8118C606A327
+	for <ntfs@lists.linux.dev>; Thu, 12 Nov 2026 13:41:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 8118C606A327
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MmvF84R0
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D581F00A05;
-	Thu, 12 Nov 2026 13:21:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794489664;
-	bh=2TVb8qDZ4KT/CTu1G3B1wlWvG0RXp8XP3qjnuNYzjOg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MmvF84R0gtLndw24gzSFT3ub5yJmtlvjtQewwlBkOj3aPXQTksQ4drEzrc46OvL/z
-	 wo9GRa3UsS1F1xzmaEOQVjwk+tWBf2XT/7mCHBb8HSswe2CPaa8KtfXoHjL9Y0GbyO
-	 1efF5XqnKzznSG9DEGEO7OMYE2iaaSETCJ8OFamxUwQlBUJWVpDt1tjvUs4hkM1QL2
-	 IWFg+ih4NX2foIqjeWjsniqTNNlHAD8H5+koYNsWz+ArokDl49tjta/Dn88XnGLkGJ
-	 3S6OKico8mJafJNwprIMppBt+ZwOOYREUSFE9sMr0CwvZQk9NrRSiDsIISSMrUCwF/
-	 4a2UthzwC3fuQ==
-Date: Thu, 12 Nov 2026 14:20:58 +0100
-From: Christian Brauner <brauner@kernel.org>
-To: Jan Kara <jack@suse.cz>
-Cc: linux-fsdevel@vger.kernel.org, Jan Kara <jack@suse.com>, 
-	Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, linux-ext4@vger.kernel.org, 
-	jfs-discussion@lists.sourceforge.net, linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, 
-	linux-mm@kvack.org, ntfs@lists.linux.dev, ocfs2-devel@lists.linux.dev, 
-	linux-btrfs@vger.kernel.org, gfs2@lists.linux.dev, linux-efi@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-xfs@vger.kernel.org, 
-	Karl Mehltretter <kmehltretter@gmail.com>, Dave Kleikamp <shaggy@kernel.org>
-Subject: Re: [PATCH v2 04/34] ext2: don't set SB_RDONLY after filesystem
- errors
-Message-ID: <20261112-besorgen-nobel-handschuhe-fb3373259b5f@brauner>
-References: <20261029-work-fs-sb_rdonly-v2-0-2f44f64f0b66@kernel.org>
- <20261029-work-fs-sb_rdonly-v2-4-2f44f64f0b66@kernel.org>
- <5qefa4mracb3x2z4vsdejmkyyfrhdcrixmmnooz4rzwcdfoejm@mqkvixj6afwp>
- <20261110-kargheit-impfen-pausieren-881763d28b19@brauner>
- <za33axmgzmuzsj3zmfeh43fkphtcsqtkhhrauwuvs7aiftelgp@dzl6z322st5f>
- <20261112-wohncontainer-saurier-wonnen-91f30c3b3ae2@brauner>
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=mzwr5Gz5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Cj
+	/sN5gWLFL8+X6KNAdHeNr0leCmTaxFBgtc+cpBvcY=; b=mzwr5Gz5+JBSmLX3b1
+	kN4FToqqRmTA35yNd1GsjRnqH/yn+yrJiCOukawsS3gWQRcytZlQsL2zXyodlsWG
+	O6sPc3nmYvCwSkOloxkBBpxuZkzLRSf6x5L2S4/E//YD4pkonTn0TREEQr3ZFudi
+	2DT54hCZk+lGN5w1GrVpQrA2U=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgBHhIzjwfVq2wIkFg--.38929S2;
+	Thu, 12 Nov 2026 21:40:53 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com,
+	ntfs@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v1] MAINTAINERS: add Baolin Liu as an NTFS reviewer
+Date: Thu, 12 Nov 2026 21:40:40 +0800
+Message-ID: <20261112134041.4133634-1-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -67,46 +61,37 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20261112-wohncontainer-saurier-wonnen-91f30c3b3ae2@brauner>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PygvCgBHhIzjwfVq2wIkFg--.38929S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWrKr15AFyDAF13Cw15urWxWFg_yoW3Grc_Wa
+	1fAw4I9Fn8Jr13A395Cr9F9F4Yvw4IgryYyas8K393A390y3Z8t390yFsYkw1kuFykKFZ8
+	Za13XFs5JF4xWjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUbgdb7UUUUU==
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gXBjGr1weXnbAAA3S
 
-On Thu, Nov 12, 2026 at 01:01:34PM +0100, Christian Brauner wrote:
-> Fwiw, this leaks the inode's anonymous tlocks. They're from TxLock which
-> is shared by all jfs mounts. txLock() also sets mp->lid and pinned the
-> metapages with metapage_nohomeok().
->
-> So the helper would have to tear all of that down like txAbort() does
-> and drop the pins. Doable, I guess not sure if this belongs into the
-> series.
+From: Baolin Liu <liubaolin@kylinos.cn>
 
-So ok, I tried to do this in a vm. With jfs.nTxLock=256 three rounds of
-error + umount leaked 163 tlocks and the next writer on a fresh jfs hung
-in txBeginAnon().
+Following Namjae's invitation, add myself as an NTFS reviewer to help
+with patch review.
 
-I think txAbort() might be the wrong model. It only drops the pin when
-mp->lsn is set and doesn't free linelocks. So this would need a helper
-modelled on txUnlock().
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+ MAINTAINERS | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Fwiw, the BUG_ON() also triggers without this series. The error sets
-SB_RDONLY, sync_filesystem() bails at umount and nothing commits the
-anonymous tlocks. This series fixes that as a side effect because
-sync_filesystem() keeps running.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 05aa377ca912..ad9e52282569 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20036,6 +20036,8 @@ F:	drivers/ntb/hw/intel/
+ NTFS FILESYSTEM
+ M:	Namjae Jeon <linkinjeon@kernel.org>
+ M:	Hyunchul Lee <hyc.lee@gmail.com>
++R:	Baolin Liu <liubaolin12138@163.com>
++R:	Baolin Liu <liubaolin@kylinos.cn>
+ L:	ntfs@lists.linux.dev
+ S:	Maintained
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/ntfs.git
+-- 
+2.51.0
 
-> All the check
-> does is make syncfs() return without writing anything and make unmount
-> drop whatever the flusher hasn't gotten to yet. Which might be the goal
-> you're after?
-
-I tried that too on fat and ext2. With the check and an umount right
-after the error new files are gone on both. If the flusher ran first
-nothing is lost. That's exactly what happens without this series. If
-writeback is allowed to finish nothing is lost either way.
-
-Skipping these superblocks in the flusher is no better. ext4
-effectively does that in its emergency state (ext4_writepages() bails)
-and the stuck dirty pages throttle everyone else from testing. with 1.4G
-stuck on ext4 a dd to ext2 on another disk crawled at ~1MB/s until ext4
-was unmounted (cf. [1]).
-
-[1]: https://lore.kernel.org/r/ZEnb7KuOWmu5P+V9@ovpn-8-24.pek2.redhat.com
