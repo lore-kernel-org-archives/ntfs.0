@@ -1,62 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794484901;
-	b=bmDDCcw77wIxWcFvO2VZsmtypk3dBAY68z1q5/YO/KXz9bZgorLr5x4PUnyx++QGF2Kx
-	 4lfBBKQl0LP5jhx0Jfn2UFMk90O5IfMagFW4rFSOvc4Sh5PaMdXdn6bCHOWn78palPH2J
-	 UobA+bOjXZSY2sHQyRbzeVmAGKDdV6bJUa6UVhHYApoXxe8VbnS3FlNUFYGNb3w+Uiqae
-	 AqHLu6eDCeuuPzn04luG9VJgsX3sKW8xkDur03hmXB7BxdJr4xVHS5CKt94Y9XmFuYdfb
-	 LuYzotHiM3GbX6UYzlGnBc3x1Bg3yeTWAu9acgdaZD9GwrE+K/SUV406qHNrHNmv1AQ==
+	t=1794487639;
+	b=heXJUqpxNVKSlym/dGh6S/2LFtKYkqm82VfK47Md9JlOYvej7ITf7hTMuGj1l+X7S/Qf
+	 5G0QiStjVk8qk7V1y6c047hbyi5G3G9aJtdr71XNXNG9wlR1gR4zyGh4YK1DVATvemdig
+	 zq29zN59/+NcdVrwmUBbG8XxHDhtsOfIw5wVoy1Ef9z+8/1wZ4C6KoDNetPxZz+CBc26Q
+	 XTcLMvfb7l/LGp/tkO6++svQOt7NMDDv5HYEzLCQApc74aLnHzlC/VwHd3HspHnTjpcT9
+	 FN2h9OCTOSixBcpYSwNIuFNx0LU8wMyRkkSRB3TXeCiUC+7r7IjWkXfAkwwir4e2B7w==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794484901;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
-	bh=54I5bKtP4WSw79RGADSyevDuBquelpIbRaI3K1RVgo8=;
-	b=SRdLbN+3Cdgn7G6uU6Wy5X/mMytQ0PVlRRGvvyzwEvlrwK3LCpuwXLf5AiEjlIDRHpEQ
-	 28EFvUZmSiH862dBo56Ij/dFwcwJsPw0ukS5uJoG4ogVoE5a50kuwUH/RJIvzZ+zKt+iE
-	 +q1LXx52aQIvRwhY/EL6oEor1I8UGSk4Jx4Ba+1BDJcFo16wBBBqCpuho05pyzjQQmFMR
-	 AJ5uBJ0gDGtitPZaFIVjEGTbX4J8WeLtboI0IeoSvTpyzdQW51wlmoibI7HFQLp2DhHp+
-	 /duaZWrejqy4h36Ma3Xer0Js3HwvW/I44CEirOzwZWdYAEjaBWYHfhSkX9viXij5Crw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794487639;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=bIodlW/bGF3SACwOI0QkVLlPXGoTnRTCszVw/7/5ocE=;
+	b=4atz24O9oXNAkNqgMEwJDPH1F9J8+dxusrbISGuYVmrO0oK6vmD3fkIwNtpFsge6HMMl
+	 Vx1EnQaPqLc+P8PgAX0ZPQjlCRoFsxb5N8Us8qSUzexHMQrdAdsoRD1oCqFByQOepmIVV
+	 Z+7Hq6A6gC+PeZ4vEo+PsxCScDta6ULiKfxg/zNdknd4eyrNRVTMHabA2R1lPwQVxPMuC
+	 y1oljzYoyw7aa5TTDxKV4BhSY089s9TgbNHSNR2ngoiQUn5+cYZby5hpr9RoGaPf3X8ca
+	 IugxVGX/P0bP5u3x6NFc8A5b5jjiWaP6ZmdznwhceBMACzaYarMUkisde9nDA+k2ybw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QprEbjuf;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Yz17Czs7;
+	arc=none smtp.remote-ip=117.135.210.5
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77299606A896;
-	Thu, 12 Nov 2026 12:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87841606A321
+	for <ntfs@lists.linux.dev>; Thu, 12 Nov 2026 12:47:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 87841606A321
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QprEbjuf
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFA7E1F00A06;
-	Thu, 12 Nov 2026 12:01:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794484900;
-	bh=54I5bKtP4WSw79RGADSyevDuBquelpIbRaI3K1RVgo8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=QprEbjufNb+tvrOa7rBrGmxplqbmNy39Rmf2KUfr+AHg8IrdqKnppWAi/6c1jQ5lw
-	 1qQwMsR8fpHwFmAmOjHt6xx/GSD6lfIfUEbOqwxFxYqpUqqxaGguK/FgeQ9b4yse7n
-	 X5Gu+V8HvIKolxJnQl0GAY0dMopIoY1Zswfa1hVJnxH54H1V2CcTIR0C3XNIO1kYQQ
-	 jb08MOlodWLAKvfmxQBVrfP5uY0qBjF050j5MxuY9KrdgN1iuTLU+0ziIbWc5XAA1N
-	 31t4iwXyBD3El+zm85fqmePh/BsB9Y9+wkUwIt81ymt+t2A7BgUdE1+/gxOp3PTE+D
-	 sGRcdsQZ5uAtA==
-Date: Thu, 12 Nov 2026 13:01:34 +0100
-From: Christian Brauner <brauner@kernel.org>
-To: Jan Kara <jack@suse.cz>
-Cc: linux-fsdevel@vger.kernel.org, Jan Kara <jack@suse.com>, 
-	Al Viro <viro@zeniv.linux.org.uk>, ecryptfs@vger.kernel.org, linux-ext4@vger.kernel.org, 
-	jfs-discussion@lists.sourceforge.net, linux-nilfs@vger.kernel.org, exfat@lists.linux.dev, 
-	linux-mm@kvack.org, ntfs@lists.linux.dev, ocfs2-devel@lists.linux.dev, 
-	linux-btrfs@vger.kernel.org, gfs2@lists.linux.dev, linux-efi@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-xfs@vger.kernel.org, 
-	Karl Mehltretter <kmehltretter@gmail.com>, Dave Kleikamp <shaggy@kernel.org>
-Subject: Re: [PATCH v2 04/34] ext2: don't set SB_RDONLY after filesystem
- errors
-Message-ID: <20261112-wohncontainer-saurier-wonnen-91f30c3b3ae2@brauner>
-References: <20261029-work-fs-sb_rdonly-v2-0-2f44f64f0b66@kernel.org>
- <20261029-work-fs-sb_rdonly-v2-4-2f44f64f0b66@kernel.org>
- <5qefa4mracb3x2z4vsdejmkyyfrhdcrixmmnooz4rzwcdfoejm@mqkvixj6afwp>
- <20261110-kargheit-impfen-pausieren-881763d28b19@brauner>
- <za33axmgzmuzsj3zmfeh43fkphtcsqtkhhrauwuvs7aiftelgp@dzl6z322st5f>
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Yz17Czs7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=bIodlW/bGF3SACwOI0QkVLlPXGoTnRTCszVw/7/5ocE=;
+	b=Yz17Czs7KWnf6eflRGRlnsYd7Mwdf7uzIicuw4k3IXTLrZb0aZbgYtc6ofxRrH
+	ZtqVxD5lH5FeeuUMOQPzRsIq9HEra40QyGQBeaJcnRKM+KbiQWRD1x0NvLq/5sFv
+	jmGOX1BktznnxENYCVuMQDsgonkTR9ewEAm5/q61ztqCw=
+Received: from [IPV6:2409:8900:1a93:3634:9bae:9736:f6e5:b25c] (unknown [])
+	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wD3HxU7tfVq6T9HHA--.54112S2;
+	Thu, 12 Nov 2026 20:46:53 +0800 (CST)
+Message-ID: <ba92fa60-caff-49d8-b1f8-62c8d93ca912@163.com>
+Date: Thu, 12 Nov 2026 20:46:51 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -66,51 +54,197 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <za33axmgzmuzsj3zmfeh43fkphtcsqtkhhrauwuvs7aiftelgp@dzl6z322st5f>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] ntfs: trim the sizes after a short write
+To: Zhan Xusheng <zhanxusheng1024@gmail.com>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ zhanxusheng@xiaomi.com, stable@vger.kernel.org
+References: <20261112093233.1118469-1-zhanxusheng1024@gmail.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261112093233.1118469-1-zhanxusheng1024@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3HxU7tfVq6T9HHA--.54112S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuw45Wry7Ww4kXF4rCrWktFb_yoW3Jw18pr
+	yagr45t3s7Gr4xGrnxK3WxXa1YqFWrWF4UuryrKF1fAwn5GrnxWFyUt3y09ayktrWkt3WY
+	qF4qvrZ5urn8Z3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTCJQUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6h2UX2r1tT0dcQAA3H
 
-On Wed, Nov 11, 2026 at 03:15:11PM +0100, Jan Kara wrote:
-> OK, so instead of BUGing in jfs_evict_inode(), shouldn't JFS just do
-> something like:
->
-> -	BUG_ON(!list_empty(&ji->anon_inode_list));
-> +	if (!list_empty(&ji->anon_inode_list)) {
-> +		WARN_ON_ONCE(!sb_emergency_ro(inode->i_sb));
-> +		/* This needs helper in fs/jfs/jfs_txnmgr.c */
-> +		TXN_LOCK();
-> +		list_del_init(&ji->anon_inode_list);
-> +		TXN_UNLOCK();
-> +	}
 
-Fwiw, this leaks the inode's anonymous tlocks. They're from TxLock which
-is shared by all jfs mounts. txLock() also sets mp->lid and pinned the
-metapages with metapage_nohomeok().
 
-So the helper would have to tear all of that down like txAbort() does
-and drop the pins. Doable, I guess not sure if this belongs into the
-series.
+在 2026/11/12 17:32, Zhan Xusheng 写道:
+> From: Zhan Xusheng <zhanxusheng@xiaomi.com>
+> 
+> ntfs_file_write_iter() moves the data size and, for a non-resident
+> uncompressed file, the initialized size to pos + count before the copy.
+> __ntfs_extend_initialized_size() only zeroes [old initialized size, pos),
+> so the range [pos, pos + count) is initialized only by the copy itself.
+> When iomap_file_buffered_write() copies less than count, it returns a
+> positive short count and the error rollback at out: does not run.  The
+> file keeps the size pos + count, and [pos + ret, pos + count) reads back
+> whatever the freed clusters held before, also after a remount.  A local
+> user can read the old contents of freed clusters this way.
+> 
+> Run the existing rollback for a short write as well, and roll the two
+> sizes back to the end of what was written instead of to the old sizes.
+> A short copy that ends inside a block can also leave the rest of that
+> block, and of the block holding pos + count, cached as read from disk,
+> so clear the page cache from the new initialized size to EOF before
+> shrinking it.
+> 
+> Fixes: b041ca562526 ("ntfs: update iomap and address space operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
+> ---
+> v3: clear the cache up to EOF, not up to the extended initialized
+> size, which left the rest of the block holding pos + count (Baolin).
+> v2: also clear the cached tail of the last block, which v1 left in
+> place when the write stayed inside the old data size (Baolin).
+> 
+> v2: https://lore.kernel.org/all/20261112030815.982026-1-zhanxusheng1024@gmail.com/
+> v1: https://lore.kernel.org/all/20261111093459.660484-1-zhanxusheng1024@gmail.com/
+> 
+> Tested in a VM on ntfs-next b025f526c5d0, with all free space filled
+> with a known pattern first.  Short buffered writes of 4M, old data
+> readable after drop_caches and after remount, 3 runs each:
+> 
+>                                      unfixed    v1     v2     v3
+>    fallocated, ends block-aligned    3137536    0      0      0
+>    fallocated, ends inside a block   3141332    212    0      0
+>    fallocated, unaligned start       3137536    412    0      0
+>    same, pos + count in that page    -          -      436    0
+>    append                            3137536    0      0      0
+> 
+> A short write 1M past EOF, O_DIRECT, resident and compressed files and
+> full writes give the same results with v3 as with v1.
+> ---
+>   fs/ntfs/file.c | 35 ++++++++++++++++++++++++++++-------
+>   1 file changed, 28 insertions(+), 7 deletions(-)
+> 
+> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+> index 3213a0c9f96b..aa58afd729d0 100644
+> --- a/fs/ntfs/file.c
+> +++ b/fs/ntfs/file.c
+> @@ -928,10 +928,21 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		ret = iomap_file_buffered_write(iocb, from, &ntfs_write_iomap_ops,
+>   				&ntfs_iomap_folio_ops, NULL);
+>   out:
+> -	if (ret < 0 && ret != -EIOCBQUEUED) {
+> +	/*
+> +	 * Both sizes were moved to end before the copy, so a short write,
+> +	 * like a failed one, must take back what it did not write.
+> +	 */
+> +	if (ret < count && ret != -EIOCBQUEUED) {
+> +		loff_t new_init_size = old_init_size;
+> +		loff_t new_data_size = old_data_size;
+>   		int init_err = 0;
+>   		int data_err = 0;
+>   
+> +		if (ret > 0) {
+> +			new_init_size = max(old_init_size, pos + ret);
+> +			new_data_size = max(old_data_size, pos + ret);
+> +		}
+> +
+>   		/*
+>   		 * Like ntfs_setattr_size(): __ntfs_attr_truncate_vfs()
+>   		 * expects the invalidate lock held across the size
+> @@ -940,13 +951,23 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		filemap_invalidate_lock(vi->i_mapping);
+>   
+>   		/* ntfs_attr_set_initialized_size() rejects a resident one. */
+> -		if (ni->initialized_size != old_init_size &&
+> +		if (ni->initialized_size != new_init_size &&
+>   		    NInoNonResident(ni)) {
+>   			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+>   
+> +			/*
+> +			 * A short copy can leave the rest of a block read
+> +			 * from disk in the cache, also past the temporarily
+> +			 * extended initialized size.  Clear everything that
+> +			 * is no longer initialized, as
+> +			 * __ntfs_extend_initialized_size() does.
+> +			 */
+> +			truncate_pagecache_range(vi, new_init_size,
+> +					max_t(loff_t, i_size_read(vi),
+> +					      ni->initialized_size) - 1);
+>   			mutex_lock(&mrec_ni->mrec_lock);
 
-> So that JFS doesn't block everybody else? Because conceptually, once sb is
-> marked as emergency read-only, we really want to stop writeback so letting
-> sync_inodes() run seems moot.
+Hi Xusheng,
+    I missed the concurrent mmap case in my earlier suggestion to 
+truncate the page cache.
+    Sorry for overlooking this. This truncation can discard valid data 
+written through a shared mapping while the buffered write is copying 
+user data.
 
-Meh, but a check in sync_filesystem() doesn't stop writeback? The
-flusher doesn't know about the emergency state and keeps calling
-->writepages() and ->write_inode().
+    I reproduced this with the following sequence on an x86_64 VM using 
+4 KiB pages and 4 KiB NTFS clusters:
 
-And kill_block_super() calls sync_blockdev() after
-generic_shutdown_super() so everything in the bdev mapping
-(FAT, bitmaps, inode table blocks) gets writeback anyway. All the check
-does is make syncfs() return without writing anything and make unmount
-drop whatever the flusher hasn't gotten to yet. Which might be the goal
-you're after?
+1. Create an empty file and extend it to 1 MiB with ftruncate().
+2. Start a buffered pwritev() at offset 0 with three 4 KiB source 
+buffers: a valid page, a missing page registered with userfaultfd, and a 
+PROT_NONE page.
+3. Wait for the userfaultfd event on the second buffer, leaving the 
+writer paused during the copy.
+4. Create a writable MAP_SHARED mapping at file offset 64 KiB and store 
+a known marker there.
+5. Resolve the missing source page with UFFDIO_COPY. The inaccessible 
+third buffer then causes pwritev() to return a short count of 8192.
+6. Read the marker back with pread().
 
-> Argh, also NFS I assume. OK, that won't be easy to get rid of AFAICT (we
-> generally don't have mount available there).
+    Before applying v3, the marker is preserved. After applying v3, it 
+is lost and its first byte reads back as zero. The file size remains 1 
+MiB in both cases.
 
-So nfsd_setxattr() takes write access to the export's mount via
-fh_want_write(). So this would get EROFS from the VFS. Afaict it's
-ecryptfs and IMA? ima_fix_xattr() only checks IS_RDONLY().
+    The mmap operation has already extended initialized_size beyond the 
+marker, but new_init_size is calculated from the pre-write snapshot and 
+this write's return value, so it becomes 8 KiB. The cache truncation 
+discards the marker, and the subsequent initialized-size rollback also 
+fails to preserve the initialization established by mmap.
 
--- 
+    Taking invalidate_lock here is too late to prevent this sequence: 
+the mmap initialization and store have already completed. The inode lock 
+held by the write iterator does not serialize against mmap 
+initialization either.
+
+    We need to revise the rollback approach to preserve initialization 
+and data established by concurrent mmap activity. Simply narrowing the 
+cache truncation range would not address the initialized-size rollback.
+    One possible direction is to initialize newly exposed bytes before 
+publishing initialized_size and retain that initialization after a short 
+write. This would also need careful handling of direct I/O and NOWAIT, 
+since populating pagecache before NOWAIT direct I/O can itself cause EAGAIN.
+
+Thanks,
+Baolin.
+
+
+>   			init_err = ntfs_attr_set_initialized_size(ni,
+> -					old_init_size);
+> +					new_init_size);
+>   			mutex_unlock(&mrec_ni->mrec_lock);
+>   		}
+>   		/*
+> @@ -955,13 +976,13 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		 * the uninitialized tail, so skip it unless the rollback
+>   		 * above restored that size.
+>   		 */
+> -		if (ni->data_size != old_data_size && !init_err) {
+> +		if (ni->data_size != new_data_size && !init_err) {
+>   			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+>   
+> -			truncate_setsize(vi, old_data_size);
+> +			truncate_setsize(vi, new_data_size);
+>   			mutex_lock(&mrec_ni->mrec_lock);
+> -			data_err = __ntfs_attr_truncate_vfs(ni, old_data_size,
+> -					old_data_size);
+> +			data_err = __ntfs_attr_truncate_vfs(ni, new_data_size,
+> +					new_data_size);
+>   			mutex_unlock(&mrec_ni->mrec_lock);
+>   			/* Like ntfs_setattr_size(): stay on the durable size. */
+>   			if (data_err)
+> 
+> base-commit: b025f526c5d04929212c9d5fb7ffc96608f3eacc
+
