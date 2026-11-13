@@ -1,55 +1,58 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.223
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794534486;
-	b=xxUX30efSQsiZ8gKMqvCaU/wLgZL/aR8/tweAAlijyUdlUKTQm7NfUNtMJ8xhzPCXoGq
-	 6p0QzuWE5XBuxx6s589A/l+YFYmVnFq9cLCKa0Nef/jme3ktZOfCZdeg6dN9TlY0G/Ghd
-	 vjs0ODw5ANX2YszNtdpvbFOdgSLan4Ks53Ahc/kkPmXRqu+RF1krEdBTT4nMNBCxljr1w
-	 aDWntju8tWI8F6sbmozvJH3YDfcDEwLPZPoXXIFKDFK/T1Y1tz5FNtZcedQn2C5snYMrG
-	 2TV7jIxYLwzYiXVhAGIqlXpi/7ud7gYg2VA9HTygZQgCRdQIOo+ZpNdV7keA2m32wTg==
+	t=1794535698;
+	b=somxbktSCRbimvDk1x4m8nZ0nQjLs7nKOxJzR3JxmhEp0U48oM353KvdmcXdVwXaFk9F
+	 FU5RbPpCMHI/J5yTx48gquCEHM2VrzsDwA5Q8OQ3hqlhi2wlcEPCW+q8z3Qi4DQj0JboI
+	 vJwUfl+TqvQFG+fu32xPlAx8Ha7IDM5vffkh7r0QzWx3li41puP8NAj8jSHfVmZB1Nycl
+	 g13mUPGkU3hnVXO5wozRBWxVWyCf6BaxIbJkPAG4QfgRkK+UQFOKhr3zjc8K12HPLCnYP
+	 AX7fxaAG8b+787LXoEvZUk1aq4fgMbWqZdaJc5BJK5e5FKMseOckXjw0j9v0W5RItEw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794534486;
-	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
-	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=kIHGiaaw+w7x9/tbZ/OjYKBZiL9aSPInsuX+o8D0KRs=;
-	b=Sy8IpgU6DAVpUIBsCIkfy5dq2KfDr6kr9wZzsp11pJ5qeLTVAbBLYE0yO5ou89UfRv++
-	 /HGWI2CFcFTgpVTpqo9q2k+ROfRw3vTTNmXWXT8zumoLhpj7Sgyh8rPMH8q9oVFqXnBb4
-	 iOv7dURT0MdrT1eVe07CBFgjeS+1JX7tkrBQxCbZdpj6SuFbaUYTQvksuaTnjAE6NDeWQ
-	 S8WfwZk8hlSGmkS3tl3Y6CVy6OJglnK6g0hBzoOR6En5kti7vk7uihJvLSabfWpZbAqRI
-	 bL1Jn6BNa/VVEcQeMowyv2JK3FnVvzbYkqQNT2V2mLByuCW0vBCXbdf/WPSya0XaT8A==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794535698;
+	h=DMARC-Filter:dkim-signature:Received:Received:Received:Message-ID:
+	 Date:MIME-Version:User-Agent:Subject:To:CC:References:
+	 Content-Language:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+	bh=fRlFnEwOyhCsf6bntFNWmv0q3cjwumqt5gvXEY0j99s=;
+	b=vrBt7E8IukUhQyV+5h5AsjI/sIAf5o7lRU32SeCHS4btBeXQPiGrYVsEtN7FcRKXcxqN
+	 qv+SArQ59lXPt1C3Pd//jk7aNi50QGRyyq7XiZPnDME8KKFeMYqBImb2y1OtIFnKA2IJo
+	 VBz1ugYhxqGd/4yWtGD/uxAwgHtI7eBvUCtrOBEEMBdQ1C1L8XNd9ISSjulmVdMoondxr
+	 8LO+cAYd81pme64mlMOyR1q0zS3+v1WQ9yIaSEInvEjcXgjPXEMFukMakWNeQQDaBx5ZX
+	 zqkFfc76j3lHIwnAcRXuBv2RandOf6dnhw5cIcN/s0HgsPw70SRAETJgxSk+cQwu62A==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kSmoaRvk;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	dmarc=pass header.from=huawei.com;
+	spf=pass smtp.mailfrom=huawei.com;
+	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=tgB76D+u;
+	arc=none smtp.remote-ip=113.46.200.223
+Received: from canpmsgout08.his.huawei.com (canpmsgout08.his.huawei.com [113.46.200.223])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3112E606A323
-	for <ntfs@lists.linux.dev>; Fri, 13 Nov 2026 01:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D93A606A8BA;
+	Fri, 13 Nov 2026 02:08:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 7D93A606A8BA
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kSmoaRvk
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBC1B1F000C4
-	for <ntfs@lists.linux.dev>; Fri, 13 Nov 2026 01:48:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794534485;
-	bh=kIHGiaaw+w7x9/tbZ/OjYKBZiL9aSPInsuX+o8D0KRs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=kSmoaRvkLtnxeuqOIgX0/NZr6A8vYVT3LeeWkXHMri/grQOq7XOif4u7jGWFJ6ywl
-	 u4O/GTEB9oL+ukMo13pSEMYUamyAA/ueUbH0zPN+ReMqmdG6rgQiWJBjcqAK8VptyM
-	 BmjCeFSfnW/0Pc9v5t4C3E6C9yKr2WV8gV1fJqiZam9ZZjnNLEWSKTNuHN6NhS0d0L
-	 8z3nEgIG8Srvki9aRGYgSLlsZZ/lI57w5uI2d/A2Wgla5a7UaFAKgmRIeswLfHsfK5
-	 TdyDOv0u277WZso8V83m7uqd4w0gd8j7G1THIwOFmuI7KhRCOSMlHmtSt8rXMqAn3O
-	 4BOIVS1wqC4xA==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-c50933bdf4bso62278466b.1
-        for <ntfs@lists.linux.dev>; Thu, 12 Nov 2026 17:48:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErEzcsmFQzfgX9PQTsRW6xna1ZsLYlMNpmiTSV/3eb1PA4ZqLBa6DenmK+t2S+blsxnqe9k1@lists.linux.dev
-X-Gm-Message-State: APuU4Z+hH8wWkKEMzFnx7kBPMkNtOPzbN1H9iPFjt3egy8QFZ7lsZ8XV
-	2aIhAF95O9kXqx5bTJopxJ167ZFD2SoKbl7eNARjGzA5oAFqO2jZw4gbWm3Q7oQiyETA7Y/T3n8
-	rCBfl7B2STV2nHUPG29JuOTUCb7uu7gQ=
-X-Received: by 2002:a17:907:72cb:b0:c42:fc8b:6c6a with SMTP id
- a640c23a62f3a-c50963841e5mr68070266b.14.1794534484673; Thu, 12 Nov 2026
- 17:48:04 -0800 (PST)
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=tgB76D+u
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=fRlFnEwOyhCsf6bntFNWmv0q3cjwumqt5gvXEY0j99s=;
+	b=tgB76D+uPHT+xoP/MsIq5QT99tPRFyjCjYAa5bPvS0n/BLMW7GmhAJphWd0AaFaCXwNcxc4Ka
+	dPjWkV3Gm+TFWMTFawukI93MmREL5xwGs2ILp3CVZdJ2RNXEKTgDHIK4mZDlwgvononmGVpnLul
+	eI6cXevbd8zNABceS1BMSf4=
+Received: from mail.maildlp.com (unknown [172.19.163.127])
+	by canpmsgout08.his.huawei.com (SkyGuard) with ESMTPS id 4jQgdM28nxzmVC1;
+	Fri, 13 Nov 2026 10:07:51 +0800 (CST)
+Received: from whupemk100010.china.huawei.com (unknown [7.152.184.41])
+	by mail.maildlp.com (Postfix) with ESMTPS id 63B8C40572;
+	Fri, 13 Nov 2026 10:08:07 +0800 (CST)
+Received: from [10.67.110.140] (10.67.110.140) by
+ whupemk100010.china.huawei.com (7.152.184.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Fri, 13 Nov 2026 10:08:00 +0800
+Message-ID: <2dbd365b-eac5-448b-b6c2-4ed8754551a7@huawei.com>
+Date: Fri, 13 Nov 2026 10:07:59 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,41 +62,95 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <CAKYAXd-n+zGBq4i7rfLyX+_Y6zEMLTCCqb2vAgcnmavqKxtiHA@mail.gmail.com>
- <20261112074055.1876311-1-wahidzk0091@gmail.com>
-In-Reply-To: <20261112074055.1876311-1-wahidzk0091@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Fri, 13 Nov 2026 10:47:52 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8YHe4AcSM3Ch+8PseXAXxqzLvB_njNgqGCUuyVe4prOw@mail.gmail.com>
-X-Gm-Features: AclHuK9nAzXNzVpFrAKkcdAMUN1l4AwVNbPKXYvvHImRlz9ZPtI6TOIlea6DG_A
-Message-ID: <CAKYAXd8YHe4AcSM3Ch+8PseXAXxqzLvB_njNgqGCUuyVe4prOw@mail.gmail.com>
-Subject: Re: [PATCH v8] ntfs: convert a named $DATA stream safely when making
- room in a record
-To: Wahid Khan <wahidzk0091@gmail.com>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 -next 00/18] landlock: Add READ_METADATA and
+ WRITE_METADATA access rights
+To: Christian Brauner <brauner@kernel.org>
+CC: <mic@digikod.net>, <gnoack@google.com>, <paul@paul-moore.com>,
+	<jmorris@namei.org>, <serge@hallyn.com>, <corbet@lwn.net>,
+	<skhan@linuxfoundation.org>, <utilityemal77@gmail.com>, <ast@kernel.org>,
+	<daniel@iogearbox.net>, <andrii@kernel.org>, <eddyz87@gmail.com>,
+	<memxor@gmail.com>, <martin.lau@linux.dev>, <song@kernel.org>,
+	<yonghong.song@linux.dev>, <jolsa@kernel.org>, <emil@etsalapatis.com>,
+	<ihor.solodrai@linux.dev>, <rdunlap@infradead.org>,
+	<gregkh@linuxfoundation.org>, <rafael@kernel.org>, <dakr@kernel.org>,
+	<johan@kernel.org>, <dlemoal@kernel.org>, <hch@lst.de>, <axboe@kernel.dk>,
+	<viro@zeniv.linux.org.uk>, <jack@suse.cz>, <dhowells@redhat.com>,
+	<code@tyhicks.com>, <linkinjeon@kernel.org>, <sj1557.seo@samsung.com>,
+	<yuezhang.mo@sony.com>, <hirofumi@mail.parknet.co.jp>, <cel@kernel.org>,
+	<jlayton@kernel.org>, <neil@brown.name>, <okorniev@redhat.com>,
+	<Dai.Ngo@oracle.com>, <tom@talpey.com>, <hyc.lee@gmail.com>,
+	<miklos@szeredi.hu>, <amir73il@gmail.com>, <senozhatsky@chromium.org>,
+	<chenxiaosong@chenxiaosong.com>, <dsterba@suse.com>, <mason@kernel.org>,
+	<kpsingh@kernel.org>, <matt@bobrowski.net>, <rostedt@goodmis.org>,
+	<mhiramat@kernel.org>, <mathieu.desnoyers@efficios.com>,
+	<john.johansen@canonical.com>, <georgia.garcia@canonical.com>,
+	<zohar@linux.ibm.com>, <roberto.sassu@huawei.com>,
+	<dmitry.kasatkin@gmail.com>, <eric.snowberg@oracle.com>,
+	<stephen.smalley.work@gmail.com>, <omosnacek@gmail.com>,
+	<casey@schaufler-ca.com>, <takedakn@nttdata.co.jp>,
+	<penguin-kernel@i-love.sakura.ne.jp>, <xiujianfeng@huawei.com>,
+	<nanx95726@gmail.com>, <djwong@kernel.org>, <lujialin4@huawei.com>,
+	<bpf@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-security-module@vger.kernel.org>,
+	<driver-core@lists.linux.dev>, <linux-block@vger.kernel.org>,
+	<linux-btrfs@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
+	<netfs@lists.linux.dev>, <ecryptfs@vger.kernel.org>, <exfat@lists.linux.dev>,
+	<linux-nfs@vger.kernel.org>, <ntfs@lists.linux.dev>,
+	<linux-unionfs@vger.kernel.org>, <linux-cifs@vger.kernel.org>,
+	<linux-trace-kernel@vger.kernel.org>, <apparmor@lists.ubuntu.com>,
+	<linux-integrity@vger.kernel.org>, <selinux@vger.kernel.org>,
+	<linux-kselftest@vger.kernel.org>
+References: <20261027121151.1887650-1-caixinchen1@huawei.com>
+ <20261110-rekonstruieren-erbfolge-vollversammlung-26be74966211@brauner>
+Content-Language: en-US
+From: Cai Xinchen <caixinchen1@huawei.com>
+In-Reply-To: <20261110-rekonstruieren-erbfolge-vollversammlung-26be74966211@brauner>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
+ whupemk100010.china.huawei.com (7.152.184.41)
 
-On Thu, Nov 12, 2026 at 4:41=E2=80=AFPM Wahid Khan <wahidzk0091@gmail.com> =
-wrote:
+You are right, and thanks for catching it.
+
+I have been working on these modifications over the past two weeks and 
+have deployed sashiko locally. However, my current changes are still 
+being flagged for some bugs by my local sashiko, and I am still in the 
+process of fixing them. I expect to release v4 in a few days. Regarding 
+these issues, my current fixes are as follows: - AT_EMPTY_PATH: v4 will 
+use CLASS(fd_raw, f)(dfd), the   same lookup path_init() does for an 
+empty path, so O_PATH descriptors   work again.  do_utimes_fd() 
+(futimens(2)) intentionally keeps   CLASS(fd, f), matching 
+fchmod(2)/fchown(2); AT_EMPTY_PATH returns   -EINVAL there anyway.  The 
+same patch rejects a NULL pathname with   -EFAULT before 
+CLASS(filename_maybe_null) can turn it into an empty   path relative to 
+AT_FDCWD, and adds the missing audit_file() on the   do_utimes_path() fd 
+branch. - __nullable (patches 5-9, 11-13): v4 will extend 
+kernel/bpf/bpf_lsm_proto.c (the existing   strong-override file used for 
+mmap_file) with strong definitions for   all 11 hooks that gained a file 
+argument, each declared   file__nullable, so the verifier sees 
+PTR_MAYBE_NULL and a program must   check before dereferencing. - ntfs 
+named stream setattr (patch 1): v3 forwarded with   
+__notify_change(idmap, base_dentry, ...).  v4 will use   
+notify_change_target(idmap, attr->ia_path, base_dentry, ...), so the   
+hook is checked against the path the syscall used while the attributes   
+still land on the base inode. - overlayfs fileattr (patch 8): v3 removed 
+the ovl_security_fileattr()   workaround but then called the unchecked 
+__vfs_fileattr_get()/_set()   on the real dentry, which bypasses the 
+hooks.  v4 will call the checked   vfs_fileattr_get()/_set() with the 
+real upper/lower path, so the hooks   also run for the underlying layer; 
+ecryptfs is switched the same way.
+
+Best regards.
+
+Cai
+
+On 11/11/2026 12:52 AM, Christian Brauner wrote:
+> This regresses AT_EMPTY_PATH. fchmodat2(), fchownat() and utimensat()
+> with an empty path now go through CLASS(fd) which is fdget() and that
+> refuses O_PATH file descriptors. IOW, this is very very broken.
 >
-> Hi Namjae,
->
-> -EAGAIN must not leave ntfs_resident_attr_resize(). The callers return
-> it as is, so a normal blocking write() or setxattr() would get EAGAIN
-> for a "would block" that never was, and index.c already uses -EAGAIN
-> internally as its "redo the insert" code (ntfs_ib_insert() ->
-> resplit), so a stray one from ntfs_attr_truncate() could be taken for
-> that.
->
-> -ENOSPC is what this function already returns when the attribute does
-> not fit and cannot be made non-resident, so callers already pass it up
-> as a normal error.
-> It is not exactly true here, it is a short lived "busy" and not a full
-> record, but there is no way to wait for folio 0 at that point without
-> the deadlock (the reader holds it and waits for mrec_lock), and no
-> errno fits better. I can use -EBUSY or add a comment saying so if you
-> prefer.
-Okay, please use it here.
-Thanks.
+> Please also go through Sashiko's review of v3 (cf. [1]). The new struct
+> file arguments need __nullable or bpf programs can dereference NULL,
+> and the ntfs3 stream setattr and overlayfs fileattr paths that bypass
+> the hooks need treatment.
