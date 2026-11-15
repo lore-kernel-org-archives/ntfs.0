@@ -1,57 +1,58 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794749234;
-	b=qwqm2Mav3BX3dKcHuPN1SZG1u0kjKmdlb5Uw7F/41ruvoU8NNMTxjtYek46bMxMMyDoq
-	 Sz6RjRe3lJSIa24hy9Jh4mnJVDgprZ9qF/bbjIbJQkYybw/HDJII+nN9TNoSWK0gBOOU7
-	 ZU5sG3fjAdT/JBQPGWZo63dmJ6D21QcCJ3cQxrR+ThOjI9q7qQn5hyCdA47E/MKPX84xz
-	 iRLZK39ljy39eTI46Hc58CZHvf5VfgI/XtYSBXZ6ivAP8p6QNG3Wsl+Jaes2v+sRBxtOu
-	 RdCemPvy4K8GHfmXH4xmNnNSh4+HzIBqkLEttY2a6M7mDu1r2OsGisFg6WRGPPCDXSQ==
+	t=1794749251;
+	b=MEEJXnsYBJrrFjDKjriacMCHJKeQYyAu268tmaCVxqtnU4rFvsIHq7c1WqYC+9qtA5Vp
+	 5YUae6aEMg8FzYJErI3nzuezTd/nuxhBDquC6wy/y9F4fpO8wNggR+Jt/Bl0MqxY+lxe/
+	 v4AVsfVjYjFJwXbKGAmwBcmLriINOmdxTtyVaYGNarUZuSDAVdysJ+2+bIgiiybLTZU60
+	 BCgt4nPOzro2cx1C+mzBW4WBhQC85hZniALC9iUXJ1FoSZKuOsuzENC2kZY0xoG+pBvsO
+	 TAt+2GUE1IbKWFUnYPESLLnukFb3tGPaHLa+fu3hUiixy99DVJShBciuMXGH1/B+b0A==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794749234;
+	a=rsa-sha256; c=relaxed/relaxed; t=1794749251;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-CM-SenderInfo;
-	bh=DX9VM9jkTgK560Jv3EZhZ53vVQdjW3sO2tpZaZM1PhE=;
-	b=bhzxDQWbCKi5qidJC/mQQHUqINUKXQ72fbVDwmYPYrFfPdu7YnX/yMUQuH8mqeVCHcVM
-	 5Udp/fGpowj5KIsAxsAEEXp6EWJj6QduGaXmcheCoPaSl/blJXBh/bzMe5Ny4ghzJU9U7
-	 XFVzGNHjeVLE8igP+69bA/ThLbHdjVKtG123NTgOvdZ8BFplH0pNK5OHc6SHl7vdoC/Ba
-	 bOde+25TuB3qzh0QTzDzXeJUQVdy/0/ReozgfM+UeA0lUnsUp7DXotS7517F+u46UmMA+
-	 yEBux2oWvpVYFWUQaSp0E+5MJc6oyVYLs3YLdhPd9H6cKpASIQpGb2khIi4XWY4vY1w==
+	bh=1jFE1IGMcuyCuZXQl2Is0ps1VLwkmCGSQjEBczV5rqA=;
+	b=IkZv2apBUrY6B5wCIjn1KCGA57MxvwNawm+L1sI9pT7OpgwAcqT9aXTiqb8btKGqQBWT
+	 y6gs1n8ubO8yuCM/utIfF3Ko+V4AJhUaYrdHTrDaBCb+ec4Cl/pp2nj3uR9yu//3ZK8Gz
+	 jcw0w4ICAM1i/PQgfywHp5Bh3XckLVCCMZVnwmuVUR4L2LTaBxtVnqDAjb49JAKFOVLl+
+	 07x2RF/oqS4Ec5pSlnWbq82cxe5o1s6sytHq5xJT8FFJS2iC80Ov4tYeRVUbT4uU8zI1O
+	 uOOIPvGJ9wmSGs0UjeVP+ib/TL/5lb7onBnWVQ68LvaHDZWgmtq4Ko3+8mK/OeVW/+w==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=IVS4TsRx;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=PVvisqBE;
 	arc=none smtp.remote-ip=220.197.31.4
 Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0C8606A327
-	for <ntfs@lists.linux.dev>; Sun, 15 Nov 2026 13:27:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 1D0C8606A327
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A131606A31A
+	for <ntfs@lists.linux.dev>; Sun, 15 Nov 2026 13:27:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 8A131606A31A
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=IVS4TsRx
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=PVvisqBE
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=DX
-	9VM9jkTgK560Jv3EZhZ53vVQdjW3sO2tpZaZM1PhE=; b=IVS4TsRxdA9ZcV9mt4
-	ragq/3JNwXbuoHocfrQk4eGah1z6gIpCk0EIsPqkQLciu02UApSIF/o8pu+xwVi9
-	6B3u1X4stxakvmYsRvK7apNBA8BNP+4xHMfhgXd95LqyhXbh0HShr6EyTYWaDrPe
-	8+zn0XNatvSI/zQ97sjFT2KKo=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=1j
+	FE1IGMcuyCuZXQl2Is0ps1VLwkmCGSQjEBczV5rqA=; b=PVvisqBEAKPMfSdUHG
+	jEbkgZojMl8o8FQa1bDrVQVEUu5dWaCWS3vpDSUuOtzrVRNdd25T+wKidvb8+6jN
+	PrnRkPSQ18lKKOnaWnTBGX3InQw/aVf6fX0whL6AhoqR0uz0wjSQxr3oEfveNNfm
+	+v2ErsBKw/J+y+F92ARcNP338=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wD33yHzsvlqXCkHHw--.36757S8;
-	Sun, 15 Nov 2026 21:26:16 +0800 (CST)
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wDXP_A1s_lqfjtyIQ--.47831S4;
+	Sun, 15 Nov 2026 21:27:19 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
+	Xuewen Wang <wangxuewen@kylinos.cn>,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v4 06/12] ntfs: read ACLs using their stored size
-Date: Sun, 15 Nov 2026 21:26:03 +0800
-Message-ID: <20261115132609.209957-7-liubaolin12138@163.com>
+Subject: [PATCH v4 10/12] ntfs: write unlinked file attributes before dropping their cache
+Date: Sun, 15 Nov 2026 21:26:07 +0800
+Message-ID: <20261115132609.209957-11-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261115132609.209957-1-liubaolin12138@163.com>
 References: <20261115132609.209957-1-liubaolin12138@163.com>
@@ -65,67 +66,172 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD33yHzsvlqXCkHHw--.36757S8
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF1fuFW5Xw45Gr48Ar1UKFg_yoW8Cw1fpF
-	sxJr1YgF4xXry2vF1vyr4DXry093WxKay5G34fKa1Ik3yYqrnI9Fy3tFy09a1ftF93Jwn0
-	qF15KrZIv347uwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j2FALUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RgEzmr5svhtmgAA3V
+X-CM-TRANSID:_____wDXP_A1s_lqfjtyIQ--.47831S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxKF1ftr1UuFWDWrW8Jr4DXFb_yoW7Aw1fpF
+	Z3CrZxtr4DXw12gws3ta1jq3WSq34xKr4UJry7Gr17A3ZYqr12gFWIk348tF1ftrWDWrWq
+	qr4q9r4xuFWxXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jDwIDUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RcT3Wr5szd1XgAA3M
 
-From: Baolin Liu <liubaolin@kylinos.cn>
+From: Xuewen Wang <wangxuewen@kylinos.cn>
 
-The ACL setter accepts values larger than PATH_MAX, but ntfs_get_acl()
-uses a fixed PATH_MAX buffer. Valid ACLs larger than 4096 bytes cannot be
-read back after inode eviction. Inode-based ACL lookup also propagates
-this error to permission checks and default ACL inheritance.
+Zero-link internal attribute inodes are evicted at the final iput(),
+discarding dirty folios while the base file may still be open.
 
-Query the EA length and allocate the required buffer with GFP_NOFS.
-Keep the record lock across the size query and read so a concurrent ACL
-replacement cannot change the required size in between.
+Make writes and conversions synchronous when the attribute inode's own
+link count is zero, even after O_TMPFILE publication. Preserve the named
+stream writeback path.
 
-Fixes: fc053f05ca28 ("ntfs: add reparse and ea operations")
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+Write converted data before committing the nonresident layout so
+failures preserve the resident value. Propagate conversion I/O errors
+while still skipping busy candidates.
+
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
 ---
-New in v4.
+Changes since v3: check the attribute inode's own link count in both
+write paths. Adapt to the merged named-stream conversion fix, retaining
+NOWAIT and skipping busy candidates while propagating I/O errors.
 
-Tested access/default ACLs of 4092, 4100 and 4836 bytes with 512-byte/4 KiB
-clusters. Inheritance, permissions, remount and reboot checks passed for
-regular files, O_TMPFILEs, directories and FIFOs.
+Tested publication/rewrite while fsync held a zero-link EA inode, SD/EA
+persistence with 512-byte/4 KiB/8 KiB clusters, and block-write EIO during
+EA conversion. The resident value and free space were preserved on EIO;
+retry and reboot passed. Locked fallback folios, conversion errors and
+uncached named-stream conversion also passed.
 
- fs/ntfs/ea.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ fs/ntfs/attrib.c | 58 ++++++++++++++++++++++++++++++++++++++++++++++--
+ fs/ntfs/inode.c  |  8 +++++++
+ 2 files changed, 64 insertions(+), 2 deletions(-)
 
-diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
-index 68397b2a4e43..834f38ea4a00 100644
---- a/fs/ntfs/ea.c
-+++ b/fs/ntfs/ea.c
-@@ -1019,11 +1019,7 @@ struct posix_acl *ntfs_get_acl(const struct mnt_idmap *idmap, struct dentry *den
- 	size_t name_len;
- 	struct posix_acl *acl;
- 	int err;
--	void *buf;
--
--	buf = kmalloc(PATH_MAX, GFP_KERNEL);
--	if (!buf)
--		return ERR_PTR(-ENOMEM);
-+	void *buf = NULL;
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index a88dc62c6a4e..af044ea895fc 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -16,6 +16,7 @@
+  * Copyright (c) 2010 Erik Larsson
+  */
  
- 	/* Possible values of 'type' was already checked above. */
- 	if (type == ACL_TYPE_ACCESS) {
-@@ -1035,7 +1031,14 @@ struct posix_acl *ntfs_get_acl(const struct mnt_idmap *idmap, struct dentry *den
++#include <linux/bio.h>
+ #include <linux/string_choices.h>
+ #include <linux/writeback.h>
+ #include <linux/iomap.h>
+@@ -1961,6 +1962,40 @@ int ntfs_resident_attr_value_resize(struct mft_record *m, struct attr_record *a,
+ 	return 0;
+ }
+ 
++/* Write the resident value to its new clusters before committing conversion. */
++static int ntfs_attr_write_conversion(struct ntfs_volume *vol, struct folio *folio,
++				      const struct runlist_element *rl, u32 size)
++{
++	unsigned int offset = 0;
++
++	size = round_up(size, vol->sector_size);
++	while (size) {
++		struct bio *bio;
++		unsigned int len;
++		int err;
++
++		if (!rl->length || rl->lcn < 0)
++			return -EIO;
++		len = min_t(s64, size, ntfs_cluster_to_bytes(vol, rl->length));
++		bio = bio_alloc(vol->sb->s_bdev, 1, REQ_OP_WRITE | REQ_SYNC,
++				GFP_NOIO);
++		bio->bi_iter.bi_sector =
++			ntfs_bytes_to_bio_sector(ntfs_cluster_to_bytes(vol, rl->lcn));
++		if (!bio_add_folio(bio, folio, len, offset)) {
++			bio_put(bio);
++			return -EIO;
++		}
++		err = submit_bio_wait(bio);
++		bio_put(bio);
++		if (err)
++			return err;
++		offset += len;
++		size -= len;
++		rl++;
++	}
++	return 0;
++}
++
+ /*
+  * ntfs_attr_make_non_resident - convert a resident to a non-resident attribute
+  * @ni:		ntfs inode describing the attribute to convert
+@@ -2004,6 +2039,7 @@ static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_s
+ 	int mp_size, mp_ofs, name_ofs, arec_size, err, err2;
+ 	u32 attr_size;
+ 	u8 old_res_attr_flags;
++	bool sync;
+ 
+ 	if (NInoNonResident(ni)) {
+ 		ntfs_warning(vol->sb,
+@@ -2028,6 +2064,8 @@ static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_s
+ 		base_ni = ni;
+ 	else
+ 		base_ni = ni->ext.base_ntfs_ino;
++	sync = NInoAttr(ni) && !vi->i_nlink &&
++		!ntfs_inode_is_named_stream(ni);
+ 	m = map_mft_record(base_ni);
+ 	if (IS_ERR(m)) {
+ 		err = PTR_ERR(m);
+@@ -2150,6 +2188,18 @@ static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_s
+ 		folio_mark_uptodate(folio);
  	}
  
- 	mutex_lock(&ni->mrec_lock);
--	err = ntfs_get_ea(inode, name, name_len, buf, PATH_MAX);
-+	err = ntfs_get_ea(inode, name, name_len, NULL, 0);
-+	if (err > 0) {
-+		buf = kmalloc(err, GFP_NOFS);
-+		if (!buf)
-+			err = -ENOMEM;
-+		else
-+			err = ntfs_get_ea(inode, name, name_len, buf, err);
++	/*
++	 * A zero-link attribute inode can be evicted by the caller's iput().
++	 * Write its data before changing the record so an I/O failure leaves
++	 * the resident value intact. Normal writeback would take mrec_lock,
++	 * which callers may already hold.
++	 */
++	if (folio && sync) {
++		err = ntfs_attr_write_conversion(vol, folio, rl, attr_size);
++		if (err)
++			goto rl_err_out;
 +	}
- 	mutex_unlock(&ni->mrec_lock);
++
+ 	/* Backup the attribute flag. */
+ 	old_res_attr_flags = a->data.resident.flags;
+ 	/* Resize the resident part of the attribute record. */
+@@ -2238,7 +2288,8 @@ static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_s
+ 	unmap_mft_record(base_ni);
+ 	up_write(&ni->runlist.lock);
+ 	if (folio) {
+-		iomap_dirty_folio(vi->i_mapping, folio);
++		if (!sync)
++			iomap_dirty_folio(vi->i_mapping, folio);
+ 		folio_unlock(folio);
+ 		folio_put(folio);
+ 	}
+@@ -5040,8 +5091,11 @@ static int ntfs_resident_attr_resize(struct ntfs_inode *attr_ni, const s64 newsi
+ 			continue;
+ 		}
  
- 	/* Translate extended attribute to acl. */
+-		if (__ntfs_attr_make_non_resident(NTFS_I(tvi), value_len, true)) {
++		err = __ntfs_attr_make_non_resident(NTFS_I(tvi), value_len, true);
++		if (err) {
+ 			iput(tvi);
++			if (err != -ENOSPC && err != -EPERM && err != -EAGAIN)
++				goto put_err_out;
+ 			continue;
+ 		}
+ 
+diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
+index 885818f00b78..4a4d7d36ad34 100644
+--- a/fs/ntfs/inode.c
++++ b/fs/ntfs/inode.c
+@@ -4090,6 +4090,14 @@ s64 ntfs_inode_attr_pwrite(struct inode *vi, s64 pos, s64 count, u8 *buf, bool s
+ 
+ 	WARN_ON(!NInoAttr(ni));
+ 
++	/*
++	 * A zero-link attribute inode is evicted at the final iput(), even
++	 * if its base file has since been linked. Write its data before
++	 * eviction can discard the dirty pages.
++	 */
++	if (!vi->i_nlink && !ntfs_inode_is_named_stream(ni))
++		sync = true;
++
+ 	if (ntfs_inode_is_named_stream(ni)) {
+ 		if (NInoEncrypted(ni))
+ 			return -EACCES;
 
