@@ -1,48 +1,48 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.2
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794749251;
-	b=MEEJXnsYBJrrFjDKjriacMCHJKeQYyAu268tmaCVxqtnU4rFvsIHq7c1WqYC+9qtA5Vp
-	 5YUae6aEMg8FzYJErI3nzuezTd/nuxhBDquC6wy/y9F4fpO8wNggR+Jt/Bl0MqxY+lxe/
-	 v4AVsfVjYjFJwXbKGAmwBcmLriINOmdxTtyVaYGNarUZuSDAVdysJ+2+bIgiiybLTZU60
-	 BCgt4nPOzro2cx1C+mzBW4WBhQC85hZniALC9iUXJ1FoSZKuOsuzENC2kZY0xoG+pBvsO
-	 TAt+2GUE1IbKWFUnYPESLLnukFb3tGPaHLa+fu3hUiixy99DVJShBciuMXGH1/B+b0A==
+	t=1794749254;
+	b=xQAcLmpW+t6g+sWyi/j6hTbvChPUvXp1PQKkjgZbQtpmd/0t/fYfQH/Zz2U657xNGM/r
+	 j9PK9QiA0l7GAiotlXpz2NELwpdwSFwbeyuz3gajF7vjO0yeteKBhqoBKDj1upmT943rd
+	 NyqZyC+kvrWa9hFT8xMkO2TeyfbVwGLpFERgijs/ms8Ra9TrZSVyCsIbjxXS7IFDX0Tpa
+	 bEQaV8/WItsBAZXOdLVpbvfu3+8gCvgj5pumiZ1zfgXlwxdj4VhNinSokvDQmi5Not9gc
+	 F7lWyeSBJ94nH7vOWbPj32FtB2XD/gn0wZGB9EsWYgGbufZ01S0tvqekh/r5nNEBjWA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794749251;
+	a=rsa-sha256; c=relaxed/relaxed; t=1794749254;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-CM-SenderInfo;
-	bh=1jFE1IGMcuyCuZXQl2Is0ps1VLwkmCGSQjEBczV5rqA=;
-	b=IkZv2apBUrY6B5wCIjn1KCGA57MxvwNawm+L1sI9pT7OpgwAcqT9aXTiqb8btKGqQBWT
-	 y6gs1n8ubO8yuCM/utIfF3Ko+V4AJhUaYrdHTrDaBCb+ec4Cl/pp2nj3uR9yu//3ZK8Gz
-	 jcw0w4ICAM1i/PQgfywHp5Bh3XckLVCCMZVnwmuVUR4L2LTaBxtVnqDAjb49JAKFOVLl+
-	 07x2RF/oqS4Ec5pSlnWbq82cxe5o1s6sytHq5xJT8FFJS2iC80Ov4tYeRVUbT4uU8zI1O
-	 uOOIPvGJ9wmSGs0UjeVP+ib/TL/5lb7onBnWVQ68LvaHDZWgmtq4Ko3+8mK/OeVW/+w==
+	bh=0YzvRYiv79bpbctDgzMqBgGUItuMaP+M3ARcws7Fb+s=;
+	b=wlfn9hRqc+n7heEJehu+NIFmmc8b/5J8IPL3+7/SV4HrOR/HZnT8UGD5dngMH+zoK7/N
+	 pXs+lVNjs5jb10zjWWicM0LM9lzSHiynrlOZ28EVUl8pGwPiYhf+ZA9E7ef+6c8VKVHFn
+	 U4VD1xXyD4ALoyzUec12Y5r8Cl9S4IX/KrhYp25Bnh4mQEs4lTcKqHb3n8ur0wFZvkeL7
+	 VbFzcrsbh2Sza0cWl6MS0U0yrnqcKkGnjRaiV/i/DYunU8EGCfAFke3XdQstAZLx664Bi
+	 Fs82G35JTnXdaq7DFLc4YEOJdx5UXGpH7uZktqfxfnepyq/FmNSJ/Q4aK/VMw/hFEQw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=PVvisqBE;
-	arc=none smtp.remote-ip=220.197.31.4
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Ppt6upIw;
+	arc=none smtp.remote-ip=117.135.210.2
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A131606A31A
-	for <ntfs@lists.linux.dev>; Sun, 15 Nov 2026 13:27:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 8A131606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C708606A31D
+	for <ntfs@lists.linux.dev>; Sun, 15 Nov 2026 13:27:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 6C708606A31D
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=PVvisqBE
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Ppt6upIw
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=1j
-	FE1IGMcuyCuZXQl2Is0ps1VLwkmCGSQjEBczV5rqA=; b=PVvisqBEAKPMfSdUHG
-	jEbkgZojMl8o8FQa1bDrVQVEUu5dWaCWS3vpDSUuOtzrVRNdd25T+wKidvb8+6jN
-	PrnRkPSQ18lKKOnaWnTBGX3InQw/aVf6fX0whL6AhoqR0uz0wjSQxr3oEfveNNfm
-	+v2ErsBKw/J+y+F92ARcNP338=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=0Y
+	zvRYiv79bpbctDgzMqBgGUItuMaP+M3ARcws7Fb+s=; b=Ppt6upIwMgVlkGkncK
+	9Y0vCWzByR49ZFVZsPC3P5cYnRLS8D90U/oricbUcHBwIrOfCYpPuWiZaiY80h0N
+	km7YetQ9uDss6x8raM1xUjarsbFVxSadDOcTCZHMfXPOG7niSZcS4sWN7xfq67Q2
+	tFVcVs4GysWeqg7SzhISqnmiA=
 Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
-	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wDXP_A1s_lqfjtyIQ--.47831S4;
-	Sun, 15 Nov 2026 21:27:19 +0800 (CST)
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wDXP_A1s_lqfjtyIQ--.47831S2;
+	Sun, 15 Nov 2026 21:27:18 +0800 (CST)
 From: Baolin Liu <liubaolin12138@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com
@@ -50,9 +50,9 @@ Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Xuewen Wang <wangxuewen@kylinos.cn>,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v4 10/12] ntfs: write unlinked file attributes before dropping their cache
-Date: Sun, 15 Nov 2026 21:26:07 +0800
-Message-ID: <20261115132609.209957-11-liubaolin12138@163.com>
+Subject: [PATCH v4 08/12] ntfs: preserve timestamps when creating hard links
+Date: Sun, 15 Nov 2026 21:26:05 +0800
+Message-ID: <20261115132609.209957-9-liubaolin12138@163.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261115132609.209957-1-liubaolin12138@163.com>
 References: <20261115132609.209957-1-liubaolin12138@163.com>
@@ -66,172 +66,112 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDXP_A1s_lqfjtyIQ--.47831S4
-X-Coremail-Antispam: 1Uf129KBjvJXoWxKF1ftr1UuFWDWrW8Jr4DXFb_yoW7Aw1fpF
-	Z3CrZxtr4DXw12gws3ta1jq3WSq34xKr4UJry7Gr17A3ZYqr12gFWIk348tF1ftrWDWrWq
-	qr4q9r4xuFWxXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jDwIDUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RcT3Wr5szd1XgAA3M
+X-CM-TRANSID:_____wDXP_A1s_lqfjtyIQ--.47831S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxAryUAr4xGryUKF4UZF4rAFb_yoWrWF4kpF
+	W7Kw1DKr4xXrW7WFn2yF4q9rWSga4I9ay7JFWUKw12y3Z0qw18tF1Ivry2vF1rtrZ5Zr1a
+	qa1rKr1UWw1UGwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j0yIUUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hYT3Wr5szYKLwAA3B
 
 From: Xuewen Wang <wangxuewen@kylinos.cn>
 
-Zero-link internal attribute inodes are evicted at the final iput(),
-discarding dirty folios while the base file may still be open.
+ntfs_link() resets all timestamps on the source file and destination
+directory, overwriting file atime/mtime and directory atime.
 
-Make writes and conversions synchronous when the attribute inode's own
-link count is zero, even after O_TMPFILE publication. Preserve the named
-stream writeback path.
+Update only source ctime and directory mtime/ctime. Use the same ctime
+for the new FILE_NAME, its index entry and the source inode, updating
+the inode only after the link succeeds. Mark both inodes dirty for
+writeback.
 
-Write converted data before committing the nonresident layout so
-failures preserve the resident value. Propagate conversion I/O errors
-while still skipping busy candidates.
+Keep the rename caller's timestamp behavior unchanged.
 
+Fixes: af0db57d4293 ("ntfs: update inode operations")
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
 Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
 ---
-Changes since v3: check the attribute inode's own link count in both
-write paths. Adapt to the merged named-stream conversion fix, retaining
-NOWAIT and skipping busy candidates while propagating I/O errors.
+Changes since v3: add the Fixes tag; no code changes.
 
-Tested publication/rewrite while fsync held a zero-link EA inode, SD/EA
-persistence with 512-byte/4 KiB/8 KiB clusters, and block-write EIO during
-EA conversion. The resident value and free space were preserved on EIO;
-retry and reboot passed. Locked fallback folios, conversion errors and
-uncached named-stream conversion also passed.
+generic/004 and generic/389 passed in QEMU. Offline checks confirmed
+matching ctime in STANDARD_INFORMATION, the new FILE_NAME and its index
+entry. File atime/mtime and directory atime were preserved.
 
- fs/ntfs/attrib.c | 58 ++++++++++++++++++++++++++++++++++++++++++++++--
- fs/ntfs/inode.c  |  8 +++++++
- 2 files changed, 64 insertions(+), 2 deletions(-)
+ fs/ntfs/namei.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index a88dc62c6a4e..af044ea895fc 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -16,6 +16,7 @@
-  * Copyright (c) 2010 Erik Larsson
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index d3c63b1c166f..4d94e3012677 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -1258,6 +1258,7 @@ static int ntfs_rmdir(struct inode *dir, struct dentry *dentry)
+  * @dir_ni:	ntfs inode for directory in which new link should be placed
+  * @name:	unicode name of the new link
+  * @name_len:	length of the name in unicode characters
++ * @ctime:	metadata change time for the new FILE_NAME
+  *
+  * Create a new hard link. This involves adding an entry to the directory
+  * index and adding a new FILE_NAME attribute to the target inode.
+@@ -1265,7 +1266,7 @@ static int ntfs_rmdir(struct inode *dir, struct dentry *dentry)
+  * Return 0 on success and -errno on error.
   */
+ static int __ntfs_link(struct ntfs_inode *ni, struct ntfs_inode *dir_ni,
+-		__le16 *name, u8 name_len)
++		__le16 *name, u8 name_len, struct timespec64 ctime)
+ {
+ 	struct super_block *sb;
+ 	struct inode *vi = VFS_I(ni);
+@@ -1327,7 +1328,7 @@ static int __ntfs_link(struct ntfs_inode *ni, struct ntfs_inode *dir_ni,
  
-+#include <linux/bio.h>
- #include <linux/string_choices.h>
- #include <linux/writeback.h>
- #include <linux/iomap.h>
-@@ -1961,6 +1962,40 @@ int ntfs_resident_attr_value_resize(struct mft_record *m, struct attr_record *a,
- 	return 0;
- }
+ 	fn->creation_time = utc2ntfs(ni->i_crtime);
+ 	fn->last_data_change_time = utc2ntfs(inode_get_mtime(vi));
+-	fn->last_mft_change_time = utc2ntfs(inode_get_ctime(vi));
++	fn->last_mft_change_time = utc2ntfs(ctime);
+ 	fn->last_access_time = utc2ntfs(inode_get_atime(vi));
+ 	memcpy(fn->file_name, name, name_len * sizeof(__le16));
  
-+/* Write the resident value to its new clusters before committing conversion. */
-+static int ntfs_attr_write_conversion(struct ntfs_volume *vol, struct folio *folio,
-+				      const struct runlist_element *rl, u32 size)
-+{
-+	unsigned int offset = 0;
-+
-+	size = round_up(size, vol->sector_size);
-+	while (size) {
-+		struct bio *bio;
-+		unsigned int len;
-+		int err;
-+
-+		if (!rl->length || rl->lcn < 0)
-+			return -EIO;
-+		len = min_t(s64, size, ntfs_cluster_to_bytes(vol, rl->length));
-+		bio = bio_alloc(vol->sb->s_bdev, 1, REQ_OP_WRITE | REQ_SYNC,
-+				GFP_NOIO);
-+		bio->bi_iter.bi_sector =
-+			ntfs_bytes_to_bio_sector(ntfs_cluster_to_bytes(vol, rl->lcn));
-+		if (!bio_add_folio(bio, folio, len, offset)) {
-+			bio_put(bio);
-+			return -EIO;
-+		}
-+		err = submit_bio_wait(bio);
-+		bio_put(bio);
-+		if (err)
-+			return err;
-+		offset += len;
-+		size -= len;
-+		rl++;
-+	}
-+	return 0;
-+}
-+
- /*
-  * ntfs_attr_make_non_resident - convert a resident to a non-resident attribute
-  * @ni:		ntfs inode describing the attribute to convert
-@@ -2004,6 +2039,7 @@ static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_s
- 	int mp_size, mp_ofs, name_ofs, arec_size, err, err2;
- 	u32 attr_size;
- 	u8 old_res_attr_flags;
-+	bool sync;
- 
- 	if (NInoNonResident(ni)) {
- 		ntfs_warning(vol->sb,
-@@ -2028,6 +2064,8 @@ static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_s
- 		base_ni = ni;
- 	else
- 		base_ni = ni->ext.base_ntfs_ino;
-+	sync = NInoAttr(ni) && !vi->i_nlink &&
-+		!ntfs_inode_is_named_stream(ni);
- 	m = map_mft_record(base_ni);
- 	if (IS_ERR(m)) {
- 		err = PTR_ERR(m);
-@@ -2150,6 +2188,18 @@ static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_s
- 		folio_mark_uptodate(folio);
+@@ -1478,7 +1479,8 @@ static int ntfs_rename(const struct mnt_idmap *idmap, struct inode *old_dir,
+ 			goto err_out;
  	}
  
-+	/*
-+	 * A zero-link attribute inode can be evicted by the caller's iput().
-+	 * Write its data before changing the record so an I/O failure leaves
-+	 * the resident value intact. Normal writeback would take mrec_lock,
-+	 * which callers may already hold.
-+	 */
-+	if (folio && sync) {
-+		err = ntfs_attr_write_conversion(vol, folio, rl, attr_size);
-+		if (err)
-+			goto rl_err_out;
-+	}
-+
- 	/* Backup the attribute flag. */
- 	old_res_attr_flags = a->data.resident.flags;
- 	/* Resize the resident part of the attribute record. */
-@@ -2238,7 +2288,8 @@ static int __ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_s
- 	unmap_mft_record(base_ni);
- 	up_write(&ni->runlist.lock);
- 	if (folio) {
--		iomap_dirty_folio(vi->i_mapping, folio);
-+		if (!sync)
-+			iomap_dirty_folio(vi->i_mapping, folio);
- 		folio_unlock(folio);
- 		folio_put(folio);
+-	err = __ntfs_link(old_ni, new_dir_ni, uname_new, new_name_len);
++	err = __ntfs_link(old_ni, new_dir_ni, uname_new, new_name_len,
++			  inode_get_ctime(old_inode));
+ 	if (err)
+ 		goto err_out;
+ 
+@@ -1644,6 +1646,7 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
+ 	int uname_len;
+ 	int err;
+ 	struct ntfs_inode *ni = NTFS_I(vi), *dir_ni = NTFS_I(dir);
++	struct timespec64 ctime;
+ 
+ 	if (NVolShutdown(vol))
+ 		return -EIO;
+@@ -1668,7 +1671,8 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
+ 	ihold(vi);
+ 	mutex_lock_nested(&ni->mrec_lock, NTFS_INODE_MUTEX_NORMAL);
+ 	mutex_lock_nested(&dir_ni->mrec_lock, NTFS_INODE_MUTEX_PARENT);
+-	err = __ntfs_link(NTFS_I(vi), NTFS_I(dir), uname, uname_len);
++	ctime = current_time(vi);
++	err = __ntfs_link(ni, dir_ni, uname, uname_len, ctime);
+ 	if (err) {
+ 		mutex_unlock(&dir_ni->mrec_lock);
+ 		mutex_unlock(&ni->mrec_lock);
+@@ -1678,12 +1682,13 @@ static int ntfs_link(struct dentry *old_dentry, struct inode *dir,
  	}
-@@ -5040,8 +5091,11 @@ static int ntfs_resident_attr_resize(struct ntfs_inode *attr_ni, const s64 newsi
- 			continue;
- 		}
  
--		if (__ntfs_attr_make_non_resident(NTFS_I(tvi), value_len, true)) {
-+		err = __ntfs_attr_make_non_resident(NTFS_I(tvi), value_len, true);
-+		if (err) {
- 			iput(tvi);
-+			if (err != -ENOSPC && err != -EPERM && err != -EAGAIN)
-+				goto put_err_out;
- 			continue;
- 		}
+ 	inode_inc_iversion(dir);
+-	simple_inode_init_ts(dir);
++	inode_set_mtime_to_ts(dir, inode_set_ctime_current(dir));
++	mark_inode_dirty(dir);
  
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 885818f00b78..4a4d7d36ad34 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -4090,6 +4090,14 @@ s64 ntfs_inode_attr_pwrite(struct inode *vi, s64 pos, s64 count, u8 *buf, bool s
+ 	inode_inc_iversion(vi);
+-	simple_inode_init_ts(vi);
++	inode_set_ctime_to_ts(vi, ctime);
++	mark_inode_dirty(vi);
  
- 	WARN_ON(!NInoAttr(ni));
- 
-+	/*
-+	 * A zero-link attribute inode is evicted at the final iput(), even
-+	 * if its base file has since been linked. Write its data before
-+	 * eviction can discard the dirty pages.
-+	 */
-+	if (!vi->i_nlink && !ntfs_inode_is_named_stream(ni))
-+		sync = true;
-+
- 	if (ntfs_inode_is_named_stream(ni)) {
- 		if (NInoEncrypted(ni))
- 			return -EACCES;
+-	/* timestamp is already written, so mark_inode_dirty() is unneeded. */
+ 	d_instantiate(dentry, vi);
+ 	mutex_unlock(&dir_ni->mrec_lock);
+ 	mutex_unlock(&ni->mrec_lock);
 
