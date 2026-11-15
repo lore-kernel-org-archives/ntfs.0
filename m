@@ -1,55 +1,60 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794702596;
-	b=GSAxssMff88eBhwlVYGwRCv8A6hmWnWAwdJhsZMc/Qc4c+09Uzt6z7HhFOVTnVyOGB2u
-	 K0xJeaFLFbRt1npPvUcX8gAEin3AN8zDFcoxtGOYaVNYl/575NikI9RLLc/26NKoLVDUT
-	 +capl4weuRyySleG5pz3ZcOk0CwCbD/8QH/S/6x9IHKMbQvT/Hs2u4LTvTo6xyvJyWB44
-	 +4a8eMrRffA7lfOdFkb2dZwUMQj9WziYEYLY/cAPpourspJznwDwkY6NJA+Yf+S87Pdf3
-	 y/oNyKhiliocl/EoEO1jTzEONGp8MhBjfR07mg8g2qqP8E4zclAkhn2yFJBYCqRfYlg==
+	t=1794749194;
+	b=48SP8nG804OR6ElUu4hDVT00FLe2JGX2Mk00Jpfv7Z6IGqwchpoczukAidtt7ag2mnFw
+	 W/kyvv55WVwsGGCQZ/XA/tBJbH1PT2Gf8ODPwsD0fPJsOG2JEnYC1cAvXY5PUl7NuKpq6
+	 plPWf5NM5yG45TRssSQibSuPtEQ6LSO9/pEzbsLyaPL+phMZXzwurnxSc97DnbqWDywzq
+	 rndWVrVB6lGbkKnx860uKMwch4k0oP09f0EBxudzu2i3+PdXktAhI6sLTsNlzofAmm6Nl
+	 NuyyyFOOV6loN0NmEGy/6llOmCnBYUJER9dc66fhDVIgVCt83Mkf9S9jKsV8A43I6xw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794702596;
-	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
-	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=enBhx9VQimcvOxaezFBJwJ0l0s5cxrvOgc+zxqU4vkc=;
-	b=gwNLY2lnYiJLgCjJO9MNSgijsjzCW/Lr0b2L4mQ5ieLQzGFPyxOElRkY3aKsvU8ZjKM2
-	 VFqIJGczKDiVi+TiBMiRsG/JLWt8rROWAmhMsRnDpPJHH5oAkQrK2p77QKh/4knARi+Xz
-	 ngGMiQsvr8Du3gtJArGHmk0X8henZo/rHzPpqI5bnf0mhyonX1CPd5l/dnIbfkTomtePz
-	 HG4cKeyJq8FNIS/rC88uYFWwIKYrLX3CX25HVWRb4biFoJxERUo4A9xQ3XzpAmBc2hMfs
-	 gRL0st2ZE33uB8SINiJ28tFZKHpiK54nD8soaiinA4WBRCihiQYHHOM4Z+Vu+XfT5pg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794749194;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-ID:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-CM-SenderInfo;
+	bh=DxFqHk89+AUxsswFbtHbs6sZwleEydVjCKAy+YjPdgc=;
+	b=m1kiw6urrfDGcSQ/lX/uThkkSx5quv6knG9I3sATMMDx8eKAvuuLR5Zs0tozYOPHC4kx
+	 wscMYznUNFbmlSEmh8DX9PRiXxoMM9qgnw7BvKj7j0yEFiq4m78KNjxeG0bCc3C/OLxzE
+	 whLLh0GWKa63U2c06NKBhxJu0F1vM0Jc/wERCIYu3fD3E0X2v26jhdLpFK9BH7sB9mKqw
+	 PufgWOJOnxi7IGyniGvBSiKt9ckTrTddaisi/RX+DNc0I84o7F30+zjHtrlZfvJ4PtApK
+	 gEvFhn5by2ZtmGfVfEEK+/aw7RFG4ztOqrCRG0ECa1O/2W4+/4mxbh8B4LKigKujjwA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lAkZs5v1;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=RGJq4BJd;
+	arc=none smtp.remote-ip=220.197.31.3
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F1E0606A329
-	for <ntfs@lists.linux.dev>; Sun, 15 Nov 2026 00:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13BC606A31F
+	for <ntfs@lists.linux.dev>; Sun, 15 Nov 2026 13:26:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org D13BC606A31F
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lAkZs5v1
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 503DF1F000C6
-	for <ntfs@lists.linux.dev>; Sun, 15 Nov 2026 00:29:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794702596;
-	bh=enBhx9VQimcvOxaezFBJwJ0l0s5cxrvOgc+zxqU4vkc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=lAkZs5v1XjB0EGqNipWP9Yxvhrwg/oaCSXGwoZzKsIQ8q2Ils+eZnEziSuHaKavSU
-	 GIgfQ3FADf07Sy095edgyeBPu9H5cdnDk420H07oR7XrK5/LsWc+XnvjAeN71rpHtI
-	 9L5FzFCcV/9hCP79aMiUyAjY6Lw/B9c4EUpFfxdUwOuFPePubtNQWR6BHnL/RJ+6Sd
-	 K/ET7+pWkgqo5zeZfLhq48sdLVdWl9Sghj0hI6TPlKtqmzVHoV1+mtgFH+M9QMWLPP
-	 1cF4oVO/Po4VZreRkUMdTHc+u0CJnWHIkUeo3rj6XgSDWgGtM02Zm9Y7pTXDjqX8rr
-	 iQODlsRjxVHSQ==
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-c4cb6834eaaso434656666b.2
-        for <ntfs@lists.linux.dev>; Sat, 14 Nov 2026 16:29:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFQv95YCgFd+FflfgGZ8McNe7IrfY9a36tgJFFbxIqyQa04JOxrnDtvLMjTIdSRIbVwrVoA@lists.linux.dev
-X-Gm-Message-State: APuU4Z+JNKb6ktcZzMeA3AqK4SyCvgHRxy+DbUjDq20YUpPkJ4mkaq6t
-	ASsLwWzqbdUKPhO+cJ9GxEsbzJGaLEhsGMYfGeDTqFDzH7eKY+mweJbPIXUbugyhKuU1IbmFyby
-	pTwawPDsYRF1N+dfiNxkOgKiNGeA5Fk0=
-X-Received: by 2002:a17:906:ee85:b0:c4d:2895:e492 with SMTP id
- a640c23a62f3a-c509636a10dmr492344866b.21.1794702594951; Sat, 14 Nov 2026
- 16:29:54 -0800 (PST)
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=RGJq4BJd
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Dx
+	FqHk89+AUxsswFbtHbs6sZwleEydVjCKAy+YjPdgc=; b=RGJq4BJdQ3sWN3ehbj
+	AAcb0TSLaLe2co11goFSE9YHc8K0oLObAiSUCbO8TzIsk7y0MR3GqDgRQhSZFg5L
+	nvfnxaBXs04fL8tv5WE3fmyljA6QdqvXPxNMUrnwtsHO2Qu4RXXUb9AZ9r6QLUGC
+	WtlB2HMh0CScNTMIQQRc9+UQM=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wD33yHzsvlqXCkHHw--.36757S9;
+	Sun, 15 Nov 2026 21:26:17 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v4 07/12] ntfs: load uncached ACLs through get_inode_acl
+Date: Sun, 15 Nov 2026 21:26:04 +0800
+Message-ID: <20261115132609.209957-8-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261115132609.209957-1-liubaolin12138@163.com>
+References: <20261115132609.209957-1-liubaolin12138@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,101 +64,123 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <20261109173229.1921147-1-wahidzk0091@gmail.com> <20261114073451.367708-1-wahidzk0091@gmail.com>
-In-Reply-To: <20261114073451.367708-1-wahidzk0091@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Sun, 15 Nov 2026 09:29:42 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd9s8NSv9oa=ZLKXDD8UdB25SZ8ftTYO0Xij=dF6hSvL9A@mail.gmail.com>
-X-Gm-Features: AclHuK-m-Sdmrwl51aOuB0L1ae5zj9gizIwQS7njO6zY9g4NU8zJZfCUozdHAng
-Message-ID: <CAKYAXd9s8NSv9oa=ZLKXDD8UdB25SZ8ftTYO0Xij=dF6hSvL9A@mail.gmail.com>
-Subject: Re: [PATCH v9] ntfs: convert a named $DATA stream safely when making
- room in a record
-To: Wahid Khan <wahidzk0091@gmail.com>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD33yHzsvlqXCkHHw--.36757S9
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGFWkGr1UJryxurWkKFWDXFb_yoWrXFyxpF
+	sxJw1rKa1xZrWSgwn2kr4DXw1F9ryxWa9Fg34rWw1Ska4Dtr13tFy8Ka1xuF95trWrGFnF
+	gF15Kr4jvr15Wr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Uio7NUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RkEzmr5svltpAAA3r
 
-On Sat, Nov 14, 2026 at 4:35=E2=80=AFPM Wahid Khan <wahidzk0091@gmail.com> =
-wrote:
->
-> When an attribute has to grow and the mft record is full,
-> ntfs_resident_attr_resize() walks the other resident attributes and
-> converts them to non-resident ones. For $DATA it always opens the
-> unnamed data inode of the base inode, even if the attribute found is a
-> named stream:
->
->   tvi =3D ntfs_iget(sb, base_ni->mft_no);
->   ntfs_attr_make_non_resident(NTFS_I(tvi), value_len);
->
-> value_len is the length of the stream, so it does not match the
-> attribute that ntfs_attr_make_non_resident() looks up for the unnamed
-> inode, and the WARN_ON() on entry fires:
->
->   WARNING: fs/ntfs/attrib.c:2115 at ntfs_attr_make_non_resident
->    ntfs_resident_attr_resize
->    ntfs_attr_expand_locked
->    ntfs_expand_for_write
->    ntfs_file_write_iter
->    vfs_write
->
-> It does not need a damaged volume. A file with an alternate data stream
-> whose record has no room left is enough.
->
-> Open a named stream by name with ntfs_attr_iget(), as is done for the
-> other attribute types in this loop, and keep ntfs_iget() for the
-> unnamed one. The loop runs with the mft record lock held and takes no
-> lock of the stream inode, so converting a stream from here needs more
-> care than the plain lookup gives:
->
-> - A reader of the stream holds the folio lock and then takes the mft
->   record lock in ntfs_read_iomap_begin_resident(), the conversion takes
->   them the other way round and waits for folio 0. Take the folio with
->   FGP_NOWAIT in this loop and skip the attribute if it is busy. The loop
->   only tries to free space. The same inversion exists for the conversion
->   of the attribute being resized, which waited for folio 0 with the lock
->   held and hangs against an mmap fault or splice reader. Use FGP_NOWAIT
->   there too. The resize then fails with -EBUSY while such a reader is
->   stuck on the lock, instead of hanging.
->   Do not look for room in other attributes either: the reader keeps the
->   folio until the lock is dropped, so the attribute can neither be
->   converted nor written without waiting for it, and the loop would only
->   convert other attributes for nothing.
->   FGP_NOWAIT also fails when the folio can not be allocated, so on
->   failure look the folio up: only one that is there means a busy folio,
->   otherwise return -ENOMEM.
->
-> - A stream that is in the inode cache can be open, being written, being
->   removed or already unlinked. A write that passed its residency check
->   before the conversion carries on with a non-resident attribute, and
->   a stream in the middle of ntfs_stream_finish_remove() is converted
->   under its feet. Convert only a stream that is not cached.
->
-> - An attribute inode of a file that has no links left is evicted on the
->   last iput() with its dirty folio, so what was converted is lost and
->   an open file reads its extended attributes back as missing. Convert
->   nothing, of any type, in a file that is being deleted or has no links
->   left.
->
-> - The unnamed data is converted through the file's own inode, whose
->   i_rwsem only a resize of the unnamed data itself holds. When a stream
->   or an extended attribute is being resized, a writer of the file can
->   have passed its residency check and carry on with a non-resident
->   attribute (iomap_iter warnings, recursive mrec_lock). When the
->   unnamed data is the attribute being resized, its conversion was just
->   tried by the caller. Do not convert the unnamed data from this loop.
->
-> - Do not convert the attribute that is being resized either. Its
->   conversion was just tried and failed, for instance on a busy folio,
->   and a second try that succeeds leaves the resize to go on with the
->   resident layout of a record that is now non-resident.
->
-> - The lookup of a stream ignores case, so a stream whose name differs
->   only in case from an earlier one resolves to that one and the length
->   does not match again. Compare the names exactly.
->
-> Fixes: 495e90fa3348 ("ntfs: update attrib operations")
-> Cc: stable@vger.kernel.org # v7.1+
-> Signed-off-by: Wahid Khan <wahidzk0091@gmail.com>
-Applied it to #ntfs-next.
-Thanks!
+From: Baolin Liu <liubaolin@kylinos.cn>
+
+Permission checks and default ACL inheritance use get_inode_acl(), which
+cannot call NTFS's dentry-based get_acl callback. After inode eviction,
+these paths treat stored ACLs as absent unless an explicit xattr read
+has populated the cache.
+
+Use get_inode_acl for regular files, directories and special files,
+leaving ACL caching to the VFS. Return -ECHILD during RCU lookup so the
+VFS retries where the EA read can sleep.
+
+Fixes: 9c87959601e8 ("ntfs: update file operations")
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+New in v4.
+
+Tested cold-cache inheritance and permissions, O_TMPFILE publication,
+chmod, ACL replacement/removal, idmapped mounts and concurrent default
+ACL replacement/creation. Remount and reboot checks passed.
+
+ fs/ntfs/ea.c    | 10 ++++------
+ fs/ntfs/ea.h    |  3 +--
+ fs/ntfs/file.c  |  4 ++--
+ fs/ntfs/namei.c |  2 +-
+ 4 files changed, 8 insertions(+), 11 deletions(-)
+
+diff --git a/fs/ntfs/ea.c b/fs/ntfs/ea.c
+index 834f38ea4a00..b745391b3f25 100644
+--- a/fs/ntfs/ea.c
++++ b/fs/ntfs/ea.c
+@@ -1010,10 +1010,8 @@ const struct xattr_handler * const ntfs_xattr_handlers[] = {
+ // clang-format on
+ 
+ #ifdef CONFIG_NTFS_FS_POSIX_ACL
+-struct posix_acl *ntfs_get_acl(const struct mnt_idmap *idmap, struct dentry *dentry,
+-			       int type)
++struct posix_acl *ntfs_get_acl(struct inode *inode, int type, bool rcu)
+ {
+-	struct inode *inode = d_inode(dentry);
+ 	struct ntfs_inode *ni = NTFS_I(inode);
+ 	const char *name;
+ 	size_t name_len;
+@@ -1021,6 +1019,9 @@ struct posix_acl *ntfs_get_acl(const struct mnt_idmap *idmap, struct dentry *den
+ 	int err;
+ 	void *buf = NULL;
+ 
++	if (rcu)
++		return ERR_PTR(-ECHILD);
++
+ 	/* Possible values of 'type' was already checked above. */
+ 	if (type == ACL_TYPE_ACCESS) {
+ 		name = XATTR_NAME_POSIX_ACL_ACCESS;
+@@ -1049,9 +1050,6 @@ struct posix_acl *ntfs_get_acl(const struct mnt_idmap *idmap, struct dentry *den
+ 	else
+ 		acl = ERR_PTR(err);
+ 
+-	if (!IS_ERR(acl))
+-		set_cached_acl(inode, type, acl);
+-
+ 	kfree(buf);
+ 
+ 	return acl;
+diff --git a/fs/ntfs/ea.h b/fs/ntfs/ea.h
+index f200d49063e0..e9ea024f6a8e 100644
+--- a/fs/ntfs/ea.h
++++ b/fs/ntfs/ea.h
+@@ -28,8 +28,7 @@ int ntfs_ea_set_linuxflags(struct inode *inode, u32 linuxflags);
+ ssize_t ntfs_listxattr(struct dentry *dentry, char *buffer, size_t size);
+ 
+ #ifdef CONFIG_NTFS_FS_POSIX_ACL
+-struct posix_acl *ntfs_get_acl(const struct mnt_idmap *idmap, struct dentry *dentry,
+-			       int type);
++struct posix_acl *ntfs_get_acl(struct inode *inode, int type, bool rcu);
+ int ntfs_set_acl(const struct mnt_idmap *idmap, struct dentry *dentry,
+ 		 struct posix_acl *acl, int type);
+ int ntfs_init_acl(const struct mnt_idmap *idmap, struct inode *inode,
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 5ab0e3437d67..a52483d16c6e 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -1580,7 +1580,7 @@ const struct inode_operations ntfs_file_inode_ops = {
+ 	.fileattr_get	= ntfs_fileattr_get,
+ 	.fileattr_set	= ntfs_fileattr_set,
+ 	.listxattr	= ntfs_listxattr,
+-	.get_acl	= ntfs_get_acl,
++	.get_inode_acl	= ntfs_get_acl,
+ 	.set_acl	= ntfs_set_acl,
+ 	.fiemap		= ntfs_fiemap,
+ };
+@@ -1600,7 +1600,7 @@ const struct inode_operations ntfs_special_inode_operations = {
+ 	.listxattr	= ntfs_listxattr,
+ 	.fileattr_get	= ntfs_fileattr_get,
+ 	.fileattr_set	= ntfs_fileattr_set,
+-	.get_acl	= ntfs_get_acl,
++	.get_inode_acl	= ntfs_get_acl,
+ 	.set_acl	= ntfs_set_acl,
+ };
+ 
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index 05e2747bae54..d3c63b1c166f 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -1703,7 +1703,7 @@ const struct inode_operations ntfs_dir_inode_ops = {
+ 	.mkdir		= ntfs_mkdir,
+ 	.rmdir		= ntfs_rmdir,
+ 	.rename		= ntfs_rename,
+-	.get_acl	= ntfs_get_acl,
++	.get_inode_acl	= ntfs_get_acl,
+ 	.set_acl	= ntfs_set_acl,
+ 	.listxattr	= ntfs_listxattr,
+ 	.setattr	= ntfs_setattr,
+
