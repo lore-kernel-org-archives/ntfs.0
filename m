@@ -1,139 +1,94 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=103.168.172.154
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.216.53
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794873725;
-	b=liGc3Xy1lO6kaSipQbRnVphllJv1Y0y5gcTZOHDL088oof2vdCSnfKlr0KPzTJqMp54h
-	 95uMJeRW31f7wduM2ObT0oqVrZM5Vlk69+GRT35a08X/2VbjmoKnkPvgr3IuRRrLG03qf
-	 5nCrlyFZxDMvoDb77uF5R4aUHqN0rRgwRD3oiZRFrbCiYd6sEZ51r8iRctJgzMf/iy14Q
-	 8BkCCICqFXdZ2NFz68Er/22yur69ujyQws26QjMeUZjG9/u+TAE78A8pdLUvvdb1jFxMb
-	 ML/E41hJ/Ib3GldtrZ+LMKQLFMXGT11bVIUvna4BLOomPxp0qIvihsI7Il9E/z6WBkg==
+	t=1794903628;
+	b=sWBO9Bs5jScV+K3hUdF+s7KEKSlioQh+Ir1S3BpMAJlZNnbt+q1C/BDD28ONWYDlS6WY
+	 Jj8Rdumlbpe6ewi79WOUdRi57WAHE/6EAUX+5Ram1l+yvZYTQ2XjzSAfMdeZkGZtOo+69
+	 JOPc/loPLQxpP2bIdFDQuebG8Tq4eOjVMdXVhdvnlyGDbQGedu+A6mypR+7oz1LqvcAvx
+	 5fQRpI/vgLOp6jHoz5IPTB2o4KCPSo7hpmcIHASCHDxn2Qp7x9HPlrgglXhxbAs6ei0XR
+	 REjsuzqZpGy/eU0cItaCZ6PkVbluAiYIw7fxVlWyuHfLbFo4sYUl8/kD2loM7CEt5DQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794873725;
-	h=DMARC-Filter:Received:Received:DKIM-Signature:DKIM-Signature:
-	 X-DKIM2-Info:DKIM2-Signature:X-DKIM2-Info:Message-Instance:
-	 X-ME-Sender:X-ME-Received:X-ME-Proxy-Cause:X-ME-Proxy:Feedback-ID:
-	 Received:From:To:Cc:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-	 References:Reply-To:MIME-Version:Content-Transfer-Encoding;
-	bh=YDOCxCJWDJqJIkf3L73TGXB4ljsEc/eId8XIHFekXOM=;
-	b=Ohs1wFJblLN8Ep7bVgWz91rfX2HehK8fp9ih0r6QyuF/h8CZYJN0eHnayPisDwgaA1bm
-	 kTpQHGJG8tnyk40O/Sm80HCBwzDITaFWYfbNVg8sxiUGwNAbv26caFqN6c0WshhuI/DNX
-	 K/SqR7OsvgoEWR3IwnY8FU6poir+89P2u8ILuVMF8XxuoqulteONpjuDVG0F9STYAw7cM
-	 svJww0o09vxkLT9XHvigL03wvnHy06CiiLfxkz9raiNmmvKdSDvKtE8mLGRfsVjMth6VG
-	 8CosYp6GjhIrc54stOdJOsPxYBxi4sVLawe3MAyP+zQxd4HZBB5YJtaIjudYMRVHLpA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794903628;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
+	 From:To:Cc:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding;
+	bh=ilfTlGEVdRlPfXiq6l/vyhaxfQkfO2sNEW/ZUn0qoLo=;
+	b=xwcDaDN+uY61qyZQU6cKIIBpypnDWLxB+tSTAy1b82Qg+EjbPV8Gyhyvszc1yng6Z/vs
+	 qauhU54ipes/+G6+LWhFDHMSQnS+v7LsVolLa+EePDvUZgoG75XqqSnOBDbZ6L7CQf1Y7
+	 EfhJF9utJjraSp37nwh5eRSmontsn3I0APSaYpbRWPEpXJQ5AuHzZz6Yxl+0UCUBmhovJ
+	 SuhDDWtW80H5LxwJjO/BaZvS2l6j4UwgkmH5Q51Q8Pr9aEnq193uEdNfmQ9DcJCytBNxf
+	 TKSXTaSziRF1AOp56JVGQDlb+Ts4iEP/G+ERl/3jw78jlLVRGQJAdFmhp50IsB/JvFQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=ownmail.net;
-	spf=pass smtp.mailfrom=ownmail.net;
-	dkim=pass header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b=LrAEGOut;
-	dkim=pass header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b="G/991CMp";
-	arc=none smtp.remote-ip=103.168.172.154
-Received: from fhigh-a3-smtp.messagingengine.com (fhigh-a3-smtp.messagingengine.com [103.168.172.154])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b="tnek9Z/D";
+	arc=none smtp.remote-ip=209.85.216.53
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305F3606A329
-	for <ntfs@lists.linux.dev>; Tue, 17 Nov 2026 00:02:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 305F3606A329
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ownmail.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ownmail.net
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58746606A31C
+	for <ntfs@lists.linux.dev>; Tue, 17 Nov 2026 08:20:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 58746606A31C
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b=LrAEGOut;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=G/991CMp
-Received: from phl-compute-12.internal (phl-compute-12.internal [10.202.2.52])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 6781614000D0
-	for <ntfs@lists.linux.dev>; Mon, 16 Nov 2026 19:02:04 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-12.internal (MEProxy); Mon, 16 Nov 2026 19:02:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ownmail.net; h=
-	cc:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:reply-to:subject:subject:to:to; s=fm3; t=1794873724;
-	 x=1794960124; bh=YDOCxCJWDJqJIkf3L73TGXB4ljsEc/eId8XIHFekXOM=; b=
-	LrAEGOutj/fEDpkherYfjRcba5B+qwjNIX2drnjuqOtUadqAK1cDPbFLXAqOx00Y
-	idok/AqqHTHgFjHfbnf/FzaqzP5kpQ3jzNtcHB9MAXFxnB5Q7MTxEaDk4bVonOHD
-	SLono/S+WXJvu7MwRg6c47KWdWozhbVL0+o4kHkf6HTfk/rMyKnEYjPtBxZaYGeL
-	b2Cu9TZIDG872wBM/ynuT0Rb4UAh/24wQtkzacRXYys3qxSCFCb2k/xZdPmISXp5
-	SD60CXAqF1W6HllT+joIBc+IQHrv3jMnXTEeczCypO07By/x9MgpH69ZVNI06Kx1
-	OWvGwq93bFb5kMQoyQex7Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1794873724; x=1794960124; bh=Y
-	DOCxCJWDJqJIkf3L73TGXB4ljsEc/eId8XIHFekXOM=; b=G/991CMpe+rkygEPv
-	MzBLcBAxp89foSKY6imaihFdopM+YoOlI8vapd2ikcySIzej5TT0jU/XrCKcY3nC
-	IecimzCfU/hADs05eyRzz778hdulFjC2J0XcybPLi94cAxFx3l5ji5U/NEshO++c
-	BPUuOQDnNkKNCgCnwwEiY5sygPnbIhleSuxc4/n1k/CyacCvPFOoogMa35jVw+R5
-	CddE5syW7LzK8suIq2U5zqvZSEt67IJQy3qKLCHOQJysBeWLIzVUuwJ69V8nmy5s
-	M/ymPSNIn3ilXBhn+CyvtS0uR+qh2J6pUZmZyzlngD+bqvmKNcs51kpGa8niGya2
-	Q2l+A==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=ownmail.net a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794873724; d=ownmail.net;
-	mf=PG5laWxiQG93bm1haWwubmV0Pg==;
-	rt=PG50ZnNAbGlzdHMubGludXguZGV2Pg==;
-	s=fm3:rsa-sha256:U5PzF+KgKsZyqp3tLSxBBHneyECh96X5xsoFfoFf5K7Vcu1
-	AhBrxf+mXV4oS2Z53hdXHWRo0caeCDxRyl58t5QZUZT7kIBMc8H8N38lNW756nZO
-	KJexePIT+COA9aD7HzjUy7k3TKAym9dTjEj0cmfMlg5fXcmZghscBJZC7zb/pBj2
-	iI6UXr3TB4tiKuPxrlsUx4r3xO3t0U6ztACQvL0oYJtkb9+X2+iWr3V0gBnsYqnd
-	Um74eN1H+R1ZhVRhsWfHTK/tpG0eEJ4chdoHxcMVlaTKXv4q712C5QsNfp5WLYxK
-	vKLMHBIkCRR2pwI5p+KVq7azxlC6L80IndbxqYg==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=12;
-	hn=cc,content-transfer-encoding,date,feedback-id,from,
-	in-reply-to,message-id,mime-version,references,reply-to,subject,
-	to;
-Message-Instance: m=1; h=sha256:KLb+aNcrlCIzLw/CrX8F1zNBPXZ5qht9VWLPhGN8oVg=:TyEeQ2WbtApDIcpylAufMXXQHBaC+fnd6qv+WPqAU0M=;
-X-ME-Sender: <xms:fJn7auNoB9aStyQlcCU6RoN9U-DdGXVZ1n93vdG5uq07_wfQvu3ZLw>
-    <xme:fJn7auRLefInTwjA3wFbimASFMoL41sP0mPHO-sxdH4dJWKRZdWLH-0xpliSbYIx7
-    RViZ2hzSQCZ2YrcwLEDkXtWwO_h6yoes1T1LeuJttGruxb1BAE>
-X-ME-Received: <xmr:fJn7ap4sM4HNuH6GdI0b7bBmg8qVyEuvRxCohTUS7ayNEzEsuD2kj6RgIrS8gM2Kkn71ACf8PBjNTnpduRNpBelNE909fTQ>
-X-ME-Proxy-Cause: dmFkZTGGotaiYc6jX+Efo7FfH08Alfcyz1yUAKcrzpQNrmoLgcPafsnobnYOqLvo4mJtkF
-    PYFI+SEpdh6P6uJ+JBWsOFa4gkOXDxkMIr9MIVoGI0JvO5Zg4EqqsXXVOn/H6RRUtAxq+1
-    EVKpzTt5GIhYHN6h/oiWbLGUPZ9O05HUQ+tFi7QXtPgWqIYl0AEcRTZ7l/mSUrqw7P2PD7
-    qXZfb0N/6DeU6oDLwgqeTlBA3LYqFMc69tkvLyKY6jqun48ZMJ6rvkihuv0ULaVS3/m5JS
-    LQN08anR90iFPJyFSW1N/GjCCGU7kBbZsYhkA5zqcEOlthCtJYhrqQZ8vIn9hbHykUS8Si
-    HeIVp0lzHFs11mmIwCUiGCECrwD+nd1NUkgH+tOtfevEBaZ9mU68TdMm9b/DlGo0CuDwpU
-    33ig+oGYmX/htL/AqJlM25rCxRk4WY0QDq/Z/fgzfvFFlG6vUH8L7nV0PWBNuL3cjK6qui
-    RDncO/6czdSPKVdr1Ajr37jjTBQJNJSvel57zUpGPjhcl+YyBjgB68lJz75xXyJ2S3jLIA
-    wwiMS7Q+qnx8/cnCtMJU58JatfEde/YRVW2/E4YYB2xbs9fghhDIR1Mitqy7JFpo+vTx4Y
-    QgnTzvxQLkbTx9AfEeDxgZACCTrjUN732qQj9IXNfvtGMWrfaVgc18xt08qA
-X-ME-Proxy: <xmx:fJn7ahabQ82jeeIorTwdBX8YVpjDp_QTYZb7X_ZanEM69ro2BDUUPQ>
-    <xmx:fJn7atZpjHXIeXly0Uqh18LpOQfh1nCOMILdDG0CPl0WhzCIE4UpSQ>
-    <xmx:fJn7ak0blHTZNwJAb7hE3FYUq-gIoz_onlYvy5Wj21ixoIzjPDVGnQ>
-    <xmx:fJn7alYRUXmC0-Y2gytkaK2JPhjmEt6exOGPEphogTswy3CDURFg5g>
-    <xmx:fJn7ajUC_-ipU59tz3CSKSSVMYJCKImAVv7_HlH7FyhpBw3pLkpO3Ebu>
-Feedback-ID: i9d664b8f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 16 Nov 2026 19:01:58 -0500 (EST)
-From: NeilBrown <neilb@ownmail.net>
-To: Alexander Viro <viro@zeniv.linux.org.uk>,
-	Christian Brauner <brauner@kernel.org>
-Cc: Jan Harkes <jaharkes@cs.cmu.edu>,
-	coda@cs.cmu.edu,
-	Jan Kara <jack@suse.cz>,
-	Richard Weinberger <richard@nod.at>,
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>,
-	Carlos Maiolino <cem@kernel.org>,
-	Jeff Layton <jlayton@kernel.org>,
-	Amir Goldstein <amir73il@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	codalist@coda.cs.cmu.edu,
-	linux-fsdevel@vger.kernel.org,
-	linux-um@lists.infradead.org,
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tnek9Z/D
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-3ae7626d14aso2284132a91.2
+        for <ntfs@lists.linux.dev>; Tue, 17 Nov 2026 00:20:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794903628; x=1795508428; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=ilfTlGEVdRlPfXiq6l/vyhaxfQkfO2sNEW/ZUn0qoLo=;
+        b=tnek9Z/Dp5YA/rKzaxLoITuGKyqzc5yY6QbyJfgqdY+VRGkalPR7skDJYvwrGKJR/d
+         eOpmStGWA26hJCAQY+y8zuUXw7MkVUa8Ow8O0/2GcDF6a+DHi0sLcwzXvAOKJdtOwoD/
+         PY99K+Qi5/mQ5a3FLVhTTqHg+AO8AyGJW7o5wVFsHnW4XB3b4+imxtnQoNE4pXw3Wa6q
+         4VrW5b/tHuRwGeTmmN3lyM08vBHDJTkwk3ExS0uymDzqnyL5NewDRN5Z338WHbApR0Z0
+         YI0Q97BiJt91CjLOrjBiT4LZI/nkdnEoub+8+6MngB8cNbZECQJ6sf3CBaZe6+DhgO0G
+         WiUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794903628; x=1795508428;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=ilfTlGEVdRlPfXiq6l/vyhaxfQkfO2sNEW/ZUn0qoLo=;
+        b=JN1unm7jiILjb4v0TN5Pp+srfMJGuBKs9fiSHKMD0rkyXoIyQGve41r19wfRgvuOP6
+         uWxw/0RGvN82aSxrPrrVFSnsOI/VAPd6H+NI4XtVsmSVyQMyvuhLb6yXUaCH8MMP9WwZ
+         p6SgHO6HA4ru+lJoC9QDPFm11cC30/i9Ks3fMEZs7Gq67dXls8QBd4gpbNRcSf/zGbiF
+         fkPYlnZZmRH6UIQDkW5xFn7YXVK8VxcQqIqrjZHlALJqJxrLK3IFp/yXa4QPGs6ZD/2u
+         F4Lc0kO2hkm8zE4zd7FqgGWhCDcN0uoaXIe3BkPOy0rP1k7a4AD2OBsvQa4xMVHCKgZW
+         RfXw==
+X-Forwarded-Encrypted: i=1; AL+hErEwKEnG8wFIDrAGw6NvwNK+Oyu3/efm7W14JfVr6PqIYp4mlz1d563plu381sLk4sq35oVE@lists.linux.dev
+X-Gm-Message-State: APuU4Z8H2p1QXWDf5nHWZCTXTPItyp+GD27EluUvb7OwiI08t9mSgijI
+	659jwF42JaVr/eWTO7KjTCDJi/QMxQ03wrlhPfTiPSwS0hB7z0utn/tV
+X-Gm-Gg: AZFdTZev3lMntxOHEmD21inCPZAWBS20mGIeuTOeRYQWwrWKkrxpSVn2gs1tA0aJ2BQ
+	NUINV+tPpQ5V8ptaFNVssLPBM4QwM9/jy6H3RPh6rRQfTiFAzOUPHK8vttCxwhe3QC0M+QNsQM4
+	xAoSy5GJRVc6DA9zbUfxcDoVZaz65ivEvN7SX2o4Wo1DZV9nOEuezSRRJHaKMRmVarAgZnQHUGO
+	mqICl/I6o++l9r1b1WbuWAZQRXRYQJ2wG3F6Ia+FX4IfmvX6OPviCPvWdWzy1hg3YJaViPiOu2D
+	QK3gw0l+fWvpHJ1nz+163x9PijnDp3hes0UYYy/wHMKPser1fdJM7m8jlBHkoveKfoQJgGVkWtE
+	t5YHS999AwVwMVuf+XW1SDbcB7+RikhdrlqyS5RZAcT8/vAEx3cHUTIA95qBdBM3RZzg7Tx8QsK
+	irP/K9F5F01Q+QliluekggonE5dhVxEEQqwLdFnDEmjG82lMkNDsiJc5GJzXYmRs8cEt2rBYOIp
+	7LEiB/3lQIMLnjcoDkDiLHuWp/NwhVVGflyhZuuu6pXiLgTK0iyXF+t741mxBsGoQJcra1hSq3A
+	dPe6czn1fg52i1rGkvjmJJAsF96LkPPdU0dxSfi2XHRhCg==
+X-Received: by 2002:a17:90b:528c:b0:3b0:a9de:9884 with SMTP id 98e67ed59e1d1-3b1b0a4e3bbmr11511345a91.40.1794903627496;
+        Tue, 17 Nov 2026 00:20:27 -0800 (PST)
+Received: from osman.mioffice.cn ([43.224.245.178])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cddc18a2191sm5407545a12.21.2026.11.17.00.20.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Nov 2026 00:20:26 -0800 (PST)
+From: Zhan Xusheng <zhanxusheng1024@gmail.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: liubaolin12138@163.com,
 	ntfs@lists.linux.dev,
-	linux-xfs@vger.kernel.org
-Subject: [PATCH v2 4/4] procfs: drop parent lock for d_alloc_parallel() in iterate_shared()
-Date: Tue, 17 Nov 2026 10:55:01 +1100
-Message-ID: <20261117000115.1433875-5-neilb@ownmail.net>
-X-Mailer: git-send-email 2.50.0.107.gf914562f5916.dirty
-In-Reply-To: <20261117000115.1433875-1-neilb@ownmail.net>
-References: <20261117000115.1433875-1-neilb@ownmail.net>
-Reply-To: NeilBrown <neil@brown.name>
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	zhanxusheng@xiaomi.com
+Subject: [PATCH v6] ntfs: trim the sizes after a short write
+Date: Tue, 17 Nov 2026 16:20:21 +0800
+Message-ID: <20261117082021.2947603-1-zhanxusheng1024@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -145,151 +100,192 @@ Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: NeilBrown <neil@brown.name>
+From: Zhan Xusheng <zhanxusheng@xiaomi.com>
 
-When procfs finds a name in iterate_shared() that isn't in the dcache it
-*must* add it so that it can have a stable inode number to report
-(inodes are only accessible from the dcache in procfs).
+ntfs_file_write_iter() moves the data size and, for a non-resident
+uncompressed file, the initialized size to pos + count before the copy.
+__ntfs_extend_initialized_size() only zeroes [old initialized size, pos),
+so the range [pos, pos + count) is initialized only by the copy itself.
+When iomap_file_buffered_write() copies less than count, it returns a
+positive short count and the error rollback at out: does not run.  The
+file keeps the size pos + count, and [pos + ret, pos + count) reads back
+whatever the freed clusters held before, also after a remount.  A local
+user can read the old contents of freed clusters this way.
 
-It uses d_alloc_parallel().  A planned change to locking will make it
-unsafe to call d_alloc_parallel() while holding the directory lock.
+Run the existing rollback for a short write as well, and roll the data
+size back to the end of what was written.  Keep the initialized size,
+as a page fault through a shared mapping may rely on it while the write
+is stalled on its source, and zero what the write did not reach, up to
+the end of the block holding pos + count.  Only if that fails, take the
+initialized size back to where the zeroing started, if it is above that.
 
-Other filesystems which prime the dcache in iterate_shared() use
-d_alloc_trylock() which is safe but can fail if it races with ->lookup.
-As procfs cannot handle failure we need something better.
-
-procfs doesn't *need* the parent to be locked.  There are no shared data
-structures accessed that don't have their own locking.  So it is safe to
-drop and re-take the parent lock.  We could do this around the whole
-iteration, but as failure of d_alloc_trylock() is rare it is more
-efficient to drop and retake it just around a call of d_alloc_parallel()
-when d_alloc_trylock does fail.
-
-Other code that drops and retakes the lock in iterate_shared needs to
-be careful to check S_DEAD which could be set while the lock is
-dropped.  This is not needed in procfs as the flag is never set.
-
-As d_alloc_trylock() calls try_lookup_noperm(), we can skip that call
-and simplify the code.
-
-Signed-off-by: NeilBrown <neil@brown.name>
+Fixes: b041ca562526 ("ntfs: update iomap and address space operations")
+Cc: stable@vger.kernel.org
+Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
 ---
- fs/proc/base.c        | 38 +++++++++++++++++++--------------
- fs/proc/proc_sysctl.c | 49 ++++++++++++++++++++++++-------------------
- 2 files changed, 49 insertions(+), 38 deletions(-)
+v6: cap that fallback at the current initialized size, which a failed
+extension before the write can leave below pos (Baolin).
+v5 (Baolin):
+- start the zeroing at pos, not at the old initialized size, which
+  overwrote data stored through a shared mapping below pos
+- do the same for a direct write, instead of truncating the page cache
+  and taking the initialized size back
+- if the zeroing fails, take the initialized size back to where it
+  started, instead of skipping both rollbacks
+v4: for a buffered write, zero the unwritten range instead of
+truncating the page cache and taking the initialized size back, which
+dropped data stored through a shared mapping during the copy (Baolin).
+v3: clear the cache up to EOF, not up to the extended initialized
+size, which left the rest of the block holding pos + count (Baolin).
+v2: also clear the cached tail of the last block, which v1 left in
+place when the write stayed inside the old data size (Baolin).
 
-diff --git a/fs/proc/base.c b/fs/proc/base.c
-index 7685660c3624..5f9ec524ae2a 100644
---- a/fs/proc/base.c
-+++ b/fs/proc/base.c
-@@ -2106,24 +2106,30 @@ bool proc_fill_cache(struct file *file, struct dir_context *ctx,
- 	unsigned type = DT_UNKNOWN;
- 	ino_t ino = 1;
+v5: https://lore.kernel.org/all/20261116091121.2547497-1-zhanxusheng1024@gmail.com/
+v4: https://lore.kernel.org/all/20261113050148.1466682-1-zhanxusheng1024@gmail.com/
+v3: https://lore.kernel.org/all/20261112093233.1118469-1-zhanxusheng1024@gmail.com/
+v2: https://lore.kernel.org/all/20261112030815.982026-1-zhanxusheng1024@gmail.com/
+v1: https://lore.kernel.org/all/20261111093459.660484-1-zhanxusheng1024@gmail.com/
+
+Tested in a VM on ntfs-next b025f526c5d0, with all free space filled
+with a known pattern first.  Short buffered writes of 4M, old data
+readable after drop_caches and after remount, 3 runs each:
+
+                                    unfixed    v5     v6
+  fallocated, ends block-aligned    3137536    0      0
+  fallocated, ends inside a block   3141332    0      0
+  fallocated, unaligned start       3137536    0      0
+  same, pos + count in that page    -          0      0
+  append                            3137536    0      0
+
+Marker stored through a shared mapping at 64K while pwritev() is
+stalled on a userfaultfd source page, state after remount, with and
+without fallocate():
+
+                                          unfixed  v5     v6
+  buffered 4K at 128K, EFAULT             lost     lost   kept
+  O_DIRECT 12K at 0, EFAULT               lost     lost   kept
+  buffered 12K at 0, short 8192 (v3)      kept     kept   kept
+
+A store into [pos + ret, pos + count) itself during the write is
+zeroed, as that range belongs to the write.  With iomap_zero_range()
+failing (injected -ENOMEM), a 32K write to a 16K file that returns
+12288 leaves the size at 28K with no old data, also after remount.
+fsx (buffered, no-mmap, O_DIRECT and mixed), compressed files,
+fallocate, insert/collapse range and punch hole give the same results
+with v6 as with v5.
+---
+ fs/ntfs/file.c | 70 +++++++++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 63 insertions(+), 7 deletions(-)
+
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 3213a0c9f96b..866aaca1887e 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -928,10 +928,21 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ 		ret = iomap_file_buffered_write(iocb, from, &ntfs_write_iomap_ops,
+ 				&ntfs_iomap_folio_ops, NULL);
+ out:
+-	if (ret < 0 && ret != -EIOCBQUEUED) {
++	/*
++	 * Both sizes were moved to end before the copy, so a short write,
++	 * like a failed one, must take back what it did not write.
++	 */
++	if (ret < count && ret != -EIOCBQUEUED) {
++		loff_t new_init_size = old_init_size;
++		loff_t new_data_size = old_data_size;
+ 		int init_err = 0;
+ 		int data_err = 0;
  
--	child = try_lookup_noperm(&qname, dir);
--	if (IS_ERR(child))
--		goto end_instantiate;
-+	child = d_alloc_trylock(dir, &qname);
- 
--	if (!child) {
-+	if (child == ERR_PTR(-EWOULDBLOCK)) {
-+		/*
-+		 * Need to drop directory lock, which isn't really
-+		 * needed here anyway.  As rmdir never happens in procfs
-+		 * we don't need to be concerned about S_DEAD being set
-+		 * while unlocked.
-+		 */
-+		inode_unlock_shared(dir->d_inode);
- 		child = d_alloc_parallel(dir, &qname);
--		if (IS_ERR(child))
--			goto end_instantiate;
--		if (d_in_lookup(child)) {
--			struct dentry *res;
--			res = instantiate(child, task, ptr);
--			d_lookup_done(child);
--			if (unlikely(res)) {
--				dput(child);
--				child = res;
--				if (IS_ERR(child))
--					goto end_instantiate;
--			}
-+		inode_lock_shared(dir->d_inode);
-+	}
-+	if (IS_ERR(child))
-+		goto end_instantiate;
-+	if (d_in_lookup(child)) {
-+		struct dentry *res;
-+		res = instantiate(child, task, ptr);
-+		d_lookup_done(child);
-+		if (unlikely(res)) {
-+			dput(child);
-+			child = res;
-+			if (IS_ERR(child))
-+				goto end_instantiate;
- 		}
- 	}
- 	inode = d_inode(child);
-diff --git a/fs/proc/proc_sysctl.c b/fs/proc/proc_sysctl.c
-index 6c0859c66563..08bcda3bbc59 100644
---- a/fs/proc/proc_sysctl.c
-+++ b/fs/proc/proc_sysctl.c
-@@ -686,29 +686,34 @@ static bool proc_sys_fill_cache(struct file *file,
- 	ino_t ino = 0;
- 	unsigned type = DT_UNKNOWN;
- 
--	qname.name = table->procname;
--	qname.len  = strlen(table->procname);
--	qname.hash = full_name_hash(dir, qname.name, qname.len);
--
--	child = d_lookup(dir, &qname);
--	if (!child) {
-+	qname = QSTR(table->procname);
-+	child = d_alloc_trylock(dir, &qname);
-+	if (child == ERR_PTR(-EWOULDBLOCK)) {
-+		/*
-+		 * Need to drop directory lock, which isn't really
-+		 * needed here anyway.  As rmdir never happens in procfs
-+		 * we don't need to be concerned about S_DEAD being set
-+		 * while unlocked.
-+		 */
-+		inode_unlock_shared(dir->d_inode);
- 		child = d_alloc_parallel(dir, &qname);
--		if (IS_ERR(child))
--			return false;
--		if (d_in_lookup(child)) {
--			struct dentry *res;
--			inode = proc_sys_make_inode(dir->d_sb, head, table);
--			res = d_splice_alias_ops(inode, child,
--						 &proc_sys_dentry_operations);
--			d_lookup_done(child);
--			if (unlikely(res)) {
--				dput(child);
--
--				if (IS_ERR(res))
--					return false;
--
--				child = res;
--			}
-+		inode_lock_shared(dir->d_inode);
-+	}
-+	if (IS_ERR(child))
-+		return false;
-+	if (d_in_lookup(child)) {
-+		struct dentry *res;
-+		inode = proc_sys_make_inode(dir->d_sb, head, table);
-+		res = d_splice_alias_ops(inode, child,
-+					 &proc_sys_dentry_operations);
-+		d_lookup_done(child);
-+		if (unlikely(res)) {
-+			dput(child);
++		if (ret > 0) {
++			new_init_size = max(old_init_size, pos + ret);
++			new_data_size = max(old_data_size, pos + ret);
++		}
 +
-+			if (IS_ERR(res))
-+				return false;
+ 		/*
+ 		 * Like ntfs_setattr_size(): __ntfs_attr_truncate_vfs()
+ 		 * expects the invalidate lock held across the size
+@@ -939,14 +950,59 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ 		 */
+ 		filemap_invalidate_lock(vi->i_mapping);
+ 
++		/*
++		 * A page fault through a shared mapping may have used the
++		 * extended initialized size while the write was stalled on
++		 * its source, so keep that size and zero what the write did
++		 * not reach instead.  [old_init_size, pos) was zeroed before
++		 * the write.  Past end, zero the rest of the block that a
++		 * buffered copy may have read from disk, unless such a fault
++		 * already moved the initialized size past end and zeroed it.
++		 */
++		if (NInoNonResident(ni) && !NInoCompressed(ni) &&
++		    ni->initialized_size > new_init_size) {
++			loff_t zstart = max(pos, new_init_size);
++			loff_t zend = ni->initialized_size > end ? end :
++				      round_up(end, i_blocksize(vi));
++			int err = 0;
 +
-+			child = res;
++			zend = min(zend, new_data_size);
++			if (zend > zstart) {
++				err = iomap_zero_range(vi, zstart,
++						zend - zstart, NULL,
++						&ntfs_seek_iomap_ops,
++						&ntfs_iomap_folio_ops, NULL);
++				/* A direct read must not see the old blocks. */
++				if (!err && iocb->ki_flags & IOCB_DIRECT)
++					err = filemap_write_and_wait_range(
++						vi->i_mapping, zstart, zend - 1);
++			}
++			if (!err)
++				new_init_size = min(ni->initialized_size,
++						    new_data_size);
++			else
++				new_init_size = min3(ni->initialized_size,
++						     zstart, new_data_size);
++		}
++
+ 		/* ntfs_attr_set_initialized_size() rejects a resident one. */
+-		if (ni->initialized_size != old_init_size &&
++		if (ni->initialized_size != new_init_size &&
+ 		    NInoNonResident(ni)) {
+ 			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+ 
++			/*
++			 * Only reached when the zeroing above failed or did
++			 * not apply.  Drop what was cached past the new
++			 * initialized size, as __ntfs_extend_initialized_size()
++			 * does.
++			 */
++			if (ni->initialized_size > new_init_size)
++				truncate_pagecache_range(vi, new_init_size,
++						max_t(loff_t, i_size_read(vi),
++						      ni->initialized_size) - 1);
+ 			mutex_lock(&mrec_ni->mrec_lock);
+ 			init_err = ntfs_attr_set_initialized_size(ni,
+-					old_init_size);
++					new_init_size);
+ 			mutex_unlock(&mrec_ni->mrec_lock);
  		}
- 	}
- 	inode = d_inode(child);
+ 		/*
+@@ -955,13 +1011,13 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ 		 * the uninitialized tail, so skip it unless the rollback
+ 		 * above restored that size.
+ 		 */
+-		if (ni->data_size != old_data_size && !init_err) {
++		if (ni->data_size != new_data_size && !init_err) {
+ 			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+ 
+-			truncate_setsize(vi, old_data_size);
++			truncate_setsize(vi, new_data_size);
+ 			mutex_lock(&mrec_ni->mrec_lock);
+-			data_err = __ntfs_attr_truncate_vfs(ni, old_data_size,
+-					old_data_size);
++			data_err = __ntfs_attr_truncate_vfs(ni, new_data_size,
++					new_data_size);
+ 			mutex_unlock(&mrec_ni->mrec_lock);
+ 			/* Like ntfs_setattr_size(): stay on the durable size. */
+ 			if (data_err)
+
+base-commit: b025f526c5d04929212c9d5fb7ffc96608f3eacc
 -- 
-2.50.0.107.gf914562f5916.dirty
+2.43.0
 
