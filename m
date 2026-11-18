@@ -1,62 +1,58 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.226
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794993127;
-	b=vLEvatJMIMmAilushxmtXo8GigOwZDKSQyYiuJII940CDjTpCBfxNAldCmLWG1q/nm71
-	 tfm2Z4vHzdPrVgRuseU1s8QZDb2vMZQqkFi9fo4Bync/QKYjrUJaeYxY9QToOseQgd7Je
-	 fHe5PeJg+YjtWf8UN3mRB0/vwTuLUfXRqa5WXXi2rfWhR0tPFv0JUoHMgzr2RfJaXtgOw
-	 aGptRPMLaekt+uh4RzSAsDxO+uKsG5zgLjman61CqmTl1zLWK21krQcVHbNjYdTFCF1iu
-	 4m0SBBEv7sPhuILhikpKpqAT7URwyY//M1/lk2y4lb6AfMoG2TENIr6M/u4r83SJmaQ==
+	t=1794993225;
+	b=cy6vbRrO+kEE3mg1dH2bc3UeUHIiWd8IWnaOYSMwfuGdG22u1sEwNwroEd5xpY5goV6M
+	 mNEt0xAqvIYm9YAn2RGqiU4u4V3h7A2I11sXJBoJ4KOsO8hs9t1vk6QGpy6INBHbv8vQU
+	 qNDqpuMq4s9/FmDJTSWfJF/7RfIzgaXmpHCdxaYui+8PzZyExfA4aviZVgA+lnklBT34z
+	 W2c5Oi2zcdtWEprPM33dExDVvCo35kA5WYIDhu6XO8yo0T1G5IdoD7LjLj4mWywyEDrJR
+	 wOW5isdT2pH3iN8WFzhBDVb7cL+GpUxErqd836UH8pkd0WGex/i9jGNHd+EDJR5sryQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794993127;
-	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
-	 Message-Id:X-Mailer:In-Reply-To:References:MIME-Version:
-	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
-	 X-CM-SenderInfo;
-	bh=SgfZ+LNnsqWZfGGf7VC/KCgYqnX/cf12Sh4IpDvmxqM=;
-	b=g5rwq6if6YqCdJgxe4BhyGk9p03iVP8dGjhhd7Po7YAxn1MKTXl+hQYRYVIF1XKw9xOG
-	 dHR3JsnP4WfHdVhPGAjF9WTUZn3skNmAPMhgu33BayUIUjz7jFji7d0akfaxXXxSFX80C
-	 TrhqRGpJjZ4CPZhyIpZu3CAN916/IgvfKGIV5dHHUG28vWgH3mXT8Lyq7GzCJMnnNjphr
-	 YIeGNL/ZBPvwrfPkWN7am1f9LUJf4TBrlRpK3JlFBbSIKEpT6bYEli3T2S6VrEyP039O0
-	 TgKXXYRrukryG0djrrlrf2Umw/BNZrxjFWTF3qq80dFKszSmFid4SQyIf4sY0zwIzYQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794993225;
+	h=DMARC-Filter:dkim-signature:Received:Received:Received:Message-ID:
+	 Date:MIME-Version:User-Agent:Subject:To:CC:References:
+	 Content-Language:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+	bh=gqPBU5vSzctPXUMsg32k86Yb/Qp3EYKKyTavFdf5sH8=;
+	b=AXXdP7+OhCVqWCqIhmXLmDBQaMpspPDBOdzegCWpvXPdCRLGmDH7i7FEtG+rGnym+nsJ
+	 totnDK/Jjz7jJP+zaF9lph7KhBK6LMTWYit1DGCFPcB5Q5y/waXM9MCasv9t0htStW1Dh
+	 ekoblDVyf1FuG4EfWNOMCeHvYZRSryTV1tT4wovSHIXofMELga/oTrqkic2vnEMXrESgp
+	 QSKzrRfidj5rhpvsurlQs6kPWWeahkbajQhefdSrr0SmpbIpucHliSDydJVatgTsP5+A5
+	 hPR4fNHCm2X8ZnxyY8rH9vn+Ke34FhiT77K7Bja/oxu+KfnqhGY1eIvE2C8cI7k4F7g==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Tr6rp5UU;
-	arc=none smtp.remote-ip=117.135.210.4
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	dmarc=pass header.from=huawei.com;
+	spf=pass smtp.mailfrom=huawei.com;
+	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=u7vlY2Tx;
+	arc=none smtp.remote-ip=113.46.200.226
+Received: from canpmsgout11.his.huawei.com (canpmsgout11.his.huawei.com [113.46.200.226])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32D3606A8A9
-	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:12:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org C32D3606A8A9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0176A60A2616;
+	Wed, 18 Nov 2026 09:13:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 0176A60A2616
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Tr6rp5UU
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=Sg
-	fZ+LNnsqWZfGGf7VC/KCgYqnX/cf12Sh4IpDvmxqM=; b=Tr6rp5UUp2qwMpyYKy
-	eG7VUOHpy3yNJX1Pf7M3rl8+NVlWcDCjQLh9jmVTisIY1SVnvt618Acq7KcNlW1m
-	L0x3UHOnOBywuCnDBh5dhlisTUalpsH/h1aS81hqxCgYa3wki+/SFb8j+sk+VR2D
-	cFBTHkoiey3WgjZDRNMvea/1E=
-Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wD3v0nSa_1qVwxBIg--.34758S7;
-	Wed, 18 Nov 2026 17:11:50 +0800 (CST)
-From: Xuewen Wang <wangxuewen_ky@163.com>
-To: linkinjeon@kernel.org,
-	hyc.lee@gmail.com,
-	liubaolin12138@163.com
-Cc: ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Xuewen Wang <wangxuewen@kylinos.cn>,
-	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v6 37/37] ntfs: report attribute move removal and cleanup failures
-Date: Wed, 18 Nov 2026 17:07:01 +0800
-Message-Id: <20261118090701.1858849-38-wangxuewen_ky@163.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20261118090701.1858849-1-wangxuewen_ky@163.com>
-References: <20261118090701.1858849-1-wangxuewen_ky@163.com>
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=u7vlY2Tx
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=gqPBU5vSzctPXUMsg32k86Yb/Qp3EYKKyTavFdf5sH8=;
+	b=u7vlY2TxckHQP+tYQthSmXBs8/AgddjDNh8bkjwDxaHhPAcGONyr849lvDagg0uq2tPODQr+O
+	RNkZ/GSkSnHrw23pVJBgD4eBpcXClBJwejVje/VjYL1bZHv0QSts4KMpbezyGFZ04qUx8679+NR
+	1cZfatNyiz6HsIFs9LF+vZQ=
+Received: from mail.maildlp.com (unknown [172.19.163.127])
+	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4jTwr60sQjzKmVb;
+	Wed, 18 Nov 2026 17:13:26 +0800 (CST)
+Received: from whupemk100010.china.huawei.com (unknown [7.152.184.41])
+	by mail.maildlp.com (Postfix) with ESMTPS id 6D73B40561;
+	Wed, 18 Nov 2026 17:13:40 +0800 (CST)
+Received: from [10.67.110.140] (10.67.110.140) by
+ whupemk100010.china.huawei.com (7.152.184.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Wed, 18 Nov 2026 17:13:33 +0800
+Message-ID: <32b8d9c9-27d2-4da9-8618-ccfc44dee7a3@huawei.com>
+Date: Wed, 18 Nov 2026 17:13:31 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -66,59 +62,81 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH -next -v4 01/17] fs: pass struct path to notify_change()
+To: Al Viro <viro@zeniv.linux.org.uk>
+CC: <mic@digikod.net>, <gnoack@google.com>, <paul@paul-moore.com>,
+	<brauner@kernel.org>, <jack@suse.cz>, <amir73il@gmail.com>,
+	<andrii@kernel.org>, <apparmor@lists.ubuntu.com>, <ast@kernel.org>,
+	<axboe@kernel.dk>, <bpf@vger.kernel.org>, <casey@schaufler-ca.com>,
+	<cel@kernel.org>, <cem@kernel.org>, <chenxiaosong@chenxiaosong.com>,
+	<code@tyhicks.com>, <corbet@lwn.net>, <Dai.Ngo@oracle.com>,
+	<dakr@kernel.org>, <daniel@iogearbox.net>, <dhowells@redhat.com>,
+	<dlemoal@kernel.org>, <dmitry.kasatkin@gmail.com>,
+	<driver-core@lists.linux.dev>, <dsterba@suse.com>,
+	<ecryptfs@vger.kernel.org>, <eddyz87@gmail.com>, <emil@etsalapatis.com>,
+	<eric.snowberg@oracle.com>, <exfat@lists.linux.dev>,
+	<georgia.garcia@canonical.com>, <gregkh@linuxfoundation.org>, <hch@lst.de>,
+	<hirofumi@mail.parknet.co.jp>, <hyc.lee@gmail.com>,
+	<ihor.solodrai@linux.dev>, <jlayton@kernel.org>, <jmorris@namei.org>,
+	<johan@kernel.org>, <john.fastabend@gmail.com>,
+	<john.johansen@canonical.com>, <jolsa@kernel.org>, <kpsingh@kernel.org>,
+	<linkinjeon@kernel.org>, <linux-api@vger.kernel.org>,
+	<linux-block@vger.kernel.org>, <linux-btrfs@vger.kernel.org>,
+	<linux-cifs@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-fsdevel@vger.kernel.org>, <linux-integrity@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
+	<linux-nfs@vger.kernel.org>, <linux-security-module@vger.kernel.org>,
+	<linux-trace-kernel@vger.kernel.org>, <linux-unionfs@vger.kernel.org>,
+	<linux-xfs@vger.kernel.org>, <liubaolin12138@163.com>,
+	<martin.lau@linux.dev>, <mason@kernel.org>, <mathieu.desnoyers@efficios.com>,
+	<matt@bobrowski.net>, <memxor@gmail.com>, <mhiramat@kernel.org>,
+	<miklos@szeredi.hu>, <neil@brown.name>, <netfs@lists.linux.dev>,
+	<ntfs@lists.linux.dev>, <okorniev@redhat.com>, <omosnacek@gmail.com>,
+	<penguin-kernel@i-love.sakura.ne.jp>, <rafael@kernel.org>,
+	<rdunlap@infradead.org>, <roberto.sassu@huawei.com>, <rostedt@goodmis.org>,
+	<selinux@vger.kernel.org>, <senozhatsky@chromium.org>, <serge@hallyn.com>,
+	<sj1557.seo@samsung.com>, <skhan@linuxfoundation.org>, <song@kernel.org>,
+	<stephen.smalley.work@gmail.com>, <takedakn@nttdata.co.jp>, <tom@talpey.com>,
+	<yonghong.song@linux.dev>, <yuezhang.mo@sony.com>, <zohar@linux.ibm.com>,
+	<utilityemal77@gmail.com>, <lujialin4@huawei.com>
+References: <20261117150542.1169451-1-caixinchen1@huawei.com>
+ <20261117150542.1169451-2-caixinchen1@huawei.com>
+ <20261117183059.GP989762@ZenIV>
+Content-Language: en-US
+From: Cai Xinchen <caixinchen1@huawei.com>
+In-Reply-To: <20261117183059.GP989762@ZenIV>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3v0nSa_1qVwxBIg--.34758S7
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJry5Gw4xWry7Zw1xtF4ktFb_yoW8Aw15pa
-	s7C3sIka4DtF17Kws0q3y2q3WI9FykuF45Xr13G3W3Z3Z8t3WqqryxKFWFga4FyFZ5Jws8
-	Xw1jv3y5CFy5uFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTq2iUUUUU=
-X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbC8BYqE2r9a9akJgAA33
+X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
+ whupemk100010.china.huawei.com (7.152.184.41)
 
-From: Xuewen Wang <wangxuewen@kylinos.cn>
+On whether we want the mount references at all: they are not for NTFS.
+The path-based LSM hooks need them - Landlock's check walks the hierarchy
+up from the object with path->mnt->mnt_root and follow_up(), for every
+layer, and the idmap we pass has to be the one of the mount the path was
+checked in.  NTFS is only the reason for ia_path/notify_change_target():
+->setattr() has no path argument, so a change forwarded to the base inode
+would otherwise lose the mount.
 
-The earlier attribute-move fix checks source removal and destination
-cleanup with the pre-existing volume error bit and log messages. Keep
-that fix independent of the new reporting helpers for backporting.
+On 11/18/2026 2:30 AM, Al Viro wrote:
+> That needs a bit along the lines of "path MUST be consistent - don't combine
+> a dentry from one filesystem with mount of another".  All in-kernel callers
+> might have appropriate struct mount references on hand, but for out-of-tree
+> code that might be not true and we'd better be upfront about the headache
+> we are inflicting.
+>
+> I'm not sure we really want to provide those mount references, TBH - it does
+> add a constraint not just on out-of-tree callers, but upon the future uses
+> in the kernel.  If NTFS is the only reason... ugh.
 
-Replace its volume-bit updates with file metadata reports. Report the
-source removal and an independent destination cleanup failure after
-releasing the destination search context, preserving the return errno
-and both diagnostics.
+ok, I will change in v5
 
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
----
-Changes in v6:
-Add reporting to the standalone attribute-move fix in this final patch.
-Report after destination context cleanup and keep separate source and
-cleanup failures.
+> BTW, why not something like
+>
+> 		notify_change(&nop_mnt_idmap,
+> 			      &(struct path){.mnt = path.mnt, .dentry = dentry},
+> 			      &newattrs, NULL);
+> instead of that named local?  Same question for other places like that...
 
-Validation:
-- Compiled and linked the NTFS module object with W=1 at this stage.
-- Eight controlled attribute-move cases passed for this stage,
-  including source removal and independent destination cleanup failure.
-
- fs/ntfs/attrib.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index eae88b45d05e..c7e32ef15135 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -3739,11 +3739,11 @@ int ntfs_attr_record_move_to(struct ntfs_attr_search_ctx *ctx, struct ntfs_inode
- put_err_out:
- 	ntfs_attr_put_search_ctx(nctx);
- 	if (remove_err) {
--		NVolSetErrors(ni->vol);
-+		ntfs_report_file_metadata_error(VFS_I(ni), remove_err);
- 		ntfs_error(sb, "Failed to remove source attribute record");
- 	}
- 	if (cleanup_err) {
--		NVolSetErrors(ni->vol);
-+		ntfs_report_file_metadata_error(VFS_I(ni), cleanup_err);
- 		ntfs_error(sb, "Failed to remove destination attribute copy");
- 	}
- 	return err;
--- 
-2.51.0
 
