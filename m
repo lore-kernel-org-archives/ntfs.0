@@ -1,58 +1,59 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
 	t=1794992926;
-	b=0qdNYd2gY64iQ43hMfE13zpONoiNa6DCOiD/cr2kfGcssmoMHaoYOz0sl/qhTRH1SPah
-	 ryZ0Gt3Npu47K56dago3WP6TyAdvoLRkfoYl5OjDPxMzhbn0sYfIrE1yaD1EQXKbe5EA4
-	 l8i49uHfJ/u5JYEqzjvysKYYjYVhEhyJvI1jbrn8lAMRsk1+4Mx6fq2U6M8Bz2nPiLnXV
-	 dpO7Yv3raO4QbvIO/tTdopygthHMOnw+N4kU0Aopul+WrLNkQt8qqbr3pxN3Ka0cqrelZ
-	 f53+HwQq0WEd6ruhBl4rQCyyi1riB+9AL9M+xGDo9d1MBfGcz8tHHut9rZ1kn3eWR+w==
+	b=26++PDOaftMPDXyVHkqwfH9oyZf/RLknjdfhwYdZGQKQvqwcyt1KyGBGV4i9kUXemN7T
+	 HNotnd8Kt7HWaYrI8Tu30JTWRmzCAliM2YhhgYg4SBc8tdgwjS5ODkLHf8F0o45fCjtfQ
+	 9AUQUDiZb9lIcbHu/TuspI3kn8Hstc5loCiiqt9Lvmh+tBbdXvdet2gIL1vEKEvXinpFX
+	 XR5t/DnUs+zajPwe77TEG6lHypqHIwEDW6/+JnrcijS7e8eOfHKRHwX+lZXD4QY/r9VBh
+	 9F7Gl0j4SGY/IIcpZutScJ6GbITrD01EmNYvcSx9QKdbUNznnrqGZRcXPu3OlSkW98A==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
 	a=rsa-sha256; c=relaxed/relaxed; t=1794992926;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-Id:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-CM-SenderInfo;
-	bh=xQGOsErGOZXq9+WXIxXt/LMa5Ic2cv6DVsqe8EAXFnA=;
-	b=sDpXQs6zWt+QXJyFrZEONEvozRkIvGqnqcwkSWSwraOH+Bv+8NWfuwvlmW1BLhNtgFpk
-	 j6aUOY57eHUa7j1nki1k327BqMFWFSkip8eFfr1qzPf4T9Adavf4NP+skBPYbh1MJslZZ
-	 VtsPUWo9CQs1NOhBjqcjv7TswTKvsFIS/uIZAEnT26TeWgRo7TOBUwyCxqwdTt+78rqAY
-	 bltsijNiJeVAG/KoZ27iF7V4ENDVy7rzHLeq8Dx4yksjv1S79k/hCFPx/5gaQwUfGZ8hl
-	 FMeBd0o8GpRQVhsxygon1QBHSY4MvuCXU67wRnqpw2NM7+J/XtMGWiVJM3jKh7Hj4vQ==
+	bh=VZ/3jpv2p7LUO1IxNIOoEwMsoCHTUTllM8AI8iUBLg4=;
+	b=TwyAxXmjVlvbUK2ZqV7158V4nwQiujF0xjz9RDdF6pzkEfDI0YdK7iA1gKoULjhWegAr
+	 JwSVSZpSXeqOG3hhOqroGWhEVLYD67O3RrnS0FevBgC/M1nGszisvxRkLmWJHcqY5Ftkq
+	 vu8VKwp1S7DhVR/Lz3p71rdPsezSJstp0IzjJcgJFCj1hPQfVYApyTTbFiMA2rGw+gqU5
+	 s4lT+9RoMLx8M14t8ALkF+3WgOibh6zj2oKkzUCowzVwpZQNeLTO9fuZ6QvRAf1L23duo
+	 +Lqvxa5jUGOl1adPTTA+UKDhKz+1zm1cnHTq/OIpNeI9fvBEg2lp/goH+0fWHvfK0AA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=lkc8tJW7;
-	arc=none smtp.remote-ip=220.197.31.5
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=iiR2bk2H;
+	arc=none smtp.remote-ip=117.135.210.3
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED30F606A888
-	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:08:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org ED30F606A888
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876FA606A31C
+	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:08:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 876FA606A31C
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=lkc8tJW7
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=iiR2bk2H
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=xQ
-	GOsErGOZXq9+WXIxXt/LMa5Ic2cv6DVsqe8EAXFnA=; b=lkc8tJW7/qUtvvlfHD
-	VF7kM+mNlils5ctbxP4ZdskwWx4EUfewzzjp/1vxiy2O1NvdNTBs+wySW8a9KrCx
-	xAMpolRPhrQnath7fNOs0/1IOglHwrjlQnYo+vqX9AsovLU3eOUNufol0WcnT77H
-	YkJXM/8iiHKhQJQCyi3UM7Bhs=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=VZ
+	/3jpv2p7LUO1IxNIOoEwMsoCHTUTllM8AI8iUBLg4=; b=iiR2bk2H3rIueqrzhr
+	TqkVTS89KP/wO4bDR/qzIWhH9DvMxB8RtM7ACj2YxxBr6HDet+/aXmcRMlyrXCYD
+	ZnjNTq/jhSGehAW+W/WExCaozA42JZ0cTuh4uAZmYpviqCF/bz5TtoRAh71NvZNE
+	A7DdduANmi0aaYf+aazfN71JM=
 Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3_+gOa_1qh6wGIA--.32884S4;
-	Wed, 18 Nov 2026 17:08:32 +0800 (CST)
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3_+gOa_1qh6wGIA--.32884S3;
+	Wed, 18 Nov 2026 17:08:31 +0800 (CST)
 From: Xuewen Wang <wangxuewen_ky@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com,
 	liubaolin12138@163.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
+	Xuewen Wang <wangxuewen@kylinos.cn>,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v6 10/37] ntfs: add filesystem metadata error reporting helpers
-Date: Wed, 18 Nov 2026 17:06:34 +0800
-Message-Id: <20261118090701.1858849-11-wangxuewen_ky@163.com>
+Subject: [PATCH v6 09/37] ntfs: serialize export parent reconstruction
+Date: Wed, 18 Nov 2026 17:06:33 +0800
+Message-Id: <20261118090701.1858849-10-wangxuewen_ky@163.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261118090701.1858849-1-wangxuewen_ky@163.com>
 References: <20261118090701.1858849-1-wangxuewen_ky@163.com>
@@ -66,136 +67,105 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3_+gOa_1qh6wGIA--.32884S4
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZw1fXw4Utw4xXF1UtrW7CFg_yoWrCr4rpF
-	97Awn3Kw4DJFy2grs2kr42vw1SkF92gw4Utr1UXw1xZ3W8tw18tF4vy3WF9F1SgFWrW34j
-	qr1j939rur4UZrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UK-eOUUUUU=
-X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzhD44Wr9axD5tgAA3k
+X-CM-TRANSID:_____wD3_+gOa_1qh6wGIA--.32884S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxWr4DCrW5CF45Wr1rGr43trb_yoW5uFyDpF
+	y3J39rKrs3AFWS9rnayF45Z34S934xGFWUWF1rG3WSywnYqrnFgF1ftF1jvr1FyrW8W3s0
+	qr4jga47GFWUXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UsvtZUUUUU=
+X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzQ-34Gr9aw8hSQAA3O
 
-From: Baolin Liu <liubaolin@kylinos.cn>
+From: Xuewen Wang <wangxuewen@kylinos.cn>
 
-Add file and volume helpers to report metadata errors through the generic
-deferred fsnotify infrastructure while retaining the volume error bit.
-Pass the caller's errno unchanged.
+Exportfs calls ntfs_get_parent() without holding the child's inode lock.
+FILE_NAME lookup and parent loading can therefore race with rename or
+rmdir, despite the function's existing locking comment.
 
-Move ntfs_inode_base() to inode.h and use it to identify the base file for
-attribute and extent inodes. Fall back to a volume report for I_FREEING
-or I_WILL_FREE, when retaining the inode for deferred reporting is unsafe.
-When SB_ACTIVE is clear, record only the volume error state.
+Hold the child's mrec_lock across the lookup and parent load. Release it
+on every error path and before d_obtain_alias().
 
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Signed-off-by: Xuewen Wang <wangxuewen@kylinos.cn>
 ---
 Changes in v6:
-Introduce the reporting helpers after the standalone fixes.
+Extract export-parent locking from v5 patch 24.
 
 Validation:
 - Compiled and linked the NTFS module object with W=1 at this stage.
+- No undefined references to ntfs_report_* or fserror_report_*.
 
- fs/ntfs/inode.c  |  7 -------
- fs/ntfs/inode.h  |  8 ++++++++
- fs/ntfs/super.c  | 29 +++++++++++++++++++++++++++++
- fs/ntfs/volume.h |  3 +++
- 4 files changed, 40 insertions(+), 7 deletions(-)
+ fs/ntfs/namei.c | 25 +++++++++++++++++++------
+ 1 file changed, 19 insertions(+), 6 deletions(-)
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index a892540146b8..7ebdbffcd75b 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -3571,13 +3571,6 @@ void ntfs_destroy_ext_inode(struct ntfs_inode *ni)
- 	kmem_cache_free(ntfs_inode_cache, ni);
- }
- 
--static struct ntfs_inode *ntfs_inode_base(struct ntfs_inode *ni)
--{
--	if (ni->nr_extents == -1)
--		return ni->ext.base_ntfs_ino;
--	return ni;
--}
--
- static int ntfs_attr_position(__le32 type, struct ntfs_attr_search_ctx *ctx)
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index d2d9fe732014..fb1946b9e7e3 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -1690,7 +1690,8 @@ const struct inode_operations ntfs_dir_inode_ops = {
+  * fs/exportfs/expfs.c::find_exported_dentry() which in turn is called from the
+  * default ->decode_fh() which is export_decode_fh() in the same file.
+  *
+- * Note: ntfs_get_parent() is called with @d_inode(child_dent)->i_mutex down.
++ * Serialize the file name lookup and parent load against rename and rmdir
++ * with the child's mrec_lock; exportfs does not hold the child's inode lock.
+  *
+  * Return the dentry of the parent directory on success or the error code on
+  * error (IS_ERR() is true).
+@@ -1698,6 +1699,7 @@ const struct inode_operations ntfs_dir_inode_ops = {
+ static struct dentry *ntfs_get_parent(struct dentry *child_dent)
  {
+ 	struct inode *vi = d_inode(child_dent);
++	struct inode *parent;
+ 	struct ntfs_inode *ni = NTFS_I(vi);
+ 	struct mft_record *mrec;
+ 	struct ntfs_attr_search_ctx *ctx;
+@@ -1707,15 +1709,19 @@ static struct dentry *ntfs_get_parent(struct dentry *child_dent)
  	int err;
-diff --git a/fs/ntfs/inode.h b/fs/ntfs/inode.h
-index 7ea52c59c04b..3fcf5b761eab 100644
---- a/fs/ntfs/inode.h
-+++ b/fs/ntfs/inode.h
-@@ -298,6 +298,14 @@ static inline bool ntfs_inode_is_named_stream(struct ntfs_inode *ni)
- 	return NInoAttr(ni) && ni->type == AT_DATA && ni->name_len;
+ 
+ 	ntfs_debug("Entering for inode 0x%llx.", ni->mft_no);
++	mutex_lock(&ni->mrec_lock);
+ 	/* Get the mft record of the inode belonging to the child dentry. */
+ 	mrec = map_mft_record(ni);
+-	if (IS_ERR(mrec))
+-		return ERR_CAST(mrec);
++	if (IS_ERR(mrec)) {
++		err = PTR_ERR(mrec);
++		goto unlock_err;
++	}
+ 	/* Find the first file name attribute in the mft record. */
+ 	ctx = ntfs_attr_get_search_ctx(ni, mrec);
+ 	if (IS_ERR(ctx)) {
+ 		unmap_mft_record(ni);
+-		return ERR_PTR(PTR_ERR(ctx));
++		err = PTR_ERR(ctx);
++		goto unlock_err;
+ 	}
+ try_next:
+ 	err = ntfs_attr_lookup(AT_FILE_NAME, NULL, 0, CASE_SENSITIVE, 0, NULL,
+@@ -1727,7 +1733,7 @@ static struct dentry *ntfs_get_parent(struct dentry *child_dent)
+ 			ntfs_error(vi->i_sb,
+ 				   "Inode 0x%llx does not have a file name attribute.  Run chkdsk.",
+ 				   ni->mft_no);
+-		return ERR_PTR(err);
++		goto unlock_err;
+ 	}
+ 	attr = ctx->attr;
+ 	if (unlikely(attr->non_resident))
+@@ -1743,7 +1749,14 @@ static struct dentry *ntfs_get_parent(struct dentry *child_dent)
+ 	ntfs_attr_put_search_ctx(ctx);
+ 	unmap_mft_record(ni);
+ 
+-	return d_obtain_alias(ntfs_iget(vi->i_sb, parent_ino));
++	parent = ntfs_iget(vi->i_sb, parent_ino);
++	goto out;
++
++unlock_err:
++	parent = ERR_PTR(err);
++out:
++	mutex_unlock(&ni->mrec_lock);
++	return d_obtain_alias(parent);
  }
  
-+/* Extent and attached attribute inodes refer to their base MFT inode. */
-+static inline struct ntfs_inode *ntfs_inode_base(struct ntfs_inode *ni)
-+{
-+	if (ni->nr_extents == -1)
-+		return ni->ext.base_ntfs_ino;
-+	return ni;
-+}
-+
- /* Return the base MFT inode for an attribute inode, or @ni itself. */
- static inline struct ntfs_inode *ntfs_base_inode(struct ntfs_inode *ni)
- {
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 79c2e1c4a2ed..773e5208bdbf 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -14,6 +14,7 @@
- #include <linux/sched/mm.h>
- #include <linux/fs_context.h>
- #include <linux/fs_parser.h>
-+#include <linux/fserror.h>
- 
- #include "sysctl.h"
- #include "logfile.h"
-@@ -426,6 +427,34 @@ const struct option_t on_errors_arr[] = {
- 	{ 0,			NULL }
- };
- 
-+/*
-+ * Report confirmed metadata corruption as -EFSCORRUPTED, matching the errno
-+ * returned to the caller. Preserve the errno of I/O and recovery failures
-+ * so listeners can distinguish their causes.
-+ */
-+void ntfs_report_metadata_error(struct ntfs_volume *vol, int error)
-+{
-+	NVolSetErrors(vol);
-+	if (vol->sb->s_flags & SB_ACTIVE)
-+		fserror_report_metadata(vol->sb, error, GFP_ATOMIC);
-+}
-+
-+void ntfs_report_file_metadata_error(struct inode *inode, int error)
-+{
-+	struct ntfs_inode *ni = NTFS_I(inode);
-+
-+	/* Attribute inodes share the file handle of their base inode. */
-+	inode = VFS_I(ntfs_inode_base(ni));
-+	/* Eviction cannot retain an inode reference for the deferred report. */
-+	if (inode_state_read_once(inode) & (I_FREEING | I_WILL_FREE)) {
-+		ntfs_report_metadata_error(NTFS_SB(inode->i_sb), error);
-+		return;
-+	}
-+	NVolSetErrors(NTFS_SB(inode->i_sb));
-+	if (inode->i_sb->s_flags & SB_ACTIVE)
-+		fserror_report_file_metadata(inode, error, GFP_ATOMIC);
-+}
-+
- void ntfs_handle_error(struct super_block *sb)
- {
- 	struct ntfs_volume *vol = NTFS_SB(sb);
-diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
-index ed5c0ccb9cd9..27f58beb4b2d 100644
---- a/fs/ntfs/volume.h
-+++ b/fs/ntfs/volume.h
-@@ -262,6 +262,9 @@ DEFINE_NVOL_BIT_OPS(SymlinkNative)
- DEFINE_NVOL_BIT_OPS(MftBootstrap)
- DEFINE_NVOL_BIT_OPS(StreamsWindows)
- 
-+void ntfs_report_metadata_error(struct ntfs_volume *vol, int error);
-+void ntfs_report_file_metadata_error(struct inode *inode, int error);
-+
- static inline void ntfs_inc_free_clusters(struct ntfs_volume *vol, s64 nr)
- {
- 	if (!NVolFreeClusterKnown(vol))
+ static struct inode *ntfs_nfs_get_inode(struct super_block *sb,
 -- 
 2.51.0
 
