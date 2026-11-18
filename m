@@ -1,58 +1,61 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.223
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794992392;
-	b=JXy403yiG8898b7iJ1fH1V5kvWhc5tMknIxUC695rlkm+76tFbbjNFgfvkuMAQgbEIh3
-	 gs9OdujiZPp0cvSsjIwkdOhrCxb4fflwNX/h38CbR4l24kOEIOdfmc89r+/9ZwpNPk3vT
-	 hVLjGZxhRcaueQtXCEMIRtVQuEZ69ah9IISNgn1hJXWx918PIs0lZ83a9AGYh83XQaGW5
-	 bAHvyHaMc5DsRWiDvMhbQz0LUdltzn4rb3Z6RqAQbrGaEirakO5Ux+hc+kayBWdCU2rp6
-	 YU8QCOK6rAUIfyOte4pda9AB52YMRt5iSybIPaQZU/SLBgJVPGN5cDTxdBs29PVhzxg==
+	t=1794992862;
+	b=VY9puj5Famz29bcwgR4rttP1x/mwVYV2d0JQDk5pMogy44B5dt/SuHaKMfPtqK9V5NQ1
+	 pCtmA7cSFODfyIkqCfqJECJCS+6N6Lv19ttN4WuPf1H7+F5ywN0NcU67YWZwX/swtkLpv
+	 05m7B6thRaH/x/RncVmDnGFkiuH2ABm5Uk0ZLic9Hx+VMB4LJ4NC2xQnzGOIn97ifw6vT
+	 FQxUDGWvzPkoeol2+IRvX4ISFJSb2RjqzK5lt/KjXXnEMSb4Dw8l58T132GQrJlqw5j2z
+	 uPsNHWEJN1XslbNW0ru8T81HhHXk01kD8WIAVfc/iWAsx8wpCJlrGqGUovU7LSDnbXA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794992392;
-	h=DMARC-Filter:dkim-signature:Received:Received:Received:Message-ID:
-	 Date:MIME-Version:User-Agent:Subject:To:CC:References:
-	 Content-Language:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-	bh=zDjwPIFBALJRu9G1JpFQxNCh37Ku2FGitfdnf5CWttU=;
-	b=Ay2QeI7qD8mTrhZyiDxMrK12Bhf4txO5xD+CQ9OtVfYkSp5iIUJe6hCP8AogyEZwYjg6
-	 iX3HDPqk0vInKF8Rg4n8TC+m9X3qw6HsvJGxByKIABH80RNVqkw+lTzyYQz8wq45uMqiT
-	 nrvW4rqoIFyYf/+XYUVFreoc9yplrGz63b8rSxJjW+PQO8e578F4Nvsu1SLKfpXgWroM/
-	 b0Jl5yerRvQzVEQxncQ0wjPN3EM9ScDdws9oxjoC4Dxiy/BeLGcu/Z2n+16ljBp9P9Lrn
-	 WdXGawnFsffntkNC43Msyc+eHG6ZV0oeoqfaEP8M9RKCNUpsYPqkXxre/Rl+4tcE1Fw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794992862;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-Id:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-CM-SenderInfo;
+	bh=yPTYnjS9dfOlVPsaqtPNbHzv4R+Dc3E0RGRzxTOWvsw=;
+	b=Y9uPr3UtWwc596zFvOWUClkpzTH99+qSM15Z9Zwdd8Kvj0RkBq89t/QSXqAnq2kl+0bq
+	 RmJpe+dCgzRNtSCSGzhvJoitlBZ+J96RMxg7vGx6XDutgwDXupkJu5HWnVW0tV3pnSiRw
+	 OFG60DcWbx2dd9NBs3ubp+F6u7fghcey54tYpls7Ds4AZSNiGUqZqQEaNCKnV511oYwS6
+	 j7Ep3p8lUdQxD46a0EArwXUox4O5qY/BecKiZ1yclWmPmB3i+hb6tHt36o0u5W094Kqp+
+	 fqk4Xm2KXJtI2Wo1mh2Oa3z24A2qbOKP7srEhnqCblSQ1dzob0MArrY94kHw196LiAg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=huawei.com;
-	spf=pass smtp.mailfrom=huawei.com;
-	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=YG0f5s+2;
-	arc=none smtp.remote-ip=113.46.200.223
-Received: from canpmsgout08.his.huawei.com (canpmsgout08.his.huawei.com [113.46.200.223])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=MqunJeh2;
+	arc=none smtp.remote-ip=220.197.31.3
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5533A606A31C;
-	Wed, 18 Nov 2026 08:59:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 5533A606A31C
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52037606A334
+	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:07:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 52037606A334
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=YG0f5s+2
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=zDjwPIFBALJRu9G1JpFQxNCh37Ku2FGitfdnf5CWttU=;
-	b=YG0f5s+2kvHrKlKCN7CB4HY4p0LT+CaaaGw+BSvo7+/ssB/SQ9sM0FXb1MTh9BFkL9Mv7Wn3S
-	BNOqmdVJd6x1gk7TjCfNf3D3ZpPYsdFv+Yf8GC5xj0argsiNrvpyQ++8NgtWzUN+FazgOOGwEZ0
-	m7pnB1IrMWzbaj4bmorQi1I=
-Received: from mail.maildlp.com (unknown [172.19.163.163])
-	by canpmsgout08.his.huawei.com (SkyGuard) with ESMTPS id 4jTwWs2YwTzmV7G;
-	Wed, 18 Nov 2026 16:59:21 +0800 (CST)
-Received: from whupemk100010.china.huawei.com (unknown [7.152.184.41])
-	by mail.maildlp.com (Postfix) with ESMTPS id B45424048B;
-	Wed, 18 Nov 2026 16:59:40 +0800 (CST)
-Received: from [10.67.110.140] (10.67.110.140) by
- whupemk100010.china.huawei.com (7.152.184.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 18 Nov 2026 16:59:31 +0800
-Message-ID: <bdc22808-9f22-46f7-b42d-e6bd8e1eeaca@huawei.com>
-Date: Wed, 18 Nov 2026 16:59:29 +0800
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=MqunJeh2
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=yP
+	TYnjS9dfOlVPsaqtPNbHzv4R+Dc3E0RGRzxTOWvsw=; b=MqunJeh2m1aGBcvOzK
+	y9AyuHMAQQH9ZcYmWLMA/4vU9DVXv4Z0WvmCpvavZIkBwRJouDwLZYeFpaV0k11j
+	400JpUTtsTR3MiyHlJEenmjS6ZKies9hzoUF2RcTZtAbTYpoY2xayoBqFNw7VAa7
+	qb4wyfwC7ABFtooKrkdiQZV7A=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDn7yTNav1qnmzWIQ--.7895S4;
+	Wed, 18 Nov 2026 17:07:26 +0800 (CST)
+From: Xuewen Wang <wangxuewen_ky@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com,
+	liubaolin12138@163.com
+Cc: ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v6 02/37] ntfs: preserve cluster-free counts in attribute cleanup
+Date: Wed, 18 Nov 2026 17:06:26 +0800
+Message-Id: <20261118090701.1858849-3-wangxuewen_ky@163.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20261118090701.1858849-1-wangxuewen_ky@163.com>
+References: <20261118090701.1858849-1-wangxuewen_ky@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -62,132 +65,128 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH -next -v4 02/17] LSM: pass struct path to the
- inode_setsecctx hook
-To: Al Viro <viro@zeniv.linux.org.uk>
-CC: <mic@digikod.net>, <gnoack@google.com>, <paul@paul-moore.com>,
-	<brauner@kernel.org>, <jack@suse.cz>, <amir73il@gmail.com>,
-	<andrii@kernel.org>, <apparmor@lists.ubuntu.com>, <ast@kernel.org>,
-	<axboe@kernel.dk>, <bpf@vger.kernel.org>, <casey@schaufler-ca.com>,
-	<cel@kernel.org>, <cem@kernel.org>, <chenxiaosong@chenxiaosong.com>,
-	<code@tyhicks.com>, <corbet@lwn.net>, <Dai.Ngo@oracle.com>,
-	<dakr@kernel.org>, <daniel@iogearbox.net>, <dhowells@redhat.com>,
-	<dlemoal@kernel.org>, <dmitry.kasatkin@gmail.com>,
-	<driver-core@lists.linux.dev>, <dsterba@suse.com>,
-	<ecryptfs@vger.kernel.org>, <eddyz87@gmail.com>, <emil@etsalapatis.com>,
-	<eric.snowberg@oracle.com>, <exfat@lists.linux.dev>,
-	<georgia.garcia@canonical.com>, <gregkh@linuxfoundation.org>, <hch@lst.de>,
-	<hirofumi@mail.parknet.co.jp>, <hyc.lee@gmail.com>,
-	<ihor.solodrai@linux.dev>, <jlayton@kernel.org>, <jmorris@namei.org>,
-	<johan@kernel.org>, <john.fastabend@gmail.com>,
-	<john.johansen@canonical.com>, <jolsa@kernel.org>, <kpsingh@kernel.org>,
-	<linkinjeon@kernel.org>, <linux-api@vger.kernel.org>,
-	<linux-block@vger.kernel.org>, <linux-btrfs@vger.kernel.org>,
-	<linux-cifs@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-fsdevel@vger.kernel.org>, <linux-integrity@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
-	<linux-nfs@vger.kernel.org>, <linux-security-module@vger.kernel.org>,
-	<linux-trace-kernel@vger.kernel.org>, <linux-unionfs@vger.kernel.org>,
-	<linux-xfs@vger.kernel.org>, <liubaolin12138@163.com>,
-	<martin.lau@linux.dev>, <mason@kernel.org>, <mathieu.desnoyers@efficios.com>,
-	<matt@bobrowski.net>, <memxor@gmail.com>, <mhiramat@kernel.org>,
-	<miklos@szeredi.hu>, <neil@brown.name>, <netfs@lists.linux.dev>,
-	<ntfs@lists.linux.dev>, <okorniev@redhat.com>, <omosnacek@gmail.com>,
-	<penguin-kernel@i-love.sakura.ne.jp>, <rafael@kernel.org>,
-	<rdunlap@infradead.org>, <roberto.sassu@huawei.com>, <rostedt@goodmis.org>,
-	<selinux@vger.kernel.org>, <senozhatsky@chromium.org>, <serge@hallyn.com>,
-	<sj1557.seo@samsung.com>, <skhan@linuxfoundation.org>, <song@kernel.org>,
-	<stephen.smalley.work@gmail.com>, <takedakn@nttdata.co.jp>, <tom@talpey.com>,
-	<yonghong.song@linux.dev>, <yuezhang.mo@sony.com>, <zohar@linux.ibm.com>,
-	<utilityemal77@gmail.com>, <lujialin4@huawei.com>
-References: <20261117150542.1169451-1-caixinchen1@huawei.com>
- <20261117150542.1169451-3-caixinchen1@huawei.com>
- <20261117184342.GR989762@ZenIV> <20261118001641.GA1669148@ZenIV>
-Content-Language: en-US
-From: Cai Xinchen <caixinchen1@huawei.com>
-In-Reply-To: <20261118001641.GA1669148@ZenIV>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
- whupemk100010.china.huawei.com (7.152.184.41)
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDn7yTNav1qnmzWIQ--.7895S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuryxtr4kWw1UuF13urW7Jwb_yoWrCrykpa
+	yxCrn3K3y7XF9rWws7tw1DZa4Sgw40gryjgryDJw1ay3Z0qw1xtas8trW8ur1fKrWUGwn5
+	Xr4UK3y7u3WUX37anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UJ9NxUUUUU=
+X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzg-n0Gr9as-y5wAA3R
 
-Sorry, this is a major issue. I checked the current state of the patchset
+From: Baolin Liu <liubaolin@kylinos.cn>
 
-- fs/attr.c, fs/open.c, fs/inode.c, fs/utimes.c, fs/namei.c,
-fs/coredump.c, drivers/block/loop.c: nd->path or file->f_path (in loop.c:
-the f_path of the backing file, where file == NULL is intentional).
+ntfs_cluster_free() returns a signed 64-bit cluster count on success,
+not an integer status. Several attribute cleanup paths truncate that
+count or treat a positive count as an error. ntfs_attr_rm() can even
+return the count to callers that expect zero on success.
 
-- drivers/base/devtmpfs.c: the mount point of the parent directory, 
-which contains a directory entry that was just created or is about to be 
-deleted.
+Store the result in s64 variables, test negative results for failure,
+and compare the full count when validating an allocation rollback.
+Return zero from ntfs_attr_rm() after successful removal. This keeps
+successful deallocation from being misclassified by later reporting.
 
-- fs/cachefiles/xattr.c: cache->mnt, under which a directory entry is 
-searched.
+Fixes: 495e90fa3348 ("ntfs: update attrib operations")
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+Changes in v6:
+Keep the existing cluster-count fix ahead of reporting helpers.
 
-- fs/ecryptfs: ecryptfs_lower_path(), which is the mount point of the 
-lower-level directory entry itself.
+Validation:
+- Compiled and linked the NTFS module object with W=1 at this stage.
+- No undefined references to ntfs_report_* or fserror_report_*.
 
-- fs/nfsd: exp->ex_path.mnt, which contains fh_dentry, a value decoded via
-exportfs_decode_fh_raw(exp->ex_path.mnt,...), or exp->ex_path.dentry.
+ fs/ntfs/attrib.c | 27 +++++++++++++++------------
+ 1 file changed, 15 insertions(+), 12 deletions(-)
 
-- fs/overlayfs: ovl_upper_mnt(ofs), which contains the actual 
-upper-level directory entry.
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index 9266a3ea3b0f..72e0c94c878e 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -4194,7 +4194,7 @@ static int ntfs_attr_make_resident(struct ntfs_inode *ni, struct ntfs_attr_searc
+ 	struct super_block *sb = vol->sb;
+ 	struct attr_record *a = ctx->attr;
+ 	int name_ofs, val_ofs, err;
+-	s64 arec_size;
++	s64 arec_size, freed;
+ 
+ 	ntfs_debug("Entering for inode 0x%llx, attr 0x%x.\n",
+ 			(unsigned long long)ni->mft_no, ni->type);
+@@ -4282,8 +4282,8 @@ static int ntfs_attr_make_resident(struct ntfs_inode *ni, struct ntfs_attr_searc
+ 	 * the whole run list and thus it doesn't matter that the attribute
+ 	 * record is in a transiently corrupted state at this moment in time.
+ 	 */
+-	err = ntfs_cluster_free(ni, 0, -1, ctx);
+-	if (err) {
++	freed = ntfs_cluster_free(ni, 0, -1, ctx);
++	if (freed < 0) {
+ 		ntfs_error(sb, "Eeek! Failed to release allocated clusters");
+ 		ntfs_debug("Ignoring error and leaving behind wasted clusters.\n");
+ 	}
+@@ -4526,6 +4526,7 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
+ 	struct ntfs_attr_search_ctx *ctx = NULL;
+ 	struct runlist_element *rl, *rln;
+ 	s64 org_alloc_size, org_compressed_size;
++	s64 freed;
+ 	int err, err2;
+ 	struct ntfs_inode *base_ni;
+ 	struct super_block *sb = ni->vol->sb;
+@@ -4790,9 +4791,9 @@ static int ntfs_non_resident_attr_expand(struct ntfs_inode *ni, const s64 newsiz
+ 		down_write(&ni->runlist.lock);
+ rollback_locked:
+ 	/* Free allocated clusters. */
+-	err2 = ntfs_cluster_free(ni, ntfs_bytes_to_cluster(vol, org_alloc_size),
+-				-1, ctx);
+-	if (err2)
++	freed = ntfs_cluster_free(ni, ntfs_bytes_to_cluster(vol, org_alloc_size),
++				  -1, ctx);
++	if (freed < 0)
+ 		ntfs_debug("Leaking clusters");
+ 
+ 	/*
+@@ -5323,6 +5324,7 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
+ 	struct runlist_element *rl, *rlc;
+ 	struct runlist_element *old_rl = NULL;
+ 	s64 vcn = vcn_start, lcn, clu_count;
++	s64 freed;
+ 	s64 lcn_seek_from = -1;
+ 	int err = 0;
+ 	size_t new_rl_count, old_rl_count;
+@@ -5453,10 +5455,8 @@ int ntfs_attr_map_cluster(struct ntfs_inode *ni, s64 vcn_start, s64 *lcn_start,
+ 		ntfs_attr_reinit_search_ctx(ctx);
+ 		err = ntfs_attr_update_mapping_pairs_locked(ni, 0, ni);
+ 		if (err) {
+-			int err2;
+-
+-			err2 = ntfs_cluster_free(ni, vcn, clu_count, ctx);
+-			if (err2 < 0 || err2 != clu_count) {
++			freed = ntfs_cluster_free(ni, vcn, clu_count, ctx);
++			if (freed < 0 || freed != clu_count) {
+ 				ntfs_error(vol->sb,
+ 					   "Failed to free cluster allocation. Leaving inconsistent metadata.\n");
+ 				NVolSetErrors(vol);
+@@ -5504,6 +5504,7 @@ int ntfs_attr_rm(struct ntfs_inode *ni)
+ {
+ 	struct ntfs_attr_search_ctx *ctx;
+ 	int err = 0, ret = 0;
++	s64 freed = 0;
+ 	struct ntfs_inode *base_ni;
+ 	struct super_block *sb = ni->vol->sb;
+ 
+@@ -5525,10 +5526,12 @@ int ntfs_attr_rm(struct ntfs_inode *ni)
+ 			return -ENOMEM;
+ 		}
+ 
+-		ret = ntfs_cluster_free(ni, 0, -1, ctx);
+-		if (ret < 0)
++		freed = ntfs_cluster_free(ni, 0, -1, ctx);
++		if (freed < 0) {
++			ret = freed;
+ 			ntfs_error(sb,
+ 				"Failed to free cluster allocation. Leaving inconstant metadata.\n");
++		}
+ 		ntfs_attr_put_search_ctx(ctx);
+ 	}
+ 
+-- 
+2.51.0
 
-There are two places that violate (1), both introduced by this series of 
-patches in ksmbd:
-
-smb2_parent_compressed() and smb_inherit_dacl() pair the directory entry 
-returned by dget_parent()
-
-with path->mnt, and problems arise once that directory entry becomes the 
-root of its mount point.
-
-I will fix these issues in v5 and ensure this invariant.
-
-If you find any place where (1) still does not hold, please point it 
-out, and I
-will fix it.
-
-On 11/18/2026 8:16 AM, Al Viro wrote:
-> On Tue, Nov 17, 2026 at 06:43:42PM +0000, Al Viro wrote:
->> On Tue, Nov 17, 2026 at 11:05:27PM +0800, Cai Xinchen wrote:
->>> The inode_setsecctx hook and its security_inode_setsecctx() caller in
->>> fs/nfsd operate on a dentry even though both have a struct path
->>> available.  Pass a const struct path so that the coming conversion of the
->>> xattr helpers can be reflected in the implementations; for now SELinux
->>> and Smack keep passing path->dentry and &nop_mnt_idmap to
->>> __vfs_setxattr_locked().
->>>
->>> Also document in lsm_hook_defs.h what a struct path argument may be used
->>> for: it can be passed to VFS helpers taking a struct path, but nothing is
->>> guaranteed about path->mnt.
->> No, with the side of Hell, No.
->>
->>> + * Hooks that take a struct path argument: the VFS only sanctions passing
->>> + * the path to VFS helpers that take a struct path (e.g. notify_change());
->>> + * it makes no guarantees with regard to path->mnt, whose layout and
->>> + * implementation details are subject to change.  Implementations must
->>> + * not rely on its properties.
->> NAKed-by: Al Viro <viro@zeniv.linux.org.uk>
->>
->> If that kind of stuff actually does get passed to any existing hooks, we need
->> to fix that ASAP.  If not, consider that a blanket NAK on any patch series
->> that would introduce such.
->>
->> We are not going there.  At all.  "Must not rely on its properties" ==
->> "must make sure that no existing functions with struct path * arguments
->> ever have such malformed instances passed to them".  Which is not going
->> to be feasible to enforce.  And yes, that very much includes any VFS helpers.
-> To elaborate a bit: correctness of quite a few places does depend upon the
-> following invaraint:
-> 	path->mnt->mnt_sb == path->dentry->d_sb		(1)
-> for all struct path pointers they might possibly run into.  _Some_
-> functions might _currently_ be safe to call with that constraint violated;
-> there's neither a list of such functions nor any promise whatsoever that
-> call that is currently safe in such conditions will remain safe at any
-> later point.
->
-> _IF_ you can guarantee that (1) is not violated, we have something to
-> talk about; otherwise, don't call your object struct path and don't
-> pass it to anything that expects to deal with struct path.
