@@ -1,58 +1,57 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.226
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=124.126.103.232
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794993434;
-	b=DuOljkuICpGRohSi7aitP7JeO78KOVB/oDcyH++9Dxdio3w+cR01NBTgb7EOfmNR7Qk/
-	 HVgdoNDPqfQ8n5eCUuwklnTPRHZfKRDV5y+C3rXmDAifhMGkOJrMvlB9PUotpG9Fi1a0H
-	 YiS+xQdy1fffpmTpgBgX/+CQTWRR/AR2uakag8Ycm3tiFs8RMRm/11bShjnLq8vdCytkh
-	 ObJZOx0E7+CX+0Tgf9ClLMGYYBR/9WdFmlMduCoN8RwfVMtR7ICQHIm5qDYwuBpUmHytl
-	 /yHzqO0cK10/GD6F7/XVWNIc+49yyCB1YERUD86TTtl3A+LMAdEC+j4oUUyBBAUG8TA==
+	t=1794993698;
+	b=DJ3MIoOH1aehk2xOCq3XM9N6RadI4pHGsGDf7b7I5yuZkOYpsR/lSJ38N+8hWw53jW9H
+	 mryL/Y0f1zmGxGyC7gKQYgO+tMaULV/GE/KsKcSzscbeNXTT3wEHIEyCssXoNlIb+2Mhb
+	 00/HtDqOznBS6UhBmV71WQKpbkf5o0sdNIzIuXJMzD7gJsv2v+Uu2mjDsTElC37Gsy8lK
+	 mnJSIcfgT5qouZCKNxtP2qKy4baRqF266OdPaMChZroc2rgUp+6c5YHKNdQiyJAAxEhR/
+	 6RbNDSUK7CZOyc/A/wsp0UW7UECnINDsQjfL4GH/BevtrqOWPi+xGoyiCRHiwNPzQdA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794993434;
-	h=DMARC-Filter:dkim-signature:Received:Received:Received:Message-ID:
-	 Date:MIME-Version:User-Agent:Subject:To:CC:References:
-	 Content-Language:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-	bh=xsIsDZiCZyB7+lKhnSB47LX6hbKq7VMg+O30s3v8xU0=;
-	b=blMxYa9a8CyzqmybZfDPZJG6xWRdMr4BMfNiYxKfvabExelg6NcZaQ/pmGNVpiLeNTex
-	 pxJSrd2zMj7ZF1M50jIqBUmT/gtIprVL/lCqZDkRrR0VDi7lHd5INHCPG+dB+S0mEJRsp
-	 +6qfVRVpL18spsROkPKyN6nToGvyr3Br1tBW1BQ8whljAHX46Yxf+tcFYDyy82Tb+PRc/
-	 yaR05sSWJXIb9AejVRM+XgCPOO+IBcnDf/GlnQNW8FD/UZ8oBNVfzFF545nY/n7Dawqt3
-	 jQ3oSqhGLai+pfcyjfIVMpj6Ah/PYs5WBRLngv4uV5lDrzZsnncwriFer89067q7zJQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1794993698;
+	h=DMARC-Filter:X-UUID:X-CID-P-RULE:X-CID-O-INFO:X-CID-META:X-CID-BVR:
+	 X-CID-BAS:X-CID-FACTOR:X-CID-RHF:X-UUID:X-User:Received:Message-ID:
+	 Date:MIME-Version:User-Agent:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	bh=/DetbUIYKXQzbk+oHdkqO3rhMAegxn9qQJCE6A4Iuek=;
+	b=UnsR2D6bLIfymHiZmQBSjBe8Ah+JIdjaDNEUk1hjGAz8gpyg/gpIMDKDXvsQW+fSQEAK
+	 TNnmz/nv04JlbCw0s2UJHLs424CoZTLQhwpURVO8At0rRJqMCnH+5EDkyRQDB9SuLVCdz
+	 esTXvXgZHozFTUbL1wxpbgmcODZumFc+H4R6kcql+iOVbG67yorxAlqn5ueEAhKhzVJ18
+	 J12q55ioLdotdB+C2rjakpIvhCR6pfA+OTfXTg5ABj976gW0QgKhnRDiApfQrD3IsV1B3
+	 nnjrlXItjiXoYmu90tQZw8ufaiGlQ8J/4BQbM5c0ITmHm/MrKEdwJWxNZ0A2LYCaxHw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=huawei.com;
-	spf=pass smtp.mailfrom=huawei.com;
-	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=PV3E+oEf;
-	arc=none smtp.remote-ip=113.46.200.226
-Received: from canpmsgout11.his.huawei.com (canpmsgout11.his.huawei.com [113.46.200.226])
+	dmarc=none header.from=kylinos.cn;
+	spf=pass smtp.mailfrom=kylinos.cn;
+	arc=none smtp.remote-ip=124.126.103.232
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03ED8606A320;
-	Wed, 18 Nov 2026 09:17:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 03ED8606A320
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=PV3E+oEf
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=xsIsDZiCZyB7+lKhnSB47LX6hbKq7VMg+O30s3v8xU0=;
-	b=PV3E+oEfe6GWTlN7IzcOZNtMuGokpGaMaE5HT+w5Vk98jOWnb53YzhdAAkTed93AvGp6D+ngZ
-	ftGk2P047j6/rbz8Ke0Kewk86yZLKYBKuM/FH/uksdfAvh6qdTvxfoyU41EsmNujsw5oLc+20hb
-	oGEWnwe8RZuneZEt42a2+8c=
-Received: from mail.maildlp.com (unknown [172.19.162.92])
-	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4jTww76jtyzKm8G;
-	Wed, 18 Nov 2026 17:16:55 +0800 (CST)
-Received: from whupemk100010.china.huawei.com (unknown [7.152.184.41])
-	by mail.maildlp.com (Postfix) with ESMTPS id 41D7540586;
-	Wed, 18 Nov 2026 17:17:10 +0800 (CST)
-Received: from [10.67.110.140] (10.67.110.140) by
- whupemk100010.china.huawei.com (7.152.184.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 18 Nov 2026 17:17:02 +0800
-Message-ID: <61823b38-032d-4e4c-bcbb-82fe83c34ade@huawei.com>
-Date: Wed, 18 Nov 2026 17:17:01 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8CDC606A332
+	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:21:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org D8CDC606A332
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
+X-UUID: 6f835ee2e33111f19a56ed5b684f684d-20261118
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:fda8c48f-be4a-4280-af24-cf37efaca219,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:7db8b62,CLOUDID:7e59c3825b65cd6f6b0159e67896a815,BulkI
+	D:nil,BulkQuantity:0,SF:80|81|82|83|102|136|865|898,TC:nil,Content:0|15|52
+	|99,EDM:-3|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+	,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 6f835ee2e33111f19a56ed5b684f684d-20261118
+X-User: wangxuewen@kylinos.cn
+Received: from [172.30.70.102] [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <wangxuewen@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_128_GCM_SHA256 128/128)
+	with ESMTP id 1325071727; Wed, 18 Nov 2026 17:21:28 +0800
+Message-ID: <3a5764f4-2b8d-49d8-8e84-d500e1be3d8e@kylinos.cn>
+Date: Wed, 18 Nov 2026 17:21:26 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -63,62 +62,198 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH -next -v4 01/17] fs: pass struct path to notify_change()
-To: Al Viro <viro@zeniv.linux.org.uk>
-CC: <mic@digikod.net>, <gnoack@google.com>, <paul@paul-moore.com>,
-	<brauner@kernel.org>, <jack@suse.cz>, <amir73il@gmail.com>,
-	<andrii@kernel.org>, <apparmor@lists.ubuntu.com>, <ast@kernel.org>,
-	<axboe@kernel.dk>, <bpf@vger.kernel.org>, <casey@schaufler-ca.com>,
-	<cel@kernel.org>, <cem@kernel.org>, <chenxiaosong@chenxiaosong.com>,
-	<code@tyhicks.com>, <corbet@lwn.net>, <Dai.Ngo@oracle.com>,
-	<dakr@kernel.org>, <daniel@iogearbox.net>, <dhowells@redhat.com>,
-	<dlemoal@kernel.org>, <dmitry.kasatkin@gmail.com>,
-	<driver-core@lists.linux.dev>, <dsterba@suse.com>,
-	<ecryptfs@vger.kernel.org>, <eddyz87@gmail.com>, <emil@etsalapatis.com>,
-	<eric.snowberg@oracle.com>, <exfat@lists.linux.dev>,
-	<georgia.garcia@canonical.com>, <gregkh@linuxfoundation.org>, <hch@lst.de>,
-	<hirofumi@mail.parknet.co.jp>, <hyc.lee@gmail.com>,
-	<ihor.solodrai@linux.dev>, <jlayton@kernel.org>, <jmorris@namei.org>,
-	<johan@kernel.org>, <john.fastabend@gmail.com>,
-	<john.johansen@canonical.com>, <jolsa@kernel.org>, <kpsingh@kernel.org>,
-	<linkinjeon@kernel.org>, <linux-api@vger.kernel.org>,
-	<linux-block@vger.kernel.org>, <linux-btrfs@vger.kernel.org>,
-	<linux-cifs@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-fsdevel@vger.kernel.org>, <linux-integrity@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
-	<linux-nfs@vger.kernel.org>, <linux-security-module@vger.kernel.org>,
-	<linux-trace-kernel@vger.kernel.org>, <linux-unionfs@vger.kernel.org>,
-	<linux-xfs@vger.kernel.org>, <liubaolin12138@163.com>,
-	<martin.lau@linux.dev>, <mason@kernel.org>, <mathieu.desnoyers@efficios.com>,
-	<matt@bobrowski.net>, <memxor@gmail.com>, <mhiramat@kernel.org>,
-	<miklos@szeredi.hu>, <neil@brown.name>, <netfs@lists.linux.dev>,
-	<ntfs@lists.linux.dev>, <okorniev@redhat.com>, <omosnacek@gmail.com>,
-	<penguin-kernel@i-love.sakura.ne.jp>, <rafael@kernel.org>,
-	<rdunlap@infradead.org>, <roberto.sassu@huawei.com>, <rostedt@goodmis.org>,
-	<selinux@vger.kernel.org>, <senozhatsky@chromium.org>, <serge@hallyn.com>,
-	<sj1557.seo@samsung.com>, <skhan@linuxfoundation.org>, <song@kernel.org>,
-	<stephen.smalley.work@gmail.com>, <takedakn@nttdata.co.jp>, <tom@talpey.com>,
-	<yonghong.song@linux.dev>, <yuezhang.mo@sony.com>, <zohar@linux.ibm.com>,
-	<utilityemal77@gmail.com>, <lujialin4@huawei.com>
-References: <20261117150542.1169451-1-caixinchen1@huawei.com>
- <20261117150542.1169451-2-caixinchen1@huawei.com>
- <20261117183059.GP989762@ZenIV> <20261117183440.GQ989762@ZenIV>
-Content-Language: en-US
-From: Cai Xinchen <caixinchen1@huawei.com>
-In-Reply-To: <20261117183440.GQ989762@ZenIV>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [PATCH v6 00/37] Report NTFS metadata errors and shutdown through
+ FAN_FS_ERROR
+To: Xuewen Wang <wangxuewen_ky@163.com>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com, liubaolin12138@163.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20261118090701.1858849-1-wangxuewen_ky@163.com>
+From: wangxuewen <wangxuewen@kylinos.cn>
+In-Reply-To: <20261118090701.1858849-1-wangxuewen_ky@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
- whupemk100010.china.huawei.com (7.152.184.41)
 
-Yes.  ovl_do_notify_change() passes
-ovl_upper_mnt(ofs) together with the real upperdentry, so the sb matches,
-and the idmap handed down is ovl_upper_mnt_idmap(ofs), i.e. taken from
-that very mount.  It runs under with_ovl_creds(), like the other ovl_do_*
-forwards, so an LSM sees a genuine upper-layer path instead of a merged
-dentry whose mount we cannot name - which is the point of converting the
-metadata helpers.
 
-On 11/18/2026 2:34 AM, Al Viro wrote:
-> Incidentally, will the mount reference you are supplying in case of overlayfs
-> upper layer be any good for LSM users?
+
+在 2026/11/18 17:06, Xuewen Wang 写道:
+> From: Xuewen Wang <wangxuewen@kylinos.cn>
+> 
+> Report NTFS metadata corruption, failed recovery and shutdown through
+> FAN_FS_ERROR. File events identify the affected base file; volume events
+> cover errors without a safe file reference. Preserve the volume error bit
+> and errors= policy. Before SB_ACTIVE, metadata reporting helpers record
+> the volume error state without queuing an event.
+> 
+> Use -EFSCORRUPTED (-EUCLEAN) for confirmed corruption in the updated error
+> paths, both in reports and in failing NTFS operations. Preserve genuine
+> I/O, allocation and unsupported-format errors. Ordinary EOF and missing
+> names or streams are not corruption. Partial-I/O and best-effort
+> operations retain their return semantics; an independent recovery failure
+> can report a different errno from the initiating operation.
+> 
+> Based on ntfs-next commit b028412297e6
+> ("ntfs: convert a named $DATA stream safely when making room in a record").
+> 
+> Changes in v6:
+> - Address the v5 review of the Fixes-tagged attribute-move patch. Put the
+>    source-removal fix before the reporting infrastructure, using the
+>    existing NVolSetErrors() and diagnostics. Add FAN_FS_ERROR reporting at
+>    those sites in the final patch. The fix no longer depends on the new
+>    reporting helpers.
+> - Check the other fixes for the same dependency. Keep mapping-pairs
+>    writeback and cluster-count fixes first, and move search-context error
+>    propagation before the helpers. Separate buffered-read and compressed
+>    I/O errno propagation, readdir retry state, buffered fallback writeback
+>    errors and export-parent locking from the reporting changes.
+> - Rebase onto the updated ntfs-next. Retain its uninterruptible metadata
+>    reads, current iomap callback interface, named-stream conversion
+>    safeguards and index validation.
+> - Adapt the new ntfs_icx_ia_ensure() caller to error-pointer returns from
+>    ntfs_ia_open(). Clear the failed pointer before cleanup and preserve the
+>    original errno. Report a missing required INDEX_ALLOCATION attribute as
+>    corruption without repeating errors already reported while opening it.
+> - Classify the new index-entry VCN validation failures as EFSCORRUPTED.
+>    Report the new directory child-VCN bounds failure through the common
+>    cleanup exit, with the same errno returned to the caller.
+> - Report attribute-move source-removal and destination-cleanup failures
+>    after releasing the destination search context. Keep an independent
+>    cleanup failure distinct from the original removal failure.
+> - Avoid counting a propagated MFT mapping corruption again in the inode
+>    loader. Keep the report from MFT/runlist validation and preserve
+>    reports for unreported I/O errors and inode-local corruption.
+> 
+> The earlier review fixes remain:
+> - Cover the directory lookup, index-block read and nonresident iomap
+>    corruption paths identified in v3. Use ntfs_inode_base() for base-file
+>    attribution and test_and_set_bit() for one shutdown report per
+>    clear-to-set transition.
+> - Preserve search-context failures in ntfs_attr_exist() and its callers;
+>    preserve the inner ntfs_read_inode_mount() error instead of returning -1.
+> - Consolidate local reports at cleanup exits in the affected paths and
+>    avoid repeating propagated reports, while retaining independent
+>    recovery failures.
+> - Distinguish malformed or missing required EA metadata from lower-level
+>    read failures, and recheck HasEA under mrec_lock in listxattr().
+> 
+> The series now has 37 patches. The extra patches separate existing fixes
+> from reporting, so they can be reviewed and backported without pulling in
+> the new helpers.
+> 
+> Series organization:
+> - 1-9: fixes and error propagation without the new reporting helpers.
+> - 10: file and volume metadata reporting helpers.
+> - 11-16: boot/system metadata, logfile, runlists, iomap and compression.
+> - 17-23: attribute metadata, failed updates and inode cleanup.
+> - 24-29: index/directory operations, namespace recovery and exportfs.
+> - 30-35: MFT, EA/ACL, named-stream and reparse/ObjectID reporting.
+> - 36: atomic shutdown reporting.
+> - 37: reporting integration for the standalone attribute-move fix.
+> 
+> Validation:
+> - Built NTFS with W=1 and checked all 31 NTFS translation units with
+>    Sparse C=2, with no NTFS compiler or Sparse diagnostics.
+> - Passed 15 QEMU guest runs with NTFS built in. These cover normal file
+>    and namespace operations, named streams, inode/index/runlist/EA
+>    corruption, readdir, shutdown, filesystem ustat selftests and
+>    fsync/remount/data verification.
+> - The index cases include invalid INDX entries_offset and child VCNs
+>    outside INDEX_ALLOCATION. Lookup and readdir returned EUCLEAN and
+>    generated EUCLEAN events after the listener was ready.
+> - Passed 403 controlled scenarios using extracted functions with
+>    controlled dependencies and ASan/UBSan. These include the existing
+>    error-path regressions, the new index-allocation guard and VCN checks,
+>    and source-removal/destination-cleanup failures both before and after
+>    reporting integration.
+> - Added two exact-count QEMU checks: an invalid MFT FILE magic and an
+>    inode-local zero link count each return EUCLEAN and report one error.
+>    The old kernel fails the same MFT check with error_count=2.
+> - The guest runs enabled non-strict KCSAN and lockdep. All three KCSAN
+>    selftests passed, with no KCSAN or lockdep diagnostics in the test logs.
+> 
+> Thanks to Hyunchul and Namjae for reviewing the earlier versions.
+> 
+> Baolin Liu (11):
+>    ntfs: preserve cluster-free counts in attribute cleanup
+>    ntfs: add filesystem metadata error reporting helpers
+>    ntfs: report runlist and cluster allocation metadata errors
+>    ntfs: report attribute lookup and validation errors
+>    ntfs: report attribute list update and recovery failures
+>    ntfs: report attribute conversion and mapping update failures
+>    ntfs: report inode metadata and eviction cleanup errors
+>    ntfs: report MFT record validation and lifecycle errors
+>    ntfs: report MFT bitmap and data growth recovery failures
+>    ntfs: report MFT writeback errors to fsnotify
+>    ntfs: report each shutdown transition once
+> 
+> Dandan Wu (11):
+>    ntfs: report required system file and volume metadata errors
+>    ntfs: report logfile metadata and emptying errors
+>    ntfs: report iomap metadata corruption
+>    ntfs: report LZNT1 and WOF compressed stream errors
+>    ntfs: report attribute resize and relocation recovery failures
+>    ntfs: report incomplete attribute range updates
+>    ntfs: report index validation and block I/O errors
+>    ntfs: preserve and report index traversal errors
+>    ntfs: report directory lookup and metadata corruption
+>    ntfs: report index update and recovery failures
+>    ntfs: report namespace and file recovery errors
+> 
+> Xuewen Wang (15):
+>    ntfs: propagate mapping-pairs update errors from inode writeback
+>    ntfs: handle source record removal failure during attribute moves
+>    ntfs: preserve attribute search context initialization errors
+>    ntfs: preserve synchronous buffered read errors
+>    ntfs: preserve compressed I/O preparation errors
+>    ntfs: retain directory iteration state after errors
+>    ntfs: preserve buffered fallback writeback errors
+>    ntfs: serialize export parent reconstruction
+>    ntfs: report boot geometry and MFT bootstrap errors
+>    ntfs: report attribute record update and cleanup failures
+>    ntfs: report export parent reconstruction errors
+>    ntfs: report EA metadata and restoration errors
+>    ntfs: report named stream metadata and recovery errors
+>    ntfs: report reparse and object ID metadata errors
+>    ntfs: report attribute move removal and cleanup failures
+> 
+>   fs/ntfs/aops.c         |  20 +-
+>   fs/ntfs/attrib.c       | 898 ++++++++++++++++++++++++++++++-----------
+>   fs/ntfs/attrib.h       |   8 +-
+>   fs/ntfs/attrlist.c     |  61 ++-
+>   fs/ntfs/attrlist.h     |   4 +-
+>   fs/ntfs/bitmap.c       |   2 +-
+>   fs/ntfs/compress.c     |  35 +-
+>   fs/ntfs/dir.c          | 115 ++++--
+>   fs/ntfs/ea.c           | 173 +++++---
+>   fs/ntfs/file.c         |  30 +-
+>   fs/ntfs/index.c        | 370 +++++++++++------
+>   fs/ntfs/inode.c        | 269 ++++++++----
+>   fs/ntfs/inode.h        |  10 +-
+>   fs/ntfs/iomap.c        |  66 ++-
+>   fs/ntfs/lcnalloc.c     |  17 +-
+>   fs/ntfs/logfile.c      |  58 +--
+>   fs/ntfs/mft.c          | 353 ++++++++++------
+>   fs/ntfs/named_stream.c |  61 ++-
+>   fs/ntfs/namei.c        | 144 +++++--
+>   fs/ntfs/object_id.c    |  50 ++-
+>   fs/ntfs/reparse.c      | 109 ++++-
+>   fs/ntfs/reparse.h      |   2 +-
+>   fs/ntfs/runlist.c      |  23 +-
+>   fs/ntfs/runlist.h      |   4 +-
+>   fs/ntfs/stream.h       |   2 +-
+>   fs/ntfs/super.c        | 310 ++++++++++----
+>   fs/ntfs/volume.h       |   4 +
+>   fs/ntfs/wof.c          |  49 ++-
+>   28 files changed, 2311 insertions(+), 936 deletions(-)
+> 
+> 
+> base-commit: b028412297e640db52195df2649368c1910e8e4b
+
+Hi Namjae and Hyunchul,
+I've addressed your review comments on v5 in the v6 series.
+Before sending the series, I also had my colleague Baolin review it.
+I'd appreciate your review of the updated patches.
+
+Thank you for your time and feedback.
+
+Best regards,
+Xuewen
