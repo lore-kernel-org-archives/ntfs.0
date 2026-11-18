@@ -1,58 +1,59 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794992990;
-	b=UIF56F0plCTPD/WwihFeb0jRbACDKUa7Lyu1WAfjvPMSC8bUSwCwBA7zLLM/kn+L2uMu
-	 X01FeB4WZue+00usEfn8hVgDs8k4BGm62I0Hlde7nuwxbYOo7SgMM2Co1iAOa3ykc6j2e
-	 +1ymrLeUARaml8emX1td2G4vlWVfjo0DOWdnfnSGfGQpg+S9KrpXJ/P6ugPzNpi1enZW9
-	 f6oHRDQdSNcQ6Z6lcvaiTywGDr91BqaKsN7Qc6gb/Fe0nVI8AkaBsQ8jct2w3D5dNcl07
-	 UwSkcZI6rIJBvtdIzmq+RRTr7TE+IYp3dW9zwbVZN8xY+c1i0iY/UuIiw1G6LsyLCgw==
+	t=1794993011;
+	b=0+F9LMye1DWz6Fu2XHR440cmw9ut0xmZouhKf+BTPIIleRKVImu5et2ZbDaNPJ6SDLor
+	 j2/j621uN9iPAZs+6/KvJcPp5e9TC4H66jE25h7DrszKYJ6oRukCiG+tJQ6XukQUDFqQx
+	 zqBJTFU5FM+bI75mFG/Vb4amMGnYuwdT6UsPcF31czxqbqu62s/7UiobC35SSHVX4d9z7
+	 89gT8i/Y0/ZopBVmlu+jsQhbhPQBRLbB/8oSpeslj4dCBujGRbhO06I9tF8TtMA31HVCM
+	 iwUepYTNrAbjHYI8yV/vJpqjsGwAghKtK3KFKE68FFWcp/BJvSoVGndsWt+fhKMulfA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794992990;
+	a=rsa-sha256; c=relaxed/relaxed; t=1794993011;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
 	 Message-Id:X-Mailer:In-Reply-To:References:MIME-Version:
 	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
 	 X-CM-SenderInfo;
-	bh=8jmdqd8DyK6V9DCYHp9UKsd6HoqeNl6CwUcTA7WB/Tg=;
-	b=IYtpocObhE6Rr+OuWXepB79ZxgjRyVVZHc2RQwlPJtEcG7zM1DGelvDIvpp+nojGPF4E
-	 +KSqgYkPbHg/0g0KYiKSZJUxZWAbzSEerBF3efR0FHt/h1T9gzQuX84pJ8JtJdArBj90m
-	 RX90TzyVzybJb53ePL5CGH9o2yRowqwMBxxJmpU2lQ+33AD/YyyZH2S0HkcBvWnkvReKJ
-	 4w9fQ2rulPuN5umuY1Ikt7WA9mzN+NQrCbQU60Fi6zJvVSR1Ta53eZ3QtV7t/0fixX8pI
-	 A00/p+JRqca0F3d0Dt9UlvsxtBthRG/zODQ15jxEFniwQJ7fMfughxTJPSlugrbWxVg==
+	bh=ut1WDZh357VcgryaWJdugg8z31Tg8OQNngjP5rygcbQ=;
+	b=AVEcNEgNB+ONEk3tDQZiI0dH/L7kPiHc+5fuczsG3hlOXOQeidmb0cxj+YdxlvBIgpZ7
+	 wlW5YrYs+xNtd6SgEksNGyleepN3sqkk/LtiL02I78r8d57NyS9jPDRP3X32OHnCcjGv8
+	 3sWYwN1P0EjGiyoUR3d/z+v9REVcXbqgMyUkfhariCm0Qq2yJErP012Df+Eu6/DOLiN5E
+	 Xab6X6QfUOiEyOaq7upYcxAVoezp2/5qToOQ2p+ZZWWuIt1Kol9XHRUAUFBifsbNYXpsH
+	 09cRykzwVUBRlwP8UncNI4Cb8JfWI2z3VcABnQzxwe/yA9UDhAAnRJSDlOd209A/x1g==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=S4814nBS;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=ezlpkpzI;
 	arc=none smtp.remote-ip=117.135.210.5
 Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F28606A886
-	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:09:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 15F28606A886
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 489BB606A320
+	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:10:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 489BB606A320
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=S4814nBS
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=ezlpkpzI
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=8j
-	mdqd8DyK6V9DCYHp9UKsd6HoqeNl6CwUcTA7WB/Tg=; b=S4814nBSBNEH7KEjci
-	WzC9caTR6GyfTzSwzJdiHrs5USQTpdFejaskAjMlE9eQiNr0+QX87Nzwee2Xe4il
-	Q2hP8kd+0gaUlVHvw8WrWZnSJdCZXg4UekjhWctZnGMrGiTPQ5yt0RfBMqgdJB4h
-	Fhq/9Nv4ACAHTzuYCmrQnvQjQ=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=ut
+	1WDZh357VcgryaWJdugg8z31Tg8OQNngjP5rygcbQ=; b=ezlpkpzIRTariYMQrQ
+	CIXtEq8lu6FVD+FdsNXS8QMpp6fGmRj6Mu7dhx7NaSrMEeaKJDjDtWkbI6wghb4u
+	jk+HIr1JQ7OJg8tv8LF8sHg9duWxxLbC8Cla45KOa/ZPWHcafK/OxgP3ROP6md6V
+	HkudxcEXauMrIhPqRupml2NRc=
 Received: from localhost.localdomain (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id PigvCgC3xC1Pa_1qPhPuGg--.62323S9;
-	Wed, 18 Nov 2026 17:09:40 +0800 (CST)
+	by gzsmtp3 (Coremail) with SMTP id PigvCgC3xC1Pa_1qPhPuGg--.62323S2;
+	Wed, 18 Nov 2026 17:09:36 +0800 (CST)
 From: Xuewen Wang <wangxuewen_ky@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com,
 	liubaolin12138@163.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
+	Dandan Wu <wudandan@kylinos.cn>,
 	Baolin Liu <liubaolin@kylinos.cn>
-Subject: [PATCH v6 23/37] ntfs: report inode metadata and eviction cleanup errors
-Date: Wed, 18 Nov 2026 17:06:47 +0800
-Message-Id: <20261118090701.1858849-24-wangxuewen_ky@163.com>
+Subject: [PATCH v6 16/37] ntfs: report LZNT1 and WOF compressed stream errors
+Date: Wed, 18 Nov 2026 17:06:40 +0800
+Message-Id: <20261118090701.1858849-17-wangxuewen_ky@163.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261118090701.1858849-1-wangxuewen_ky@163.com>
 References: <20261118090701.1858849-1-wangxuewen_ky@163.com>
@@ -66,418 +67,215 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PigvCgC3xC1Pa_1qPhPuGg--.62323S9
-X-Coremail-Antispam: 1Uf129KBjvAXoW3CF1rWw1xAryxJr1kCw1fXrb_yoW8Gr4UGo
-	W3Ars0vwnYgw1Yy3yYk3WxAas8ZanrCws5JryrArsFkFnrX3ykJw4Ik3WUuay7u3yFgrn0
-	qry8Ja1rJF4xJr98n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUnCJmDUUUU
-X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbC8BQK8mr9a1SV+wAA3a
+X-CM-TRANSID:PigvCgC3xC1Pa_1qPhPuGg--.62323S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3JFyrKFy8Xw43Cr1fGFy8Zrb_yoWxXFyUpF
+	93Gr93trWkXr9rWrnxtrs0va1a9340g3yUGrWxG3W7Xa15twn5tFWqqwnYgrWrKr95J3sr
+	JayDCrWUGF1UXF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRIoGQUUUUU=
+X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzRAJ8Wr9a1AoOgAA3b
 
-From: Baolin Liu <liubaolin@kylinos.cn>
+From: Dandan Wu <wudandan@kylinos.cn>
 
-Report corrupt inode metadata, stale extent references and missing
-required attributes as EFSCORRUPTED. During FILE_NAME synchronization,
-report missing index entries. Also report unused parents unless the
-child is being deleted. Retain best-effort parent lookup handling.
+Compressed I/O can detect malformed LZNT1 data or WOF metadata and
+compressed data without reporting it. Report corruption as EFSCORRUPTED
+and retain underlying read, mapping and allocation errors.
 
-Use volume reports for deletion and eviction cleanup. Report failed
-attribute walks even on ENOMEM or interruption: deletion still frees the
-MFT records and may leave unvisited allocations behind.
+Also report EIO from LZNT1 block reads and direct reads of nonresident
+WOF tables and chunks. Avoid repeating metadata reports from resident
+WOF mapping and lookup failures.
 
-At eviction, report dirty base records that the final write failed to
-save, using its errno or EIO if none was returned. Also report discarded
-dirty runlists and extent records. Normal writeback keeps its ENOMEM
-retry behavior; after SB_ACTIVE is cleared, only volume state is updated.
+Report failed mapping updates after compressed writes and failed
+cluster release separately from the initiating error.
 
-Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Signed-off-by: Dandan Wu <wudandan@kylinos.cn>
 ---
 Changes in v6:
-Rebase onto the updated ntfs-next; retain the v5 reporting behavior.
+Keep compressed-stream reporting here; errno preservation is now a
+preceding patch.
 
 Validation:
 - Compiled and linked the NTFS module object with W=1 at this stage.
 
- fs/ntfs/inode.c | 126 ++++++++++++++++++++++++++++++++++++------------
- 1 file changed, 96 insertions(+), 30 deletions(-)
+ fs/ntfs/compress.c | 25 ++++++++++++++++++++++---
+ fs/ntfs/wof.c      | 39 ++++++++++++++++++++++++++++++++++-----
+ 2 files changed, 56 insertions(+), 8 deletions(-)
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 3f5e9948319c..33cb9061e6d7 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -391,8 +391,10 @@ static int ntfs_non_resident_dealloc_clusters(struct ntfs_inode *ni)
- 	int err = 0;
+diff --git a/fs/ntfs/compress.c b/fs/ntfs/compress.c
+index 6a393e7fc1dd..dfb3215531d4 100644
+--- a/fs/ntfs/compress.c
++++ b/fs/ntfs/compress.c
+@@ -790,6 +790,8 @@ int ntfs_read_compressed_block(struct folio *folio)
+ 			ntfs_error(vol->sb,
+ 				"ntfs_decompress() failed in inode 0x%llx with error code %i. Skipping this compression block.",
+ 				ni->mft_no, -err);
++			err = -EFSCORRUPTED;
++			ntfs_report_file_metadata_error(VFS_I(ni), err);
+ 			/* Release the unfinished pages. */
+ 			for (; prev_cur_page < cur_page; prev_cur_page++) {
+ 				page = pages[prev_cur_page];
+@@ -842,13 +844,16 @@ int ntfs_read_compressed_block(struct folio *folio)
+ 	goto err_out;
  
- 	actx = ntfs_attr_get_search_ctx(ni, NULL);
--	if (IS_ERR(actx))
-+	if (IS_ERR(actx)) {
-+		ntfs_report_metadata_error(ni->vol, PTR_ERR(actx));
- 		return PTR_ERR(actx);
-+	}
- 	WARN_ON(actx->mrec->link_count != 0);
+ rl_err:
+-	err = -EIO;
++	err = -EFSCORRUPTED;
+ 	up_read(&ni->runlist.lock);
++	ntfs_report_file_metadata_error(VFS_I(ni), -EFSCORRUPTED);
+ 	ntfs_error(vol->sb, "ntfs_rl_vcn_to_lcn() failed. Cannot read compression block.");
+ 	goto err_out;
  
- 	/**
-@@ -402,9 +404,11 @@ static int ntfs_non_resident_dealloc_clusters(struct ntfs_inode *ni)
- 	 */
- 	if (NInoRunlistDirty(ni)) {
- 		err = ntfs_cluster_free_from_rl(ni->vol, ni->runlist.rl);
--		if (err)
-+		if (err) {
-+			ntfs_report_metadata_error(ni->vol, err);
- 			ntfs_error(sb,
- 					"Failed to free clusters. Leaving inconsistent metadata.\n");
-+		}
+ read_err:
+ 	up_read(&ni->runlist.lock);
++	if (err == -EIO)
++		ntfs_report_file_metadata_error(VFS_I(ni), err);
+ 	ntfs_error(vol->sb, "IO error while reading compressed data.");
+ 
+ err_out:
+@@ -1319,6 +1324,7 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
+ 		int pages_per_cb, unsigned int page_offset,
+ 		struct compress_context *ctx, struct ntfs_compress_workspace *ws)
+ {
++	int report_err = 0;
+ 	struct ntfs_volume *vol = ni->vol;
+ 	char *outbuf = ws->outbuf, *pbuf;
+ 	u32 compsz, p, insz = ni->itype.compressed.block_size;
+@@ -1447,6 +1453,9 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
+ 		up_write(&ni->runlist.lock);
+ 		ntfs_error(vol->sb, "Failed to merge runlists");
+ 		err = PTR_ERR(rl);
++		if (err != -ENOMEM)
++			err = -EFSCORRUPTED;
++		report_err = err;
+ 		goto free_rlc;
  	}
  
- 	while ((err = ntfs_attrs_walk(actx)) == 0) {
-@@ -417,19 +421,27 @@ static int ntfs_non_resident_dealloc_clusters(struct ntfs_inode *ni)
- 					&new_rl_count);
- 			if (IS_ERR(rl)) {
- 				err = PTR_ERR(rl);
-+				ntfs_report_metadata_error(ni->vol,
-+							   err == -ENOMEM ? err : -EFSCORRUPTED);
- 				ntfs_error(sb,
- 					   "Failed to decompress runlist. Leaving inconsistent metadata.\n");
- 				continue;
- 			}
+@@ -1456,16 +1465,26 @@ static int ntfs_write_cb(struct ntfs_inode *ni, loff_t pos, struct page **pages,
  
- 			err = ntfs_cluster_free_from_rl(ni->vol, rl);
--			if (err)
-+			if (err) {
-+				ntfs_report_metadata_error(ni->vol, err);
- 				ntfs_error(sb,
- 					   "Failed to free attribute clusters. Leaving inconsistent metadata.\n");
-+			}
- 			kvfree(rl);
- 		}
- 	}
+ 	err = ntfs_attr_update_mapping_pairs_locked(ni, 0, ni);
+ 	up_write(&ni->runlist.lock);
++	if (err)
++		report_err = err;
+ 	goto out;
  
-+	/* The caller frees the MFT records even if enumeration was interrupted. */
-+	if (err == -ENOMEM || err == -EINTR || err == -ERESTARTSYS)
-+		ntfs_report_metadata_error(ni->vol, err);
+ free_rlc:
+-	if (ntfs_cluster_free_from_rl(vol, rlc))
+-		ntfs_error(vol->sb, "Failed to free hot clusters.");
++	{
++		int free_err = ntfs_cluster_free_from_rl(vol, rlc);
 +
- 	ntfs_release_dirty_clusters(ni->vol, ni->i_dealloc_clusters);
- 	ntfs_attr_put_search_ctx(actx);
++		if (free_err) {
++			ntfs_report_file_metadata_error(VFS_I(ni), free_err);
++			ntfs_error(vol->sb, "Failed to free hot clusters.");
++		}
++	}
+ 	kvfree(rlc);
+ out:
+ 	NInoSetFileNameDirty(ni);
+ 	mark_mft_record_dirty(ni);
+ 
++	if (report_err)
++		ntfs_report_file_metadata_error(VFS_I(ni), report_err);
  	return err;
-@@ -627,22 +639,22 @@ static int ntfs_is_extended_system_file(struct ntfs_attr_search_ctx *ctx)
- err_corrupt_attr:
- 			ntfs_error(ctx->ntfs_ino->vol->sb,
- 					"Corrupt file name attribute. You should run chkdsk.");
--			return -EIO;
-+			return -EFSCORRUPTED;
- 		}
- 		if (attr->non_resident) {
- 			ntfs_error(ctx->ntfs_ino->vol->sb,
- 					"Non-resident file name. You should run chkdsk.");
--			return -EIO;
-+			return -EFSCORRUPTED;
- 		}
- 		if (attr->flags) {
- 			ntfs_error(ctx->ntfs_ino->vol->sb,
- 					"File name with invalid flags. You should run chkdsk.");
--			return -EIO;
-+			return -EFSCORRUPTED;
- 		}
- 		if (!(attr->data.resident.flags & RESIDENT_ATTR_IS_INDEXED)) {
- 			ntfs_error(ctx->ntfs_ino->vol->sb,
- 					"Unindexed file name. You should run chkdsk.");
--			return -EIO;
-+			return -EFSCORRUPTED;
- 		}
- 		file_name_attr = (struct file_name_attr *)((u8 *)attr +
- 				le16_to_cpu(attr->data.resident.value_offset));
-@@ -675,7 +687,7 @@ static int ntfs_is_extended_system_file(struct ntfs_attr_search_ctx *ctx)
- 	if (unlikely(nr_links)) {
- 		ntfs_error(ctx->ntfs_ino->vol->sb,
- 			"Inode hard link count doesn't match number of name attributes. You should run chkdsk.");
--		return -EIO;
-+		return -EFSCORRUPTED;
- 	}
- 	return 0;	/* NO, it is not an extended system file. */
  }
-@@ -1337,8 +1349,8 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 	ntfs_debug("Done.");
- 	return 0;
- unm_err_out:
--	if (!err)
--		err = -EIO;
-+	if (!err || (err == -ENOENT && vol_err))
-+		err = -EFSCORRUPTED;
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
- 	if (m)
-@@ -1349,7 +1361,7 @@ static int ntfs_read_locked_inode(struct inode *vi)
+ 
+diff --git a/fs/ntfs/wof.c b/fs/ntfs/wof.c
+index e64f40835957..25b9a87956da 100644
+--- a/fs/ntfs/wof.c
++++ b/fs/ntfs/wof.c
+@@ -294,7 +294,7 @@ static int parse_wof_chunk_table(struct ntfs_inode *base_ni,
+ 		ret = ntfs_bdev_read_from_rl(ni->vol, &ni->runlist,
+ 					     start_sector, sectors, buf);
+ 		if (ret)
+-			return -EIO;
++			return ret;
+ 		buf += sector_off;
+ 	} else {
+ 		struct ntfs_attr_search_ctx *ctx;
+@@ -655,6 +655,7 @@ static int ntfs_wof_decompress_chunk(struct ntfs_wof_workspace *ws,
+ 
+ int ntfs_read_wof_compressed_block(struct folio *folio)
+ {
++	int report_err = 0;
+ 	struct address_space *mapping = folio->mapping;
+ 	struct ntfs_inode *ni = NTFS_I(mapping->host), *wof_ni;
+ 	struct inode *wof_inode;
+@@ -685,15 +686,20 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
+ 				   WOF_NAME_LEN);
+ 	if (IS_ERR(wof_inode)) {
+ 		err = PTR_ERR(wof_inode);
++		if (err == -ENOENT) {
++			err = -EFSCORRUPTED;
++			report_err = -EFSCORRUPTED;
++		}
+ 		goto out;
+ 	}
+ 
+ 	wof_ni = NTFS_I(wof_inode);
+ 	if (wof_ni->initialized_size != wof_ni->data_size) {
++		report_err = -EFSCORRUPTED;
  		ntfs_error(vol->sb,
- 			"Failed with error code %i.  Marking corrupt inode 0x%llx as bad.  Run chkdsk.",
- 			err, ni->mft_no);
--		NVolSetErrors(vol);
-+		ntfs_report_file_metadata_error(vi, err);
- 	}
- 	return err;
- }
-@@ -1596,7 +1608,7 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
- 
- unm_err_out:
- 	if (!err)
+ 			   "WOF compressed stream is not fully initialized (init %lld, data %lld).",
+ 			   wof_ni->initialized_size, wof_ni->data_size);
 -		err = -EIO;
 +		err = -EFSCORRUPTED;
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
- 	unmap_mft_record(base_ni);
-@@ -1606,9 +1618,9 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
- 			"Failed with error code %i while reading attribute inode (mft_no 0x%llx, type 0x%x, name_len %i).  Marking corrupt inode and base inode 0x%llx as bad.  Run chkdsk.",
- 			err, ni->mft_no, ni->type, ni->name_len,
- 			base_ni->mft_no);
--	if (err != -ENOENT && err != -ENOMEM &&
-+	if (err != -ENOENT && err != -ENOMEM && err != -EOPNOTSUPP &&
- 	    err != -EINTR && err != -ERESTARTSYS)
--		NVolSetErrors(vol);
-+		ntfs_report_file_metadata_error(base_vi, err);
- 	return err;
- }
- 
-@@ -1844,8 +1856,10 @@ static int ntfs_read_locked_index_inode(struct inode *base_vi, struct inode *vi)
- 	 * Make sure the base inode doesn't go away and attach it to the
- 	 * index inode.
- 	 */
--	if (!igrab(base_vi))
-+	if (!igrab(base_vi)) {
-+		err = -EIO;
- 		goto unm_err_out;
-+	}
- 	ni->ext.base_ntfs_ino = base_ni;
- 	ni->nr_extents = -1;
- 
-@@ -1854,8 +1868,8 @@ static int ntfs_read_locked_index_inode(struct inode *base_vi, struct inode *vi)
- iput_unm_err_out:
- 	iput(bvi);
- unm_err_out:
--	if (!err)
--		err = -EIO;
-+	if (!err || err == -ENOENT)
-+		err = -EFSCORRUPTED;
- 	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
- 	if (m)
-@@ -1867,7 +1881,7 @@ static int ntfs_read_locked_index_inode(struct inode *base_vi, struct inode *vi)
- 			err, ni->mft_no, ni->name_len);
- 	if (err != -EOPNOTSUPP && err != -ENOMEM &&
- 	    err != -EINTR && err != -ERESTARTSYS)
--		NVolSetErrors(vol);
-+		ntfs_report_file_metadata_error(base_vi, err);
- 	return err;
- }
- 
-@@ -2440,16 +2454,20 @@ static int ntfs_delete_base_inode(struct ntfs_inode *ni)
- 	 */
- 	while (ni->nr_extents) {
- 		err = ntfs_mft_record_free(ni->vol, *(ni->ext.extent_ntfs_inos));
+ 		goto out_iput;
+ 	}
+ 	if (NInoNonResident(wof_ni) && !NInoFullyMapped(wof_ni)) {
+@@ -725,21 +731,42 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
+ 		err = parse_wof_chunk_table(ni, wof_ni, chunk_idx, chunk_count,
+ 					    decomp_size, &chunk_offset,
+ 					    &chunk_size, input, input_size);
 -		if (err)
 +		if (err) {
-+			ntfs_report_metadata_error(ni->vol, err);
- 			ntfs_error(sb,
- 				"Failed to free extent MFT record. Leaving inconsistent metadata.\n");
-+		}
- 		ntfs_inode_close(*(ni->ext.extent_ntfs_inos));
- 	}
- 
- 	/* Deallocate base mft record */
- 	err = ntfs_mft_record_free(ni->vol, ni);
--	if (err)
-+	if (err) {
-+		ntfs_report_metadata_error(ni->vol, err);
- 		ntfs_error(sb, "Failed to free base MFT record. Leaving inconsistent metadata.\n");
-+	}
- 	return err;
- }
- 
-@@ -2480,9 +2498,11 @@ void ntfs_evict_big_inode(struct inode *vi)
- 
- 	if (NInoDirty(ni)) {
- 		/* Committing the inode also commits all extent inodes. */
--		ntfs_commit_inode(vi);
-+		int err = __ntfs_write_inode(vi, 1);
- 
- 		if (NInoDirty(ni)) {
-+			/* Eviction discards the dirty record, so it cannot be retried. */
-+			ntfs_report_metadata_error(ni->vol, err ? err : -EIO);
- 			ntfs_debug("Failed to commit dirty inode 0x%llx.  Losing data!",
- 				   ni->mft_no);
- 			NInoClearAttrListDirty(ni);
-@@ -2490,13 +2510,20 @@ void ntfs_evict_big_inode(struct inode *vi)
- 		}
- 	}
- 
-+	/* A deferred mapping update can outlive the base record's dirty bit. */
-+	if (NInoRunlistDirty(ni))
-+		ntfs_report_metadata_error(ni->vol, -EIO);
-+
- 	/* No need to lock at this stage as no one else has a reference. */
- 	if (ni->nr_extents > 0) {
- 		int i;
- 
- 		for (i = 0; i < ni->nr_extents; i++) {
--			if (ni->ext.extent_ntfs_inos[i])
-+			if (ni->ext.extent_ntfs_inos[i]) {
-+				if (NInoDirty(ni->ext.extent_ntfs_inos[i]))
-+					ntfs_report_metadata_error(ni->vol, -EIO);
- 				ntfs_clear_extent_inode(ni->ext.extent_ntfs_inos[i]);
-+			}
- 		}
- 		ni->nr_extents = 0;
- 		kvfree(ni->ext.extent_ntfs_inos);
-@@ -2798,11 +2825,15 @@ int ntfs_inode_sync_filename(struct ntfs_inode *ni)
- 	/* Collect the reparse tag, if any */
- 	reparse_tag = cpu_to_le32(0);
- 	if (ni->flags & FILE_ATTR_REPARSE_POINT) {
--		if (!ntfs_attr_lookup(AT_REPARSE_POINT, NULL,
--					0, CASE_SENSITIVE, 0, NULL, 0, ctx)) {
-+		err = ntfs_attr_lookup(AT_REPARSE_POINT, NULL, 0,
-+				       CASE_SENSITIVE, 0, NULL, 0, ctx);
-+		if (!err) {
- 			rpp = (struct reparse_point *)((u8 *)ctx->attr +
- 					le16_to_cpu(ctx->attr->data.resident.value_offset));
- 			reparse_tag = rpp->reparse_tag;
-+		} else if (err == -ENOENT) {
-+			ntfs_report_file_metadata_error(VFS_I(ni),
-+							-EFSCORRUPTED);
- 		}
- 		ntfs_attr_reinit_search_ctx(ctx);
- 	}
-@@ -2816,6 +2847,9 @@ int ntfs_inode_sync_filename(struct ntfs_inode *ni)
- 
- 		index_vi = ntfs_iget(sb, MREF_LE(fn->parent_directory));
- 		if (IS_ERR(index_vi)) {
-+			if (PTR_ERR(index_vi) == -ENOENT && !NInoBeingDeleted(ni))
-+				ntfs_report_file_metadata_error(VFS_I(ni),
-+								-EFSCORRUPTED);
- 			ntfs_error(sb, "Failed to open inode %lld with index",
- 					(long long)MREF_LE(fn->parent_directory));
- 			continue;
-@@ -2841,6 +2875,11 @@ int ntfs_inode_sync_filename(struct ntfs_inode *ni)
- 
- 		err = ntfs_index_lookup(fn, sizeof(struct file_name_attr), ictx);
- 		if (err) {
-+			if (err == -ENOENT) {
++			if (err == -EINVAL || err == -EOVERFLOW || err == -ENOENT) {
 +				err = -EFSCORRUPTED;
-+				ntfs_report_file_metadata_error(index_vi,
-+								-EFSCORRUPTED);
++				report_err = err;
++			} else if (err == -EIO && NInoNonResident(wof_ni)) {
++				/* Resident reads already report errors below. */
++				report_err = err;
 +			}
- 			ntfs_debug("Index lookup failed, inode %llu",
- 					index_ni->mft_no);
- 			ntfs_index_ctx_put(ictx);
-@@ -2911,7 +2950,8 @@ int ntfs_get_block_mft_record(struct ntfs_inode *mft_ni, struct ntfs_inode *ni)
- 	rl = mft_ni->runlist.rl;
- 	if (!rl) {
- 		ntfs_error(mft_ni->vol->sb, "$MFT runlist is not present");
--		return -EIO;
-+		ntfs_report_metadata_error(mft_ni->vol, -EFSCORRUPTED);
-+		return -EFSCORRUPTED;
- 	}
+ 			goto out_free_input;
++		}
  
- 	/* Seek to element containing target vcn. */
-@@ -2993,8 +3033,11 @@ int __ntfs_write_inode(struct inode *vi, int sync)
- 	}
- 
- 	err = ntfs_inode_sync_standard_information(vi, m);
--	if (err)
-+	if (err) {
-+		if (err == -ENOENT)
-+			err = -EFSCORRUPTED;
- 		goto unm_err_out;
-+	}
- 
- 	/*
- 	 * when being umounted and inodes are evicted, write_inode()
-@@ -3012,8 +3055,10 @@ int __ntfs_write_inode(struct inode *vi, int sync)
- 		down_read(&mft_ni->runlist.lock);
- 		err = ntfs_get_block_mft_record(mft_ni, ni);
- 		up_read(&mft_ni->runlist.lock);
+ 		err = ntfs_read_wof_chunk(vol, wof_ni, chunk_offset, chunk_size,
+ 					  input, input_size, &chunk_mem);
 -		if (err)
 +		if (err) {
-+			err = -EFSCORRUPTED;
- 			goto unm_err_out;
++			if (err == -EINVAL || err == -EOVERFLOW || err == -ENOENT) {
++				err = -EFSCORRUPTED;
++				report_err = err;
++			} else if (err == -EIO && NInoNonResident(wof_ni)) {
++				/* Direct block reads do not report metadata errors. */
++				report_err = err;
++			}
+ 			goto out_free_input;
 +		}
  
- 		err = write_mft_record(ni, m, sync);
- 		if (err)
-@@ -3031,6 +3076,7 @@ int __ntfs_write_inode(struct inode *vi, int sync)
- 			err = ntfs_get_block_mft_record(mft_ni,
- 						   ni->ext.extent_ntfs_inos[i]);
- 			if (err) {
+ 		err = ntfs_wof_decompress_chunk(ws, vol, mapping, folio,
+ 						folio_start, folio_end,
+ 						chunk_idx * ws->comp_unit,
+ 						chunk_mem, chunk_size,
+ 						decomp_size);
+-		if (err)
++		if (err) {
++			if (err != -ENOMEM) {
 +				err = -EFSCORRUPTED;
- 				mutex_unlock(&ni->extent_lock);
- 				up_read(&mft_ni->runlist.lock);
- 				mutex_unlock(&ni->mrec_lock);
-@@ -3092,7 +3138,10 @@ int __ntfs_write_inode(struct inode *vi, int sync)
- 		mark_inode_dirty(vi);
- 	else {
- 		ntfs_error(vi->i_sb, "Failed (error %i):  Run chkdsk.", -err);
--		NVolSetErrors(ni->vol);
-+		if (err != -EINTR && err != -ERESTARTSYS)
-+			ntfs_report_file_metadata_error(vi, err);
-+		else
-+			NVolSetErrors(ni->vol);
- 	}
- 	if (need_iput)
- 		iput(vi);
-@@ -3161,8 +3210,10 @@ static struct ntfs_inode *ntfs_extent_inode_open(struct ntfs_inode *base_ni,
- 			    seq_no != le16_to_cpu(ni_mrec->sequence_number)) {
- 				ntfs_error(sb, "Found stale extent mft reference mft=%llu",
- 						ni->mft_no);
-+				ntfs_report_file_metadata_error(VFS_I(base_ni),
-+								-EFSCORRUPTED);
- 				unmap_mft_record(ni);
--				return ERR_PTR(-EIO);
-+				return ERR_PTR(-EFSCORRUPTED);
- 			}
- 			unmap_mft_record(ni);
- 			goto out;
-@@ -3225,8 +3276,9 @@ int ntfs_inode_attach_all_extents(struct ntfs_inode *ni)
- 		return 0;
- 
- 	if (!ni->attr_list) {
-+		ntfs_report_file_metadata_error(VFS_I(ni), -EFSCORRUPTED);
- 		ntfs_debug("Corrupt in-memory struct.\n");
--		return -EINVAL;
-+		return -EFSCORRUPTED;
- 	}
- 
- 	/* Walk through attribute list and attach all extents. */
-@@ -3803,6 +3855,11 @@ s64 ntfs_inode_attr_pread(struct inode *vi, s64 pos, s64 count, u8 *buf)
- 				       CASE_SENSITIVE,
- 				       0, NULL, 0, ctx);
- 		if (err) {
-+			if (err == -ENOENT && !ntfs_inode_is_named_stream(ni)) {
-+				err = -EFSCORRUPTED;
-+				ntfs_report_file_metadata_error(vi,
-+								-EFSCORRUPTED);
++				report_err = err;
 +			}
- 			ntfs_error(vi->i_sb, "Failed to look up attr %#x", ni->type);
- 			ntfs_attr_put_search_ctx(ctx);
- 			mutex_unlock(&mrec_ni->mrec_lock);
-@@ -3884,6 +3941,11 @@ static inline int ntfs_enlarge_attribute(struct inode *vi, s64 pos, s64 count,
- 				       CASE_SENSITIVE,
- 				       0, NULL, 0, ctx);
- 		if (ret) {
-+			if (ret == -ENOENT) {
-+				ret = -EFSCORRUPTED;
-+				ntfs_report_file_metadata_error(vi,
-+								-EFSCORRUPTED);
-+			}
- 			ntfs_error(sb, "Failed to look up attr %#x", ni->type);
- 			return ret;
- 		}
-@@ -4143,6 +4205,10 @@ s64 ntfs_inode_attr_pwrite(struct inode *vi, s64 pos, s64 count, u8 *buf, bool s
- 			       CASE_SENSITIVE,
- 			       0, NULL, 0, ctx);
- 	if (ret) {
-+		if (ret == -ENOENT && !ntfs_inode_is_named_stream(ni)) {
-+			ret = -EFSCORRUPTED;
-+			ntfs_report_file_metadata_error(vi, -EFSCORRUPTED);
+ 			goto out_free_input;
 +		}
- 		ntfs_attr_put_search_ctx(ctx);
- 		ntfs_error(vi->i_sb, "Failed to look up attr %#x", ni->type);
- 		goto out_unlock;
+ 	}
+ 
+ 	if (folio_end > i_size)
+@@ -757,5 +784,7 @@ int ntfs_read_wof_compressed_block(struct folio *folio)
+ 		folio_clear_uptodate(folio);
+ 	}
+ 	folio_unlock(folio);
++	if (report_err)
++		ntfs_report_file_metadata_error(VFS_I(ni), report_err);
+ 	return err;
+ }
 -- 
 2.51.0
 
