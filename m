@@ -1,83 +1,98 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
-ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794994563;
-	b=uige0oKgeJWHNoG03Q1AnC9RbaARJdL19qZ9Cg6wcaiovz6lJg0OI4jSfLdshI6pv/KA
-	 jNTbX25cpcj4qJwBTfPw+8JDoufK3Fvp/jbnvx0D+tUohfBDDtOjT6dOISs3ecs2GGbYo
-	 G5AThHr8o3ab/U7fSBbVlYmKRXC77kzPLvdQgTB7LxWQH9yN/WhNIVZugbODndFujLfNz
-	 mBMbC3/TqZPWxIx7G3SPse7KNk8zpjbUjizLLu+bDk9ihboeT//pRIrBRvxjDfgQgjgpS
-	 zYvse4vQKSHZ1TPSXiDV5BeuXCMzxHxJKoPJumVuTsxW5B82CRCALk/SKsDf13HgYPA==
-ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794994563;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
-	bh=oEtrs9YN++TIvppEtfu/diqt2HKppGf1oq8L8HaJ3VE=;
-	b=JHHT6GeaZBO6zG1NBYKWec1cXinR97AX7khOViQRUydYGKs8oRGE8KnVjaK8LhOUL+ZW
-	 rYalF4yIvB1/GcW3Gh6XFeHnIQQU1RrVXzJKOiPSF/tmESHYxAltdbu8PyNrFbZKEOwoW
-	 ieHmCdmJqFi16QijcxgD4pZ7esxPiMB3xrxcFcFAMWg8QhqrDXE/hVlLi7NE9PhfQa48N
-	 m0UHIkDkylbLWRYiv7HzD98MIKFWkl4feBVjd+nwcBXkE1hu2exRzTREtQqK1NE7gs8si
-	 zlGbHK7KLZ6EWISue9p52Vro7wvl3vAtremgw33zWnDqWGo+aPs65LeSnimlleR9NSw==
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nahPYjtB;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+Authentication-Results: smtp.subspace.kernel.org; arc=pass header.oldest-pass=0 smtp.remote-ip=74.125.224.42
+ARC-Seal: i=2; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=pass;
+	t=1795004525;
+	b=eiVB2D/DVxjxOYbnpTqBgFOXQxmCIPyJ0zLmp0rxfeGl//7xKTl/r4527zyEA2Ao1cUW
+	 WmlLiHxsLZ7HwglcmUqCmcWG9oBd532fk1PoWV5clrjRFu31JBf8UxgWciIadrurOWFoL
+	 Sm201zcTKRiFnNhdFqorLB1Ck+RJdHJRFFOaLy0znhWzylHe64SysfnFOx1MH4q1VLSUx
+	 v7rk6LvHGoUMShA9uklpBxyz5vh/SIik74c4bmfkBgF3z8N7NKEJVKb7taIA6BLYFfz00
+	 zYRLaX1ThXdUctWH0S2LDBtvpOwgpe7aRRqSJ2THM6pRc3SP0qHkeXy0rCtq6KMyAUA==
+ARC-Message-Signature: i=2; d=subspace.kernel.org; s=arc20261015;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795004525;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Gm-Gg:X-Received:MIME-Version:References:
+	 In-Reply-To:From:Date:X-Gm-Features:Message-ID:Subject:To:Cc:
+	 Content-Type;
+	bh=Bq+SntMyUFfTTS2BLccgwhx2VZINUsF2aTGYssia0cs=;
+	b=Hxh0FDoDU0Cnm7uX0YmDtaYRcISl51K86mpG6Y4mgtkpzGdA2f9TwZJhzsJ7TmxhFYzz
+	 Xx6BZxLaA2C2C+iw5xwCP/mTSOQLnO1WSFAgkhyQN56IemfRkCXzRzQuJsCwdQNoJI+6b
+	 b8MFfxq886PVtnIt3p4sRm8J1pj34HVeZiyycIwDbRmRDxriQVpS5zrVcXjMC/zEGhhG3
+	 vwt0yqgVGJXvVOwJW3CVdtFw1qOVbbbCZhGe+5UqNcQcuM4d6oEEntUzV85mCfpbW8brN
+	 Egy/KbI7idnYOpYtDvS4f/8quEG9cnd+6lmEB8yEeTgicfZilT7QcQFYlPNCyH73apQ==
+ARC-Authentication-Results: i=2; smtp.subspace.kernel.org; 
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=rgVlbST7;
+	arc=pass header.oldest-pass=0 smtp.remote-ip=74.125.224.42
+Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8235B606A31C;
-	Wed, 18 Nov 2026 09:36:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98269606A330
+	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 12:22:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 98269606A330
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nahPYjtB
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48F321F000C4;
-	Wed, 18 Nov 2026 09:35:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794994563;
-	bh=oEtrs9YN++TIvppEtfu/diqt2HKppGf1oq8L8HaJ3VE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=nahPYjtBD1Iaas2FHy09zfnsVzzPWV2xfnaZM4o2uDixquvqwuHvQ+/o6Lx3RmcT7
-	 A5MLlaaWHi5zeDFe6Pr6Zu/1tZf365UdM7zLPXtacuahcYasmLgD5icYRCqSxPoOAQ
-	 apSPaDPnXbhT/Rjv6/c4yyGGAb3a6EIjZs+gpHbG4KtSnFEboWn87xat6LJyla++Jd
-	 yjbLXh2HQKcIglQe/QgOIjdxO0MlY4PzADbD2mLPuxiLGazQOP1N6OqiCY11zDd0cS
-	 +PtK7soRS49YQWtEbo0XhLlRb2q60FYLSeh5q1DNqhKbRWl7YpSpO779dHK9eKPFp5
-	 s/bgKJ6Xw8nfA==
-Date: Wed, 18 Nov 2026 10:35:40 +0100
-From: Christian Brauner <brauner@kernel.org>
-To: Cai Xinchen <caixinchen1@huawei.com>
-Cc: Al Viro <viro@zeniv.linux.org.uk>, mic@digikod.net, gnoack@google.com, 
-	paul@paul-moore.com, jack@suse.cz, amir73il@gmail.com, andrii@kernel.org, 
-	apparmor@lists.ubuntu.com, ast@kernel.org, axboe@kernel.dk, bpf@vger.kernel.org, 
-	casey@schaufler-ca.com, cel@kernel.org, cem@kernel.org, chenxiaosong@chenxiaosong.com, 
-	code@tyhicks.com, corbet@lwn.net, Dai.Ngo@oracle.com, dakr@kernel.org, 
-	daniel@iogearbox.net, dhowells@redhat.com, dlemoal@kernel.org, 
-	dmitry.kasatkin@gmail.com, driver-core@lists.linux.dev, dsterba@suse.com, 
-	ecryptfs@vger.kernel.org, eddyz87@gmail.com, emil@etsalapatis.com, 
-	eric.snowberg@oracle.com, exfat@lists.linux.dev, georgia.garcia@canonical.com, 
-	gregkh@linuxfoundation.org, hch@lst.de, hirofumi@mail.parknet.co.jp, hyc.lee@gmail.com, 
-	ihor.solodrai@linux.dev, jlayton@kernel.org, jmorris@namei.org, johan@kernel.org, 
-	john.fastabend@gmail.com, john.johansen@canonical.com, jolsa@kernel.org, 
-	kpsingh@kernel.org, linkinjeon@kernel.org, linux-api@vger.kernel.org, 
-	linux-block@vger.kernel.org, linux-btrfs@vger.kernel.org, linux-cifs@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-integrity@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-nfs@vger.kernel.org, 
-	linux-security-module@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
-	linux-unionfs@vger.kernel.org, linux-xfs@vger.kernel.org, liubaolin12138@163.com, 
-	martin.lau@linux.dev, mason@kernel.org, mathieu.desnoyers@efficios.com, 
-	matt@bobrowski.net, memxor@gmail.com, mhiramat@kernel.org, miklos@szeredi.hu, 
-	neil@brown.name, netfs@lists.linux.dev, ntfs@lists.linux.dev, okorniev@redhat.com, 
-	omosnacek@gmail.com, penguin-kernel@i-love.sakura.ne.jp, rafael@kernel.org, 
-	rdunlap@infradead.org, roberto.sassu@huawei.com, rostedt@goodmis.org, 
-	selinux@vger.kernel.org, senozhatsky@chromium.org, serge@hallyn.com, 
-	sj1557.seo@samsung.com, skhan@linuxfoundation.org, song@kernel.org, 
-	stephen.smalley.work@gmail.com, takedakn@nttdata.co.jp, tom@talpey.com, yonghong.song@linux.dev, 
-	yuezhang.mo@sony.com, zohar@linux.ibm.com, utilityemal77@gmail.com, 
-	lujialin4@huawei.com
-Subject: Re: [PATCH -next -v4 02/17] LSM: pass struct path to the
- inode_setsecctx hook
-Message-ID: <20261118-nordlicht-badeort-daumen-813a1e9fd0b3@brauner>
-References: <20261117150542.1169451-1-caixinchen1@huawei.com>
- <20261117150542.1169451-3-caixinchen1@huawei.com>
- <20261117184342.GR989762@ZenIV>
- <20261118001641.GA1669148@ZenIV>
- <bdc22808-9f22-46f7-b42d-e6bd8e1eeaca@huawei.com>
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=rgVlbST7
+Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-67a30864bcdso114043d50.3
+        for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 04:22:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795004523; cv=none;
+        d=google.com; s=arc-20260327;
+        b=VEowLZzVHj/UlRhLDLe8WtOVqQCjxo7QN8weqzaCClSUKjugHZ6sJFedwEjVSsEAEn
+         cetK1zkcSzlttAvhKtE8a27rJRBJ0+wBZePfFBE5OZ6rvQmPp1KyjQGYJov6jxPbXwzE
+         82QQAPFL3niQbYK4HNxyhIBuN/CwrcLJMszSwJOoJYLGuFOikXqmJuSyqMwARctX3Wq0
+         33p4v2nKCwpLK7WOPTi1WkYvC3Vgx0W7btMNWoRXkqCN4mKi5eMUJLIqP5QtQmLba/zr
+         4Hw4z+yHYEmUXCtFOTM6+zAwVrUfuNT+lUX1r0yLx2ZMGFFgQrzVk8RzhReJbirsBJ4+
+         cLeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=Bq+SntMyUFfTTS2BLccgwhx2VZINUsF2aTGYssia0cs=;
+        fh=7NayHyaDGU8X7aEB9vXu0m5+y57Z/MubKEGRr+OBevA=;
+        b=WZmXhbzjuYiJSWNUh299r4ujDU5L8V/B2oJe/0e9GsGvAwkb+ZyjSB1uD6EsLFBLVl
+         JUXQOLSeYxQ7Cj4vd/Hh0yUhXUs38RMSGR8e9KpgqjnPUYpwWI+9f/b3VpKYDVg5RU6o
+         uXBxhumUX91/aLGyM/aKMJNZ+ijYUI0goq3k8YMHey2xVnBfKEylgKKlQEdXBM/6aLwd
+         u19fB/9MYq9r7MpY+usdOZPEbXCQxebYLwcTlJjrtofWx/1cNciKGuff/33zqG3e+Qmi
+         hHE33y1ThNIeaw9AKdpSefD39q2GR6wulvn25qr4w7wzmlnkeoC2dcIgwaAymXL3jrsb
+         TwHw==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795004523; x=1795609323; darn=lists.linux.dev;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Bq+SntMyUFfTTS2BLccgwhx2VZINUsF2aTGYssia0cs=;
+        b=rgVlbST7e+tV0CCIpKKJ89wmGGqUoWU0wSY3h1lPk9NRJ/a/sXchQztPn57Xhi7BCp
+         X1dKBntbR7EE+NNudvamjN8yj67rLyJw344+hrMZ36h+GC6LurbsLJYGDiiaDf5bobkv
+         DIQ3p3iEbup2+d/4tbKxpkShBCD90wR29hLK5+Ul97YI/PFw2UIdj7/cTRDX78kvVXfC
+         jzT0z39WDkEAh2XVPhSGPyyVx7GJ2FbCQjIyveIxrjKpvAMHZtYxSgWceS8cTtJRTvx3
+         q+AtikdQ7X4ACOfVtYf0Tn7pIy3+lAWRDHV3Bzf2tkRxY/uVIW1aTEi7d4Gv3qTGnTHU
+         U6Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795004523; x=1795609323;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=Bq+SntMyUFfTTS2BLccgwhx2VZINUsF2aTGYssia0cs=;
+        b=CMdqZYsD+lkQW1yjlsSjpK2fsxJZClxP24qytW/xtqthZkC08rloCXen0OzNEV5/W9
+         ETrYcBmO3U9OC0ayh+HnHUqJRNoYYOgW0DieULc/RqTqYZYLrYPNoR//ohB4Eav6Lq4T
+         xWKiG5hQn3+WLYcF5qNd1eVvUQ7nPELNfMF1FwmLgTOT5qANRJaFNI5Lt2/SlAeXOad6
+         KO0R0ZeO6xQTyYHBVln72mki4GoVhK5cwqRFJTjGnikATs6OFtCGyre/f72JC+7wC96L
+         SPaPakgMa3UgrvujumL15l7pn3gazBjQYEC/4ULOzZuYoz8wP66zAsbXRisyRU710chC
+         z9Rg==
+X-Gm-Message-State: APuU4Z8eR/2qlYCje1H2TuqO35bnpc0QOFi4qAlAJt4Zlzk8XSq3IVDe
+	z0qU7CYSBd0tz2S7uGzSc2Pxxj5pfdYj6CBUW4mXVg4kRPbR4Dq1iVXJiiUi9JejspI/d4g4sAK
+	fDKMmEs0fIQqFW3IQza2i5V1tmWGMtdE=
+X-Gm-Gg: AZFdTZeDPJCNNC1lFw1Eb+pNaED3vCwS1A5Etp0j+wRMdAXniARWr8Gctn3xragebaP
+	UrFgeHkeeNnFAK038Ow5m0pgRPjV2a6ajyVAQuvoZrskYRQRi9B6EDvpnOfR7lEI2Lt+55WONwi
+	Zaye/yfx9FzUAjvhZgzL6BbU3watTUl1xtyV//Uhad7pzdzGiG9JccNnJNB4q7CPg0Ln1K+9vmW
+	AiXSKkU3WQoxVhRnum+sO+lVnG4ZvplF4Zt+PKdCok9/yQp/1GiQRIiFL9MPFEx5guIJMHQvJ8l
+	maoQ1svJz+XhXuH3kZWMTOZ+4Zp1oBuxvLiWStfn39nYG9lpViLXgbMczufpnRiqKhb22LowAcu
+	YFPVV/xaUDDQ0YMPXnuRKFwBmHAW4AX1dJ7T5wk/IE4HDJLdgSGedcHnMYn4=
+X-Received: by 2002:a05:690e:400e:b0:67c:c24:620c with SMTP id
+ 956f58d0204a3-67dd3f11ca0mr2304898d50.4.1795004523561; Wed, 18 Nov 2026
+ 04:22:03 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -87,24 +102,24 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <bdc22808-9f22-46f7-b42d-e6bd8e1eeaca@huawei.com>
+References: <CAPLZLeaXKkev=_EwAb679RaZ-Lcb_XQO1FsAw6RyT=M56rP7zw@mail.gmail.com>
+ <at72kIgNxnK9p1tq@hyunchul-PC02> <CAPLZLeYo6AhBLcCBeZgDAs5Duv08B4i1rdFNFH5ikTXhcueMAg@mail.gmail.com>
+ <auA-MOGIj-J4dLGF@hyunchul-PC02> <CAPLZLeaVAoFefe06b+7MaoLHVMJbAZ+PaDuVkiPMAry6TKpE0w@mail.gmail.com>
+ <auBtMq76Vj47NGPu@hyunchul-PC02> <CAPLZLeZtObeMVNY=Q_-hRkyL-ycruuaRsPRwtUUxWPuTWC+McA@mail.gmail.com>
+ <auGs5wycYstmw13c@hyunchul-PC02> <av0zY6gKtHFW-mdv@hyunchul-PC02>
+In-Reply-To: <av0zY6gKtHFW-mdv@hyunchul-PC02>
+From: Jaidan Brashier <jobrashier@gmail.com>
+Date: Wed, 18 Nov 2026 04:21:52 -0800
+X-Gm-Features: AclHuK834dk3VFwC4SD345OK5NQkAdLJEEdSL_1ZYZXVW_wcmU5moe5gFbRKPvA
+Message-ID: <CAPLZLeY0=R3_6tsgm6tken58JekXNr1+NYRFwvFhfmtfCP9KzQ@mail.gmail.com>
+Subject: Re: ntfs: EIO/stale-reference errors on several volumes and on-disk
+ corruption after switching from ntfs3 (Fedora 44 7.2.x)
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev, linkinjeon@kernel.org, xkeyc@qq.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Nov 18, 2026 at 04:59:29PM +0800, Cai Xinchen wrote:
-> There are two places that violate (1), both introduced by this series of
-> patches in ksmbd:
->
-> smb2_parent_compressed() and smb_inherit_dacl() pair the directory entry
-> returned by dget_parent()
->
-> with path->mnt, and problems arise once that directory entry becomes the
-> root of its mount point.
+Thanks for getting back to me!
+I appreciate the update on the situation, and your work in keeping
+NTFS working smoothly on linux.
 
-No, (1) holds there. dget_parent() never leaves the superblock so the
-parent has the same ->d_sb as path->dentry.
-
-What happens at the root of a mount is that the parent isn't below
-path->mnt->mnt_root anymore. That's a different property and struct path
-doesn't guarantee that (open_by_handle_at(), nfsd with
-no_subtree_check). So there's nothing to fix for (1) in those two.
+I will await the update eventually coming to Fedora. Have a nice day.
