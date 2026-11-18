@@ -1,58 +1,61 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1794992899;
-	b=ToduLbme84d1EK/6dfrDOgUxnjN0MDGgUhYUG1KgYzktzmb7MN6zvxu/MfuYMxxmV+gh
-	 il2EnuvOb/SSfOFto1tO6S3lRcnTGn5Hv7mPefFjRkcoNIxi1sMQmx8jCsC5dcWtIRdBQ
-	 B+kNqkkOGuxGU5N7GMnopBZvrA1sKlLoAFUPwY+f1j+T9YJy6OrRO8+ZGz1ktt98oq2IQ
-	 YRdNkKNYkla66mvnPh6FHA0qzht4Bjbqf2rbmgscjE6caWpgEACSgNL0a0LU3McfYLtoq
-	 yyx4u1Xurji0OFmQJQR76HCd2/pdHWdoWWEKdQKq4Xh1ka1qcfoLRjmgfwAv7T1yzjw==
+	t=1794992926;
+	b=0qdNYd2gY64iQ43hMfE13zpONoiNa6DCOiD/cr2kfGcssmoMHaoYOz0sl/qhTRH1SPah
+	 ryZ0Gt3Npu47K56dago3WP6TyAdvoLRkfoYl5OjDPxMzhbn0sYfIrE1yaD1EQXKbe5EA4
+	 l8i49uHfJ/u5JYEqzjvysKYYjYVhEhyJvI1jbrn8lAMRsk1+4Mx6fq2U6M8Bz2nPiLnXV
+	 dpO7Yv3raO4QbvIO/tTdopygthHMOnw+N4kU0Aopul+WrLNkQt8qqbr3pxN3Ka0cqrelZ
+	 f53+HwQq0WEd6ruhBl4rQCyyi1riB+9AL9M+xGDo9d1MBfGcz8tHHut9rZ1kn3eWR+w==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1794992899;
+	a=rsa-sha256; c=relaxed/relaxed; t=1794992926;
 	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
-	 Message-Id:X-Mailer:MIME-Version:Content-Transfer-Encoding:
-	 X-CM-TRANSID:X-Coremail-Antispam:X-CM-SenderInfo;
-	bh=gD0otNjszvRNhqR69e/c3FhXof3/3VFANDD29FpmMrQ=;
-	b=cbuFsUj8VWrUqPGhuH1ePx1ttj50DUXBsaL2c/O+v55QudD75oeo09JYY+wtnx6+aREy
-	 vQlke2KTy3oM8cqt6547uG6+AZaGXdXeb6JS2r9C/gHrChj+H83bm2oJnjtdxc+R8ug4o
-	 zwa3AyPAr93YWijOmjDjeH0iR4tRZ9g/4CsFaZ6lX3O5r8ka8lzx6pS4X0EA2Po5tSECz
-	 fgUf214emsvYYKQdE5foTiBLkiLzJFNqMnISxXYyUH4Naw3tr3mYJWA5nsitmrGrSk5JM
-	 5ucjuw1jIJEYKtu0CSReqkLx/Mw8sfqRawcaamtzaw45tOU97PFXuVi/2OQShyIakGg==
+	 Message-Id:X-Mailer:In-Reply-To:References:MIME-Version:
+	 Content-Transfer-Encoding:X-CM-TRANSID:X-Coremail-Antispam:
+	 X-CM-SenderInfo;
+	bh=xQGOsErGOZXq9+WXIxXt/LMa5Ic2cv6DVsqe8EAXFnA=;
+	b=sDpXQs6zWt+QXJyFrZEONEvozRkIvGqnqcwkSWSwraOH+Bv+8NWfuwvlmW1BLhNtgFpk
+	 j6aUOY57eHUa7j1nki1k327BqMFWFSkip8eFfr1qzPf4T9Adavf4NP+skBPYbh1MJslZZ
+	 VtsPUWo9CQs1NOhBjqcjv7TswTKvsFIS/uIZAEnT26TeWgRo7TOBUwyCxqwdTt+78rqAY
+	 bltsijNiJeVAG/KoZ27iF7V4ENDVy7rzHLeq8Dx4yksjv1S79k/hCFPx/5gaQwUfGZ8hl
+	 FMeBd0o8GpRQVhsxygon1QBHSY4MvuCXU67wRnqpw2NM7+J/XtMGWiVJM3jKh7Hj4vQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b="j4b66Q/k";
-	arc=none smtp.remote-ip=117.135.210.4
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=lkc8tJW7;
+	arc=none smtp.remote-ip=220.197.31.5
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7B6606A31C
-	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:08:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 1D7B6606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED30F606A888
+	for <ntfs@lists.linux.dev>; Wed, 18 Nov 2026 09:08:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org ED30F606A888
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=j4b66Q/k
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=lkc8tJW7
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=gD
-	0otNjszvRNhqR69e/c3FhXof3/3VFANDD29FpmMrQ=; b=j4b66Q/k3sUvVy21NI
-	/YUzhhwRn/undXhXd0CHuo5+kDQ8/H/wLV14QeiA2WKXGkUvmbnFLnByj+bS0ycd
-	iVYVKj25Tie/fk81w+GDyImmFDs3kSrF0JmKHnMDG6eoKH9PhxQPo0vHM6bHA2kj
-	cHoXoHpjB0/dy1fDN7X+gB8H0=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=xQ
+	GOsErGOZXq9+WXIxXt/LMa5Ic2cv6DVsqe8EAXFnA=; b=lkc8tJW7/qUtvvlfHD
+	VF7kM+mNlils5ctbxP4ZdskwWx4EUfewzzjp/1vxiy2O1NvdNTBs+wySW8a9KrCx
+	xAMpolRPhrQnath7fNOs0/1IOglHwrjlQnYo+vqX9AsovLU3eOUNufol0WcnT77H
+	YkJXM/8iiHKhQJQCyi3UM7Bhs=
 Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDn7yTNav1qnmzWIQ--.7895S2;
-	Wed, 18 Nov 2026 17:07:25 +0800 (CST)
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3_+gOa_1qh6wGIA--.32884S4;
+	Wed, 18 Nov 2026 17:08:32 +0800 (CST)
 From: Xuewen Wang <wangxuewen_ky@163.com>
 To: linkinjeon@kernel.org,
 	hyc.lee@gmail.com,
 	liubaolin12138@163.com
 Cc: ntfs@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Xuewen Wang <wangxuewen@kylinos.cn>
-Subject: [PATCH v6 00/37] Report NTFS metadata errors and shutdown through FAN_FS_ERROR
-Date: Wed, 18 Nov 2026 17:06:24 +0800
-Message-Id: <20261118090701.1858849-1-wangxuewen_ky@163.com>
+	Baolin Liu <liubaolin@kylinos.cn>
+Subject: [PATCH v6 10/37] ntfs: add filesystem metadata error reporting helpers
+Date: Wed, 18 Nov 2026 17:06:34 +0800
+Message-Id: <20261118090701.1858849-11-wangxuewen_ky@163.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20261118090701.1858849-1-wangxuewen_ky@163.com>
+References: <20261118090701.1858849-1-wangxuewen_ky@163.com>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -63,184 +66,136 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDn7yTNav1qnmzWIQ--.7895S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxKFy5JryfKr18Gw4kCw4xCrg_yoWfJw47pF
-	Z3C3s5t3s7tFyIgwnFy3yjqa4Fkas5GayUXwn8G3429rn8Kr1jqFWrt3W8uFWrCrWFq3yD
-	Xw4UKa9rury5AFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRZvttUUUUU=
-X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzQ7n0Gr9as4aLQAA3w
+X-CM-TRANSID:_____wD3_+gOa_1qh6wGIA--.32884S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZw1fXw4Utw4xXF1UtrW7CFg_yoWrCr4rpF
+	97Awn3Kw4DJFy2grs2kr42vw1SkF92gw4Utr1UXw1xZ3W8tw18tF4vy3WF9F1SgFWrW34j
+	qr1j939rur4UZrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UK-eOUUUUU=
+X-CM-SenderInfo: pzdqw5pxhzv0xbn1qiywtou0bp/xtbCzhD44Wr9axD5tgAA3k
 
-From: Xuewen Wang <wangxuewen@kylinos.cn>
+From: Baolin Liu <liubaolin@kylinos.cn>
 
-Report NTFS metadata corruption, failed recovery and shutdown through
-FAN_FS_ERROR. File events identify the affected base file; volume events
-cover errors without a safe file reference. Preserve the volume error bit
-and errors= policy. Before SB_ACTIVE, metadata reporting helpers record
-the volume error state without queuing an event.
+Add file and volume helpers to report metadata errors through the generic
+deferred fsnotify infrastructure while retaining the volume error bit.
+Pass the caller's errno unchanged.
 
-Use -EFSCORRUPTED (-EUCLEAN) for confirmed corruption in the updated error
-paths, both in reports and in failing NTFS operations. Preserve genuine
-I/O, allocation and unsupported-format errors. Ordinary EOF and missing
-names or streams are not corruption. Partial-I/O and best-effort
-operations retain their return semantics; an independent recovery failure
-can report a different errno from the initiating operation.
+Move ntfs_inode_base() to inode.h and use it to identify the base file for
+attribute and extent inodes. Fall back to a volume report for I_FREEING
+or I_WILL_FREE, when retaining the inode for deferred reporting is unsafe.
+When SB_ACTIVE is clear, record only the volume error state.
 
-Based on ntfs-next commit b028412297e6
-("ntfs: convert a named $DATA stream safely when making room in a record").
-
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
 Changes in v6:
-- Address the v5 review of the Fixes-tagged attribute-move patch. Put the
-  source-removal fix before the reporting infrastructure, using the
-  existing NVolSetErrors() and diagnostics. Add FAN_FS_ERROR reporting at
-  those sites in the final patch. The fix no longer depends on the new
-  reporting helpers.
-- Check the other fixes for the same dependency. Keep mapping-pairs
-  writeback and cluster-count fixes first, and move search-context error
-  propagation before the helpers. Separate buffered-read and compressed
-  I/O errno propagation, readdir retry state, buffered fallback writeback
-  errors and export-parent locking from the reporting changes.
-- Rebase onto the updated ntfs-next. Retain its uninterruptible metadata
-  reads, current iomap callback interface, named-stream conversion
-  safeguards and index validation.
-- Adapt the new ntfs_icx_ia_ensure() caller to error-pointer returns from
-  ntfs_ia_open(). Clear the failed pointer before cleanup and preserve the
-  original errno. Report a missing required INDEX_ALLOCATION attribute as
-  corruption without repeating errors already reported while opening it.
-- Classify the new index-entry VCN validation failures as EFSCORRUPTED.
-  Report the new directory child-VCN bounds failure through the common
-  cleanup exit, with the same errno returned to the caller.
-- Report attribute-move source-removal and destination-cleanup failures
-  after releasing the destination search context. Keep an independent
-  cleanup failure distinct from the original removal failure.
-- Avoid counting a propagated MFT mapping corruption again in the inode
-  loader. Keep the report from MFT/runlist validation and preserve
-  reports for unreported I/O errors and inode-local corruption.
-
-The earlier review fixes remain:
-- Cover the directory lookup, index-block read and nonresident iomap
-  corruption paths identified in v3. Use ntfs_inode_base() for base-file
-  attribution and test_and_set_bit() for one shutdown report per
-  clear-to-set transition.
-- Preserve search-context failures in ntfs_attr_exist() and its callers;
-  preserve the inner ntfs_read_inode_mount() error instead of returning -1.
-- Consolidate local reports at cleanup exits in the affected paths and
-  avoid repeating propagated reports, while retaining independent
-  recovery failures.
-- Distinguish malformed or missing required EA metadata from lower-level
-  read failures, and recheck HasEA under mrec_lock in listxattr().
-
-The series now has 37 patches. The extra patches separate existing fixes
-from reporting, so they can be reviewed and backported without pulling in
-the new helpers.
-
-Series organization:
-- 1-9: fixes and error propagation without the new reporting helpers.
-- 10: file and volume metadata reporting helpers.
-- 11-16: boot/system metadata, logfile, runlists, iomap and compression.
-- 17-23: attribute metadata, failed updates and inode cleanup.
-- 24-29: index/directory operations, namespace recovery and exportfs.
-- 30-35: MFT, EA/ACL, named-stream and reparse/ObjectID reporting.
-- 36: atomic shutdown reporting.
-- 37: reporting integration for the standalone attribute-move fix.
+Introduce the reporting helpers after the standalone fixes.
 
 Validation:
-- Built NTFS with W=1 and checked all 31 NTFS translation units with
-  Sparse C=2, with no NTFS compiler or Sparse diagnostics.
-- Passed 15 QEMU guest runs with NTFS built in. These cover normal file
-  and namespace operations, named streams, inode/index/runlist/EA
-  corruption, readdir, shutdown, filesystem ustat selftests and
-  fsync/remount/data verification.
-- The index cases include invalid INDX entries_offset and child VCNs
-  outside INDEX_ALLOCATION. Lookup and readdir returned EUCLEAN and
-  generated EUCLEAN events after the listener was ready.
-- Passed 403 controlled scenarios using extracted functions with
-  controlled dependencies and ASan/UBSan. These include the existing
-  error-path regressions, the new index-allocation guard and VCN checks,
-  and source-removal/destination-cleanup failures both before and after
-  reporting integration.
-- Added two exact-count QEMU checks: an invalid MFT FILE magic and an
-  inode-local zero link count each return EUCLEAN and report one error.
-  The old kernel fails the same MFT check with error_count=2.
-- The guest runs enabled non-strict KCSAN and lockdep. All three KCSAN
-  selftests passed, with no KCSAN or lockdep diagnostics in the test logs.
+- Compiled and linked the NTFS module object with W=1 at this stage.
 
-Thanks to Hyunchul and Namjae for reviewing the earlier versions.
+ fs/ntfs/inode.c  |  7 -------
+ fs/ntfs/inode.h  |  8 ++++++++
+ fs/ntfs/super.c  | 29 +++++++++++++++++++++++++++++
+ fs/ntfs/volume.h |  3 +++
+ 4 files changed, 40 insertions(+), 7 deletions(-)
 
-Baolin Liu (11):
-  ntfs: preserve cluster-free counts in attribute cleanup
-  ntfs: add filesystem metadata error reporting helpers
-  ntfs: report runlist and cluster allocation metadata errors
-  ntfs: report attribute lookup and validation errors
-  ntfs: report attribute list update and recovery failures
-  ntfs: report attribute conversion and mapping update failures
-  ntfs: report inode metadata and eviction cleanup errors
-  ntfs: report MFT record validation and lifecycle errors
-  ntfs: report MFT bitmap and data growth recovery failures
-  ntfs: report MFT writeback errors to fsnotify
-  ntfs: report each shutdown transition once
-
-Dandan Wu (11):
-  ntfs: report required system file and volume metadata errors
-  ntfs: report logfile metadata and emptying errors
-  ntfs: report iomap metadata corruption
-  ntfs: report LZNT1 and WOF compressed stream errors
-  ntfs: report attribute resize and relocation recovery failures
-  ntfs: report incomplete attribute range updates
-  ntfs: report index validation and block I/O errors
-  ntfs: preserve and report index traversal errors
-  ntfs: report directory lookup and metadata corruption
-  ntfs: report index update and recovery failures
-  ntfs: report namespace and file recovery errors
-
-Xuewen Wang (15):
-  ntfs: propagate mapping-pairs update errors from inode writeback
-  ntfs: handle source record removal failure during attribute moves
-  ntfs: preserve attribute search context initialization errors
-  ntfs: preserve synchronous buffered read errors
-  ntfs: preserve compressed I/O preparation errors
-  ntfs: retain directory iteration state after errors
-  ntfs: preserve buffered fallback writeback errors
-  ntfs: serialize export parent reconstruction
-  ntfs: report boot geometry and MFT bootstrap errors
-  ntfs: report attribute record update and cleanup failures
-  ntfs: report export parent reconstruction errors
-  ntfs: report EA metadata and restoration errors
-  ntfs: report named stream metadata and recovery errors
-  ntfs: report reparse and object ID metadata errors
-  ntfs: report attribute move removal and cleanup failures
-
- fs/ntfs/aops.c         |  20 +-
- fs/ntfs/attrib.c       | 898 ++++++++++++++++++++++++++++++-----------
- fs/ntfs/attrib.h       |   8 +-
- fs/ntfs/attrlist.c     |  61 ++-
- fs/ntfs/attrlist.h     |   4 +-
- fs/ntfs/bitmap.c       |   2 +-
- fs/ntfs/compress.c     |  35 +-
- fs/ntfs/dir.c          | 115 ++++--
- fs/ntfs/ea.c           | 173 +++++---
- fs/ntfs/file.c         |  30 +-
- fs/ntfs/index.c        | 370 +++++++++++------
- fs/ntfs/inode.c        | 269 ++++++++----
- fs/ntfs/inode.h        |  10 +-
- fs/ntfs/iomap.c        |  66 ++-
- fs/ntfs/lcnalloc.c     |  17 +-
- fs/ntfs/logfile.c      |  58 +--
- fs/ntfs/mft.c          | 353 ++++++++++------
- fs/ntfs/named_stream.c |  61 ++-
- fs/ntfs/namei.c        | 144 +++++--
- fs/ntfs/object_id.c    |  50 ++-
- fs/ntfs/reparse.c      | 109 ++++-
- fs/ntfs/reparse.h      |   2 +-
- fs/ntfs/runlist.c      |  23 +-
- fs/ntfs/runlist.h      |   4 +-
- fs/ntfs/stream.h       |   2 +-
- fs/ntfs/super.c        | 310 ++++++++++----
- fs/ntfs/volume.h       |   4 +
- fs/ntfs/wof.c          |  49 ++-
- 28 files changed, 2311 insertions(+), 936 deletions(-)
-
-
-base-commit: b028412297e640db52195df2649368c1910e8e4b
+diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
+index a892540146b8..7ebdbffcd75b 100644
+--- a/fs/ntfs/inode.c
++++ b/fs/ntfs/inode.c
+@@ -3571,13 +3571,6 @@ void ntfs_destroy_ext_inode(struct ntfs_inode *ni)
+ 	kmem_cache_free(ntfs_inode_cache, ni);
+ }
+ 
+-static struct ntfs_inode *ntfs_inode_base(struct ntfs_inode *ni)
+-{
+-	if (ni->nr_extents == -1)
+-		return ni->ext.base_ntfs_ino;
+-	return ni;
+-}
+-
+ static int ntfs_attr_position(__le32 type, struct ntfs_attr_search_ctx *ctx)
+ {
+ 	int err;
+diff --git a/fs/ntfs/inode.h b/fs/ntfs/inode.h
+index 7ea52c59c04b..3fcf5b761eab 100644
+--- a/fs/ntfs/inode.h
++++ b/fs/ntfs/inode.h
+@@ -298,6 +298,14 @@ static inline bool ntfs_inode_is_named_stream(struct ntfs_inode *ni)
+ 	return NInoAttr(ni) && ni->type == AT_DATA && ni->name_len;
+ }
+ 
++/* Extent and attached attribute inodes refer to their base MFT inode. */
++static inline struct ntfs_inode *ntfs_inode_base(struct ntfs_inode *ni)
++{
++	if (ni->nr_extents == -1)
++		return ni->ext.base_ntfs_ino;
++	return ni;
++}
++
+ /* Return the base MFT inode for an attribute inode, or @ni itself. */
+ static inline struct ntfs_inode *ntfs_base_inode(struct ntfs_inode *ni)
+ {
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 79c2e1c4a2ed..773e5208bdbf 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -14,6 +14,7 @@
+ #include <linux/sched/mm.h>
+ #include <linux/fs_context.h>
+ #include <linux/fs_parser.h>
++#include <linux/fserror.h>
+ 
+ #include "sysctl.h"
+ #include "logfile.h"
+@@ -426,6 +427,34 @@ const struct option_t on_errors_arr[] = {
+ 	{ 0,			NULL }
+ };
+ 
++/*
++ * Report confirmed metadata corruption as -EFSCORRUPTED, matching the errno
++ * returned to the caller. Preserve the errno of I/O and recovery failures
++ * so listeners can distinguish their causes.
++ */
++void ntfs_report_metadata_error(struct ntfs_volume *vol, int error)
++{
++	NVolSetErrors(vol);
++	if (vol->sb->s_flags & SB_ACTIVE)
++		fserror_report_metadata(vol->sb, error, GFP_ATOMIC);
++}
++
++void ntfs_report_file_metadata_error(struct inode *inode, int error)
++{
++	struct ntfs_inode *ni = NTFS_I(inode);
++
++	/* Attribute inodes share the file handle of their base inode. */
++	inode = VFS_I(ntfs_inode_base(ni));
++	/* Eviction cannot retain an inode reference for the deferred report. */
++	if (inode_state_read_once(inode) & (I_FREEING | I_WILL_FREE)) {
++		ntfs_report_metadata_error(NTFS_SB(inode->i_sb), error);
++		return;
++	}
++	NVolSetErrors(NTFS_SB(inode->i_sb));
++	if (inode->i_sb->s_flags & SB_ACTIVE)
++		fserror_report_file_metadata(inode, error, GFP_ATOMIC);
++}
++
+ void ntfs_handle_error(struct super_block *sb)
+ {
+ 	struct ntfs_volume *vol = NTFS_SB(sb);
+diff --git a/fs/ntfs/volume.h b/fs/ntfs/volume.h
+index ed5c0ccb9cd9..27f58beb4b2d 100644
+--- a/fs/ntfs/volume.h
++++ b/fs/ntfs/volume.h
+@@ -262,6 +262,9 @@ DEFINE_NVOL_BIT_OPS(SymlinkNative)
+ DEFINE_NVOL_BIT_OPS(MftBootstrap)
+ DEFINE_NVOL_BIT_OPS(StreamsWindows)
+ 
++void ntfs_report_metadata_error(struct ntfs_volume *vol, int error);
++void ntfs_report_file_metadata_error(struct inode *inode, int error);
++
+ static inline void ntfs_inc_free_clusters(struct ntfs_volume *vol, s64 nr)
+ {
+ 	if (!NVolFreeClusterKnown(vol))
 -- 
 2.51.0
 
