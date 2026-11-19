@@ -1,99 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=62.89.141.173
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795067497;
-	b=PizJrPiRdacQOivJN1glKJiYPuAYyuMqqTZl3wR6SZDQCrGB0x8rOMA9QkgdTaT0uV/1
-	 bgLOd87vA/SwIr+H+68jWMEIOv5B4NGuBQ+p7yO9tZmKcyqE8vVdCqqAKSihHDS0K7yDP
-	 7O8b5P+to3XynZpyLjO5JJjiL8lXNU7SReH3SYW6tM7daU8vm4G6OJm+/TaXmJmMg1gyL
-	 Yfxr+8of5GKNaxXhphnWFrQHUHf8SnYjbFzm5o9OfJIDiolqN8uORqfvKszlLXISCHMvK
-	 2be/9YMNQdXf5MwcfuM4NkEwLIA2LOfWAAHBXC1JS/fmxCNDNh8KH2VXQLN9kHFF89Q==
+	t=1795073622;
+	b=Dwl2t0z2t42cbpdOgka15eUhENCB2bopYm/llSLaobOpKnYIZJbt/tIIGiuuT8q6F90C
+	 c/ICb9reuD14UxtFnEZSZQeugsyeKHKJlcb1wn9A1tF+oXDTVXS1aob0KwJOnH+202w1C
+	 cDyJB3zuwLSQecKD8JpgO2ddM/ZrkFnLl7KwCeDfzkhWHU2L5I1RDJZkFcvsoq4veei9N
+	 G8iod37JIPBXIX3MYFPRJASsFae4sxHeP7FcZl2XPaoGykstvHZl3PeN1mSdazrbfRqcJ
+	 UsCk8DnqIhRZCNavr7tIUUZTSXv+b1z1J/MdNpgDgfuDYLIl2ukd43zgUkIQhrbI2yQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795067497;
-	h=DMARC-Filter:DKIM-Signature:Received:Date:From:To:Cc:Subject:
-	 Message-ID:References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To:Sender;
-	bh=z8G4571aUTPFuGlDRih4WtoT+MR1zWs5KxPfHLJ0IoQ=;
-	b=K438CdbgINAZblCj2Vo8NMPTupp/jd8A3pokleOc9gKBuaVvr8hgSpT7r+t88U3xpw4R
-	 8lCEgPXLikVJak4pUOOjA4WHRs43tG8gXxCkodM9lU1qGFg3zzn8+XP2CxxHooy1Gayd0
-	 juO8N3HMQBBckyCNTsdUDRwj9NuzbHC90rRyc7Aa3H108FuG2cE5256WaeqxJlJN+wkEj
-	 takEtrZqw7IUaVDHq3aUOrY1e0ps3JpvqlCFmg12LpqYohT5bh1QbKRiHNRdaq2adobsE
-	 vYFosqm6szMv6srf4rGaa0Vd5nVeEHcEzwuULrG4gu1btRDDdAOfuAPwdULTADdmyPg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795073622;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=GTCAL2yOJ+jQQbnCn7Hlo0KT5zWh6GMGz7xXwmGc5ss=;
+	b=tpCBVLMj5rI9PG/5Pf2dRn0pgS+rwh1gpmxB/9ri9raAY83ir9Bb3P7GEKfVeuBYZNnc
+	 6wa6ExreM755dVqIBnW8ADic+4MywT4iX59AXMXuiP0BCC2nebV2pQJXUGK1ftEElJESm
+	 /VvexyCaYB4oAGP5Z7z/7vs08ygVyYP+3x3w2z46s47CDnADQK5zsZ+G7zeHUedHvwVi7
+	 6Fnja6oI0XH5x6+UYZkqYz7Rid+BgHmpOz/IOHAKDpGE5slctjHzlT4MY+Q8jGFWLOAKj
+	 0kO9JOogPeHlyT8GWQ4UtaLTw3qOqpJJ9xqsqM8Sg2K9nd85fimP9Qf3qcPgSD0ubDA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=zeniv.linux.org.uk;
-	spf=none smtp.mailfrom=ftp.linux.org.uk;
-	dkim=pass header.d=linux.org.uk header.i=@linux.org.uk header.a=rsa-sha256 header.s=zeniv-20220401 header.b=HUmq9V2f;
-	arc=none smtp.remote-ip=62.89.141.173
-Received: from zeniv.linux.org.uk (zeniv.linux.org.uk [62.89.141.173])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=fsInJLqq;
+	arc=none smtp.remote-ip=117.135.210.3
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFD1F606A325;
-	Thu, 19 Nov 2026 05:51:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org EFD1F606A325
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zeniv.linux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ftp.linux.org.uk
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 476F0606A325
+	for <ntfs@lists.linux.dev>; Thu, 19 Nov 2026 07:33:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 476F0606A325
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linux.org.uk header.i=@linux.org.uk header.a=rsa-sha256 header.s=zeniv-20220401 header.b=HUmq9V2f
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=linux.org.uk; s=zeniv-20220401; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=z8G4571aUTPFuGlDRih4WtoT+MR1zWs5KxPfHLJ0IoQ=; b=HUmq9V2fqWZniya7o9nBaVPeDZ
-	hdLnNqA0+VaoySgEJuKHB41/nmyLaGptpyplTvFZpj9ZsUfvW/Uacb0EujAyxoatj/wEjrTHUy1Y8
-	Jf/0+dvEia8oYQhTDJ2QTEjT6TZu9xP6N/is4httLR57O2jb4I7x7sybjo+/cFqRcKEnzzz9PN71w
-	Fs3s4nF5yw1DIdzaYMKdWCNazNDVu5/+7GdnX+s8wkC+dHul4l8kAJetHVgTfI7IM42m1/kFkA0V+
-	e5cVGVGh3fNAY2bVKP02Pyi9IdxpjMoQwmhSMxh71ivIpbruqUDwYbd4JXLlMVMx0hkbK2WWTq4Oa
-	k2qmfFmA==;
-Received: from viro by zeniv.linux.org.uk with local (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTv3O-000000063G7-3IJX;
-	Thu, 19 Nov 2026 05:51:26 +0000
-Date: Thu, 19 Nov 2026 05:51:26 +0000
-From: Al Viro <viro@zeniv.linux.org.uk>
-To: Christian Brauner <brauner@kernel.org>
-Cc: Cai Xinchen <caixinchen1@huawei.com>, mic@digikod.net,
-	gnoack@google.com, paul@paul-moore.com, jack@suse.cz,
-	amir73il@gmail.com, andrii@kernel.org, apparmor@lists.ubuntu.com,
-	ast@kernel.org, axboe@kernel.dk, bpf@vger.kernel.org,
-	casey@schaufler-ca.com, cel@kernel.org, cem@kernel.org,
-	chenxiaosong@chenxiaosong.com, code@tyhicks.com, corbet@lwn.net,
-	Dai.Ngo@oracle.com, dakr@kernel.org, daniel@iogearbox.net,
-	dhowells@redhat.com, dlemoal@kernel.org, dmitry.kasatkin@gmail.com,
-	driver-core@lists.linux.dev, dsterba@suse.com,
-	ecryptfs@vger.kernel.org, eddyz87@gmail.com, emil@etsalapatis.com,
-	eric.snowberg@oracle.com, exfat@lists.linux.dev,
-	georgia.garcia@canonical.com, gregkh@linuxfoundation.org,
-	hch@lst.de, hirofumi@mail.parknet.co.jp, hyc.lee@gmail.com,
-	ihor.solodrai@linux.dev, jlayton@kernel.org, jmorris@namei.org,
-	johan@kernel.org, john.fastabend@gmail.com,
-	john.johansen@canonical.com, jolsa@kernel.org, kpsingh@kernel.org,
-	linkinjeon@kernel.org, linux-api@vger.kernel.org,
-	linux-block@vger.kernel.org, linux-btrfs@vger.kernel.org,
-	linux-cifs@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-integrity@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	linux-nfs@vger.kernel.org, linux-security-module@vger.kernel.org,
-	linux-trace-kernel@vger.kernel.org, linux-unionfs@vger.kernel.org,
-	linux-xfs@vger.kernel.org, liubaolin12138@163.com,
-	martin.lau@linux.dev, mason@kernel.org,
-	mathieu.desnoyers@efficios.com, matt@bobrowski.net,
-	memxor@gmail.com, mhiramat@kernel.org, miklos@szeredi.hu,
-	neil@brown.name, netfs@lists.linux.dev, ntfs@lists.linux.dev,
-	okorniev@redhat.com, omosnacek@gmail.com,
-	penguin-kernel@i-love.sakura.ne.jp, rafael@kernel.org,
-	rdunlap@infradead.org, roberto.sassu@huawei.com,
-	rostedt@goodmis.org, selinux@vger.kernel.org,
-	senozhatsky@chromium.org, serge@hallyn.com, sj1557.seo@samsung.com,
-	skhan@linuxfoundation.org, song@kernel.org,
-	stephen.smalley.work@gmail.com, takedakn@nttdata.co.jp,
-	tom@talpey.com, yonghong.song@linux.dev, yuezhang.mo@sony.com,
-	zohar@linux.ibm.com, utilityemal77@gmail.com, lujialin4@huawei.com
-Subject: Re: [PATCH -next -v4 02/17] LSM: pass struct path to the
- inode_setsecctx hook
-Message-ID: <20261119055126.GU989762@ZenIV>
-References: <20261117150542.1169451-1-caixinchen1@huawei.com>
- <20261117150542.1169451-3-caixinchen1@huawei.com>
- <20261117184342.GR989762@ZenIV>
- <20261118001641.GA1669148@ZenIV>
- <20261118-woher-duften-bejubeln-7a8a2099f89f@brauner>
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=fsInJLqq
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=GTCAL2yOJ+jQQbnCn7Hlo0KT5zWh6GMGz7xXwmGc5ss=;
+	b=fsInJLqqh/5nZFYG9aPBxmiyWYr/Gl17seomR89uxY6gOiCzWRCjtXTbCTj04j
+	byQGX8H5RqNpBcOSM3axnMFHZQGKL4apLenaNpWBO3nMGInzFpXEtDDP2KPmvkm8
+	GzK9Fk9a45b9TdSE0OEdFNZHdArax8Rb80Y7b27VRc6l8=
+Received: from [IPV6:2409:8900:1e87:c681:fc32:898e:e0f:92e9] (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id PCgvCgDXynZEpv5qrIp4GA--.24628S2;
+	Thu, 19 Nov 2026 15:33:26 +0800 (CST)
+Message-ID: <64e20a97-d6d1-4f3f-9303-2159aecbd7b6@163.com>
+Date: Thu, 19 Nov 2026 15:33:24 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -103,123 +54,380 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261118-woher-duften-bejubeln-7a8a2099f89f@brauner>
-Sender: Al Viro <viro@ftp.linux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7] ntfs: trim the sizes after a short write
+To: Zhan Xusheng <zhanxusheng1024@gmail.com>, linkinjeon@kernel.org,
+ hyc.lee@gmail.com
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, zhanxusheng@xiaomi.com
+References: <20261119022715.3636699-1-zhanxusheng1024@gmail.com>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261119022715.3636699-1-zhanxusheng1024@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PCgvCgDXynZEpv5qrIp4GA--.24628S2
+X-Coremail-Antispam: 1Uf129KBjvAXoWfGF48ur4DXr1ktrWUKFWUtwb_yoW8GF4fZo
+	WrAay5Zw1F934jyr4jvw4DJr93X39YgrW8JFZxXr47AFn09r4jk3y3Jw1rG3ySk3WFkF1D
+	W34xtayrCFWjqF95n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUejjyUUUUU
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QgW4Gr+pkiYJwAA3S
 
-On Wed, Nov 18, 2026 at 09:51:27AM +0100, Christian Brauner wrote:
-> On Wed, Nov 18, 2026 at 12:16:41AM +0000, Al Viro wrote:
-> > On Tue, Nov 17, 2026 at 06:43:42PM +0000, Al Viro wrote:
-> > > > + * Hooks that take a struct path argument: the VFS only sanctions passing
-> > > > + * the path to VFS helpers that take a struct path (e.g. notify_change());
-> > > > + * it makes no guarantees with regard to path->mnt, whose layout and
-> > > > + * implementation details are subject to change.  Implementations must
-> > > > + * not rely on its properties.
-> 
-> That comment is a garbled version of an earlier review. It meant that
-> LSMs get no guarantees about struct vfsmount internals and don't get to
-> poke at them. I'm not sure how this can be read as path->mnt being a
-> random mount.
 
-"no guarantees with regard to path->mnt" is easy to parse that way when one
-is stuck with a caller that needs to be converted to new API with no relevant
-mount reference in sight.
 
-> > > If that kind of stuff actually does get passed to any existing hooks, we need
-> > > to fix that ASAP.
+在 2026/11/19 10:27, Zhan Xusheng 写道:
+> From: Zhan Xusheng <zhanxusheng@xiaomi.com>
 > 
-> Of course there is one...
+> ntfs_file_write_iter() moves the data size and, for a non-resident
+> uncompressed file, the initialized size to pos + count before the copy.
+> __ntfs_extend_initialized_size() only zeroes [old initialized size, pos),
+> so the range [pos, pos + count) is initialized only by the copy itself.
+> When iomap_file_buffered_write() copies less than count, it returns a
+> positive short count and the error rollback at out: does not run.  The
+> file keeps the size pos + count, and [pos + ret, pos + count) reads back
+> whatever the freed clusters held before, also after a remount.  A local
+> user can read the old contents of freed clusters this way.
 > 
->   dent = lookup_one_unlocked(idmap, &QSTR_LEN(...),
->                              priv->dir_fp->filp->f_path.dentry);
->   [...].
->   rc = ksmbd_vfs_fill_dentry_attrs(priv->work, idmap, dent, &ksmbd_kstat);
+> Run the existing rollback for a short write as well, and roll the data
+> size back to the end of what was written, keeping the clusters that were
+> allocated on disk before the write, such as space reserved with
+> FALLOC_FL_KEEP_SIZE.  Keep the initialized size, as a page fault through
+> a shared mapping may rely on it while the write is stalled on its
+> source, and zero what the write did not reach, up to the end of the
+> block holding pos + count.  Only if that fails, take the initialized
+> size back to where the zeroing started, if it is above that.
 > 
-> It passes only the bare dentry, and ksmbd_vfs_fill_dentry_attrs() then
-> makes up a path from the share's root mount:
+> Fixes: b041ca562526 ("ntfs: update iomap and address space operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zhan Xusheng <zhanxusheng@xiaomi.com>
+> ---
+> v7: when taking the data size back, keep the clusters allocated on disk
+> before the write instead of truncating, which freed space reserved
+> with FALLOC_FL_KEEP_SIZE; a failed write already did so before this
+> patch (Hyunchul).  Holes and delayed allocations past the data size,
+> such as the preallocation of an earlier extending write, are freed as
+> before.  Baolin's Reviewed-by on v6 is not carried over, as this
+> changes the data size rollback he reviewed.
+> v6: cap that fallback at the current initialized size, which a failed
+> extension before the write can leave below pos (Baolin).
+> v5 (Baolin):
+> - start the zeroing at pos, not at the old initialized size, which
+>    overwrote data stored through a shared mapping below pos
+> - do the same for a direct write, instead of truncating the page cache
+>    and taking the initialized size back
+> - if the zeroing fails, take the initialized size back to where it
+>    started, instead of skipping both rollbacks
+> v4: for a buffered write, zero the unwritten range instead of
+> truncating the page cache and taking the initialized size back, which
+> dropped data stored through a shared mapping during the copy (Baolin).
+> v3: clear the cache up to EOF, not up to the extended initialized
+> size, which left the rest of the block holding pos + count (Baolin).
+> v2: also clear the cached tail of the last block, which v1 left in
+> place when the write stayed inside the old data size (Baolin).
 > 
->   struct path path = {
->           .mnt = share_conf->vfs_path.mnt,   /* mount the share is exported from */
->           .dentry = dentry,                  /* entry inside the listed dir */
->   };
->   rc = vfs_getattr(&path, ...);
+> v6: https://lore.kernel.org/all/20261117082021.2947603-1-zhanxusheng1024@gmail.com/
+> v5: https://lore.kernel.org/all/20261116091121.2547497-1-zhanxusheng1024@gmail.com/
+> v4: https://lore.kernel.org/all/20261113050148.1466682-1-zhanxusheng1024@gmail.com/
+> v3: https://lore.kernel.org/all/20261112093233.1118469-1-zhanxusheng1024@gmail.com/
+> v2: https://lore.kernel.org/all/20261112030815.982026-1-zhanxusheng1024@gmail.com/
+> v1: https://lore.kernel.org/all/20261111093459.660484-1-zhanxusheng1024@gmail.com/
 > 
-> since 5614c8c487f6 ("ksmbd: replace generic_fillattr with vfs_getattr").
+> Tested in a VM on ntfs-next 4862a81576e3, with all free space filled
+> with a known pattern first.  Short buffered writes of 4M, old data
+> readable after drop_caches and after remount, 3 runs each:
 > 
-> So a client that lists a directory on a submount below the share then
-> that dentry belongs to another superblock. So security_inode_getattr()
-> and ->getattr() get a mixed path.
+>                                      unfixed    v6     v7
+>    fallocated, ends block-aligned    3137536    0      0
+>    fallocated, ends inside a block   3141332    0      0
+>    fallocated, unaligned start       3137536    0      0
+>    same, pos + count in that page    -          0      0
+>    append                            3137536    0      0
+> 
+> Marker stored through a shared mapping at 64K while pwritev() is
+> stalled on a userfaultfd source page, state after remount, with and
+> without fallocate():
+> 
+>                                            unfixed  v6     v7
+>    buffered 4K at 128K, EFAULT             lost     lost   kept
+>    O_DIRECT 12K at 0, EFAULT               lost     lost   kept
+>    buffered 12K at 0, short 8192 (v3)      kept     kept   kept
+> 
+> 1M reserved with FALLOC_FL_KEEP_SIZE, then a 12K write at 0, 512-byte
+> blocks after remount:
+> 
+>                                            unfixed  v6     v7
+>    short, 8192 written                     2048     16     2048
+>    failed, EFAULT                          0        0      2048
+> 
+> A short write past 8K reserved this way frees what it allocated beyond
+> the 8K and keeps the 8K.  A store into [pos + ret, pos + count) itself
+> during the write is zeroed, as that range belongs to the write.  With
+> iomap_zero_range() failing (injected -ENOMEM), a 32K write to a 16K
+> file that returns 12288 leaves the size at 28K with no old data, also
+> after remount.
+> fsx (buffered, no-mmap, O_DIRECT and mixed), compressed files,
+> fallocate, insert/collapse range and punch hole give the same results
+> with v7 as with v6.
+> ---
+>   fs/ntfs/attrib.c |  34 +++++++++++++
+>   fs/ntfs/attrib.h |   1 +
+>   fs/ntfs/file.c   | 121 +++++++++++++++++++++++++++++++++++++++++++----
+>   3 files changed, 148 insertions(+), 8 deletions(-)
+> 
+> diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+> index 29eae1eb3d02..8154c9b05d55 100644
+> --- a/fs/ntfs/attrib.c
+> +++ b/fs/ntfs/attrib.c
+> @@ -2456,6 +2456,40 @@ int ntfs_attr_set_initialized_size(struct ntfs_inode *ni, loff_t new_size)
+>   	return err;
+>   }
+>   
+> +/*
+> + * ntfs_attr_set_data_size - set the data size of a non-resident attribute
+> + * without changing its allocation
+> + *
+> + * The caller holds mrec_lock.  @new_size must not be below the initialized
+> + * size or above the allocated size.
+> + */
+> +int ntfs_attr_set_data_size(struct ntfs_inode *ni, loff_t new_size)
+> +{
+> +	struct ntfs_attr_search_ctx *ctx;
+> +	struct ntfs_inode *base_ni = ntfs_base_inode(ni);
+> +	int err = 0;
+> +
+> +	if (!NInoNonResident(ni) || new_size < ni->initialized_size ||
+> +	    new_size > ni->allocated_size)
+> +		return -EINVAL;
+> +
+> +	ctx = ntfs_attr_get_search_ctx(base_ni, NULL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	err = ntfs_attr_lookup(ni->type, ni->name, ni->name_len,
+> +			       CASE_SENSITIVE, 0, NULL, 0, ctx);
+> +	if (err)
+> +		goto out_ctx;
+> +
+> +	ctx->attr->data.non_resident.data_size = cpu_to_le64(new_size);
+> +	ni->data_size = new_size;
 
-So e.g. apparmor hits
-        vfsuid_t vfsuid = i_uid_into_vfsuid(mnt_idmap(path->mnt),
-					    d_backing_inode(path->dentry));
-with path->mnt having nothing to do with path->dentry there?  Fun...
+Hi Xusheng,
+    Thanks for sending v7 and addressing the KEEP_SIZE case.
+    Could we also set FileNameDirty for unnamed AT_DATA here, as 
+ntfs_non_resident_attr_shrink() does?
 
-> The third patch in this series fixes this. But we should make this a
-> Fixes: patch really... Something like [1].
-> 
-> > To elaborate a bit: correctness of quite a few places does depend upon the
-> > following invaraint:
-> > 	path->mnt->mnt_sb == path->dentry->d_sb		(1)
-> > for all struct path pointers they might possibly run into.
-> >
-> > _IF_ you can guarantee that (1) is not violated, we have something to
-> > talk about; otherwise, don't call your object struct path and don't
-> > pass it to anything that expects to deal with struct path.
-> 
-> Every struct path the series constructs:
-> 
->   - devtmpfs
->   - nfsd
->   - cachefiles
->   - ecryptfs
->   - overlayfs
->   - ksmbd
-> 
-> doesn't have this bug.
-> 
-> [1]:
-> 
->   --- a/fs/smb/server/smb2pdu.c
->   +++ b/fs/smb/server/smb2pdu.c
->   @@ -6375,13 +6375,14 @@ static int process_query_dir_entries(struct smb2_query_dir_private *priv)
->                           continue;
->                   }
-> 
->   +               path.mnt = priv->dir_fp->filp->f_path.mnt;
->   +               path.dentry = dent;
->   +
->                   if (test_share_config_flag(priv->work->tcon->share_conf,
->                                              KSMBD_SHARE_FLAG_HIDE_UNREADABLE)) {
->                           __le32 daccess = FILE_READ_DATA_LE | FILE_READ_EA_LE |
->                                   FILE_READ_ATTRIBUTES_LE;
-> 
->   -                       path.mnt = priv->dir_fp->filp->f_path.mnt;
->   -                       path.dentry = dent;
->                           rc = smb_check_perm_dacl(priv->work->conn, &path,
->                                                    &daccess, daccess,
->                                                    priv->work->sess->user->uid,
->   @@ -6397,7 +6398,7 @@ static int process_query_dir_entries(struct smb2_query_dir_private *priv)
->   @@ -6397,7 +6398,7 @@ static int process_query_dir_entries(struct smb2_query_dir_private *priv)
->                   if (priv->info_level != FILE_NAMES_INFORMATION) {
->                           rc = ksmbd_vfs_fill_dentry_attrs(priv->work,
->                                                            idmap,
->   -                                                        dent,
->   +                                                        &path,
->                                                            &ksmbd_kstat);
->                           if (rc) {
->                                   dput(dent);
->   --- a/fs/smb/server/smb_common.c
->   +++ b/fs/smb/server/smb_common.c
->   @@ -472,32 +472,36 @@ int ksmbd_populate_dot_dotdot_entries(struct ksmbd_work *work, int info_level,
->           for (i = 0; i < 2; i++) {
->                   struct kstat kstat;
->                   struct ksmbd_kstat ksmbd_kstat;
->   -               struct dentry *dentry;
->   +               struct path path = { .mnt = dir->filp->f_path.mnt };
+         if (ni->type == AT_DATA && ni->name == AT_UNNAMED)
+                 NInoSetFileNameDirty(ni);
 
-That's just asking for breakage down the road.  Just pass it
-the address of ->f_path for "." and
-	&(struct path){.mnt = dir->filp->f_path.mnt, .dentry = dentry}
-for ".." (and sod the dentry = dget(...) for "." - just have it NULL there)
+   The expansion sets this flag, but __ntfs_write_inode() may have 
+already cleared it and updated the FILE_NAME and directory index sizes 
+while the write was blocked on its source buffer. Without setting it 
+again here, those sizes could remain at the expanded value after 
+rollback, since mark_mft_record_dirty() doesn't set this flag.
+
+Thanks,
+Baolin.
+
+> +	mark_mft_record_dirty(ctx->ntfs_ino);
+> +out_ctx:
+> +	ntfs_attr_put_search_ctx(ctx);
+> +	return err;
+> +}
+> +
+>   /*
+>    * ntfs_make_room_for_attr - make room for an attribute inside an mft record
+>    * @m:		mft record
+> diff --git a/fs/ntfs/attrib.h b/fs/ntfs/attrib.h
+> index bee91c9f6f81..edb62826a6ab 100644
+> --- a/fs/ntfs/attrib.h
+> +++ b/fs/ntfs/attrib.h
+> @@ -102,6 +102,7 @@ int ntfs_attr_make_non_resident(struct ntfs_inode *ni, const u32 data_size);
+>   int ntfs_attr_set(struct ntfs_inode *ni, const s64 ofs, const s64 cnt,
+>   		const u8 val);
+>   int ntfs_attr_set_initialized_size(struct ntfs_inode *ni, loff_t new_size);
+> +int ntfs_attr_set_data_size(struct ntfs_inode *ni, loff_t new_size);
+>   int ntfs_attr_open(struct ntfs_inode *ni, const __le32 type,
+>   		__le16 *name, u32 name_len);
+>   void ntfs_attr_close(struct ntfs_inode *n);
+> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+> index a52483d16c6e..25034735d249 100644
+> --- a/fs/ntfs/file.c
+> +++ b/fs/ntfs/file.c
+> @@ -843,6 +843,34 @@ static int ntfs_expand_for_write(struct ntfs_inode *ni, loff_t end)
+>   	return err;
+>   }
+>   
+> +/*
+> + * End of the last run of clusters allocated on disk.  Holes and delayed
+> + * allocations past it, such as the preallocation of an extending write,
+> + * do not count.  Falls back to the allocated size if the runlist is not
+> + * fully mapped.
+> + */
+> +static loff_t ntfs_allocated_end_on_disk(struct ntfs_inode *ni)
+> +{
+> +	loff_t end = ni->allocated_size;
+> +	ssize_t i;
+> +
+> +	down_read(&ni->runlist.lock);
+> +	if (NInoFullyMapped(ni) && ni->runlist.rl) {
+> +		end = 0;
+> +		for (i = ni->runlist.count - 1; i >= 0; i--) {
+> +			struct runlist_element *rl = &ni->runlist.rl[i];
+> +
+> +			if (rl->length && rl->lcn >= 0) {
+> +				end = ntfs_cluster_to_bytes(ni->vol,
+> +						rl->vcn + rl->length);
+> +				break;
+> +			}
+> +		}
+> +	}
+> +	up_read(&ni->runlist.lock);
+> +	return end;
+> +}
+> +
+>   ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   {
+>   	struct file *file = iocb->ki_filp;
+> @@ -853,7 +881,7 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   	ssize_t count;
+>   	loff_t pos, end;
+>   	int err;
+> -	loff_t old_data_size, old_init_size;
+> +	loff_t old_data_size, old_init_size, old_alloc_size;
+>   
+>   	if (NVolShutdown(vol))
+>   		return -EIO;
+> @@ -901,6 +929,10 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   
+>   	old_data_size = ni->data_size;
+>   	old_init_size = ni->initialized_size;
+> +	old_alloc_size = ni->allocated_size;
+> +	if (NInoNonResident(ni) && !NInoCompressed(ni) &&
+> +	    old_alloc_size > round_up(old_data_size, vol->cluster_size))
+> +		old_alloc_size = ntfs_allocated_end_on_disk(ni);
+>   
+>   	if (end > old_data_size) {
+>   		ret = ntfs_expand_for_write(ni, end);
+> @@ -928,10 +960,21 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		ret = iomap_file_buffered_write(iocb, from, ntfs_write_iomap_next,
+>   				&ntfs_iomap_folio_ops, NULL);
+>   out:
+> -	if (ret < 0 && ret != -EIOCBQUEUED) {
+> +	/*
+> +	 * Both sizes were moved to end before the copy, so a short write,
+> +	 * like a failed one, must take back what it did not write.
+> +	 */
+> +	if (ret < count && ret != -EIOCBQUEUED) {
+> +		loff_t new_init_size = old_init_size;
+> +		loff_t new_data_size = old_data_size;
+>   		int init_err = 0;
+>   		int data_err = 0;
+>   
+> +		if (ret > 0) {
+> +			new_init_size = max(old_init_size, pos + ret);
+> +			new_data_size = max(old_data_size, pos + ret);
+> +		}
+> +
+>   		/*
+>   		 * Like ntfs_setattr_size(): __ntfs_attr_truncate_vfs()
+>   		 * expects the invalidate lock held across the size
+> @@ -939,14 +982,59 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		 */
+>   		filemap_invalidate_lock(vi->i_mapping);
+>   
+> +		/*
+> +		 * A page fault through a shared mapping may have used the
+> +		 * extended initialized size while the write was stalled on
+> +		 * its source, so keep that size and zero what the write did
+> +		 * not reach instead.  [old_init_size, pos) was zeroed before
+> +		 * the write.  Past end, zero the rest of the block that a
+> +		 * buffered copy may have read from disk, unless such a fault
+> +		 * already moved the initialized size past end and zeroed it.
+> +		 */
+> +		if (NInoNonResident(ni) && !NInoCompressed(ni) &&
+> +		    ni->initialized_size > new_init_size) {
+> +			loff_t zstart = max(pos, new_init_size);
+> +			loff_t zend = ni->initialized_size > end ? end :
+> +				      round_up(end, i_blocksize(vi));
+> +			int err = 0;
+> +
+> +			zend = min(zend, new_data_size);
+> +			if (zend > zstart) {
+> +				err = iomap_zero_range(vi, zstart,
+> +						zend - zstart, NULL,
+> +						ntfs_seek_iomap_next,
+> +						&ntfs_iomap_folio_ops, NULL);
+> +				/* A direct read must not see the old blocks. */
+> +				if (!err && iocb->ki_flags & IOCB_DIRECT)
+> +					err = filemap_write_and_wait_range(
+> +						vi->i_mapping, zstart, zend - 1);
+> +			}
+> +			if (!err)
+> +				new_init_size = min(ni->initialized_size,
+> +						    new_data_size);
+> +			else
+> +				new_init_size = min3(ni->initialized_size,
+> +						     zstart, new_data_size);
+> +		}
+> +
+>   		/* ntfs_attr_set_initialized_size() rejects a resident one. */
+> -		if (ni->initialized_size != old_init_size &&
+> +		if (ni->initialized_size != new_init_size &&
+>   		    NInoNonResident(ni)) {
+>   			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+>   
+> +			/*
+> +			 * Only reached when the zeroing above failed or did
+> +			 * not apply.  Drop what was cached past the new
+> +			 * initialized size, as __ntfs_extend_initialized_size()
+> +			 * does.
+> +			 */
+> +			if (ni->initialized_size > new_init_size)
+> +				truncate_pagecache_range(vi, new_init_size,
+> +						max_t(loff_t, i_size_read(vi),
+> +						      ni->initialized_size) - 1);
+>   			mutex_lock(&mrec_ni->mrec_lock);
+>   			init_err = ntfs_attr_set_initialized_size(ni,
+> -					old_init_size);
+> +					new_init_size);
+>   			mutex_unlock(&mrec_ni->mrec_lock);
+>   		}
+>   		/*
+> @@ -955,13 +1043,30 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+>   		 * the uninitialized tail, so skip it unless the rollback
+>   		 * above restored that size.
+>   		 */
+> -		if (ni->data_size != old_data_size && !init_err) {
+> +		if (ni->data_size != new_data_size && !init_err) {
+>   			struct ntfs_inode *mrec_ni = ntfs_base_inode(ni);
+>   
+> -			truncate_setsize(vi, old_data_size);
+> +			truncate_setsize(vi, new_data_size);
+>   			mutex_lock(&mrec_ni->mrec_lock);
+> -			data_err = __ntfs_attr_truncate_vfs(ni, old_data_size,
+> -					old_data_size);
+> +			if (NInoNonResident(ni) && !NInoCompressed(ni)) {
+> +				/*
+> +				 * Only free what the write allocated, not
+> +				 * clusters that were there before, such as
+> +				 * space reserved with FALLOC_FL_KEEP_SIZE.
+> +				 */
+> +				loff_t keep = max(new_data_size,
+> +						  old_alloc_size);
+> +
+> +				if (ni->allocated_size > keep)
+> +					data_err = __ntfs_attr_truncate_vfs(ni,
+> +							keep, keep);
+> +				if (!data_err && ni->data_size != new_data_size)
+> +					data_err = ntfs_attr_set_data_size(ni,
+> +							new_data_size);
+> +			} else {
+> +				data_err = __ntfs_attr_truncate_vfs(ni,
+> +						new_data_size, new_data_size);
+> +			}
+>   			mutex_unlock(&mrec_ni->mrec_lock);
+>   			/* Like ntfs_setattr_size(): stay on the durable size. */
+>   			if (data_err)
+> 
+> base-commit: 4862a81576e3b20ba40cb94a38c5df0450047ffe
+
