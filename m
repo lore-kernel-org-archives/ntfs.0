@@ -1,50 +1,59 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795184824;
-	b=Z+BZzAfEhQV6udw37a1kqJL4f7HgBZklNIh1+ghEofD+YzkjX8FuX1H0+IDpQS87vFhW
-	 YC1mDyca2CEJkvCBl4e3QPBB1ilziy+IY5c+O8cgqOcEkG5bA+UF1O7ugYo6KtiMlpElY
-	 mkmErE6IrVbrOxtGzrPJMUAiR48NXEpi2uJbuUtT8FyqJuzruNNoMCvc23NImWRycuLfQ
-	 2XhbCihN6UQBPGtObMeobeQet7ZmG6sXuQdwl9Edcg/UjMvD6KgtL+9ol6BSoY9DcPSGd
-	 jEnqlyvQQvrBqELvZlVIDRLmNfBLapYKYYEg5TYzUWJ103IOGHip36vBbihghqx6lYw==
+	t=1795189890;
+	b=RgxbhcpSWinfLwU85if0xUUiy39ESa1/q08FqwuVGGUrYpACGtT9gpx8nLPMsfASgVr3
+	 t9RaUwgQbllRktxaE47sPFuOPfr7gNrXJbmG2TCiekJIjoMjhYuBNB8rw5gYNqKydUrKH
+	 oqDynTKZ0PoGOm95PlslZFKH8iGWKzm0zDB/yaHJCtqHcTY2UP2x3nw12KH6ERO5cCWmc
+	 uTfs+Px1PizrfMw5bf8IvOfEYsxDoIjHAiWwz0SHgAkAuSFfRi+ZQdDGCFY9vNmDHFWkm
+	 n5p5CptMMhEKh0wXNdVf88qbCov05+OiWGcY6+AyGo1UWzKPmkX1+NZqSPk0xdkDt3g==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795184824;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
-	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
-	bh=X5uMGtPn4ARocnI6PlxLm4xxrDwcmpIfjMn71WllvfQ=;
-	b=aW+V9SDT+guG0as0OcV/Cd9fjkr0v16OtaXOjeBZLij+yuiuLTmZvu40EkzEeora1IkU
-	 xhCxIS8N7h8EZ4gsAYBHJ8iLypA4mVRdyC40/U1kO3j1R0bR55yiqdUaBHFBhTfMwHFv8
-	 lET6vQcZJZVj8YmEw4fN1dTGH/92mZNkPtGps3vzGEpFk7uVGW0HORO6sCujGk/TpYzLh
-	 qt+qrj0Ejb5HlXeZ2NDdho79BNbbstCzadUFTe+1IgMvo6DdsY5q0h5EiSl9Fpm8Qs2a9
-	 cEFkEc/D5bAED68qT5NwVw7jTEFjIMGb80kr+tigfD2DeRE0K9zDXpTmZWkwUKcx5cA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795189890;
+	h=DMARC-Filter:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-ID:X-Mailer:MIME-Version:Content-Transfer-Encoding:
+	 X-CM-TRANSID:X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=Xa+hjU1C7FRm7sFXOb3hUYs+ugWgEb89l+eyKkSxICg=;
+	b=gvES/VsXaQmcc92T8FXJH5+FbTWIQLS8CGKC7sRFoHBnaiZ7QbL5NpqaT6sGnMonkgmf
+	 /tUsFxT2KuaJHFjzy/DrA6XF8ta6Zq1y5X3I36jEzy4LzJ8G6Q+AY+dh7s6DYSg1NMBiI
+	 knJErKx1XhjNADyyysr/nXSeLbC+Cq/srG3Ma2fg8T7t5iAgjCNcq7/XMg/X64t77Vqbw
+	 Vg98Pn2RQoJEj8Ux2btxDMxvlQ0HAByjwZdPFwZJds/Ek6c14IhnOZiEaMJ00r2HS/EBQ
+	 nE2RE2KQjIJURC8qcSrvqxs2yRz7jd05unSe+iab3ZUvbbh+g3ZpidM1mfAjRYxqbaA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=VjcvCpSA;
-	arc=none smtp.remote-ip=117.135.210.4
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=ib4yNxnw;
+	arc=none smtp.remote-ip=220.197.31.4
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D63606A326;
-	Fri, 20 Nov 2026 14:27:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org D2D63606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88ECE606A32A
+	for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 15:51:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 88ECE606A32A
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=VjcvCpSA
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=ib4yNxnw
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=X5uMGtPn4ARocnI6PlxLm4xxrDwcmpIfjMn71WllvfQ=;
-	b=VjcvCpSAqVfy/z/9RtpYE/JTtDpwg0Lyj0LVqVafgd3XZFzOVtXgOtiUq9RlF+
-	rKqcCH6S/MggoxeZ5ON39evY3FnFHiSPiSlTa83faQolLTBeumEadov2w5MGeiuQ
-	PEhGA5F11cfXC8qzqveTfy1L0vQ19vs0GE7C5gHaQQWpM=
-Received: from [IPV6:2409:8900:1e87:c681:e0d9:72d0:20c3:a0ec] (unknown [])
-	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wD3n0ORWABrJM58JA--.47517S2;
-	Fri, 20 Nov 2026 22:26:27 +0800 (CST)
-Message-ID: <ee94181c-784f-4f9b-8697-cca5abec6b07@163.com>
-Date: Fri, 20 Nov 2026 22:26:25 +0800
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Xa
+	+hjU1C7FRm7sFXOb3hUYs+ugWgEb89l+eyKkSxICg=; b=ib4yNxnwqspco0VsSx
+	R8BWtmt+uK7aZvUBP9FMw8SYh0g7X7x2rDIwyQrP/RKfPy98ZtgOO1V5crtlfDW0
+	rLPw2FF73zHnv1w/2LABTWu44nJKcdnJT9dgEniy6jrL5PoL0+39Bil1BVJQK9XH
+	9fRC5dVCeoVx76gp/OeB5x+1s=
+Received: from liubaolin-ThinkPad-E15-Gen-2 (unknown [])
+	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnDz1SbABrL9dQJg--.55408S2;
+	Fri, 20 Nov 2026 23:50:44 +0800 (CST)
+From: Baolin Liu <liubaolin12138@163.com>
+To: linkinjeon@kernel.org,
+	hyc.lee@gmail.com
+Cc: d3nchk@outlook.com,
+	ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Baolin Liu <liubaolin@kylinos.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH v1] ntfs: limit MFT mirror comparisons to system records
+Date: Fri, 20 Nov 2026 23:50:21 +0800
+Message-ID: <20261120155021.1618964-1-liubaolin12138@163.com>
+X-Mailer: git-send-email 2.51.0
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -54,109 +63,63 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION][NTFS] Linux 7.3.4 mounts 64K-cluster NTFS read-only
- after $MFTMirr record 24 mismatch
-To: "d3nchk@outlook.com" <d3nchk@outlook.com>,
- "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>
-Cc: "linkinjeon@kernel.org" <linkinjeon@kernel.org>,
- "hyc.lee@gmail.com" <hyc.lee@gmail.com>,
- "zenghongling@kylinos.cn" <zenghongling@kylinos.cn>,
- "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-References: <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3n0ORWABrJM58JA--.47517S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZw1rCF4UWw4UGw4xZrWfuFg_yoWrGrW3pr
-	Z0ywnxtF4kJ34Duwn7tFWxJF90y34SyF4Yqa4kGFy5Krn8JFW0qrySqr4a9a9xArySgw4q
-	qFyqg343KFZrCaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRpwZ3UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RMV32sAWJPtwAAA39
+X-CM-TRANSID:_____wDnDz1SbABrL9dQJg--.55408S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7WF1kJw43uF4UJF1fGr48Zwb_yoW8Aw13pr
+	sayan3tF4DJr1jywsYkFWrtFyFv3ykJa1UW34rXr4xWrn5tw4jq34rtr4rWay09rWrXw4x
+	ZF1DKr1fGFWUAFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07joApnUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hQL1WsAbFT+qAAA3l
 
+From: Baolin Liu <liubaolin@kylinos.cn>
 
+Windows 10 can leave $MFTMirr records from record 16 onwards stale on
+volumes with large clusters. Comparing them can falsely report
+corruption.
 
-在 2026/11/20 20:49, d3nchk@outlook.com 写道:
-> Hello,
-> 
-> Resending in plain text because the previous HTML-formatted message was rejected by the regressions mailing list. Apologies if this creates duplicates for other recipients.
-> 
-> I am reporting a regression in the in-kernel fs/ntfs driver (NOT ntfs3).
-> 
-> Environment:
-> - Distribution: Debian 13, backports kernel
-> - Working kernel: 7.2.12
-> - Broken kernel: 7.3.4+deb13-amd64
-> - Device: /dev/nvme0n1p1
-> - Filesystem: NTFS 3.1
-> - Cluster size: 65536 bytes
-> - Mount options: defaults (including errors=continue)
-> - Driver: fs/ntfs/ntfs.ko.xz
-> 
-> Kernel log:
-> 
-> ntfs: (device nvme0n1p1): check_mft_mirror(): $MFT and $MFTMirr record 24 do not match. Run chkdsk.
-> ntfs: volume version 3.1, dev nvme0n1p1, cluster size 65536
-> ntfs: (device nvme0n1p1): load_system_files(): Errors were recorded during mount. Mounting read-only. Run chkdsk.
-> 
-> This volume worked read-write with kernel 7.2.12. After upgrading to 7.3.4, it is forcibly mounted read-only, making normal file operations impossible.
-> 
-> Windows chkdsk has been run repeatedly, both through the GUI and command line, including dismounted-volume checks. The issue persists after rebooting into Linux.
-> 
-> I suspect commit 749357bd48c16c4cdc09093450deca609492f012 introduced the new read-only behavior for this case.
-> 
-> There is also a potentially relevant NTFS compatibility issue: modern Windows may not keep all $MFTMirr records synchronized on volumes with large clusters. Here the mismatch is reported at record 24, beyond the first 16 records.
-> 
-> Please investigate:
-> 
-> 1. Whether the comparison of MFT mirror record 24 is valid for modern Windows-created NTFS volumes with 64K clusters.
-> 2. Whether this is a false-positive filesystem corruption report.
-> 3. Whether errors=continue can be honored for noncritical MFT mirror mismatches, while retaining mandatory read-only protection for Windows hibernation and genuinely unsafe filesystem states.
-> 4. Whether a fix can be backported to the Linux 7.3 stable series.
-> 
-> This regression prevents normal read-write access to this volume.
-> 
-> Thank you.
+Commit 749357bd48c1 ("ntfs: mount hibernated volumes read-only regardless
+of errors=") made these mismatches force a read-only mount even with
+errors=continue.
 
-Hi,
-    Thanks for the report and the detailed logs.
+Limit the record checks and comparison to the first 16 records within
+the mirror, following ntfs-3g. Keep reading the full mirror for runlist
+mapping and location checks, and leave mirror writeback unchanged.
 
-    I checked 749357bd48c1. It didn't introduce the mirror comparison,
-but it did make errors recorded during mount force a read-only mount, 
-even with errors=continue. That explains the change in behaviour you're 
-seeing.
-    There is a known compatibility issue with the comparison itself.
-On volumes with large clusters, Windows 10 can leave later records
-in $MFTMirr out of date.
+Fixes: 2beaa98b46c4 ("ntfs: restore $MFT mirror contents check")
+Cc: stable@vger.kernel.org
+Link: https://github.com/tuxera/ntfs-3g/commit/85e208176ffd16ce9a51a9f534b194f0ebbde6e3
+Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
+---
+ fs/ntfs/super.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-    ntfs-3g already handles this by comparing only the first 16 records, 
-or fewer if the mirror is smaller. See commit 85e208176ffd ("Stopped 
-checking matches of MFTMirr against MFT at record 16").
-   fs/ntfs still compares the whole mirror. With 64 KiB clusters and
-1 KiB MFT records, that means records 0 through 63. A difference
-at record 24 could therefore just be a stale mirror copy, rather
-than filesystem corruption. Your report looks consistent with
-this case.
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 98e6449fd79f..103d2b1b630b 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -1207,6 +1207,14 @@ static bool check_mft_mirror(struct ntfs_volume *vol)
+ 			++index;
+ 		}
+ 
++		/*
++		 * Windows 10 may leave mirror records beyond the system files
++		 * stale.  Read the full mirror to map its runlist, but only
++		 * compare the system records, as ntfs-3g does.
++		 */
++		if (i >= FILE_first_user)
++			goto next_record;
++
+ 		/* Do not check the record if it is not in use. */
+ 		if (((struct mft_record *)kmft)->flags & MFT_RECORD_IN_USE) {
+ 			/* Make sure the record is ok. */
+@@ -1250,6 +1258,7 @@ static bool check_mft_mirror(struct ntfs_volume *vol)
+ 				   i);
+ 			goto mm_unmap_out;
+ 		}
++next_record:
+ 		kmft += vol->mft_record_size;
+ 		kmirr += vol->mft_record_size;
+ 	} while (++i < vol->mftmirr_size);
 
-    I'll follow the ntfs-3g approach and limit the record checks and
-comparison to the first 16 records within the mirror. We'll still
-read the full mirror and check its location, and leave the mirror
-writeback range unchanged.
-
-    This should allow read-write mounting in this case, provided
-there are no other errors. We shouldn't need to relax the general
-errors= handling or change the read-only protection for hibernated
-volumes and other unsafe states.
-
-    I'll include a Fixes tag and Cc stable so the patch can be
-considered for the 7.3 stable series after upstream acceptance.
-
-    I'll send the patch shortly and CC you. You can then give it a
-try and let us know whether it resolves the issue.
-
-Thanks,
-Baolin
+base-commit: 4862a81576e3b20ba40cb94a38c5df0450047ffe
 
