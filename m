@@ -1,114 +1,59 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.160.171
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795195858;
-	b=Y3b+bLsMLWq5+lI0xvXeo+yWAVzTl/xDzSeA25w5i49zMbwTIi+Z1vM3UCm6lI3UAe0o
-	 7NdbA+7I2eIa+k5wCkdUrbZmDt0TAau4aBACjF5ZvVBZJC05uilsVhe/pWO5EV46PNVeW
-	 tpYOXp4gQmqh7vdvafC3m8lMMHehtK8FqvvsOit2nwWNm12rB4v71SWrXUCr3ANqYHot1
-	 v9Z5yyoDP4cuBG83PlyTCpRqINBlL4LeaOoy4SUD+GoEU7D8n2GY3T4FVlHMcT2EIIWqK
-	 QncS4iZbkO1TklH1QjfVGxVpT0Pp9TBAtKg44nGlP3sCKcCEAyVY+4hqlozcLqdrKQw==
+	t=1795207210;
+	b=2ip4IByXC+fRB9FW1gySk3OYTdaGsNpPTIkFGDmzpEVuB/aVHzRpWJA411J8zglAKbya
+	 5DF+IabSH42L5g/paGMGhqrn1kGu7bkoADPRUcfZx+trSEy5ESpUUZbbcknjLfM/5XSov
+	 tWo7Gxd9dVFshM8IRFAGL7gDG4esM+ViiqigAftHovpjjcH0+DYfYjvu5XJJGS0Hn37tJ
+	 W3Q/l7elOr47bidV0wycpoNar0UvoAplODYZHqB/Ovto9qK4Oc1iA/CNeF9y31wa3dOG8
+	 97f5TOvSn/cfDsQ0J4gNGd56+MexS5jCApYKUxyoz7oambILW2pAv1URTp/NKPOsXMg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795195858;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Date:From:To:Cc:Subject:Message-ID:Mail-Followup-To:References:
-	 MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
-	bh=Cpp+sFCicuYgf+c3zxc4haugV0ip6eM5biX4gD19sTs=;
-	b=AKVjsM1nEZHZgGhXKUblV9tOlAwIGCJ+MnPQ105l5dc2r7SaXsXWFCNtPv+TmDDns+uq
-	 a8o0+nHDh/PIrQzG/2t1+OLmGyEpxGXeku6b+zo8ml8XBXSdThY79jCvhz4m1xxpxAB2N
-	 yRRuk3vWnYaVlSSAJAK6taxtAGyzCSHv4M1T8etlQqOaCPrjUaib1jBYLeT7rmTTsud19
-	 Tx0k1k8O2Q8DICXHPJrK66Q4CnVF8Y3v0NbksPPHYWeSABt9rkgrp6iV2ZiGOJod+59Jz
-	 uxK7HbKnnNqats+yFAnY1vi5saYfBzARSfV65iO4I+KYJ2kN78xkNGLXReKzwYG44eQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795207210;
+	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:X-Mailer:
+	 In-Reply-To:References:MIME-Version:Content-Transfer-Encoding;
+	bh=bIew3IiJ8mCgEZcFZfOsayAVtXyd5RByc/78pUI4AtY=;
+	b=Qxv6kDEL5FC8ICHDKeX7FYcCOvXr+kCUIRTe1qEG6bCj0GaUZNTH+iWPHp2WhFSCErn9
+	 Z8SosxIRycK/eGAVPiDOhIY0jaj/eRfzM6yUwM8KVIwUVLREgy+XVd0zqaTq29F/gnoPv
+	 +xMlV+/nra/eDaow3tRAYNg7SRVIC4jsST52FRQNPLVV2Mn4ShQZmAs58OC4BJ/LCgbJZ
+	 KINW+3R1NBLgg5sPGSRnQlfDoMSAiz/MARtN5jEEcjCB8+DWp3AjZFgGWs92tSnJ3wd9p
+	 9miEFFFwHpCo2L6J0naK8yQ0/X+O1iil+hDeJ0/ggHk3HYbbZQ4xc9ZjKV7ycUKAZ/Q==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=cs.cmu.edu;
-	spf=pass smtp.mailfrom=andrew.cmu.edu;
-	dkim=pass header.d=cs.cmu.edu header.i=@cs.cmu.edu header.a=rsa-sha256 header.s=google-2021 header.b=RGyu6SPB;
-	arc=none smtp.remote-ip=209.85.160.171
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MODna7My;
+	arc=none smtp.remote-ip=100.103.45.18
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DF7606A33B
-	for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 17:30:56 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 77DF7606A33B
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cs.cmu.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andrew.cmu.edu
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FF8606A6DE;
+	Fri, 20 Nov 2026 20:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cs.cmu.edu header.i=@cs.cmu.edu header.a=rsa-sha256 header.s=google-2021 header.b=RGyu6SPB
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-53639b8903bso14305901cf.0
-        for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 09:30:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cs.cmu.edu; s=google-2021; t=1795195855; x=1795800655; darn=lists.linux.dev;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:mail-followup-to:message-id:subject:cc:to:from:date:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Cpp+sFCicuYgf+c3zxc4haugV0ip6eM5biX4gD19sTs=;
-        b=RGyu6SPBEHYDmLTEwxK1uQToBdZe/27/VWaUp+NWKkIKkK8kn0qCfXW59imn8d2Vds
-         3RqGd2aBUgkiI9+ML28cgyCU2AcckjZ6dbKetG0Nh24H1vN3Zbu+yQ2JuA1wGBwagMVp
-         zgwELNEcrWscGb2SQzm9V9kLU6aPToLOXWquPa0OX9uzU9FrgWi80eg/z4okOV7Zrbi2
-         Ahj96I6voDWy0AvALBjY3lPEnf6Q/nrCVbqkSmMytJwdLWF8FRcIu9P1u9dFLVvvVKVp
-         xEk86V0zdgLZ096FJnJCdHtFEu3HstUgQoiwL319+IBfbWwMhDz09oJImf6vaAlzNV8g
-         /APA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795195855; x=1795800655;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=Cpp+sFCicuYgf+c3zxc4haugV0ip6eM5biX4gD19sTs=;
-        b=Yv1+zltkWEtB2A/SF343yYAp/LK0+Y+0BcCoQlsSU9YBKlnW+FbIUGFqd+repuOrUF
-         hSLXUg3/2hHRBR98n9SJtOHF+eDs/Vq7oSzmlXcLBN0dA/Q6hTvrEvcJv7iaExFeAZ4N
-         L63ZZVpKDSeKFQNZRl4iT5G3urL27les5Jm+zfGOqLz8IuYB3/ZjARbejPOqBbDTasyC
-         MHr323Ms17xvtOrYTAYiIvmnGkh9bGSddrbRcccQW1rumEzSDLHr2eXsYt/ngADoGkcS
-         fpnPwXX5WklyGiLbzzwG3Jv+91ig3usQkAO7SLmHmm3vJJQOn7MTKqi65D08l9TJyNDi
-         G6hA==
-X-Forwarded-Encrypted: i=1; AL+hErG/M/knlM9TD1/R6tA46cscNEl0cXBdSVY+/AavePLkVbDQA2imcKDcQ0XeTRMNHAZls4xK@lists.linux.dev
-X-Gm-Message-State: APuU4Z8sKngZPD6Nht1H4WtVUfEMDevAbzl3NP3IrfhKie7rUU8hlu5P
-	BZAhXw0h9h0LUsqcNyCLKHeAgqaEfnJIGzaGPp4dcbJWz4wDP3PYN9uYGgv9W/DhlQ==
-X-Gm-Gg: AYBFou1IVsG1GUy0ByTDU4MpajniTC9MjOFG6dz3/xzMD/XVE+ADQQb4NWrB0K7UhYO
-	GhsAjqyJ0v+UFlNDlr1CrY8WphT84oVODF/jQxlqJGw2l0CfmVabnIyaeTsD7MNvhC0eYU3bHjV
-	1JFls6VeKiA/U9KHMSuMTqfS3PiJeRKUu/xl73Hs9SoZinIl0Ppx7LpeRRKj76a3G21lMGQmJ+q
-	Okn+KLVB/2wkmPqadrvjLvl4JC0DAooMQrmHWrYo+ohrZcUPzcSfW26vqBH12+MuxD9UNKVJEDt
-	/N8EVHfFcdNdOPXcedcM1GJipoKoAEPLe3vZJ5wYBBgNnOHyn29wwSNmTdEFUgYtJA4fPIxr8Vl
-	jzVuJg4HquwnwUBrBVKCO/CU2zxd9aDiJW9OfvAWO/ojrtcFGw1ipTLTrMYDMqK8ptM5sC+m517
-	Y+m2uC4hlHyU9eoV0hCrXm0tnftIksvtmqg4kpDT6kvu9xZ10cg21WSTO/zJhsXk2yNwivs2NqN
-	CcKXovFIUIx4+ZtXTB46lqdiphuV2VU7/vF2tYRR2pARaf/UZUZcd49NopDFDvWTbm3VyYW8fWa
-	s5h/vJoEInPul7+gwwBB2rO87I280uOQEXrN+GpHjRMlT1/0QRg=
-X-Received: by 2002:ac8:5d0e:0:b0:535:1d5b:a7fa with SMTP id d75a77b69052e-55d769fe4ddmr65344931cf.14.1795195855134;
-        Fri, 20 Nov 2026 09:30:55 -0800 (PST)
-Received: from cs.cmu.edu (tempest.elijah.cs.cmu.edu. [128.2.210.10])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-55d7882e32dsm28152341cf.13.2026.11.20.09.30.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 09:30:54 -0800 (PST)
-Date: Fri, 20 Nov 2026 12:30:41 -0500
-From: Jan Harkes <jaharkes@cs.cmu.edu>
-To: NeilBrown <neil@brown.name>
-Cc: Alexander Viro <viro@zeniv.linux.org.uk>,
-	Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
-	Richard Weinberger <richard@nod.at>,
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>, Carlos Maiolino <cem@kernel.org>,
-	Jeff Layton <jlayton@kernel.org>,
-	Amir Goldstein <amir73il@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-um@lists.infradead.org,
-	ntfs@lists.linux.dev, linux-xfs@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] coda: don't d_drop() early.
-Message-ID: <20261120173041.bd3xeidt4ndkmimd@cs.cmu.edu>
-Mail-Followup-To: NeilBrown <neil@brown.name>,
-	Alexander Viro <viro@zeniv.linux.org.uk>,
-	Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
-	Richard Weinberger <richard@nod.at>,
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Namjae Jeon <linkinjeon@kernel.org>,
-	Hyunchul Lee <hyc.lee@gmail.com>, Carlos Maiolino <cem@kernel.org>,
-	Jeff Layton <jlayton@kernel.org>,
-	Amir Goldstein <amir73il@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-um@lists.infradead.org,
-	ntfs@lists.linux.dev, linux-xfs@vger.kernel.org
-References: <20261117000115.1433875-1-neilb@ownmail.net>
- <20261117000115.1433875-3-neilb@ownmail.net>
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MODna7My
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 274221F000D2;
+	Fri, 20 Nov 2026 20:40:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795207210;
+	bh=bIew3IiJ8mCgEZcFZfOsayAVtXyd5RByc/78pUI4AtY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=MODna7MyyK3troyconrMvtAmd/n7qMqqRMj2TjNcbKynCbQKwPWF1TOVN5fo1QDqt
+	 GRp3jXATYqCksilzGYiHfJQ4MYz/+XwAOfa88+v2hRPsLi8U5K5xfmQh9GZ1Quo1q4
+	 cYWx9ZxpN7VcRGuPFMtZw08qt1DJ5eGuIIETE0560ht198/5ufLAaMIQR/+e4MYW60
+	 I/3bjDY2hXURaB62d36445T3zp57pKd9NvAMYX/RVjtJ0kq8tFZfM+AWkhXnLMykB0
+	 S1fRA9QQoqSGgLlKqaWnZ6pbDPr9NKzG8X08VZ/LVwBNbpGjtGt4VKmqCdN0sXucdp
+	 Wd8b5k4wb5TJA==
+From: Sasha Levin <sashal@kernel.org>
+To: "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>
+Cc: Sasha Levin <sashal@kernel.org>,
+	"linkinjeon@kernel.org" <linkinjeon@kernel.org>,
+	"hyc.lee@gmail.com" <hyc.lee@gmail.com>,
+	"zenghongling@kylinos.cn" <zenghongling@kylinos.cn>,
+	"regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+	"stable@vger.kernel.org" <stable@vger.kernel.org>,
+	"d3nchk@outlook.com" <d3nchk@outlook.com>
+Subject: Re: [REGRESSION][NTFS] Linux 7.3.4 mounts 64K-cluster NTFS read-only after $MFTMirr record 24 mismatch
+Date: Fri, 20 Nov 2026 15:39:17 -0500
+Message-ID: <2026-11-20-1-daily-reply-0028@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
+References: <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -118,58 +63,15 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261117000115.1433875-3-neilb@ownmail.net>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Nov 16, 2026 at 07:09:14PM -0500, NeilBrown wrote:
-> From: NeilBrown <neil@brown.name>
-> 
-> Proposed locking changes will mean that calling d_drop() could
-> effectively unlock the name allowing a parallel lookup to proceed.
-> For this reason it should only be called *after* the attempt to create a
-> symlink (in this case) has completed (whether successfully or not).
-> 
-> So move the d_drop() to after the venus_symlink() call.
-> 
-> Doing this also means that if the upcall that handles venus_symlink()
-> happens to look up the name being created, it will get -ENOENT rather
-> then a possible deadlock.
-> 
-> Signed-off-by: NeilBrown <neil@brown.name>
+> I suspect commit 749357bd48c16c4cdc09093450deca609492f012 introduced the new read-only behavior for this case.
 
-Acked-by: Jan Harkes <jaharkes@cs.cmu.edu>
+Yes, this comes from 749357bd48c1 ("ntfs: mount hibernated volumes read-only
+regardless of errors="), b0a4eefbb2a1 in 7.3.y. Stable will pick up the ntfs
+maintainers' fix once it lands. Until then, mount the volume read-only or use
+ntfs3.
 
-I was sort of already assuming that the userspace cache manager should
-never ever traverse into the mounted /coda file system tree because
-there is only a finite pool of worker threads. But it is good to know
-that this change would fix at least one possible deadlock.
-
-> ---
->  fs/coda/dir.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/fs/coda/dir.c b/fs/coda/dir.c
-> index a85be5962e62..b47299527b65 100644
-> --- a/fs/coda/dir.c
-> +++ b/fs/coda/dir.c
-> @@ -249,13 +249,13 @@ static int coda_symlink(const struct mnt_idmap *idmap,
->  	if (symlen > CODA_MAXPATHLEN)
->  		return -ENAMETOOLONG;
->  
-> +	error = venus_symlink(dir_inode->i_sb, coda_i2f(dir_inode), name, len,
-> +			      symname, symlen);
->  	/*
-> -	 * This entry is now negative. Since we do not create
-> +	 * This entry is still negative. Since we did not create
->  	 * an inode for the entry we have to drop it.
->  	 */
->  	d_drop(de);
-> -	error = venus_symlink(dir_inode->i_sb, coda_i2f(dir_inode), name, len,
-> -			      symname, symlen);
->  
->  	/* mtime is no good anymore */
->  	if (!error)
-> -- 
-> 2.50.0.107.gf914562f5916.dirty
-> 
+-- 
+Thanks,
+Sasha
