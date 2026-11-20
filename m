@@ -1,55 +1,150 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
-ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795176383;
-	b=yL3mtoexDId9D4BYYocl2TnUtnCUilE3xBM4k1s+8pChoZ5WCEhhJt12odFsZ0wC4sln
-	 tP5n1YkrJuicSpfgsGitEx4HmfuLlYXgoL4bVLDClZCL7it5o8hV1lrHOHejBc1orkEyg
-	 9s/d4Wsy/zqW+l8CwJMfN11wrE1XhZBfiYzH9DPibEe180OdQB66peZv2XvLXTxu85b4f
-	 V7RRHtHPU8OnaG8bLJPIiJh6L7WQKX8nq4c5VJmlmhmHcgTL+dyfhMOsxoBNfO0z9//yK
-	 Ho6eQFOcMoeai4s1v6Vl+a1kjyvm9P6o2lL8az0gmc3ogFHMqQakjNoqmfs9j00n9iA==
-ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795176383;
-	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
-	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=wadGAf9UcwNjDLswV81dAooaozmFOADl2JBBpwK0b2Q=;
-	b=oP0fV8VK+QKdHDyHIJ0pJPv1t+VtywUCQtptW995l31LiYgYq57cdfYhLlcbHWSqrj9P
-	 NkV0lJF6ohyz1ZlEk9lDQ5/5NhNgAJcV9yteom+cjosjgOWe6RwMbrO2/DmyVN32T/0kE
-	 K+ONZucub+zcTzOM2Hu/u240dq5zcec1gm4o1n7djUjUEywk1KyETRmO8fWXdjt9XeaEb
-	 auoPifmTjNpCzorpdWHJlsjsOiNT4dvkLuvFSaEJWCJYryJVfxrgE5jhMm7itH6vdskud
-	 /x4vvlMcn28Y1eDSdZ6NPFm059wZjyGGw+0X8kHYKqB1AeoYAAADyKoIAyCPn+JcAmA==
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=G6jIwzcX;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+Authentication-Results: smtp.subspace.kernel.org; arc=pass header.oldest-pass=0 smtp.remote-ip=52.103.32.15
+ARC-Seal: i=2; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=pass;
+	t=1795178948;
+	b=z3nYsfCTzMK7IZkHgV0Rd1LA8XkumpsWiDX/j5i9g0cB1T2kA/4RXvod7ZKd85OiHBoL
+	 aHilSmMTl54QJ9ExymLGdQNn7Ie9sW811TYvGgnpxQEV4qLeT3kxdn5V0Ijk1L4ZJN0k+
+	 Q7MSg14Ssn2GBTdQYdljUbiXp82tYKfHBdcSc4PSH4aJBAR4JYpG2qgzYd4dye61M4wtx
+	 /va2UyB6yufKG4f6QdYr/FFPfxQ78z/p8t6SNobvzdJkcFD0wKWtPNZoK7FLURX55EYWM
+	 vF5iyhzzEd32WMnPruk1Ckn9z7y8BndlBBK8NM3euWRDLaPjX4r0vwiZ3pFb/k93e/A==
+ARC-Message-Signature: i=2; d=subspace.kernel.org; s=arc20261015;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795178948;
+	h=DMARC-Filter:DKIM-Signature:Received:Received:From:To:CC:Subject:
+	 Thread-Topic:Thread-Index:Date:Message-ID:Accept-Language:
+	 Content-Language:X-MS-Has-Attach:X-MS-TNEF-Correlator:
+	 x-ms-publictraffictype:x-ms-traffictypediagnostic:
+	 x-ms-office365-filtering-correlation-id:
+	 x-ms-exchange-slblob-mailprops:x-microsoft-antispam:
+	 x-microsoft-antispam-message-info:
+	 x-ms-exchange-antispam-messagedata-chunkcount:
+	 x-ms-exchange-antispam-messagedata-0:Content-Type:
+	 Content-Transfer-Encoding:MIME-Version:X-OriginatorOrg:
+	 X-MS-Exchange-CrossTenant-AuthAs:X-MS-Exchange-CrossTenant-AuthSource:
+	 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	 X-MS-Exchange-CrossTenant-Network-Message-Id:
+	 X-MS-Exchange-CrossTenant-originalarrivaltime:
+	 X-MS-Exchange-CrossTenant-fromentityheader:
+	 X-MS-Exchange-CrossTenant-id:
+	 X-MS-Exchange-CrossTenant-rms-persistedconsumerorg:
+	 X-MS-Exchange-Transport-CrossTenantHeadersStamped;
+	bh=FBBYV+IvGLBq1XOdscqZtOwDlUSaV1CiQAP5RKeBDZQ=;
+	b=Teas/gWXMPiqQ9t9+42saYLGG8Cwsz4j4kUapY05BM7n19L4w9xLy+3zcmUgtKMK6cW8
+	 +f8aYRj4YgZrcVvbFD078VsqtM+jEySPrHWfb8WKoViyLAMUN87kYgELOg3H7ybDd0H0v
+	 qXsPpo6Qw0wcD+PrXvMlbww2bgtENLcxn/C/5jkJe9wk8c1xWMgqmmb2k9R39ogS7Mjtw
+	 cs0f6bnmKQifrC5SyCTEVIusUY2kh11vNtqftoAm8xEjsFMb6RXWgZiMwP//8se53IBb/
+	 0HyGsAq2EKPa0xSE/ebeLSSiRXc/paeye8lQqaYddvIwm16frSDtxjiRltb5TXBOyJA==
+ARC-Authentication-Results: i=2; smtp.subspace.kernel.org; 
+	dmarc=pass header.from=outlook.com;
+	spf=pass smtp.mailfrom=outlook.com;
+	dkim=pass header.d=outlook.com header.i=@outlook.com header.a=rsa-sha256 header.s=selector1 header.b=MP4Ulve7;
+	arc=pass header.oldest-pass=0 smtp.remote-ip=52.103.32.15
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazolkn19012015.outbound.protection.outlook.com [52.103.32.15])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange ECDHE (secp384r1) server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3579606A320
-	for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 12:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C06606A325;
+	Fri, 20 Nov 2026 12:49:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 98C06606A325
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=G6jIwzcX
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 474BE1F000C4
-	for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 12:06:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795176383;
-	bh=wadGAf9UcwNjDLswV81dAooaozmFOADl2JBBpwK0b2Q=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=G6jIwzcXu8OZxFa42inp+GS0NhhEc2ijyvLu81mcWJGMaGaL92XJRy+F4dY3fbFEU
-	 pK4WjF+8NLBWqWABNDVOugEJL6HMfbnMt7CRiN7CCiXtN6iEA/lGrIaY4477v16PEt
-	 nptSemdTM4JJygbtdiwuIE7F04S8RFaQt86WOnGUB8L5Q2aRlw/1ulM66Uo/W7qzxp
-	 aiC7YjOQDXk2MWOYXBaBts1zFu3D1m+Hql63c0/LRIGrCDjHw5gYwZnUOD336dfnRj
-	 uvwloCppn8fzDcB1Nj0qZdIQpkdIlB0G6FcE3XTP09w0B00pAffiFuIbUZ+d1midfm
-	 lWI4A6WplwYmQ==
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-c51373ae637so124763166b.3
-        for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 04:06:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFnGCDwZ3JGmz8fda0tnrhiIU32kt57tmV0Q3XxLqlc/q1ACCVTPf6kyDgHbWMTpbkDlRjn@lists.linux.dev
-X-Gm-Message-State: APuU4Z+tCKveeutAZgGdggUMW+wi9kcC9xQiYUTpG/f/glsFtbUQVDxm
-	2lJlOZPVbDr4qHvReC9NwREyrE/1Kc6NXZAprBWLShOcmOrh9prlfFj5rBfUDRYdQzvzfM67kkR
-	bLvzjYzVpfU81XINnpcNjwnfGGriC0n0=
-X-Received: by 2002:a17:907:a90c:b0:c49:9231:5518 with SMTP id
- a640c23a62f3a-c513a884ddamr277649166b.21.1795176381918; Fri, 20 Nov 2026
- 04:06:21 -0800 (PST)
+	dkim=pass (2048-bit key, unprotected) header.d=outlook.com header.i=@outlook.com header.a=rsa-sha256 header.s=selector1 header.b=MP4Ulve7
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=izRojUiuXFX34ugQTazfxIxNAFv2Pt9oRDqXn3NNk3WnGty421Ta2KcTnv3BD3sohlPuTlBOnQGgGmBw1f5oBeW/xRxFVvn27C0Y5lMpXz59SGmA2Wj45fBJMYvO7MyE+q3UKgae8S7cDzdoal4BTaSvDqv+V0tPVF/sxS6gu1+nkTX6WY8fpnEVo2Cx9gAY7AK2gl+OWLw5AqAucmZkEYmLmm/xoLh9AN5EXf6uB19krAL8uiqOYKCsf/Iw1nkYjYptDlrUF0g5vDy+OtdMJ/40P05cW8mfdaIdn+9Xr51UQtWflXaJQEmKHhw/NbmPWiw4OOhcGrje+RKSOSJkag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FBBYV+IvGLBq1XOdscqZtOwDlUSaV1CiQAP5RKeBDZQ=;
+ b=n3E84JNjZwjoESIGgBIrPVdpx8d7R62Ima83PcII99WdccLVzHNty3mdp0VOSHVdGDDQU9WASsuRoIDhnBVvh2NEA94HzFtxkNP5W5JMxHRPdri23v8lzhKzQmTWnMsU9YQOeIJq44myCVQRnLz27PErsXrN7MJVH+zw8XwzZ9Vpc6nqZ7aSWcvGdb+rtRT4qND6iP1WaLHV6/SC++ae/d69Z4+SEiMchH4vSo71oRv5hQusL/UWrq5xhG4Bf6pX3wsZjcrXTuhJ8Pq4+Mf/n8emd7OTjiKCMpWBk5yIUv+vRpC8HgUCSY16rg2R8L+YcNnNHKaMATefghK0gXYQBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FBBYV+IvGLBq1XOdscqZtOwDlUSaV1CiQAP5RKeBDZQ=;
+ b=MP4Ulve771jLim278y+FYHfJS0PMQXariSXZngUR3nF2EXWq9KgMrh0X7YBNJcNfS4aw8+XchXNC+AFxAnb0SquIBDTMgH+5wr8QCi9whzD6Ip0PkpdV2nEVDB8ya07T+GxgmM0KjPd8V2Lk9dJyHA5IoWhKHHEAS/Y3wkN0H6o7Onz2j1Ptsa5H/9vfoDlpUkqFr6sXJ6GbK8sRppsNvcSNMch0zIGiDo8bACtS5GR3DMaPr8S5jzCMagq/l+Q4aLKgev9uWiaYPBhe5ib5BTSHxb9mafaXHeSDndp2EQ2XA1DLUrs8PxB5El5l5P63stxVQobjvY+HRYUOEK7nFg==
+Received: from VE1P190MB0877.EURP190.PROD.OUTLOOK.COM (2603:10a6:800:1ac::12)
+ by FRZP190MB2215.EURP190.PROD.OUTLOOK.COM (2603:10a6:d10:139::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
+ 2026 12:49:04 +0000
+Received: from VE1P190MB0877.EURP190.PROD.OUTLOOK.COM
+ ([fe80::b9ea:ba75:b983:11fa]) by VE1P190MB0877.EURP190.PROD.OUTLOOK.COM
+ ([fe80::b9ea:ba75:b983:11fa%6]) with mapi id 15.21.0639.011; Fri, 20 Nov 2026
+ 12:49:04 +0000
+From: "d3nchk@outlook.com" <d3nchk@outlook.com>
+To: "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>
+CC: "linkinjeon@kernel.org" <linkinjeon@kernel.org>, "hyc.lee@gmail.com"
+	<hyc.lee@gmail.com>, "zenghongling@kylinos.cn" <zenghongling@kylinos.cn>,
+	"regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+	"stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: [REGRESSION][NTFS] Linux 7.3.4 mounts 64K-cluster NTFS read-only
+ after $MFTMirr record 24 mismatch
+Thread-Topic: [REGRESSION][NTFS] Linux 7.3.4 mounts 64K-cluster NTFS read-only
+ after $MFTMirr record 24 mismatch
+Thread-Index: AQHdeO2GTFIG3wiCfUeuSBEr21/wVQ==
+Date: Fri, 20 Nov 2026 12:49:04 +0000
+Message-ID:
+ <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VE1P190MB0877:EE_|FRZP190MB2215:EE_
+x-ms-office365-filtering-correlation-id: 9c3b08e0-e61b-4633-a5a5-08df4704a897
+x-ms-exchange-slblob-mailprops:
+ ZLYX9kf+sFZxKjlXyB2wc/pvxSEMppw8L/3RxB8jtVUk3m6IGL7YaLXMAg4Ia2R+7mqLCCUoUB88EpRrgWwxpy/4wdX1vF0Q/3LAc4FtDAMOZbcxmQxpMuI+FsKAZgnLENrftTzwCnyVP2yPUtf73KQuy5sYL3PazcMy8RwPh6zHgFhJtZAOFDtheBKKkkNNpikctqoOcwV/Vw2VIVQZqB3S+xJrWecKhDiVJEH+qzZBIz2wTqKZ7Cnj1PVNJBvI9RwLGx8E73CUDkfX4mg9ODW6VaXheGmmI4hEFVRd4iQnQRhX2pXCX4ZxDhuInLFxQro76wOa2Mmi5OcyK+pDpShluUkRaR+DUutR1tM8oPVMppYoKol02qiUFWvQ9RkqF28li7lsTttQdDFq5b6wXKOWhHs+moaynJYZ5N9fpC7DNhvO69BqC5TQ0PQ1Smz7YE3jvqBO6o5Rx1lQF7WNx5gfLIl9+gxpqitjP+z1CGmML/hvIVy7bISQ9unyYkZybNMY2PJMUTcPfGnMW46DOdEZ4gtIUqREN2xOOEkIZ0J/gYkBJP9mnygWOEqL8vGcMQ023vUicHohvlUKra3Qd4w0dmQoinYljxt9tmjimBxnIwYRPnCQADUv1TZUy5QaO7uLYX08zJ6kD5zFEz31WBnF/TGGo9JzYrN68axxFseX79aYTptOv/1A80OY2DtvlavT/tjqvm0PT0ggkAi74tAwmXENVobD2MCkHcTTQU1tlL5ywocHFiiw5cltP720VLHkkyh6fPj6C56vuYoisKIX2dDGrUSNQrrwoLjLqHg9hplJ9dnMTg==
+x-microsoft-antispam:
+ BCL:0;ARA:14566002|12121999013|31061999003|4040399003|13031999006|8062599012|8060799015|19110799012|22091999003|24121999003|15080799012|38102599003|24021099003|51005399006|40105399003|26121999007|3430499035|102099032|26104999009|3412199025|440099028;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?xanryZtYrCihrx40ILWd8mKxBDEFWBRuOy1uHZaBqPaCxoyFs4WzAE8rXxeJ?=
+ =?us-ascii?Q?VJ7EDOtADyTWD9vGfLdp24W5qzPVUlDTq/rbj/NGirqi8GObqaFgFugGjyGF?=
+ =?us-ascii?Q?cyEOWxEgf7wm5e35FWvaXiWDCstvp4OGgwb6sfohOGaE5DgpH4HC4f995duX?=
+ =?us-ascii?Q?RKYOLxm7Md4UB9t6kzWnMYf6pTqhi2iNjTI1cNE8qfciw1Kl6029b2Z5Pl2u?=
+ =?us-ascii?Q?l+qKmjfxTgDH6huo+cIDkfUJ0fzOUCTy44AYAFV9DcMXCuf2qws816e6d5or?=
+ =?us-ascii?Q?moi7jASdvD1GZzvUudtCsIpil/DLO1+luToJA6fclar2n+r8GoeRKguygtEz?=
+ =?us-ascii?Q?5EZo58joA7MgEQ3rJ+g6mSWMUWEhMPbPjcCenTiMpl2VGYuwQlUMWl6oIyr4?=
+ =?us-ascii?Q?xWxBD0nycaBKQXoDcmzYgwNjELV03I6LFMwigOW3Qns8XVBR9L9VqrerD0zc?=
+ =?us-ascii?Q?TcixCOaXr7y+D08Bix9hW4UHVrHJXIHhzKFMqHjfyQyjJp2XaS//t1J4honv?=
+ =?us-ascii?Q?n6cUPKNVgbHUV81IzKcGRo6qB/JGRxlgVcNZFIri3h3oiLnGsjg3O3h81Ger?=
+ =?us-ascii?Q?NHL3dWu5iFhmv4PkAVx0QEFEkEDod0Gf24+0bYQTFk5fIPuyaaOXowD5XLwM?=
+ =?us-ascii?Q?Nk59BMahzo+SUg01EcE3YQlxhwXLgA46lNDvkgUKmrnfmg5cT47bryZJ0Nir?=
+ =?us-ascii?Q?UaWZyR/1dLzwxptrLYLiDbi4nI4Wd7hpgSPgd3EaljHZldNwfbrZwzi+7nV6?=
+ =?us-ascii?Q?zTXmwOdz00KAQRSQEjOkInHBXWgmeLDpui/owxxAUFOw5UYINN8ii2rIa5C9?=
+ =?us-ascii?Q?1RgYhDe7hUfkKGbfy0vrLThr3sEEAvP5KfWqrNsC+LxiUBOQxvn+vObtEtYi?=
+ =?us-ascii?Q?HioBsFpwTupkezUthVC0LhBs7yh07aAgplrGNjp2kdBlISaDvEPpB/ke48pQ?=
+ =?us-ascii?Q?OLkVclcsRcKq9M4Xmyxa24ibi/VGhMxdqFedf1Y6EhztHno/XrUPE+eCWQLt?=
+ =?us-ascii?Q?iLQZQBq/lScUxrAjzd+/ujd8bp6fzFQZHac8ylDAfnbxwHvTOaPBcVLEQvMc?=
+ =?us-ascii?Q?+r5mGp9n4OYqxtIDgfEGIBHmnWSINDK3jrVpmlNo4eKCb7+eU9DOeVyp57z+?=
+ =?us-ascii?Q?K3tDVpAtKyrG?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?c8gxEkRUgmERwxK3clMV0k3DFDfQO/RbmPCtpJvWvVLlBGb7+kDwzOIeFPI+?=
+ =?us-ascii?Q?VuipzxzXXr+2opfNBe4v1SWtfq5RwbNqdbAm0FyJtkUySwLa8kBsV5QSo/Xu?=
+ =?us-ascii?Q?/TQTIhiuY9mKauxNd2A0nAkOdOuq2fJ/qusUL+9pkQ39efH9fWtN100Bs5DW?=
+ =?us-ascii?Q?3GtZwHALFDMdmQB+kwudibswSxaIjaH0+vf+0Lt6EJ10hTRRrMGkZ3LtOvlW?=
+ =?us-ascii?Q?ubG/RAwJxD9WizjeqENFVujMtDzZxxGqT24aUFu8s7Y+FnobmPc6BQYT+2p7?=
+ =?us-ascii?Q?6DZNlf7AcrUu5ThnJoZi80+NT0r6BsvhK0GlRw4eTtr9gD62vOAcf4jn8Hqu?=
+ =?us-ascii?Q?BB5+rGXlQClMd1TD0Q+BQ0S2gDGQ+mlNRZekzlVJQLdH15wbYHi3MIWQhD94?=
+ =?us-ascii?Q?yyJSPvbTN27MtdPQBnvcFxaYudomkUoc3qCf+Y9dzjS6BAN8qGTwenwauLpt?=
+ =?us-ascii?Q?NPKU1+vOmM+Xn1CisfXOiWz0W7Bi2OiUarJa1OaH9SVXOErEe78pYmLsjXCc?=
+ =?us-ascii?Q?V6QnQYQH3vGPqY2XMJ+7tm+YHdorX200lursElhNY0QMEA5pfmO1Febwwk4v?=
+ =?us-ascii?Q?3Pf3Cw+i0OxgztRPcojKWvMAKWVRIcA3nJINsBktGvdl95MGctbh8nTDvXtP?=
+ =?us-ascii?Q?U81rLfDHIiLl4zRWxY9M0HhB+K2tBqQT/h4vt0satkH69KmNW2BfzNlvET4E?=
+ =?us-ascii?Q?uDMFj4yGGLQaJcuDV2KdZNmEgismZmldkz3BNH7b2eEygyg4pLRJdWSMdHA7?=
+ =?us-ascii?Q?hKH2okQRJedTUP5YoN6RV716VC8CpcwODjsV42ehHZxQ0/kSRjd5ptxhV0yp?=
+ =?us-ascii?Q?tB2zjOZyMIZBb4H9NF+MW34b6t5+l0ueVSQ8MmWLgW0dfwzxlfDBr7pfiART?=
+ =?us-ascii?Q?rQfGSQo82QKYb3PPiG92rabmT3XPT0OkBw2vAGOnUsPrZEU1Su0ImacfcAtD?=
+ =?us-ascii?Q?NrAA8C86aVZeRfdvv3z0b3IBFK+jf02wx2/7uKsfgeEfJlQNfslFiA7OCIUh?=
+ =?us-ascii?Q?zhM5FpJsKtOlLa8eeanYuBxtIzY5nyWiUlFUTdek7K/TfoGYY3QIDUw5Jxmx?=
+ =?us-ascii?Q?9mQuttBXZ/1n4TLsu1ycWzC5uaszrs+mFq0k+A7xoY8lYakIHxhQyYYNq+tJ?=
+ =?us-ascii?Q?pT8qS67t5FNBhLy9sV2Tg62J4uWTT4u0B34Ed/kyF3XeB3X9onhRZ0CXT8zc?=
+ =?us-ascii?Q?mOEK6CanVaR/o8d1yONHetn+LgmlnCnhAJNANTOrODXNmRBQWytvWDUOA3lj?=
+ =?us-ascii?Q?S22AwCJMOZhbeArKU48rm21Q5TMIHVkSlqvxDqoFMjhaTyfqTOrK4xfHJ5Sh?=
+ =?us-ascii?Q?Y7/AWet0afnw1O8QjTE39JXutn9gXdNp28gjA2mHgrj9XU+A0BtHjzExyDeD?=
+ =?us-ascii?Q?T/N2Z90=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,25 +154,70 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <20261120005105.2718500-1-hyc.lee@gmail.com>
-In-Reply-To: <20261120005105.2718500-1-hyc.lee@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Fri, 20 Nov 2026 21:06:09 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd_hM1EKZ8OGONwt8aD5=ntACOryCwQrn0UsfkoBSi=Rwg@mail.gmail.com>
-X-Gm-Features: Aa3M54qvg-DrkB2LKHl_wfN0_MGOT0svHB0zdUBu5s3wh3-S9xHfRc6VxtxS2cU
-Message-ID: <CAKYAXd_hM1EKZ8OGONwt8aD5=ntACOryCwQrn0UsfkoBSi=Rwg@mail.gmail.com>
-Subject: Re: [PATCH] ntfs: use kzalloc_flex() for FILE_NAME attributes
-To: Hyunchul Lee <hyc.lee@gmail.com>
-Cc: Baolin Liu <liubaolin@kylinos.cn>, ntfs@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1P190MB0877.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c3b08e0-e61b-4633-a5a5-08df4704a897
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2026 12:49:04.3703
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: FRZP190MB2215
 
-On Fri, Nov 20, 2026 at 9:51=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> wr=
-ote:
->
-> Allocate the variable-length FILE_NAME attributes with kzalloc_flex()
-> and use struct_size() to calculate the attribute length.
->
-> Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
-Applied it to #ntfs-next.
-Thanks.
+Hello,=0A=
+=0A=
+Resending in plain text because the previous HTML-formatted message was rej=
+ected by the regressions mailing list. Apologies if this creates duplicates=
+ for other recipients.=0A=
+=0A=
+I am reporting a regression in the in-kernel fs/ntfs driver (NOT ntfs3).=0A=
+=0A=
+Environment:=0A=
+- Distribution: Debian 13, backports kernel=0A=
+- Working kernel: 7.2.12=0A=
+- Broken kernel: 7.3.4+deb13-amd64=0A=
+- Device: /dev/nvme0n1p1=0A=
+- Filesystem: NTFS 3.1=0A=
+- Cluster size: 65536 bytes=0A=
+- Mount options: defaults (including errors=3Dcontinue)=0A=
+- Driver: fs/ntfs/ntfs.ko.xz=0A=
+=0A=
+Kernel log:=0A=
+=0A=
+ntfs: (device nvme0n1p1): check_mft_mirror(): $MFT and $MFTMirr record 24 d=
+o not match. Run chkdsk.=0A=
+ntfs: volume version 3.1, dev nvme0n1p1, cluster size 65536=0A=
+ntfs: (device nvme0n1p1): load_system_files(): Errors were recorded during =
+mount. Mounting read-only. Run chkdsk.=0A=
+=0A=
+This volume worked read-write with kernel 7.2.12. After upgrading to 7.3.4,=
+ it is forcibly mounted read-only, making normal file operations impossible=
+.=0A=
+=0A=
+Windows chkdsk has been run repeatedly, both through the GUI and command li=
+ne, including dismounted-volume checks. The issue persists after rebooting =
+into Linux.=0A=
+=0A=
+I suspect commit 749357bd48c16c4cdc09093450deca609492f012 introduced the ne=
+w read-only behavior for this case.=0A=
+=0A=
+There is also a potentially relevant NTFS compatibility issue: modern Windo=
+ws may not keep all $MFTMirr records synchronized on volumes with large clu=
+sters. Here the mismatch is reported at record 24, beyond the first 16 reco=
+rds.=0A=
+=0A=
+Please investigate:=0A=
+=0A=
+1. Whether the comparison of MFT mirror record 24 is valid for modern Windo=
+ws-created NTFS volumes with 64K clusters.=0A=
+2. Whether this is a false-positive filesystem corruption report.=0A=
+3. Whether errors=3Dcontinue can be honored for noncritical MFT mirror mism=
+atches, while retaining mandatory read-only protection for Windows hibernat=
+ion and genuinely unsafe filesystem states.=0A=
+4. Whether a fix can be backported to the Linux 7.3 stable series.=0A=
+=0A=
+This regression prevents normal read-write access to this volume.=0A=
+=0A=
+Thank you.=
