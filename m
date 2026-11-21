@@ -1,59 +1,55 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795207210;
-	b=2ip4IByXC+fRB9FW1gySk3OYTdaGsNpPTIkFGDmzpEVuB/aVHzRpWJA411J8zglAKbya
-	 5DF+IabSH42L5g/paGMGhqrn1kGu7bkoADPRUcfZx+trSEy5ESpUUZbbcknjLfM/5XSov
-	 tWo7Gxd9dVFshM8IRFAGL7gDG4esM+ViiqigAftHovpjjcH0+DYfYjvu5XJJGS0Hn37tJ
-	 W3Q/l7elOr47bidV0wycpoNar0UvoAplODYZHqB/Ovto9qK4Oc1iA/CNeF9y31wa3dOG8
-	 97f5TOvSn/cfDsQ0J4gNGd56+MexS5jCApYKUxyoz7oambILW2pAv1URTp/NKPOsXMg==
+	t=1795222672;
+	b=RCM8bbGkKaYONwrn5EA0XOWyAKcfa2NuStVLXGgRSDMWWgZp8FprXPTC1SYxzul5SkpS
+	 VAZkXNszcPSYtwaVUc0inubow3bfGsJWBqrDzf+dkRkr7/8Bc/9+fCuQKU3uc+naSctaj
+	 2vYBq+zA3NZ4mayFCsYjei3kOzoCueRY7TqU1zgh8rlGcrJ8vXRdr2rflfGVsQ5nq3ZO8
+	 RSW55pnSr63+TURjgQnkt9Yfe3lFAcGlwypmz81rn/0UQZOrQdtCg93ylN0ug6lfx91U6
+	 pillLhSvdaer0hASceJZXmx8gfHtIiBMi/NTQEiURLhfsUnLw2blTFIxN1SvquD5JfQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795207210;
-	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:X-Mailer:
-	 In-Reply-To:References:MIME-Version:Content-Transfer-Encoding;
-	bh=bIew3IiJ8mCgEZcFZfOsayAVtXyd5RByc/78pUI4AtY=;
-	b=Qxv6kDEL5FC8ICHDKeX7FYcCOvXr+kCUIRTe1qEG6bCj0GaUZNTH+iWPHp2WhFSCErn9
-	 Z8SosxIRycK/eGAVPiDOhIY0jaj/eRfzM6yUwM8KVIwUVLREgy+XVd0zqaTq29F/gnoPv
-	 +xMlV+/nra/eDaow3tRAYNg7SRVIC4jsST52FRQNPLVV2Mn4ShQZmAs58OC4BJ/LCgbJZ
-	 KINW+3R1NBLgg5sPGSRnQlfDoMSAiz/MARtN5jEEcjCB8+DWp3AjZFgGWs92tSnJ3wd9p
-	 9miEFFFwHpCo2L6J0naK8yQ0/X+O1iil+hDeJ0/ggHk3HYbbZQ4xc9ZjKV7ycUKAZ/Q==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795222672;
+	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
+	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
+	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
+	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
+	bh=pYuaPAfIlTcB1O8Ap0wBAp+pFIs1WlVk3EpGd7ruOeQ=;
+	b=buiZQB+fUcRdFgaYXH2vQUOcG0MtZZU9AKh7kcaC9RZaGV3n2/erTmljK9GJP3aGj0GY
+	 /aT+i3saHNjND0wxNAAXiLoxyyOBhHAkhVvJNvrVsKWqg5D4QXIW3sECvguCh2au5PR3c
+	 i63PNct2KK6S2KFePYpTGYTEf/U9J1UVdz1UHp4VtqYTPizs33byzQ+zaFrsMSIebuES8
+	 qX/NXd6YgsIYQSMPaH0EkBCFAHjOjAELUShANXMBbISL9WHZ8irctEABBGuOX4xvf3uHm
+	 NCCxxJSqE3DM0DzSlSoKQlPnBhZEZ6apXkXrFLyHIhtvIn6Kas3gT1uWccm1ITq7lXA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MODna7My;
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OrPwbDK8;
 	arc=none smtp.remote-ip=100.103.45.18
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FF8606A6DE;
-	Fri, 20 Nov 2026 20:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39341606A68F
+	for <ntfs@lists.linux.dev>; Sat, 21 Nov 2026 00:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MODna7My
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 274221F000D2;
-	Fri, 20 Nov 2026 20:40:09 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OrPwbDK8
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA5971F000D3
+	for <ntfs@lists.linux.dev>; Sat, 21 Nov 2026 00:57:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795207210;
-	bh=bIew3IiJ8mCgEZcFZfOsayAVtXyd5RByc/78pUI4AtY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=MODna7MyyK3troyconrMvtAmd/n7qMqqRMj2TjNcbKynCbQKwPWF1TOVN5fo1QDqt
-	 GRp3jXATYqCksilzGYiHfJQ4MYz/+XwAOfa88+v2hRPsLi8U5K5xfmQh9GZ1Quo1q4
-	 cYWx9ZxpN7VcRGuPFMtZw08qt1DJ5eGuIIETE0560ht198/5ufLAaMIQR/+e4MYW60
-	 I/3bjDY2hXURaB62d36445T3zp57pKd9NvAMYX/RVjtJ0kq8tFZfM+AWkhXnLMykB0
-	 S1fRA9QQoqSGgLlKqaWnZ6pbDPr9NKzG8X08VZ/LVwBNbpGjtGt4VKmqCdN0sXucdp
-	 Wd8b5k4wb5TJA==
-From: Sasha Levin <sashal@kernel.org>
-To: "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>
-Cc: Sasha Levin <sashal@kernel.org>,
-	"linkinjeon@kernel.org" <linkinjeon@kernel.org>,
-	"hyc.lee@gmail.com" <hyc.lee@gmail.com>,
-	"zenghongling@kylinos.cn" <zenghongling@kylinos.cn>,
-	"regressions@lists.linux.dev" <regressions@lists.linux.dev>,
-	"stable@vger.kernel.org" <stable@vger.kernel.org>,
-	"d3nchk@outlook.com" <d3nchk@outlook.com>
-Subject: Re: [REGRESSION][NTFS] Linux 7.3.4 mounts 64K-cluster NTFS read-only after $MFTMirr record 24 mismatch
-Date: Fri, 20 Nov 2026 15:39:17 -0500
-Message-ID: <2026-11-20-1-daily-reply-0028@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
-References: <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
+	s=k20260515; t=1795222671;
+	bh=pYuaPAfIlTcB1O8Ap0wBAp+pFIs1WlVk3EpGd7ruOeQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=OrPwbDK8c8VgXaGVC4EZ0R3FQT+UV0oocsU5RvXjR09bMWaxfjfkY3BvOQUioYdHA
+	 wvoRyGTzLi6OwFryuRPY/G4wsf/P0xkgH91xeBpW0A6zB/6N6V382gez3ZH8n3t1Xt
+	 J1C2Toxer3RzZg7+ZgGHjNa3/Tppvj1EP31XmHh53QF7zDeuYdIsLuA3gr5rF2tGJF
+	 t+1DBaU8odFD+f6AI/UVXfm3YiQN/Aakwxlwx7IzLSY6PjTc1b8Vqb6CI2yJuzXHat
+	 LM9tQXdRZqlP90apyRqDgFg+kE7VbjceAXMn3Fc+PubgWJbQ44N0yGNOv2kT3yF3Li
+	 /cv9N607NiP9g==
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-6b8815693e2so1737757a12.0
+        for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 16:57:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErE4LxSXqs/De6UoTemaBBL35yIydMsYb7FJJqSEl9SDzSmO/GNxAfF8cCtluJUoVWmOzFM3@lists.linux.dev
+X-Gm-Message-State: APuU4Z84FGhbM8t/9+GvF69HEULP7Pe8BQBy63NYsd1j+kAMXrJE9Y34
+	GSzNUam0inTVoB/JcGL1jyfZ3sU+aWAnzj5uQ3z6m2Yu0pHDKZj191vOeCcr95zsISvtNMAbyPc
+	hJZoRz/7EFl5dvrBHsL758UD388Z0Mvo=
+X-Received: by 2002:a05:6402:13cc:b0:6b8:854:da16 with SMTP id
+ 4fb4d7f45d1cf-6ba37e64b3emr3750928a12.18.1795222670218; Fri, 20 Nov 2026
+ 16:57:50 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -63,15 +59,121 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
+ <ee94181c-784f-4f9b-8697-cca5abec6b07@163.com>
+In-Reply-To: <ee94181c-784f-4f9b-8697-cca5abec6b07@163.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Sat, 21 Nov 2026 09:57:36 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd8VV8hjeEqRLJ-HBDA3Dzw9bX45e6dWpie4soeZ8TBvDQ@mail.gmail.com>
+X-Gm-Features: Aa3M54rjQHmBi5vJgpb0m5wm04L5meK5CixRNCQCinayId8QPwf-7sPCDRN0boc
+Message-ID: <CAKYAXd8VV8hjeEqRLJ-HBDA3Dzw9bX45e6dWpie4soeZ8TBvDQ@mail.gmail.com>
+Subject: Re: [REGRESSION][NTFS] Linux 7.3.4 mounts 64K-cluster NTFS read-only
+ after $MFTMirr record 24 mismatch
+To: liubaolin <liubaolin12138@163.com>
+Cc: "d3nchk@outlook.com" <d3nchk@outlook.com>, "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>, 
+	"hyc.lee@gmail.com" <hyc.lee@gmail.com>, "zenghongling@kylinos.cn" <zenghongling@kylinos.cn>, 
+	"regressions@lists.linux.dev" <regressions@lists.linux.dev>, 
+	"stable@vger.kernel.org" <stable@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> I suspect commit 749357bd48c16c4cdc09093450deca609492f012 introduced the new read-only behavior for this case.
-
-Yes, this comes from 749357bd48c1 ("ntfs: mount hibernated volumes read-only
-regardless of errors="), b0a4eefbb2a1 in 7.3.y. Stable will pick up the ntfs
-maintainers' fix once it lands. Until then, mount the volume read-only or use
-ntfs3.
-
--- 
-Thanks,
-Sasha
+On Fri, Nov 20, 2026 at 11:26=E2=80=AFPM liubaolin <liubaolin12138@163.com>=
+ wrote:
+>
+>
+>
+> =E5=9C=A8 2026/11/20 20:49, d3nchk@outlook.com =E5=86=99=E9=81=93:
+> > Hello,
+> >
+> > Resending in plain text because the previous HTML-formatted message was=
+ rejected by the regressions mailing list. Apologies if this creates duplic=
+ates for other recipients.
+> >
+> > I am reporting a regression in the in-kernel fs/ntfs driver (NOT ntfs3)=
+.
+> >
+> > Environment:
+> > - Distribution: Debian 13, backports kernel
+> > - Working kernel: 7.2.12
+> > - Broken kernel: 7.3.4+deb13-amd64
+> > - Device: /dev/nvme0n1p1
+> > - Filesystem: NTFS 3.1
+> > - Cluster size: 65536 bytes
+> > - Mount options: defaults (including errors=3Dcontinue)
+> > - Driver: fs/ntfs/ntfs.ko.xz
+> >
+> > Kernel log:
+> >
+> > ntfs: (device nvme0n1p1): check_mft_mirror(): $MFT and $MFTMirr record =
+24 do not match. Run chkdsk.
+> > ntfs: volume version 3.1, dev nvme0n1p1, cluster size 65536
+> > ntfs: (device nvme0n1p1): load_system_files(): Errors were recorded dur=
+ing mount. Mounting read-only. Run chkdsk.
+> >
+> > This volume worked read-write with kernel 7.2.12. After upgrading to 7.=
+3.4, it is forcibly mounted read-only, making normal file operations imposs=
+ible.
+> >
+> > Windows chkdsk has been run repeatedly, both through the GUI and comman=
+d line, including dismounted-volume checks. The issue persists after reboot=
+ing into Linux.
+> >
+> > I suspect commit 749357bd48c16c4cdc09093450deca609492f012 introduced th=
+e new read-only behavior for this case.
+> >
+> > There is also a potentially relevant NTFS compatibility issue: modern W=
+indows may not keep all $MFTMirr records synchronized on volumes with large=
+ clusters. Here the mismatch is reported at record 24, beyond the first 16 =
+records.
+> >
+> > Please investigate:
+> >
+> > 1. Whether the comparison of MFT mirror record 24 is valid for modern W=
+indows-created NTFS volumes with 64K clusters.
+> > 2. Whether this is a false-positive filesystem corruption report.
+> > 3. Whether errors=3Dcontinue can be honored for noncritical MFT mirror =
+mismatches, while retaining mandatory read-only protection for Windows hibe=
+rnation and genuinely unsafe filesystem states.
+> > 4. Whether a fix can be backported to the Linux 7.3 stable series.
+> >
+> > This regression prevents normal read-write access to this volume.
+> >
+> > Thank you.
+>
+> Hi,
+>     Thanks for the report and the detailed logs.
+>
+>     I checked 749357bd48c1. It didn't introduce the mirror comparison,
+> but it did make errors recorded during mount force a read-only mount,
+> even with errors=3Dcontinue. That explains the change in behaviour you're
+> seeing.
+>     There is a known compatibility issue with the comparison itself.
+> On volumes with large clusters, Windows 10 can leave later records
+> in $MFTMirr out of date.
+>
+>     ntfs-3g already handles this by comparing only the first 16 records,
+> or fewer if the mirror is smaller. See commit 85e208176ffd ("Stopped
+> checking matches of MFTMirr against MFT at record 16").
+>    fs/ntfs still compares the whole mirror. With 64 KiB clusters and
+> 1 KiB MFT records, that means records 0 through 63. A difference
+> at record 24 could therefore just be a stale mirror copy, rather
+> than filesystem corruption. Your report looks consistent with
+> this case.
+>
+>     I'll follow the ntfs-3g approach and limit the record checks and
+> comparison to the first 16 records within the mirror. We'll still
+> read the full mirror and check its location, and leave the mirror
+> writeback range unchanged.
+>
+>     This should allow read-write mounting in this case, provided
+> there are no other errors. We shouldn't need to relax the general
+> errors=3D handling or change the read-only protection for hibernated
+> volumes and other unsafe states.
+>
+>     I'll include a Fixes tag and Cc stable so the patch can be
+> considered for the 7.3 stable series after upstream acceptance.
+>
+>     I'll send the patch shortly and CC you. You can then give it a
+> try and let us know whether it resolves the issue.
+Okay, Looks reasonable to me.
+Thanks for checking this!
