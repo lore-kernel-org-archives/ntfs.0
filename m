@@ -1,55 +1,55 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795225437;
-	b=DdNRYvt2XsPv4vtu+3kMbe6RFx1uK4s7WEmGyYugSo8dW47Ec2a3LWmXaYkWe7Z0pVHQ
-	 DnMHwr2bJX8GXtbIvdHtNOJCWAzIw+s/MhjtpX+lvuRcc1752h71OA7F8x8m7IRnyZHDy
-	 1VttuErXimEv6nQwYGUs5U/O9O5SuOA+wCgHSRhQktkQLawF02dfo6Hh38yvrWRXVXQ60
-	 l+aFNij5qi5mOCWuiBxh1rxB/vzDjK1ntLeDqQxvBOGQW5f0Q5UhljlY5hCrCW9QquOLc
-	 xtlxIt4P9ef8wcL1RJSnqBKrm8gOBZVO0e2q6kvpmH31yx4P60MpSB9KiKySJxkqSCg==
+	t=1795225569;
+	b=p1ZbiuDkumufMcra7CBi/OiD0Gk+OlX/Ck3jayGG2uGdh5Rm4/AQ0j2h2b16QBGM1Wuo
+	 7FPiG4/U8+/8iZh9dqIPKf66E0flfUhO4pEJJtOjlHw7AAj0A73f7Y3H2ZBRkXAVIeCJV
+	 IihwZBST/CC/48hSauEHsz6Jdbgh8evamYmWLfhLRAiDn/O7F+AfXUSeGui18kzCHD9/P
+	 T/MBxMZUKDA35Ab+Zm14hZHPD+pbx4N4qhTXZ1YJ5kg2Kzb0WQfA8gs7M8+D9pzQoiaTk
+	 lG7qbDBAvbQA+E5VOHojB4NYjrgf3L94+o55TtW5dPVA5nr6Qb6/OyXiGN0F4SUdeSg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795225437;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795225569;
 	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
 	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
 	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=IZHBpmYgwg2uHcAp2EVwGofB3o+jQ8LHJLT3ugevwxc=;
-	b=4Mib368lXeQ7tOT0nCMvpTKpTYihpX+t5KswFqVm4EnKg1h9Cr9bwp2LGAJri6uos3vR
-	 zf7xtLKjWovzQTEwpPE2PrYYw9UC39oHCZmupVxQMyO+xeb8FM2GDwknn9x6tnNVNbEcu
-	 wHWa6bvx+xvpqz5DOE83ohk6R7MjrIp0CMQLS8TpAYjRiIsxm3dZYSKwT2ReYeiw1l80R
-	 8D3ua80HtV9Z3cbVhEOp7hog2iL+1vNxI21qlhFQ/0YXGpQvlhuaUgFtmCeoURM2I1+gL
-	 oNsmdUJxocB2PrGsL65SPWbjyuZo3vxEFAk+ut4uLYi6+iqY857ZGPsuzPb2FdqsYGw==
+	 Subject:To:Cc:Content-Type;
+	bh=pXIcTl4aGxKY1y3Sv/7qakiKJPc0ii9R0dmFyBolSnA=;
+	b=Ypgf6/Q0Wx/DjexaD3gwTHwCnLGOwl5xizpblpUfP5fVobxc9I3ONfzXs9sv6RJHx4yw
+	 fRJHMvzXTZwMLATbzYIUPlP5lTt7l7J0hV6yyg47e7ILGsorTw09Y7p5dew6vejb0T6Po
+	 ZB312v2Yh8jbaSfTfp0dHwUgiz+j7MNQLiHRPqL4zpAKXSwGEhqZAEA15tNqyw0BJ7QVg
+	 PNggYvKXB1qgbcEW7ApWhTaK7xF+zd+Okllr7srD8iH9bp2Q5l8IW/+un8yBh0v8oAVxr
+	 +ZfPe2PNmX/1I1lHMc8k6lgkJEunvNTeRRcKd1a98H3apIEuZaDNyDptAn65a4mTXIA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aFm9trbG;
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aSincsPm;
 	arc=none smtp.remote-ip=100.103.45.18
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F7A4606A69C
-	for <ntfs@lists.linux.dev>; Sat, 21 Nov 2026 01:43:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22785606A6B6
+	for <ntfs@lists.linux.dev>; Sat, 21 Nov 2026 01:46:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aFm9trbG
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B31B1F000D1
-	for <ntfs@lists.linux.dev>; Sat, 21 Nov 2026 01:43:56 +0000 (UTC)
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aSincsPm
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 494031F000CF
+	for <ntfs@lists.linux.dev>; Sat, 21 Nov 2026 01:46:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795225436;
-	bh=IZHBpmYgwg2uHcAp2EVwGofB3o+jQ8LHJLT3ugevwxc=;
+	s=k20260515; t=1795225568;
+	bh=pXIcTl4aGxKY1y3Sv/7qakiKJPc0ii9R0dmFyBolSnA=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=aFm9trbGR1ttSbNewz/MAIEVl2v5cjfdDYKiyeGDWaDt9zYxg1ZFQPM+BfCDY/aKl
-	 yDXfd0n9dTenoorzPADsFvbz5T96kpXTvAV2KE3v8/RwcRf0bfRi8SskaR76tLMMgc
-	 cNeH3TbCDM05WCXybXi9AKAVPi6qVoT9Sgk3lUfMSJbK3e95wjWTM2Zx9Z8qecu/fF
-	 qaMOMbH3lhKYzxT8zfh35uojyoxtLlH9jhVS+w1phhfhF+VHHPsr2lb7H/xUfH6qJo
-	 irRnFU3Sw+zeD5/eoJn6D6ox0t2Uyy4x//lC5Zv+BPnzw0TfN7GV4S3+riMIYNjjSW
-	 R9rbNfqsyMHbQ==
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6b8977f2785so2117958a12.3
-        for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 17:43:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGVmheUOIC3QQQ5X6wNtLngqGDDmakqktEF3EcJu+jgSWSGOVDX0XgsglOJHz7nem9liiay@lists.linux.dev
-X-Gm-Message-State: APuU4Z90XyrZvawdpHEP7zMqrrk1aSOr/NpJTxlfo7phJh8HOSUlm7ji
-	hY5oFvdEVuRnzaJ8XE1flOs3aCSvPhpg8Qw6q4Mqyb3OpXhl4loFC+IHoM3of+zHyd9bwqN8DCG
-	y9mwr5t59YJtFTZ/DqEMbe32ZunO10pU=
-X-Received: by 2002:a05:6402:1512:b0:6ba:12e2:46f2 with SMTP id
- 4fb4d7f45d1cf-6ba37d18d2emr2899334a12.8.1795225434798; Fri, 20 Nov 2026
- 17:43:54 -0800 (PST)
+	b=aSincsPms+qTVHlLXexSWGgDMf5MnjPq1famBGJqUuqRCvMCWeJq47JdrRPyTNzUE
+	 ZoZ+kg+pRL3MGIJz4CI78PxnON7Yq2NfsXEv4w/6IVANtmLsrJ604v0wncaYudeFYo
+	 6hhpo3Vd9Gfi+RcEORjoEzAnuIAUKjojh+lqNLV78Dh9qg7u/vGC6qC+XwJpuR+zGf
+	 Nt0fdUV0vXTzgtx08MylCfiqSnfdki/71USUDLSm9sdWcsZlpxGpIaQ7CGfrQ6sltS
+	 YysKxbLyuKqwOu1tIQ0bw4rTIfWlDIjJxBxRGeLwzEIGDtZZiVAWMgLAHAbB62ts96
+	 xU0/VkuvcMaHA==
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-c4d2b741ed9so262943066b.2
+        for <ntfs@lists.linux.dev>; Fri, 20 Nov 2026 17:46:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHRa6q/7qsdtyJvgVFj2SM0DDwWJ7ZWnP13e49stB9mTSSvV+/3qu+k1OljwViQ9dawp30m@lists.linux.dev
+X-Gm-Message-State: APuU4Z+5t1ohQVRgtzUAJZ0UkcplwEz6OgsHfS1PJNWtMSq8GS3lccqT
+	WFzqUCRuRaoPVxA4bxJnqLJMKd4qNbieQ9cdR1v0q6GuHtC5F9OjI1C03nM+8az/rLcJroMhIRx
+	vUgokYhYREsWXGr3OudyM4hr4GFT1LZk=
+X-Received: by 2002:a17:907:6ea9:b0:c46:645f:cee2 with SMTP id
+ a640c23a62f3a-c513a3ab024mr492513266b.4.1795225566975; Fri, 20 Nov 2026
+ 17:46:06 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,42 +59,29 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <20261120155021.1618964-1-liubaolin12138@163.com>
-In-Reply-To: <20261120155021.1618964-1-liubaolin12138@163.com>
+References: <VE1P190MB0877D026E2C3905F0324B46F85782@VE1P190MB0877.EURP190.PROD.OUTLOOK.COM>
+ <ee94181c-784f-4f9b-8697-cca5abec6b07@163.com> <CAKYAXd8VV8hjeEqRLJ-HBDA3Dzw9bX45e6dWpie4soeZ8TBvDQ@mail.gmail.com>
+ <2a3b2050-76c0-44d2-a5a4-236003247f74@163.com>
+In-Reply-To: <2a3b2050-76c0-44d2-a5a4-236003247f74@163.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Sat, 21 Nov 2026 10:43:40 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd97DoyU_uorCoM1viB6T=z14t3V21gXehBg9gDL_b4SRQ@mail.gmail.com>
-X-Gm-Features: Aa3M54qJWxRShaBRDGyYV0K_jGwemM3TQK7CLamk1rs-YxAipl2WbAM4lXns4n4
-Message-ID: <CAKYAXd97DoyU_uorCoM1viB6T=z14t3V21gXehBg9gDL_b4SRQ@mail.gmail.com>
-Subject: Re: [PATCH v1] ntfs: limit MFT mirror comparisons to system records
-To: Baolin Liu <liubaolin12138@163.com>
-Cc: hyc.lee@gmail.com, d3nchk@outlook.com, ntfs@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Baolin Liu <liubaolin@kylinos.cn>, stable@vger.kernel.org
+Date: Sat, 21 Nov 2026 10:45:54 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd9XO4X-A+rNsvuehhi-1gaBwvz0C+=omqFnVT_Zsm9-kg@mail.gmail.com>
+X-Gm-Features: Aa3M54o5N-SYmHy7MpzLD1unR02bORgYmyLXpo_wA_f7P54pXZcJIo0YYREgCws
+Message-ID: <CAKYAXd9XO4X-A+rNsvuehhi-1gaBwvz0C+=omqFnVT_Zsm9-kg@mail.gmail.com>
+Subject: Re: [REGRESSION][NTFS] Linux 7.3.4 mounts 64K-cluster NTFS read-only
+ after $MFTMirr record 24 mismatch
+To: liubaolin <liubaolin12138@163.com>
+Cc: "d3nchk@outlook.com" <d3nchk@outlook.com>, "ntfs@lists.linux.dev" <ntfs@lists.linux.dev>, 
+	"hyc.lee@gmail.com" <hyc.lee@gmail.com>, "zenghongling@kylinos.cn" <zenghongling@kylinos.cn>, 
+	"regressions@lists.linux.dev" <regressions@lists.linux.dev>, 
+	"stable@vger.kernel.org" <stable@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 21, 2026 at 12:50=E2=80=AFAM Baolin Liu <liubaolin12138@163.com=
-> wrote:
+> Hi Namjae and Hyunchul,
+>     Thanks for taking a look. I sent the fix last night:
+>     [PATCH v1] ntfs: limit MFT mirror comparisons to system records
 >
-> From: Baolin Liu <liubaolin@kylinos.cn>
+> https://lore.kernel.org/all/20261120155021.1618964-1-liubaolin12138@163.com/
 >
-> Windows 10 can leave $MFTMirr records from record 16 onwards stale on
-> volumes with large clusters. Comparing them can falsely report
-> corruption.
->
-> Commit 749357bd48c1 ("ntfs: mount hibernated volumes read-only regardless
-> of errors=3D") made these mismatches force a read-only mount even with
-> errors=3Dcontinue.
->
-> Limit the record checks and comparison to the first 16 records within
-> the mirror, following ntfs-3g. Keep reading the full mirror for runlist
-> mapping and location checks, and leave mirror writeback unchanged.
->
-> Fixes: 2beaa98b46c4 ("ntfs: restore $MFT mirror contents check")
-> Cc: stable@vger.kernel.org
-> Link: https://github.com/tuxera/ntfs-3g/commit/85e208176ffd16ce9a51a9f534=
-b194f0ebbde6e3
-> Signed-off-by: Baolin Liu <liubaolin@kylinos.cn>
-Applied it to #ntfs-next.
-@d3nck, Let me know your test result.
-Thanks!
+>     I'd appreciate your review when you have a chance.
+Checked it. Thanks!
