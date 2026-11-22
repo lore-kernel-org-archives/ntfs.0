@@ -1,47 +1,79 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.3
-ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795351836;
-	b=sJW6aKGQJOeFqnIDQoTLWkl3lUvJDrg+VjPPsX7HXRbCEcZFmlcfwReNthmwc2iczgxc
-	 +/RnOM8OkqjCOmW6+ymPxqv3qHH0yzel+6aidnrhgcn6tTbhyQXXCOPR/ZKQpiBmO6XW6
-	 TpE3GekNtGp4i6X5vEViQg37/jh+Mkd30+AANyuVz2R3IL9aNeEWNPFsKzGt/Dw5kEWpV
-	 PhsCUyVQu+Oq79HNxWPPpWCIDkTqUAwxAl4TWhh2EkF1ZI8CmoyVflhdaDD4Ge/8YsGDp
-	 olAefrX25kzTCiJMEKN5CrOGiEJar2WMsIIEjJOnwml3wntfrh8/P+wr0v6AW0BaWXA==
-ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795351836;
-	h=DMARC-Filter:DKIM-Signature:Message-ID:Date:MIME-Version:User-Agent:
-	 Subject:To:Cc:References:Content-Language:From:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
-	 X-Coremail-Antispam:X-CM-SenderInfo;
-	bh=pCJzBEUYisAKALO5Lm79oyoTKzKT7tGQRSZFbRFKbNo=;
-	b=o2uyfduo/G343EhNWL8ZTgeLZ9Q5FLq3QJC4snJM99d9EH9EBhxfHMAMM37HFkI2onMT
-	 AQI6PZTW+ktPPuTzQBduvsDsmKyioHaFYa9e3TeWy6QTxipuadSatuZG2jwgQsJPeQf2+
-	 uVocoky7WABQcVhsRjLHR+zMbqqtOA6biTwT+2l08V3XURHSFooa2hDmn2x121b3ZvJJQ
-	 f68LVd+oqlZD4ryCTtNl+WXf45/bTc8rkwRA3g9H+C7CrtoRv+WtqFgMD4k+foIIj5C38
-	 PUXq4d2J+tERUrflQfcyfYpFysME3lQMLQrCz2P7B4LZz2JqjTQn236q7ibT9WnkiXA==
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=QQvtycW6;
-	arc=none smtp.remote-ip=117.135.210.3
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+Authentication-Results: smtp.subspace.kernel.org; arc=pass header.oldest-pass=0 smtp.remote-ip=100.103.45.18
+ARC-Seal: i=2; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=pass;
+	t=1795371583;
+	b=sNYcFJTX2CZxMjk7ZsPXRaNGg4+ZExqa9tQEv+vhUPA3CXl3iYfZl6REmf/7nzTH8xaZ
+	 ilc/cumOHngOvV0PLZwD2stEmdbV4hxydY+G72JvpLQJDW1eU6FVc7KTTJCjwX2p3sNSZ
+	 7Mc5mnHDxf2MuNWsTWt1o+/HW1isnKjS5f9lMDioVGPstBsJj+1t0RAYUbNbD0IfLeChU
+	 CTqZnHLYcq8CGdXfrz4rt+y084Up3chIjLplZy4vA2pet9mTZOQFw+JURog/QfCrEiM1u
+	 upfG/i1cGuKmtlf2aAuNgy6eseFk9qy9vcBaBfqsKp3On1Tay2vG19cKFPjTpVzniUg==
+ARC-Message-Signature: i=2; d=subspace.kernel.org; s=arc20261015;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795371583;
+	h=Received:DKIM-Signature:Received:From:Date:Subject:MIME-Version:
+	 Content-Type:Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=7oQB3/O/c4dFGNnygzjgJHN8nXWsiGK/1pYzsrZRsWo=;
+	b=poRirNnD9rY68bSCfRHk+5yqUWW3Ar9RYfIlpHtWeqC96EHjKCv7ifhyQJv2o8+GmdaM
+	 CXAVVD+uFs+3XD9d3mq9fbqLFhRmYvlhm0KNdjfNcC6oOsHmmhYC0uB1+mwjgCqnBg+i2
+	 Ll0PbzfRu6DRDwFAbVcE6EJ/cXzRoq91IwqG6oR0D6+gCRhvlmPSX6phUgwisbOaUPCGL
+	 0+ibmA+MpzNjRKHOeU1BLWzfg4p8aUALIWzv+wAeifq6AdVK9FGeImjH/bN3pHCrvWE4c
+	 98YDaVvbs52dpWdn8EljzyJ86tCM0AanPHx8BL9Mf1k5d8p86uibOIFKAFQvMpMKOww==
+ARC-Authentication-Results: i=2; smtp.subspace.kernel.org; 
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LnPr5l4M;
+	arc=pass header.oldest-pass=0 smtp.remote-ip=100.103.45.18
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DEE8606A320;
+	Sun, 22 Nov 2026 18:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LnPr5l4M
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795371583;
+	b=vRdG3KoFSu6XRebj9AiPAhViDKw2UdTyV5RNVhKz20OLMomjWUAhh3I/ZxPWufKAhzVV
+	 q2+w1iOe8lgsRN64fDnbdhi9MFDN5PAemJ/OfPLP+hMm1p2KZ5/0sq0n0oL0lpDtUjG2w
+	 mH/OcFFoRrJdRpfku9ZgI2OPO1N/aFy3CzxFBoz8eJpT/Blbjrrzn5RWTXazy/RkOzHB+
+	 F3iQrK1ZTBTg+LvwrLrEKvuMOokbRUalRVkloC+tp5bpQLCKy/2M9RH6sQGzT2PX0J87l
+	 qDWMO0JbDpAJIb41sJYcxSzqSKZL/3RJ8mjsX2f3h3vakBN/KUYfZrZ0dDaw1j81Z5g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795371583;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=7oQB3/O/c4dFGNnygzjgJHN8nXWsiGK/1pYzsrZRsWo=;
+	b=FkMG2caQ/CSTpD424280DSWbMwJFHocujW8Go4bfaPZ99IHCh+3LbBlTzsBaPPGLSAv1
+	 0BLBw7Q1EFcXNBpjtq14dVtLD1BWmKFnqR48Eo/0cmNOiZL9rHn5bUiDqEH04jJ2/lwLk
+	 JaRWgbD+B6+s8SAD1m/4tS8jowGMflJ2YLLRoHCCUiGbZ1i6O9Ia0UJ+gQz/SPCKWl/+X
+	 ECarO0P0G0GDf4Ih6vFVAFu6X+lYHM/1/Ppyv6TXrRWIclpfQbWApj9Zf2nXvC1EJ/wQB
+	 u7xePuTJIu0gomb/oYbrS59lha1qcK5pZgZLdl2hMbTLQHI8wl0E/X2E1aWqsyuRBSg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147C7606A320
-	for <ntfs@lists.linux.dev>; Sun, 22 Nov 2026 12:50:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 147C7606A320
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=QQvtycW6
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=pCJzBEUYisAKALO5Lm79oyoTKzKT7tGQRSZFbRFKbNo=;
-	b=QQvtycW6v+bXcjidvnQckJ3dkzWGVZwNeslDDSt1t30QQP4exmgph+Q50YJF7S
-	izPNWLLcf0PxJLIsrBrcZMQTk6yIdnuFQ9lXEV0WivOO2s85/gUXCoIdqFFpw33V
-	+qNAUX1i2k0Q6aDx+7D2DH6Y/8QrN4DGG2nWPrLoF7UdU=
-Message-ID: <1ebbb85f-3515-4c45-a850-8039aad93800@163.com>
-Date: Sun, 22 Nov 2026 20:49:51 +0800
+	by smtp.kernel.org (Postfix) with ESMTPS id 18ADD1F000CA;
+	Sun, 22 Nov 2026 18:19:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795371582;
+	bh=7oQB3/O/c4dFGNnygzjgJHN8nXWsiGK/1pYzsrZRsWo=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=LnPr5l4MVl/WBTctWsGBV2HvZcZIukVEPQKWUD57xBAvydn1/8vPaqe3pJPdQgmyJ
+	 1rXGf49el+7SAqsN7thQvPY45jiNYiQInmacX50IX51TZs1O7zOeVaoUIjuefXLfPb
+	 aOEzrvo7p/hqaWhPmCNSUA3a8V3GQ6WekU+UxHiGhMTGfMw+MqMpa0Xd4g/eZfTGNP
+	 wusgcpvw7jITS43w32TwECbTP2Rr5TOi3teeRUej40s3SOFvrBLsn6KtlS2NLMBpAd
+	 6rUTBteKEazK9uo/uIcooxXkQLEQUgIBsTIXxVk1xj8LLWzj4CBsn/RQSjZDbrVsZo
+	 d0P2Vku+Ifcig==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9045F4C175;
+	Sun, 22 Nov 2026 18:19:38 +0000 (UTC)
+From: Ernest Borowski via B4 Relay <devnull+ernest.borowski.git.proton.me@kernel.org>
+Date: Sun, 22 Nov 2026 19:19:37 +0100
+Subject: [PATCH 1/7] ntfs: release delalloc reservations cut off by
+ truncate
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -51,284 +83,116 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] ntfs: switch to the new xflags fileattr API
-To: koraynilay <koray.fra@gmail.com>, Namjae Jeon <linkinjeon@kernel.org>,
- Hyunchul Lee <hyc.lee@gmail.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>
-Cc: Chuck Lever <cel@kernel.org>, Jeff Layton <jlayton@kernel.org>,
- Jan Kara <jack@suse.cz>, "Darrick J . Wong" <djwong@kernel.org>,
- Andrey Albershteyn <aalbersh@kernel.org>, Amir Goldstein
- <amir73il@gmail.com>, =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
- Lauri Gates <lauri.gates@gmail.com>, Christoph Hellwig <hch@infradead.org>,
- Dave Chinner <dgc@kernel.org>, linux-btrfs@vger.kernel.org,
- linux-xfs@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, ntfs@lists.linux.dev,
- linux-nfs@vger.kernel.org, linux-api@vger.kernel.org
-References: <20261122000856.536902-1-koray.fra@gmail.com>
- <20261122000856.536902-4-koray.fra@gmail.com>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20261122000856.536902-4-koray.fra@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3X7Xv5AJrbCd2JA--.15050S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxtr1Duw4fuFW5Kr47ZrW3trb_yoWfuF17pF
-	s5GF4UKa97Aryakan7J3WUua1F9r4fCFyUZFyUK3WjyFy3tr1Fg395KFyfGF1UGrn3Cw15
-	Ga9FyFWDCrW7Z37anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Uua0QUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RHQm2sC5PFncQAA3Z
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261122-b4-ntfs-delalloc-fixes-v1-1-0726f0dce403@proton.me>
+References: <20261122-b4-ntfs-delalloc-fixes-v1-0-0726f0dce403@proton.me>
+In-Reply-To: <20261122-b4-ntfs-delalloc-fixes-v1-0-0726f0dce403@proton.me>
+To: Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>, 
+ Baolin Liu <liubaolin12138@163.com>
+Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Zhan Xusheng <zhanxusheng1024@gmail.com>, stable@vger.kernel.org, 
+ Ernest Borowski <ernest.borowski.git@proton.me>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3407;
+ i=ernest.borowski.git@proton.me; s=default; h=from:subject:message-id;
+ bh=3nT+zUonqfx2kvoDVZIlPQfmCvPmSP51Ad2wiF9F3AM=;
+ b=owGbwMvMwCVWzJ65uCpJ5D/jabUkhmxmIwu/cw/s2LYc4p8keqf/7MdHmhn5plfylyX//5Ttr
+ rKrTiaxo5SFQYyLQVZMkaXj/40Qn5Bvn5bFafXBzGFlAhnCwMUpABMp/MPwP6xkV/Pcrjv++XNq
+ zzRkf7jv7h8TMD/r87KrAsGO694pczMyTFXbq1OxddnKVW27eRfcufNyVf/s79pJZx/cUTPgqbi
+ azw4A
+X-Developer-Key: i=ernest.borowski.git@proton.me; a=openpgp;
+ fpr=88FFD8544C54F6F2A65E2A8E730769A37A6214FF
+X-Endpoint-Received: by B4 Relay for ernest.borowski.git@proton.me/default
+ with auth_id=1589
+X-Original-From: Ernest Borowski <ernest.borowski.git@proton.me>
+Reply-To: ernest.borowski.git@proton.me
+Content-Transfer-Encoding: 7bit
 
+From: Ernest Borowski <ernest.borowski.git@proton.me>
 
+A buffered write into a hole turns the hole into an LCN_DELALLOC run and
+reserves its clusters in vol->dirty_clusters
+(ntfs_write_simple_iomap_begin_non_resident()).  Writeback hands the
+reservation back when ntfs_cluster_alloc() allocates the run.
 
-在 2026/11/22 08:08, koraynilay 写道:
-> Switch ntfs_fileattr_[gs]et() from the legacy FS_*_FL flags to the
-> modern xflags (FS_XFLAG_*) fileattr API with masks.
-> 
-> Introduce FS_XFLAG_COMPR and FS_XFLAG_ENCRYPT and add them to
-> FS_XFLAG_COMMON (and add FS_COMPR_FL and FS_ENCRYPT_FL to FS_COMMON_FL)
-> to be used in this API switch.
-> 
-> Assisted-by: Gemini:3.8-flash-high antigravity-cli-1.5.11
-> Signed-off-by: koraynilay <koray.fra@gmail.com>
-> ---
->   fs/file_attr.c           |  8 +++++
->   fs/ntfs/file.c           | 63 +++++++++++++++++++---------------------
->   include/linux/fileattr.h |  6 ++--
->   include/uapi/linux/fs.h  |  2 ++
+A truncate that cuts off delalloc runs before writeback drops their
+dirty folios, frees the clusters of the attribute with
+ntfs_cluster_free(), which skips everything that is not a real cluster,
+and removes the runs with ntfs_rl_truncate_nolock().  Nothing gives the
+reservation back, so the free space reported by statfs() and used by
+ntfs_available_clusters_count() shrinks by that many clusters until the
+volume is unmounted.  $Bitmap is not affected.
 
-Hi koraynilay,
-    One suggestion on the patch split: would it make sense to put the
-new COMPR/ENCRYPT xflags and their VFS handling in a separate patch
-before the NTFS conversion?
-    The changes to include/uapi/linux/fs.h, include/linux/fileattr.h
-and fs/file_attr.c introduce generic fileattr support, and the
-COMMON mask changes also affect other filesystems.
-    Keeping those changes together in a VFS patch would make the API
-and compatibility aspects easier to review.
-    The following NTFS patch could then focus on using the new flags 
-while preserving the existing NTFS behaviour.
+Workloads that rewrite files (open(O_TRUNC) + write) or truncate freshly
+written data lose free space quickly: a test that writes, truncates and
+punches holes in six 400 KiB files on a 128 MiB volume sees statfs()
+free space drop from 79 MB to zero in 80 seconds, after which writes
+fail with ENOSPC or come back short.  A 1 MiB buffered write followed by
+ftruncate(fd, 0) and sync leaves 256 (4 KiB) clusters reserved.
 
-Thanks,
-Baolin.
+Release the reservation of the delalloc runs that the shrink cuts off,
+before the runlist is truncated.
 
->   4 files changed, 44 insertions(+), 35 deletions(-)
-> 
-> diff --git a/fs/file_attr.c b/fs/file_attr.c
-> index 0e16c23368b2..815b8ba50e1f 100644
-> --- a/fs/file_attr.c
-> +++ b/fs/file_attr.c
-> @@ -39,6 +39,10 @@ void fileattr_fill_xflags(struct file_kattr *fa, u32 xflags)
->   		fa->flags |= FS_VERITY_FL;
->   	if (fa->fsx_xflags & FS_XFLAG_CASEFOLD)
->   		fa->flags |= FS_CASEFOLD_FL;
-> +	if (fa->fsx_xflags & FS_XFLAG_COMPR)
-> +		fa->flags |= FS_COMPR_FL;
-> +	if (fa->fsx_xflags & FS_XFLAG_ENCRYPT)
-> +		fa->flags |= FS_ENCRYPT_FL;
->   }
->   EXPORT_SYMBOL(fileattr_fill_xflags);
->   
-> @@ -71,6 +75,10 @@ void fileattr_fill_flags(struct file_kattr *fa, u32 flags)
->   		fa->fsx_xflags |= FS_XFLAG_VERITY;
->   	if (fa->flags & FS_CASEFOLD_FL)
->   		fa->fsx_xflags |= FS_XFLAG_CASEFOLD;
-> +	if (fa->flags & FS_COMPR_FL)
-> +		fa->fsx_xflags |= FS_XFLAG_COMPR;
-> +	if (fa->flags & FS_ENCRYPT_FL)
-> +		fa->fsx_xflags |= FS_XFLAG_ENCRYPT;
->   }
->   EXPORT_SYMBOL(fileattr_fill_flags);
->   
-> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-> index 50be49f4c913..fde6fb2fe39c 100644
-> --- a/fs/ntfs/file.c
-> +++ b/fs/ntfs/file.c
-> @@ -155,31 +155,37 @@ int ntfs_file_release(struct inode *vi, struct file *filp)
->    * @dentry: dentry to report the flags of
->    * @fa: filled in with the flags of @dentry
->    */
-> +#define NTFS_RO_XFLAGS (FS_XFLAG_COMPR | FS_XFLAG_ENCRYPT | FS_XFLAG_CASEFOLD)
-> +#define NTFS_RW_XFLAGS (FS_XFLAG_IMMUTABLE | FS_XFLAG_APPEND | \
-> +			FS_XFLAG_NOATIME | FS_XFLAG_NODUMP)
->   int ntfs_fileattr_get(struct dentry *dentry, struct file_kattr *fa)
->   {
->   	struct inode *vi = d_inode(dentry);
->   	struct ntfs_inode *ni = NTFS_I(vi);
-> -	u32 flags = 0;
-> +	u32 xflags = 0;
->   
->   	if (NVolShutdown(ni->vol))
->   		return -EIO;
->   
->   	if (NInoCompressed(ni) || NInoWofCompressed(ni))
-> -		flags |= FS_COMPR_FL;
-> +		xflags |= FS_XFLAG_COMPR;
->   	if (NInoEncrypted(ni))
-> -		flags |= FS_ENCRYPT_FL;
-> +		xflags |= FS_XFLAG_ENCRYPT;
->   	if (vi->i_flags & S_IMMUTABLE)
-> -		flags |= FS_IMMUTABLE_FL;
-> +		xflags |= FS_XFLAG_IMMUTABLE;
->   	if (vi->i_flags & S_APPEND)
-> -		flags |= FS_APPEND_FL;
-> +		xflags |= FS_XFLAG_APPEND;
->   	if (vi->i_flags & S_NOATIME)
-> -		flags |= FS_NOATIME_FL;
-> +		xflags |= FS_XFLAG_NOATIME;
->   	if (ni->linuxflags & NTFS_LINUXFLAGS_NODUMP)
-> -		flags |= FS_NODUMP_FL;
-> +		xflags |= FS_XFLAG_NODUMP;
->   	if (!NVolCaseSensitive(ni->vol))
-> -		flags |= FS_CASEFOLD_FL;
-> +		xflags |= FS_XFLAG_CASEFOLD;
->   
-> -	fileattr_fill_flags(fa, flags);
-> +	fileattr_fill_xflags(fa, xflags);
-> +	fa->fsx_xflags_ro_mask = NTFS_RO_XFLAGS;
-> +	fa->fsx_xflags_rw_mask = NTFS_RW_XFLAGS;
-> +	fa->has_masks = true;
->   	return 0;
->   }
->   
-> @@ -207,9 +213,6 @@ int ntfs_fileattr_set(const struct mnt_idmap *idmap, struct dentry *dentry,
->   {
->   	struct inode *vi = d_inode(dentry);
->   	struct ntfs_inode *ni = NTFS_I(vi);
-> -	u32 allowed = FS_IMMUTABLE_FL | FS_APPEND_FL | FS_NODUMP_FL |
-> -		      FS_NOATIME_FL;
-> -	u32 readonly = 0;
->   	u32 linuxflags = ni->linuxflags & ~NTFS_LINUXFLAGS_MASK;
->   	unsigned int new_fl = 0;
->   	bool forced_immutable;
-> @@ -219,42 +222,36 @@ int ntfs_fileattr_set(const struct mnt_idmap *idmap, struct dentry *dentry,
->   	if (err)
->   		return err;
->   
-> -	if (fileattr_has_fsx(fa))
-> -		return -EOPNOTSUPP;
-> -
-> -	/* chattr passes the unchanged read-only flags back to us too. */
-> -	if (NInoCompressed(ni) || NInoWofCompressed(ni))
-> -		readonly |= FS_COMPR_FL;
-> -	if (NInoEncrypted(ni))
-> -		readonly |= FS_ENCRYPT_FL;
-> -	if ((fa->flags ^ readonly) & (FS_COMPR_FL | FS_ENCRYPT_FL))
-> -		return -EOPNOTSUPP;
-> -	allowed |= readonly;
-> -
-> -	/* Case folding is a read-only, mount-wide property. */
-> -	if (!NVolCaseSensitive(ni->vol))
-> -		allowed |= FS_CASEFOLD_FL;
-> -	if (fa->flags & ~allowed)
-Hi koraynilay,
-    There is another case worth keeping in mind when replacing this check:
-    fileattr_fill_flags() only translates a subset of FS_*_FL bits,
-so some unsupported flags will not appear in fsx_xflags.
-   For example, a direct SETFLAGS request containing only FS_NOCOW_FL 
-produces fsx_xflags == 0. On a normal file on a case-sensitive mount,
-the new check would accept that request.
-   If the file already has persistent NODUMP set, the request would also
-clear it, since the setter rebuilds linuxflags without NODUMP and writes
-it back to the EA. The current code rejects the request and leaves the
-existing attributes unchanged.
+Fixes: 495e90fa3348 ("ntfs: update attrib operations")
+Cc: stable@vger.kernel.org
+Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
+---
+ fs/ntfs/attrib.c | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-   Would it be possible to keep validating fa->flags when flags_valid is
-set, in addition to the xflags check?
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index 6ee6b6bcac..4028c310fc 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -4383,6 +4383,37 @@ static int ntfs_attr_make_resident(struct ntfs_inode *ni, struct ntfs_attr_searc
+ 	return 0;
+ }
+ 
++/*
++ * ntfs_release_delalloc_from - give back the reservation of delalloc runs
++ * @ni:		non-resident ntfs attribute whose runlist is about to be truncated
++ * @start_vcn:	first vcn that is cut off
++ *
++ * Delayed allocation reserves vol->dirty_clusters for every LCN_DELALLOC
++ * cluster when the buffered write is done and only gives it back when
++ * writeback allocates the clusters.  Runs cut off by a truncate never reach
++ * writeback (their dirty folios are dropped from the page cache), so their
++ * reservation has to be released here or it is lost until unmount.
++ *
++ * The runlist must be mapped completely and locked for writing.
++ */
++static void ntfs_release_delalloc_from(struct ntfs_inode *ni, s64 start_vcn)
++{
++	struct runlist_element *rl = ni->runlist.rl;
++	s64 nr = 0;
++
++	lockdep_assert_held_write(&ni->runlist.lock);
++
++	for (; rl && rl->length; rl++) {
++		if (rl->lcn != LCN_DELALLOC || rl->vcn + rl->length <= start_vcn)
++			continue;
++		nr += rl->vcn + rl->length - max(rl->vcn, start_vcn);
++	}
++	if (!nr)
++		return;
++	ntfs_release_dirty_clusters(ni->vol, nr);
++	ni->i_dealloc_clusters -= min_t(s64, nr, ni->i_dealloc_clusters);
++}
++
+ /*
+  * ntfs_non_resident_attr_shrink - shrink a non-resident, open ntfs attribute
+  * @ni:		non-resident ntfs attribute to shrink
+@@ -4479,6 +4510,8 @@ static int ntfs_non_resident_attr_shrink(struct ntfs_inode *ni,
+ 		}
+ 		ntfs_attr_put_search_ctx(ctx);
+ 
++		ntfs_release_delalloc_from(ni, first_free_vcn);
++
+ 		/* Truncate the runlist itself. */
+ 		if (ntfs_rl_truncate_nolock(vol, &ni->runlist, first_free_vcn)) {
+ 			/*
 
-Thanks,
-Baolin.
+-- 
+2.56.1
 
-
-> +	/*
-> +	 * When userspace uses file_[gs]etattr(), VFS already checks and fails
-> +	 * with -EOPNOTSUPP if rw_mask & ro_mask != 0 and rw_mask & ~allowed,
-> +	 * but for FS_IOC_SETFLAGS and FS_IOC_FSSETXATTR VFS can't check for
-> +	 * allowed flags as these ioctls don't support fsx_xflags_{rw,ro}_mask,
-> +	 * so we need to check for unsupported flags anyway.
-> +	 */
-> +	if (!fa->has_masks &&
-> +	    ((fa->fsx_xflags & ~NTFS_RW_XFLAGS) ||
-> +	     fa->fsx_extsize || fa->fsx_projid || fa->fsx_cowextsize))
->   		return -EOPNOTSUPP;
-
-Hi koraynilay,
-    Could we keep the existing handling of read-only attributes
-for legacy SETFLAGS callers here?
-    On a case-insensitive NTFS mount, the VFS carries over 
-FS_XFLAG_CASEFOLD from the current attributes, since it is not in 
-FS_XFLAG_COMMON.
-This check would then reject it because CASEFOLD is not in 
-NTFS_RW_XFLAGS, so even chattr +d would fail with EOPNOTSUPP.
-    The unchanged COMPR/ENCRYPT bits that chattr reads with GETFLAGS and
-passes back with SETFLAGS would also be rejected on compressed/encrypted 
-files.
-    Allowing those existing read-only attributes to be passed back 
-unchanged  would let users continue setting and clearing the persistent 
-flags through chattr,as they can today.
-
-Thanks,
-Baolin.
-
->   
->   	forced_immutable = ntfs_is_forced_immutable(vi);
-> -	if (!(fa->flags & FS_IMMUTABLE_FL) && forced_immutable)
-> +	if (!(fa->fsx_xflags & FS_XFLAG_IMMUTABLE) && forced_immutable)
->   		return -EPERM;
->   
-> -	if (fa->flags & FS_IMMUTABLE_FL) {
-> +	if (fa->fsx_xflags & FS_XFLAG_IMMUTABLE) {
->   		new_fl |= S_IMMUTABLE;
->   		/* Do not persist an immutable bit derived from the mount. */
->   		if (!forced_immutable ||
->   		    (ni->linuxflags & NTFS_LINUXFLAGS_IMMUTABLE))
->   			linuxflags |= NTFS_LINUXFLAGS_IMMUTABLE;
->   	}
-> -	if (fa->flags & FS_APPEND_FL) {
-> +	if (fa->fsx_xflags & FS_XFLAG_APPEND) {
->   		new_fl |= S_APPEND;
->   		linuxflags |= NTFS_LINUXFLAGS_APPEND;
->   	}
-> -	if (fa->flags & FS_NODUMP_FL)
-> +	if (fa->fsx_xflags & FS_XFLAG_NODUMP)
->   		linuxflags |= NTFS_LINUXFLAGS_NODUMP;
-> -	if (fa->flags & FS_NOATIME_FL) {
-> +	if (fa->fsx_xflags & FS_XFLAG_NOATIME) {
->   		new_fl |= S_NOATIME;
->   		linuxflags |= NTFS_LINUXFLAGS_NOATIME;
->   	}
-> diff --git a/include/linux/fileattr.h b/include/linux/fileattr.h
-> index 4faa40febf11..219e7c8eb601 100644
-> --- a/include/linux/fileattr.h
-> +++ b/include/linux/fileattr.h
-> @@ -7,12 +7,14 @@
->   #define FS_COMMON_FL \
->   	(FS_SYNC_FL | FS_IMMUTABLE_FL | FS_APPEND_FL | \
->   	 FS_NODUMP_FL |	FS_NOATIME_FL | FS_DAX_FL | \
-> -	 FS_PROJINHERIT_FL | FS_VERITY_FL)
-> +	 FS_PROJINHERIT_FL | FS_VERITY_FL | FS_COMPR_FL | \
-> +	 FS_ENCRYPT_FL)
->   
->   #define FS_XFLAG_COMMON \
->   	(FS_XFLAG_SYNC | FS_XFLAG_IMMUTABLE | FS_XFLAG_APPEND | \
->   	 FS_XFLAG_NODUMP | FS_XFLAG_NOATIME | FS_XFLAG_DAX | \
-> -	 FS_XFLAG_PROJINHERIT | FS_XFLAG_VERITY)
-> +	 FS_XFLAG_PROJINHERIT | FS_XFLAG_VERITY | FS_XFLAG_COMPR | \
-> +	 FS_XFLAG_ENCRYPT)
->   
->   /* Read-only inode flags */
->   #define FS_XFLAG_RDONLY_MASK \
-> diff --git a/include/uapi/linux/fs.h b/include/uapi/linux/fs.h
-> index e40806b3a69c..09fc7e066485 100644
-> --- a/include/uapi/linux/fs.h
-> +++ b/include/uapi/linux/fs.h
-> @@ -275,6 +275,8 @@ struct file_attr {
->   #define FS_XFLAG_CASENONPRESERVING 0x00080000	/* case not preserved */
->   
->   #define FS_XFLAG_PROJID		0x00100000	/* project ID */
-> +#define FS_XFLAG_COMPR		0x00200000	/* Compress file */
-> +#define FS_XFLAG_ENCRYPT	0x00400000	/* Encrypted file */
->   #define FS_XFLAG_HASATTR	0x80000000	/* no DIFLAG for this	*/
->   
->   /* the read-only stuff doesn't really belong here, but any other place is
 
