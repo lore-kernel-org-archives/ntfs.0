@@ -1,83 +1,100 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.221.53
-ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795443331;
-	b=NcRH+4LKTMWSZOKPPt2/+M8uVMAzfeZ+hYfRGQw9E7WxDsLLSb5G5+5sm4aCIXYXTb7H
-	 emrG6KohZ7VgS5iKLzSWwjgNW+4CZvgAeGAR6xT+p3PVe2nLUag2qMRGN3/CAs1iekcCn
-	 Q5qZjb6AAJTptEwQttwxVs8Ein8SQ44res/TyljTIl8iZFdX5Zh5vOjcg9c7SOOwHzz/h
-	 BI3nG1++g7rttxrH20d+6DlhoULIiOS3iSTGHHeQVGDnNXVWV8FmaQcCuZAggWejUy8yr
-	 kxpHZ91Jp7VHGcYGtYmAE0mkFnf1mwSTo8BZFYhh8zraD5M2F9XGNU8tgm7FTup8+bw==
-ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795443331;
+Authentication-Results: smtp.subspace.kernel.org; arc=pass header.oldest-pass=0 smtp.remote-ip=209.85.208.44
+ARC-Seal: i=2; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=pass;
+	t=1795443551;
+	b=dxyTJ/WFP9obMflzZadAjq7ZZ1m4PArCZPNxnUWWj+E5Rnff9pjS3DGfzt1rI/wNllX/
+	 kwFrs1yUVusTBy9ed+e/Zpe20urSEJTNS6Vmt8IvUWOpI+zJFDfx9Bp7roKrQzTgpYSp7
+	 eIqcddJlYTxqVyduo+Ho8rdbCm/k9hEjAMfvXZvpf1/tsFzjGaptMGmYLwkDtsKD9oI9K
+	 WsCTXuzTNMhISBsJJH6JLU8+DlpTZEoa1aGxZzcUieOYNVWJYeB/BcBa2Wi7hZLAl7hlD
+	 +HjQ5tO52Etk+Uyc8UHtftcS6OunNaUlUe0s0p1HK/dWoyxfyn7sk+cYJNtKthpMCng==
+ARC-Message-Signature: i=2; d=subspace.kernel.org; s=arc20261015;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795443551;
 	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:X-Mailer:
-	 References:In-Reply-To;
-	bh=SVkCiAZ9hVspPzZuKZbqXCYeKQk4BcDbwlCFk9p1ut0=;
-	b=HJXp1EOiJ+8S8x1urSYxKWSEoCACmdIBj6kJ6Fm0tew7zj51AGMxXtsIGIPg1XFSHIRe
-	 6tcdUl8OorrN4jmjcWI+g0uUgaBD875bnG4PGjs2xk/43jnR4a8ZS5B1bmNXel+0EXYGv
-	 4/rw0ELVnpf7uQlbaSW0xL2g/2QOxB9thzTJPnftU6CY7bO18WSujjAxX+w5Xwsx7PMPN
-	 E+0BVCUMOsgV96N/F3jJ1958Yg7YeI9TsPIb3SdeIrbBm4pHoEuBsQUqh22UfqIb8pf/v
-	 QaNBfU2KQKhhE6BECe91GpmleCPBPMH1RmtnAWpgD602p0ih8Mg7Ibde3Go7jrLUL3A==
-ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:
+	 MIME-Version:References:In-Reply-To:From:Date:X-Gm-Features:
+	 Message-ID:Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
+	bh=SGqpzMMXOxhLnysXHPX7ervAuuBOMpPxjnvIFfmSlbo=;
+	b=dBKpxqGMsBR/ocXJ4WkmGJxrsqwjpnH1P6L7Z+PbbrHeAJ/geQ4av1jN+zXWmlC5WkW1
+	 72xep+8jZ8oa1sGUhjZt0K29x84KB/GSdrwD5S4eR6H1WDtKQrONuumlc5x5sBwGVbal3
+	 UPFdCv40eg/IxqLVIg17SSApilrrqpMWVZf/J4nkkkmgO5o0TXM9sGuTTX71j5p6gMMhq
+	 D3WaMCIcnxx+XUaQrwCYaHQP7VQ5Gn2wa4swap895GmYnKFRJNHJTAeElJ4owjSlaQxTK
+	 4XXkAwA93h9Zo79qmUakJXHuK4jSodvsiWy4xX57msiAWC+zbdk7tMvswDQxXApaW6g==
+ARC-Authentication-Results: i=2; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=gmail.com;
 	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qYhzVx4S;
-	arc=none smtp.remote-ip=209.85.221.53
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=JeMwirm1;
+	arc=pass header.oldest-pass=0 smtp.remote-ip=209.85.208.44
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D6E606A32D
-	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 14:15:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 83D6E606A32D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C7C606A32D
+	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 14:19:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 86C7C606A32D
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qYhzVx4S
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-49412eb1474so2121070f8f.3
-        for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 06:15:29 -0800 (PST)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=JeMwirm1
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-6b7ddb99db4so4332530a12.0
+        for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 06:19:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795443550; cv=none;
+        d=google.com; s=arc-20260327;
+        b=NFngPqi2z1msXgBq/tkhf00sFEJHB5BX8w1znRWuGIvAOKP/91sO8Bpevd8Fa/Ns0b
+         5q7Q8FU/gVXDhtfkg4iynlXOjVKhYP453KXzbCPYTEfMHE/hkMxvA5zKwevR+mnc0FeC
+         Wkb+gVdyQ7hWHvYERSs+1EtUW2+KN4l2NgXWZzOLEbuPe30HSZSGirA5wPbqtpsFkFPF
+         jjM3Pa9b4lx0j3iVQ/PtxSGlmHujGHC9BLWZ4mEAiUr90OCBDlerk308i9KZGC5A7u55
+         eu/AUzwmuKEBZG8xtlUJ3H5p9E3wSQ+meym07cZmCSl85q6pkPkifHmAIis23PdfawVr
+         /Oug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=SGqpzMMXOxhLnysXHPX7ervAuuBOMpPxjnvIFfmSlbo=;
+        fh=j3Jsb0Bk228tyCN1aD5Y7u4359ZvHlCjJWc742nKeIs=;
+        b=dI51RqJYbWKr8nRi7bMILHgGt59vh3h1MCuvuwb8hKYuLdvBvrZyzADWXLKFpinA+c
+         0bIfx3aeO8SQE6zEl28r6r+Fnt1Zk1uHv8w3yxug6n5nGbIGaa/dhFffJgMIaEwCsNxI
+         IEaUAI5Pw5y0EN5Ev41PD2OGRvd3lcW3T3nKqQiTbMc0rPCKOmmz/mV217JFm4sIAMbo
+         d8WcQCe1C+9O063EXu2J2cvZ4aJwCwZ5ojL9frm8wCyJG4wBBpr2XUxs7/0m8AGdufDs
+         W++Jm7MHxUEf6PYyCCBC5g2YB61+o2c6IZ45ZxhxYATwfeAsOCjFgV/ujxll4IS83Wg8
+         4Qkg==;
+        darn=lists.linux.dev
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795443328; x=1796048128; darn=lists.linux.dev;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:mime-version:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=SVkCiAZ9hVspPzZuKZbqXCYeKQk4BcDbwlCFk9p1ut0=;
-        b=qYhzVx4SEMiBu9hJf4f9/bBP5aDB/xOIOCtP6Tx8lTu/yCMeq7yCgNr0RV5Ccosy4z
-         g4xIMW20M7is30xngg0jAxsnOUb3g6zDxNTeTEtMluRZlVrMfJPJlxsfTOwUBuPqj6OP
-         aFHHvjR4LgULEA81vBoPcqu3ncU2oRLbw+qUYm/uqLXC2IATiMc3QY4zvM+wL7cksPvD
-         5tnFw4ovP4Hhp8SWEVbszwbHcWcuY8dPhGBnAOZPt91aETGcuEJhyMy2aCNzwy0KbN68
-         cq0uAY/AqL8SPJigQz6zN60dwYAl2WA9KzOkfcMyHstuVUx9/wGHJe0gGaE7kDgnAANl
-         TIqA==
+        d=gmail.com; s=20260707; t=1795443550; x=1796048350; darn=lists.linux.dev;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=SGqpzMMXOxhLnysXHPX7ervAuuBOMpPxjnvIFfmSlbo=;
+        b=JeMwirm1skH4ZnlfM0CLsq7+tvwJifsah43OhNoj+0VMNpbWQai6RezmxnFXKHCYGw
+         DJj1xfZCe8AzvgIxe7hNpSMbe6+WOr6d7w8eqIY9m2YERWlsX7O2IFbvcHf/KFiE+/SN
+         yfNgIosQq/0eqbdoj4PHQy9RdeXkbnecSEMSXqUj4vGVsWDrHCDdmQyfnoAwKmhUOeHQ
+         oT/ByTgpWOaJ+S/HwuXbTvph1Oyp7OyY7lza03kqIQWX1MozHJosSBCq12qiIbjkc2nV
+         PyionkKjXlxDNAyEuOuS69Y2Pw8ABrPBcgLCvUBka+HaxhUqecMMwTVB9zD4MyBcmabJ
+         XQ2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795443328; x=1796048128;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=SVkCiAZ9hVspPzZuKZbqXCYeKQk4BcDbwlCFk9p1ut0=;
-        b=UhUKaTqddrTYr/WMEPpTmwLlPFITSZFQc6gEnw5c/DZeQzEw6gqnzzK291LNWh0A5p
-         X8rQ9oG+v1D+K8yv9H1Q6Zsi+9KORy8Hvha90ExXK7PEKjBJqerZWpdvMAZEjMdE9dVp
-         r/aYn4Y8fqKBHSX7KTQFOHznBvfstfzNIDLLNFb85QoeJtE0DZiSwW6iMwDtm7Y/whB2
-         WVFRUc/ACp1PSwhfydM/0TQ2lvHfUwGYJi603jtoqEsEbHyj57+P4ehW3RuwKYQN2V6T
-         LMH0Jo4fU+lwgzEAYGtJyGwa/LRZqpeJGEEUuHl5H/dbqA/sKOBGLDFfmyo+6kbI6QEG
-         q6iQ==
-X-Forwarded-Encrypted: i=1; AL+hErG9Q2owHG4nHRSybF3dDJb27BFFhb/r+4oKRGNa+Zi4ocJ/dBMg0kUjf5nCVBkjPsCHGhL+@lists.linux.dev
-X-Gm-Message-State: APuU4Z80mDkRNJ5BiZa5zZeJVdbtdb6KvXHmrmgQDEfYKuzNoxyvIZLC
-	XeFb3Tymi295aKdNV06VFhqnHQjxm1KgwP5BzXTZ2KkCaaPdMjtJx8Jj
-X-Gm-Gg: AZFdTZe8mbOWdX1Uc2caQ2xda20XAqJxwv8Rye/ytHJR6YRAOK7aJ4bQCBlSNmQGdVg
-	Pu1tNm+j5uV3MCH5nQjqJwjmdXk3HS/dQEsCt4aoSvYXpk0J1ZksZrW0LVLHbJnoGu9/++Re206
-	aQRKpM1bKrTArHs0Y72FmNUu/Hpy2yEEKD/Q/ATQ+P4kjmFDS+douxBBd2jGYvoJBO557YgmoDu
-	OmLaCRmRqTeLzFU77kymaOwk9HqJ0vIC64YmFU8JdTRVTX2UVLch1gVDM8KmOlYTWHOgCwlNvoy
-	S+YSs2MJ8aEll+KRnhiuVYBQP2+MNbcKKe7JqyaI3vmaU64IW+W90EVN9idHuZsd87T/BW3SEzZ
-	JHsXINgONobZQpEd7NG3CYhhWIk3tWuabYsl5LMFPBwvQOBig5fGyvuvnOIxH+ju8LnyleMx19j
-	8hO8GhaDKV8Flhxf6kwHnWCxa+QdJ+YE5zDHF89JuxfGFTxe/Dx3yx0ZPY3idN3pMgFpdm6aJ6D
-	xeoNzw4MeEc5UvvcsBuds0XZQcudPMNmvsTqtFNgM0di613K5eJg4HJsZ6tJwshjz8BwMcw9II6
-	AhdFe4XDHmMhgVr2pmKTzrd0VLw=
-X-Received: by 2002:a05:6000:4b0f:b0:48e:d7c:4bc8 with SMTP id ffacd0b85a97d-4abad6a1782mr21438558f8f.7.1795443327853;
-        Mon, 23 Nov 2026 06:15:27 -0800 (PST)
-Received: from localhost ([2001:b07:5d26:7a6a:365a:60ff:fe0d:cfc6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ad6403fdbbsm15815535f8f.15.2026.11.23.06.15.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Nov 2026 06:15:27 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795443550; x=1796048350;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=SGqpzMMXOxhLnysXHPX7ervAuuBOMpPxjnvIFfmSlbo=;
+        b=dZ+BGV+ncKdNkuKKXFE4VDTsdZR0X29QH9Pl+SC4RGu4cGDNV0Q1gXQPGyCrFeGioa
+         Kw4LqNR7/MjZVl55bgqykp+vSEJBJgHtJguXZ8SqCv8DSiTFbL0RYAqvU17HJRM8tX+C
+         CGtN3f2D4kKGS+wJ2dJ1N8Ses+ktxlF9rGqPHGxU84dsLOiWW+sPm3Lw71fTqRMLyPi7
+         SXzuZsjRcNLnZOKEIeZ8ZDkf73EQAfXqN6eGbLkBupWviqYvVH/1n3nzVr72tSG5NeUc
+         Grcl5LrtFyRPkccShPgzuI6wniKP2JSGsBvlo7G2rsIJrakI79VZRCmRQwdnNbhuxETL
+         oZ6Q==
+X-Forwarded-Encrypted: i=1; AL+hErG7y63HzqFzmQk+lliERldkUWxW7NjHLkCvQDQDVSACfzgamzxivNhtioRol7xwNRSiJI6t@lists.linux.dev
+X-Gm-Message-State: APuU4Z+8MchDOFrn3hKQj93ceOaLo717/Z0y7bIZlvw2hkb/Ikgr46K+
+	Wh5Mo31aTJIGIAJYO+rfJqKsNr0yvc9IiV5SvEiZegHmsI1K49SdcSeND/Krzj11gjrIXQtLFWc
+	GSHEtQ5kUqykNvsQ3sz2gA+DHElyj1S8=
+X-Gm-Gg: AZFdTZdlJvspH8Z/KlWOaVKhmxEBjtTBkegbwtMGGV6ZWJ6hoggllI8IrDPiefb67MN
+	My7lIS81sVqhdqQmt93Mx2KWHbneBovxV0t38itIoa9SvA2eu/GUgS6cNGJ3ugdFRT9uep4XOz5
+	mk1+rEunhtOuppv5uHreozMRZ69GnAVEqMXBQyh7CSEHnHNVtdoQNxZu0Oeas2fTRitB1FsDfUs
+	JDkQIRSoqkz0U3QmXwe9kRCzjdg8sdUQonWPLLfeoYVsQQCFr4/fyCDz/yhTG4JHNHwupd5bUZS
+	hWSYJSLG8WXCZY0G4q3v3a6mc52srUHR5xAbWZu4a1yb549UiqYWVT8v+QQsxFza0eiWOP4vr1W
+	yBN/CvYROv+CfERgB1siYrhjetS/PFXXNTOGrsrjlHNw5QfgMBLIDoRND/TOTe9x/kQeQoQ==
+X-Received: by 2002:aa7:c61a:0:b0:6b9:86d:bb5e with SMTP id
+ 4fb4d7f45d1cf-6ba37e91e14mr6755202a12.41.1795443549130; Mon, 23 Nov 2026
+ 06:19:09 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -86,63 +103,48 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=d4d0d8ea600ad9a6a0e804d6ccca97eae7564ecdc87e5749b6027a98fdf4;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Mon, 23 Nov 2026 15:15:25 +0100
-Message-Id: <DN2NJH234CC4.2LSWRSOO4TX5I@gmail.com>
-Cc: "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul Lee"
- <hyc.lee@gmail.com>, "Alexander Viro" <viro@zeniv.linux.org.uk>, "Christian
- Brauner" <brauner@kernel.org>, "Chuck Lever" <cel@kernel.org>, "Jeff
- Layton" <jlayton@kernel.org>, "Jan Kara" <jack@suse.cz>, "Darrick J . Wong"
- <djwong@kernel.org>, "Amir Goldstein" <amir73il@gmail.com>,
- =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>, "Lauri Gates"
- <lauri.gates@gmail.com>, "Christoph Hellwig" <hch@infradead.org>, "Dave
- Chinner" <dgc@kernel.org>, <linux-btrfs@vger.kernel.org>,
- <linux-xfs@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-fsdevel@vger.kernel.org>, <ntfs@lists.linux.dev>,
- <linux-nfs@vger.kernel.org>, <linux-api@vger.kernel.org>
+MIME-Version: 1.0
+References: <20261122000856.536902-1-koray.fra@gmail.com> <20261122000856.536902-2-koray.fra@gmail.com>
+ <awP8S5KF9v-nqWVY@aalbersh-thinkpadx1carbongen13.rmtcz.csb> <DN2NJH234CC4.2LSWRSOO4TX5I@gmail.com>
+In-Reply-To: <DN2NJH234CC4.2LSWRSOO4TX5I@gmail.com>
+From: Amir Goldstein <amir73il@gmail.com>
+Date: Mon, 23 Nov 2026 15:18:57 +0100
+X-Gm-Features: Aa3M54qCw9X0Tb0EaHQOCg1GMA-OBfzeB1bXtwNxs39Fn8cRfeeS4nOAW1KHDXc
+Message-ID: <CAOQ4uxiREfVU-WKiUVRZLb-uzMXzDEsmG13FVMW7YBoyq10=Nw@mail.gmail.com>
 Subject: Re: [PATCH 1/3] vfs: use goto out on error in vfs_fileattr_set()
-From: "koraynilay" <koray.fra@gmail.com>
-To: "Andrey Albershteyn" <aalbersh@kernel.org>, "koraynilay"
- <koray.fra@gmail.com>
-X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
-References: <20261122000856.536902-1-koray.fra@gmail.com>
- <20261122000856.536902-2-koray.fra@gmail.com>
- <awP8S5KF9v-nqWVY@aalbersh-thinkpadx1carbongen13.rmtcz.csb>
-In-Reply-To: <awP8S5KF9v-nqWVY@aalbersh-thinkpadx1carbongen13.rmtcz.csb>
-
---d4d0d8ea600ad9a6a0e804d6ccca97eae7564ecdc87e5749b6027a98fdf4
+To: koraynilay <koray.fra@gmail.com>
+Cc: Andrey Albershteyn <aalbersh@kernel.org>, Namjae Jeon <linkinjeon@kernel.org>, 
+	Hyunchul Lee <hyc.lee@gmail.com>, Alexander Viro <viro@zeniv.linux.org.uk>, 
+	Christian Brauner <brauner@kernel.org>, Chuck Lever <cel@kernel.org>, Jeff Layton <jlayton@kernel.org>, 
+	Jan Kara <jack@suse.cz>, "Darrick J . Wong" <djwong@kernel.org>, =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>, 
+	Lauri Gates <lauri.gates@gmail.com>, Christoph Hellwig <hch@infradead.org>, Dave Chinner <dgc@kernel.org>, 
+	linux-btrfs@vger.kernel.org, linux-xfs@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+	ntfs@lists.linux.dev, linux-nfs@vger.kernel.org, linux-api@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-On Mon Nov 23, 2026 at 9:42 AM CET, Andrey Albershteyn wrote:
-> On 2026-11-22 01:08:54, koraynilay wrote:
->> Switch from using if (!err) { ... } to the cleaner if (err) goto out;
->> in the main body of vfs_fileattr_set().
->>=20
->> Signed-off-by: koraynilay <koray.fra@gmail.com>
+On Mon, Nov 23, 2026 at 3:15=E2=80=AFPM koraynilay <koray.fra@gmail.com> wr=
+ote:
 >
-> Looks good to me
-> Reviewed-by: Andrey Albershteyn <aalbersh@kernel.org>
+> On Mon Nov 23, 2026 at 9:42 AM CET, Andrey Albershteyn wrote:
+> > On 2026-11-22 01:08:54, koraynilay wrote:
+> >> Switch from using if (!err) { ... } to the cleaner if (err) goto out;
+> >> in the main body of vfs_fileattr_set().
+> >>
+> >> Signed-off-by: koraynilay <koray.fra@gmail.com>
+> >
+> > Looks good to me
+> > Reviewed-by: Andrey Albershteyn <aalbersh@kernel.org>
+>
+> Thank you, can I add this tag to the v2 version of this patch (since it
+> won't be changed, and link to this thread in the comment section of the
+> patch)?
 
-Thank you, can I add this tag to the v2 version of this patch (since it
-won't be changed, and link to this thread in the comment section of the
-patch)?
+You should always keep RVB when re-posting without meaningful
+changes to a patch.
+
+That's how reviewing works.
 
 Thanks,
-koraynilay
-
---d4d0d8ea600ad9a6a0e804d6ccca97eae7564ecdc87e5749b6027a98fdf4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSgVimKafU5DQMcjcDmj22qf5IGXAUCawRKfQAKCRDmj22qf5IG
-XGk/AP9j2YLEmAts6UKmrX6qw0EDoHRjv0eLrfHDRJfhkjSDdQEAixfLgqqT3tMt
-wDbEqGGddyloPl2sCvNgcE83htldvgM=
-=8yb/
------END PGP SIGNATURE-----
-
---d4d0d8ea600ad9a6a0e804d6ccca97eae7564ecdc87e5749b6027a98fdf4--
+Amir.
