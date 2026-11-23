@@ -1,114 +1,114 @@
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=103.168.172.145
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795466952;
-	b=1cKksMpelqC2pvvkvRBPSmygHlopf+JejVTpb+EvkE3xY81sIVgJ35IQ1YToUjBqKn5S
-	 p4a7jsPxYFcX8BxJPL1Vm07BQCqckn0DR15rCYo4kX/Ot0W/EuaBuHlzq13G/pJOlpNJr
-	 J6zL3GbqF2h970dqWPk/IJg9JwPpv2QUyFNh36IEXfrlxSukP8V8FRUAmYxq1FnlA0Iea
-	 6CJWVOEk7h8qkaOd87P0wEqqgecqrvAJiXoKILaJAPjpT7NUCrAAkS2JVAasuaepwdTFQ
-	 e6UgvbySiuofUH78vnEmDCMKJMU3ka0xAxjZmQfoQ48POJjd2AE0OF93jIwtDWpkYgA==
+	t=1795467011;
+	b=LO+2bEwPiB6XnVEpkUBN3kgaSjf13cYWXE+9CG6UOudbucLJlMU0qkrLlA4Z8cva//pg
+	 nX7MKmZmIqKQOlvbg9wncVJ/XhBQ6huMRkBLa113TsZEOngAap2OOxUq8iu20Bcse6ibl
+	 9ZcC+2aLlgXYF+rNgZl9jlMl3PH+t9nG9e+M2roxxtJastZXTo2HUIt2xzrhvEPw5UKqa
+	 PftlOkCWBjfCwzLM2zb+MB8h0wQwObaTe2ZAXBhxdk5HpbFZiI4crsBifJTNLnv9095pw
+	 umui1rzOM3HvcXlQIk5YeKjucJYSgLTsDVJqj4wi8WOnJ+ok36IadtkyYL9DDLUFO6A==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795466952;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795467011;
 	h=DMARC-Filter:Received:Received:DKIM-Signature:DKIM-Signature:
 	 X-DKIM2-Info:DKIM2-Signature:X-DKIM2-Info:Message-Instance:
 	 X-ME-Sender:X-ME-Received:X-ME-Proxy-Cause:X-ME-Proxy:Feedback-ID:
 	 Received:Content-Type:Content-Transfer-Encoding:MIME-Version:From:To:
 	 Cc:Subject:In-reply-to:References:Date:Message-id:Reply-To;
-	bh=o9zLSXJuEnjCYOHrQ29UaL5++JY+uZSugjvH7QOgkgM=;
-	b=Ut8ZL5hmcOKOwhUHOAaph42m3w6S2pB2VmXk3klF3xUTFs5qthM4bUQb8d6KIFPBZn5r
-	 LpK0MAEdvqx16TikodGuRV8Z7SC+7ugClTmYM0EigyhIV4WZKAJLGmAPMk0dEujCqJHhe
-	 r/aDdpwsbBrXYEHGC1zOSux3km6+pYjM+2LqyneZVPpnUwnr1OtlJzt1ywoMZaiR2yXRD
-	 4VEXdXu07W7Iu8Et+IY+Uuoqjup9oNi05hevovxAsSiLCPtYyeuy1SLWqr9+JfeeDjKeE
-	 1a76p58Zzn8koEGmqQx/6lak9w6WgRmOaIQisYpCW4OtjvcVJkCiW+7mqyPz6NtiJbA==
+	bh=XdGuj14JivFE4i4DvwEyEUhQpv7EglQuTFrr91oPQkM=;
+	b=q6YEQCguiRC5ZX+2L5mtEfKXoaXXz/93k6uFMaFqQX/SqARiTi+O80T9hQmAIo9HFJ3U
+	 WwWrRBoRjgTAcQj0y0Bc1uBUHEk5btUodTOcDuOaVi4J5sKUQ0K+/M4KCw68ze5W3GX6/
+	 YXEyxcObl1iA7Z567lYYljWB3xkN73ZPrfNDOkSOyOP1q3NZT4eRW7X+zPPoP5oFNOxh/
+	 QmpnhA5tGomNB8H1Sb6hXLdfGlwwfujtyLxjpazORQwyFhEEkR2YAdKypO0ZpAEcX8qaB
+	 R3IfFmhjqWhMS8tsr2Qzue7XS+bNA0mTjpHd2vIB4mnXmRwo6T60OpMGW03HymbUSZw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=ownmail.net;
 	spf=pass smtp.mailfrom=ownmail.net;
-	dkim=temperror header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b="GUqi7D/+";
-	dkim=pass header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=GeCTSuUL;
+	dkim=pass header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b=l8OAoPxm;
+	dkim=pass header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=j6NtaO8W;
 	arc=none smtp.remote-ip=103.168.172.145
 Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08BE606A326
-	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 20:49:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org D08BE606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494B8606A321
+	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 20:50:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 494B8606A321
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ownmail.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ownmail.net
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b=GUqi7D/+;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=GeCTSuUL
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfout.phl.internal (Postfix) with ESMTP id 0E6C1EC1FFB
-	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 15:49:01 -0500 (EST)
+	dkim=pass (2048-bit key, unprotected) header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b=l8OAoPxm;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=j6NtaO8W
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id 7C8E5EC2011
+	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 15:50:09 -0500 (EST)
 Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-01.internal (MEProxy); Mon, 23 Nov 2026 15:49:01 -0500
+  by phl-compute-04.internal (MEProxy); Mon, 23 Nov 2026 15:50:09 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ownmail.net; h=
 	cc:cc:content-transfer-encoding:content-type:content-type:date
 	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:reply-to:subject:subject:to:to; s=fm3; t=
-	1795466941; x=1795553341; bh=o9zLSXJuEnjCYOHrQ29UaL5++JY+uZSugjv
-	H7QOgkgM=; b=GUqi7D/+zOLrqWSCzm+MYwrgGUjLKLl+XyO3sqEMlbWx7SCD96N
-	xOr7y+zBHvOJU64RURKgirlFowf3Nwr3aEDK51YyBQlTYsXZPHXQBIekNZKCnUv4
-	KsJ7waiQTqtIfKfIciO2t0+seQCxjIoBE/jzWA+bLsUFuvppgIe1oUUDuduARfs0
-	t3JPhbBc3ixP9z2lo3LiqRiZ6svS6iP3JqTZaE4IPjo6wwG/9Hk1S2y/EdvPD7i7
-	VeW9Ha3EU2WYxmJ3DxwIb2mHDAm2WO5nWwgvgUT3UiPRd1agj+ERpo+8YO9P8RIa
-	pHNuAA3m5BdklG2F+1juF+ysaWNVwkdTd2g==
+	1795467009; x=1795553409; bh=XdGuj14JivFE4i4DvwEyEUhQpv7EglQuTFr
+	r91oPQkM=; b=l8OAoPxm0DOO4CYkS8lAaIx+w9dez28k9FDvQB9fOugQigk5LQi
+	sONVIGf2A+Ds1NmQMhxTyO1KFLv/aMYsWOVm8GDu3cjL+w4sYvKX0DmqPms8ynGJ
+	SObbRqtyIWTQqyr5DmFjEUAEHMJaDYd/CnnAvAJU34W5ejSoPnppFKWlHBDIaqUa
+	InkBtIdi33O4S0NFmJsFbQ1DzvqS7QYhpgaSrxVg1OCkU7AHskIabJTzA9OVS1zE
+	qTbjzugItFDz3BzED0soyzNQnDIFuy2fgqeCF58IG4lraVjsff9pcKzGpThTjc4T
+	gaAftBBCEXkD50SazQc2fOL75/AdoVoqzJA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:content-type:date:date:feedback-id:feedback-id
 	:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1795466941; x=
-	1795553341; bh=o9zLSXJuEnjCYOHrQ29UaL5++JY+uZSugjvH7QOgkgM=; b=G
-	eCTSuULw905Aod95KYVphrgcfjTxFP0oxax/QIzCt7Z08DmPbXq87xmjvsq87B1o
-	T7FpSf/jOkxbzNfI9K9UvX8+L+n3jzN0UFd38r6Kqug7Mikbl1O/2EmrG2SO3FI1
-	KHnotRnxKL/i6//1NMYSCNNAQD5Lw8zQIP5We+msQKoeN8HunYpxYa/NgEin0FBL
-	OrwyXhfhr1+ovrOEMzpq4EqB2X4zDBEfT7EuPoC4GZVcDg7QuNgDviNaNXLJmX39
-	10qq1kOBTAvLEMe0kGmTgufHnX1lPRueLiduAXke6LIBKcNxkA/MXcp84nvwDaqA
-	INQFdl5CmGnTdw0oHc84w==
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1795467009; x=
+	1795553409; bh=XdGuj14JivFE4i4DvwEyEUhQpv7EglQuTFrr91oPQkM=; b=j
+	6NtaO8WZzZR4Q7Md95Z2QngI5YGYSDJPBAJzu2RJ76OPNlnNDGEAHkZZyGPbdmzj
+	S0fBF23NAzxvAAv7Nj/bCFS5jAOWBX5TbczoC6F8D//O98lxJ3zF8TxOWNR2f6tT
+	fxOSR1pVEdGvMImjET/OtNDmx/gRpqkA/pUStbA3v3z2mhFVxK/bmXDVox123ld3
+	HC/nI/gug3HtanXEFTLoADEjF9w93yFdfWIUnpW0aFKcpLwlXu4ck98JlHKnVUY8
+	GPXRnACkm/4SNOJRNJPm2pKFHkUutkUzgtL//58Xs7jXmi7hoQwry28t2HR0TSY4
+	cqWHvbwoijo+UUYYZsAHg==
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=sign d=ownmail.net a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795466941; d=ownmail.net;
+DKIM2-Signature: i=1; m=1; t=1795467009; d=ownmail.net;
 	mf=PG5laWxiQG93bm1haWwubmV0Pg==;
 	rt=PG50ZnNAbGlzdHMubGludXguZGV2Pg==;
-	s=fm3:rsa-sha256:C/NohBMGdk5QPx4SG8/qZDe6smNm6Goq8DL6M5M3XhJ3+io
-	BE/pPjv63VUvxDPp0K0y52fAZHYpN2RQXcGIgkFC/VDyrtTBSjDXag+G5kcLmOJX
-	armXDv1nqH/Wy/2UIJpqbEDH6N7Fv79I9hIiqeseE87eqLg0ELhFZktbsDJ/dZ30
-	UcUH1bqyLV8Mzc3iRhh8SgBLcJ4jSkb3gOqLEl/v9e/G9E4uMcBmiGiaixgPq0f7
-	6bAPmGi4OSV388ksxRyLRQEHz1qTU5lw1XaONhPr+VDpHhg9YAZvOwv4+vdlRaKM
-	qHDCuP7PJJz7fXOE2NZAYkR4q0bT5aR+Xzx0aOQ==;
+	s=fm3:rsa-sha256:z/yq4KUiGy8qByLn/HcnQYaTejgyJMZLDxZZVfyPp6wlF6t
+	3bMISoJdZoFTsaTOiga7Amh2elcTBahO4IXftHTBFbUvD+jqMEQcCXeLZDwyImqH
+	mzk0Nu0RXpy3mb3wpuEnPYn+IMbdj52dl14E4YyOkR1poymK+OkDzGcxAzEg9SqQ
+	/39LzAanCT7T1JsECfObzw7c+1Kf5ed+6frvhA8kKFtHB1qzIkneU8BCEUMFeIyl
+	3p/8e2ZC0A7X4ZReQwQyTdXH/IucU6suHD+ujDjFkUgkeNYmxr7EKTBT+Z6FzSb0
+	c/A74Ea4D38phjR0IF/Q59Wfoy+sk3BoqzS0wIQ==;
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=mi-m=1; hc=13;
 	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
 	from,in-reply-to,message-id,mime-version,references,reply-to,
 	subject,to;
-Message-Instance: m=1; h=sha256:iRsZPrvVIwPX/h3pXgxfTnT/eDywSz9BnLpkefyq+Ow=:TQjb9nmWbWE1VynL6JHeebg3yoN+S4zxdXHZHN+WKgw=;
-X-ME-Sender: <xms:u6YEa7TXivWPuJUmQwTofE3_mOq1Vd-dGbfdKdCpR8XRf4mdVhKkOA>
-    <xme:u6YEa-FAq9luXdWY2R16GtwHX7z9lzSVvh-3xidwqcC_0YdC1p2FjR8MM26AohERW
-    8Y2RTcrRVy8N0Cfpe0u2k3jK-WQI80vUAOYxgi3mQC340Hcf-54>
-X-ME-Received: <xmr:u6YEa1fKzxLr8_1Q8wvmXU9XFcWRl1eA7ksz9FFvxFJ4ilMV2X37c48RFAVhVI5O2MjFjpePCFj_Mpy26V917zelIABh1kc>
-X-ME-Proxy-Cause: dmFkZTECMQJK4fdkHy0fWLPUcFTfrq9t91uSnuEGiUSnuJVoCkINLH+FzKpB2tSIh00Nhk
-    5BK9SRt/YA6/FrvyPQt1zAAzcR5cOsyqFz7nx9uu0f4KSe3wR0kPiRBN+OVBWFQfytz/nn
-    yyGl8KiMZ8B/aculVSmccW/8zngN0Q/vdl6AlkON9HCNZS3RB6++ZKfrcMUpGub8gwOvLm
-    AfxvFEkzIq6zthR7ARiUVw30kV7XdmJ780kxcA9EMVKyogzFKXYyTyYLNb86ZISYUb8d/z
-    rFvorNZzKKTgs8fkSA6/DEx90/h/JJKzOE5MWqhdr2fZujknKzF4prwngvHkH/gzMXhOjI
-    W2qJFidfdQhutil75qA7q28SL5utgHyPCYjGk3jbYPNIWOTW+lgKSOHM9PFUOVE4MR33Yb
-    yQOG+YP7xrsB3fg8W8oObe16vE6p/BlLe0wvL9GnHvZqPldBX7whsOfLYvg8K3vS3y7Ztv
-    vtLFOJ6eyHRKhRwQUJBelmJtRhZB0ya0x0/gCpihCgyIW69Pz9HM2foCdkHyEPxE8i33+l
-    gb6gKLN69B9x5kOtGKlbuEucLQnIluC26ckmgsXzWq+85qJTrQQHreucLfGmT62E6CMJmN
-    wfzX1snjy9o8lEEGvvcxDAvGTgc3an/ek3fbgvvdrM0gP8oQwfzLkuvh788w
-X-ME-Proxy: <xmx:u6YEa9v4MlfSFvBYUW3AaaxOuVN6K8LRsbr3wpg2UnQhGQakfgongQ>
-    <xmx:u6YEa7dUUoaxCTu3vhu-0mhfleuvvFLqCPMmBXEj7KynRAJsHDJseg>
-    <xmx:u6YEaxpDSw_mNUDwFA2fQi7eSu1e-qmUbgp2qhZsZ4P45ocBhlqw1A>
-    <xmx:u6YEa58xC17HGroqH_gvx4Lperpo4blG6Pv2gD5Od9dlgym1vNWEag>
-    <xmx:vaYEa5q6WPtMSV6UnT0CuFMsOg-aNwZnOEi6QNWbCtNynKKtn7P9IXVR>
+Message-Instance: m=1; h=sha256:r2bmrhO5AyKuom5DkudHbPdXHfRk2ukJbNIMmzO00EM=:iAWz9bv9M8LxSKkRXrJ4G/5DHm/VNPBvWn7AH8fgc0Y=;
+X-ME-Sender: <xms:AKcEa3i2IczRl68wYSoGby509U4fb_Q592ctZHHErFRnRrLkOGkjmQ>
+    <xme:AKcEa1UyvBjmz_5WVx9d-2IyU2JitQEKsIEwy2RkxxpPmcJ_TPK3rcZNSLNdFG4U3
+    ZeaF9VmtHDjLw3dDCoB75vNBzU7rDa9oaGTbmNO-O6ZCeZ1CI4>
+X-ME-Received: <xmr:AKcEa7vQ5FTil5DXy6v8VtVYhw3gK_WHhO1ftDZptA91AF-ArmQ36IPE-u10bBfOe9iH0CA9v_9ZDETKFYnR-KW--Bw6eDs>
+X-ME-Proxy-Cause: dmFkZTGqT2d7PT4cYV+CVfmiuNk2dRMM8KfAbINTQ7Jwk9RRwOM7RSfyeb8cklpkBRfhA/
+    c1c/sBHBW2ukGKF0t0WAsKhHmO3swLz41i/ftF8/A1nfc6iaGmHFk8NUMTq//EiJoe0naU
+    n3vVa1eAnHowCzV2fNQpZ/XFsLe+7bc2Sb2A0ABTUeiAZPEK5MeaHlwRb4luQBX4J/x6dk
+    9XDOS3BLiVEcx2rP1T2O5vPNlPkGc9RlOJg+H+jGvU0MOmCLQ1mIGQJ6E6A+zNti8wPIQa
+    AgxZCr2cDGTlyON3hdpQACsCubdrEMvVuy6WtY0avlT6LUPF/w5w4D8deL6Q++sdd9AQAq
+    7QRGeYbWkZOK4Vf1lY7xz7AojqrjALIsM32pW+LYVG8V7j+IZofEm8NMMr72QeTeitvmTY
+    v9+YIAWWvNBd1KKQgdhRRxVMZuHRqEsuTHrCIS7FO7RycOaAsu870NjILH+YjUTtXecgsE
+    QPhb2wlfSOqd2bdqQ6OdwbrgaPbvAHfRgQvKKVTq7C2mM8d9JB1VSP6DxY0/jzMgerixkT
+    n9SpbzSxqQ2/P2jZuHBiZRNiPkuh0HLe5xAeID6GlIendhKYV/pIzBft9O2SnSLzrmmivQ
+    Mw528q7zXA9N/BYupWR2MtmwF7s3zrnm6vja+iIegcFZF6pFWwUC4K3mt/ZA
+X-ME-Proxy: <xmx:AKcEa2-JFPq84vpXJRYfhTcYj5QrCuCV_wq7oHoqkyTyPA_2WCte8w>
+    <xmx:AKcEa7vbsSiMOGx8a-nmxe7FueqVJKneNPazYGrOVZCjnwjN_kAC6Q>
+    <xmx:AKcEa85X9fTG3ZYAUfPp8P2-XAD9ze0j43_ysngsEHSo5IY1YiEN2w>
+    <xmx:AKcEa0O6_yO0VwMBZVwmMfDMOl9Ozcxl63G1QZTbldZCnFZSOXSauA>
+    <xmx:AacEa8UWFllbqKAIRjZu5kYGGHpjhehbfweYwDVJsGxSuSuQfDYEC09j>
 Feedback-ID: i9d664b8f:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 23 Nov 2026 15:48:54 -0500 (EST)
+ 23 Nov 2026 15:50:03 -0500 (EST)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -130,78 +130,121 @@ Cc: "Alexander Viro" <viro@zeniv.linux.org.uk>,
  "Amir Goldstein" <amir73il@gmail.com>, linux-kernel@vger.kernel.org,
  codalist@coda.cs.cmu.edu, linux-fsdevel@vger.kernel.org,
  linux-um@lists.infradead.org, ntfs@lists.linux.dev, linux-xfs@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] VFS/xfs/ntfs: drop parent lock across
- d_alloc_parallel() in d_add_ci()
-In-reply-to: <20261120-veranda-tiger-seemeilen-397d57fb2258@brauner>
+Subject: Re: [PATCH v2 4/4] procfs: drop parent lock for d_alloc_parallel() in
+ iterate_shared()
+In-reply-to: <20261120-visier-dortig-gutachten-7a478b74ea10@brauner>
 References: <20261117000115.1433875-1-neilb@ownmail.net>
-  <20261117000115.1433875-2-neilb@ownmail.net>
-  <20261120-veranda-tiger-seemeilen-397d57fb2258@brauner>
-Date: Tue, 24 Nov 2026 07:48:49 +1100
-Message-id: <179546692990.1728055.10797595669821351188@noble.neil.brown.name>
+  <20261117000115.1433875-5-neilb@ownmail.net>
+  <20261120-visier-dortig-gutachten-7a478b74ea10@brauner>
+Date: Tue, 24 Nov 2026 07:50:01 +1100
+Message-id: <179546700150.1728055.11008903897238791275@noble.neil.brown.name>
 Reply-To: NeilBrown <neil@brown.name>
 
 On Sat, 21 Nov 2026, Christian Brauner wrote:
-> On Tue, Nov 17, 2026 at 10:54:58AM +1100, NeilBrown wrote:
-> > We don't need to keep the parent lock held when d_add_ci() is run - the
-> > VFS doesn't need it as dentry is exclusively held due to
-> > DCACHE_PAR_LOOKUP and the filesystem has finished its work.
-> 
-> I'm not sure that holds? Only d_alloc_parallel() honours
-> DCACHE_PAR_LOOKUP. lookup_one_qstr_excl() still uses d_alloc() and
-> relies on the exclusive lock to guarantee that there are no in-lookup
-> children at all. That stops being true here:
-> 
-> > +		if (lookup_flags & LOOKUP_SHARED)
-> > +			inode_unlock_shared(d_inode(dentry->d_parent));
-> > +		else
-> > +			inode_unlock(d_inode(dentry->d_parent));
-> > +		must_relock = true;
-> >  		found = d_alloc_parallel(dentry->d_parent, name);
-> 
-> So if "Foo" exists on an ascii-ci xfs:
-> 
-> P1: stat("FOO")                      P2: unlink("Foo")
-> lookup_slow()
-> -> xfs_vn_ci_lookup()
->    -> d_add_ci(dentry, X, "Foo")
->       -> inode_unlock_shared(dir)
->       -> found = d_alloc_parallel()
->                                      start_dirop()
->                                      -> inode_lock_nested(dir)
->                                      -> lookup_one_qstr_excl("Foo")
->                                         -> d2 = d_alloc()
->                                         -> xfs_vn_ci_lookup()
->                                            -> d_splice_alias(X, d2)
->                                      vfs_unlink()
->                                      -> xfs_vn_unlink()
->                                         -> d_invalidate(d2)
->                                      inode_unlock(dir)
->       -> d_splice_alias(X, found)
-> 
-> IOW, "Foo" ends up as a hashed positive dentry for an unlinked inode
-> that nothing revalidates.
-> 
-> open("Foo", O_CREAT) then opens the orphan instead of creating a new
-> file and O_EXCL fails with EEXIST. Do a rename() instead of the unlink()
-> and "Foo" keeps pointing to what is now "Bar". ntfs gets there the same
-> way.
-> 
-> Before this patch lookup_slow() held the lock shared across all of
-> that so start_dirop() couldn't get in between.
-> 
-> So afaict this needs "VFS: use d_alloc_parallel() in
-> lookup_one_qstr_excl()" from your RFC to go in first. Unless I'm
-> missing something obvious.
-> 
+> On Tue, Nov 17, 2026 at 10:55:01AM +1100, NeilBrown wrote:
+> > +	if (child =3D=3D ERR_PTR(-EWOULDBLOCK)) {
+> > +		/*
+> > +		 * Need to drop directory lock, which isn't really
+> > +		 * needed here anyway.  As rmdir never happens in procfs
+> > +		 * we don't need to be concerned about S_DEAD being set
+> > +		 * while unlocked.
+> > +		 */
+> > +		inode_unlock_shared(dir->d_inode);
+> >  		child =3D d_alloc_parallel(dir, &qname);
+> > [...]
+> > +		inode_lock_shared(dir->d_inode);
+> > +	}
+>=20
+> I think this can deadlock.
+> If we're colliding with the failed lookup because the fd was closed, the
+> task exited or the sysctl unregistered then the  dentry is unhashed and
+> d_alloc_parallel() hands us a new in-lookup dentry.
+>=20
+> We then retake the lock while still owning it. But the VFS waits for
+> in-lookup dentries with the lock held, e.g., open() with O_CREAT:
+>=20
+> P1: getdents(/proc/$pid/fd)         P2: open("/proc/$pid/fd/5", O_CREAT)
+> proc_fill_cache("5")
+> -> d_alloc_trylock() =3D=3D -EWOULDBLOCK
+> -> inode_unlock_shared(dir)
+>                                     lookup_open()
+>                                     -> inode_lock(dir)
+>                                     -> d_lookup("5") =3D=3D NULL
+> -> child =3D d_alloc_parallel("5")
+>                                     -> d_alloc_parallel("5")
+>                                        -> d_wait_lookup(child)
+> -> inode_lock_shared(dir)
+>=20
+> Both sleep uninterruptibly.
+> A shell redirect to /dev/fd/5 is enough for P2.
+>=20
+> I don't tink it even needs O_CREAT. Any queued writer like a mkdir in
+> the directory or chmod on it plus a lookup_slow() of the same name that
+> holds the lock shared and waits on the child has the asme issue.
+>=20
+> And under /proc/sys/net it doesn't need a failing lookup either.
+> proc_sys_compare() matches any in-lookup dentry but after the wait
+> sysctl_is_seen() rejects a dentry from another netns and we get our
+> own.
+>=20
+> d_add_ci() in 1/4 gets this right and finishes all in-lookup dentries
+> before relocking. So I think procfs needs to do the same, sm like
+> (UNTESTED):
 
-Yes, I see that now - thanks.
-And that means we don't need LOOKUP_SHARED at all.
-
-The AFS patches also drop and retake the lock, so they need to be after
-d_alloc_parallel() is used in lookup_one_qstr_excl(), and also after the
-d_drop() changes.  So I think I should combine the AFS patch set with
-this one.  I'll try that and check that it still makes sense.
+Yes - definitely.  Mustn't retake i_rwsem while holding an in-lookup
+dentry.
+Your draft looks good.
 
 Thanks,
 NeilBrown
+
+
+>=20
+> diff --git a/fs/proc/base.c b/fs/proc/base.c
+> index 5f9ec52..d30f877 100644
+> --- a/fs/proc/base.c
+> +++ b/fs/proc/base.c
+> @@ -2105,19 +2105,19 @@ bool proc_fill_cache(struct file *file, struct dir_=
+context *ctx,
+>  	struct inode *inode;
+>  	unsigned type =3D DT_UNKNOWN;
+>  	ino_t ino =3D 1;
+> +	bool relock =3D false;
+> =20
+>  	child =3D d_alloc_trylock(dir, &qname);
+> -
+>  	if (child =3D=3D ERR_PTR(-EWOULDBLOCK)) {
+>  		/*
+> -		 * Need to drop directory lock, which isn't really
+> -		 * needed here anyway.  As rmdir never happens in procfs
+> -		 * we don't need to be concerned about S_DEAD being set
+> -		 * while unlocked.
+> +		 * Wait for the other lookup without the directory lock and
+> +		 * don't take it back while @child is in-lookup: lookup_open()
+> +		 * waits for in-lookup dentries with the lock held exclusive.
+> +		 * procfs never sets S_DEAD.
+>  		 */
+>  		inode_unlock_shared(dir->d_inode);
+> +		relock =3D true;
+>  		child =3D d_alloc_parallel(dir, &qname);
+> -		inode_lock_shared(dir->d_inode);
+>  	}
+>  	if (IS_ERR(child))
+>  		goto end_instantiate;
+> @@ -2137,6 +2137,8 @@ bool proc_fill_cache(struct file *file, struct dir_co=
+ntext *ctx,
+>  	type =3D inode->i_mode >> 12;
+>  	dput(child);
+>  end_instantiate:
+> +	if (relock)
+> +		inode_lock_shared(dir->d_inode);
+>  	return dir_emit(ctx, name, len, ino, type);
+>  }
+> =20
+>=20
+> The sysctl side needs the same.
+>=20
+> This also has the same lookup_one_qstr_excl() problem as the earlier
+> patch.
+>=20
 
