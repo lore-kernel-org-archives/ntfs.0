@@ -1,114 +1,96 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=202.12.124.149
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.216.52
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795407607;
-	b=1jxmqY/4OWylyxcOlSf75cwbYjzKhIS0X1jvudsTZlH1eaIMCk/njNjq9aY3MGoP/2NR
-	 lQHxiA4fGKrkqLRTYUNtehGl75sFLdQTGs03zZclJdCYzngMn9hPAJOv9fqqHm1AbPl7d
-	 vkDyH0rrw9dP3/g/yRsca7cko70MRRduN8Dbsfjhb/aROAzg2dBX5Kp/Yi93YDYdvrSy5
-	 0JsNd2xy6pIsvjYPwTVMctOm6kZhfmh44J7VEn3MelUzFhH32hHA5mPnbENg8biuWllhD
-	 V0iSA03LZY7Ntq4MwiQah7P4k4qUWXLGm770bRkanqlWh9NTJlqaXrQg19xo5bKL2Gw==
+	t=1795412883;
+	b=4BKO4Q6wrfbk74CVECV4U+UH39wltLn3Yfu/jPWkyA3lnzQq7fIjB+YCBENU0/b42HpQ
+	 cn9JFiZCgYhkLYCWbvLmQPEYalMAiC9APqcOMaRn3qfbPPg/EGlvHe4AYq0f8Nrpe5tra
+	 IQrWar+DyZfflsP4V0tFwAxmgJsZZssrfBCv73GE1zlCeqmPuwjD/3c4pl6aafahIpy9U
+	 GBD7uN51gGan8XZ6Jso99Xrwu9fVtuaWfAb6nf6l8YGe0Q0/Dbx6eRffUw69g7A+Ls4OY
+	 FuXYTIvBKYdmfFrIwlI8EIDdpuE7kfdRiiAu3EFI0bhbAvTBQyW4HsP2/8iymsB6IDw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795407607;
-	h=DMARC-Filter:Received:Received:DKIM-Signature:DKIM-Signature:
-	 X-DKIM2-Info:DKIM2-Signature:X-DKIM2-Info:Message-Instance:
-	 X-ME-Sender:X-ME-Received:X-ME-Proxy-Cause:X-ME-Proxy:Feedback-ID:
-	 Received:Content-Type:Content-Transfer-Encoding:MIME-Version:From:To:
-	 Cc:Subject:In-reply-to:References:Date:Message-id:Reply-To;
-	bh=QmjJJluG72923u6dkKF4E6LX7QpWiZzvPettKxtw9Io=;
-	b=hGuyRFruL2of1IxtUWjD0YdkXp9fxNZzNkiG9rG7xlL5p8aDOpv/+js/FL8eMmQkLh3F
-	 E29Houfn2auDd5gOerqgx/zZkg9oC3DJ95hpC0lbJBQK6FaoQVphhU0eZkfcP/i6aT3bZ
-	 UFtZYJ2T7sYVta3kbBZ6zSjbR4V++9P59JVqfuwZy227EXA5kr4zeEqDvDedtZ7h/fexp
-	 CueDUU/HQbDoCDs0MCaFdLJSlf022vY56V0D7UGfSZuemu6mMx/ZPO/hBbaICrU09SuD0
-	 VnUdXKd9jpVtMZQJK+0iqn6DmR6E1ZIfKLCsRpeSsgDexe5eGVyx5CIFrTLqcsXcD/A==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795412883;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
+	 Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To;
+	bh=C6kM09UB5CIeWG4FIgxtnyVAELn2QRDca2eMQrsTeqQ=;
+	b=MxmtFsEQO4m/kDssmL3edd8ddwywWgpedo5xp94xvS0+Y0No8MJufBia4CeZ2SvsSBKG
+	 lEd5j03yLtG0xVSGXPrnnbOFsDA7zae4PDA7SkSTSs7SJv2T7iLmgbZ8ZnRw5k2IwRyoI
+	 /IUECVAQJeF7vnz/x2j3eDFZGK93yorHLBdyO6ui1QIZ9klkwgS2/1os6bv1ajLoYL0aM
+	 nHJWT2+lUPgCA8CajVh9xWxYJjgAHdWTF2euiKjezEwfopN++oYsaJCTQp86OvEbqD+RH
+	 laHKJiymdQCnYA8Iwtev5x92R5v8ublhFUJu9eTqPVTzDaESQLNTxRW1Yla4ZFRdlpQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=ownmail.net;
-	spf=pass smtp.mailfrom=ownmail.net;
-	dkim=pass header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b=m3QkiGXf;
-	dkim=pass header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=T8qyTQu8;
-	arc=none smtp.remote-ip=202.12.124.149
-Received: from fout-b6-smtp.messagingengine.com (fout-b6-smtp.messagingengine.com [202.12.124.149])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b="IkIO4Y/l";
+	arc=none smtp.remote-ip=209.85.216.52
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C35C606A31A
-	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 04:20:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 9C35C606A31A
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ownmail.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ownmail.net
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0BA606A31A
+	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 05:48:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 8A0BA606A31A
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b=m3QkiGXf;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=T8qyTQu8
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
-	by mailfout.stl.internal (Postfix) with ESMTP id 264211D005E9
-	for <ntfs@lists.linux.dev>; Sun, 22 Nov 2026 23:20:06 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-02.internal (MEProxy); Sun, 22 Nov 2026 23:20:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ownmail.net; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:reply-to:subject:subject:to:to; s=fm3; t=
-	1795407604; x=1795494004; bh=QmjJJluG72923u6dkKF4E6LX7QpWiZzvPet
-	tKxtw9Io=; b=m3QkiGXf2sFup9A3ieASCnPMM7mmCZOy7O2V3R5BjVG++548QJ2
-	d8c5OisIzbhCpkz6u68VbhZVXqo9Al71+FFkUr0iiWtR/x5tBvUfd/zkgjZCakJv
-	AArZ2RETqgm+TiIl8guRPQpOsjE3zp5SkeXaUmnLItyfIwSdFdtp2eWF+AinccIZ
-	gvxM0Ujb5Pn9Tcvy+S/WAGZZcE0kQwHX5/yYvynre9O6lRFmdHSkk79vJ1vDIgHB
-	wZO9tnG8YQYOfxTUAqNvf5uwPIPsHNKr5RPovDb03uTTnaU9eJa0f9U03w9TYaAv
-	9m6QkcsZtAphxQY2rBca26QtAMXWydg9ZAQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1795407604; x=
-	1795494004; bh=QmjJJluG72923u6dkKF4E6LX7QpWiZzvPettKxtw9Io=; b=T
-	8qyTQu82PPSMZDLrmkq6mglH95GwpcGVsKCcpd+v8o5/QOxNuccpTsneTgE07FbV
-	5scBTlQL0ZEimWLcPC7pjXEzxgWh2/cLRqMD6JQwPjmnFl1VLMAinYW6OUAJ+WOM
-	Weda4AlgHM1KghJ/q8IizM7DVowfqIX1PtO5DzUJiHuDaddTHSly86unvCW4+SVF
-	8Lqe91fmdyR46Z9XcXdtinhcE6Jj2qPyFaLvq688Trczd1Y8jqCxyO1R8yX9kwia
-	q5/POtvVq0+CXlhFI2D4s7Dm3yPANs9UhGm1QKAsZjN0ZcD5dGf4LPe0j/+0zTcP
-	+Brf6dz9G9RBrF+I1/qRQ==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=ownmail.net a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795407604; d=ownmail.net;
-	mf=PG5laWxiQG93bm1haWwubmV0Pg==;
-	rt=PG50ZnNAbGlzdHMubGludXguZGV2Pg==;
-	s=fm3:rsa-sha256:NEbHcUPwXyrG220hHo0WolMmY+z+o+5eNcAc/1kcIWEYUyp
-	i6rOGytes1fcrQcJjImIc5PBUeJnyGzWinobAamt1WjKA1ZD35d9RHyoY+hoYnhc
-	dax+B5D/xm8Fi9y8/QYfQsHVL3dtu8j+7zAy9jOte98p49M38fsSKl9n5CtrfRSN
-	aD6IR3MeqjUn5gJiLwOESd+ZH2EdrxGchxscwUC7ej6DuoB9fOPXJlU4JGw8Dev4
-	q6cQjWGjKrhKnSqCktF5S7FtVsj6r8nnEH53PSg2nhv/BlKOFXTHmzOi2zXpbe+H
-	nYjXvv7EnuvwbDcFyK0pMg6XBNVDoh2L2J69ELg==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=13;
-	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
-	from,in-reply-to,message-id,mime-version,references,reply-to,
-	subject,to;
-Message-Instance: m=1; h=sha256:5DqTmm5+Aw5sDP+8zfo/9Yuk7Wsf8Q83qoFB+ud5qq8=:AbnOsTm4/ckYElt94OXxA6epjoXkd2Xej8CH/vMd7vk=;
-X-ME-Sender: <xms:874Da_ITcrVk-rKo5AsqLnHB6Oa0XR1bRFMrLL8GFEdbtP2XUVYJBg>
-    <xme:874DawVBzhTyASy-xrcN6Zt9H_gIGcEvJS1cuEykVVPC38viJSINzC2dbcbZwwCHZ
-    crqlyjeyUqrUufdwfjOds4HM-iySDYN2RohmAZ79fxmmlK_Vo8>
-X-ME-Received: <xmr:874Da8Olj2io5CvbpS9lpoKQ5F_K-657FrBXcvpAkbmasQ353BoHHQnJj2GPbzyIV9H8MlEr_rEvE1vczqTGfx8hrRbTJj4>
-X-ME-Proxy-Cause: dmFkZTGv0kSxTW36hnuZ2AGsWuxeYAhFz6h0/5Jgx2+pY5uE0D7PdE4Q0ccZruKJ7qyqxD
-    2T4Hz4bXAp1qumoqkTdvNfhT4icJvf7xmyYLbk4ZyQcRVrx9ngyL5QuHRT33O2vRuDxnqw
-    QFYD6LxjSbc1grMJzygpKS7iBQgFblwMxKjKs6fsCyzSFmqk2EyUFyVHagO+R7mstf138H
-    ZGFjPe8QO0Ot1g6TxuMlQxvyEfGjt+S7Kpz3mx50nyZ01Kw9eu/Ekv4c47lxL6g5yz5HQu
-    2osoAB8JphtEtJr22E2M4mOyPQqK40EpR/yEGEMcnSjse5jDudxC5yil3Fy4vsRZv3+Ntc
-    WTQtF9IYMpiHf/N5GvPWSN5uEUjfVT2lbtygQmuEM9lWUhr/OghNcEykG+n8F/HWqDUYMS
-    oh4NKR7JMttnnoi7dSCFATtRHl8yXKKFIa8es3Hr94elzTjXbx/scZ8uA8c7EhfAkk1oHZ
-    HPMNlFbNb7DzdF+diwT82ByBXs0nzLdajYoQa9MJGgw6QP0avBmCB24psqotbvb0ZdmqVk
-    nZjUY0MJaIQHAzgMIdAU2T1Q6RVtuf0eXw6NhrvCaTKDjsEJYKUsaIBUb4vw/nIMMxMrMV
-    MGIdq+h+9IXI9DB7+9i/MyVVds9ZoQUixWyKulcSOiug7Zquo+wPgDRc8aGg
-X-ME-Proxy: <xmx:874Da0nNo5PMJ12iVr4b5RiCwQhI8ARzSgfw6ylg9_8wrm8C4R6iwA>
-    <xmx:874Da3XjO_tLYiXyXJeSRyM9b6naC5Wlf7HIKOTKSeXa2gADvcXNdQ>
-    <xmx:874Da7KdyLK4yOA1cVVtd4Fjg1LlOSb9pjb3ZYrydZJQ9FZ0roWWKw>
-    <xmx:874DazatK-fEHcPrUH5a1Zuh6DGLnCPw8dttcZBjfBf1GRooTtsAQQ>
-    <xmx:9L4Da_JXeh_YFXHJoErlSwqofBbs1Hd05ytwZIJPk0gekSWXgy5GTDO9>
-Feedback-ID: i9d664b8f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 22 Nov 2026 23:19:57 -0500 (EST)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IkIO4Y/l
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3b3af93b85cso1598634a91.1
+        for <ntfs@lists.linux.dev>; Sun, 22 Nov 2026 21:48:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795412882; x=1796017682; darn=lists.linux.dev;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=C6kM09UB5CIeWG4FIgxtnyVAELn2QRDca2eMQrsTeqQ=;
+        b=IkIO4Y/lFMSX/iRJxupr4nv29aGaXS/VGJNbj70LY8ddpLEtEe5BN1dm8ZYZsICZo1
+         spvK7LJbxeq6Yw77WmxUsO/4zsHEZgv6Eiagr4eX1KKyKrO2xA7aeYxFWjk8FJqsoTSF
+         fWGtEM/RZj4CwBpuL1QpaL6M25Jg1RDp+ghQ98mE5wZcEHPKDo6qRm8Os/WNR0P+tpix
+         khWR3Fhtc+PtgUDh4t+npueoFtPVyZgmTE2a1UeDI9050PWLKrFMAhMFahOhLcNsNVGz
+         vymq8Ar2A7RWrrJEx+0UzYs1Cn64zlirAQS8cjABISnFdDoyBpAhAY5Kz/z3hJGpalLM
+         AwtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795412882; x=1796017682;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=C6kM09UB5CIeWG4FIgxtnyVAELn2QRDca2eMQrsTeqQ=;
+        b=lPTXZrnTwftf8Il5adSlOqikFFcc9udH9r1HzWmxsns0YK3zBwtH1Y7Z5qgvI5dSzh
+         zTx/au6WYW6olNutHO5kp31GQ55DsI6JeZ4tAj3fSh6lNXDjYkYOAedl1SSDJU+HFbyd
+         xMMy2V02NZJM6KCYNiHBQlNYxY6ttJ2ntrXB1tTja9bjxIfv0TKO044kT0omp4M33NzS
+         diZS7h7Wu+t0bIz/vWk37SstG9n8eUAoc9BFw1q6TipliRURLfEEiwOYoqtJwcxU0b2d
+         np47FGB8vub/RSrCH3R3R9usKHOQFfPO+OfF6sFpYMgsDJGuuJ7pxR6pMIEnXdO/Oebj
+         IzTg==
+X-Forwarded-Encrypted: i=1; AL+hErHxKMnHZVg1a0hJopWX3+VOvjDTGK9wca3iZPeDMnOpbrTLGnS2oEjAP+Ouic45EIcEKckj@lists.linux.dev
+X-Gm-Message-State: APuU4Z8kgcjBjq9l36nNLFhJYDa4mHRcZOulMkYGwhI6PjkJdhhf2q0J
+	Ch90E7EQsXcbO9j7NbnyTVbD4URPskQvRkWu19mbURPc7w354hmJOlm1
+X-Gm-Gg: AZFdTZfSONe/l/IZ9gfn0WTCBRrNic/aC63v3yZtbQ7cvTzVoYQ7+t3hXyA/pWQc/ps
+	Irg1lirxWR2EIW8FTjuw8LuKSlMtk1wtdMcWRDYrGAzcObYn0pYOvFjlRAMlkqsRJj7Apnzy4nW
+	r0rtCbP137qn9gpul8W1Naq0XchTXR5iOIaaCjbwfetesHoXwJ9ho7pMQsDYpWAi6BOsZ9CIbOE
+	fcwMl5w1Xmy2RaV1X0ft0ljFZ/wJNAd23/7+MhnDHYZG2pIR21QhkF7LejjlLje9EEkDFLzBTTU
+	CjvKrbzQWidlSSW81R64mqA5Fo+K4Hqa3ZNvPpwoavnQhI3uDmrBdLDBniAKqx/J7If3XBWG3tQ
+	3GdoO+57f3Y+ZXxgYeS0Eljmqbq6fw9YpRT+XY48N/9TUGOFJERqvwfGaN+nA8j7JycOMn8jpLf
+	AtJisw9YgBdqfpZEm6c5SlInSAO5VaMCQfp2iatZC94xlKqMVibl+9YKnWZsCfGDAPkxCCQOEEr
+	2UI2QDpbVlfhM43hG/jbD6d9M89xImg1d0vJJu30VrsIvBtN87nFIjkGhnquyGxtySoHB4aU1HQ
+	IeQghrE4AlrXu6aVBHI=
+X-Received: by 2002:a17:90b:4a48:b0:3b1:2d60:66cc with SMTP id 98e67ed59e1d1-3b41c7b56bemr9221452a91.8.1795412881662;
+        Sun, 22 Nov 2026 21:48:01 -0800 (PST)
+Received: from localhost ([27.122.242.71])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d97356sm18719260a91.13.2026.11.22.21.48.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Nov 2026 21:48:00 -0800 (PST)
+Date: Mon, 23 Nov 2026 14:47:58 +0900
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: ernest.borowski.git@proton.me
+Cc: Namjae Jeon <linkinjeon@kernel.org>,
+	Baolin Liu <liubaolin12138@163.com>, ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Zhan Xusheng <zhanxusheng1024@gmail.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 5/7] ntfs: punch out the delalloc reservation of a failed
+ buffered write
+Message-ID: <awPTjheQrp6sxB5W@hyunchul-PC02>
+References: <20261122-b4-ntfs-delalloc-fixes-v1-0-0726f0dce403@proton.me>
+ <20261122-b4-ntfs-delalloc-fixes-v1-5-0726f0dce403@proton.me>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -118,42 +100,255 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-From: NeilBrown <neilb@ownmail.net>
-To: "Christoph Hellwig" <hch@infradead.org>
-Cc: "Alexander Viro" <viro@zeniv.linux.org.uk>,
- "Christian Brauner" <brauner@kernel.org>, "Jan Harkes" <jaharkes@cs.cmu.edu>,
- coda@cs.cmu.edu, "Jan Kara" <jack@suse.cz>,
- "Richard Weinberger" <richard@nod.at>,
- "Anton Ivanov" <anton.ivanov@cambridgegreys.com>,
- "Johannes Berg" <johannes@sipsolutions.net>,
- "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul Lee" <hyc.lee@gmail.com>,
- "Carlos Maiolino" <cem@kernel.org>, "Jeff Layton" <jlayton@kernel.org>,
- "Amir Goldstein" <amir73il@gmail.com>, linux-kernel@vger.kernel.org,
- codalist@coda.cs.cmu.edu, linux-fsdevel@vger.kernel.org,
- linux-um@lists.infradead.org, ntfs@lists.linux.dev, linux-xfs@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] VFS/xfs/ntfs: drop parent lock across
- d_alloc_parallel() in d_add_ci()
-In-reply-to: <awB5mAWm9h1ksRFI@infradead.org>
-References: <20261117000115.1433875-1-neilb@ownmail.net>
-  <20261117000115.1433875-2-neilb@ownmail.net>
-  <awB5mAWm9h1ksRFI@infradead.org>
-Date: Mon, 23 Nov 2026 15:19:52 +1100
-Message-id: <179540759290.1728055.6042791276963817025@noble.neil.brown.name>
-Reply-To: NeilBrown <neil@brown.name>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261122-b4-ntfs-delalloc-fixes-v1-5-0726f0dce403@proton.me>
 
-On Sat, 21 Nov 2026, Christoph Hellwig wrote:
-> On Tue, Nov 17, 2026 at 10:54:58AM +1100, NeilBrown wrote:
-> >  					  const struct dentry_operations *);
-> > -extern struct dentry * d_add_ci(struct dentry *, struct inode *, struct =
-qstr *);
-> > +extern struct dentry * d_add_ci(struct dentry *, struct inode *, struct =
-qstr *,
->=20
-> Please drop the extern and fix up the formatting if you touch the code.
-> Bonus points for spelling out the arguments to actually make it
-> readable.
+On Sun, Nov 22, 2026 at 07:19:41PM +0100, Ernest Borowski via B4 Relay wrote:
+> From: Ernest Borowski <ernest.borowski.git@proton.me>
+> 
+> ntfs_write_simple_iomap_begin_non_resident() turns the holes a buffered
+> write covers into LCN_DELALLOC runs and reserves their clusters before
+> any data is copied.  If the copy then fails or comes up short (EFAULT
+> from the user buffer, a fatal signal), the clusters that no dirty folio
+> covers stay delalloc.  Writeback never allocates them, so the
+> reservation is kept until the inode is evicted, and the stale runs
+> survive the writeback that fallocate() relies on before it edits the
+> runlist.
+> 
+> Reproducer: a pwrite() of 512 KiB from an unmapped address into a hole
+> of a 1 MiB sparse file fails with EFAULT and leaves 128 (4 KiB) clusters
+> reserved after sync.  A FALLOC_FL_PUNCH_HOLE or COLLAPSE_RANGE through
+> the range then hits the run splitting bug fixed by the previous patch.
+> 
+> Do what XFS does: in ->iomap_end() of a delalloc mapping that was not
+> written completely, let iomap_write_delalloc_release() find the ranges
+> without dirty data and turn the clusters entirely inside them back into
+> holes, releasing their reservation.  Clusters that still hold dirty data
+> stay delalloc, including the partial first and last clusters of an
+> unaligned write that ->iomap_begin() zeroed in the page cache; those are
+> written back as zeros, as before.  Delalloc runs are holes on disk, so
+> the mapping pairs do not change.
+> 
+> The error path of ->iomap_begin() itself, taken when zeroing the edges
+> of the new run fails, only subtracted the reservation and left the run
+> and i_dealloc_clusters in place, so a later truncate or eviction would
+> release it a second time.  Use the same release there.
+> 
+> Fixes: b041ca562526 ("ntfs: update iomap and address space operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
+> ---
+>  fs/ntfs/attrib.c | 63 +++++++++++++++++++++++++++++++++++++++++++++++++
+>  fs/ntfs/attrib.h |  1 +
+>  fs/ntfs/iomap.c  | 71 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+>  3 files changed, 134 insertions(+), 1 deletion(-)
+> 
+> diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+> index 39fa983cd8..7c19e4534a 100644
+> --- a/fs/ntfs/attrib.c
+> +++ b/fs/ntfs/attrib.c
+> @@ -4416,6 +4416,69 @@ void ntfs_release_delalloc_from(struct ntfs_inode *ni, s64 start_vcn)
+>  	ni->i_dealloc_clusters -= min_t(s64, nr, ni->i_dealloc_clusters);
+>  }
+>  
+> +/*
+> + * ntfs_attr_punch_delalloc - turn delalloc runs back into holes
+> + * @ni:		non-resident ntfs attribute
+> + * @start_vcn:	first vcn of the range
+> + * @len:	number of clusters in the range
+> + *
+> + * Turn the LCN_DELALLOC parts of [@start_vcn, @start_vcn + @len) into holes
+> + * and give back their reservation.  Used when a buffered write that reserved
+> + * them failed before it dirtied any folio over them, so that writeback will
+> + * never allocate them.  Runs that are not delalloc (anymore) are left alone.
+> + * Delalloc runs are stored as holes on disk, so the mapping pairs need no
+> + * update.
+> + *
+> + * The caller holds the mrec_lock of the base inode and the runlist lock for
+> + * writing.
+> + */
+> +void ntfs_attr_punch_delalloc(struct ntfs_inode *ni, s64 start_vcn, s64 len)
+> +{
+> +	struct runlist_element *rl, *punch_rl;
+> +	s64 vcn = start_vcn, end_vcn = start_vcn + len, run_end;
+> +	size_t new_rl_count;
+> +	int rl_count, err;
+> +
+> +	lockdep_assert_held_write(&ni->runlist.lock);
+> +
+> +	err = ntfs_attr_map_whole_runlist(ni);
+> +	if (err) {
+> +		ntfs_error(ni->vol->sb,
+> +			   "Failed to map the runlist to drop delalloc runs: %d", err);
+> +		return;
+> +	}
+> +
+> +	while (vcn < end_vcn) {
+> +		rl = ntfs_rl_find_vcn_nolock(ni->runlist.rl, vcn);
+> +		if (!rl || !rl->length)
+> +			break;
+> +		run_end = min(rl->vcn + rl->length, end_vcn);
+> +		if (rl->lcn != LCN_DELALLOC) {
+> +			vcn = run_end;
+> +			continue;
+> +		}
+> +
+> +		for (rl = ni->runlist.rl, rl_count = 0; rl->length; rl++)
+> +			rl_count++;
+> +		rl = ntfs_rl_punch_hole(ni->runlist.rl, rl_count + 1, vcn,
+> +					run_end - vcn, &punch_rl, &new_rl_count);
+> +		if (IS_ERR(rl)) {
+> +			ntfs_error(ni->vol->sb,
+> +				   "Failed to drop delalloc run at vcn 0x%llx: %ld",
+> +				   vcn, PTR_ERR(rl));
+> +			break;
+> +		}
+> +		kvfree(punch_rl);
+> +		ni->runlist.rl = rl;
+> +		ni->runlist.count = new_rl_count;
+> +
+> +		ntfs_release_dirty_clusters(ni->vol, run_end - vcn);
+> +		ni->i_dealloc_clusters -= min_t(s64, run_end - vcn,
+> +						ni->i_dealloc_clusters);
+> +		vcn = run_end;
+> +	}
+> +}
+> +
+>  /*
+>   * ntfs_non_resident_attr_shrink - shrink a non-resident, open ntfs attribute
+>   * @ni:		non-resident ntfs attribute to shrink
+> diff --git a/fs/ntfs/attrib.h b/fs/ntfs/attrib.h
+> index faa2dfba3a..ca2a8b53a4 100644
+> --- a/fs/ntfs/attrib.h
+> +++ b/fs/ntfs/attrib.h
+> @@ -110,6 +110,7 @@ int ntfs_non_resident_attr_insert_range(struct ntfs_inode *ni, s64 start_vcn, s6
+>  int ntfs_non_resident_attr_collapse_range(struct ntfs_inode *ni, s64 start_vcn, s64 len);
+>  int ntfs_non_resident_attr_punch_hole(struct ntfs_inode *ni, s64 start_vcn, s64 len);
+>  void ntfs_release_delalloc_from(struct ntfs_inode *ni, s64 start_vcn);
+> +void ntfs_attr_punch_delalloc(struct ntfs_inode *ni, s64 start_vcn, s64 len);
+>  int __ntfs_attr_truncate_vfs(struct ntfs_inode *ni, const s64 newsize,
+>  		const s64 i_size);
+>  int ntfs_attr_expand(struct ntfs_inode *ni, const s64 newsize, const s64 prealloc_size);
+> diff --git a/fs/ntfs/iomap.c b/fs/ntfs/iomap.c
+> index ce916707f6..1909824c30 100644
+> --- a/fs/ntfs/iomap.c
+> +++ b/fs/ntfs/iomap.c
+> @@ -372,6 +372,10 @@ static int ntfs_zero_range(struct inode *inode, loff_t offset, loff_t length)
+>  				NULL);
+>  }
+>  
+> +static void ntfs_write_delalloc_release(struct inode *inode, loff_t pos,
+> +					loff_t length, ssize_t written,
+> +					unsigned int flags, struct iomap *iomap);
+> +
+>  static int ntfs_write_simple_iomap_begin_non_resident(struct inode *inode, loff_t offset,
+>  						      loff_t length, struct iomap *iomap)
+>  {
+> @@ -543,7 +547,13 @@ static int ntfs_write_simple_iomap_begin_non_resident(struct inode *inode, loff_
+>  			if (err == -EPERM)
+>  				err = 0;
+>  			if (err) {
+> -				ntfs_release_dirty_clusters(vol, max_clu_count);
+> +				/*
+> +				 * Nothing will be copied: drop the delalloc
+> +				 * clusters that no zeroed folio covers.
+> +				 */
+> +				ntfs_write_delalloc_release(inode, offset,
+> +							    iomap->length, 0,
+> +							    IOMAP_WRITE, iomap);
+>  				return err;
+>  			}
+>  		}
+> @@ -762,6 +772,61 @@ static int ntfs_write_iomap_end_resident(struct inode *inode, loff_t pos,
+>  	return written;
+>  }
+>  
+> +static void ntfs_write_delalloc_punch(struct inode *inode, loff_t offset,
+> +				      loff_t length, struct iomap *iomap)
+> +{
+> +	struct ntfs_inode *ni = NTFS_I(inode);
+> +	struct ntfs_inode *mrec_ni = ntfs_inode_is_named_stream(ni) ?
+> +			ntfs_base_inode(ni) : ni;
+> +	struct ntfs_volume *vol = ni->vol;
+> +	/* Clusters that still hold some dirty data stay delalloc. */
+> +	loff_t start = round_up(offset, vol->cluster_size);
+> +	loff_t end = round_down(offset + length, vol->cluster_size);
+> +
+> +	if (start >= end)
+> +		return;
 
-I think inconsistent formatting is not much better than bad formatting.
-Maybe I'll insert a patch which tidies up the whole stanza.
+Could this leave clean dealloc clusters reserved?
 
-NeilBrown
+For example, with 1 KiB clusters and 512-byte blocks,
+iomap_write_dealloc_ifs_punch() calls this callback seperately for each
+clean block in a dirty folio. For a cluster covering [1024, 2048),
+the callback receives [1024, 1536) and [1536, 2048) separately. Rounding
+each range produces an empty punch range, so neither call removes
+the reservation, even if the entire cluster is clean.
+
+> +
+> +	mutex_lock(&mrec_ni->mrec_lock);
+> +	down_write(&ni->runlist.lock);
+> +	ntfs_attr_punch_delalloc(ni, ntfs_bytes_to_cluster(vol, start),
+> +				 ntfs_bytes_to_cluster(vol, end - start));
+> +	up_write(&ni->runlist.lock);
+> +	mutex_unlock(&mrec_ni->mrec_lock);
+> +}
+> +
+> +/*
+> + * A buffered write that failed or copied less than it mapped leaves delalloc
+> + * clusters that no dirty folio covers: writeback never allocates them, so
+> + * their reservation would stay until the inode is evicted, and the stale
+> + * delalloc runs would outlive the flush done by fallocate() and friends.
+> + * Punch them out again, keeping every cluster that has dirty data in the
+> + * page cache.
+> + */
+> +static void ntfs_write_delalloc_release(struct inode *inode, loff_t pos,
+> +					loff_t length, ssize_t written,
+> +					unsigned int flags, struct iomap *iomap)
+> +{
+> +	struct ntfs_volume *vol = NTFS_I(inode)->vol;
+> +	loff_t start_byte, end_byte;
+> +
+> +	/*
+> +	 * Delalloc is reserved per cluster, which can be larger than the
+> +	 * block size iomap_last_written_block() would round to.
+> +	 */
+> +	if (written)
+> +		start_byte = round_up(pos + written, vol->cluster_size);
+> +	else
+> +		start_byte = round_down(pos, vol->cluster_size);
+> +	end_byte = round_up(pos + length, vol->cluster_size);
+> +	if (start_byte >= end_byte)
+> +		return;
+> +
+> +	filemap_invalidate_lock(inode->i_mapping);
+> +	iomap_write_delalloc_release(inode, start_byte, end_byte, flags, iomap,
+> +				     ntfs_write_delalloc_punch);
+> +	filemap_invalidate_unlock(inode->i_mapping);
+> +}
+> +
+>  static int ntfs_write_iomap_end(struct inode *inode, loff_t pos, loff_t length,
+>  				ssize_t written, unsigned int flags,
+>  				struct iomap *iomap)
+> @@ -769,6 +834,10 @@ static int ntfs_write_iomap_end(struct inode *inode, loff_t pos, loff_t length,
+>  	if (iomap->type == IOMAP_INLINE)
+>  		return ntfs_write_iomap_end_resident(inode, pos, length,
+>  						     written, flags, iomap);
+> +	if (iomap->type == IOMAP_DELALLOC && iomap->flags & IOMAP_F_NEW &&
+> +	    !(flags & IOMAP_FAULT) && written < length)
+> +		ntfs_write_delalloc_release(inode, pos, length, written, flags,
+> +					    iomap);
+>  	return written;
+>  }
+>  
+> 
+> -- 
+> 2.56.1
+> 
+> 
+
+-- 
+Thanks,
+Hyunchul
