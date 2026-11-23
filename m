@@ -1,60 +1,83 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=185.70.43.166
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.221.41
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795371698;
-	b=IFICQCmBRorypFR2cvzjOGgmk9W+pTQggU7rnDGTRE5UJT1NslJ54gzaiJBXmpAFCnyM
-	 WRFKpuSM6lGbNspGUm61FcCXlZLaecTFrmOsMpe+W1eGg84PplLA+sASh+BcXx6hjuulZ
-	 lagvrhJqJ3q/1UciwsCXdjEayoMpO++kZcT1sBTRj9PiVSHlE3XqFjvswYmWxyvLFeHVy
-	 wwZnM1diDy6Wh1k6bBSIQdA7LylOq/oyqrQFVM2o76y0HfjYsiIjhpwPYT/SUJaprdZ8A
-	 V7XX24EeQDd3wlcta346DUjnJSp0ABWTb9kuIfsT/kmqsodbN+PrlZKOtLWydtlZJJQ==
+	t=1795394318;
+	b=dw4Rw1TEv8CMz8bPLhf2Ri9I5kRCoOSkfDOMR9VSquN6yUNCsjICaz1gI2zJft1UwzS3
+	 jBu/dCB2v/mPGJ63GzzVv220bkOHJPgZxYk4CpmWeZQ/cri4Oaeg+5KejgqPw6VoB8nkU
+	 kdELUD6EW9K6rBYCUSMSLIXsYD2bqEEw4BWLw5rGp06CCd6kL8sCq6OUbnOUAKSy8/A5C
+	 P1A2olNY0HHqBfR8T3eIeomQnDQNk92VBkMow+frO3eR+RFs0DtBxd6f5B69CAGQg3jkX
+	 C9kl8V3ruj5/wdTf1uAOjPahewKamWD/loAp3oHqeLyjPsNB71sLZRA7dUMtp5giIcA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795371698;
-	h=DMARC-Filter:DKIM-Signature:Date:To:From:Cc:Subject:Message-ID:
-	 In-Reply-To:References:Feedback-ID:X-Pm-Message-ID:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding;
-	bh=3z8LmMvyTb7V927J5J/vEzJ5VN1Hy4oZMJgZJYtszZA=;
-	b=cIS+Q9HRhloq2skxue2pxgdSbK2lSU5Ik2CLfSuzlZaFyHN8cA0DVtx0rSeG/5s9dx47
-	 q7TLT76KN2hfNsX+lCb+JWrasA0C6d+Xp3kDVbnma9MJjlEsIscIOkv8fsCqW2fxJDVfP
-	 8Hci06RgPn/XMipXAqo14R8pSepi3qpOcVY4LbXxhztNJ53oAPBy4eT59NpUeJhs9n5ba
-	 +OnP8+Wz9HTXybO4YA9YZ+dNhjL+fzIfhuVqW8IE2kCK3sLPlYEJzKhDwk4Cc/TE6eI+j
-	 6+OKLYk4SV0/z0mSsxq/tzgnk5sjb7PjXoWnhMIZvbmyIacR9/bZYK2lRbN1FhN9hZw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795394318;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
+	 Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:X-Mailer:
+	 References:In-Reply-To;
+	bh=HP9zOCOBYYSdBf8b8BfCMeW0ZoB3i2I21hDr8WIDWn4=;
+	b=shcUXbKaA6nfh6aegkG/DQNDcnIjeywF80okxHKS0u3hyN/n8uDYikWH7sk+1trl4Mpm
+	 rv3LAt/qJN2f8mYntEWCa2S+VMBC8X6pIUd+SEzk/19mwBE0JAhBRTDdqC/m8e5I4O1rR
+	 zz2QE91waVzEKqpGhVQezR22DToD3pvtmV0ELVApXQoMULnCxUyRH6nTlP+PdW3JNKzBH
+	 B+H6I4HG/mSogDWpXSsWq3m3tfsUyDcDDkM70NuMnthf0tnnyEeA1iIuFGqiKfT6N+7Q6
+	 8qvX0kokf/EPwIedh3DTlVCtzpsplgMD/Hjari+6YjykLAwxCh8Mv/x6EHOmzi6XeTg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=proton.me;
-	spf=pass smtp.mailfrom=proton.me;
-	dkim=pass header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=ftyjk5u2rjdkzee2k64x2fjvp4.protonmail2 header.b=W4PAgOHz;
-	arc=none smtp.remote-ip=185.70.43.166
-Received: from mail-43166.protonmail.ch (mail-43166.protonmail.ch [185.70.43.166])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mMMzWRUq;
+	arc=none smtp.remote-ip=209.85.221.41
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BA2606A320
-	for <ntfs@lists.linux.dev>; Sun, 22 Nov 2026 18:21:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 20BA2606A320
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D0F606A32A
+	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 00:38:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org E0D0F606A32A
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=ftyjk5u2rjdkzee2k64x2fjvp4.protonmail2 header.b=W4PAgOHz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=ftyjk5u2rjdkzee2k64x2fjvp4.protonmail2; t=1795371695;
-	x=1795630895; bh=3z8LmMvyTb7V927J5J/vEzJ5VN1Hy4oZMJgZJYtszZA=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=W4PAgOHzBr7V5/mwaJ8hbnTpM93a6txVNSujmJ6Sf9d/DHMrwOVBGr+tugWj5JP/A
-	 vusjRQ8WxrbFvTOmlUuFc4ch7bIgtt8+BusPcsVhgXzwIrVkQ/Ec56hSmtRuyyIg+C
-	 q/b/lB/sHU1eKGxIGScOSeofh6eq1sCMeYi8xdT8kXpYJjmQRaam2rLQUA2VvjOpdS
-	 cyftgos1Ql798byQ9sdJ3ZEN5YgCEjnQ1yZNmfMzdGYe0A8jrxSWla9MrBvgr5kqGn
-	 uGX5BlMTUAVGKdlmDZd+CbLIQfdWHGMDdDPZAbSsDE4O2VwbPgACzjWx4t//8E6IV7
-	 4hZwgZ9E57+DA==
-Date: Sun, 22 Nov 2026 18:21:27 +0000
-To: Zhan Xusheng <zhanxusheng1024@gmail.com>
-From: Ernest Borowski <ernest.borowski.git@proton.me>
-Cc: linkinjeon@kernel.org, hyc.lee@gmail.com, liubaolin12138@163.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, stable@vger.kernel.org, zhanxusheng@xiaomi.com
-Subject: Re: [PATCH v8] ntfs: trim the sizes after a short write
-Message-ID: <179537167473.2649834.14001007738076272792.b4-reply@b4>
-In-Reply-To: <20261120023504.4134966-1-zhanxusheng1024@gmail.com>
-References: <20261120023504.4134966-1-zhanxusheng1024@gmail.com>
-Feedback-ID: 236360163:user:proton
-X-Pm-Message-ID: 5d499b5daac2baa6fe99a4f0b3ba1d1cadc0a334
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mMMzWRUq
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-4a7b8abe209so2059514f8f.0
+        for <ntfs@lists.linux.dev>; Sun, 22 Nov 2026 16:38:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795394316; x=1795999116; darn=lists.linux.dev;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-type:mime-version:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=HP9zOCOBYYSdBf8b8BfCMeW0ZoB3i2I21hDr8WIDWn4=;
+        b=mMMzWRUqdcx1be/6Ij7I2PsE8tZJ4iYfp+sW1QcgOVsjFYZYYG2ABDS+dsZk23WL9j
+         2uvKfcZ1eCvrQIlDJYKqvfqLEGXE5DoWErI5XdZMEyITOi1fOA1hYq5rLq3vWF4hUsVI
+         hcnecaFaLB+L8TwZFRa7FFJNiu3rEi2X/vDtSZAbdbsTNiqDitogO2kamlg+J6sWgtr/
+         RSnGU7SrJq+y+ivqhZ5/1zVMm+g94uxfdR/tslRgZl7VDmkqFrpaJ/Oo0LdYELWy/gnJ
+         DlscbtkmvXvKqE5+YgGa9SJ5DVWtk0SpRzVtKehh+HwtK0CuQ+n9r5N2kpiAvpB4GlE7
+         MrvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795394316; x=1795999116;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-type:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=HP9zOCOBYYSdBf8b8BfCMeW0ZoB3i2I21hDr8WIDWn4=;
+        b=Ab/uesTjZxZlCr2h2PlSNgcKrnCAovxbDq0CD9uTkD//8BrSUrfUIloddxbRMYOiQf
+         XmDorNvW0Eed4V8KP0ZJl+tn45vmKSuhpF2n4LdVLB6vX2/DgA9NbE3asItMmtbemX0G
+         FemzjYH0la5U4h8ZYfRLDxVzPhQN8m6kejbVpI8msTxXJKiAAL5KWgFt+Nw+94k1G/Cj
+         KhrP5R/ANXPkCSXIGIndsmMhFxUYAQqt6L5+mSuRboudlmtBGA8PdRyyoEGvIUWV1dVP
+         Dtr18lBTpMnyjLkTTz0sIHiUlA0Uu/6tt8+vE6Q+IhuRI21a8qpH1XufdCUQKfejx4bS
+         CaTQ==
+X-Forwarded-Encrypted: i=1; AL+hErH4AstmsgokDCklIIDRx7nhQLOZux9S0tyThaUSmt3VSUETcP/vY9N7oS+9D1MUg8QRXm+p@lists.linux.dev
+X-Gm-Message-State: APuU4Z+w7WyN0BqY4G9GazQYC3IQso45zN3ZAESr4iWyPKHdmWAOzeo8
+	pZem9d6gNhjzdsGl1jGb3PzGvgt/eBiUl1zaZDrGXjh5tsU6hxHYp9zi
+X-Gm-Gg: AZFdTZeQS2bNHRIvDZIfMfP/MtRQmZZF8I69mgMWtktTW0pyr8fC+cEPKreSaGWU3Tk
+	Jy1EF1ddRqOpid8dooIUOHgl8kWcZHccaQmG/c+hFQ0iefA7WsyOPH2uxLq8CExvdKT5VpoxlZm
+	jBoNKH2I5LxN4z2ZTlXD/9kowz+jlG8ORIQkjrY1RU20I+MB7kdatu1l2V/0l4mextF8BGUUjRM
+	ggvCmfHR9A+fTZd7yzpxM8ryyHszB+o1KPiDhjGkfLvT55W3tG+RBDQih4B5G0ZR2ZPeXDE5GE1
+	69J+I8r7ZxMiCi+rAVvDoOX2cU1VUayG9tQRExfQJ5zdpoITNKTGaDtZ7devhRqRr3p/xT1UOvf
+	FQrXXLyohu+MVQxqOGA+Dj7P83pgEFDv3poRSPnZsnVxgHxknxM66mAEkL9CIiC9Bi3sILFrTkW
+	GHKZQU55fPz65FieFT1JvH3hEYOOWCGdJvcbtADe9uJGjkfBliT+ETKRqKLuIVoljRK57Ke9WzY
+	js/xT561DXepICMAmUrC/BvIG13ico115/IkhZRo1RHv0HmqgcF8LBeeke6XaI/wccB6G8eqRDl
+	e8nj+4R3ZAYOsSOTCRsPZmGZnA==
+X-Received: by 2002:adf:ef06:0:b0:4a9:5848:3640 with SMTP id ffacd0b85a97d-4abb5db79e6mr15647617f8f.55.1795394316019;
+        Sun, 22 Nov 2026 16:38:36 -0800 (PST)
+Received: from localhost ([2001:b07:5d26:7a6a:365a:60ff:fe0d:cfc6])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6bb989e3sm19085530f8f.52.2026.11.22.16.38.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Nov 2026 16:38:34 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -63,193 +86,236 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=e1fb7fe5361dd0dcfcd46f0aa31ce9f52e225a0a7b5a4d7bd3c717407afa;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Mon, 23 Nov 2026 01:38:26 +0100
+Message-Id: <DN265Y2EAGQV.1ZD49JSIDMME5@gmail.com>
+Cc: "Chuck Lever" <cel@kernel.org>, "Jeff Layton" <jlayton@kernel.org>, "Jan
+ Kara" <jack@suse.cz>, "Darrick J . Wong" <djwong@kernel.org>, "Andrey
+ Albershteyn" <aalbersh@kernel.org>, "Amir Goldstein" <amir73il@gmail.com>,
+ =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>, "Lauri Gates"
+ <lauri.gates@gmail.com>, "Christoph Hellwig" <hch@infradead.org>, "Dave
+ Chinner" <dgc@kernel.org>, <linux-btrfs@vger.kernel.org>,
+ <linux-xfs@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-fsdevel@vger.kernel.org>, <ntfs@lists.linux.dev>,
+ <linux-nfs@vger.kernel.org>, <linux-api@vger.kernel.org>
+Subject: Re: [PATCH 3/3] ntfs: switch to the new xflags fileattr API
+From: "koraynilay" <koray.fra@gmail.com>
+To: "liubaolin" <liubaolin12138@163.com>, "koraynilay"
+ <koray.fra@gmail.com>, "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul
+ Lee" <hyc.lee@gmail.com>, "Alexander Viro" <viro@zeniv.linux.org.uk>,
+ "Christian Brauner" <brauner@kernel.org>
+X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
+References: <20261122000856.536902-1-koray.fra@gmail.com>
+ <20261122000856.536902-4-koray.fra@gmail.com>
+ <1ebbb85f-3515-4c45-a850-8039aad93800@163.com>
+In-Reply-To: <1ebbb85f-3515-4c45-a850-8039aad93800@163.com>
+
+--e1fb7fe5361dd0dcfcd46f0aa31ce9f52e225a0a7b5a4d7bd3c717407afa
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Hi Zhan,
+On Sun Nov 22, 2026 at 1:49 PM CET, liubaolin wrote:
+>
+>
+> =E5=9C=A8 2026/11/22 08:08, koraynilay =E5=86=99=E9=81=93:
+>> Switch ntfs_fileattr_[gs]et() from the legacy FS_*_FL flags to the
+>> modern xflags (FS_XFLAG_*) fileattr API with masks.
+>>=20
+>> Introduce FS_XFLAG_COMPR and FS_XFLAG_ENCRYPT and add them to
+>> FS_XFLAG_COMMON (and add FS_COMPR_FL and FS_ENCRYPT_FL to FS_COMMON_FL)
+>> to be used in this API switch.
+>>=20
+>> Assisted-by: Gemini:3.8-flash-high antigravity-cli-1.5.11
+>> Signed-off-by: koraynilay <koray.fra@gmail.com>
+>> ---
+>>   fs/file_attr.c           |  8 +++++
+>>   fs/ntfs/file.c           | 63 +++++++++++++++++++---------------------
+>>   include/linux/fileattr.h |  6 ++--
+>>   include/uapi/linux/fs.h  |  2 ++
+>
+> Hi koraynilay,
+>     One suggestion on the patch split: would it make sense to put the
+> new COMPR/ENCRYPT xflags and their VFS handling in a separate patch
+> before the NTFS conversion?
+>     The changes to include/uapi/linux/fs.h, include/linux/fileattr.h
+> and fs/file_attr.c introduce generic fileattr support, and the
+> COMMON mask changes also affect other filesystems.
+>     Keeping those changes together in a VFS patch would make the API
+> and compatibility aspects easier to review.
+>     The following NTFS patch could then focus on using the new flags=20
+> while preserving the existing NTFS behaviour.
 
-I tested v8 on ntfs-next (f674e4b6c315) in QEMU, on a kernel with KASAN,
-lockdep and UBSAN, at 512 B, 4 KiB, 16 KiB and 64 KiB clusters. It fixes
-the file size after an ENOSPC short write, keeps FALLOC_FL_KEEP_SIZE
-space, and fixes a short copy into allocated clusters past the initialized
-size, which on ntfs-next leaves the uncopied part of the write reading the
-old contents of those clusters.
+Hi Baolin and thanks for the feedback,
+for now I put them in the same patch since they're not many lines of
+code changes, but I now also had to add NOCOMP, maybe I'll split it in
+the next version.
 
-One case loses data. It needs a writer killed during its copy, and a
-shared writable mapping created while the write is stalled:
+> Thanks,
+> Baolin.
+>
+>>   4 files changed, 44 insertions(+), 35 deletions(-)
+>> [...]
+>>   	if (err)
+>>   		return err;
+>>  =20
+>> -	if (fileattr_has_fsx(fa))
+>> -		return -EOPNOTSUPP;
+>> -
+>> -	/* chattr passes the unchanged read-only flags back to us too. */
+>> -	if (NInoCompressed(ni) || NInoWofCompressed(ni))
+>> -		readonly |=3D FS_COMPR_FL;
+>> -	if (NInoEncrypted(ni))
+>> -		readonly |=3D FS_ENCRYPT_FL;
+>> -	if ((fa->flags ^ readonly) & (FS_COMPR_FL | FS_ENCRYPT_FL))
+>> -		return -EOPNOTSUPP;
+>> -	allowed |=3D readonly;
+>> -
+>> -	/* Case folding is a read-only, mount-wide property. */
+>> -	if (!NVolCaseSensitive(ni->vol))
+>> -		allowed |=3D FS_CASEFOLD_FL;
+>> -	if (fa->flags & ~allowed)
+> Hi koraynilay,
+>     There is another case worth keeping in mind when replacing this check=
+:
+>     fileattr_fill_flags() only translates a subset of FS_*_FL bits,
+> so some unsupported flags will not appear in fsx_xflags.
+>    For example, a direct SETFLAGS request containing only FS_NOCOW_FL=20
+> produces fsx_xflags =3D=3D 0. On a normal file on a case-sensitive mount,
+> the new check would accept that request.
+>    If the file already has persistent NODUMP set, the request would also
+> clear it, since the setter rebuilds linuxflags without NODUMP and writes
+> it back to the EA. The current code rejects the request and leaves the
+> existing attributes unchanged.
+>
+>    Would it be possible to keep validating fa->flags when flags_valid is
+> set, in addition to the xflags check?
 
-> +=09=09=09if (zend > zstart) {
-> +=09=09=09=09err =3D iomap_zero_range(vi, zstart,
-> +=09=09=09=09=09=09zend - zstart, NULL,
-> +=09=09=09=09=09=09ntfs_seek_iomap_next,
-> +=09=09=09=09=09=09&ntfs_iomap_folio_ops, NULL);
+We could, but the objective is to have filesystems that implement the
+new _masks API use only xflags.
 
-iomap_write_begin() returns -EINTR at once when fatal_signal_pending(), so
-for a writer that got SIGKILL this zeroing always fails, and the fallback
-then does
-
-> +=09=09=09=09new_init_size =3D min3(ni->initialized_size,
-> +=09=09=09=09=09=09     zstart, new_data_size);
-
-followed by truncate_pagecache_range(vi, new_init_size, ...) up to i_size.
-Meanwhile ntfs_file_mmap_prepare() can have extended initialized_size to
-i_size for a MAP_SHARED, PROT_WRITE mapping (it does not take the inode
-lock, so it does not wait for the stalled writer), and the mapping can
-have dirtied a page far past the write. That page is dropped from the
-page cache and the initialized size is moved below it, so it reads back
-as zeroes, also after fsync.
-
-Reproducer: a file with old data in allocated clusters past its
-initialized size (as Windows leaves it after SetFileValidData(); the test
-sets the field on the image), pwrite() at offset 0 whose copy blocks on a
-userfaultfd page after 16 KiB, mmap() of the file and a store at
-i_size / 2, then SIGKILL to the writer. With v8 the 4 KiB page written
-through the mapping is lost at every cluster size; without v8 the
-mapping keeps its data but [16 KiB, 64 KiB) shows the old contents.
-
-Zeroing from a worker when the caller has a fatal signal pending fixes
-it. Something like this on top of v8:
-
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 25034735d2..a65892bb08 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -22,6 +22,7 @@
- #include <linux/overflow.h>
- #include <linux/security.h>
- #include <linux/slab.h>
-+#include <linux/workqueue.h>
- #include <uapi/linux/ntfs.h>
+> Thanks,
+> Baolin.
+>
+>
+>> +	/*
+>> +	 * When userspace uses file_[gs]etattr(), VFS already checks and fails
+>> +	 * with -EOPNOTSUPP if rw_mask & ro_mask !=3D 0 and rw_mask & ~allowed=
+,
+>> +	 * but for FS_IOC_SETFLAGS and FS_IOC_FSSETXATTR VFS can't check for
+>> +	 * allowed flags as these ioctls don't support fsx_xflags_{rw,ro}_mask=
+,
+>> +	 * so we need to check for unsupported flags anyway.
+>> +	 */
+>> +	if (!fa->has_masks &&
+>> +	    ((fa->fsx_xflags & ~NTFS_RW_XFLAGS) ||
+>> +	     fa->fsx_extsize || fa->fsx_projid || fa->fsx_cowextsize))
+>>   		return -EOPNOTSUPP;
+>
+> Hi koraynilay,
+>     Could we keep the existing handling of read-only attributes
+> for legacy SETFLAGS callers here?
+>     On a case-insensitive NTFS mount, the VFS carries over=20
+> FS_XFLAG_CASEFOLD from the current attributes, since it is not in=20
+> FS_XFLAG_COMMON.
+> This check would then reject it because CASEFOLD is not in=20
+> NTFS_RW_XFLAGS, so even chattr +d would fail with EOPNOTSUPP.
+>     The unchanged COMPR/ENCRYPT bits that chattr reads with GETFLAGS and
+> passes back with SETFLAGS would also be rejected on compressed/encrypted=
 =20
- #include "lcnalloc.h"
-@@ -871,6 +872,52 @@ static loff_t ntfs_allocated_end_on_disk(struct ntfs_i=
-node *ni)
- =09return end;
- }
+> files.
+>     Allowing those existing read-only attributes to be passed back=20
+> unchanged  would let users continue setting and clearing the persistent=
 =20
-+struct ntfs_zero_work {
-+=09struct work_struct work;
-+=09struct inode *inode;
-+=09loff_t pos;
-+=09loff_t len;
-+=09int err;
-+};
-+
-+static void ntfs_zero_workfn(struct work_struct *work)
-+{
-+=09struct ntfs_zero_work *zw =3D container_of(work, struct ntfs_zero_work,
-+=09=09=09=09=09=09 work);
-+
-+=09zw->err =3D iomap_zero_range(zw->inode, zw->pos, zw->len, NULL,
-+=09=09=09=09   ntfs_seek_iomap_next, &ntfs_iomap_folio_ops,
-+=09=09=09=09   NULL);
-+}
-+
-+/*
-+ * iomap_zero_range() gives up with -EINTR when the caller has a fatal sig=
-nal
-+ * pending, and a writer killed during its copy is one whose short write m=
-ust
-+ * still be zeroed: zero from a worker then, which has no signal to see.  =
-The
-+ * caller holds the invalidate lock, which keeps page faults out meanwhile=
-.
-+ */
-+static int ntfs_zero_range_unkillable(struct inode *inode, loff_t pos,
-+=09=09=09=09      loff_t len)
-+{
-+=09struct ntfs_zero_work zw =3D { .inode =3D inode, .pos =3D pos, .len =3D=
- len };
-+=09int err;
-+
-+=09if (!fatal_signal_pending(current)) {
-+=09=09err =3D iomap_zero_range(inode, pos, len, NULL,
-+=09=09=09=09       ntfs_seek_iomap_next,
-+=09=09=09=09       &ntfs_iomap_folio_ops, NULL);
-+=09=09/* the signal may also come while it zeroes */
-+=09=09if (err !=3D -EINTR || !fatal_signal_pending(current))
-+=09=09=09return err;
-+=09}
-+
-+=09INIT_WORK_ONSTACK(&zw.work, ntfs_zero_workfn);
-+=09queue_work(system_unbound_wq, &zw.work);
-+=09flush_work(&zw.work);
-+=09destroy_work_on_stack(&zw.work);
-+=09return zw.err;
-+}
-+
- ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
- {
- =09struct file *file =3D iocb->ki_filp;
-@@ -1000,10 +1047,8 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, str=
-uct iov_iter *from)
-=20
- =09=09=09zend =3D min(zend, new_data_size);
- =09=09=09if (zend > zstart) {
--=09=09=09=09err =3D iomap_zero_range(vi, zstart,
--=09=09=09=09=09=09zend - zstart, NULL,
--=09=09=09=09=09=09ntfs_seek_iomap_next,
--=09=09=09=09=09=09&ntfs_iomap_folio_ops, NULL);
-+=09=09=09=09err =3D ntfs_zero_range_unkillable(vi, zstart,
-+=09=09=09=09=09=09=09=09 zend - zstart);
- =09=09=09=09/* A direct read must not see the old blocks. */
- =09=09=09=09if (!err && iocb->ki_flags & IOCB_DIRECT)
- =09=09=09=09=09err =3D filemap_write_and_wait_range(
+> flags through chattr,as they can today.
+>
+> Thanks,
+> Baolin.
 
-With it the test passes at all four cluster sizes, and the tests for the
-ENOSPC short write size, FALLOC_FL_KEEP_SIZE and a writer killed inside
-a cluster that was a hole still pass. The same five tests on the same
-ntfs-next commit, each run on Ubuntu 26.04 and on Arch Linux:
-
-  ntfs-next:                 https://github.com/xerrni/linux-ntfs/actions/r=
-uns/45025520955
-  ntfs-next + v8:            https://github.com/xerrni/linux-ntfs/actions/r=
-uns/45025527902
-  ntfs-next + v8 + the diff: https://github.com/xerrni/linux-ntfs/actions/r=
-uns/45025534974
-
-                          ntfs-next   + v8   + v8 + diff
-  killed_write_mmap       FAIL        FAIL   pass
-  short_write_size        FAIL        pass   pass
-  keep_size_short_write   FAIL        pass   pass
-  killed_short_write      pass        pass   pass
-  short_copy_stale        FAIL        FAIL   FAIL
-
-short_copy_stale fails at 4 KiB clusters in all three: a short copy into
-a hole still shows old data there, with or without v8. That is a
-separate bug; patch 7 of the series I just posted [1] fixes it. With v8,
-the diff above and that series, all five tests pass:
-
-  https://github.com/xerrni/linux-ntfs/actions/runs/45029305849
-
-Patch 7 has the same kind of helper in fs/ntfs/iomap.c, so whichever
-lands second can share one copy.
-
-To run the test on your own tree, locally (needs KVM, QEMU, what a kernel
-build needs, gcc with a static libc, mkntfs from ntfs-3g and python3, but
-not root; the README lists the packages):
-
-  git clone https://github.com/xerrni/linux-ntfs && cd linux-ntfs
-  vm/build_kernel.sh /path/to/linux ../build
-  tests/run_reproducers.sh ../build ../work killed_write_mmap.sh
-
-It prints one line per test with the PASS and FAIL counts and the first
-FAIL line; the guest logs are in ../work/killed_write_mmap/. Or with
-nothing installed: fork the repository, enable Actions in the fork and
-run its test-kernel workflow, which takes a kernel repository and branch,
-patches (lore links work, b4 fetches them) and the tests to run, e.g.
-
-  gh workflow run test-kernel.yml -R <you>/linux-ntfs \
-    -f repo=3D<your tree> -f ref=3D<branch> -f tests=3Dkilled_write_mmap
-
-The diff above is patches/v8-zero-for-a-killed-writer.diff in that
-repository. If v8 is already queued, I can send it as a separate patch
-on top instead.
+Since I wasn't quite satisfied with this version, I'm working on a
+revisited v2, that is hopefully cleaner and fixes these bugs and the
+ones reported by sashiko.
 
 Thanks,
-Ernest
+koraynilay
 
-[1] https://lore.kernel.org/all/20261122-b4-ntfs-delalloc-fixes-v1-0-0726f0=
-dce403@proton.me/
 
+>>  =20
+>>   	forced_immutable =3D ntfs_is_forced_immutable(vi);
+>> -	if (!(fa->flags & FS_IMMUTABLE_FL) && forced_immutable)
+>> +	if (!(fa->fsx_xflags & FS_XFLAG_IMMUTABLE) && forced_immutable)
+>>   		return -EPERM;
+>>  =20
+>> -	if (fa->flags & FS_IMMUTABLE_FL) {
+>> +	if (fa->fsx_xflags & FS_XFLAG_IMMUTABLE) {
+>>   		new_fl |=3D S_IMMUTABLE;
+>>   		/* Do not persist an immutable bit derived from the mount. */
+>>   		if (!forced_immutable ||
+>>   		    (ni->linuxflags & NTFS_LINUXFLAGS_IMMUTABLE))
+>>   			linuxflags |=3D NTFS_LINUXFLAGS_IMMUTABLE;
+>>   	}
+>> -	if (fa->flags & FS_APPEND_FL) {
+>> +	if (fa->fsx_xflags & FS_XFLAG_APPEND) {
+>>   		new_fl |=3D S_APPEND;
+>>   		linuxflags |=3D NTFS_LINUXFLAGS_APPEND;
+>>   	}
+>> -	if (fa->flags & FS_NODUMP_FL)
+>> +	if (fa->fsx_xflags & FS_XFLAG_NODUMP)
+>>   		linuxflags |=3D NTFS_LINUXFLAGS_NODUMP;
+>> -	if (fa->flags & FS_NOATIME_FL) {
+>> +	if (fa->fsx_xflags & FS_XFLAG_NOATIME) {
+>>   		new_fl |=3D S_NOATIME;
+>>   		linuxflags |=3D NTFS_LINUXFLAGS_NOATIME;
+>>   	}
+>> diff --git a/include/linux/fileattr.h b/include/linux/fileattr.h
+>> index 4faa40febf11..219e7c8eb601 100644
+>> --- a/include/linux/fileattr.h
+>> +++ b/include/linux/fileattr.h
+>> @@ -7,12 +7,14 @@
+>>   #define FS_COMMON_FL \
+>>   	(FS_SYNC_FL | FS_IMMUTABLE_FL | FS_APPEND_FL | \
+>>   	 FS_NODUMP_FL |	FS_NOATIME_FL | FS_DAX_FL | \
+>> -	 FS_PROJINHERIT_FL | FS_VERITY_FL)
+>> +	 FS_PROJINHERIT_FL | FS_VERITY_FL | FS_COMPR_FL | \
+>> +	 FS_ENCRYPT_FL)
+>>  =20
+>>   #define FS_XFLAG_COMMON \
+>>   	(FS_XFLAG_SYNC | FS_XFLAG_IMMUTABLE | FS_XFLAG_APPEND | \
+>>   	 FS_XFLAG_NODUMP | FS_XFLAG_NOATIME | FS_XFLAG_DAX | \
+>> -	 FS_XFLAG_PROJINHERIT | FS_XFLAG_VERITY)
+>> +	 FS_XFLAG_PROJINHERIT | FS_XFLAG_VERITY | FS_XFLAG_COMPR | \
+>> +	 FS_XFLAG_ENCRYPT)
+>>  =20
+>>   /* Read-only inode flags */
+>>   #define FS_XFLAG_RDONLY_MASK \
+>> diff --git a/include/uapi/linux/fs.h b/include/uapi/linux/fs.h
+>> index e40806b3a69c..09fc7e066485 100644
+>> --- a/include/uapi/linux/fs.h
+>> +++ b/include/uapi/linux/fs.h
+>> @@ -275,6 +275,8 @@ struct file_attr {
+>>   #define FS_XFLAG_CASENONPRESERVING 0x00080000	/* case not preserved */
+>>  =20
+>>   #define FS_XFLAG_PROJID		0x00100000	/* project ID */
+>> +#define FS_XFLAG_COMPR		0x00200000	/* Compress file */
+>> +#define FS_XFLAG_ENCRYPT	0x00400000	/* Encrypted file */
+>>   #define FS_XFLAG_HASATTR	0x80000000	/* no DIFLAG for this	*/
+>>  =20
+>>   /* the read-only stuff doesn't really belong here, but any other place=
+ is
+
+
+
+--e1fb7fe5361dd0dcfcd46f0aa31ce9f52e225a0a7b5a4d7bd3c717407afa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSgVimKafU5DQMcjcDmj22qf5IGXAUCawOLAgAKCRDmj22qf5IG
+XKLxAQCTRtAIOKyKCy1HCPCIGMpDT8mK4MMZQCw2HwUAkHF6dQD/TwpK7+eZCgaK
+R5Ac0/ouAvLeGZs5OiVE22OAY998dQw=
+=V3ow
+-----END PGP SIGNATURE-----
+
+--e1fb7fe5361dd0dcfcd46f0aa31ce9f52e225a0a7b5a4d7bd3c717407afa--
