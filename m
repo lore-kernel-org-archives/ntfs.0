@@ -1,83 +1,114 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=103.168.172.145
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795456741;
-	b=tEzt8tHZQ2pj7QFQwgF8ww986IRMi1sSBRsYJhngXMxFQ6Hb0wEzrCuaT5b4GtRcYLUQ
-	 xHJLBZEFZtSf8zFXtzGo8Y8SB5nmaOK9i9ZEVGNGGxqjNRKtOzw31i4bAL1YgBJDjHnIT
-	 p1d286PsTVmGDnB9NC0BpUM2yd/SxECHN/ogjtNCSzK2Z2dod8WbsDwLLaRyFb6solgGO
-	 Z80U/z2GcTknfcHx3crMpTVdiPdjkc08t6VLDdV5wb634hdBdyqjx9kdr+VNG6tflD4jY
-	 IMvAMJykGNhss1Q57FBwRze3Fta7+A2dW/nC6AAhlfTmZvJU+WTEQp6pkElGM2oye7A==
+	t=1795466952;
+	b=1cKksMpelqC2pvvkvRBPSmygHlopf+JejVTpb+EvkE3xY81sIVgJ35IQ1YToUjBqKn5S
+	 p4a7jsPxYFcX8BxJPL1Vm07BQCqckn0DR15rCYo4kX/Ot0W/EuaBuHlzq13G/pJOlpNJr
+	 J6zL3GbqF2h970dqWPk/IJg9JwPpv2QUyFNh36IEXfrlxSukP8V8FRUAmYxq1FnlA0Iea
+	 6CJWVOEk7h8qkaOd87P0wEqqgecqrvAJiXoKILaJAPjpT7NUCrAAkS2JVAasuaepwdTFQ
+	 e6UgvbySiuofUH78vnEmDCMKJMU3ka0xAxjZmQfoQ48POJjd2AE0OF93jIwtDWpkYgA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795456741;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:X-Mailer:
-	 References:In-Reply-To;
-	bh=MluqPmwvuVO/ECMu3QHES2ezbhuwl2JDe9bOaf165Uo=;
-	b=Y+ZYgE+NZkURc4scrEiynBBAqodOZNKta2OgjIfs644UyM+ef6wAUhv0eXvr2XJ6ABsE
-	 eexDBJGMVKp82P30GP4shiKpz0N/ETZbA8NJi4EvanfBrIyzIxYjuhlusUKDeTkgOw27Q
-	 Ln5yixUuDght84hgFJGOjZRY3i0W6c/1CkOCQqZVAEsbHwbJ2yiDyhuJnynZKpTwIRaIy
-	 6EnYEa/kg8VV7iwtfJjInzQTwSsE2fHmTNg0gjqaYgCxU5loCtzYF9rkQosngqTjLszhT
-	 1FLUO3ks/GX7S+2+LNZLwmJde6gmQov32OVRDQ7TCgX1ImNbE0VPUyaI0lfEKfkdbtQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795466952;
+	h=DMARC-Filter:Received:Received:DKIM-Signature:DKIM-Signature:
+	 X-DKIM2-Info:DKIM2-Signature:X-DKIM2-Info:Message-Instance:
+	 X-ME-Sender:X-ME-Received:X-ME-Proxy-Cause:X-ME-Proxy:Feedback-ID:
+	 Received:Content-Type:Content-Transfer-Encoding:MIME-Version:From:To:
+	 Cc:Subject:In-reply-to:References:Date:Message-id:Reply-To;
+	bh=o9zLSXJuEnjCYOHrQ29UaL5++JY+uZSugjvH7QOgkgM=;
+	b=Ut8ZL5hmcOKOwhUHOAaph42m3w6S2pB2VmXk3klF3xUTFs5qthM4bUQb8d6KIFPBZn5r
+	 LpK0MAEdvqx16TikodGuRV8Z7SC+7ugClTmYM0EigyhIV4WZKAJLGmAPMk0dEujCqJHhe
+	 r/aDdpwsbBrXYEHGC1zOSux3km6+pYjM+2LqyneZVPpnUwnr1OtlJzt1ywoMZaiR2yXRD
+	 4VEXdXu07W7Iu8Et+IY+Uuoqjup9oNi05hevovxAsSiLCPtYyeuy1SLWqr9+JfeeDjKeE
+	 1a76p58Zzn8koEGmqQx/6lak9w6WgRmOaIQisYpCW4OtjvcVJkCiW+7mqyPz6NtiJbA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fL7IVhpK;
-	arc=none smtp.remote-ip=209.85.128.51
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=pass header.from=ownmail.net;
+	spf=pass smtp.mailfrom=ownmail.net;
+	dkim=temperror header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b="GUqi7D/+";
+	dkim=pass header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=GeCTSuUL;
+	arc=none smtp.remote-ip=103.168.172.145
+Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAF6606A32D
-	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 17:59:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 1BAF6606A32D
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08BE606A326
+	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 20:49:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org D08BE606A326
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ownmail.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ownmail.net
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fL7IVhpK
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4bb6886d30aso35213215e9.3
-        for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 09:59:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795456739; x=1796061539; darn=lists.linux.dev;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-type:mime-version:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=MluqPmwvuVO/ECMu3QHES2ezbhuwl2JDe9bOaf165Uo=;
-        b=fL7IVhpK0monfTR7RvfiZGTB8QsJfQsRYsgmDzCXeyAH9ppGYhOPr7i2O8HDxh1zjk
-         ZWTlkYDNZAt7+pA3H4ahz9z018b5SAiDHq37OFPhRlBhOLXI7dUBdNfSFUrHlr1lySzz
-         F2aGGntwAQN1hrldUsVnagaqaEOppOh0VyJn0d6bDYIHe+uSXn1rb/xcywpFuU2rtLiF
-         frnNBHidkJY7/yoQy/nSjY4/JiQH2zNzlbHqlss53i+buZ8FZybImfOESY0Wk1+y9W1G
-         FH7CtURI7fWQUFP+o7F1h5aExP3fnm3dC4J4ilNieNkMjYTwI1RewrfxG7tqMS+x6r4W
-         JdlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795456739; x=1796061539;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-type:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=MluqPmwvuVO/ECMu3QHES2ezbhuwl2JDe9bOaf165Uo=;
-        b=BneNNTM8wgZuyJ1v/wDVhF3i76QtgQQZppQ0VgI6zplWezXAc4qmDYQ96wFC6zb0Z2
-         F3CgBUwzWCpsbGirJb1oB7nohpVLN5SQTrQKFy2Td+zvKykGBjcJmv1qUXDSqdvB12zS
-         8MrWwPNY3zXur1V3eQ+ogp7P4ifbrmYonnxZH27Ip/2XQZ9facLHMzIRYXBxZycUo7gh
-         q7JDvMTVrJK/5IJ8OhdWSRAJF4F61ijom5EB1zkY4aR4o/LG1nxzMpeETZkhvumjdJ3L
-         5Nm2zognK2YbfYB/SDFjHO3zaDL+Vwhvra5wFysnchtMwyZfcDAAmpyfYLzs51XiMyiI
-         VbYQ==
-X-Forwarded-Encrypted: i=1; AL+hErEriacxwuNQ1NysPElYM3oC58qIUtiJoS7Ko3QDlXRDWzoba2bLG2C1GXopzXQg+LCA9xgn@lists.linux.dev
-X-Gm-Message-State: APuU4Z+cucf+OFN2HJktg2KG5J2AIf07aWJB/l7RpO0/L24kFelRp5Zx
-	MUdhOMkIep5R4Dg/gsTy2B0r/gh/3yKLuOkS0vOi5YN58TMf2IoEOO3E
-X-Gm-Gg: AZFdTZdn3NYnZHVpAO1IpYiOgRrM3IhpqxklT5eMdbqlI4Gjw+RtdALEdUoTBxa/Rrk
-	bZuoLb+eL99Pbef7w9pK/N8hLjEdueXAjT9CSuQm41QwHj7g4AKVlpADZK+3Lu64WJgZFqM/82p
-	Fx47ph2aclbtSxSdKZMdWRAersW2wlNHDgHBSgJyw122/ipys4owvMZfl8jMmDivhYQykUsrPUA
-	RCt/aA7Vf6KNXJ8ENh56g3SHT9VzNXBIrGU9+v/nu39LZQ0k29tFbNnMFVaG4ijLPAjLfqsGS0/
-	LmqCpQqTUSyCW39dfq1+Z3vdI/rsoAmI8fRQrYcdliya7rU7QGWZfi9yYGS/hEx0TN9bEApijgS
-	Fie7kIYNmb7dVuE/czh+MUfLdOZQTmA4nIip6G5neo6SCs5ZmS0hPCdpYpTb1Kowq4yv2YXkyb+
-	ZDNJlvRK/k/q5Pi9+U1HgmOQj+/kuCQwdt9hs9Wjcxo6UGr7rjvNTkRzoeml+0lYyq53jSo5f2J
-	DoifDJ1Yu/+X+irNsuQ7Jh8DjWQam4gWphOxhJqZ6q8HwK6kzRziZpXSBxxaJnn2dHd3iJlaXkx
-	J8hKJoZ4/yDVqo86L6f+T+IsWA==
-X-Received: by 2002:a05:600c:4f4a:b0:4bb:6752:8413 with SMTP id 5b1f17b1804b1-4bb8880015bmr286272305e9.8.1795456738947;
-        Mon, 23 Nov 2026 09:58:58 -0800 (PST)
-Received: from localhost ([2001:b07:5d26:7a6a:365a:60ff:fe0d:cfc6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb90655f5asm200592505e9.1.2026.11.23.09.58.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Nov 2026 09:58:57 -0800 (PST)
+	dkim=temperror header.d=ownmail.net header.i=@ownmail.net header.a=rsa-sha256 header.s=fm3 header.b=GUqi7D/+;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=GeCTSuUL
+Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
+	by mailfout.phl.internal (Postfix) with ESMTP id 0E6C1EC1FFB
+	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 15:49:01 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-01.internal (MEProxy); Mon, 23 Nov 2026 15:49:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ownmail.net; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:reply-to:subject:subject:to:to; s=fm3; t=
+	1795466941; x=1795553341; bh=o9zLSXJuEnjCYOHrQ29UaL5++JY+uZSugjv
+	H7QOgkgM=; b=GUqi7D/+zOLrqWSCzm+MYwrgGUjLKLl+XyO3sqEMlbWx7SCD96N
+	xOr7y+zBHvOJU64RURKgirlFowf3Nwr3aEDK51YyBQlTYsXZPHXQBIekNZKCnUv4
+	KsJ7waiQTqtIfKfIciO2t0+seQCxjIoBE/jzWA+bLsUFuvppgIe1oUUDuduARfs0
+	t3JPhbBc3ixP9z2lo3LiqRiZ6svS6iP3JqTZaE4IPjo6wwG/9Hk1S2y/EdvPD7i7
+	VeW9Ha3EU2WYxmJ3DxwIb2mHDAm2WO5nWwgvgUT3UiPRd1agj+ERpo+8YO9P8RIa
+	pHNuAA3m5BdklG2F+1juF+ysaWNVwkdTd2g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1795466941; x=
+	1795553341; bh=o9zLSXJuEnjCYOHrQ29UaL5++JY+uZSugjvH7QOgkgM=; b=G
+	eCTSuULw905Aod95KYVphrgcfjTxFP0oxax/QIzCt7Z08DmPbXq87xmjvsq87B1o
+	T7FpSf/jOkxbzNfI9K9UvX8+L+n3jzN0UFd38r6Kqug7Mikbl1O/2EmrG2SO3FI1
+	KHnotRnxKL/i6//1NMYSCNNAQD5Lw8zQIP5We+msQKoeN8HunYpxYa/NgEin0FBL
+	OrwyXhfhr1+ovrOEMzpq4EqB2X4zDBEfT7EuPoC4GZVcDg7QuNgDviNaNXLJmX39
+	10qq1kOBTAvLEMe0kGmTgufHnX1lPRueLiduAXke6LIBKcNxkA/MXcp84nvwDaqA
+	INQFdl5CmGnTdw0oHc84w==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=ownmail.net a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1795466941; d=ownmail.net;
+	mf=PG5laWxiQG93bm1haWwubmV0Pg==;
+	rt=PG50ZnNAbGlzdHMubGludXguZGV2Pg==;
+	s=fm3:rsa-sha256:C/NohBMGdk5QPx4SG8/qZDe6smNm6Goq8DL6M5M3XhJ3+io
+	BE/pPjv63VUvxDPp0K0y52fAZHYpN2RQXcGIgkFC/VDyrtTBSjDXag+G5kcLmOJX
+	armXDv1nqH/Wy/2UIJpqbEDH6N7Fv79I9hIiqeseE87eqLg0ELhFZktbsDJ/dZ30
+	UcUH1bqyLV8Mzc3iRhh8SgBLcJ4jSkb3gOqLEl/v9e/G9E4uMcBmiGiaixgPq0f7
+	6bAPmGi4OSV388ksxRyLRQEHz1qTU5lw1XaONhPr+VDpHhg9YAZvOwv4+vdlRaKM
+	qHDCuP7PJJz7fXOE2NZAYkR4q0bT5aR+Xzx0aOQ==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=13;
+	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
+	from,in-reply-to,message-id,mime-version,references,reply-to,
+	subject,to;
+Message-Instance: m=1; h=sha256:iRsZPrvVIwPX/h3pXgxfTnT/eDywSz9BnLpkefyq+Ow=:TQjb9nmWbWE1VynL6JHeebg3yoN+S4zxdXHZHN+WKgw=;
+X-ME-Sender: <xms:u6YEa7TXivWPuJUmQwTofE3_mOq1Vd-dGbfdKdCpR8XRf4mdVhKkOA>
+    <xme:u6YEa-FAq9luXdWY2R16GtwHX7z9lzSVvh-3xidwqcC_0YdC1p2FjR8MM26AohERW
+    8Y2RTcrRVy8N0Cfpe0u2k3jK-WQI80vUAOYxgi3mQC340Hcf-54>
+X-ME-Received: <xmr:u6YEa1fKzxLr8_1Q8wvmXU9XFcWRl1eA7ksz9FFvxFJ4ilMV2X37c48RFAVhVI5O2MjFjpePCFj_Mpy26V917zelIABh1kc>
+X-ME-Proxy-Cause: dmFkZTECMQJK4fdkHy0fWLPUcFTfrq9t91uSnuEGiUSnuJVoCkINLH+FzKpB2tSIh00Nhk
+    5BK9SRt/YA6/FrvyPQt1zAAzcR5cOsyqFz7nx9uu0f4KSe3wR0kPiRBN+OVBWFQfytz/nn
+    yyGl8KiMZ8B/aculVSmccW/8zngN0Q/vdl6AlkON9HCNZS3RB6++ZKfrcMUpGub8gwOvLm
+    AfxvFEkzIq6zthR7ARiUVw30kV7XdmJ780kxcA9EMVKyogzFKXYyTyYLNb86ZISYUb8d/z
+    rFvorNZzKKTgs8fkSA6/DEx90/h/JJKzOE5MWqhdr2fZujknKzF4prwngvHkH/gzMXhOjI
+    W2qJFidfdQhutil75qA7q28SL5utgHyPCYjGk3jbYPNIWOTW+lgKSOHM9PFUOVE4MR33Yb
+    yQOG+YP7xrsB3fg8W8oObe16vE6p/BlLe0wvL9GnHvZqPldBX7whsOfLYvg8K3vS3y7Ztv
+    vtLFOJ6eyHRKhRwQUJBelmJtRhZB0ya0x0/gCpihCgyIW69Pz9HM2foCdkHyEPxE8i33+l
+    gb6gKLN69B9x5kOtGKlbuEucLQnIluC26ckmgsXzWq+85qJTrQQHreucLfGmT62E6CMJmN
+    wfzX1snjy9o8lEEGvvcxDAvGTgc3an/ek3fbgvvdrM0gP8oQwfzLkuvh788w
+X-ME-Proxy: <xmx:u6YEa9v4MlfSFvBYUW3AaaxOuVN6K8LRsbr3wpg2UnQhGQakfgongQ>
+    <xmx:u6YEa7dUUoaxCTu3vhu-0mhfleuvvFLqCPMmBXEj7KynRAJsHDJseg>
+    <xmx:u6YEaxpDSw_mNUDwFA2fQi7eSu1e-qmUbgp2qhZsZ4P45ocBhlqw1A>
+    <xmx:u6YEa58xC17HGroqH_gvx4Lperpo4blG6Pv2gD5Od9dlgym1vNWEag>
+    <xmx:vaYEa5q6WPtMSV6UnT0CuFMsOg-aNwZnOEi6QNWbCtNynKKtn7P9IXVR>
+Feedback-ID: i9d664b8f:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 23 Nov 2026 15:48:54 -0500 (EST)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -86,207 +117,91 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=3dcf8e0a5e9edc0fcf06426a56395e3537d991acfb90470930d0b8ec71c6;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Mon, 23 Nov 2026 18:58:54 +0100
-Message-Id: <DN2SAKX1A29W.R1HHAXESXKS1@gmail.com>
-From: "koraynilay" <koray.fra@gmail.com>
-To: "Amir Goldstein" <amir73il@gmail.com>, "koraynilay"
- <koray.fra@gmail.com>
-Cc: "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul Lee"
- <hyc.lee@gmail.com>, "Alexander Viro" <viro@zeniv.linux.org.uk>, "Christian
- Brauner" <brauner@kernel.org>, "Chuck Lever" <cel@kernel.org>, "Jeff
- Layton" <jlayton@kernel.org>, "Jan Kara" <jack@suse.cz>, "Darrick J . Wong"
- <djwong@kernel.org>, "Andrey Albershteyn" <aalbersh@kernel.org>,
- =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>, "Lauri Gates"
- <lauri.gates@gmail.com>, "Christoph Hellwig" <hch@infradead.org>, "Dave
- Chinner" <dgc@kernel.org>, <linux-btrfs@vger.kernel.org>,
- <linux-xfs@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-fsdevel@vger.kernel.org>, <ntfs@lists.linux.dev>,
- <linux-nfs@vger.kernel.org>, <linux-api@vger.kernel.org>
-Subject: Re: [PATCH 0/3] Add f*_xflags_{rw,ro}_mask flags to the fileattr
- API
-X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
-References: <20261122000856.536902-1-koray.fra@gmail.com>
- <CAOQ4uxgf2KE=Ag13EPAu5=KnrFwt7zRH=im-qmLc8+i10Tjd+Q@mail.gmail.com>
- <DN2NFOEO4XGN.1PEF1SWOF7YCQ@gmail.com>
- <CAOQ4uxirKKi=uwyiFWev_5h-LBTLjHgw-FHJ9T2X+JUNSEpf=w@mail.gmail.com>
-In-Reply-To: <CAOQ4uxirKKi=uwyiFWev_5h-LBTLjHgw-FHJ9T2X+JUNSEpf=w@mail.gmail.com>
+MIME-Version: 1.0
+From: NeilBrown <neilb@ownmail.net>
+To: "Christian Brauner" <brauner@kernel.org>
+Cc: "Alexander Viro" <viro@zeniv.linux.org.uk>,
+ "Jan Harkes" <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu,
+ "Jan Kara" <jack@suse.cz>, "Richard Weinberger" <richard@nod.at>,
+ "Anton Ivanov" <anton.ivanov@cambridgegreys.com>,
+ "Johannes Berg" <johannes@sipsolutions.net>,
+ "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul Lee" <hyc.lee@gmail.com>,
+ "Carlos Maiolino" <cem@kernel.org>, "Jeff Layton" <jlayton@kernel.org>,
+ "Amir Goldstein" <amir73il@gmail.com>, linux-kernel@vger.kernel.org,
+ codalist@coda.cs.cmu.edu, linux-fsdevel@vger.kernel.org,
+ linux-um@lists.infradead.org, ntfs@lists.linux.dev, linux-xfs@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] VFS/xfs/ntfs: drop parent lock across
+ d_alloc_parallel() in d_add_ci()
+In-reply-to: <20261120-veranda-tiger-seemeilen-397d57fb2258@brauner>
+References: <20261117000115.1433875-1-neilb@ownmail.net>
+  <20261117000115.1433875-2-neilb@ownmail.net>
+  <20261120-veranda-tiger-seemeilen-397d57fb2258@brauner>
+Date: Tue, 24 Nov 2026 07:48:49 +1100
+Message-id: <179546692990.1728055.10797595669821351188@noble.neil.brown.name>
+Reply-To: NeilBrown <neil@brown.name>
 
---3dcf8e0a5e9edc0fcf06426a56395e3537d991acfb90470930d0b8ec71c6
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Sat, 21 Nov 2026, Christian Brauner wrote:
+> On Tue, Nov 17, 2026 at 10:54:58AM +1100, NeilBrown wrote:
+> > We don't need to keep the parent lock held when d_add_ci() is run - the
+> > VFS doesn't need it as dentry is exclusively held due to
+> > DCACHE_PAR_LOOKUP and the filesystem has finished its work.
+> 
+> I'm not sure that holds? Only d_alloc_parallel() honours
+> DCACHE_PAR_LOOKUP. lookup_one_qstr_excl() still uses d_alloc() and
+> relies on the exclusive lock to guarantee that there are no in-lookup
+> children at all. That stops being true here:
+> 
+> > +		if (lookup_flags & LOOKUP_SHARED)
+> > +			inode_unlock_shared(d_inode(dentry->d_parent));
+> > +		else
+> > +			inode_unlock(d_inode(dentry->d_parent));
+> > +		must_relock = true;
+> >  		found = d_alloc_parallel(dentry->d_parent, name);
+> 
+> So if "Foo" exists on an ascii-ci xfs:
+> 
+> P1: stat("FOO")                      P2: unlink("Foo")
+> lookup_slow()
+> -> xfs_vn_ci_lookup()
+>    -> d_add_ci(dentry, X, "Foo")
+>       -> inode_unlock_shared(dir)
+>       -> found = d_alloc_parallel()
+>                                      start_dirop()
+>                                      -> inode_lock_nested(dir)
+>                                      -> lookup_one_qstr_excl("Foo")
+>                                         -> d2 = d_alloc()
+>                                         -> xfs_vn_ci_lookup()
+>                                            -> d_splice_alias(X, d2)
+>                                      vfs_unlink()
+>                                      -> xfs_vn_unlink()
+>                                         -> d_invalidate(d2)
+>                                      inode_unlock(dir)
+>       -> d_splice_alias(X, found)
+> 
+> IOW, "Foo" ends up as a hashed positive dentry for an unlinked inode
+> that nothing revalidates.
+> 
+> open("Foo", O_CREAT) then opens the orphan instead of creating a new
+> file and O_EXCL fails with EEXIST. Do a rename() instead of the unlink()
+> and "Foo" keeps pointing to what is now "Bar". ntfs gets there the same
+> way.
+> 
+> Before this patch lookup_slow() held the lock shared across all of
+> that so start_dirop() couldn't get in between.
+> 
+> So afaict this needs "VFS: use d_alloc_parallel() in
+> lookup_one_qstr_excl()" from your RFC to go in first. Unless I'm
+> missing something obvious.
+> 
 
-On Mon Nov 23, 2026 at 4:42 PM CET, Amir Goldstein wrote:
-> On Mon, Nov 23, 2026 at 3:10=E2=80=AFPM koraynilay <koray.fra@gmail.com> =
-wrote:
->>
->> On Mon Nov 23, 2026 at 2:35 PM CET, Amir Goldstein wrote:
->> > On Sun, Nov 22, 2026 at 1:09=E2=80=AFAM koraynilay <koray.fra@gmail.co=
-m> wrote:
->> >>
->> >> This is a follow up patch series stemmed from [1] and [2], splitting =
-the
->> >> _mask change for the fileattr API into its own separate patch.
->> >>
->> >> The first patch is a preparatory patch so that the code in the patch
->> >> after can be formatted better.
->> >>
->> >> The second patch is the actual implementation, which introduces:
->> >> - fa_xflags_{rw,ro}_mask fields to struct file_attr
->> >> - fsx_xflags_{rw,ro}_mask fields and has_masks selector to struct fil=
-e_kattr
->> >>
->> >> These masks have the following semantics:
->> >> - rw_mask:
->> >>   * for filesystems: advertise which xflags they support changing
->> >>   * for userspace: specify which xflags it wants to modify
->> >> - ro_mask:
->> >>   * for filesystems: advertise which xflags they support only reading
->> >>   * for userspace: ignored
->> >
->> > Nice!
->> > I think this API description is very clear and coherent
->>
->> Nice.
->>
->> >
->> >>
->> >> (ro_mask for userspace was also proposed as a "verification mask"[3] =
-but
->> >> I left out that semantic to keep this patch series more contained, an=
-d
->> >> can be added later if needed.)
->> >
->> > Not so easily added later.
->> > We cannot change the meaning from ignore to verify without any opt-in
->> > later, but we could use the combination of
->> > rw_mask |=3D X
->> > ro_mask |=3D X
->> >
->> > to "verify" (set it as long as it is already set)
->>
->> Isn't this just "preserving"?
->>
->
-> I donno I am confused let's keep this side discussion for another time.
+Yes, I see that now - thanks.
+And that means we don't need LOOKUP_SHARED at all.
 
-I agree lmao.
-
->> > all we need to do now is make sure that the API returns -EINVAL
->> > for rw_mask & ro_mask on set.
->>
->> Yes, the current (v2) code does
->>
->> if (fa->has_masks && (rw_user_mask & ~old_ma->fsx_xflags_rw_mask))
->>         return -EOPNOTSUPP;
->>
->
-> This is not the check I was talking about
-> Use should not pass via the new API a flag on both ro_mask and rw_mask
-> This one is definitely EINVAL and not EOPNOTSUPP.
-> It is a basic contradiction of the API definition
-
-Hmm, IMO ro_mask on set should just be ignored, so userspace can do a
-get, change rw_mask and then do a set without having to zero out
-ro_mask.
-
-> it is not a specific flag that can be supported on this fs and not on the=
- other.
->
->> at the start of set_prepare(), I think that is enough, since we assume
->> the filesystems return the masks such that rw_mask & ro_mask =3D=3D 0.
->>
->
-> It needs to be in the vfs before calling the filesystem at all.
-> It is a UAPI definition.
->
->> >>
->> >> This allows userspace to not have to do a RMW cycle when using the
->> >> file_[gs]etattr() syscalls, avoiding possible race conditions and
->> >> simplifying their usage.
->> >>
->> >> Patch 2/3 also introduces the missing FS_XFLAG_PROJID flag so that
->> >> programs like chattr can leverage the new mask API.
->> >> FS_XFLAG_PROJID is kept out of the legacy FS_XFLAG_MASK and so it's
->> >> defined as part of a new FS_FILE_ATTR_XFLAGS_MASK group of xflags tha=
-t
->> >> will be used moving forward for any new xflag (like the one proposed =
-in [2]).
->> >>
->> >> Patch 3/3 converts fs/ntfs to this new API, to show how it can benefi=
-t
->> >> filesystem drivers too.
->> >>
->> >> The series has been tested across NTFS, ext4 (with project quotas), X=
-FS
->> >> (project quotas and extent size hints), and Btrfs.
->> >>
->> >
->> > Judging from the number of bugs reported by Sashiko and by my agent
->> > on the COMMON flags change,
->> > I think this needs test coverage for the old APIs, especially with old=
- binaries
->> > chattt/xfs_io that do the get/set cycle and re-built binaries with new=
- headers
->> > both tested against old and new kernel.
->> > Sorry, but the UAPI issues are fragile...
->>
->> Yeah, I thought about adding some tests to xfstests yesteday after I
->> made my agent test the sashiko issues in my test vm, but I don't want to
->> make it generate them and submit them with minimal oversight.
->>
->> It could still be worth to make it generate them to just test locally,
->> then clean them up and submit them after the vfs design/code is
->> finalized.
->>
->
-> I think that selftest will be easier to check these backward compact
-> issues with a C program that can use its own re-definitions of the struct=
-.
-> Then you can post it as part of the series which is much preferred for
-> visibility of the test coverage in the context of review.
-
-Ah right, I could copy src/file_attr.c from xfstests and modify that,
-since it defines the structs and XFLAGS in the .c itself.
-
->> > This is one of the changes that would have been very hard to audit wit=
-hout
->> > the LLM agents. Hopefully with the agents it is doable, but need to gu=
-ide
->> > them how to review/test for regressions.
->>
->> Yeah, the amount of edge cases it catches in my code is very high, I
->> manually wrote the main vfs code in this patch series, but I took at
->> least the same amount of time to fix *some* (considering the amount
->> sashiko still reported anyway) of the bugs the robot pointed out.
->>
->
-> My 2c: prompt the robot how can I make this easier for human reviewers
-> to verify - keeps it away from being too creative.
-
-I usually just ask it why it changed "all that code" and it's usually
-enough, if I can't review it manually it's probably not that correct.
+The AFS patches also drop and retake the lock, so they need to be after
+d_alloc_parallel() is used in lookup_one_qstr_excl(), and also after the
+d_drop() changes.  So I think I should combine the AFS patch set with
+this one.  I'll try that and check that it still makes sense.
 
 Thanks,
-koraynilay
+NeilBrown
 
-> Thanks,
-> Amir.
-
-
-
---3dcf8e0a5e9edc0fcf06426a56395e3537d991acfb90470930d0b8ec71c6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSgVimKafU5DQMcjcDmj22qf5IGXAUCawR+3gAKCRDmj22qf5IG
-XP+1AP43BRF64QEMtEZ533xQB/KRczImKn5mbaKWll5fbt6qZAD+OrjJY0OBmpMe
-mmkvC62iSdxE0n0dXcWsl70+M0KBlw4=
-=xoVq
------END PGP SIGNATURE-----
-
---3dcf8e0a5e9edc0fcf06426a56395e3537d991acfb90470930d0b8ec71c6--
