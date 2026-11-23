@@ -1,100 +1,83 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=pass header.oldest-pass=0 smtp.remote-ip=209.85.208.43
-ARC-Seal: i=2; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=pass;
-	t=1795474038;
-	b=IazkNLIcs+TPw0dkyrLc2SBtyvbAhnhZzsG2Nyvpb3SsUSkc5F+bKavUDh5b9JEuJTet
-	 Vj3kFAKgTtEUwLYhEKUtOU4+fWxgY5i4l58YbqLL2i+ypi8jmrENHtYrz8ZLpJQTM91v6
-	 fDVqGXZRobcXXSXLQdffS9m+lzrsf9HbvC+jp8KMKPaelbtjaDFfnOtswkyb+j99OVx+b
-	 Urf8t8i1jfX3GaMjaoEjmQWsjOJzZaDrHbbaMp4Rd75qKyjr3oppfUsztrk633ZieUIKG
-	 wUgFfuh+6e1A8iWL7jwjqVKMfetoeWzLgd2scpcVig8yeQHu1COfOGv9XA6uLB+g0Aw==
-ARC-Message-Signature: i=2; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795474038;
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.43
+ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
+	t=1795474624;
+	b=T5JkwR1bVd7vPc5OZaE+oGM6lPtitcAKCXJ1twCUt/SFpqJ4w0wtybyZ1x26TjxOmKPD
+	 ysV8JiVgH77/LoyUFQ5hSOPthf9jekGFNWL4VYy1OsF6eH5DgM/iPHfiGKjFVcAtxXjBl
+	 zx3Xx8fgOs2mkLiXjDYAh7Z85zGqdc7AAgHjwhOH7YIU92uKugdh6PI2YmL//T6jBADRQ
+	 y07GHwTuYQeXsh7v5PbRGiQmlso6MdTmX2xHLZA140wYJOph3/KcNhXd/PBsvEQzb4n4T
+	 mNR3uaIbcqq+7/n2lmoUvsxvgFwUXKu/m2chpv8vVvzgmKdGF1yB07C5F4MrDWR5VsQ==
+ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795474624;
 	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:
-	 MIME-Version:References:In-Reply-To:From:Date:X-Gm-Features:
-	 Message-ID:Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=prDmnot/bOxVS2gCc8v9HfYcjzpcvwnB8HRgvfXYsr0=;
-	b=WNjkQ1U7s5d97Q1sy6vkxYT8CmjMVHRdz4CbYP1ZwVEf/Br9gg6AqXdNI5aDmh7hBmQn
-	 WlTD9i+s+uEnKqU4PDaZvAbNyOQhRXOZDbYeHVdhbvHV1ar3tnmzwfckKXTlHggBGkZPd
-	 I3/exr/Kead2+ymP3V55y3z0XrYo3W7TvC9+Q44qvdG7pdWOUw6xT66uiD03untQ3ph/2
-	 wfHe3g4J9oo3EBQw5zjxXWv3bovaFGBea1HEQIoyeV6TDLRhGE4R3+9D0YwrhblXCKEB3
-	 sr9rCcyTNl38Aw8ddS4NHcrgWao5CVSqj9MqB7GdwboKwe6sHisVE/16VEvxoBjEZFA==
-ARC-Authentication-Results: i=2; smtp.subspace.kernel.org; 
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
+	 Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:X-Mailer:
+	 References:In-Reply-To;
+	bh=sPZNFd5TfGrxBwoDp6YQ8+YhzR/t7dsRFdx4A9ccfqM=;
+	b=bpHlGKj9lcO1Ne2WlFVyCaS3q3Sbmy/PfOKqJ1Y8WPILfZx3p8bpSaC+i2wRCeP049vu
+	 tq4fBKjYk8+LhEZHkAYRlT84M4l2oEuRdGpVK87ld8AmUkH0jSjmhST0/hDJrUyQiN9xj
+	 2xkV3TcQNVatssD4JWydlf5yt+unhptqxwnoQob9Y4UFCo/mrrfFiAvg5meO5tS2ad/8W
+	 p4ondAuoxxHdrklSFlvS5JN+egAhrCfuSQamWapgVP5RSv43MD/++16b5gdROn6IFkF7B
+	 MFyXdGhYv8XkhlmgHn8jOuHFveHgys14PkMmFO6rV0cCmdXxJ6P+h5Ysd2A5+XXEw+A==
+ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=gmail.com;
 	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jzzs5d5a;
-	arc=pass header.oldest-pass=0 smtp.remote-ip=209.85.208.43
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=eQ2zqsFb;
+	arc=none smtp.remote-ip=209.85.128.43
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B61606A327
-	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 22:47:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org F3B61606A327
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70283606A327
+	for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 22:57:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 70283606A327
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jzzs5d5a
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6b8627e0eb2so5036447a12.2
-        for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 14:47:17 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795474036; cv=none;
-        d=google.com; s=arc-20260327;
-        b=fFgtIOUEpPoShpWhJP8QqhH3Z79k+fnlTM4B2W+egi4yLiBhZY5Gb8VXBKmqK5Jq0U
-         6DzG+rVsXb5qsqJMy6PWceXAryyQyrIebDtMkJBhLRWSJnFBOL2aqSYkEuEQ+0BkKAm9
-         wtIRq6c3kSLyzc7GWh1gqEaVGCpMlGnNE5lI3V1z1ZgmYu+oOheRrR6lwNNpy5qgqlb4
-         PzWW0Wj3Xdg9uPxV+ZGVlFRxO2O4NcbHRWGWTUioh42XKlyjQ4iTDehkRp+tc8ZUMl8S
-         g/wXskplSqjxJ0GoVxIDTYFNVKLGjUd835oMSgfOyfpI0daGR6TDYjv/U8BNMSH7cuVU
-         k1zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=prDmnot/bOxVS2gCc8v9HfYcjzpcvwnB8HRgvfXYsr0=;
-        fh=NzLoASXf8nCl7CwAIDJsvfMsiJcorx60dwkXnFoSqoo=;
-        b=iNbYtRJFbPdyS0aif/RHNI50QzZA1jBtMNjgveTWY5Gv/oovE0BXXxfNHsd8ANv4tV
-         ewtdg/wgkedzbvUnq4PQW0QdRCH0UtGHyXanhLdjOjFVZ5sJwZGigBj9V0NLE/ityWvG
-         y6KZeoI2qzoR/XoFeOGk7FZCi/dzpt8QwH7c/9Xv6NxI/jpGre/QGpNXNUIGeNoSUnIT
-         STY6aNJlxUV0+e8/tx2plvPX4RAw++LBKnE5xFdu7ZeVYvakVRBODCa6PzSURXD37TW/
-         rVoErneD9s/OkW9xlccyyflI/8PsBTxInsWupKQcBXNtnVQnPri3XDwEqoOQDLo5A5Yb
-         lfew==;
-        darn=lists.linux.dev
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=eQ2zqsFb
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4bb70074ab2so40897195e9.0
+        for <ntfs@lists.linux.dev>; Mon, 23 Nov 2026 14:57:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795474036; x=1796078836; darn=lists.linux.dev;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=prDmnot/bOxVS2gCc8v9HfYcjzpcvwnB8HRgvfXYsr0=;
-        b=jzzs5d5aPYyYXmNIVNR+vQcr2/8PImOhp/kjeZpQDig0y7E2/wd2VpfV+bMZYxJa3q
-         8pgOZlcD62oGXMSF7JMCDY+1gReOkOzZJ4OwUqqFXzeryqvyEa86o7DGpsWIvUiuhB+F
-         y9T/r6Dag3NeyToK292VlbIVg/+Vx6YOFuYFllhgvUBDV6BRp7GmxYMsa04rIYlyKA1z
-         u48dv1T+qec0Ns8G2nT+30cRPd35Ekohq/8FfwJDsiSEZPV10BbRfn+/N2hfwuS6FDIL
-         d65K1Mo4bTylrO7kZc2S8UQFIeHL4dSpaNWnLOLYqHM+huH5RdLCIUnJ/j1ES/zndPfQ
-         0Y/w==
+        d=gmail.com; s=20260707; t=1795474622; x=1796079422; darn=lists.linux.dev;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-type:mime-version:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=sPZNFd5TfGrxBwoDp6YQ8+YhzR/t7dsRFdx4A9ccfqM=;
+        b=eQ2zqsFbs/xxog/gtQj0/EzrOY5/w3Jg6fweT9/FeEEAgresJSoG9t7IVSO+tgi9g4
+         3x/WmyrHYMDtob+FLMFRLSsnYZXeJjzVmxA6XHNLyN1eP2lgwMy+/S225e/KzP00Io2m
+         uj+dPaJY4Xvx2I2Y9iencOP7JScDtI7tydj4fMHqj+6dhCW8tUe6+ezAPxBQwZwy+uZV
+         abzwjUChNVrlCcOIab0YKhAzUxTfFY3d23Mg+Ad9JQuL84Db++OFK+0sD4+fYqI+Bv81
+         aTOYlBHPlr/wJDJMwR2eNkWKGoxRHnIEnNYFvaf6zrgkIkLlIYOUWHl0RHAHQ1yJsYQa
+         c28Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795474036; x=1796078836;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=prDmnot/bOxVS2gCc8v9HfYcjzpcvwnB8HRgvfXYsr0=;
-        b=NHVRts4tEnxDulAq9Zy9bOHV8WwM5t3htiANr89G7tl8LfnTl3FuFc8lihSZE7ib13
-         bwn/KNV+NvFi1WFPoZwOPd+2L1XFv8x6uAwBExdmwwqtRjppyMyTX3+9i+umksePtyrs
-         HIEddz/5a4OgXUBwz81QmKEzinIDtQ0N65j4io6+89GvW1qEW52ZH/AZ9x+hd5hPim6y
-         Q06Ap3iVgF2eBrovq2E5PWmXZMXHE+BD07MBZXQEXg+BFtVflI6EMgXHD1FBQtuD2XEA
-         8QthwYoUMy7ldw+1cxtRzYeJmgEs5406ro+e8YvPvWrk8VD6ClBWiJ6oYBBiO2h19A0G
-         ng1w==
-X-Forwarded-Encrypted: i=1; AL+hErEcIKU1H49IiEOPwnt2gJMGxLASi4smwbotknzZM8Qfa0BieIGaqQa4/D7z/QcXCP6aIWXJ@lists.linux.dev
-X-Gm-Message-State: APuU4Z+Vv5oA2K3yk72dmpKlzKpzWfq6mWzCD9obdrxy0S2EzaQCB2th
-	Kv+G7Ftc7+pIGZV/wG5sbxV4nswfRyL8JGwaDwJqJE27MP9ngRS38EgEQJDDzvu3kVwHd638Ws4
-	5v2urEggeJWS7PzzElcYlg/XbQNGDmFI=
-X-Gm-Gg: AZFdTZcB2q4mPZuaCnPOBbKaUH5Lt4w95nDBSwNce6NcFOlTGlSvZ7Xo1ATGNiypfFt
-	18e6RxjbizZwuYY0Yh8+CbQ1EV8xumRZ5VzvOB4SiNCmrWT56dB4drkQy3ONEbuhfz0d5y0b0B0
-	OFbv9zCkYcH4vLEdc45Bb51p2G0y1IS4F6KMrrlG3hkVOWDB6voawN3E0+ghu+YWkDkoctPQ0IC
-	bVH7yFy019jtE2yQ0vJvRubhHkNnO7rEKKVYf+74LfGenF+YXh7ZLNnN+7QK4KcbGbqOTL3Y80K
-	bm2ohW9z4EQAjgeSkGR2L6t6aFzjzRhPdjF/BYIq9X1ef/t3nvUFOYaBG5c5B9ews00NRvVfV1Z
-	kM7ojA9YQ10mHfLF/fYnzjBNHsODSOT8Kwzg9mFNdvdsL2YT+MIWtGc+Z5714SZm27XBElA==
-X-Received: by 2002:aa7:c710:0:b0:6b8:e848:d004 with SMTP id
- 4fb4d7f45d1cf-6ba37e8dec5mr6855932a12.29.1795474036043; Mon, 23 Nov 2026
- 14:47:16 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795474622; x=1796079422;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-type:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=sPZNFd5TfGrxBwoDp6YQ8+YhzR/t7dsRFdx4A9ccfqM=;
+        b=oZPkktp3MlwyKLRd2xVLS6DdcdKHv/EL+lljdWPVeMiLoz2hr0TNAhTZ+IGnlc24jl
+         +jEG63327fpf6AqesNCLU2SkUAOEkeyBpitVJXguFunD1+jasrPUbD+AyNIukUfqe9sI
+         0sox9ZseumcK8D9azLOSPVrKn2ydhACYnJ0vvKWBqqJysUCWTrp68KEvuyEYecbSJjog
+         wiEdBNFHHa6zO5TU1DY9CSvROR4jFDh2HAud51bXMmWPKpy8TKEiCXYrqwvZc45uA5O8
+         8/JcUklhlogQ2+uiBGoEm6XWK2Dr52DlMgYfo6kAgnGJ7qgo69/0GvFqB/PCdO9P2i8t
+         drIA==
+X-Forwarded-Encrypted: i=1; AL+hErE7KOABC6a4fYK1AQxTnXLCkp0jIo2MVPlBeVwwCFNB1SfKmTq+sGdbAagLidSNX1qm8czw@lists.linux.dev
+X-Gm-Message-State: APuU4Z/rsvQI2hzwaTqzATCnsxgPr85QAmpFW+po6pa6dGotao6v+kpy
+	fPROvpHyhfxdpWo6ihJts3KalxPVJffBNl5YIgnGXzVxbRyVZCA/St3v
+X-Gm-Gg: AZFdTZd6lgP8aB/OectUufYNAu37o6pbt+SDwK5gWnzrh2l89hmwBkiiXwGcozJQZNx
+	yft7GwkmXf/alN8L7jXU3G8IFtd8UL3PvXZUw8NOmmybNp3C8GutyF3I3vQQnj/eIW9gmx1Up/a
+	C2FsuokkTpfrOIDObu+wUdw/FPNfwuwTiTHt8Mb+5g/tl+9/2OTiJJAvCSKw9fhzoiriCunN2lJ
+	3WQ7fHETyfQnNP+Tf++N4uhgWyk2m4CEFuMLjfBDrYZBf3uSTixT8wuzIkrKQVbz6HIPW83xWAL
+	Yhs8YYJ28nQTdJuLusyv5qVXZATM3WCk1C1ClDzvNS7QDAf2p/aWIpHCrJqEvKT0uGtanp2PE8X
+	9GpcOVAi9WiHLXPbya1KaD3RcqjvLwjuLG6fRr79uKtYTBXTtYbs11YkrmKlkqiODA+eZxnBMZR
+	pdnS3QdSmpK81NDKgqt9uBxxOQvE+cN/D6qZO+jjUOX9vsChzVzs9RqeI/uQpxp/B6m2FQpzm3p
+	yuvZ54eGV0WNZbXqCY2lXiG3XolsLvVkYg0EFZEikqJ4hKlPFYCHwsY2ZILgx18lG3sxHQakGPF
+	za5EUj7L1qTXXhUAPz4W8NeSmA==
+X-Received: by 2002:a05:600c:1548:b0:4bb:7347:d5df with SMTP id 5b1f17b1804b1-4bb88814405mr279680765e9.13.1795474622192;
+        Mon, 23 Nov 2026 14:57:02 -0800 (PST)
+Received: from localhost ([2001:b07:5d26:7a6a:365a:60ff:fe0d:cfc6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884865a2sm387664415e9.3.2026.11.23.14.57.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Nov 2026 14:57:01 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -103,85 +86,133 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-MIME-Version: 1.0
-References: <20261122000856.536902-1-koray.fra@gmail.com> <CAOQ4uxgf2KE=Ag13EPAu5=KnrFwt7zRH=im-qmLc8+i10Tjd+Q@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=087e7b3569ab5fea48a039af92ae6dae8d0b4b3bd53fcaa587687d1ee3aa;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Mon, 23 Nov 2026 23:56:59 +0100
+Message-Id: <DN2YMTH77KWE.3IPE9OG8377X0@gmail.com>
+Cc: "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul Lee"
+ <hyc.lee@gmail.com>, "Alexander Viro" <viro@zeniv.linux.org.uk>, "Christian
+ Brauner" <brauner@kernel.org>, "Chuck Lever" <cel@kernel.org>, "Jeff
+ Layton" <jlayton@kernel.org>, "Jan Kara" <jack@suse.cz>, "Darrick J . Wong"
+ <djwong@kernel.org>, "Andrey Albershteyn" <aalbersh@kernel.org>,
+ =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>, "Lauri Gates"
+ <lauri.gates@gmail.com>, "Christoph Hellwig" <hch@infradead.org>, "Dave
+ Chinner" <dgc@kernel.org>, <linux-btrfs@vger.kernel.org>,
+ <linux-xfs@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-fsdevel@vger.kernel.org>, <ntfs@lists.linux.dev>,
+ <linux-nfs@vger.kernel.org>, <linux-api@vger.kernel.org>
+Subject: Re: [PATCH 0/3] Add f*_xflags_{rw,ro}_mask flags to the fileattr
+ API
+From: "koraynilay" <koray.fra@gmail.com>
+To: "Amir Goldstein" <amir73il@gmail.com>, "koraynilay"
+ <koray.fra@gmail.com>
+X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
+References: <20261122000856.536902-1-koray.fra@gmail.com>
+ <CAOQ4uxgf2KE=Ag13EPAu5=KnrFwt7zRH=im-qmLc8+i10Tjd+Q@mail.gmail.com>
  <DN2X3RC5JUFQ.2LNGLQOUX4ZPF@gmail.com>
-In-Reply-To: <DN2X3RC5JUFQ.2LNGLQOUX4ZPF@gmail.com>
-From: Amir Goldstein <amir73il@gmail.com>
-Date: Mon, 23 Nov 2026 23:47:04 +0100
-X-Gm-Features: Aa3M54pZr_aGN97hdgjJEJclpmHDWTbmXWMujrk4s8rCr1BMot2r_DEgpbuT4T0
-Message-ID: <CAOQ4uxhsv_1EEqAZ3Ebp5Uy8Q6nvEnE3EAomJjjQO86nTcW0cg@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Add f*_xflags_{rw,ro}_mask flags to the fileattr API
-To: koraynilay <koray.fra@gmail.com>
-Cc: Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>, 
-	Alexander Viro <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, 
-	Chuck Lever <cel@kernel.org>, Jeff Layton <jlayton@kernel.org>, Jan Kara <jack@suse.cz>, 
-	"Darrick J . Wong" <djwong@kernel.org>, Andrey Albershteyn <aalbersh@kernel.org>, =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>, 
-	Lauri Gates <lauri.gates@gmail.com>, Christoph Hellwig <hch@infradead.org>, Dave Chinner <dgc@kernel.org>, 
-	linux-btrfs@vger.kernel.org, linux-xfs@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
-	ntfs@lists.linux.dev, linux-nfs@vger.kernel.org, linux-api@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+ <CAOQ4uxhsv_1EEqAZ3Ebp5Uy8Q6nvEnE3EAomJjjQO86nTcW0cg@mail.gmail.com>
+In-Reply-To: <CAOQ4uxhsv_1EEqAZ3Ebp5Uy8Q6nvEnE3EAomJjjQO86nTcW0cg@mail.gmail.com>
+
+--087e7b3569ab5fea48a039af92ae6dae8d0b4b3bd53fcaa587687d1ee3aa
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On Mon, Nov 23, 2026 at 10:45=E2=80=AFPM koraynilay <koray.fra@gmail.com> w=
-rote:
+On Mon Nov 23, 2026 at 11:47 PM CET, Amir Goldstein wrote:
+> On Mon, Nov 23, 2026 at 10:45=E2=80=AFPM koraynilay <koray.fra@gmail.com>=
+ wrote:
+>>
+>> On Mon Nov 23, 2026 at 2:35 PM CET, Amir Goldstein wrote:
+>> > On Sun, Nov 22, 2026 at 1:09=E2=80=AFAM koraynilay <koray.fra@gmail.co=
+m> wrote:
+>> >>
+>> >> This is a follow up patch series stemmed from [1] and [2], splitting =
+the
+>> >> _mask change for the fileattr API into its own separate patch.
+>> >>
+>> >> The first patch is a preparatory patch so that the code in the patch
+>> >> after can be formatted better.
+>> >>
+>> >> The second patch is the actual implementation, which introduces:
+>> >> - fa_xflags_{rw,ro}_mask fields to struct file_attr
+>> >> - fsx_xflags_{rw,ro}_mask fields and has_masks selector to struct fil=
+e_kattr
+>> >>
+>> >> These masks have the following semantics:
+>> >> - rw_mask:
+>> >>   * for filesystems: advertise which xflags they support changing
+>> >>   * for userspace: specify which xflags it wants to modify
+>> >> - ro_mask:
+>> >>   * for filesystems: advertise which xflags they support only reading
+>> >>   * for userspace: ignored
+>> >
+>> > Nice!
+>> > I think this API description is very clear and coherent
+>>
+>> By the way, should I use this description in the commit message (and
 >
-> On Mon Nov 23, 2026 at 2:35 PM CET, Amir Goldstein wrote:
-> > On Sun, Nov 22, 2026 at 1:09=E2=80=AFAM koraynilay <koray.fra@gmail.com=
-> wrote:
-> >>
-> >> This is a follow up patch series stemmed from [1] and [2], splitting t=
-he
-> >> _mask change for the fileattr API into its own separate patch.
-> >>
-> >> The first patch is a preparatory patch so that the code in the patch
-> >> after can be formatted better.
-> >>
-> >> The second patch is the actual implementation, which introduces:
-> >> - fa_xflags_{rw,ro}_mask fields to struct file_attr
-> >> - fsx_xflags_{rw,ro}_mask fields and has_masks selector to struct file=
-_kattr
-> >>
-> >> These masks have the following semantics:
-> >> - rw_mask:
-> >>   * for filesystems: advertise which xflags they support changing
-> >>   * for userspace: specify which xflags it wants to modify
-> >> - ro_mask:
-> >>   * for filesystems: advertise which xflags they support only reading
-> >>   * for userspace: ignored
-> >
-> > Nice!
-> > I think this API description is very clear and coherent
+> You could use that as a short TLDR intro
+
+Hmm, then would it be better keep only this for the commit message
+
+>> integrate it with missing information before/after the bullet points),
+>> or should I keep the current one?
+>>
+>> (current one:)
+>> > This lets filesystems advertise their support for specific xflags, lik=
+e
+>> > statx.stx_attributes_mask does, and userspace can specify only which
+>> > xflags it wants to change without needing a RMW cycle:
+>> > - on GET: each filesystem that wants to support this new API fills the
+>> >   masks according to its supported and read-only xflags, then:
+>> >   * for boolean xflags: it fills fsx_xflags with the current on-disk v=
+alue
+>> >   * for value xflags: it sets the xflag bit to 1 in fsx_xflags and the
+>> >     xflag value in the struct field;
+>> > - on SET: userspace fills the rw_mask with the bits of the xflags it
+>> >   wants to change, then:
+>> >   * for boolean xflags: it provides the xflag value as a bit in fa_xfl=
+ags
+>> >   * for value xflags: it sets the xflag bit to 1 in fa_xflags and then
+>> >     provides the value in the struct field; if the xflag bit is set to=
+ 0
+>> >     instead, this informs the kernel to unset/clear that value.
 >
-> By the way, should I use this description in the commit message (and
+> You can keep it also but tbh UAPI documentation is more useful in
+> comments and in Documentation than in commit messages.
 
-You could use that as a short TLDR intro
+and add a documentation patch that uses this (maybe expanded/clearer
+since it would be user-facing docs)?
 
-> integrate it with missing information before/after the bullet points),
-> or should I keep the current one?
+> You and I have parts of the design in our heads w.r.t backward
+> compat with legacy API, both UAPI and vfs internal api.
 >
-> (current one:)
-> > This lets filesystems advertise their support for specific xflags, like
-> > statx.stx_attributes_mask does, and userspace can specify only which
-> > xflags it wants to change without needing a RMW cycle:
-> > - on GET: each filesystem that wants to support this new API fills the
-> >   masks according to its supported and read-only xflags, then:
-> >   * for boolean xflags: it fills fsx_xflags with the current on-disk va=
-lue
-> >   * for value xflags: it sets the xflag bit to 1 in fsx_xflags and the
-> >     xflag value in the struct field;
-> > - on SET: userspace fills the rw_mask with the bits of the xflags it
-> >   wants to change, then:
-> >   * for boolean xflags: it provides the xflag value as a bit in fa_xfla=
-gs
-> >   * for value xflags: it sets the xflag bit to 1 in fa_xflags and then
-> >     provides the value in the struct field; if the xflag bit is set to =
-0
-> >     instead, this informs the kernel to unset/clear that value.
+> I think you should put it in writing to see that you and I have
+> not left anything out because this v1 surely does get it wrong
+> in several places both wrt legacy UAPI breakage and internal
+> API correctness.
 
-You can keep it also but tbh UAPI documentation is more useful in
-comments and in Documentation than in commit messages.
+It would also be useful for this actually, so I'll draft it tomorrow
+and then send it as part of the patch series.
 
 Thanks,
-Amir.
+koraynilay
+
+> Thanks,
+> Amir.
+
+
+
+--087e7b3569ab5fea48a039af92ae6dae8d0b4b3bd53fcaa587687d1ee3aa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSgVimKafU5DQMcjcDmj22qf5IGXAUCawTEuwAKCRDmj22qf5IG
+XJSLAQDMKqaaLRonYupOnklcoeYgChReKj8OE4zSSu89z/D8OQEA7usw5cak0k1z
+cR5yX9avh+N9tPTBs/BRmKcdA8wcowk=
+=072h
+-----END PGP SIGNATURE-----
+
+--087e7b3569ab5fea48a039af92ae6dae8d0b4b3bd53fcaa587687d1ee3aa--
