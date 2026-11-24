@@ -1,60 +1,60 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=79.135.106.103
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=185.70.43.25
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795523873;
-	b=dMg6ULGVks7pM8RZpUyZoLv90iEZ8FYlIm2yfPoUqQeKUNZvV6EKLLZK9cpxAr3jzJjz
-	 CUtcsM5RNh0l6kEvHcjYIi+T8e4sIAacvDL5b/U1Y/Zcg0S/wk9aWtGbQ5zim3X+Z8YQJ
-	 /XgFo201eRAkWE9lMpoJdZUo5ekottTTYo2pAvp4FXLzzcaKe/ry9N02QNvaFY3IpRjGT
-	 JqNw7kRlWG5rUH0A+5qJ9FXO4D+9KjzmlsKPNjuQbt90Y2YGXaWbZyRhIkgf7kQ668mDh
-	 wdvWlnhuheXDq3jdvK0IJKlMceHo7gCepK2+r/VHbX+xuoKyPzr/biWnaAVlYgHbNUg==
+	t=1795523932;
+	b=Of9Ux+5ywPV3LwRvR6VgQf1xgKZu7801ozEnbIPESAnB78w29ZKIFo0KTEVVKE4YuXbA
+	 p5YHllccymHtaxhUkjvTITz1lkcd5Y9sILpTRCcYLZLtRZJD1tVypO3c9S5CGq8NW8DU/
+	 6q2uqZvMhDjCNRW7xE4rTSAJGNMEkA5cVo1p5ESq1Etjb9nX2bTAiHE+1w6UTT7YNvNwa
+	 DVr0QpeQQoZfpXIwmG+yVvl5/Gih0mV3LA6MHhxQRrYi87Ra2pyu8i+8uY26BIXWAamQf
+	 X5iKyUmNHruV4UtHnXvfTnN2IeEo1W3xn2A8pw95AYezz9ghzpERXplHn9B4osUvJJQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795523873;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795523932;
 	h=DMARC-Filter:DKIM-Signature:Date:To:From:Cc:Subject:Message-ID:
 	 In-Reply-To:References:Feedback-ID:X-Pm-Message-ID:MIME-Version:
 	 Content-Type:Content-Transfer-Encoding;
-	bh=CdsgRK2T0aSdGR26HR3wVuVY1ZtQy7Ic5TLZPWwxqBQ=;
-	b=4k4yb83LWOq92rBil/ZcwyHKMcowaqgCrja5fi1Z0q+m1BcEu0RS5MHO6OJmoStFOoS3
-	 4UMGGQ2/eAFvo4srKRwIFX3orx+bZ0db3axQ2/ZRB9YiWKs6/UUliui2Pyfhk3ZrINYrV
-	 Bj0dGY4oBmesjsfm1o/Znmewpn84MexbpUmLi01FJ7pU7UQ7XaKkWbPVk8GubqJ6W9De5
-	 lCUpUdxi1AqSBmR1efamoLTU5MTtEYZsqz4giWbBvAF3GcHFqZmign9OrXtOB/oTOMeTS
-	 ilhLzbtbEW/Ju2LBrZRVLUmxt0fIlfd+LHN0nAANX8dhfKX1U6ez+wV2jCWQAZ7kTcQ==
+	bh=eJCmBSYolN8SoZoYUvJwCwebOumcXhSHA0DzyLMAWlg=;
+	b=CvE6UY1ZtI9KeZcIkN75k8EDgnn3Jnfs+zTASmfjh36V6pxezXWBqhloxWVHgaBG604a
+	 K9+UeQI1psGbQT1c873qnnaX+i8HdSBI4GddNVnWCmCFMKuX5i6DhOVWqRwKndBPPq0y9
+	 8PRGqvWam8mfMTprtLHJ2FLX59ToFHnC9OZw5mXdGMUljuyEjIFPJJ2lUlFEmosRlI0KF
+	 BZfqJYO6g4ogYq5Fth6N1yd8EBvsozOXcV2QCAL8bq08fjQAzfMgJ8ek4KSsGS59e7F6U
+	 eOUXkpnr59Z7u2kVFJvJ9tkMjUgY29QeL/0A8aaxV04o3S2hwCztp1hCbHbQn7awfQg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=proton.me;
 	spf=pass smtp.mailfrom=proton.me;
-	dkim=pass header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=3rx2lxeyrrfkxfkrozb6utcmz4.protonmail2 header.b=EY5DX2J8;
-	arc=none smtp.remote-ip=79.135.106.103
-Received: from mail-106103.protonmail.ch (mail-106103.protonmail.ch [79.135.106.103])
+	dkim=pass header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=protonmail2 header.b="k/0qqZma";
+	arc=none smtp.remote-ip=185.70.43.25
+Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C5A606A322
-	for <ntfs@lists.linux.dev>; Tue, 24 Nov 2026 12:37:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 94C5A606A322
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EE8606A321
+	for <ntfs@lists.linux.dev>; Tue, 24 Nov 2026 12:38:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org A0EE8606A321
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=3rx2lxeyrrfkxfkrozb6utcmz4.protonmail2 header.b=EY5DX2J8
+	dkim=pass (2048-bit key, unprotected) header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=protonmail2 header.b=k/0qqZma
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=3rx2lxeyrrfkxfkrozb6utcmz4.protonmail2; t=1795523868;
-	x=1795783068; bh=CdsgRK2T0aSdGR26HR3wVuVY1ZtQy7Ic5TLZPWwxqBQ=;
+	s=protonmail2; t=1795523929; x=1795783129;
+	bh=eJCmBSYolN8SoZoYUvJwCwebOumcXhSHA0DzyLMAWlg=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=EY5DX2J85KyKU5pEdZi0kjG33mntUMylj7/hpgwJ03BxlK7ow7fBTiFtXFQKWi8Cc
-	 OBzSwuPYXsoFrw/HW+bpZNnhxcf3lHr1gywUoJ1emahHl9oPyGCwA4HRu6KNm1xOAE
-	 vW08E4ioxsWzboPVfQ4Dr7oRTPPhRhwvQ61hlrGz22xulL7tKuVemWdR4XmBxVZcrE
-	 rFR1gK6twWuxC9RPWoeOhiGD7YCPJuJ5vwSMASJlcofmVYSrvGXrsVrhams6/6W1it
-	 TGXK3rJHRt8AW0pg8Ww34pm2fenuZ8FOCPkX0YOSDcPtyvCWLJXUhRWAJQ4Mr/Je1w
-	 Ucb2ymevHOAqw==
-Date: Tue, 24 Nov 2026 12:37:38 +0000
-To: liubaolin <liubaolin12138@163.com>
+	b=k/0qqZmacAwl8oMRPyyWCJrzsZvmztwbgamFRCEwUx2HWJ3RD0p2tC5zxUNy7nbPu
+	 C4p1/ZjBIVNzvSC98ZYV17MhuPbAuR4bz09ll3Yv7cFkHj2TeiFSU/F4kNaMfvxoSo
+	 0Rf8jI5kCNi3D12ZGXng1LJJCEfJDN8o0k5mQjuzjHRyFCNwaUFm9ZpufRmomHkpqy
+	 3EEw3dBp+n/oPN5fvlSrPgrQh9MfbkV24JAxOC0S63N38rAFOhJrQN2e2ve1AbJr6v
+	 XVQ2aLhkkYgASz8bS+xLbGMZr9ciwE/VnJlocCmeLDwLgieWsTTtAIKYBZMQ81rEnn
+	 nnGYfgpeQctDw==
+Date: Tue, 24 Nov 2026 12:38:44 +0000
+To: Hyunchul Lee <hyc.lee@gmail.com>
 From: Ernest Borowski <ernest.borowski.git@proton.me>
-Cc: Zhan Xusheng <zhanxusheng1024@gmail.com>, linkinjeon@kernel.org, hyc.lee@gmail.com, ernest.borowski.git@proton.me, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, zhanxusheng@xiaomi.com, stable@vger.kernel.org
-Subject: Re: [PATCH v9] ntfs: trim the sizes after a short write
-Message-ID: <179552385440.2421003.16146153406926819876.b4-reply@b4>
-In-Reply-To: <1b7886b3-0529-46b8-bed8-56d31d7305f5@163.com>
-References: <20261124025932.2360848-1-zhanxusheng1024@gmail.com> <1b7886b3-0529-46b8-bed8-56d31d7305f5@163.com>
+Cc: ernest.borowski.git@proton.me, Namjae Jeon <linkinjeon@kernel.org>, Baolin Liu <liubaolin12138@163.com>, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org, Zhan Xusheng <zhanxusheng1024@gmail.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 1/7] ntfs: release delalloc reservations cut off by truncate
+Message-ID: <179552391645.2429893.14069187088819363568.b4-reply@b4>
+In-Reply-To: <awOh8Zxdmg_-wKPg@hyunchul-PC02>
+References: <20261122-b4-ntfs-delalloc-fixes-v1-0-0726f0dce403@proton.me> <20261122-b4-ntfs-delalloc-fixes-v1-1-0726f0dce403@proton.me> <awOh8Zxdmg_-wKPg@hyunchul-PC02>
 Feedback-ID: 236360163:user:proton
-X-Pm-Message-ID: a8667dfb405c83cf9ef30a93b13fa92c540dab37
+X-Pm-Message-ID: c84d250e94fba5c9ad7d33e5c64ed591b75f76a7
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -67,129 +67,24 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Baolin, Xusheng,
+On Mon, Nov 23, 2026 at 11:16:17AM +0900, Hyunchul Lee wrote:
+> If ntfs_cluster_alloc() succeeds for a LCN_DEALLOC run but the
+> subsequent kmemdup() in ntfs_attr_map_cluster() fails, the reservation
+> has already been substracted from dirty_clusters but LCN_DELLOC run
+> remains.
+>
+> Is this planned to be addressed in part 2?
 
-On Tue, Nov 24, 2026 at 05:10:32PM +0800, liubaolin wrote:
-> Could an async direct write still miss this cleanup if it fails after
-> submitting some BIOs?
+Yes.  This is pre-existing (ntfs-next has the same path), and the first
+patch of part 2, "ntfs: keep delalloc reservations when a cluster
+allocation fails", fixes it.  When the runlist copy (kmemdup()), the
+runlist merge or the mapping pairs update fails after the allocator has
+taken a delalloc reservation, ntfs_attr_map_cluster() restores the
+reservation before freeing the clusters.  The same patch stops
+ntfs_cluster_alloc() from setting vol->dirty_clusters to 0 when it fails
+after the free space check.  A fail-nth reproducer covers these paths.
 
-Yes.  I tested a 6 MiB O_DIRECT write at offset 0 into a file with
-6 MiB reserved by FALLOC_FL_KEEP_SIZE (volume free space filled with
-0xee, source buffer unmapped after 4 MiB).  Through io_submit(), the
-write fails with -EFAULT, the file stays at 6 MiB, and the last 2 MiB
-read back as 0xee, even after a remount.  The same write through
-pwritev() returns -EFAULT to ntfs_file_write_iter(), where the rollback
-that predates v9 resets the size to 0.
-
-> Would using IOMAP_DIO_FORCE_WAIT for writes that advance
-> initialized_size let us handle this through the existing rollback?
-
-Yes.  With the forced wait, the async write reaches the rollback and
-behaves like the sync one.  ext4 also waits for extending direct writes
-and fails non-blocking ones (IOCB_NOWAIT, e.g. from io_uring) with
--EAGAIN before changing anything, so the caller retries them in
-blocking mode.  ntfs needs the same -EAGAIN return so that the forced
-wait does not block an io_uring submitter.  Resident attributes need it
-too, since the write makes them non-resident first.  On top of v9:
-
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index f3bdc54595..86297a1633 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -762,12 +762,13 @@ static const struct iomap_dio_ops ntfs_write_dio_ops =
-=3D {
- =09.end_io=09=09=09=3D ntfs_file_write_dio_end_io,
- };
-=20
--static ssize_t ntfs_dio_write_iter(struct kiocb *iocb, struct iov_iter *fr=
-om)
-+static ssize_t ntfs_dio_write_iter(struct kiocb *iocb, struct iov_iter *fr=
-om,
-+=09=09=09=09   unsigned int dio_flags)
- {
- =09ssize_t ret;
-=20
- =09ret =3D iomap_dio_rw(iocb, from, ntfs_dio_iomap_next,
--=09=09=09&ntfs_write_dio_ops, 0, NULL, 0);
-+=09=09=09&ntfs_write_dio_ops, dio_flags, NULL, 0);
- =09if (ret =3D=3D -ENOTBLK)
- =09=09ret =3D 0;
- =09else if (ret < 0)
-@@ -955,6 +956,21 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, struc=
-t iov_iter *from)
- =09if (ret <=3D 0)
- =09=09goto out_lock;
-=20
-+=09/*
-+=09 * A direct write that moves the initialized size waits for its I/O
-+=09 * (see ntfs_dio_write_iter() below), which a non-blocking one must
-+=09 * not do, and a resident attribute is written through the page cache
-+=09 * or made non-resident first.  Have the caller retry such a write
-+=09 * blocking before anything is changed, as ext4 does for extending
-+=09 * direct writes.
-+=09 */
-+=09if (iocb->ki_flags & IOCB_NOWAIT && iocb->ki_flags & IOCB_DIRECT &&
-+=09    (!NInoNonResident(ni) ||
-+=09     iocb->ki_pos + ret > ni->initialized_size)) {
-+=09=09ret =3D -EAGAIN;
-+=09=09goto out_lock;
-+=09}
-+
- =09err =3D ntfs_file_modified(iocb);
- =09if (err) {
- =09=09ret =3D err;
-@@ -1001,8 +1017,17 @@ ssize_t ntfs_file_write_iter(struct kiocb *iocb, str=
-uct iov_iter *from)
- =09=09goto out;
- =09}
-=20
-+=09/*
-+=09 * The sizes were moved to end before the I/O, and only the rollback
-+=09 * at out: takes them back if the write fails.  An asynchronous write
-+=09 * returns -EIOCBQUEUED once it has submitted bios and reports a later
-+=09 * failure, such as a fault on its source or an I/O error, only on
-+=09 * completion, which would skip the rollback.  Wait for such a write
-+=09 * to complete.
-+=09 */
- =09if (NInoNonResident(ni) && iocb->ki_flags & IOCB_DIRECT)
--=09=09ret =3D ntfs_dio_write_iter(iocb, from);
-+=09=09ret =3D ntfs_dio_write_iter(iocb, from, end > old_init_size ?
-+=09=09=09=09=09  IOMAP_DIO_FORCE_WAIT : 0);
- =09else
- =09=09ret =3D iomap_file_buffered_write(iocb, from, ntfs_write_iomap_next,
- =09=09=09=09&ntfs_iomap_folio_ops, NULL);
-
-Results on ntfs-next f674e4b6c315 with 512 B, 4 KiB, 16 KiB and 64 KiB
-clusters, on Ubuntu 26.04 and Arch Linux.  The async and sync cases
-write three files per cluster size; the RWF_NOWAIT case is a fully
-mapped 4 MiB pwritev2() into a zero-size file, either reserved or new
-and empty ("-": not run):
-
-                                        ntfs-next  + v9      + v9 + diff
-  async write, old data readable        24 of 24   24 of 24  0 of 24
-  sync write, old data readable         0 of 24    0 of 24   0 of 24
-  RWF_NOWAIT, reserved file, -EAGAIN    -          0 of 8    8 of 8
-  RWF_NOWAIT, new empty file, -EAGAIN   -          0 of 8    8 of 8
-  killed_write_mmap                     FAIL       pass      pass
-  short_write_size                      FAIL       pass      pass
-  keep_size_short_write                 FAIL       pass      pass
-  killed_short_write                    pass       pass      pass
-
-  ntfs-next:              https://github.com/xerrni/linux-ntfs/actions/runs=
-/45384651132
-  ntfs-next + v9:         https://github.com/xerrni/linux-ntfs/actions/runs=
-/45387762427
-  ntfs-next + v9 + diff:  https://github.com/xerrni/linux-ntfs/actions/runs=
-/45387767567
-
-The test is tests/aio_dio_partial.sh (with tests/aio_dio_partial.c) and
-the diff is patches/v9-dio-force-wait.diff in
-https://github.com/xerrni/linux-ntfs.
-
-The bug predates v9, but the fix is small and only extends this
-patch's rollback to async writes, so I think it belongs in this patch
-rather than in a follow-up.  Xusheng, could you fold it into v10?  My
-Co-developed-by and Signed-off-by on v9 cover it too.
+If you would rather have it here, I can move it into v2 of this series.
 
 Thanks,
 Ernest
