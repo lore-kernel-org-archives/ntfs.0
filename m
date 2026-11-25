@@ -1,50 +1,42 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=182.48.54.220
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795615742;
-	b=gfokgZBUZhZd+LC65zHWUVp2oR5RaPnpCizW56joJT56BuRkhzr6LVeDfJP1bzTgGfIp
-	 CdJjpdbw5xSyEvIx9sX6+r9Ck3d+ZKBlbbQittXIgBvPjLVwCpV5Yz4g54FJLRS7bt9NB
-	 0eEEqCjOxdxEDKu1k45Y5+Vnd0kfSY+m3pWVW3E/mVVYYi/yyys0WElalpxzkEPwca6T5
-	 68HGiuwzm9os+KmlTZCbtb7RsYnG0H3a7++6Z94Ve5w/57+vg2KnMGB66QdEWgeDb0bS0
-	 +24K8DQ8fBiHp6DnUuA+ESm+XVtgR3NBR3tVTF3vMo1/7wNja72aV2d6q6XhG2KfhmA==
+	t=1795616335;
+	b=AMF7KDTJrlsu0YUpALZsYg0O8d+SpwV2ZrWyHKz50I2OUjIZP9DGd3gx1MU1q0ywKp5v
+	 YigR8Jzk7mYlvmBGXf7v7nwocVUqaQMIK8VTnEFDTxhz6aNbK6oKXcz0Wp5RDRHTXedzz
+	 BZFiYxWOuP/j7xSy7HdH9vlXVlsmxYtuZANfJ1DB3lm/+1JFw4e1eO1inB3SgbKWCF2id
+	 q2WHEs8sC4T1cgtHaI29+aYtgml+uaECM5MOqCivEJd3UYAoEM0b11e5DrjYEXQZGTzAu
+	 pOoREmUhcMY2qoOEdQePlwoj8HjWQ6TkQjWS3cw+S4YZexDc7D7ZUEQOMrHQR7V/wAg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795615742;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
-	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
-	bh=jz2sHRDsgOMXF3loU1YmxXnucHr35J5ATz4a4wdGZ3Q=;
-	b=A1XSC+ZDfUv3ZCYsqBoQi1rhJF6VQB65yo1+IROwJeOg62721eojPHOnQSrwRouTozBP
-	 DMJ1Eo3rayaL9xr4vB6NnJZzSu3YRwxwIhYKjBErguaHpKqHozTNTtmNXusSIRtSET+/d
-	 88Qq/uwc63rBcawjUIjY3HozB1wlZScN/3SprFoDUaPb/pDx9ssu3bVZEv5J0Rh1rjHh8
-	 FMUMwJ/zOVzytgPPq80Esc2hsPEYvKwwxwjXcDlky+XguKu2hWxJH+j9FVKsrvmU72SAI
-	 pl5ZCh6B6Cm7ofaEmPliz6VWHejcG8cKYaGSndhdgTo51OtcTXXwtDMgU9P30B1eFug==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795616335;
+	h=DMARC-Filter:Received:From:Date:To:Cc:Subject:Message-ID;
+	bh=QUZRIzrCo3j2nKsGU8AWWA5KbeLJF/TXFpYUX5GHiD8=;
+	b=ihHv7gLXjL61WIiwMzL4RqBWyZmIOW31E89NAnCR8QwmCikjePYAAXgJeMJk8ILDwyNX
+	 I4/cMTd6Nc3x7zXK9fD5subZRfTsPlHDFReWzt8XQdP3sWvoTMyxTleHVHUTz23C6lW84
+	 w+YvhLot87WKsw5Xlj/ivenIearOmhjhou/yMWKslvEFKjr1D1Fjkm7XHrekigqrBQGhX
+	 1Wwd1ltAxcpPO1ZlcoSY5U12f0bFHKaSjX2xUkS8A8YJU3yND7ZHGulGTm/eiDK8y2++e
+	 WAh0b4l/vFijuspCXhy7UUuudcmfX1WHKxuOTG6kPcGOFgQMQHdZCECbokfPGD+5CYA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Rmv+X3om;
-	arc=none smtp.remote-ip=117.135.210.4
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47CB6606A336
-	for <ntfs@lists.linux.dev>; Wed, 25 Nov 2026 14:09:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 47CB6606A336
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Rmv+X3om
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=jz2sHRDsgOMXF3loU1YmxXnucHr35J5ATz4a4wdGZ3Q=;
-	b=Rmv+X3om2pJLZjbViec4YOfYOp4GbVL63Eb/wDZqzErmWmqTDWX9J+kEKR2brz
-	3vhmCdP1hNl/V80V28SfFC9yPwQ/e/2T5GJp6my8w2eHhfwpYQQcuncJTvA/414p
-	xhUIIn8OcznrrJY1hj9Pc0L9r/BOY3IHYOCFJmovMtL8Q=
-Received: from [IPV6:2409:8900:1a90:8163:5fb3:f207:88ec:aa89] (unknown [])
-	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wD3NzLk6wZrijuIJw--.25119S2;
-	Wed, 25 Nov 2026 22:08:37 +0800 (CST)
-Message-ID: <29998421-6c86-4130-a3b9-57aec80bc327@163.com>
-Date: Wed, 25 Nov 2026 22:08:36 +0800
+	dmarc=none header.from=snowrabbit.org;
+	spf=pass smtp.mailfrom=snowrabbit.org;
+	arc=none smtp.remote-ip=182.48.54.220
+Received: from bambi.snowrabbit.org (bambi.snowrabbit.org [182.48.54.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15C1606A32D
+	for <ntfs@lists.linux.dev>; Wed, 25 Nov 2026 14:18:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org C15C1606A32D
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=snowrabbit.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=snowrabbit.org
+Received: by bambi.snowrabbit.org (Postfix, from userid 3001)
+	id 46984C9300; Wed, 25 Nov 2026 23:18:54 +0900 (JST)
+From: Showta Ishizaki <zakinko@snowrabbit.org>
+Date: Wed, 25 Nov 2026 23:18:20 +0900
+To: Namjae Jeon <linkinjeon@kernel.org>,
+    Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev,
+    linux-fsdevel@vger.kernel.org,
+    linux-kernel@vger.kernel.org,
+    Showta Ishizaki <zakinko@snowrabbit.org>
+Subject: [PATCH] ntfs: keep i_size of a directory equal to its index root
+Message-ID: <20261125-ntfs-01-v1@snowrabbit.org>
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -53,77 +45,68 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] ntfs: read initialized_size under size_lock in the
- mmap prepare path
-To: Hongling Zeng <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
- hyc.lee@gmail.com
-Cc: ntfs@lists.linux.dev, linux-kernel@vger.kernel.org,
- zhongling0719@126.com, stable@vger.kernel.org
-References: <20261125073547.154150-1-zenghongling@kylinos.cn>
- <20261125073547.154150-7-zenghongling@kylinos.cn>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20261125073547.154150-7-zenghongling@kylinos.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3NzLk6wZrijuIJw--.25119S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KryfZFW8uFWfZw1kXr1UZFb_yoW8Cr4xpr
-	nIg3W5C395Zryjkwn3Kw45XFWFg3WxGw4UWw13uw17ArZ5Grn0gF15trWrWF48trsavw40
-	vr1DJw1xu3WDJFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Ugo7_UUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gWQW2sG6+UIlwAA3Y
 
+After mkdir, stat() gives a size of 0 for the directory until it is read
+back from disk, where it gives the length of $INDEX_ROOT.
+__ntfs_create() opens the index root but does not set i_size from it.
 
+When the index root is moved out to an index block,
+ntfs_ir_reparent() updates data_size but not i_size, which keeps the
+length the root had before.
 
-在 2026/11/25 15:35, Hongling Zeng 写道:
-> ntfs_file_mmap_prepare() reads ni->initialized_size without the
-> size lock when deciding whether a shared writable mapping needs
-> its initialized size extended before the faults start. The field
-> is published under size_lock, so the read is a data race on the
-> protocol the other readers follow: a stale low value causes a
-> redundant call that __ntfs_extend_initialized_size() re-checks
-> under the lock, and a stale high value skips the extension and
-> leaves it to the write faults.
-> 
-> Take the snapshot under size_lock like the other readers.
-> 
-> Fixes: 9c87959601e8 ("ntfs: update file operations")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
-> ---
->   fs/ntfs/file.c | 8 +++++++-
->   1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-> index 70a86d6fee6b..1f08fe679a86 100644
-> --- a/fs/ntfs/file.c
-> +++ b/fs/ntfs/file.c
-> @@ -1044,14 +1044,20 @@ int ntfs_file_mmap_prepare(struct vm_area_desc *desc)
->   
->   	if (vma_desc_test_all(desc, VMA_SHARED_BIT, VMA_MAYWRITE_BIT)) {
->   		struct inode *inode = file_inode(file);
-> +		struct ntfs_inode *ni = NTFS_I(inode);
->   		loff_t from, to;
-> +		loff_t initialized_size;
-> +		unsigned long flags;
->   		int err;
->   
->   		from = ((loff_t)desc->pgoff << PAGE_SHIFT);
->   		to = min_t(loff_t, i_size_read(inode),
->   			   from + desc->end - desc->start);
->   
-> -		if (NTFS_I(inode)->initialized_size < to) {
-> +		read_lock_irqsave(&ni->size_lock, flags);
-> +		initialized_size = ni->initialized_size;
-> +		read_unlock_irqrestore(&ni->size_lock, flags);
-> +		if (initialized_size < to) {
->   			err = ntfs_extend_initialized_size(inode, to, to);
->   			if (err)
->   				return err;
+Set i_size in both, as ntfs_ir_truncate() does.
 
-Looks good to me.
+Without the patch a new directory was 0 bytes and became 48 after a
+remount, and one with 300 files was 248 and became 56.  With it the sizes
+are the same before and after.
 
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Fixes: af0db57d4293 ("ntfs: update inode operations")
+Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+Signed-off-by: Showta Ishizaki <zakinko@snowrabbit.org>
+---
+ fs/ntfs/index.c | 3 +++
+ fs/ntfs/namei.c | 7 +++++++
+ 2 files changed, 10 insertions(+)
+
+diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+index fe2a79b..73c8e6f 100644
+--- a/fs/ntfs/index.c
++++ b/fs/ntfs/index.c
+@@ -1434,6 +1434,8 @@ retry:
+ 		icx->idx_ni->data_size = ix_root_size;
+ 		icx->idx_ni->initialized_size = ix_root_size;
+ 		icx->idx_ni->allocated_size = (ix_root_size + 7) & ~7;
++		/* As ntfs_ir_truncate() does; i_size kept the old length. */
++		i_size_write(VFS_I(icx->idx_ni), ix_root_size);
+ 	}
+ 
+ 	ntfs_ir_nill(ir);
+@@ -1455,6 +1457,7 @@ retry:
+ 		icx->idx_ni->data_size = ix_root_size;
+ 		icx->idx_ni->initialized_size = ix_root_size;
+ 		icx->idx_ni->allocated_size = (ix_root_size + 7) & ~7;
++		i_size_write(VFS_I(icx->idx_ni), ix_root_size);
+ 	}
+ 	ntfs_ie_set_vcn(ie, new_ib_vcn);
+ 	goto err_out;
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index 29f1bf5..e4b0fc4 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -611,6 +611,13 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 		err = ntfs_attr_open(ni, AT_INDEX_ROOT, I30, 4);
+ 		if (err)
+ 			goto err_out;
++		/*
++		 * ntfs_attr_open() sets data_size to the length of the new
++		 * $INDEX_ROOT, as ntfs_read_locked_inode() does with i_size
++		 * too.  i_size stayed at the 0 set above, so stat() gave 0
++		 * until the directory was read back from disk.
++		 */
++		i_size_write(vi, ni->data_size);
+ 	} else {
+ 		/* Add DATA attribute to inode. */
+ 		err = ntfs_attr_add(ni, AT_DATA, AT_UNNAMED, 0, NULL, 0);
+-- 
+2.54.0 (Apple Git-157)
 
