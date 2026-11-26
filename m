@@ -1,92 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795657633;
-	b=rO91ME/S3ANicHmwIotPpmavv/VvySPlKKdXfLEkMcYF8DVm1tbD8hpEsFeN3ynhtLPu
-	 ZOErTVm2cn+6VzmbVbW479AiYG3VgxxRpYD9UquGFxEbv4BL7bGbosIike2+pVrd1Tx9B
-	 8qb2/ZKH0QBL2YnXpirVOARCqawVww4SeMqt/KJDofUKY1R89NYs5MiWDX8Od9HB4t4Xh
-	 y16H10dPfl69wm64cMewCqp/Ori3eQF05jUtvPpeWRjnR27MuJF93wkjAoErHEe2FRcXP
-	 VdfBrlELpvzDLhJ5jwYmCF8zzxEaYc8L/mweqlD9ToSUpBQ5zsEBR+xCh78kG9CACrg==
+	t=1795657923;
+	b=Vi1AGa3x4PglVAbqrlJYft1dwUfxtHEXBs6M92yzq/a0tQhfIKtfBJEoUyxnqi9pYeNI
+	 8MlHallTcMZfGLU9ClIgDqltLczouMLpyz8+8+91AB2z7OYAC7ZfRbP2SX2iUe+sfmK6S
+	 y4TFI9aNpgtZsXpyiQZRW+ZxOt6xZ5ghU7JT0VkXLw8u1drFAL08w92N/4BCl2pT7rll9
+	 AYQoOmqleGvMb19BUk+zwewiAlan/3u/NBLKW5W4wxDizDzRQmCI/u3KLSTXAkbgvRJ/w
+	 mEc/afOGoudczrsPuNKOBmtQRBxWYkaH8Xuzc5XcUzvp9s0IY0xCtcwYIbUj3+ml1Pg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795657633;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To;
-	bh=C90z5eRMPRz7rm9tSvRsEhi09vVmUDZ/4/9fcRwxuPA=;
-	b=ODjRzUxtylNJYZy16Nhj5q5LzpRlC3iDc3AZEChw1di4sS/+zuYupVdewkL+8U2be8wg
-	 /L0Qm0GYKsTpi+yQhq1GwxMoS0ouUnuQWF7hbPr2GYrSqsP+JWc5wA6M2REAK0e0m3Any
-	 y2+IiDf9nvR6soFwGmsHiGHHyUzxxt9yvKsYR+pMLNT+TPngTavQNiLv64b10kiCTdTvC
-	 R9ZsjsQXlKkn8ios3XPcH6ykNgJZulOO14KhFuzfMWWSG42JdGPIekwW+9J1bsQNwTzr3
-	 Ae2rm0KVGDqkQK4sMf8Phn/E5mku25cvE1t3jzSitXS03jttbA4UveMLZj0ub4TcadQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795657923;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=InslSophhZR8ptLxuH18WsVK3o/vxwbo+9Lc8i/W61k=;
+	b=Ix/YmCn84gE6B47D+i6EE+POOcsfMQu7ZJN9TfD572jIfD+7Lqtv/MTxx40qO/FFkuBZ
+	 pTPXEPxBmrFd9miiBERl8LTsH9CJPHRvJTrWl0rsxQ4AkJ5fM7Jxxdr5T0foWmtM4f8Ia
+	 X5B97ov+Lwuzbh0yIUDNP9RUwdAmiorNO5QfdJJL2bg108WrJVZOPwKYOjNq/JXamW59g
+	 yP1BFHyNUsRf0kLTkrSPpTsPzV6HmwQHunL/JjKl5mtw82cDCuTdOsXQbO7i3EBOValgv
+	 mprSQoXpSLapzJytvjIPIzJZ0hrCEtE3+7OJhKQywz8M8gveP610ivDpC+7mycC6YVg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=MBzxLPCe;
-	arc=none smtp.remote-ip=209.85.216.45
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=hFGnDDdL;
+	arc=none smtp.remote-ip=220.197.31.4
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A99606A327
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 01:47:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 19A99606A327
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE94606A31E
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 01:52:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 9BE94606A31E
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=MBzxLPCe
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-3b402824d07so4370026a91.1
-        for <ntfs@lists.linux.dev>; Wed, 25 Nov 2026 17:47:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795657632; x=1796262432; darn=lists.linux.dev;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=C90z5eRMPRz7rm9tSvRsEhi09vVmUDZ/4/9fcRwxuPA=;
-        b=MBzxLPCemZjuFziHKPG2O4jS8D010Ng2RnG7+DinweEh49V4ZTptBm+knr8S/t/yAQ
-         qgTTmh0b1OEAdEsw0h0JpMdqSbqsQru0cvJQryuvxF6sr4phSPbZutV6DTGyO5KwbMuI
-         OS35lf08SWZ1UsK+fPjUwnDR9GBp59Ev8E6QyxXbETpOtZfLrCUBvBHW2kDZ8MIZLh8j
-         WPwMCU5+Y20hkffX6mh/MV+KIIR41ijY1DqLTE82anfJE/hrPuyNaeU3SynViQ1t0yBU
-         ZTM79O1yq6wzm+2nF4LQqfgE2yhyWeXf9e+sRM25RYHrMJIVo6snfYkS/oz5g7YDL+gb
-         /qLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795657632; x=1796262432;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=C90z5eRMPRz7rm9tSvRsEhi09vVmUDZ/4/9fcRwxuPA=;
-        b=rBFbb53VQZeFvSmEx35uP+WbSZEqc37489JsfceN1MppfgzlZawTR2zbERB+hyTBXc
-         IZttWFSZvXczuvlFBv3MdQAibg78MSbGSYFAa1txvblX0NLsCK/Yi5hJUejOCACt/NMV
-         goyd8M/OqDkHXOGoVOpzUgoxDJr/Hvz09lLWp1V+6GKT6ENrM1sH1zunEzuOg8ASq600
-         7MFLgH88cOtolRrynbNXywCoZAD6Ll3cmAB2U/WPIywrOK7i6k8yRXpOTYZyPqTu4Ttx
-         LvenCoRpe9J12Xm+IIdaNm6o+JjT3eh6zvMF6irEsukY1gcRBt9LgGV0Td8xhjrUKUtm
-         jhSQ==
-X-Forwarded-Encrypted: i=1; AL+hErHbNZMNhtxkd7UkCi2DN/Za94XHnsK3RWh0Vp68ZaOWenQr2wDbAuzN3P6qXSCR89gRHw2T@lists.linux.dev
-X-Gm-Message-State: APuU4Z9SVbOs6xG1A+P7zkkTH4izRMXjxZmeK7uEmG37XlKYH8V5TWJU
-	z+oF0BPqHLxaR6ZaZc0VG6hu8UL8rrhiEx4SUsUAejmMZr3kh9XQKHOX
-X-Gm-Gg: AZFdTZcVvQGaKJxXzwAeIP1TGKMDcWKesmvWll6QwjwMtGKpbh58Hniu6FVU9vrtE/I
-	1UtBnvlKRrTYqRvNF6qA9SUPGuUniCYJOg+ojK8ubo2zrmKy1E2+Sg5G0J5OUbkzCPoIeCqk2V2
-	cQLD+vMP/u/8IYT+3Rqi6euPOravDBpbRUXU23YAUgkZHoCJzmb8MoES+8UMVlrrjet3a4yNVPG
-	1mpiwRpsWOATWHG52JXDs9SlWwCq1wKi/wAlVAYyxJr9epnFDMyRj4VE0kuVQwBNr6j0YgLjdKD
-	pHD8JCnMmDKGGWjbSRRJrSckp1bmpRxarnu6vm4YQQMs0wJLCAumnjVYF2lZPwtj+MpxP/qi5fo
-	c3K1LZaHhoqB7/Ek620Jy5qSc5wamwZT1YSjBCw4sBQub8PnOTidY4P36PR2q/Uc/5N/kFNJQyI
-	kKjA4BERkXSzziQlXU8drIOfXi+IZ+6P0bwuvXDqfxBElwnSqvCsaPTzg5lryybW9GpmGjwNiX1
-	ADZTEaB/FGCA+/eVZHW9y+DBD5r/BCte9wbAkl2sh33DYWifSDOWMp0HDgRXZVYethD/2qgvUU0
-	FWQtDy2FXoX8ygeWh8awXPEQ7XhXSt4xiLxiaw4Z
-X-Received: by 2002:a17:90b:2c86:b0:3b0:a9de:9886 with SMTP id 98e67ed59e1d1-3b41c8d9179mr18731494a91.12.1795657632334;
-        Wed, 25 Nov 2026 17:47:12 -0800 (PST)
-Received: from localhost ([27.122.242.71])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6cfc6130sm10007818a12.7.2026.11.25.17.47.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 17:47:11 -0800 (PST)
-Date: Thu, 26 Nov 2026 10:47:09 +0900
-From: Hyunchul Lee <hyc.lee@gmail.com>
-To: Showta Ishizaki <zakinko@snowrabbit.org>
-Cc: Namjae Jeon <linkinjeon@kernel.org>, ntfs@lists.linux.dev,
-	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ntfs: keep i_size of a directory equal to its index root
-Message-ID: <awePnaRhBQLahPpz@hyunchul-PC02>
-References: <20261125-ntfs-01-v1@snowrabbit.org>
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=hFGnDDdL
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=InslSophhZR8ptLxuH18WsVK3o/vxwbo+9Lc8i/W61k=;
+	b=hFGnDDdLUt9A9KsPTLxHoUp8iLp4RHw62Xt0sKKHqdi1EklnCggyFfR44UkMXO
+	yL3WVoeoMiU7ptqe/QlsGKpG/V2rHjLV5RnkHY7ClIMsf0r2e7iGoCZbkall7s3A
+	KzjinljwqwX/40ig38rrk+OzOSOylqTpeEAlbRCF6xbX8=
+Received: from [IPV6:2409:8900:1fda:c14d:483b:2970:cae3:221a] (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wDXf0+rkAdrvRQPKA--.54445S2;
+	Thu, 26 Nov 2026 09:51:41 +0800 (CST)
+Message-ID: <d2887b0e-a852-490e-bb07-e4b17d979622@163.com>
+Date: Thu, 26 Nov 2026 09:51:38 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -96,11 +54,28 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ntfs: keep i_size of a directory equal to its index root
+To: Showta Ishizaki <zakinko@snowrabbit.org>,
+ Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev, linux-fsdevel@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20261125-ntfs-01-v1@snowrabbit.org>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
 In-Reply-To: <20261125-ntfs-01-v1@snowrabbit.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXf0+rkAdrvRQPKA--.54445S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7tFWkZF1fAr4kKryUAFyxKrg_yoW5JF15pr
+	ZFkr4fK3ykX34UCrna9F98Ga1UurW09rZ0grW5Aw4293s5tw1SgF1jy3y0g3yIvrZ5J34U
+	XF4DArW8Xry3Zr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U24iUUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6g3rtmsHkK3MyAAA3v
 
-On Wed, Nov 25, 2026 at 11:18:20PM +0900, Showta Ishizaki wrote:
+
+
+在 2026/11/25 22:18, Showta Ishizaki 写道:
 > After mkdir, stat() gives a size of 0 for the directory until it is read
 > back from disk, where it gives the length of $INDEX_ROOT.
 > __ntfs_create() opens the index root but does not set i_size from it.
@@ -118,11 +93,53 @@ On Wed, Nov 25, 2026 at 11:18:20PM +0900, Showta Ishizaki wrote:
 > Fixes: af0db57d4293 ("ntfs: update inode operations")
 > Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
 > Signed-off-by: Showta Ishizaki <zakinko@snowrabbit.org>
+> ---
+>   fs/ntfs/index.c | 3 +++
+>   fs/ntfs/namei.c | 7 +++++++
+>   2 files changed, 10 insertions(+)
+> 
+> diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+> index fe2a79b..73c8e6f 100644
+> --- a/fs/ntfs/index.c
+> +++ b/fs/ntfs/index.c
+> @@ -1434,6 +1434,8 @@ retry:
+>   		icx->idx_ni->data_size = ix_root_size;
+>   		icx->idx_ni->initialized_size = ix_root_size;
+>   		icx->idx_ni->allocated_size = (ix_root_size + 7) & ~7;
+> +		/* As ntfs_ir_truncate() does; i_size kept the old length. */
+> +		i_size_write(VFS_I(icx->idx_ni), ix_root_size);
+>   	}
+>   
+>   	ntfs_ir_nill(ir);
+> @@ -1455,6 +1457,7 @@ retry:
+>   		icx->idx_ni->data_size = ix_root_size;
+>   		icx->idx_ni->initialized_size = ix_root_size;
+>   		icx->idx_ni->allocated_size = (ix_root_size + 7) & ~7;
+> +		i_size_write(VFS_I(icx->idx_ni), ix_root_size);
+>   	}
+>   	ntfs_ie_set_vcn(ie, new_ib_vcn);
+>   	goto err_out;
+> diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+> index 29f1bf5..e4b0fc4 100644
+> --- a/fs/ntfs/namei.c
+> +++ b/fs/ntfs/namei.c
+> @@ -611,6 +611,13 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+>   		err = ntfs_attr_open(ni, AT_INDEX_ROOT, I30, 4);
+>   		if (err)
+>   			goto err_out;
+> +		/*
+> +		 * ntfs_attr_open() sets data_size to the length of the new
+> +		 * $INDEX_ROOT, as ntfs_read_locked_inode() does with i_size
+> +		 * too.  i_size stayed at the 0 set above, so stat() gave 0
+> +		 * until the directory was read back from disk.
+> +		 */
+> +		i_size_write(vi, ni->data_size);
+>   	} else {
+>   		/* Add DATA attribute to inode. */
+>   		err = ntfs_attr_add(ni, AT_DATA, AT_UNNAMED, 0, NULL, 0);
+
 
 Looks good to me.
 
-Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 
--- 
-Thanks,
-Hyunchul
