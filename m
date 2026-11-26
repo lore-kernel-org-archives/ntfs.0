@@ -1,83 +1,92 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.210.176
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795733916;
-	b=lsnix85UykA38zk+0xq+jM5De/kgoezzu4BCXnntsVl83GWj77uIdbXDjq8Ph5CQdkjI
-	 AYxtZgN8XKeVgBD+BW1VkCu5a3c460Xf73RvOjuHpl2i6wqP56LMbA827DEcygJXjw0ms
-	 qTVhdmeV/m4QW94zwoOdDFW82Lf86SUpHzWyS/ygrGv1kH4YQVe3REx+/61obXOKt1A5I
-	 w58Nn6b2mqFBPyawSPphIgByAYSDOGnMrTUPuRyvN3JlB8rSPeN6DXCgldPieGrPwEWyQ
-	 AiLGApj5TCsYrry7Lsj3yQbgf0vewcfYccWsGkLflXstDbCAKRZY91AwSiu7m2wFBrQ==
+	t=1795736347;
+	b=ZyXd+QRlK3SPB8Oc3eJY35B1gF9WPLbaOAtUMnkHDuwSGB/8qAqXzS+twZyQTGcKJlW+
+	 ofHt51iNWj9tWDMpS05p1n9wWX2bbLc40N97Z2yVPOToIlh7ZqGiwBqu+WvhTheQGNoYi
+	 R+223A/9d3RFtOmap67hbqciY+q5nNRgN+DVGRD/XLhLvHiUiNFbqgYoUgmAA7m3224qS
+	 o0/knuzN9TbzWa+djxAFOPK1ghfdTSqKWGqPIN32DDayHDqnoVykiyaBCOlTwjzqIsHlM
+	 qwPUolFI1ZAWWYLrwIdOQUNlXbWZrgf8KqJhQ1SSF0sWcbHRIhHVH9dF77kkfh584uA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795733916;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795736347;
 	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:X-Mailer:
-	 References:In-Reply-To;
-	bh=m8YUNG0289MJznW1Ljl78OszeJ++5ltmCqqiqlxz4Gk=;
-	b=mlpFU0jD3RSRu2SK+fdGk5g4w6c8mC+ycdMuLUaZR1+O1N0jkSTBEbY1nI812zlhqyML
-	 pzlKy7rSVi7UPxd/VUp6HJFBHnmK2L8koZMfkeJN3TZolqMVyH4K1eF0pUk867J5PVWnH
-	 kTVLRV0+zBD/JnZGAJbWEQBdrQjr8qG5Povzv2aJy73X4YfQeBBIYyIEJbej4VPLWLXWX
-	 Z0filARw3Oig/7B0XU1+TSSKk1dnl8ptqYSkaz0O3JhIkk6Zdp/l1OJElP4Lzn992Ufpy
-	 +S0F3G+SaTyUh5uMgbhXfIbCfPaJXQhL7PXIadpeSaTrZ7YQcLt+RqGMJxLdcHjfqpw==
+	 From:To:Cc:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding;
+	bh=jSYuqVK/hArnn4Mmrwqh7dDMIjMw4TzNK86GONldDfw=;
+	b=hFis1cyvluuBLazKEw4ADMQiLjta/IPpWsQU1N8Sm/0zkCOsVerLGzdP2P5aHL1wTBay
+	 1mt+WD00ltgKmgqrUF8FRRRqRRE1VcRb+J+XInv5/EJGumCtdkV1bzmXqboJDvVapgucQ
+	 bPXRQQXdeR52bs6Sjt3MaDkyQ3uCAELUrwcG4LDVc686HOwC7WhAlMmvn/YC9+/SL4jIp
+	 B+Cvh0xnQv6V9mZt9jae7E19VnsYwABTePJIMEdAaOc6Qea4a9ByJaVWHaUYe48KE/b8+
+	 EkDE4bWkPcM1Xyjt8bBUOlP5xyCATIDD6nQQr8VlfSY4BshA/FhnTn6trYLeg3gdjLQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=gmail.com;
 	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pCcwE49X;
-	arc=none smtp.remote-ip=209.85.128.46
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=b05T5cJz;
+	arc=none smtp.remote-ip=209.85.210.176
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8C4606A321
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 22:58:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org DF8C4606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28EA606A31C
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 23:39:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org F28EA606A31C
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pCcwE49X
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4a214c5c4c0so72157635e9.3
-        for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 14:58:34 -0800 (PST)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=b05T5cJz
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-8a06cc097c7so4725137b3a.0
+        for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 15:39:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795733913; x=1796338713; darn=lists.linux.dev;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-type:mime-version:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=m8YUNG0289MJznW1Ljl78OszeJ++5ltmCqqiqlxz4Gk=;
-        b=pCcwE49XgBPQRtV500FC5TxX69Zdcsz10s2OT9kWhdda67MrJ0ER2I9FpLF9HX5fyc
-         MXQg6tDxMrL1K6vCHrtjCkYhthYDFRhJWIO68AKG/WJNWEa8E/8OCEAh9RyIcg94tSXf
-         gC1kbOmEXwepAi9UJGnc8UGBO+aiagZM3Yotn9V0wYKhoFlEiP2Aog14PYvf/72AOnnU
-         cZswy+qzL5WAXJuBB2snju1/F/iUVH3DR3V9PA+aIqmn2wXpIN2Q2inN2jqO+vbG9CF0
-         70OFRn13CtCeL1RH5Y8lgN3bAvMkNizp2QQXR4NVdtSn2xIIwa+vOXbJ9kyS43dYUHWo
-         zYKw==
+        d=gmail.com; s=20260707; t=1795736346; x=1796341146; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=jSYuqVK/hArnn4Mmrwqh7dDMIjMw4TzNK86GONldDfw=;
+        b=b05T5cJzGpHAUxWuhgrcEOb+0n4TuMRCRqpNbFL4X7FuF+1nuGZerRzbljUKPSsVOe
+         MknDOZDrdhwJZMSQpDTpYfvrBXAecXGviN5tixl3HcQLtHKwzKl/3HxINux7HA1RN19g
+         9rj1XOxVO0C9BTJN8V1vL+YhZ4RRjGjAFyFsYIJwrrzXgJX7F3tI2+Gdce9SK+pPGeSr
+         Zx3Vr10F1NnQrj9kpvJ6iBE4H+VmSjg1num8Yq8bx/6Z/MbOHhzrvL584Km6o9F6TAZg
+         phA+jiZfGwUdNR10WW6QVTVPfPiphwUuS0s2+soyNPps5+KKhf3f54qA+zsa5+Y7VdQB
+         LqAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795733913; x=1796338713;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-type:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=m8YUNG0289MJznW1Ljl78OszeJ++5ltmCqqiqlxz4Gk=;
-        b=HH80eKF3ZwSbqZpTK2NjUp3qz9M+vh+iHx3bUPclBpqgqhdvaBUhDjfVE7L2930r2S
-         CqSsGCJnRD+uwMtDckOlNyVn4kQwobG8rgBSd9m2AHMaHFdKMrdxf8DsB4N9+U1sPonL
-         OcR1HlYiXTvruuNg+I8M8pj2CfUbvXomUloEmVyH62NDnj+u4xyN1mLTT3eu95/MRKjN
-         0YcZv22ruLyouEygB/fj6ICn2rG2pXZeOeak3SqmE4TDbciu39VemZItexW1h3RyvZJp
-         leeawSyzd3cF3qRBfB5TzSw5j+i8cqo0neoioPHW8LprbxInG6FYHDKn9l22ehqmrN/z
-         YypA==
-X-Forwarded-Encrypted: i=1; AL+hErE25LDakCuiMstOHj/UYrJ0X7Ww+WXu7zcq0LUsEVC+8xLxxhTdZj6W1avo+zZIwKDD4HST@lists.linux.dev
-X-Gm-Message-State: APuU4Z8DyDLOMUUqZejtDvppGUkKrzWDsQCuksGk8nGwH4F94q/ESynl
-	cPpEq5dJICo+ha3Ehs1+hlrOAMCTTTUF3STQtgaEBYooPe+UNZbbkUlg
-X-Gm-Gg: AZFdTZej4iCkZPyLbqM1tRhWZWRg8axnPagBek78sloZkNau3UxdT3lJGxxQxh4XE3L
-	E00OFfd1Hm4MTXekAXVd6oxlbBl9byX/QsA6/u46uz84roQl28UvifQdbB0D+r3g87QhJQbGbL1
-	a2hWQdz5zj1h7vGxKasNB6vYoieFjaLaX8AlpBSkZOK47rQcKTQmd7JbopNTpli12vF73zSRou3
-	K17mUWX9Sbc0jSFvbRMTvRnTvsTSERCb3PQCjRu1asHVZV+M+tw43ZbUa5kaYQ3Q4SjhvnRdSzR
-	Xv7KrSdFKTfaPHYG8MVoVFq7c7GvxcYPD5S17RotZHphTAzsgTLWfkl0HdMT4uB5gUGZtpEZfN8
-	jpaL5NbDVEDUGtBj8+ECeYyjBi62GX3G7DjAgS+0Of/uvQP9fful/AOOlYGoEriGdZTQdG8OL62
-	IG2u0iKBaEGV46pbMTlxUEDbceFan9W+JQhtSW4mS4yyIO8mMFEQnghY8Eoh3q7TdDuxPY7qhRm
-	yZlAnUa6rtlccaIJWdvlkD0AuY+tFB9bDQcbBzHNM1Wf7FzDlNfphYyWYA/itMsgPvugd2w67JT
-	5SNm0sqIB/E/o89xWRG8ptWJhQ==
-X-Received: by 2002:a05:600c:4e87:b0:4a7:6bc7:f778 with SMTP id 5b1f17b1804b1-4bb88938d38mr467930345e9.30.1795733913027;
-        Thu, 26 Nov 2026 14:58:33 -0800 (PST)
-Received: from localhost ([2001:b07:5d26:7a6a:365a:60ff:fe0d:cfc6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110c3csm41489064f8f.36.2026.11.26.14.58.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Nov 2026 14:58:31 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795736346; x=1796341146;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=jSYuqVK/hArnn4Mmrwqh7dDMIjMw4TzNK86GONldDfw=;
+        b=hqRuYzIWc+INzJs0xSWwFYgxhcsEGiWWk2ehsQTpONaj+dZwyiFY+XcN9lMvsR7ZUY
+         z6CArJwb1X+fLfE/RFVZiwiVosZivzykJuu7Sc5hbT0hd55i8oDGaOvFihM625k+JQN3
+         113D1t4u6J9HlCb/cjmMkcRZb6HbHrNQ+qQqQI4RlLEXnARS271gMj5LieMpiqAKplef
+         rZ7D/hzgv2PWRXS606mLkklcZ1u30l5Ip2gauLEDwOEnuPT8wQcE2qi5ZF5rRWArN/nR
+         hhVvyAWWfdLyTw+T0Ngmn+nu7xcrLCCW4oP/Q9Ld6taB1ZmiAZLeV4RubbrtYDh5kj/c
+         c+pQ==
+X-Forwarded-Encrypted: i=1; AL+hErHfZh1jJLtL6GosroTqtwzgD0TEltHgtDGQMM9g5blTzznJ/HFax9Fn+TjkarqZdO6Dc6C2@lists.linux.dev
+X-Gm-Message-State: APuU4Z+t1e8wi6ZrxpmQ1KTIHgSp5h3EexyQYVCF8va8f6NYJDaUVrJ6
+	bpoCnOT/Q9pyzjVPPO732zkE1ccZI7dEEEJikAxEWYy7hbqMwjFGKb/J
+X-Gm-Gg: AZFdTZdEyVAfF+5/yfSK4CJkw25C8NRMP8vSdqzKHLfstn78EjEWPV0OY104MSkjlVS
+	nfDV6qtFftC+R3tVK0JKblg56yL7Qw0lQOvYHVwoz6DQ6KU9MZJJ1tlu+uNqTsNUVTRl4hN2DAm
+	wP0CfEStpXu2nBXjM5dEEIcssnRt213M7NtbQpyDMYJdLH6ToYS499NArnjuR/oIUbDbf8q6ay9
+	KrVxYXpTLOAnGEJonQ8h0Oph5ju+WxEyKaUTlqKBgsomfqrHKoU/Ls1Xm07enYSOR+xYkpahyLn
+	KAhEzwcrN7Z8OvdHUxcEXL+V7NDcnHcA9z8uBKtEkd+bMYaIQ1Glu4s43/YKKrk11PJ/jzKoHZl
+	5pcy8P4HH/dvsKaJx8mISUPtKyXdvnHKIHjbHE0yml8M4xaHdUfwknnEx0LLJHssrCJJGiHHEtv
+	2mCnrhPfp+hJ/XcXWd1DYNjnQJqBGN2NIH4KAJmmyeRpQE1lQMKS1EseqT//9+xl7Odpsm2ZqU7
+	a5KyNENaxtt69JJO7cN95K/TKb90X+D1d9YxxbFZrWzKIAPpwjVhIlmLzweoCLKOTtnYQbGljAP
+	lwMKRG+kKXSbDx2OZ1uX378TOI4rfxhVhgrm
+X-Received: by 2002:a05:6a00:1382:b0:882:7bed:3b3b with SMTP id d2e1a72fcca58-8c87c481e1cmr20352197b3a.36.1795736346045;
+        Thu, 26 Nov 2026 15:39:06 -0800 (PST)
+Received: from hyunchul-PC02.lge.net ([27.122.242.71])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8cb6640429fsm8490917b3a.38.2026.11.26.15.39.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 15:39:05 -0800 (PST)
+From: Hyunchul Lee <hyc.lee@gmail.com>
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>,
+	Baolin Liu <liubaolin@kylinos.cn>,
+	ntfs@lists.linux.dev,
+	Sazpaimon <sazpaimon@cultnet.net>
+Subject: [PATCH v2] ntfs: fix false directory corruption on case-insensitive lookup of POSIX names
+Date: Fri, 27 Nov 2026 08:38:46 +0900
+Message-ID: <20261126233846.540372-1-hyc.lee@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -86,149 +95,190 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=05d75f0ce163acd47afe49ecf5a8d87df78d75f96b711c550e361cecbf9b;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Thu, 26 Nov 2026 23:58:25 +0100
-Message-Id: <DN5IJJMT5L0L.QV32G91MJ6D7@gmail.com>
-Subject: Re: [PATCH v2 0/4] Add f*_xflags_{rw,ro}_mask flags to the fileattr
- API
-From: "koraynilay" <koray.fra@gmail.com>
-To: "koraynilay" <koray.fra@gmail.com>, "Namjae Jeon"
- <linkinjeon@kernel.org>, "Hyunchul Lee" <hyc.lee@gmail.com>, "Eric Biggers"
- <ebiggers@kernel.org>, "Theodore Y . Ts'o" <tytso@mit.edu>, "Jaegeuk Kim"
- <jaegeuk@kernel.org>, "Alexander Viro" <viro@zeniv.linux.org.uk>,
- "Christian Brauner" <brauner@kernel.org>
-Cc: "Chuck Lever" <cel@kernel.org>, "Jeff Layton" <jlayton@kernel.org>, "Jan
- Kara" <jack@suse.cz>, "Alexander Aring" <alex.aring@gmail.com>, "Darrick J
- . Wong" <djwong@kernel.org>, "Andrey Albershteyn" <aalbersh@kernel.org>,
- "Amir Goldstein" <amir73il@gmail.com>, =?utf-8?q?Pali_Roh=C3=A1r?=
- <pali@kernel.org>, "Lauri Gates" <lauri.gates@gmail.com>, "Christoph
- Hellwig" <hch@infradead.org>, "Dave Chinner" <dgc@kernel.org>,
- <linux-btrfs@vger.kernel.org>, <linux-xfs@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
- <ntfs@lists.linux.dev>, <linux-nfs@vger.kernel.org>,
- <linux-api@vger.kernel.org>
-X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
-References: <20261126163114.403846-1-koray.fra@gmail.com>
-In-Reply-To: <20261126163114.403846-1-koray.fra@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
---05d75f0ce163acd47afe49ecf5a8d87df78d75f96b711c550e361cecbf9b
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On a case-insensitive mount, a directory index may legitimately contain
+two POSIX-namespace names that differ only by letter case. During
+a lookup, ntfs_lookup_inode_by_name() treated any second case-insensitive
+match as directory corruption, failed the lookup with EIO.
 
-On Thu Nov 26, 2026 at 5:31 PM CET, koraynilay wrote:
-> This is a follow up patch series stemmed from [1] and [2], splitting the
-> _mask change for the fileattr API into its own separate patch.
->
-> The first patch is a preparatory cleanup so that the code in the later
-> patches can be formatted better.
->
-> The second patch updates fscrypt_prepare_setflags() to take FS_XFLAG_*
-> xflags instead of legacy FS_*_FL flags.
->
-> The third patch is the actual implementation, which introduces:
-> - fa_xflags_{rw,ro}_mask fields to struct file_attr
-> - fsx_xflags_{rw,ro}_mask fields and has_masks selector to struct file_ka=
-ttr
-> - AT_FILE_ATTR_MASKS at_flag for file_[gs]etattr()
->
-> These masks have the following semantics:
-> - rw_mask:
->   * for filesystems: advertise which xflags they support changing
->   * for userspace: specify which xflags it wants to modify
-> - ro_mask:
->   * for filesystems: advertise which xflags they support only reading
->   * for userspace: ignored
+Keep the first case-insensitive candidate and continue the collation and
+B+tree traversal so an exact match is still found.
 
-...and I forgot to include the improved explanation.
+Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+Reported-by: Sazpaimon <sazpaimon@cultnet.net>
+Link: https://github.com/namjaejeon/linux-ntfs/issues/99
+Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
+---
+Changes in v2:
+ - Remove the early return from the hibernation check.
 
-I'll write it and send it tomorrow (hopefully).
+ fs/ntfs/dir.c | 103 ++++++++++++++++++++++++++------------------------
+ 1 file changed, 53 insertions(+), 50 deletions(-)
 
-> This allows userspace to not have to do a RMW cycle when using the
-> file_[gs]etattr() syscalls, avoiding possible race conditions and
-> simplifying their usage.
->
-> Patch 3/4 also introduces the missing FS_XFLAG_PROJID flag so that
-> programs like chattr can leverage the new mask API.
-> FS_XFLAG_PROJID is kept out of the legacy FS_XFLAGS_MASK and so it's
-> defined as part of a new FS_FILE_ATTR_XFLAGS_MASK group of xflags that
-> will be used moving forward for any new xflag (like the one proposed in [=
-2]).
->
-> Patch 4/4 converts fs/ntfs to this new API, to show how it can benefit
-> filesystem drivers too, and for this purpose adds FS_XFLAG_COMPR and
-> FS_XFLAG_ENCRYPT from their FS_COMPR_FL and FS_ENCRYPT_FL counterparts.
->
-> The series has been tested with custom xfstests [3] (generic/816-835,
-> xfs/611, xfs/673) across NTFS, ext4 (project quotas), XFS (project
-> quotas and extent size hints), Btrfs, and F2FS.
-> Note: these tests were written by gemini and not manually checked,
-> before sending them upstream (if needed) I'll have to review/rewrite
-> them manually.
->
-> Note 2: there are apparently quite a few bugs with overlayfs and a few
-> other issues, but I wanted to get the final API design out first.
->
-> v2 changes:
-> - make fa_xflags_{rw,ro}_mask in struct file_attr __u64;
-> - add AT_FILE_ATTR_MASKS to opt in to mask semantics instead of needing
->   unreliable heuristics on usize and mask values;
-> - reject intermediate sizes between VER0 and VER1;
-> - reject non-zero masks on SET without AT_FILE_ATTR_MASKS;
-> - add patch 2/4 for fscrypt_prepare_setflags;
-> - add xflags_to_flags() / flags_to_xflags() and
->   fileattr_set_{legacy_to_mask,mask_to_legacy}() to translate between
->   legacy RMW callers/filesystems and _mask callers/filesystems;
-> - clamp fa->fsx_xflags to rw_user_mask in file_attr_to_fileattr();
-> - update fileattr_set_prepare() to validate capabilities and projid
->   changes against rw_user_mask / xflags;
-> - move the rw_mask =3D=3D 0 early-return no-op from file_setattr() into
->   vfs_fileattr_set();
-> - put FS_XFLAG_COMPR in FS_XFLAG_RDONLY_MASK only (keep FS_XFLAG_ENCRYPT
->   in both FS_XFLAG_COMMON and FS_XFLAG_RDONLY_MASK);
-> - update ntfs_fileattr_set() to apply only bits selected in
->   fsx_xflags_rw_mask;
->
-> Thanks,
-> koraynilay
->
-> [1]: https://lore.kernel.org/CAOQ4uxg8aVcWyNiFDk8djdn-M3xJcu_7-kRxVq9jjFs=
-bcGp1ew@mail.gmail.com/
-> [2]: https://lore.kernel.org/CAOQ4uxjVQ9cjV=3D_jBjQtNg9zCuWUEJT9KNYMKV+1j=
-wBkHen5OA@mail.gmail.com/
-> [3]: https://github.com/koraynilay/xfstests/tree/patches-in-queue
->
-> koraynilay (4):
->   vfs: use goto out on error in vfs_fileattr_set()
->   fscrypt: update fscrypt_prepare_setflags() to use xflags
->   vfs: add xflags mask to fileattr API
->   ntfs: switch to the new xflags fileattr API
->
->  fs/crypto/hooks.c          |  10 +-
->  fs/file_attr.c             | 357 +++++++++++++++++++++++++++++++++----
->  fs/ntfs/file.c             | 109 +++++------
->  include/linux/fileattr.h   |  14 +-
->  include/linux/fscrypt.h    |   6 +-
->  include/uapi/linux/fcntl.h |   6 +
->  include/uapi/linux/fs.h    |   9 +-
->  7 files changed, 409 insertions(+), 102 deletions(-)
->
->
-> base-commit: 3857587d9d6fa44d40d1c73bde6a39f6f7a5216c
+diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
+index a93f3566603b..2ff90852bccc 100644
+--- a/fs/ntfs/dir.c
++++ b/fs/ntfs/dir.c
+@@ -54,8 +54,8 @@ static inline u64 ntfs_check_mref(u64 mref)
+  *
+  * Note, we look for a case sensitive match first but we also look for a case
+  * insensitive match at the same time. If we find a case insensitive match, we
+- * save that for the case that we don't find an exact match, where we return
+- * the case insensitive match and setup @res (which we allocate!) with the mft
++ * save the first match on the search path in case we don't find an exact
++ * match, where we return it and setup @res (which we allocate!) with the mft
+  * reference, the file name type, length and with a copy of the little endian
+  * Unicode file name itself. If we match a file name which is in the DOS name
+  * space, we only return the mft reference and file name type in @res.
+@@ -91,6 +91,7 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
+ 	struct folio *folio;
+ 	u8 *kaddr = NULL;
+ 	struct ntfs_name *name = NULL;
++	bool seen_nonposix = false;
+ 
+ 	/* Get hold of the mft record for the directory. */
+ 	m = map_mft_record(dir_ni);
+@@ -191,13 +192,11 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
+ 		}
+ 		/*
+ 		 * For a case insensitive mount, we also perform a case
+-		 * insensitive comparison (provided the file name is not in the
+-		 * POSIX namespace). If the comparison matches, and the name is
+-		 * in the WIN32 namespace, we cache the filename in *res so
+-		 * that the caller, ntfs_lookup(), can work on it. If the
+-		 * comparison matches, and the name is in the DOS namespace, we
+-		 * only cache the mft reference and the file name type (we set
+-		 * the name length to zero for simplicity).
++		 * insensitive comparison. DOS names are matched this way even
++		 * on a case sensitive mount. If the comparison matches and no
++		 * candidate is cached, we cache the filename in *res for
++		 * ntfs_lookup(). For a DOS name, we only cache the mft reference
++		 * and the file name type (we set the name length to zero).
+ 		 */
+ 		if ((!NVolCaseSensitive(vol) ||
+ 		     ie->key.file_name.file_name_type == FILE_NAME_DOS) &&
+@@ -210,29 +209,32 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
+ 			u8 type = ie->key.file_name.file_name_type;
+ 			u8 len = ie->key.file_name.file_name_length;
+ 
+-			/* Only one case insensitive matching name allowed. */
+-			if (name) {
++			/* Only one imperfect non-POSIX match is allowed. */
++			if (type != FILE_NAME_POSIX && seen_nonposix) {
+ 				ntfs_error(sb,
+ 					"Found already allocated name in phase 1. Please run chkdsk");
+ 				goto dir_err_out;
+ 			}
+-
+-			if (type != FILE_NAME_DOS)
+-				name_size += len * sizeof(__le16);
+-			name = kmalloc(name_size, GFP_NOFS);
++			if (type != FILE_NAME_POSIX)
++				seen_nonposix = true;
+ 			if (!name) {
+-				err = -ENOMEM;
+-				goto err_out;
++				if (type != FILE_NAME_DOS)
++					name_size += len * sizeof(__le16);
++				name = kmalloc(name_size, GFP_NOFS);
++				if (!name) {
++					err = -ENOMEM;
++					goto err_out;
++				}
++				name->mref = le64_to_cpu(ie->data.dir.indexed_file);
++				name->type = type;
++				if (type != FILE_NAME_DOS) {
++					name->len = len;
++					memcpy(name->name, ie->key.file_name.file_name,
++							len * sizeof(__le16));
++				} else
++					name->len = 0;
++				*res = name;
+ 			}
+-			name->mref = le64_to_cpu(ie->data.dir.indexed_file);
+-			name->type = type;
+-			if (type != FILE_NAME_DOS) {
+-				name->len = len;
+-				memcpy(name->name, ie->key.file_name.file_name,
+-						len * sizeof(__le16));
+-			} else
+-				name->len = 0;
+-			*res = name;
+ 		}
+ 		/*
+ 		 * Not a perfect match, need to do full blown collation so we
+@@ -447,13 +449,11 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
+ 		}
+ 		/*
+ 		 * For a case insensitive mount, we also perform a case
+-		 * insensitive comparison (provided the file name is not in the
+-		 * POSIX namespace). If the comparison matches, and the name is
+-		 * in the WIN32 namespace, we cache the filename in *res so
+-		 * that the caller, ntfs_lookup(), can work on it. If the
+-		 * comparison matches, and the name is in the DOS namespace, we
+-		 * only cache the mft reference and the file name type (we set
+-		 * the name length to zero for simplicity).
++		 * insensitive comparison. DOS names are matched this way even
++		 * on a case sensitive mount. If the comparison matches and no
++		 * candidate is cached, we cache the filename in *res for
++		 * ntfs_lookup(). For a DOS name, we only cache the mft reference
++		 * and the file name type (we set the name length to zero).
+ 		 */
+ 		if ((!NVolCaseSensitive(vol) ||
+ 		     ie->key.file_name.file_name_type == FILE_NAME_DOS) &&
+@@ -466,30 +466,33 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
+ 			u8 type = ie->key.file_name.file_name_type;
+ 			u8 len = ie->key.file_name.file_name_length;
+ 
+-			/* Only one case insensitive matching name allowed. */
+-			if (name) {
++			/* Only one imperfect non-POSIX match is allowed. */
++			if (type != FILE_NAME_POSIX && seen_nonposix) {
+ 				ntfs_error(sb,
+ 					"Found already allocated name in phase 2. Please run chkdsk");
+ 				kfree(kaddr);
+ 				goto dir_err_out;
+ 			}
+-
+-			if (type != FILE_NAME_DOS)
+-				name_size += len * sizeof(__le16);
+-			name = kmalloc(name_size, GFP_NOFS);
++			if (type != FILE_NAME_POSIX)
++				seen_nonposix = true;
+ 			if (!name) {
+-				err = -ENOMEM;
+-				goto unm_err_out;
++				if (type != FILE_NAME_DOS)
++					name_size += len * sizeof(__le16);
++				name = kmalloc(name_size, GFP_NOFS);
++				if (!name) {
++					err = -ENOMEM;
++					goto unm_err_out;
++				}
++				name->mref = le64_to_cpu(ie->data.dir.indexed_file);
++				name->type = type;
++				if (type != FILE_NAME_DOS) {
++					name->len = len;
++					memcpy(name->name, ie->key.file_name.file_name,
++							len * sizeof(__le16));
++				} else
++					name->len = 0;
++				*res = name;
+ 			}
+-			name->mref = le64_to_cpu(ie->data.dir.indexed_file);
+-			name->type = type;
+-			if (type != FILE_NAME_DOS) {
+-				name->len = len;
+-				memcpy(name->name, ie->key.file_name.file_name,
+-						len * sizeof(__le16));
+-			} else
+-				name->len = 0;
+-			*res = name;
+ 		}
+ 		/*
+ 		 * Not a perfect match, need to do full blown collation so we
+-- 
+2.43.0
 
-
-
---05d75f0ce163acd47afe49ecf5a8d87df78d75f96b711c550e361cecbf9b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSgVimKafU5DQMcjcDmj22qf5IGXAUCawi5kQAKCRDmj22qf5IG
-XG6WAPwJQXkvnYM2T6CI+OL3CbCXJcdyvNtTqqpqmtzkWtEBdQD8CWhtnTm8Mn20
-vvyMXHnKEDWD/QMw27jw1T31axApsQ0=
-=Trt/
------END PGP SIGNATURE-----
-
---05d75f0ce163acd47afe49ecf5a8d87df78d75f96b711c550e361cecbf9b--
