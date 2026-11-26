@@ -1,50 +1,63 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.9
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795674538;
-	b=d5fNr8NMB0Dpzdwc4HxbL2KQGwlSTmRxP6IhEmkp9J875ATbzgUN+fLmj9SpSjE8815t
-	 N+m/3DKiUSA7qGIfAe0TzEMAErWXFOCaR2CtXkCHx6Y2X/fvKBX0rwaZo21UX8xL9JtI2
-	 8VrNIH6W+wjFZmzkhUEV1fQXOk4iX1MFRfm/UAPv1PTF9fh1GIBT6V3v5pYBjFFlxlMNT
-	 cLzhD8Gfs8E+eN+6zQtpG7tJ7ehAT0tZ0obggQGR0lYAlhm1r1XMgA3w+Psi7ZVVKUMsS
-	 Du7zLHoTUTdm4H9AFvFPEPDiVhiQsbDFYwH/67GHshk/3dC8qx3bpwCBY9b6U8TUBsA==
+	t=1795674917;
+	b=n3d5r0DBlOkfz8tJIcbDRxUL65yGZ9ms7N6zQPzq6syOrNMSntcO2jjrRAomydsUHmaD
+	 NhXfui/5g7Q475O2PgI/hjmjhD99tyH/RdKJEf9ZSj41nYzIokZmtz/+MDRRO+IuprLxe
+	 49ezK1Ts5hXUJm55U4OTFeyMMLBtb5Ekwb5kTRirFmWU8FmL3X704pkb9Y+D5nCZIM2Wn
+	 s4TS50G4j2ifOkbE5preI726LrP2ScfGNNSi3pUWll5l5nUVocpUNeGjXCQgcaQDgeYpv
+	 WPdRHDa9aaUi6daaic4zBFuO5M8wf6bDpq8IAVQTDyZOF8a6pl/ZPFOMKPq1a5bzyZQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795674538;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
-	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
-	bh=ZH7vGnguPt41FP/7x9/v1Iw12AHQ3ftHn6doqgojHxU=;
-	b=GfKLShurmoXMQlKdEumrTbY7wxf3r640IU2ua1wwsQJffMsxy5rfrbBmvcmh3otERAAL
-	 5OJpELErIvwkbEq3FvS+z1uXH0FAEq3O7UVhVpzFRW9tLKXaIbCosbggAaFQJeWydbJSF
-	 EboK1WQ8MFY8NFa0eEa2Kr8BV7CoEHo7C+bILiu70Yh8Edhk8nxYqGM/cpFgHajTN/VKc
-	 2DJw23+n4Mwt3mgrIQ1+nF2fS9BcFiI816eBH6WTuWP7g/xp0+s/3Msz37cTZY9lkCM9U
-	 WcgFbWjpJ6lwreuCfc1AvZDa5tNF2FNAm9sB9Z1fuZKoaCDnwfZ0qZ4TRPpTmFYAA0Q==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795674917;
+	h=DMARC-Filter:DKIM-Signature:Date:From:To:Cc:Subject:X-Priority:
+	 X-Mailer:In-Reply-To:References:X-NTES-SC:Content-Transfer-Encoding:
+	 Content-Type:MIME-Version:Message-ID:X-Coremail-Locale:X-CM-TRANSID:
+	 X-CM-SenderInfo:X-Coremail-Antispam;
+	bh=mPO0k9Um6B0EKx6Q6FI4sbj2CUg2TOA35nvg0waKMjM=;
+	b=w5fRAsBzjzWOu1eSFssRRzdZ+BJOFolpHCEB8hum/VljKUXPGlUdsoddrdITdSADx2Sq
+	 JM5utxwqWk70qt4S4ePqq/hItJ+/ZVhmjVIz/0M1KDI2GVC17j/l7EPqymKjPux12NYDo
+	 z9kwIdL83XvznFwAK3j3jlQQ8T2gHedOx9dBiL6iLKgX07/L8MfVDp1P7RHxGLtv8Cw6f
+	 FQQV10Rsa88hbZipDD/qA1RLHfoFlryq2SU51X+2ImFCua3EFsc1bZ9SBPBu3Ut+lep8x
+	 Sjr2Fq+pWBjqp2ordR+U+B1/fqn5wx9kOqHXJtILRetxLbeixY8UkF4N0IazrKVlypw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=SPKHWw4e;
-	arc=none smtp.remote-ip=117.135.210.2
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	dmarc=pass header.from=126.com;
+	spf=pass smtp.mailfrom=126.com;
+	dkim=pass header.d=126.com header.i=@126.com header.a=rsa-sha256 header.s=s110527 header.b=N0YwHkvf;
+	arc=none smtp.remote-ip=117.135.210.9
+Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.9])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE71606A31C
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 06:28:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 3EE71606A31C
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D6D606A31C
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 06:35:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org B4D6D606A31C
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=SPKHWw4e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=ZH7vGnguPt41FP/7x9/v1Iw12AHQ3ftHn6doqgojHxU=;
-	b=SPKHWw4ef70BUB0G1qal4xfO1mORZst1G8VAyPvxcYaX7HD90Q6wsEzQdl/Z6K
-	xt04BG862Hn4oT+cjhQ+aa8vuSZORT/5PCsJEN4LnALvyAgjDu3yY1ifPbDIu0mO
-	017lby2gQ5FlT6Q5rgAVFZLWQi2bGitzQKTLjsQt3Qn8M=
-Received: from [IPV6:2409:8900:1fda:c14d:fe4b:463:9ed6:5819] (unknown [])
-	by gzsmtp5 (Coremail) with SMTP id QCgvCgDXN6uW0QdrcePSIA--.30686S2;
-	Thu, 26 Nov 2026 14:28:39 +0800 (CST)
-Message-ID: <fd96d9db-0ada-4d71-8927-c5bb756a72b5@163.com>
-Date: Thu, 26 Nov 2026 14:28:38 +0800
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.a=rsa-sha256 header.s=s110527 header.b=N0YwHkvf
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=mPO0k9Um6B0EKx6Q6FI4sbj2CUg2TOA35nvg0waKMjM=; b=N
+	0YwHkvf/BLmOmqoLdRVP3qmj0B5FGAzuexlbzN1+8i2QCkFwZQ6ktIUAcvDdDv3W
+	B3NHGVHSrIQ/A+qlU4P6Cg4m1ewj6QNp79N6AHYkgF9JCOr5nP9egvtx92UxvCCw
+	wvDDxOc8z3TPp2MSnLRxWRC39NM7YOAsZLkXb7qGg8=
+Date: Thu, 26 Nov 2026 14:34:46 +0800 (CST)
+From: dd  <zhongling0719@126.com>
+To: liubaolin <liubaolin12138@163.com>
+Cc: "Hongling Zeng" <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
+	hyc.lee@gmail.com, ntfs@lists.linux.dev,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re:Re: [PATCH 2/6] ntfs: roll back the size update when the
+ attribute lookup fails
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260511(2e539873) Copyright (c) 2002-2026 www.mailtech.cn 126com
+In-Reply-To: <89ca24c7-1ba8-41e1-81ef-1b60b7cc64bd@163.com>
+References: <20261125073547.154150-1-zenghongling@kylinos.cn>
+ <20261125073547.154150-3-zenghongling@kylinos.cn>
+ <89ca24c7-1ba8-41e1-81ef-1b60b7cc64bd@163.com>
+X-NTES-SC: AL_Qu2SB/qcu0Aj4CCZYukfmUoQhu82WMW3uvog3I9UP514jAvj+BsGdFRZMlTSwMGzKieyiCCWSRNg7vxLXq1cXaYxeh7kbZxyVojwlIcfxq7RWw==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=GBK
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -54,290 +67,97 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] generic: test fallocate after a buffered write that
- faulted
-To: ernest.borowski.git@proton.me, fstests@vger.kernel.org,
- Zorro Lang <zlang@kernel.org>
-Cc: ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>,
- Hyunchul Lee <hyc.lee@gmail.com>, Zhan Xusheng <zhanxusheng1024@gmail.com>
-References: <20261125-ntfs-reproducers-v1-0-0cc67533d803@proton.me>
- <20261125-ntfs-reproducers-v1-3-0cc67533d803@proton.me>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20261125-ntfs-reproducers-v1-3-0cc67533d803@proton.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:QCgvCgDXN6uW0QdrcePSIA--.30686S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3GF4UurWkCrWxtFyUWr1Utrb_yoWfGr1xpF
-	Wrt3ZYkr4xt347Cwn3ZF17XF1rWwsYgF4Uur1xWF93ZFZ8XF4xXFW2gr98ur48Ar47Jr4j
-	vFs09ry3GFnrZ3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U-Z2fUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hg3AmsH0ZiQtwAA3F
+Message-ID: <28017ef0.440e.1a216904f88.Coremail.zhongling0719@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:cikvCgD3HxEG0wdrnFZoAA--.45027W
+X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBoAaSY2sH0waxwwAA3c
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-
-
-在 2026/11/26 03:03, Ernest Borowski via B4 Relay 写道:
-> From: Ernest Borowski <ernest.borowski.git@proton.me>
-> 
-> A buffered write into a hole may reserve or map space before it copies from
-> the user buffer, and when the copy faults on the first byte the write fails
-> with EFAULT and must leave nothing behind. On ntfs the delayed allocation
-> run it set up stayed in the runlist without any dirty data, and punching,
-> collapsing or inserting a range through it shifted the run onto clusters of
-> other files, so the file read their contents and ntfsck found the cluster
-> bitmap inconsistent. The fixes are "ntfs: punch out the delalloc
-> reservation of a failed buffered write" and "ntfs: do not shift the cluster
-> number of a delalloc run on split" from the ntfs delayed allocation series,
-> not merged yet. Fail a write over the first half of a sparse file, then
-> punch, collapse, insert or write a range inside that half, and compare each
-> file with its expected contents after a remount. The new helper
-> src/pwrite-short-copy calls pwrite(2) once from a buffer whose readable
-> part ends a given number of bytes in, and prints what it returned.
-> 
-> Link: https://lore.kernel.org/all/20261124-b4-ntfs-delalloc-fixes-v2-0-f394c800ec03@proton.me/
-> Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
-> ---
->   .gitignore              |   1 +
->   src/Makefile            |   2 +-
->   src/pwrite-short-copy.c | 101 ++++++++++++++++++++++++++++++++++++++++++++++++
->   tests/generic/817       |  83 +++++++++++++++++++++++++++++++++++++++
->   tests/generic/817.out   |   2 +
->   5 files changed, 188 insertions(+), 1 deletion(-)
-> 
-> diff --git a/.gitignore b/.gitignore
-> index cdcfa06e..afce03d4 100644
-> --- a/.gitignore
-> +++ b/.gitignore
-> @@ -123,6 +123,7 @@ tags
->   /src/preallo_rw_pattern_reader
->   /src/preallo_rw_pattern_writer
->   /src/punch-alternating
-> +/src/pwrite-short-copy
->   /src/pwrite_mmap_blocked
->   /src/randholes
->   /src/readdir-while-renames
-> diff --git a/src/Makefile b/src/Makefile
-> index a1fc38d8..0b031620 100644
-> --- a/src/Makefile
-> +++ b/src/Makefile
-> @@ -38,7 +38,7 @@ LINUX_TARGETS = dirstress fill fill2 getpagesize holes lstat64 \
->   	detached_mounts_propagation ext4_resize t_readdir_3 splice2pipe \
->   	uuid_ioctl t_snapshot_deleted_subvolume fiemap-fault min_dio_alignment \
->   	rw_hint btrfs_ioctl refluxfs xfs-exchange-to-eof \
-> -	xfs-exchange-to-dirty-eof xfs-swapext-reflink
-> +	xfs-exchange-to-dirty-eof xfs-swapext-reflink pwrite-short-copy
->   
->   EXTRA_EXECS = dmerror fill2attr fill2fs fill2fs_check scaleread.sh \
->   	      btrfs_crc32c_forged_name.py popdir.pl popattr.py \
-> diff --git a/src/pwrite-short-copy.c b/src/pwrite-short-copy.c
-> new file mode 100644
-> index 00000000..2f1c36a3
-> --- /dev/null
-> +++ b/src/pwrite-short-copy.c
-> @@ -0,0 +1,101 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2026 Ernest Borowski <ernest.borowski.git@proton.me>.  All Rights Reserved.
-> + *
-> + * Call pwrite(2) once with a source buffer that ends in an inaccessible page,
-> + * so that the copy from user space stops after a given number of bytes: the
-> + * write comes up short, or fails with EFAULT when no byte is readable.
-> + *
-> + * usage: pwrite-short-copy [-p pattern] file offset length readable
-> + *
-> + * The first "readable" bytes of the buffer hold the pattern byte (default
-> + * 0x5c), and the page after them is PROT_NONE.  The program prints what
-> + * pwrite(2) returned: the number of bytes written, or minus the errno.
-> + * It exits 0 in both cases, and 1 on a usage or setup error.
-> + */
-> +#include <errno.h>
-> +#include <fcntl.h>
-> +#include <stdio.h>
-> +#include <stdlib.h>
-> +#include <string.h>
-> +#include <sys/mman.h>
-> +#include <unistd.h>
-> +
-> +static void usage(const char *prog)
-> +{
-> +	fprintf(stderr,
-> +		"usage: %s [-p pattern] file offset length readable\n", prog);
-> +	exit(1);
-> +}
-> +
-> +static long long parse(const char *s, const char *prog)
-> +{
-> +	char *end;
-> +	long long v;
-> +
-> +	errno = 0;
-> +	v = strtoll(s, &end, 0);
-> +	if (errno || *end || v < 0)
-> +		usage(prog);
-> +	return v;
-> +}
-> +
-> +int main(int argc, char **argv)
-> +{
-> +	long long offset, length, readable;
-> +	size_t pagesize = getpagesize();
-> +	size_t npages;
-> +	int pattern = 0x5c;
-> +	char *map, *buf;
-> +	ssize_t ret;
-> +	int fd, c;
-> +
-> +	while ((c = getopt(argc, argv, "p:")) != -1) {
-> +		switch (c) {
-> +		case 'p':
-> +			pattern = parse(optarg, argv[0]) & 0xff;
-> +			break;
-> +		default:
-> +			usage(argv[0]);
-> +		}
-> +	}
-> +	if (argc - optind != 4)
-> +		usage(argv[0]);
-> +
-> +	offset = parse(argv[optind + 1], argv[0]);
-> +	length = parse(argv[optind + 2], argv[0]);
-> +	readable = parse(argv[optind + 3], argv[0]);
-> +
-> +	fd = open(argv[optind], O_WRONLY);
-> +	if (fd < 0) {
-> +		perror(argv[optind]);
-> +		return 1;
-> +	}
-> +
-> +	/* the readable bytes end where the last, inaccessible page starts */
-> +	npages = (readable + pagesize - 1) / pagesize + 1;
-> +	map = mmap(NULL, npages * pagesize, PROT_READ | PROT_WRITE,
-> +		   MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-> +	if (map == MAP_FAILED) {
-> +		perror("mmap");
-> +		return 1;
-> +	}
-> +	buf = map + (npages - 1) * pagesize - readable;
-> +	memset(buf, pattern, readable);
-> +	if (mprotect(map + (npages - 1) * pagesize, pagesize, PROT_NONE)) {
-> +		perror("mprotect");
-> +		return 1;
-> +	}
-> +
-> +	ret = pwrite(fd, buf, length, offset);
-> +	if (ret < 0)
-> +		printf("%d\n", -errno);
-> +	else
-> +		printf("%zd\n", ret);
-> +
-> +	if (close(fd)) {
-> +		perror("close");
-> +		return 1;
-> +	}
-> +	return 0;
-> +}
-> diff --git a/tests/generic/817 b/tests/generic/817
-> new file mode 100755
-> index 00000000..dff08a28
-> --- /dev/null
-> +++ b/tests/generic/817
-> @@ -0,0 +1,83 @@
-> +#! /bin/bash
-> +# SPDX-License-Identifier: GPL-2.0
-> +# Copyright (c) 2026 Ernest Borowski <ernest.borowski.git@proton.me>.  All Rights Reserved.
-> +#
-> +# FS QA Test No. 817
-> +#
-> +# A buffered write into a hole that fails with EFAULT, because not one byte of
-> +# its source buffer is readable, must not leave anything behind that later
-> +# operations trip over.  After such a write over the first half of a sparse
-> +# file, punch a hole through that range, collapse a range out of it, insert a
-> +# range into it or write into it, and check that after a remount the file
-> +# reads back as zeroes, apart from the data written.
-> +#
-> +. ./common/preamble
-> +_begin_fstest auto quick rw punch collapse insert
-> +
-> +_fixed_by_fs_commit ntfs xxxxxxxxxxxx \
-> +	"ntfs: punch out the delalloc reservation of a failed buffered write"
-> +_fixed_by_fs_commit ntfs xxxxxxxxxxxx \
-> +	"ntfs: do not shift the cluster number of a delalloc run on split"
-> +
-> +_require_scratch
-> +_require_test_program "pwrite-short-copy"
-> +_require_xfs_io_command "fpunch"
-> +_require_xfs_io_command "fcollapse"
-> +_require_xfs_io_command "finsert"
-> +
-> +_scratch_mkfs >> $seqres.full 2>&1
-> +_scratch_mount
-> +
-> +blksz=$(_get_file_block_size $SCRATCH_MNT)
-> +unit=$((blksz > 65536 ? blksz : 65536))
-> +size=$((16 * unit))
-> +piece=$((2 * unit))
-> +
-> +# Data in other files, so that blocks a broken mapping points to are not zero.
-> +for i in 1 2 3 4; do
-> +	$XFS_IO_PROG -f -c "pwrite -q -S 0x3$i 0 $((8 * unit))" \
-> +		$SCRATCH_MNT/other$i
-> +done
-> +_scratch_sync
-> +
-> +for op in none punch collapse insert write; do
-> +	file=$SCRATCH_MNT/$op
-> +	$XFS_IO_PROG -f -c "truncate $size" -c fsync $file
-> +
-> +	# EFAULT is errno 14
-> +	ret=$($here/src/pwrite-short-copy $file 0 $((size / 2)) 0)
-> +	[ "$ret" = "-14" ] || \
-> +		echo "$op: write from an unreadable buffer returned $ret"
-> +
-> +	newsize=$size
-> +	case $op in
-> +	punch)
-> +		$XFS_IO_PROG -c "fpunch $piece $piece" $file
-> +		;;
-> +	collapse)
-> +		$XFS_IO_PROG -c "fcollapse $piece $piece" $file
-> +		newsize=$((size - piece))
-> +		;;
-> +	insert)
-> +		$XFS_IO_PROG -c "finsert $piece $piece" $file
-> +		newsize=$((size + piece))
-> +		;;
-> +	write)
-> +		$XFS_IO_PROG -c "pwrite -q -S 0x77 $piece $unit" $file
-> +		;;
-> +	esac
-> +
-> +	$XFS_IO_PROG -f -c "truncate $newsize" $tmp.$op
-> +	[ $op = write ] && \
-> +		$XFS_IO_PROG -c "pwrite -q -S 0x77 $piece $unit" $tmp.$op
-> +done
-> +
-> +# Read everything back from the disk.
-> +_scratch_cycle_mount
-> +for op in none punch collapse insert write; do
-> +	cmp -s $SCRATCH_MNT/$op $tmp.$op || \
-> +		echo "$op: file contents differ after the failed write"
-> +done
-> +
-> +echo "Silence is golden"
-> +_exit 0
-> diff --git a/tests/generic/817.out b/tests/generic/817.out
-> new file mode 100644
-> index 00000000..86920a4f
-> --- /dev/null
-> +++ b/tests/generic/817.out
-> @@ -0,0 +1,2 @@
-> +QA output created by 817
-> +Silence is golden
-> 
-
-
-Looks good to me.
-
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-
+CgoKCkF0IDIwMjYtMTEtMjUgMjI6MDU6NTAsICJsaXViYW9saW4iIDxsaXViYW9saW4xMjEzOEAx
+NjMuY29tPiB3cm90ZToKPgo+Cj7U2iAyMDI2LzExLzI1IDE1OjM1LCBIb25nbGluZyBaZW5nINC0
+tcA6Cj4+IG50ZnNfZW5sYXJnZV9hdHRyaWJ1dGUoKSB0cnVuY2F0ZXMgdGhlIGF0dHJpYnV0ZSB0
+byB0aGUgZW5kIG9mIHRoZQo+PiB3cml0ZSBiZWZvcmUgbG9va2luZyBpdCB1cCBhZ2FpbiwgYmVj
+YXVzZSB0aGUgdHJ1bmNhdGlvbiBjYW4gbW92ZSB0aGUKPj4gYXR0cmlidXRlIHRvIGEgZGlmZmVy
+ZW50IG1mdCByZWNvcmQuIElmIHRoYXQgbG9va3VwIGZhaWxzLCB0aGUgZXJyb3IKPj4gaXMgcmV0
+dXJuZWQgYnV0IHRoZSBhdHRyaWJ1dGUgc3RheXMgYXQgdGhlIGV4dGVuZGVkIHNpemUsIHNvIGEg
+ZmFpbGVkCj4+IHdyaXRlIGV4dGVuZHMgdGhlIGZpbGUuCj4+IAo+PiBVbmRvIHRoZSB0cnVuY2F0
+aW9uIGJlZm9yZSByZXR1cm5pbmcgdGhlIGVycm9yLiBJZiB0aGUgcm9sbGJhY2sgZmFpbHMKPj4g
+YXMgd2VsbCwgbWFyayB0aGUgdm9sdW1lIGFzIGhhdmluZyBlcnJvcnMgYW5kIHN5bmNocm9uaXpl
+IGlfc2l6ZSB3aXRoCj4+IHRoZSBjdXJyZW50IGRhdGFfc2l6ZSBpbnN0ZWFkIG9mIHRoZSBvbGQg
+c25hcHNob3QuCj4+IAo+PiBGaXhlczogYWYwZGI1N2Q0MjkzICgibnRmczogdXBkYXRlIGlub2Rl
+IG9wZXJhdGlvbnMiKQo+PiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwo+PiBTaWduZWQtb2Zm
+LWJ5OiBIb25nbGluZyBaZW5nIDx6ZW5naG9uZ2xpbmdAa3lsaW5vcy5jbj4KPj4gLS0tCj4+ICAg
+ZnMvbnRmcy9pbm9kZS5jIHwgNDggKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKy0tCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDQ2IGluc2VydGlvbnMoKyksIDIgZGVs
+ZXRpb25zKC0pCj4+IAo+PiBkaWZmIC0tZ2l0IGEvZnMvbnRmcy9pbm9kZS5jIGIvZnMvbnRmcy9p
+bm9kZS5jCj4+IGluZGV4IDRmYmRjZDQ1OTY1Mi4uN2Q3YmI3NDE0NTVlIDEwMDY0NAo+PiAtLS0g
+YS9mcy9udGZzL2lub2RlLmMKPj4gKysrIGIvZnMvbnRmcy9pbm9kZS5jCj4+IEBAIC0zODQyLDgg
+KzM4NDIsMTkgQEAgc3RhdGljIGlubGluZSBpbnQgbnRmc19lbmxhcmdlX2F0dHJpYnV0ZShzdHJ1
+Y3QgaW5vZGUgKnZpLCBzNjQgcG9zLCBzNjQgY291bnQsCj4+ICAgewo+PiAgIAlzdHJ1Y3QgbnRm
+c19pbm9kZSAqbmkgPSBOVEZTX0kodmkpOwo+PiAgIAlzdHJ1Y3Qgc3VwZXJfYmxvY2sgKnNiID0g
+dmktPmlfc2I7Cj4+ICsJdW5zaWduZWQgbG9uZyBmbGFnczsKPj4gKwlzNjQgb2xkX2RhdGFfc2l6
+ZTsKPj4gICAJaW50IHJldDsKPj4gICAKPj4gKwkvKgo+PiArCSAqIFNuYXBzaG90IHRoZSBvbGQg
+ZGF0YV9zaXplIHVuZGVyIHNpemVfbG9jazogaXQgaXMgdGhlIHJvbGxiYWNrCj4+ICsJICogdGFy
+Z2V0LCB0aGUgb3RoZXIgc2l6ZXMgYXJlIHVwZGF0ZWQgYnkgbnRmc19hdHRyX3RydW5jYXRlKCkK
+Pj4gKwkgKiBpdHNlbGYKPj4gKwkgKi8KPj4gKwlyZWFkX2xvY2tfaXJxc2F2ZSgmbmktPnNpemVf
+bG9jaywgZmxhZ3MpOwo+PiArCW9sZF9kYXRhX3NpemUgPSBuaS0+ZGF0YV9zaXplOwo+PiArCXJl
+YWRfdW5sb2NrX2lycXJlc3RvcmUoJm5pLT5zaXplX2xvY2ssIGZsYWdzKTsKPj4gKwo+PiAgIAlp
+ZiAocG9zICsgY291bnQgPD0gbmktPmluaXRpYWxpemVkX3NpemUpCj4+ICAgCQlyZXR1cm4gMDsK
+Pj4gICAKPj4gQEAgLTM4NTMsNyArMzg2NCw3IEBAIHN0YXRpYyBpbmxpbmUgaW50IG50ZnNfZW5s
+YXJnZV9hdHRyaWJ1dGUoc3RydWN0IGlub2RlICp2aSwgczY0IHBvcywgczY0IGNvdW50LAo+PiAg
+IAlpZiAoTklub0NvbXByZXNzZWQobmkpKQo+PiAgIAkJcmV0dXJuIC1FT1BOT1RTVVBQOwo+PiAg
+IAo+PiAtCWlmIChwb3MgKyBjb3VudCA+IG5pLT5kYXRhX3NpemUpIHsKPj4gKwlpZiAocG9zICsg
+Y291bnQgPiBvbGRfZGF0YV9zaXplKSB7Cj4+ICAgCQlyZXQgPSBudGZzX2F0dHJfdHJ1bmNhdGUo
+bmksIHBvcyArIGNvdW50KTsKPj4gICAJCWlmIChyZXQpIHsKPj4gICAJCQludGZzX2RlYnVnKCJG
+YWlsZWQgdG8gdHJ1bmNhdGUgYXR0cmlidXRlIik7Cj4+IEBAIC0zODY1LDcgKzM4NzYsNDAgQEAg
+c3RhdGljIGlubGluZSBpbnQgbnRmc19lbmxhcmdlX2F0dHJpYnV0ZShzdHJ1Y3QgaW5vZGUgKnZp
+LCBzNjQgcG9zLCBzNjQgY291bnQsCj4+ICAgCQkJCSAgICAgICBDQVNFX1NFTlNJVElWRSwKPj4g
+ICAJCQkJICAgICAgIDAsIE5VTEwsIDAsIGN0eCk7Cj4+ICAgCQlpZiAocmV0KSB7Cj4+IC0JCQlu
+dGZzX2Vycm9yKHNiLCAiRmFpbGVkIHRvIGxvb2sgdXAgYXR0ciAlI3giLCBuaS0+dHlwZSk7Cj4+
+ICsJCQlpbnQgcm9sbGJhY2tfZXJyOwo+PiArCj4+ICsJCQkvKgo+PiArCQkJICogVGhlIHRydW5j
+YXRpb24gYWxyZWFkeSBoYXBwZW5lZCwgc28gdW5kbyBpdAo+PiArCQkJICogYmVmb3JlIHJldHVy
+bmluZyB0aGUgZXJyb3IKPj4gKwkJCSAqLwo+PiArCQkJcm9sbGJhY2tfZXJyID0gbnRmc19hdHRy
+X3RydW5jYXRlKG5pLCBvbGRfZGF0YV9zaXplKTsKPgo+SGkgSG9uZ2xpbmcsCj4gICAgVGhhbmtz
+IGZvciBzZW5kaW5nIHRoaXMgcGF0Y2ggc2VyaWVzLgo+Cj4gICAgQ291bGQgdGhpcyByb2xsYmFj
+ayBkZWFkbG9jayB3aXRoIHdyaXRlYmFjaz8KPiAgICBudGZzX2lub2RlX2F0dHJfcHdyaXRlKCkg
+aG9sZHMgbXJlY19uaS0+bXJlY19sb2NrIHdoZW4gY2FsbGluZwo+bnRmc19lbmxhcmdlX2F0dHJp
+YnV0ZSgpLiBGb3IgYSBub24tcmVzaWRlbnQgYXR0cmlidXRlLCB0aGUgcm9sbGJhY2sKPmNhbiBy
+ZWFjaCBudGZzX25vbl9yZXNpZGVudF9hdHRyX3NocmluaygpIGFuZCB0cnVuY2F0ZV9pbm9kZV9w
+YWdlcygpLAo+d2hpY2ggbWF5IHdhaXQgZm9yIGEgZm9saW8gbG9jay4KPiAgICBNZWFud2hpbGUs
+IGlvbWFwIHdyaXRlYmFjayBjYW4gaG9sZCB0aGF0IGZvbGlvIGxvY2sgYW5kIHdhaXQgZm9yIHRo
+ZQo+c2FtZSBtcmVjX2xvY2sgaW4gbnRmc193cml0ZV9pb21hcF9iZWdpbl9ub25fcmVzaWRlbnQo
+KToKPiAgIHJvbGxiYWNrOiAgbXJlY19sb2NrIC0+IGZvbGlvIGxvY2sKPiAgIHdyaXRlYmFjazog
+Zm9saW8gbG9jayAtPiBtcmVjX2xvY2sKPgo+ICAgIFRoZSBmb2xpbyBjb250YWluaW5nIHRoZSBv
+bGQgRU9GIG1heSBhbHJlYWR5IGJlIGRpcnR5IGZyb20gYW4gZWFybGllcgo+d3JpdGUsIHNvIHRo
+aXMgZG9lcyBub3QgcmVxdWlyZSB0aGUgZmFpbGVkIHdyaXRlIHRvIGhhdmUgY29waWVkIGFueQo+
+ZGF0YS4KPiAgICBDb3VsZCB3ZSBhdm9pZCB3YWl0aW5nIGZvciBmb2xpb3Mgd2hpbGUgaG9sZGlu
+ZyBtcmVjX2xvY2ssIHdpdGhvdXQKPmFsbG93aW5nIGNvbmN1cnJlbnQgd3JpdGVzIHRvIGludGVy
+ZmVyZSB3aXRoIHRoZSByb2xsYmFjaz8KPgo+VGhhbmtzLAo+QmFvbGluLgo+Cj4KClllcywgdGhh
+dCBpcyBhIHJlYWwgZGVhZGxvY2ssIHRoYW5rcyBmb3IgY2F0Y2hpbmcgaXQuCgpJIGNvbnNpZGVy
+ZWQgZHJvcHBpbmcgdGhlIGZvbGlvcyB1bmRlciBtcmVjX2xvY2sgd2l0aG91dCB3YWl0aW5nLCBi
+dXQKSSBkbyBub3Qgc2VlIGhvdyB0byBtYWtlIHRoYXQgd29yazogbWFwcGluZ19ldmljdF9mb2xp
+bygpIHJlZnVzZXMgdGhlCmRpcnR5IGFuZCB3cml0ZWJhY2sgZm9saW9zIHRoZSByb2xsYmFjayBt
+dXN0IGRyb3AsIHRoZSBwYXJ0aWFsIGZvbGlvCmF0IHRoZSBvbGQgRU9GIG5lZWRzIHNsZWVwaW5n
+IHRydW5jYXRlIHNlbWFudGljcywgYW5kIGJhaWxpbmcgb3V0CndvdWxkIHNldCB0aGUgc3RpY2t5
+IHZvbHVtZSBlcnJvciBmb3IgYSByb3V0aW5lIGZhaWx1cmUuCgpTbyB2MiBkZWZlcnMgYSBub24t
+cmVzaWRlbnQgcm9sbGJhY2sgdG8gbnRmc19pbm9kZV9hdHRyX3B3cml0ZSgpCmFmdGVyIGl0IHJl
+bGVhc2VzIG1yZWNfbG9jaywgcmV1c2luZyB0aGUgVkZTIHRydW5jYXRlIHBhdHRlcm4KKG50ZnNf
+c2V0YXR0cl9zaXplKCkpOiB0cnVuY2F0ZV9zZXRzaXplKCkgb3V0c2lkZSB0aGUgbG9jaywKX19u
+dGZzX2F0dHJfdHJ1bmNhdGVfdmZzKCkgdW5kZXIgaXQgYWZ0ZXIgcmUtY2hlY2tpbmcgdGhlIHNp
+emUuClJlc2lkZW50IGF0dHJpYnV0ZXMgc3RpbGwgcm9sbCBiYWNrIGlubGluZS4KClRoYW5rcyBh
+Z2FpbiBmb3IgdGhlIHJldmlldy4KCgo+PiArCQkJaWYgKHJvbGxiYWNrX2Vycikgewo+PiArCQkJ
+CXM2NCBjdXJyZW50X2RhdGFfc2l6ZTsKPj4gKwo+PiArCQkJCS8qCj4+ICsJCQkJICogUm9sbGJh
+Y2sgZmFpbGVkLCB0aGUgc2l6ZXMgbWF5IGJlCj4+ICsJCQkJICogaW5jb25zaXN0ZW50LiBNYXJr
+IHRoZSB2b2x1bWUgYXMgaGF2aW5nCj4+ICsJCQkJICogZXJyb3JzIGFuZCBzeW5jIGlfc2l6ZSB3
+aXRoIHRoZSBjdXJyZW50Cj4+ICsJCQkJICogZGF0YV9zaXplCj4+ICsJCQkJICovCj4+ICsJCQkJ
+cmVhZF9sb2NrX2lycXNhdmUoJm5pLT5zaXplX2xvY2ssIGZsYWdzKTsKPj4gKwkJCQljdXJyZW50
+X2RhdGFfc2l6ZSA9IG5pLT5kYXRhX3NpemU7Cj4+ICsJCQkJcmVhZF91bmxvY2tfaXJxcmVzdG9y
+ZSgmbmktPnNpemVfbG9jaywgZmxhZ3MpOwo+PiArCj4+ICsJCQkJaV9zaXplX3dyaXRlKHZpLCBj
+dXJyZW50X2RhdGFfc2l6ZSk7Cj4+ICsJCQkJTlZvbFNldEVycm9ycyhuaS0+dm9sKTsKPj4gKwkJ
+CQludGZzX2Vycm9yKHNiLAo+PiArCQkJCQkiRmFpbGVkIHRvIGxvb2sgdXAgYXR0ciAlI3ggYW5k
+ICIKPj4gKwkJCQkJInJvbGwgYmFjayB0aGUgc2l6ZSB1cGRhdGU6ICVkIiwKPj4gKwkJCQkJbmkt
+PnR5cGUsIHJvbGxiYWNrX2Vycik7Cj4+ICsJCQl9IGVsc2Ugewo+PiArCQkJCS8qCj4+ICsJCQkJ
+ICogUm9sbGJhY2sgc3VjY2VlZGVkLCB0aGUgc2l6ZXMgd2VyZSB1cGRhdGVkCj4+ICsJCQkJICog
+YnkgbnRmc19hdHRyX3RydW5jYXRlKCkgaXRzZWxmCj4+ICsJCQkJICovCj4+ICsJCQkJbnRmc19l
+cnJvcihzYiwgIkZhaWxlZCB0byBsb29rIHVwIGF0dHIgJSN4IiwKPj4gKwkJCQkJbmktPnR5cGUp
+Owo+PiArCQkJfQo+PiAgIAkJCXJldHVybiByZXQ7Cj4+ICAgCQl9Cj4+ICAgCX0K
