@@ -1,83 +1,83 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.44
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795710708;
-	b=LZxe/MN3AFhKpyk3iN38UrRu4/lWM1cwdKx0+SaXDt1k1+E1+zKjbBQsbD0HNIfM69nW
-	 GArEvZfj3xbmQ8MiNX8CMEyj3zRJaREMDp1HyLIuahymQYMA6K4WJn0VjXWhSz8QN1uHC
-	 ePjdRm9mnaoD1vx/3kt7RN2RT4w9MWMaO5PeSw9r8cQqCIRMM1+IaH3LCzAO3jK560X25
-	 I1t27lVmi7wpAdvIlZmsMd5BDbeWUx9R0F2gHdPYIjZaoSfnIHX8PA7lST6n6Ky179vIt
-	 GsL/desB3F4JbM7OEKMmNdVWi/1MSe+b5JxTjH4ZubE51qotH16diecqM1rIu6W+ltQ==
+	t=1795710711;
+	b=4Zy8DWq/y8Xkj2m1nmv6pkzdYT+4mn5tvghECiZLBUYCwaKid1FA8GDkXbTdwS6PeSTi
+	 2XSJiqCcOIwsUz9cVLUrPCzb/8cFmPY04aAWOD9OnXnZ6VhXg1pG3iZTAidk+SciL1K2j
+	 ZaXWN7lWmeQusGhWd1Xr0qvAAinlbjxH9CtcmmRvcIZPgBH2xOmRl9vzqyB+2Nmd9FRnV
+	 buGyeTFTX14nnfFEpw121ykqLfFAenFufZfWKF+8rT79DrVQXQwcRGZZ995DMscXgV6Nb
+	 44uror2CTFTvncHMt3ooMinB0/JDiQvrbfpeuo1CM2QbSC/YzPHdDtbVJtxNnGR7Igw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795710708;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795710711;
 	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
 	 From:To:Cc:Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding;
-	bh=mfpEhfbyhPi8fEOS+N1QHzNJFz4cU/NZgKWTwuKYJ+M=;
-	b=Pj7nPAkNbSUL3A8ieU5xQOEx73UpCq8DWr9+ajHvLbfbn3awzpsjOMOWNwybq6tCfnX8
-	 2Zs8XlHEDjT4vmasQemZlaOAPyEJQVdhtaJ1JgONNlQd+nusrp8kWdxLY00DIxY4946Ht
-	 bYWQnR9oY9+VOMOtTTWdIJ8wXBsyN3qaEnKThoHMCFW4RM9AIeGIgeolK2ksrc16xt2Sh
-	 gxPszqP79eC+4CiAvVXOkJ/fD25/eZL6tzC74cWaR7FS52r54Vy6VLJ7lVJAkr/KlwuJl
-	 /F1mQV3CqvX2wCMuazlPPK8VA9ZJLR3cwTjJpEjpxyBvMoPeOZyB/haj1Zk45VI3r2w==
+	bh=6DGKGHZD1sWqO2WRSY4U0udOhpGKQXiV3WJqb4Fx1ZI=;
+	b=uJDrTHUU6074Cah/pZvxNAh2jFIyzFtjbql6Cez4feOnSzprQVe0l8vYKwNiWVGoR7Ok
+	 6ymKAXMJfzMk0xOoVsU8sbTkIEPQig0FjTYiAEI+p1Y2cd0pmCg8WEX1AZd7MlxJcL1to
+	 lm7OSHw56ky63mOuam5o6W2oKZvdaj6pEuwVZ0YoAQ0Ih4NLos00lao94jGt0u4NVmRui
+	 2DUoYU4LnSlo2Xto0WOoxegKMcrUmZYG825pg4JIPskbwKPAvgDjWScDGz06Q4Jzh1Hjd
+	 iRi8k5ThuWQcvxLHDIMwKnI5xUHwkXex6q1m15xTNhXem3Zfw+ougEY5pKZfScJQ6dw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=gmail.com;
 	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wK4CsHXG;
-	arc=none smtp.remote-ip=209.85.128.51
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QPECzVYF;
+	arc=none smtp.remote-ip=209.85.128.44
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BC1606A31C
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 16:31:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 34BC1606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6CE606A6A8
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 16:31:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 0E6CE606A6A8
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wK4CsHXG
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-49d05d51553so51219885e9.2
-        for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 08:31:48 -0800 (PST)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QPECzVYF
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4bb72b44a97so61873985e9.0
+        for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 08:31:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795710707; x=1796315507; darn=lists.linux.dev;
+        d=gmail.com; s=20260707; t=1795710708; x=1796315508; darn=lists.linux.dev;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=mfpEhfbyhPi8fEOS+N1QHzNJFz4cU/NZgKWTwuKYJ+M=;
-        b=wK4CsHXGzH7VN9jIWoCv17a9YYIOuU5FBGDI3U0BLZ1tcrdwlmcNLFqGKS/vleXu4t
-         1r9N/yHHBUi5X0XjnnozEb/r4vVXBWJURlRlROjKbkfML25OL5lTHVtaXrxlamP8yOQm
-         C5SaEeOFMUTbDD5sZszlBLf2kncAwCswRnKFTpjZC3TvpBbwEeSXmsGUaAiJuViBzL5Z
-         IGZuJ5XkhW75k47W8FuAZH7CyIeuA2T90e4KbiZJZMDZ/OacH1P/hKMDgXYCZzKllnkz
-         3ESwfljNhD4sPDNcIw4Z6x1SMFM0r2LjWYSUASHaPpNBiSqcjMf4rUgb86lCIEcmtEw3
-         MRPg==
+        bh=6DGKGHZD1sWqO2WRSY4U0udOhpGKQXiV3WJqb4Fx1ZI=;
+        b=QPECzVYFV7qXfs6Bn/et9VVldI3KFPkmjyku/eqt0CS3GKYdu+g0KngiYEsKf9Va8l
+         SRVns/+uiB4Zi1SsTZSLOLLwdCAk5ZezVmAxpYgTpC4JVy+9CdZmJMNt2YWvozmSpQa/
+         LzirHUM2qvWe16C7udM0bhUf3fOKrH8q3T8+wwoU/GX05J8WZfbvWDGpWHkLhLnBvkSo
+         HyO6/frDY7r48k7NjW+h6po6y5P/rWBMbA/rY4tkWfo8GiBFdW9r/O/EqX2/KV+wrC3Q
+         0jl/zHaIRBn6fRCK96G3PxsgXn+9JqKtFPthGw4oeKyf6CWaXO143sXJOPXJ0l3ioC0z
+         vg7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795710707; x=1796315507;
+        d=1e100.net; s=20260707; t=1795710708; x=1796315508;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=mfpEhfbyhPi8fEOS+N1QHzNJFz4cU/NZgKWTwuKYJ+M=;
-        b=ZUV0x/NCYGKEH+OoEE0HGv+t6nCulY8IRFDvtWdB9bhia0KwZHN3Nh06S7Ykne/xsZ
-         9ZLbdTgfKyfGvbIz60ZNxNqJYfy78mN+asB5WjvuZjHhUy/Q5Z7lX/v7k+RZZCngvHoG
-         DUmvQHyfJ304QKk8Z2XtaNrcz6Gcl9Wp0xUqrBr+u6Q6o8zwtZFlb4cYU+8W2I91asaY
-         Znub/zB2xvDbYG55iycUtIn3rfSOPKbbHXD2t1LxpZ0BL+WvrbwSbg+YGyBOQMwEEgA2
-         Gr/fjNTG+QBOz+WCQ1iJoX34L6M+8kLbr+NIssy7y5b2j0WLGwCgEQsaoRC4XphJd+Ll
-         ZQWg==
-X-Forwarded-Encrypted: i=1; AL+hErFKgjHTw/+GnCH8WeWvgcuEuja5THsaJEuOCll/koGESm9qTAFpkrhve0rTMT2PD+7jyNzb@lists.linux.dev
-X-Gm-Message-State: APuU4Z/dxaZPOq9LDHmSuPem8cDeiQfjIGdMUzhwwCsypmIvEEhuB8PH
-	vOcea0Qeh7RIezVW0B2emXOS7U8c7BjM2nAmVm4eGLhLtR6Aj2opxqLe
-X-Gm-Gg: AZFdTZcNUA8lhbkwHxALnUILz/j4sLqV5VlAg0NFyQR9U8/qqqZzXIWQ70zti/6uGEU
-	ObjHyaTlZ/JxPhYg1vcYHseZJ0x0Sr6+usjg8IWqUaEoBeLWCTftmPyjJemLLGu44pmUyneeDIW
-	oX+F9a//PdHezFMgOPI3qbMS5qG7cNp/l45zeVW14WAPHf7wuA+4yNryJmFJLptT3QfWMtr6ArO
-	JAV4NkLqjOIjf0GSnJWTwgsGeRFLnN7DCxPzqqYOw14GXVFIZ5bqf4/LHEt5S36g9iTJUQ7VCjs
-	2UiocpwTJtQg9pQAChblbGXvUfXPCfuLA+FC1S8axPNoYSsHfoJeo+UyZEcFuLfjfOzlpSc8jQG
-	sXbdWSfK0fd/k98Mw7gW8zojrbZuVwz5XmKDqY1a9NrwKRJCBy9fxH2fFcpSXKD5JAhEkWIexKj
-	Hp5COnqCEvQTMmdeeX2WIlC9qBEI2BksgTXIma16dJ2OGHs6NeGm8T47MHmQuw/YJxW2DZJZm0C
-	he0f0lbyhypKwzQS5KYxsuTCgFL4P4tVybhjIrk5KAr/vABpy/+h+nvfle5DIdaEhsYLGwp2HbJ
-	wVLsFQbffbGgQBP88tCAocnC
-X-Received: by 2002:a05:600c:4e0c:b0:4bb:875b:f23f with SMTP id 5b1f17b1804b1-4bb88827f0bmr416764955e9.33.1795710706373;
-        Thu, 26 Nov 2026 08:31:46 -0800 (PST)
+        bh=6DGKGHZD1sWqO2WRSY4U0udOhpGKQXiV3WJqb4Fx1ZI=;
+        b=waivGqz4S4McyMudPYdLBB5DORkqHkBFNZRaGK6gxpbooCeV383irt1IhcYRqYzRPm
+         tCiOl24OpS/aW+ZvZReke8AsNTUPry5OKmwRBrLGr+AECHOYLgt11DewVJHrsK3X5CWO
+         dzVK2CYkvFC7ZjEFR8m97p8HO/3dBrZIwTmoEcfuHoOI83DYXLCVn7cVImx8RPmyyZVi
+         OMvtdINkKt7nCEt1428l0rFU44WxOhYrmNQrCL44dOOrSXwt3FyTvtSX/bhfXiw5iUX5
+         ZcCMFBu3eEXUVY/UsJGVfxyqujWWHvvef056Tpvb2Dp6nnc3TQYf3c/oyZJ6AaS+73nv
+         k0SA==
+X-Forwarded-Encrypted: i=1; AL+hErH1+sPFC1SpqpnWqZ24/XJHK5nUlOzdtWgreCjSqJd8JGsauIN26FNyDsSKPtMYAoeAWJNv@lists.linux.dev
+X-Gm-Message-State: APuU4Z+Hx+VYEgWEtdbtxU9D17A5PJ+kXvznmwFsYHHgbch08qwahRfW
+	N/1wvTCDXtg9Qo9XiZ6mj/VYkO2yp7vgEAYtAGUAGJFAtqqaYTm+O02A
+X-Gm-Gg: AZFdTZf6pbTxHC364cvuXpX6zsom+9aq6y7/I0zcYMLjOMed5tikiLRDHYdZndcR/y9
+	tMSCgu40JM8EptHWsD/Echt5YlceTQv9P1q+s4EZ9IlrJqxSg47Ll8YrS0c3xr17+iE8ixA1exI
+	TVTOzZRJD5udVrmFqgkmu+PXkWl/PLfkSLgQhimWWPWbme6TlnBpMxPpemXZ2deuZtTEtTiO4BE
+	CqEPouEGRbMPlYYDLg6r9m9QUhuZwASnRoT4ealWaZLgriUi51CILaoEtUx6dP45oRD2Lf4W+Hl
+	1rcNzi6ZVIJrgj+FdEK1cRed6UT3hA3TURx9jJ4iPWhM+P7h90rpusGWm5WOaNp3CL2qR01aMWW
+	nDNt3rv8Vrra67f8oj7d39SMV89Nxuhmd5r5pe22PgaBQDPREInHUOl3eJDxonlPxohCYGKaR58
+	Hp723YcsvxOeSnBLBI7fjNMWjqf09wtKYmB5POPoWsusdgE/NWeKOKxy7hukPilJD+HJMAYuSxZ
+	aAQukDIPsWY4eWA5RYrzXP+X9lJ+/V1mWsPhg6ukdeKoiYAmGx34GhGI5ZiZ0TMC9h3thGDmxsw
+	d4kqGlssEgR+K/xDh6GsMDw1
+X-Received: by 2002:a05:600c:3b83:b0:4b7:6b96:e431 with SMTP id 5b1f17b1804b1-4bb88822242mr502582645e9.28.1795710708243;
+        Thu, 26 Nov 2026 08:31:48 -0800 (PST)
 Received: from infinity ([2001:b07:5d26:7a6a:365a:60ff:fe0d:cfc6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a9846sm721964995e9.11.2026.11.26.08.31.44
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a9846sm721964995e9.11.2026.11.26.08.31.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 08:31:45 -0800 (PST)
+        Thu, 26 Nov 2026 08:31:47 -0800 (PST)
 From: koraynilay <koray.fra@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>,
 	Hyunchul Lee <hyc.lee@gmail.com>,
@@ -105,9 +105,9 @@ Cc: Chuck Lever <cel@kernel.org>,
 	linux-nfs@vger.kernel.org,
 	linux-api@vger.kernel.org,
 	koraynilay <koray.fra@gmail.com>
-Subject: [PATCH v2 1/4] vfs: use goto out on error in vfs_fileattr_set()
-Date: Thu, 26 Nov 2026 17:31:11 +0100
-Message-ID: <20261126163114.403846-2-koray.fra@gmail.com>
+Subject: [PATCH v2 2/4] fscrypt: update fscrypt_prepare_setflags() to use xflags
+Date: Thu, 26 Nov 2026 17:31:12 +0100
+Message-ID: <20261126163114.403846-3-koray.fra@gmail.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261126163114.403846-1-koray.fra@gmail.com>
 References: <20261126163114.403846-1-koray.fra@gmail.com>
@@ -122,73 +122,89 @@ Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Switch from using if (!err) { ... } to the cleaner if (err) goto out;
-in the main body of vfs_fileattr_set().
+Update fscrypt_prepare_setflags() to use FS_XFLAG_* xflags instead of
+legacy FS_*_FL flags.
 
 Signed-off-by: koraynilay <koray.fra@gmail.com>
-Reviewed-by: Andrey Albershteyn <aalbersh@kernel.org>
 ---
- fs/file_attr.c | 45 +++++++++++++++++++++++----------------------
- 1 file changed, 23 insertions(+), 22 deletions(-)
+ fs/crypto/hooks.c       | 10 +++++-----
+ fs/file_attr.c          |  2 +-
+ include/linux/fscrypt.h |  6 +++---
+ 3 files changed, 9 insertions(+), 9 deletions(-)
 
+diff --git a/fs/crypto/hooks.c b/fs/crypto/hooks.c
+index 149498bdab94..52d6a33fc9e9 100644
+--- a/fs/crypto/hooks.c
++++ b/fs/crypto/hooks.c
+@@ -182,10 +182,10 @@ int __fscrypt_prepare_setattr(struct dentry *dentry, struct iattr *attr)
+ EXPORT_SYMBOL_GPL(__fscrypt_prepare_setattr);
+ 
+ /**
+- * fscrypt_prepare_setflags() - prepare to change flags with FS_IOC_SETFLAGS
++ * fscrypt_prepare_setflags() - prepare to change xflags
+  * @inode: the inode on which flags are being changed
+- * @oldflags: the old flags
+- * @flags: the new flags
++ * @oldxflags: the old xflags
++ * @xflags: the new xflags
+  *
+  * The caller should be holding i_rwsem for write.
+  *
+@@ -193,7 +193,7 @@ EXPORT_SYMBOL_GPL(__fscrypt_prepare_setattr);
+  *	   another error occurs.
+  */
+ int fscrypt_prepare_setflags(struct inode *inode,
+-			     unsigned int oldflags, unsigned int flags)
++			     unsigned int oldxflags, unsigned int xflags)
+ {
+ 	struct fscrypt_inode_info *ci;
+ 	struct fscrypt_master_key *mk;
+@@ -204,7 +204,7 @@ int fscrypt_prepare_setflags(struct inode *inode,
+ 	 * derive the secret key needed for the dirhash.  This is only possible
+ 	 * if the directory uses a v2 encryption policy.
+ 	 */
+-	if (IS_ENCRYPTED(inode) && (flags & ~oldflags & FS_CASEFOLD_FL)) {
++	if (IS_ENCRYPTED(inode) && (xflags & ~oldxflags & FS_XFLAG_CASEFOLD)) {
+ 		err = fscrypt_require_key(inode);
+ 		if (err)
+ 			return err;
 diff --git a/fs/file_attr.c b/fs/file_attr.c
-index 833e03810b24..40d6518f1d8e 100644
+index 40d6518f1d8e..1687891c526c 100644
 --- a/fs/file_attr.c
 +++ b/fs/file_attr.c
-@@ -285,30 +285,31 @@ int vfs_fileattr_set(const struct mnt_idmap *idmap, struct dentry *dentry,
+@@ -195,7 +195,7 @@ static int fileattr_set_prepare(struct inode *inode,
+ 	    !capable(CAP_LINUX_IMMUTABLE))
+ 		return -EPERM;
  
- 	inode_lock(inode);
- 	err = vfs_fileattr_get(dentry, &old_ma);
--	if (!err) {
--		/* initialize missing bits from old_ma */
--		if (fa->flags_valid) {
--			fa->fsx_xflags |= old_ma.fsx_xflags & ~FS_XFLAG_COMMON;
--			fa->fsx_extsize = old_ma.fsx_extsize;
--			fa->fsx_nextents = old_ma.fsx_nextents;
--			fa->fsx_projid = old_ma.fsx_projid;
--			fa->fsx_cowextsize = old_ma.fsx_cowextsize;
--		} else {
--			fa->flags |= old_ma.flags & ~FS_COMMON_FL;
--		}
--
--		err = fileattr_set_prepare(inode, &old_ma, fa);
--		if (err)
--			goto out;
--		err = security_inode_file_setattr(dentry, fa);
--		if (err)
--			goto out;
--		err = inode->i_op->fileattr_set(idmap, dentry, fa);
--		if (err)
--			goto out;
--		fsnotify_xattr(dentry);
-+	if (err)
-+		goto out;
-+
-+	/* initialize missing bits from old_ma */
-+	if (fa->flags_valid) {
-+		fa->fsx_xflags |= old_ma.fsx_xflags & ~FS_XFLAG_COMMON;
-+		fa->fsx_extsize = old_ma.fsx_extsize;
-+		fa->fsx_nextents = old_ma.fsx_nextents;
-+		fa->fsx_projid = old_ma.fsx_projid;
-+		fa->fsx_cowextsize = old_ma.fsx_cowextsize;
-+	} else {
-+		fa->flags |= old_ma.flags & ~FS_COMMON_FL;
- 	}
+-	err = fscrypt_prepare_setflags(inode, old_ma->flags, fa->flags);
++	err = fscrypt_prepare_setflags(inode, old_ma->fsx_xflags, fa->fsx_xflags);
+ 	if (err)
+ 		return err;
  
-+	err = fileattr_set_prepare(inode, &old_ma, fa);
-+	if (err)
-+		goto out;
-+	err = security_inode_file_setattr(dentry, fa);
-+	if (err)
-+		goto out;
-+	err = inode->i_op->fileattr_set(idmap, dentry, fa);
-+	if (err)
-+		goto out;
-+	fsnotify_xattr(dentry);
-+
- out:
- 	inode_unlock(inode);
- 	return err;
+diff --git a/include/linux/fscrypt.h b/include/linux/fscrypt.h
+index 28f2108e29f3..68d0983385d0 100644
+--- a/include/linux/fscrypt.h
++++ b/include/linux/fscrypt.h
+@@ -461,7 +461,7 @@ int fscrypt_prepare_lookup_partial(struct inode *dir, struct dentry *dentry);
+ int __fscrypt_prepare_readdir(struct inode *dir);
+ int __fscrypt_prepare_setattr(struct dentry *dentry, struct iattr *attr);
+ int fscrypt_prepare_setflags(struct inode *inode,
+-			     unsigned int oldflags, unsigned int flags);
++			     unsigned int oldxflags, unsigned int xflags);
+ int fscrypt_prepare_symlink(struct inode *dir, const char *target,
+ 			    unsigned int len, unsigned int max_len,
+ 			    struct fscrypt_str *disk_link);
+@@ -784,8 +784,8 @@ static inline int __fscrypt_prepare_setattr(struct dentry *dentry,
+ }
+ 
+ static inline int fscrypt_prepare_setflags(struct inode *inode,
+-					   unsigned int oldflags,
+-					   unsigned int flags)
++					   unsigned int oldxflags,
++					   unsigned int xflags)
+ {
+ 	return 0;
+ }
 -- 
 2.56.0
 
