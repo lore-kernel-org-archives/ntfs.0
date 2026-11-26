@@ -1,45 +1,113 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=182.48.54.220
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.41
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795708234;
-	b=4Xi9j+pjylQmzZDFYNpI2HTtgz1GUa4osTFb/iy4tJmK1p3ogpave32/Pu9NuJbx2EZE
-	 Cn8+dlJY2R4ej/alMhAkeWFQZkuIU6BuXmTVHEcnMS6fbjfuschD+H34l67sdph0Jst/k
-	 t9KZPu1vgWMrRcnZDUVqqq5EHS7xHFuledsAFsB9vvR/pD9jH7y4WSObvbTf3oQZK/mW3
-	 VqTP1SFpe583AJ2jNAMw4BxcyVgxy+ONSNJaWJ+WbfX5WfX7zYGlbynRKtSlWEuHzQ10+
-	 c4lhYa0kg3mXwo9zLSMZqYid9jlEhgA+TWWtjsdYtFUuEIsePfGM95wD3qDNvmPgoVg==
+	t=1795710707;
+	b=izEfGMNaQjHVCdcGuLqaB9+rZiXQw+OfByiwRLMwVTuOMuq73+/I96ecmclQcOSmixOV
+	 NpZV/19exVuOy++ELQAphG8k2J8y4XDPo5+pDYku+EkcjMM4mdur28sHu5XtaBtQv1tpc
+	 Rtj3cby/uGOL9WMPHEvlS3UfCSjSh1rvD1pRTbFIVSS5/getZFx6+ss0dkuoe162wnRHE
+	 qGpDyau8f6omh4Nje1Ik9q6/4g9H7x0s5Z6q456c9nw/+VusOU6ZLU+G9FvtiW9WxZVdP
+	 /+7NNS2Ak8/WF47vWj3su3JYxWfqDkiiVOSvRzSvKv+Ktf2PAFyLcAgDTgZ/bMWFj2g==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795708234;
-	h=DMARC-Filter:Received:From:To:Cc:Subject:Message-ID:In-Reply-To:
-	 References:Date;
-	bh=Ldk9f4ENy6ZI26hgamdhXAYUlh4Ac8KnZ+Q2k4rh0WU=;
-	b=RO39YCnHDl1kNUOqiryv7EwkOBH2LOLVBioP9UGCEDJlOb/YBN6rzD5R6UJazd1ruw0z
-	 cMP7xoKl8fpcUL9ngT7lZRJeruUdOnUmIxoCWCt3jrnWHPVqB+okHNRor7h3P5NN99LJb
-	 1Rn2MiO9Z8cDDuDR5liEGngUpZ7wG04yKS9D4gEwC7H+NZc2Ul9xokWD1KqXlnrCCUD2w
-	 JpgWw5ijFfEx5nY6dRZBDbBsBx8pTEMjwIdOodPyahosailEnChSiVag3Y0kTgy+IZTOa
-	 39EOQ4zFZOlIiuaqyVC1ZJFC+JB7hqmg9TyONgZBY5LCHR6v1LjviRlErIvY4Z93IYg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795710707;
+	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
+	 From:To:Cc:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding;
+	bh=OPwcu3THbOq+3XWyQQ+nL5e2PeyQBnz7B0EEXV1jfaY=;
+	b=QE1qu/FzwXSeWlAmyl2DphpFoobJ6wI8USOqV58XggUypSSGg5gU30Y6sbdwvJ8NGG+Y
+	 TISXRAzv/X5gdnGPCumAEOmNJuizj3riFBd9KEBMKXgE1OBjMeeL/njEmq+ntx9iA/90i
+	 tMZw1c/l/78LZSv49mhQ18U0V4RCW9+5BtK5a+uqsufX/WEVN4SSQHjPoLjttwhFjP+P8
+	 aaD3Y6G/0bahfY0ImFQkkLqoNaI2sktefvqRSGiBmSEP3dwC7dSRWlJaKzxPU1IkLY34C
+	 +Pvx3IJOJRUzfOYfUcb70R0hgWKbL7YTaNemngEn65CWx3MfJJ1MV2CO/M3AGOj0sLw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=none header.from=snowrabbit.org;
-	spf=pass smtp.mailfrom=snowrabbit.org;
-	arc=none smtp.remote-ip=182.48.54.220
-Received: from bambi.snowrabbit.org (bambi.snowrabbit.org [182.48.54.220])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D531606A321
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 15:50:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 1D531606A321
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=snowrabbit.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=snowrabbit.org
-Received: by bambi.snowrabbit.org (Postfix, from userid 3001)
-	id D36B0C92FC; Fri, 27 Nov 2026 00:50:25 +0900 (JST)
-From: Showta Ishizaki <zakinko@snowrabbit.org>
+	dmarc=pass header.from=gmail.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=snVflDPj;
+	arc=none smtp.remote-ip=209.85.128.41
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903A3606A331
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 16:31:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 903A3606A331
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=snVflDPj
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-49d05d51553so51219635e9.2
+        for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 08:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795710705; x=1796315505; darn=lists.linux.dev;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=OPwcu3THbOq+3XWyQQ+nL5e2PeyQBnz7B0EEXV1jfaY=;
+        b=snVflDPjLBKxlABSdl1tXvjnrMXLyVQKhK64H4989P7UUTekfW0PSeb0hvMPmcYdit
+         FPy0GeOE79RozoEVYi7ajo4GqCXwykMbhAEayRdxkZaqsDrXufn2krlkml1wNCCA6EaY
+         fEKTSSbsddkkdLtSDl+Jm/75YWo3m1f8hhbPmR0oB0OeY1mkTmLyFZhkKwlsKrlfZ2ka
+         B52NeMsyudlMAWqhOC0/ruumcddwYM9Rk/w6TdJp6Omj0baOf5gxBcZ2J4sXBnyVS7RY
+         8F2PL67yhnXaj6gztc2MlHrjSuoZW2UxJKwdSmROM4j0uUzr92Ovpj2VHRyDdljPI1nr
+         +zqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795710705; x=1796315505;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=OPwcu3THbOq+3XWyQQ+nL5e2PeyQBnz7B0EEXV1jfaY=;
+        b=g4eanUtLkSfMyPpVBCpEx358KM8hiC86kIfolOAtsRwAUYmz7+Z4V7V/hTvoAa6bnn
+         BVdl1ruResYWeR9Bgns9tuy7p75qQcQsqRrKEt7iuk6uqQvQ3C6IANjek6IMn5EOb6bp
+         XULGl1xHMcKOkZPdW5Ye+uAsZpgm9KtngDRSXjSi73/YGmB7PM5keIRMrl+RJiyhzMUa
+         fE2WB0HLTQqCfek5BK3sxesNprsouLEGkRKsczan/ffNJfVaam1H6sIh+x9VH6Jf6kIu
+         +pemTlHuEb+ZcPty4Cnj90LymeXx8xBe2eWcNx3M5jzotwp7QhB/K2OMtifmfDc7c86u
+         rIIA==
+X-Forwarded-Encrypted: i=1; AL+hErFvMDumTp78KYNVjh0IpyH3OmL5kpdFbJFz169hRNKq3ACc7Hsli/f5InXum0ex2Vt7DiEk@lists.linux.dev
+X-Gm-Message-State: APuU4Z87c9PSyv917BtwMP+bm8TWHTp3wIeYZAnQs70J/X+ImbAzzRuI
+	0dlm6ingAUP41j1hOXIhj8Dkv0RLc5fAaKbn4Tma6q8FJeARuPXkStBz
+X-Gm-Gg: AZFdTZcerRSSVn9acRzLQRz/wgiRnkV3qElqvSQfuUXnLm/+kDYHyxf134lZyA/XM+S
+	bO6abIvqfEihwOFy0LNiRNNdDZyTapQW2rYLnpThrDsOKtKjgZ7fZ0f5H2d42DefbxG4yFNcW/V
+	Ea19mvtQ2ad5yeWHmjswHmLbKG+ZUnJtwzDmRwiu4WqlmmZHQ9Wi0rk1eYNL3GiYLkcV27HpABy
+	ii7BCRXz5ie8KH6gjHxqMsN/GEYEOuKKxZuOUpU2eV0mgLiYAqvTK1+PE5gDcj5NS3g7E8uxjI9
+	Dx3c32Irj7yybYQlF8A8YCw8SjH4E0wMz3BZKvVTLXDxDvTbEh2R17ofQe6TDN8Kx0/chKmQMJM
+	y8k4RFtG0gPK1szEgAmQl9Syc8ZBd7t/REkWtC1UyQAd+7SU3f7eOmXR7ayH8/8lGjHlomYG0tv
+	o1pTISSjd92/89sfxFAC9cctk2wQ/kDT6qO8yz6MP4HAZg4Tu9Xo02g3I/UG1wt2OjvctFPyshY
+	JSdFEc8CebEOoMvw1QwW1aWtm4Z100rQX/vPEVdsssP4FLeXHEE05P9kWwR9BZMgwDeIDRTnSz7
+	Y2WBEvX0T20M7m+bYUuJM58p
+X-Received: by 2002:a05:600c:820d:b0:4bb:5de1:e912 with SMTP id 5b1f17b1804b1-4bb887c3ae7mr436997625e9.1.1795710704643;
+        Thu, 26 Nov 2026 08:31:44 -0800 (PST)
+Received: from infinity ([2001:b07:5d26:7a6a:365a:60ff:fe0d:cfc6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a9846sm721964995e9.11.2026.11.26.08.31.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 08:31:44 -0800 (PST)
+From: koraynilay <koray.fra@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>,
-    Hyunchul Lee <hyc.lee@gmail.com>
-Cc: ntfs@lists.linux.dev,
-    linux-fsdevel@vger.kernel.org,
-    linux-kernel@vger.kernel.org,
-    Showta Ishizaki <zakinko@snowrabbit.org>
-Subject: [PATCH v2] ntfs: keep i_size of a directory equal to its index root
-Message-ID: <20261127-ntfs-01-v2@snowrabbit.org>
-In-Reply-To: <awePnaRhBQLahPpz@hyunchul-PC02>
-References: <20261125-ntfs-01-v1@snowrabbit.org>
-Date: Fri, 27 Nov 2026 00:50:25 +0900 (JST)
+	Hyunchul Lee <hyc.lee@gmail.com>,
+	Eric Biggers <ebiggers@kernel.org>,
+	"Theodore Y . Ts'o" <tytso@mit.edu>,
+	Jaegeuk Kim <jaegeuk@kernel.org>,
+	Alexander Viro <viro@zeniv.linux.org.uk>,
+	Christian Brauner <brauner@kernel.org>
+Cc: Chuck Lever <cel@kernel.org>,
+	Jeff Layton <jlayton@kernel.org>,
+	Jan Kara <jack@suse.cz>,
+	Alexander Aring <alex.aring@gmail.com>,
+	"Darrick J . Wong" <djwong@kernel.org>,
+	Andrey Albershteyn <aalbersh@kernel.org>,
+	Amir Goldstein <amir73il@gmail.com>,
+	=?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+	Lauri Gates <lauri.gates@gmail.com>,
+	Christoph Hellwig <hch@infradead.org>,
+	Dave Chinner <dgc@kernel.org>,
+	linux-btrfs@vger.kernel.org,
+	linux-xfs@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org,
+	ntfs@lists.linux.dev,
+	linux-nfs@vger.kernel.org,
+	linux-api@vger.kernel.org,
+	koraynilay <koray.fra@gmail.com>
+Subject: [PATCH v2 0/4] Add f*_xflags_{rw,ro}_mask flags to the fileattr API
+Date: Thu, 26 Nov 2026 17:31:10 +0100
+Message-ID: <20261126163114.403846-1-koray.fra@gmail.com>
+X-Mailer: git-send-email 2.56.0
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -48,65 +116,99 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-After mkdir, stat() gives a size of 0 for the directory until it is read
-back from disk, where it gives the length of $INDEX_ROOT.
-__ntfs_create() opens the index root but does not set i_size from it.
+This is a follow up patch series stemmed from [1] and [2], splitting the
+_mask change for the fileattr API into its own separate patch.
 
-When the index root is moved out to an index block,
-ntfs_ir_reparent() updates data_size but not i_size, which keeps the
-length the root had before.
+The first patch is a preparatory cleanup so that the code in the later
+patches can be formatted better.
 
-Set i_size in both, as ntfs_ir_truncate() does.
+The second patch updates fscrypt_prepare_setflags() to take FS_XFLAG_*
+xflags instead of legacy FS_*_FL flags.
 
-Without the patch a new directory was 0 bytes and became 48 after a
-remount, and one with 300 files was 248 and became 56.  With it the sizes
-are the same before and after.
+The third patch is the actual implementation, which introduces:
+- fa_xflags_{rw,ro}_mask fields to struct file_attr
+- fsx_xflags_{rw,ro}_mask fields and has_masks selector to struct file_kattr
+- AT_FILE_ATTR_MASKS at_flag for file_[gs]etattr()
 
-Fixes: af0db57d4293 ("ntfs: update inode operations")
-Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
-Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
-Signed-off-by: Showta Ishizaki <zakinko@snowrabbit.org>
----
-v2: removed the two comments, as Hyunchul Lee asked.
+These masks have the following semantics:
+- rw_mask:
+  * for filesystems: advertise which xflags they support changing
+  * for userspace: specify which xflags it wants to modify
+- ro_mask:
+  * for filesystems: advertise which xflags they support only reading
+  * for userspace: ignored
 
- fs/ntfs/index.c | 2 ++
- fs/ntfs/namei.c | 1 +
- 2 files changed, 3 insertions(+)
+This allows userspace to not have to do a RMW cycle when using the
+file_[gs]etattr() syscalls, avoiding possible race conditions and
+simplifying their usage.
 
-diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
-index fe2a79b..73c8e6f 100644
---- a/fs/ntfs/index.c
-+++ b/fs/ntfs/index.c
-@@ -1434,6 +1434,7 @@ retry:
- 		icx->idx_ni->data_size = ix_root_size;
- 		icx->idx_ni->initialized_size = ix_root_size;
- 		icx->idx_ni->allocated_size = (ix_root_size + 7) & ~7;
-+		i_size_write(VFS_I(icx->idx_ni), ix_root_size);
- 	}
- 
- 	ntfs_ir_nill(ir);
-@@ -1455,6 +1456,7 @@ retry:
- 		icx->idx_ni->data_size = ix_root_size;
- 		icx->idx_ni->initialized_size = ix_root_size;
- 		icx->idx_ni->allocated_size = (ix_root_size + 7) & ~7;
-+		i_size_write(VFS_I(icx->idx_ni), ix_root_size);
- 	}
- 	ntfs_ie_set_vcn(ie, new_ib_vcn);
- 	goto err_out;
-diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
-index 29f1bf5..e4b0fc4 100644
---- a/fs/ntfs/namei.c
-+++ b/fs/ntfs/namei.c
-@@ -611,6 +611,7 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
- 		err = ntfs_attr_open(ni, AT_INDEX_ROOT, I30, 4);
- 		if (err)
- 			goto err_out;
-+		i_size_write(vi, ni->data_size);
- 	} else {
- 		/* Add DATA attribute to inode. */
- 		err = ntfs_attr_add(ni, AT_DATA, AT_UNNAMED, 0, NULL, 0);
+Patch 3/4 also introduces the missing FS_XFLAG_PROJID flag so that
+programs like chattr can leverage the new mask API.
+FS_XFLAG_PROJID is kept out of the legacy FS_XFLAGS_MASK and so it's
+defined as part of a new FS_FILE_ATTR_XFLAGS_MASK group of xflags that
+will be used moving forward for any new xflag (like the one proposed in [2]).
+
+Patch 4/4 converts fs/ntfs to this new API, to show how it can benefit
+filesystem drivers too, and for this purpose adds FS_XFLAG_COMPR and
+FS_XFLAG_ENCRYPT from their FS_COMPR_FL and FS_ENCRYPT_FL counterparts.
+
+The series has been tested with custom xfstests [3] (generic/816-835,
+xfs/611, xfs/673) across NTFS, ext4 (project quotas), XFS (project
+quotas and extent size hints), Btrfs, and F2FS.
+Note: these tests were written by gemini and not manually checked,
+before sending them upstream (if needed) I'll have to review/rewrite
+them manually.
+
+Note 2: there are apparently quite a few bugs with overlayfs and a few
+other issues, but I wanted to get the final API design out first.
+
+v2 changes:
+- make fa_xflags_{rw,ro}_mask in struct file_attr __u64;
+- add AT_FILE_ATTR_MASKS to opt in to mask semantics instead of needing
+  unreliable heuristics on usize and mask values;
+- reject intermediate sizes between VER0 and VER1;
+- reject non-zero masks on SET without AT_FILE_ATTR_MASKS;
+- add patch 2/4 for fscrypt_prepare_setflags;
+- add xflags_to_flags() / flags_to_xflags() and
+  fileattr_set_{legacy_to_mask,mask_to_legacy}() to translate between
+  legacy RMW callers/filesystems and _mask callers/filesystems;
+- clamp fa->fsx_xflags to rw_user_mask in file_attr_to_fileattr();
+- update fileattr_set_prepare() to validate capabilities and projid
+  changes against rw_user_mask / xflags;
+- move the rw_mask == 0 early-return no-op from file_setattr() into
+  vfs_fileattr_set();
+- put FS_XFLAG_COMPR in FS_XFLAG_RDONLY_MASK only (keep FS_XFLAG_ENCRYPT
+  in both FS_XFLAG_COMMON and FS_XFLAG_RDONLY_MASK);
+- update ntfs_fileattr_set() to apply only bits selected in
+  fsx_xflags_rw_mask;
+
+Thanks,
+koraynilay
+
+[1]: https://lore.kernel.org/CAOQ4uxg8aVcWyNiFDk8djdn-M3xJcu_7-kRxVq9jjFsbcGp1ew@mail.gmail.com/
+[2]: https://lore.kernel.org/CAOQ4uxjVQ9cjV=_jBjQtNg9zCuWUEJT9KNYMKV+1jwBkHen5OA@mail.gmail.com/
+[3]: https://github.com/koraynilay/xfstests/tree/patches-in-queue
+
+koraynilay (4):
+  vfs: use goto out on error in vfs_fileattr_set()
+  fscrypt: update fscrypt_prepare_setflags() to use xflags
+  vfs: add xflags mask to fileattr API
+  ntfs: switch to the new xflags fileattr API
+
+ fs/crypto/hooks.c          |  10 +-
+ fs/file_attr.c             | 357 +++++++++++++++++++++++++++++++++----
+ fs/ntfs/file.c             | 109 +++++------
+ include/linux/fileattr.h   |  14 +-
+ include/linux/fscrypt.h    |   6 +-
+ include/uapi/linux/fcntl.h |   6 +
+ include/uapi/linux/fs.h    |   9 +-
+ 7 files changed, 409 insertions(+), 102 deletions(-)
+
+
+base-commit: 3857587d9d6fa44d40d1c73bde6a39f6f7a5216c
 -- 
-2.54.0 (Apple Git-157)
+2.56.0
 
