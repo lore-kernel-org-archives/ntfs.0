@@ -1,60 +1,60 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=185.70.43.19
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=109.224.244.25
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795724955;
-	b=d+2p+DUy8eonM02fkJmROXOEsXAEcKuaSRYGGl6rlts/MRb40FC/gtz8ehBT04A6Rcui
-	 bM3jgTUW+9U1vxuGGeIL0sfp7UapZI1sVIO6s9uNxTcuZ4u+AIv2Yw4OhTjsvcRkQFjjl
-	 Y6sQEirXhwQcN3uMlwHYjk1QPLIxS76XoPDKqVsav/xwcedQB3wPfIrQDauKftKis/2gG
-	 XQbIXWF+e6zbmN2nsRKRiOgEmDOzpA9PWDpb9J9sruhzWKJuCi1S+9RcLYW5e8BTl8rix
-	 oa0CvYzamrI3jd68tdMeRNOxfhAZcwi6RaSRmsHbZIJkSQvlvRdaJ3hWtdZtqh/fW/w==
+	t=1795724964;
+	b=XxCIJnSmVtbGv0oma77eicgjYoUSxe58hfan+Nq1uPhwcj25lwl9tqa6SkhgV/rVp315
+	 4JXZ2vTXch5RwcjkxJeHLr/yDRjsfcL5p2niVsSeLux++S4YYLRTr6Yrz15AtGbgIMpXO
+	 P259Cu+an+B2P5YLsjfnS/iUyz5UGMs1y9affxM5Ncq4qYTo9E/9jnawKygoXzavHYA7a
+	 olxc/5emSJc7OJ3n6cXeCJnrzShV1OJ+7OWwx0/SVoRtwy12wbP93KB+kE8pV30IxVdsL
+	 98JjQfE4E+t5U87mnITg4K+aSzHz2MRW8KxLcJs1V0YuozKOCmVS4q4I+82pQ/OtW4g==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795724955;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795724964;
 	h=DMARC-Filter:DKIM-Signature:Date:To:From:Cc:Subject:Message-ID:
 	 In-Reply-To:References:Feedback-ID:X-Pm-Message-ID:MIME-Version:
 	 Content-Type:Content-Transfer-Encoding;
-	bh=dGzYUr/GnftLbsNRvCIK8agsWQyzifa3zJBout/Fz7c=;
-	b=uqx8mvNcRsvlgp5lvEBV74HqgxWiSvpLJzBqwQRU7So495MxcGPVwbb7enXgE1ewnWhG
-	 V2c18pWHKyq/tR6rDL2drhYIaNtp8RguIkGhBNNuqGH4MEI3+6YtBw10elRe7ZK90ptM8
-	 sCzK7znsFTTaPe11nwnmhVjx6jDl2tC6c8J5uGDxTS6kgErFR6pDLLGAeUsVm35QM6Uej
-	 OxcuZMyRN1OgMVqOm9SkNNNc9iRWY2CqNPy3NeFBCawoflUHZiiYLUTg6qfG5UhzLHlXp
-	 uPq5upldJGw+4Ypiq98FlF11GtQDo0sf6zRRefjHRK5E9P7Nku2/EjqqXcVmwcRuomA==
+	bh=08GIiTm47Cj6zwev/3VfXW4xu+JxsFqjGLFCYOlgTmQ=;
+	b=TcerwWCUyXahQr2htG0BAqtn/2ite+TbDQotHspdKovnSQfy7iXOk9aDNtovgz5PsQsc
+	 N4bdwEQPEx6ICDR+oThscl+QPa0+gwXqEQIUXJ9SR6VarnLLLbGdzvfQDwrNzuxuYdlwE
+	 PujlMy/PM885uwa9N2q1k7aIiP0SdA4AOEemLO+HUeCPN5hetHo3gbkBc10YrBMCjZuu1
+	 tP9ckfmcSkxnmvPoTP9av7ZhmUzAirbuuvesQp0lmFEcPLZn/phz4AFO0odjTKoDSOlCL
+	 OXSl0fklWnYv7g7sAEgV10YcUyhyV/Bk4WE+mhgo6hEQIW+f5iJez6iLUvZJSmyYYuQ==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=proton.me;
 	spf=pass smtp.mailfrom=proton.me;
-	dkim=pass header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=bihcyuv2wzexti3gnp4bsvo6yi.protonmail2 header.b=iuFZciC2;
-	arc=none smtp.remote-ip=185.70.43.19
-Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
+	dkim=pass header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=protonmail2 header.b=kugNLNte;
+	arc=none smtp.remote-ip=109.224.244.25
+Received: from mail-24425.protonmail.ch (mail-24425.protonmail.ch [109.224.244.25])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84ACB606A31C
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 20:29:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 84ACB606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A50606A31E
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 20:29:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 51A50606A31E
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=bihcyuv2wzexti3gnp4bsvo6yi.protonmail2 header.b=iuFZciC2
+	dkim=pass (2048-bit key, unprotected) header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=protonmail2 header.b=kugNLNte
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=bihcyuv2wzexti3gnp4bsvo6yi.protonmail2; t=1795724952;
-	x=1795984152; bh=dGzYUr/GnftLbsNRvCIK8agsWQyzifa3zJBout/Fz7c=;
+	s=protonmail2; t=1795724962; x=1795984162;
+	bh=08GIiTm47Cj6zwev/3VfXW4xu+JxsFqjGLFCYOlgTmQ=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=iuFZciC2/UgudReX+zZAnex/d3EX6faCqH3LIMWUIBe54QItzeH07ZNMD5ja+/2Q7
-	 az7QpHvfdAtC3xtQ2+0ttbhINHim8KtIYw53wKo4FK3rgQ1NGqUpuEIQQvix5z4L/6
-	 bfVHAi9PaiFm9N4GrT2qwpz/OYEsi1WAm68iq33WFDIVPbGRipWEkNqW5iLaQxMSm2
-	 7lM3nAIqDqTboVHvuLVl4BnwewW+VdJhnbcZ9EIhYR5QF18uJMsVNoLVMT+h78Y0av
-	 Ye6D50PgwKlrL4vfPzUVRbYs0IwHTKxrQxK6NYuD0kVzMrAK/HlrWuKrrEB1JxONs5
-	 +OiiNMJUZqXng==
-Date: Thu, 26 Nov 2026 20:29:09 +0000
+	b=kugNLNte+4f3A5D6RDNu1xLDt/FIc3/2GEUye9IW90uy0x1l2rzxnRLCcRVUbA8xx
+	 HK9WCDgvKHYjY/6PRcb3wF0P2UcOQ3xWEi0GIV4GDhgvxoq5kmK74sncZgzAzN4XTJ
+	 HxWbpe4xwyK8l3punE2bW5iMm+zgUZBErcaJ84XMLtTu/hkAGIFMRvX7r4EWqtTbQF
+	 uGHwhdGViMRFs4Yx6tSt8ItDlxevTvOI+0JEEEM1J0ZZY3kcDORS7mZ8KVPRb3XISv
+	 8QUbAFEOofauAR7rSXHQhGzo2eSLMr+Bl3DOSiiAx6n+BK3OXFxdhHWRwiL5ue1x9s
+	 UrJ8UxTuG/FCQ==
+Date: Thu, 26 Nov 2026 20:29:16 +0000
 To: liubaolin <liubaolin12138@163.com>
 From: Ernest Borowski <ernest.borowski.git@proton.me>
 Cc: ernest.borowski.git@proton.me, fstests@vger.kernel.org, Zorro Lang <zlang@kernel.org>, ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>, Hyunchul Lee <hyc.lee@gmail.com>, Zhan Xusheng <zhanxusheng1024@gmail.com>
-Subject: Re: [PATCH 2/4] generic: check the size after a buffered write runs out of space
-Message-ID: <179572494434.404914.17528791583106680604.b4-reply@b4>
-In-Reply-To: <d485f4ea-89ca-432d-a6aa-de39ee968d81@163.com>
-References: <20261125-ntfs-reproducers-v1-0-0cc67533d803@proton.me> <20261125-ntfs-reproducers-v1-2-0cc67533d803@proton.me> <d485f4ea-89ca-432d-a6aa-de39ee968d81@163.com>
+Subject: Re: [PATCH 4/4] generic: test a short copy into a hole of reused blocks
+Message-ID: <179572495125.405357.254723270878355774.b4-reply@b4>
+In-Reply-To: <8e55e631-96e0-464d-b29b-0db2f56c2911@163.com>
+References: <20261125-ntfs-reproducers-v1-0-0cc67533d803@proton.me> <20261125-ntfs-reproducers-v1-4-0cc67533d803@proton.me> <8e55e631-96e0-464d-b29b-0db2f56c2911@163.com>
 Feedback-ID: 236360163:user:proton
-X-Pm-Message-ID: ff13e4375c1586ff7ffda7ce63d46e3f748a5274
+X-Pm-Message-ID: 71d218077030181cafe86c4bd5d54aab8a6a81d2
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -67,31 +67,58 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 26, 2026 at 02:26:43PM +0800, liubaolin wrote:
->     Could we avoid treating every missing byte count as zero here?
->     For example, if xfs_io reports pwrite: Input/output error and leaves
-> the file unchanged, written becomes zero and both the size and content
-> checks pass. The error only appears in $seqres.full.
->     I think unexpected errors should fail the test, with ENOSPC handled
-> separately. It would also be good to check that we actually get a
-> positive short write. A zero-byte ENOSPC result is worth checking too.
+On Thu, Nov 26, 2026 at 02:38:35PM +0800, liubaolin wrote:
+> > +for copy in $((blksz / 4)) $((blksz + blksz / 4)) $((2 * blksz + blksz=
+ / 8)); do
+> > +=09$XFS_IO_PROG -f -c "pwrite -q -S 0xab 0 $size" -c fsync \
+> > +=09=09-c "truncate 0" -c "truncate $size" \
+> > +=09=09-c "pwrite -q -S 0x01 $((size - 1)) 1" $file
+>
+>     The later write may get different blocks from the ones filled with
+> 0xab.
+>     There is also the discard case: if freeing the old blocks causes them
+> to read back as zeroes, the test may no longer detect the missing zeroing=
+.
+>     Would it make sense to exclude discard configurations that clear the
+> freed data, and make reuse of the patterned blocks more reliable?
 
-Agreed. In v2, a missing byte count is accepted only if xfs_io failed
-with ENOSPC; any other error fails the test and prints the xfs_io
-output. A zero-byte ENOSPC result still runs the size and content
-checks, so any size change fails the test. If those checks pass, the
-test reports "not run" because it did not exercise a short write. A full
-write already reported "not run".
+Yes to both. v2 excludes the discard mount option, makes a 512 MiB
+filesystem, and fills it with data before the loop:
 
-Checking for a positive short write showed that v1 never got one on XFS
-or ext4. Both reserve space for the whole new range at once, so the
-append at EOF failed with ENOSPC and wrote nothing, and v1 passed there
-for the reason you described. In v2, the write starts 64 KiB (or one
-block, if larger) before EOF. The part over the old data is written, and
-the rest runs out of space: XFS and ext4 return a short write of 64 KiB
-(with 1k and 4k blocks), and ntfs one of about 320 KiB. The size check
-now expects the old file size or the end of the written range, whichever
-is larger.
+1. Write the test file and a spare file.
+2. Write a filler file in 1 MiB chunks until ENOSPC, then sync.
+3. Write a second filler file in single blocks until ENOSPC, then sync.
+4. Remove the spare file.
+
+The syncs let delayed allocation release its unused reservations before
+the next pass. Almost all free space has then held data, so the hole
+gets previously written blocks whichever ones the allocator picks.
+
+The test writes the fill data itself, because _fill_fs preallocates
+where it can. It also requires no compression, since compressed data
+would not fill the space. This is still not a guarantee: blocks that a
+filesystem keeps reserved from regular files are never written.
+
+With the fill, generic/818 now also fails on ntfs-next with 512-byte
+clusters, where v1 passed because the hole got clean blocks. With the
+delalloc series it passes at 512, 4096 and 65536-byte clusters, and it
+passes on XFS and ext4 with 1k and 4k blocks.
+
+> > +=09written=3D$($here/src/pwrite-short-copy $file $off $len $copy)
+>
+>     Could we check the result here before continuing?
+[...]
+>     Checking the helper's exit status and requiring 0 < written <=3D copy
+> and written < len should catch this. Unexpected errors should fail the
+> test.
+
+Done in v2: the test fails if the helper exits nonzero, or if the write
+does not return 0 < written <=3D copy (copy is less than len, so
+written < len follows). A non-positive result fails rather than skips:
+the buffered write paths in Linux (generic_perform_write() and iomap)
+store the readable part of the buffer before they stop, so a write that
+stores none of the readable bytes points to a bug in the write path, not
+in the test setup.
 
 Thanks,
 Ernest
