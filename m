@@ -1,50 +1,56 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.4
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795661024;
-	b=F0s6FJuBU0nYJhDYJY9now/OG/y7XUTtHZ6pA9CE58Fh+u8MMPzi6fu5XFKC+L4sB4hS
-	 HIhXpfZmniLywGh4pH64hLQ0vfIb+jN+lBisM0dSazQUXBGWP+4ZXv7GssslpgNmrzUgR
-	 s4eOSvAtgTDDfTrxh7K7X6R3tMOnCeb6Y8mEVVvDJyGV04Rj9L8/VXtwmWljSkOkR43qx
-	 jG7I1s7FnzQMZ8a1LAj1rAxcpN0YbkMqvq0CXXdmthv+Mb6847FbJ/51GrawZQGQntXUt
-	 NuIhEbYD86AFF9wVHLv3y0FSbU0HL5njE8KnWkUMsE6SRuYChkr4Qc5NMelByTMOoZg==
+	t=1795664449;
+	b=dAED5W09P4rgNkFMceaCnI64Cb0a/uPcNiQeqZ0LVBSwOwiSpjoddWYsWnURWLU1xDx1
+	 d+ywrWuhZAzPuurfjWc2fYdejgMpCZqhvVhz3JG5xAz5Y0ybYYru2iLmdWXAjRv+vsQXM
+	 K5Btpq747QHHVWVgrNwZEwOb3dLyepN7R+VfQf3BCtn/axW4iMqDt2PzZL/uHKbKDIzwe
+	 QVX5FFuWFFXIelO3Hw0k7JDJ5USVNIhAIjzWD2mOtCQy5VQyhd0PpLX9K0/Y+j9oNzoqU
+	 GWg553TAXWv+6KhTLVh6hKZ2yUxx4eBYbXLUBBZT8Sw+OALYpsEiJWIq0jDfxPLljig==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795661024;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
-	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
-	bh=lz/EWl17W4qh5Fy/0QWWvFBH7U2qWk/cW54dVvefy2I=;
-	b=Pze7ZPXxn+8TVR1EqAow/s3R21iHX/VpTICBQpS1iEnlLiXehYBBPEzgVu8DbGJLLlUA
-	 QgER4WqgTTw3waYiOHlK1nIuZFDT5BM75sWuphkcXx3wfV9EiGJ8a/5Nv8L53Lq9t1E0I
-	 BJoZLle01Jb+SsSZeKLHW3bh5qR7w1Uw2Y+tS1ryoWk0lCvS9IwHj7+uWraRtMtPWqTV+
-	 2y88sabrctWNkrkgzYrIuO6Auo7d0zwCeS08CuoEMXLtMnvXJ88Ypm7u2IbUFIv5+z9sa
-	 2RR41fgusgq829W2w5ZDzZRBhBDFJa7XRUp47saHWfpsd96mQSnjDqOvib2b2BvL3gQ==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795664449;
+	h=DMARC-Filter:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
+	 X-CM-TRANSID:X-Coremail-Antispam:X-CM-SenderInfo;
+	bh=hiie43vbQhgwO+8bh43IQ1x0kI3W2gj1GivBQN/aU18=;
+	b=NkBhD8RLqomkpez3t0G43IJeGRklj1mPMz3VjGs43GcRKJANpj4MPMjjbHd2Q0cgEF9G
+	 XDmEkpxZFI/hK8WjBWSwSV4ggnHRQGWd/D6RoDhmbZc0wGnAON057yE9RGxT/t5aoRriu
+	 1vo1DtSlLldzqNkqnx1sJpRmQ6DB8KIGLjgo1eVU5N0XUCiHHAZeBjySgBPh7L6dEvA/u
+	 9fTmNg38Fa/DPdaAyTGYEOpXbbNFwJyHC7emoxdqbuBoJiuEjft2tMlzCo0dyMIN8zRPK
+	 WIy7Yg9UbLTNSZfywMH9e3l+If1DExbf9nDK24l8XG5whEXqvvKnXGAK2ZMTNK+lUbA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=163.com;
 	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b="Bu4G/CV/";
-	arc=none smtp.remote-ip=220.197.31.5
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=JE7aJRv9;
+	arc=none smtp.remote-ip=117.135.210.4
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE4A3606A31E
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 02:43:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org CE4A3606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709DB606A330
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 03:40:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 709DB606A330
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Bu4G/CV/
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=JE7aJRv9
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=lz/EWl17W4qh5Fy/0QWWvFBH7U2qWk/cW54dVvefy2I=;
-	b=Bu4G/CV/DkdOln7lvl1FGujHEU9ZloA3om8ELwrphVLurpnP1o/gvOUVGK1I4/
-	A3j+Bfg9giIYkNBB9M7nMHQ+6ILUBfIuwNqLoEc0fAcj3SDZ2i9STVJLKthZSln0
-	0/85rMUPJfl/zmC67Lvv3y4Nj5YLnPWdqtN4ZR3XZKDB8=
-Received: from [IPV6:2409:8900:1fda:c14d:483b:2970:cae3:221a] (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDXFzXOnAdrUO3WKw--.11047S2;
-	Thu, 26 Nov 2026 10:43:27 +0800 (CST)
-Message-ID: <362ec779-2133-40ff-894b-d0d96a756828@163.com>
-Date: Thu, 26 Nov 2026 10:43:26 +0800
+	s=s110527; h=From:To:Subject:Date:Message-ID; bh=hiie43vbQhgwO+8
+	bh43IQ1x0kI3W2gj1GivBQN/aU18=; b=JE7aJRv9pTU0SQsrcqef0NIAG0YI1g2
+	arnPca8Z7FobHPK+iSAMS0PzgYjMgFYqUn8yQ91vW6A42ZlMhIURfJLpuz68UlJr
+	+P8jWky24yjh//I9tut2DZVZZZNjwOmszDQ1iSQdGg8h8hLcLORAKy/vnV8/0MnU
+	5/GeDT/rr0IM=
+From: shaos <shawnq1@163.com>
+To: Namjae Jeon <linkinjeon@kernel.org>
+Cc: Hyunchul Lee <hyc.lee@gmail.com>,
+    ntfs@lists.linux.dev, stable@vger.kernel.org
+Subject: [PATCH] ntfs: avoid re-locking the parent for stream timestamps
+Date: Thu, 26 Nov 2026 03:40:27 GMT
+Message-ID: <179566442733.1993761.5390442849622005459@163.com>
+X-CM-TRANSID:PygvCgCH74QrqgdrvLbtIA--.60447S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxtr43tF48uw48tFWDAw4ktFb_yoW3CFy7pr
+	ZFk3yfKwnrtF1Igwn3tws09ryF9r1kCw42gry7Xa1xAws0qw1rtF40kr1kCFWftrZ5Wr45
+	ZF4Ygw13ur1UXrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jO3kAUUUUU=
+X-CM-SenderInfo: pvkd40jtr6il2tof0z/xtbCzwxSYGsHqixvPwAA3L
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -53,191 +59,202 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] common: add support for the ntfs driver
-To: ernest.borowski.git@proton.me, fstests@vger.kernel.org,
- Zorro Lang <zlang@kernel.org>
-Cc: ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>,
- Hyunchul Lee <hyc.lee@gmail.com>, Zhan Xusheng <zhanxusheng1024@gmail.com>
-References: <20261125-ntfs-reproducers-v1-0-0cc67533d803@proton.me>
- <20261125-ntfs-reproducers-v1-1-0cc67533d803@proton.me>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20261125-ntfs-reproducers-v1-1-0cc67533d803@proton.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDXFzXOnAdrUO3WKw--.11047S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxKFyxWry5uFy3XFWfKr4Durg_yoW7tr48pF
-	yfCa43Kr48GF9xu3s3tr45Xa4rCwn3Jr1UKr17Wrn2grZ5tr1fAF42qrnY9F48Wry5Zr1v
-	gw1kWas7GF9Iyr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Uq0PhUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6hD3wmsHnNBpYQAA3n
 
+Hello,
 
+The VFS holds a directory's i_rwsem while calling ->create() and
+->unlink(). A legacy NTFS named-stream path can use that same directory
+as the stream's base inode. Creating or removing the stream then calls
+ntfs_stream_update_base_time(), which attempts to acquire the already
+held i_rwsem and leaves the caller blocked in down_write_nested().
 
-在 2026/11/26 03:03, Ernest Borowski via B4 Relay 写道:
-> From: Ernest Borowski <ernest.borowski.git@proton.me>
-> 
-> Volumes for the ntfs driver (fs/ntfs) are made and checked with mkfs.ntfs
-> and fsck.ntfs from ntfsprogs-plus, but FSTYP=ntfs only gets the generic
-> fallbacks today. mkfs.ntfs zeroes the whole device unless it is given
-> --quick and refuses a device that is not a partition unless it is given
-> --force, _scratch_mkfs_sized and _scratch_mkfs_blocksized skip every test
-> that calls them, and the tests that require metadata journaling run
-> although the driver only checks and empties $LogFile at mount and never
-> logs a change. Call mkfs.ntfs directly with --quick and --force and filter
-> its warnings about the device geometry, pass the size to mkfs.ntfs in
-> sectors and the block size as the cluster size unless MKFS_OPTIONS sets one
-> (mkfs.ntfs refuses a second -c), check that mkfs.ntfs and fsck.ntfs are
-> installed, and list ntfs among the filesystems without metadata journaling.
-> Mount with -i, so that mount -t ntfs always uses the kernel driver and
-> never a mount.ntfs helper.
-> The check keeps the generic "fsck -t ntfs -n" path, which runs ntfsck.
-> 
-> Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
-> ---
->   common/config |  9 +++++++++
->   common/rc     | 37 ++++++++++++++++++++++++++++++++++++-
->   2 files changed, 45 insertions(+), 1 deletion(-)
-> 
-> diff --git a/common/config b/common/config
-> index 69e5d833..2b164c7d 100644
-> --- a/common/config
-> +++ b/common/config
-> @@ -335,6 +335,7 @@ export MKFS_AFS_PROG="false"
->   export MKFS_CIFS_PROG="false"
->   export MKFS_OVERLAY_PROG="false"
->   export MKFS_REISER4_PROG=$(type -P mkfs.reiser4)
-> +export MKFS_NTFS_PROG=$(type -P mkfs.ntfs)
->   export E2FSCK_PROG=$(type -P e2fsck)
->   export TUNE2FS_PROG=$(type -P tune2fs)
->   export FSCK_OVERLAY_PROG=$(type -P fsck.overlay)
-> @@ -409,6 +410,10 @@ _common_mount_opts()
->   	ubifs)
->   		echo $UBIFS_MOUNT_OPTIONS
->   		;;
-> +	ntfs)
-> +		# -i: always mount the kernel driver, never a mount.ntfs helper
-> +		echo "-i $NTFS_MOUNT_OPTIONS"
-> +		;;
->   	*)
->   		;;
->   	esac
-> @@ -550,6 +555,10 @@ _source_specific_fs()
->   		;;
->   	pvfs2)
->   		;;
-> +	ntfs)
-> +		[ "$MKFS_NTFS_PROG" = "" ] && _fatal "mkfs.ntfs not found"
-> +		type -P fsck.ntfs >/dev/null || _fatal "fsck.ntfs not found"
-> +		;;
->   	ubifs)
->   		[ "$UBIUPDATEVOL_PROG" = "" ] && _fatal "ubiupdatevol not found"
->   		. ./common/ubifs
-> diff --git a/common/rc b/common/rc
-> index 750a8d83..2c37bdb1 100644
-> --- a/common/rc
-> +++ b/common/rc
-> @@ -904,6 +904,9 @@ _test_mkfs()
->       btrfs)
->           $MKFS_BTRFS_PROG $MKFS_OPTIONS $* $TEST_DEV > /dev/null
->   	;;
-> +    ntfs)
-> +	$MKFS_NTFS_PROG --quick --force $MKFS_OPTIONS $* $TEST_DEV > /dev/null
-> +	;;
->       ext2|ext3|ext4)
->   	$MKFS_PROG -t $FSTYP -- -F $MKFS_OPTIONS $* $TEST_DEV
->   	;;
-> @@ -953,6 +956,9 @@ _try_mkfs_dev()
->       btrfs)
->           $MKFS_BTRFS_PROG $MKFS_OPTIONS $*
->   	;;
-> +    ntfs)
-> +	$MKFS_NTFS_PROG --quick --force $MKFS_OPTIONS $*
-> +	;;
->       ext2|ext3|ext4)
->   	$MKFS_PROG -t $FSTYP -- -F $MKFS_OPTIONS $*
->   	;;
-> @@ -1069,6 +1075,15 @@ _scratch_mkfs()
->   		mkfs_cmd="$MKFS_BCACHEFS_PROG"
->   		mkfs_filter="cat"
->   		;;
-> +	ntfs)
-> +		# --quick skips zeroing the whole device, --force formats a
-> +		# device that is not a partition; drop the warnings about that
-> +		# and about the boot geometry of such a device
-> +		mkfs_cmd="$MKFS_NTFS_PROG --quick --force"
-> +		mkfs_filter="grep -v -e \"is entire device\" -e \"forced anyway\""
-> +		mkfs_filter+=" -e \"could not be obtained automatically\""
-> +		mkfs_filter+=" -e \"boot from\""
-> +		;;
->   	*)
->   		mkfs_cmd="yes | $MKFS_PROG -t $FSTYP --"
->   		mkfs_filter="cat"
-> @@ -1313,6 +1328,9 @@ _try_scratch_mkfs_sized()
->   		# If no block size is given by local.confg or parameter, blocksize_opt is empty.
->   		# Let MKFS_BCACHEFS_PROG decide block size on its own.
->   		;;
-> +	ntfs)
-> +		def_blksz=`echo $MKFS_OPTIONS | sed -rn 's/.*(-c|--cluster-size)[ =]?+([0-9]+).*/\2/p'`
-> +		;;
->   	esac
->   
->   	[ -n "$def_blksz" ] && blocksize=$def_blksz
-> @@ -1425,6 +1443,16 @@ _try_scratch_mkfs_sized()
->   	bcachefs)
->   		$MKFS_BCACHEFS_PROG $MKFS_OPTIONS --fs_size=$fssize $blocksize_opt "$@" $SCRATCH_DEV
->   		;;
-> +	ntfs)
-> +		# mkfs.ntfs refuses a second -c, and takes the size in sectors
-> +		# after the device
-> +		local cluster_opt="-c $blocksize"
-> +		local sector_size=`blockdev --getss $SCRATCH_DEV`
-> +
-> +		[ -n "$def_blksz" ] && cluster_opt=""
-> +		$MKFS_NTFS_PROG --quick --force $MKFS_OPTIONS $cluster_opt "$@" \
-> +			$SCRATCH_DEV $((fssize / sector_size))
-> +		;;
+Pass the VFS-locked parent to the timestamp update path. When the base
+inode is that parent, update its timestamps under the lock already
+held. Other callers retain the existing lock and update behavior.
 
-Hi Ernest,
-    There is a mismatch here when -s/--sector-size is supplied. The 
-calculation uses the device's logical sector size, while mkfs.ntfs 
-interprets the sector count using the size specified by that option.
-    For example, with 512-byte device sectors and MKFS_OPTIONS="-s 4096 
--c 4096", a 512 MiB request passes 1048576 sectors to mkfs, which it 
-interprets as roughly 4 GiB.
-    Could the calculation use the effective mkfs sector size, falling 
-back to the device sector size when no override is given?
+A crafted NTFS directory entry reproduces both create and unlink
+deadlocks as uid 65534. The same operations complete with this change.
+The unlink harness also emits a lockdep circular-dependency warning
+during stream setup on both the vulnerable and fixed kernels. That
+warning is separate from the reproduced self-deadlock and is not
+claimed to be fixed here.
 
-Thanks,
-Baolin.
+HEAD commit:    8d7fe9885c62fc9a95bf55d9db244d9672a8aadc
+Git tree:       fe970b05333fb8e41da21e9e289f652abcc7cba7
+Source version: Linux 7.4.0-rc4
+Compiler:       gcc 11.4.0, GNU ld 2.38
+Test runtime:   QEMU 6.2.0, x86-64 TCG
 
->   	*)
->   		_notrun "Filesystem $FSTYP not supported in _scratch_mkfs_sized"
->   		;;
-> @@ -1517,6 +1545,13 @@ _scratch_mkfs_blocksized()
->   	udf)
->   		_scratch_mkfs -b $blocksize
->   		;;
-> +	ntfs)
-> +		# mkfs.ntfs refuses a second -c, so the size asked for here
-> +		# replaces one in MKFS_OPTIONS
-> +		MKFS_OPTIONS=$(echo $MKFS_OPTIONS | \
-> +			sed -E 's/(-c|--cluster-size)[ =]?[0-9]+//') \
-> +			_scratch_mkfs -c $blocksize
-> +		;;
->   	*)
->   		_notrun "Filesystem $FSTYP not supported in _scratch_mkfs_blocksized"
->   		;;
-> @@ -4386,7 +4421,7 @@ _has_metadata_journaling()
->   	fi
->   
->   	case "$FSTYP" in
-> -	ext2|vfat|msdos|udf|exfat|tmpfs|hfs|hfsplus)
-> +	ext2|vfat|msdos|udf|exfat|ntfs|tmpfs|hfs|hfsplus)
->   		echo "$FSTYP does not support metadata journaling"
->   		return 1
->   		;;
-> 
+The evidence, create and unlink PoCs, and image/initramfs helpers are
+in this unlisted Gist:
+
+https://gist.github.com/shaos26/eb846131f7945b8541b2f1b99fd5c34e
+
+Console output:
+https://gist.githubusercontent.com/shaos26/eb846131f7945b8541b2f1b99fd5c34e/raw/c9b6fcec4363c6b1ea2f168f12a2b4918dd29af3/console-output.txt
+Kernel config:
+https://gist.githubusercontent.com/shaos26/eb846131f7945b8541b2f1b99fd5c34e/raw/c9b6fcec4363c6b1ea2f168f12a2b4918dd29af3/kernel-config.txt
+Create PoC:
+https://gist.githubusercontent.com/shaos26/eb846131f7945b8541b2f1b99fd5c34e/raw/c9b6fcec4363c6b1ea2f168f12a2b4918dd29af3/poc.c
+Unlink PoC:
+https://gist.githubusercontent.com/shaos26/eb846131f7945b8541b2f1b99fd5c34e/raw/c9b6fcec4363c6b1ea2f168f12a2b4918dd29af3/unlink-poc.c
+
+The reproduction script needs QEMU and the ntfs-3g tools mkntfs,
+ntfscp, and ntfsinfo. It builds the test kernel and initramfs, creates
+fresh crafted images, and runs create, unlink, and normal-image control
+cases:
+
+    git clone https://gist.github.com/eb846131f7945b8541b2f1b99fd5c34e.git repro
+    git -C repro checkout c9b6fcec4363c6b1ea2f168f12a2b4918dd29af3
+    chmod +x repro/*.sh
+    ./repro/reproduce.sh
+
+The vulnerable create runs reached D state in down_write_nested() with
+ntfs_stream_update_base_time() on the stack. On the patched kernel,
+create returned instead of hanging; unlink completed with rc=0. The
+normal-image control also completed. The unlink logs retain the
+independent lockdep warning described above.
+
+Fixes: 3f11c48d4f94 ("ntfs: add pathname access for named streams")
+Cc: stable@vger.kernel.org
+Signed-off-by: shaos <shawnq1@163.com>
+
+---
+ fs/ntfs/named_stream.c | 47 +++++++++++++++++++++++++++++++++++-------
+ fs/ntfs/stream.h       |  3 ++-
+ 2 files changed, 41 insertions(+), 9 deletions(-)
+
+diff --git a/fs/ntfs/named_stream.c b/fs/ntfs/named_stream.c
+index 70c5892077133..8bae9a9f53047 100644
+--- a/fs/ntfs/named_stream.c
++++ b/fs/ntfs/named_stream.c
+@@ -82,6 +82,13 @@ void ntfs_stream_inode_refresh(struct inode *vi)
+ 	vi->i_generation = base_vi->i_generation;
+ }
+ 
++/* Caller must hold the base inode's i_rwsem. */
++static void ntfs_stream_set_base_time(struct inode *base_vi)
++{
++	inode_set_mtime_to_ts(base_vi, inode_set_ctime_current(base_vi));
++	mark_inode_dirty(base_vi);
++}
++
+ /*
+  * ntfs_stream_update_base_time() - Update base timestamps after a stream change
+  * @base_ni: base inode containing the stream attribute
+@@ -94,11 +101,32 @@ void ntfs_stream_update_base_time(struct ntfs_inode *base_ni)
+ 	struct inode *base_vi = VFS_I(base_ni);
+ 
+ 	inode_lock_nested(base_vi, I_MUTEX_PARENT);
+-	inode_set_mtime_to_ts(base_vi, inode_set_ctime_current(base_vi));
+-	mark_inode_dirty(base_vi);
++	ntfs_stream_set_base_time(base_vi);
+ 	inode_unlock(base_vi);
+ }
+ 
++/*
++ * ntfs_update_base_time_for_dir() - Update base timestamps from
++ * a directory operation
++ * @base_ni: base inode containing the stream attribute
++ * @locked_dir: parent directory locked by the VFS, or NULL
++ *
++ * The VFS already holds @locked_dir's i_rwsem for create and unlink. Avoid
++ * recursively acquiring it when the base inode is that directory itself.
++ */
++static void ntfs_update_base_time_for_dir(struct ntfs_inode *base_ni,
++					  struct inode *locked_dir)
++{
++	struct inode *base_vi = VFS_I(base_ni);
++
++	if (base_vi != locked_dir) {
++		ntfs_stream_update_base_time(base_ni);
++		return;
++	}
++
++	ntfs_stream_set_base_time(base_vi);
++}
++
+ /*
+  * ntfs_stream_inode_validate() - Validate a named-stream inode
+  * @vi: stream inode to validate
+@@ -653,7 +681,7 @@ struct inode *ntfs_create_named_stream(const struct mnt_idmap *idmap,
+ 		}
+ 		mutex_unlock(&base_ni->mrec_lock);
+ 		if (stream_created)
+-			ntfs_stream_update_base_time(base_ni);
++			ntfs_update_base_time_for_dir(base_ni, dir);
+ 		if (!IS_ERR(stream_vi))
+ 			iput(stream_vi);
+ 		if (rollback_vi)
+@@ -663,7 +691,7 @@ struct inode *ntfs_create_named_stream(const struct mnt_idmap *idmap,
+ 	}
+ 	mutex_unlock(&base_ni->mrec_lock);
+ 	if (stream_created)
+-		ntfs_stream_update_base_time(base_ni);
++		ntfs_update_base_time_for_dir(base_ni, dir);
+ 	iput(base_vi);
+ 	return stream_vi;
+ 
+@@ -720,7 +748,7 @@ int ntfs_unlink_named_stream(struct inode *dir, struct dentry *dentry)
+ 	 * file write access. The shared helper enforces NTFS delete restrictions.
+ 	 */
+ 	err = ntfs_remove_named_stream(NTFS_I(base_vi), stream_name,
+-			stream_len, dentry->d_inode);
++			stream_len, dentry->d_inode, dir);
+ 
+ out_iput:
+ 	iput(base_vi);
+@@ -1076,6 +1104,7 @@ int ntfs_stream_put(struct inode *vi)
+  * @uname: UTF-16LE stream name
+  * @uname_len: length of @uname in UTF-16 code units
+  * @expected_vi: expected cached stream inode, or NULL
++ * @locked_dir: parent directory locked by the VFS, or NULL
+  *
+  * Refuse removal while the stream is open. If @expected_vi is non-NULL, it
+  * must be the inode currently associated with the named attribute.
+@@ -1084,7 +1113,8 @@ int ntfs_stream_put(struct inode *vi)
+  * errno.
+  */
+ int ntfs_remove_named_stream(struct ntfs_inode *ni, __le16 *uname,
+-		u32 uname_len, struct inode *expected_vi)
++		u32 uname_len, struct inode *expected_vi,
++		struct inode *locked_dir)
+ {
+ 	struct inode *attr_vi;
+ 	struct ntfs_inode *attr_ni;
+@@ -1137,7 +1167,7 @@ int ntfs_remove_named_stream(struct ntfs_inode *ni, __le16 *uname,
+ 
+ 	err = ntfs_stream_finish_remove(attr_vi);
+ 	if (!err)
+-		ntfs_stream_update_base_time(ni);
++		ntfs_update_base_time_for_dir(ni, locked_dir);
+ 	iput(attr_vi);
+ 	return err;
+ 
+@@ -1444,7 +1474,8 @@ static long ntfs_ioctl_stream(struct file *filp, unsigned long arg,
+ 		err = mnt_want_write_file(filp);
+ 		if (err)
+ 			goto out_free;
+-		err = ntfs_remove_named_stream(base_ni, sname, sname_len, NULL);
++		err = ntfs_remove_named_stream(base_ni, sname,
++					       sname_len, NULL, NULL);
+ 		mnt_drop_write_file(filp);
+ 		goto out_free;
+ 	}
+diff --git a/fs/ntfs/stream.h b/fs/ntfs/stream.h
+index 76b6c9cca5cc0..18b20e7d7ff48 100644
+--- a/fs/ntfs/stream.h
++++ b/fs/ntfs/stream.h
+@@ -46,7 +46,8 @@ bool ntfs_stream_unlinked(struct ntfs_inode *base_ni,
+ 		const __le16 *name, u32 name_len);
+ int ntfs_stream_put(struct inode *inode);
+ int ntfs_remove_named_stream(struct ntfs_inode *ni, __le16 *name,
+-		u32 name_len, struct inode *expected_inode);
++		u32 name_len, struct inode *expected_inode,
++		struct inode *locked_dir);
+ 
+ int ntfs_stream_validate_for_mutation(struct inode *inode, bool nowait);
+ long ntfs_ioctl_stream_read(struct file *file, unsigned long arg);
+-- 
+2.34.1
 
