@@ -1,50 +1,58 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.217
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795696257;
-	b=CP2XZVO/64EsV6jtWd9WCYkcWWVIbv8K+usfHTvk7LDLZ2WH56bC/oCJOQEDFsVpJprZ
-	 h0jfLFmxWNYKP/cym7rOUV6FmJ990+Ss11fWpAephC4OChuMemTsY62kJh3vdsZRJAM8F
-	 rIgEjzTLAKKN3X2DQ6SATwOuGAk5w0PajeQ33B8VTsANQljT7XqGknIUdP5EozxphqxO5
-	 HJn6CHDMw+xdTzBf14CB/HGrwr3vyPGABHhtHDc0EAcuRbqMDe4lNC2Pzhs87DIOxBP8v
-	 eLB0fPFYABf2vPdN34umOn/XMDR2PUvL0eG54u8UKbHUh+uf7YDnMknh2JOmlrU8YrQ==
+	t=1795699673;
+	b=2X04IhJrH97GtabZdIcf4pK1Lg1Ds9F8woD3NL7Xzah6ouHC2g6Fm6zSjh4qP6EZrt0V
+	 uozVlvoXmSu6z0wFdXdKGfjIep5wiKT06twU58RIEca9iarlgZ3Hz7bIzTjPLgu2I0FLA
+	 iMOCqzCOx8zD5orm75B28JgtRwGgr1/rg4MR5Q9naeEI7OJ4abxnvF4XJ8YJjEbYawT30
+	 HezqOWi4IB0uo0EPWLhojjlpwDCalY81Vl7LFhmHdzfFFX5ci8GuCh72HfUkFtJiW6Nbo
+	 cZ3l0KUoEb/ArqP1z09pNADhhaHh3E25Co8dyIo7Q1WKSh1YQ9cQINkSdhyvP6OY1eA==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795696257;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
-	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
-	bh=H85SpE2LlkLNp9tLUNmM3H1oGmoh72e/RdEzmkGk3Bo=;
-	b=iv6ILi8As80/Bndz+6t8c7/rK/yylOkWbx5MYIr64j578dKmFNCfs7ZZ9XRFph35cIl6
-	 Xfom+wKnrPrzdMiwY7OvbMSfSfTnjKGEaJF9zHGAGs8RVrIy+bKFAF/HakhS+q8Z4Vgtc
-	 hDX49UOYuoTWgSSr6f9cxW1fuvmaRYDnedVOpm1FiLIMN0kPaYHRj7cwz7EhQuV6thsUg
-	 ZD2IWTmQCukTqGGhPjtABkBAA19H9B7M3Gxz0T/Tdzx0SIjUC9g2xno5EL0hLGaLrihvx
-	 q3DSZX7q5/Uo1IG5lNAk/qqNbREn9SJ/UKiigW4US68oYLow3XY8KBldHT3J9FyMekA==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795699673;
+	h=DMARC-Filter:dkim-signature:Received:Received:Received:Message-ID:
+	 Date:MIME-Version:User-Agent:Subject:To:CC:References:
+	 Content-Language:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+	bh=gzzgXOgo3+SNm0ByCjOvIm/1n5ybZt8er0jBZ3680yc=;
+	b=SfjGnqwaypiY+fmjdfrci+Hu0WfYZlzrVMiA63qNUi66tqdG/rZLOHiVD8CCn7BisUa4
+	 KV7gX41HHYpnJLI+u/lUZehAYK+O994MpMn0fBrrxkghQWdSIFVFAJwichKirhjrabM9q
+	 ErHeyVvF4+l0lZFDG11Jxg7AbhHp+zxcNVeJh0jA9z5jLqbJUgilC2vkgUBLYBIY+zARR
+	 d7BYNKmwIGHGm7dYUJD0pFNCRk/xQxGSxpKY0eIRQu8yls+HgpiCLhpudREEAnJssNQvs
+	 EPTUj8F+qZfJGdepOdMrqXJ88A7AXSmcCzLum5b9s/oCAposEbtAw6cNW0sGrEySg+w==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=RxnXpRDy;
-	arc=none smtp.remote-ip=117.135.210.5
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	dmarc=pass header.from=huawei.com;
+	spf=pass smtp.mailfrom=huawei.com;
+	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=11fuKA0Q;
+	arc=none smtp.remote-ip=113.46.200.217
+Received: from canpmsgout02.his.huawei.com (canpmsgout02.his.huawei.com [113.46.200.217])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03017606A31E
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 12:30:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 03017606A31E
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A81B606A31E;
+	Thu, 26 Nov 2026 13:27:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 4A81B606A31E
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=RxnXpRDy
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=H85SpE2LlkLNp9tLUNmM3H1oGmoh72e/RdEzmkGk3Bo=;
-	b=RxnXpRDy+bZQmvrWLqKE/Pe65R0EijgnLiFqFvif4muwDwsr31Bg8JW5KDDnF0
-	VxbToxXPcHLxfcIPkx7qLHbhwJg6ylINEjyATqcKS0DNqF8DVS5BsT9C7yU9v/Ys
-	Iq1o8EvUPAfkK/foE8tIb+61kgUB8oQF+cqe77/b50/30=
-Received: from [IPV6:2409:8900:1fda:c14d:a943:bd11:7b57:b027] (unknown [])
-	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3f+5dJghreGvTLA--.47196S2;
-	Thu, 26 Nov 2026 20:30:23 +0800 (CST)
-Message-ID: <823a5bb7-a3f5-4734-b589-c0a45fa4e441@163.com>
-Date: Thu, 26 Nov 2026 20:30:21 +0800
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=11fuKA0Q
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=gzzgXOgo3+SNm0ByCjOvIm/1n5ybZt8er0jBZ3680yc=;
+	b=11fuKA0QNmqBcJC+Z7+EDBDEdopqwlPjiHPaNdUAff+L4Rfg5ecopOB7c41g4dYkKVWnsOz+7
+	diR70qy0hMLD9NrzKzTwcexrrEJpSqnu718+skXXx/Va432+IohJ+HmaImsfXw3HGXjPhG8bwg/
+	N0Q+ahJUMGyTnAubGLSqDU0=
+Received: from mail.maildlp.com (unknown [172.19.163.104])
+	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4jZy4b4Qsbzcb4D;
+	Thu, 26 Nov 2026 21:26:39 +0800 (CST)
+Received: from whupemk100010.china.huawei.com (unknown [7.152.184.41])
+	by mail.maildlp.com (Postfix) with ESMTPS id 2EF9B4058C;
+	Thu, 26 Nov 2026 21:27:47 +0800 (CST)
+Received: from [10.67.110.140] (10.67.110.140) by
+ whupemk100010.china.huawei.com (7.152.184.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 26 Nov 2026 21:27:38 +0800
+Message-ID: <2e7397bb-14fa-4d29-bfb5-620495a40245@huawei.com>
+Date: Thu, 26 Nov 2026 21:27:37 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -55,239 +63,92 @@ List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ntfs: fix false directory corruption on case-insensitive
- lookup of POSIX names
-To: Hyunchul Lee <hyc.lee@gmail.com>, Namjae Jeon <linkinjeon@kernel.org>
-Cc: Baolin Liu <liubaolin@kylinos.cn>, ntfs@lists.linux.dev,
- Sazpaimon <sazpaimon@cultnet.net>
-References: <20261126022939.1227362-1-hyc.lee@gmail.com>
+Subject: Re: [PATCH -next -v4 01/17] fs: pass struct path to notify_change()
+To: Al Viro <viro@zeniv.linux.org.uk>
+CC: <mic@digikod.net>, <gnoack@google.com>, <paul@paul-moore.com>,
+	<brauner@kernel.org>, <jack@suse.cz>, <amir73il@gmail.com>,
+	<andrii@kernel.org>, <apparmor@lists.ubuntu.com>, <ast@kernel.org>,
+	<axboe@kernel.dk>, <bpf@vger.kernel.org>, <casey@schaufler-ca.com>,
+	<cel@kernel.org>, <cem@kernel.org>, <chenxiaosong@chenxiaosong.com>,
+	<code@tyhicks.com>, <corbet@lwn.net>, <Dai.Ngo@oracle.com>,
+	<dakr@kernel.org>, <daniel@iogearbox.net>, <dhowells@redhat.com>,
+	<dlemoal@kernel.org>, <dmitry.kasatkin@gmail.com>,
+	<driver-core@lists.linux.dev>, <dsterba@suse.com>,
+	<ecryptfs@vger.kernel.org>, <eddyz87@gmail.com>, <emil@etsalapatis.com>,
+	<eric.snowberg@oracle.com>, <exfat@lists.linux.dev>,
+	<georgia.garcia@canonical.com>, <gregkh@linuxfoundation.org>, <hch@lst.de>,
+	<hirofumi@mail.parknet.co.jp>, <hyc.lee@gmail.com>,
+	<ihor.solodrai@linux.dev>, <jlayton@kernel.org>, <jmorris@namei.org>,
+	<johan@kernel.org>, <john.fastabend@gmail.com>,
+	<john.johansen@canonical.com>, <jolsa@kernel.org>, <kpsingh@kernel.org>,
+	<linkinjeon@kernel.org>, <linux-api@vger.kernel.org>,
+	<linux-block@vger.kernel.org>, <linux-btrfs@vger.kernel.org>,
+	<linux-cifs@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-fsdevel@vger.kernel.org>, <linux-integrity@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
+	<linux-nfs@vger.kernel.org>, <linux-security-module@vger.kernel.org>,
+	<linux-trace-kernel@vger.kernel.org>, <linux-unionfs@vger.kernel.org>,
+	<linux-xfs@vger.kernel.org>, <liubaolin12138@163.com>,
+	<martin.lau@linux.dev>, <mason@kernel.org>, <mathieu.desnoyers@efficios.com>,
+	<matt@bobrowski.net>, <memxor@gmail.com>, <mhiramat@kernel.org>,
+	<miklos@szeredi.hu>, <neil@brown.name>, <netfs@lists.linux.dev>,
+	<ntfs@lists.linux.dev>, <okorniev@redhat.com>, <omosnacek@gmail.com>,
+	<penguin-kernel@i-love.sakura.ne.jp>, <rafael@kernel.org>,
+	<rdunlap@infradead.org>, <roberto.sassu@huawei.com>, <rostedt@goodmis.org>,
+	<selinux@vger.kernel.org>, <senozhatsky@chromium.org>, <serge@hallyn.com>,
+	<sj1557.seo@samsung.com>, <skhan@linuxfoundation.org>, <song@kernel.org>,
+	<stephen.smalley.work@gmail.com>, <takedakn@nttdata.co.jp>, <tom@talpey.com>,
+	<yonghong.song@linux.dev>, <yuezhang.mo@sony.com>, <zohar@linux.ibm.com>,
+	<utilityemal77@gmail.com>, <lujialin4@huawei.com>
+References: <20261117150542.1169451-1-caixinchen1@huawei.com>
+ <20261117150542.1169451-2-caixinchen1@huawei.com>
+ <20261117183059.GP989762@ZenIV>
+ <32b8d9c9-27d2-4da9-8618-ccfc44dee7a3@huawei.com>
+ <20261119052339.GT989762@ZenIV>
 Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20261126022939.1227362-1-hyc.lee@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Cai Xinchen <caixinchen1@huawei.com>
+In-Reply-To: <20261119052339.GT989762@ZenIV>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3f+5dJghreGvTLA--.47196S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3XF43JF4Uur4kGw4fWFyrXrb_yoW3ur43pF
-	ZakrsrXa9xJr17KwnakF4DJFyF9an7GF1jq34UWw1Ikwn5Wr1YvrW8Kry09FZ5JrWrJ392
-	qa15WrWIqFyUXFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U2zuZUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6h99SGsIJl+MTgAA3Y
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ whupemk100010.china.huawei.com (7.152.184.41)
 
+oh, I get it.
 
+I think it would be better to use a new function, such as 
+notify_change_internal，
+to bypass this upperpath check, while retaining the inode check.
 
-在 2026/11/26 10:29, Hyunchul Lee 写道:
-> On a case-insensitive mount, a directory index may legitimately contain
-> two POSIX-namespace names that differ only by letter case. During
-> a lookup, ntfs_lookup_inode_by_name() treated any second case-insensitive
-> match as directory corruption, failed the lookup with EIO.
-> 
-> Keep the first case-insensitive candidate and continue the collation and
-> B+tree traversal so an exact match is still found.
-> 
-> Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
-> Reported-by: Sazpaimon <sazpaimon@cultnet.net>
-> Link: https://github.com/namjaejeon/linux-ntfs/issues/99
-> Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
-> ---
->   fs/ntfs/dir.c   | 103 +++++++++++++++++++++++++-----------------------
->   fs/ntfs/super.c |   4 ++
->   2 files changed, 57 insertions(+), 50 deletions(-)
-> 
-> diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
-> index a93f3566603b..2ff90852bccc 100644
-> --- a/fs/ntfs/dir.c
-> +++ b/fs/ntfs/dir.c
-> @@ -54,8 +54,8 @@ static inline u64 ntfs_check_mref(u64 mref)
->    *
->    * Note, we look for a case sensitive match first but we also look for a case
->    * insensitive match at the same time. If we find a case insensitive match, we
-> - * save that for the case that we don't find an exact match, where we return
-> - * the case insensitive match and setup @res (which we allocate!) with the mft
-> + * save the first match on the search path in case we don't find an exact
-> + * match, where we return it and setup @res (which we allocate!) with the mft
->    * reference, the file name type, length and with a copy of the little endian
->    * Unicode file name itself. If we match a file name which is in the DOS name
->    * space, we only return the mft reference and file name type in @res.
-> @@ -91,6 +91,7 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
->   	struct folio *folio;
->   	u8 *kaddr = NULL;
->   	struct ntfs_name *name = NULL;
-> +	bool seen_nonposix = false;
->   
->   	/* Get hold of the mft record for the directory. */
->   	m = map_mft_record(dir_ni);
-> @@ -191,13 +192,11 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
->   		}
->   		/*
->   		 * For a case insensitive mount, we also perform a case
-> -		 * insensitive comparison (provided the file name is not in the
-> -		 * POSIX namespace). If the comparison matches, and the name is
-> -		 * in the WIN32 namespace, we cache the filename in *res so
-> -		 * that the caller, ntfs_lookup(), can work on it. If the
-> -		 * comparison matches, and the name is in the DOS namespace, we
-> -		 * only cache the mft reference and the file name type (we set
-> -		 * the name length to zero for simplicity).
-> +		 * insensitive comparison. DOS names are matched this way even
-> +		 * on a case sensitive mount. If the comparison matches and no
-> +		 * candidate is cached, we cache the filename in *res for
-> +		 * ntfs_lookup(). For a DOS name, we only cache the mft reference
-> +		 * and the file name type (we set the name length to zero).
->   		 */
->   		if ((!NVolCaseSensitive(vol) ||
->   		     ie->key.file_name.file_name_type == FILE_NAME_DOS) &&
-> @@ -210,29 +209,32 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
->   			u8 type = ie->key.file_name.file_name_type;
->   			u8 len = ie->key.file_name.file_name_length;
->   
-> -			/* Only one case insensitive matching name allowed. */
-> -			if (name) {
-> +			/* Only one imperfect non-POSIX match is allowed. */
-> +			if (type != FILE_NAME_POSIX && seen_nonposix) {
->   				ntfs_error(sb,
->   					"Found already allocated name in phase 1. Please run chkdsk");
->   				goto dir_err_out;
->   			}
-> -
-> -			if (type != FILE_NAME_DOS)
-> -				name_size += len * sizeof(__le16);
-> -			name = kmalloc(name_size, GFP_NOFS);
-> +			if (type != FILE_NAME_POSIX)
-> +				seen_nonposix = true;
->   			if (!name) {
-> -				err = -ENOMEM;
-> -				goto err_out;
-> +				if (type != FILE_NAME_DOS)
-> +					name_size += len * sizeof(__le16);
-> +				name = kmalloc(name_size, GFP_NOFS);
-> +				if (!name) {
-> +					err = -ENOMEM;
-> +					goto err_out;
-> +				}
-> +				name->mref = le64_to_cpu(ie->data.dir.indexed_file);
-> +				name->type = type;
-> +				if (type != FILE_NAME_DOS) {
-> +					name->len = len;
-> +					memcpy(name->name, ie->key.file_name.file_name,
-> +							len * sizeof(__le16));
-> +				} else
-> +					name->len = 0;
-> +				*res = name;
->   			}
-> -			name->mref = le64_to_cpu(ie->data.dir.indexed_file);
-> -			name->type = type;
-> -			if (type != FILE_NAME_DOS) {
-> -				name->len = len;
-> -				memcpy(name->name, ie->key.file_name.file_name,
-> -						len * sizeof(__le16));
-> -			} else
-> -				name->len = 0;
-> -			*res = name;
->   		}
->   		/*
->   		 * Not a perfect match, need to do full blown collation so we
-> @@ -447,13 +449,11 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
->   		}
->   		/*
->   		 * For a case insensitive mount, we also perform a case
-> -		 * insensitive comparison (provided the file name is not in the
-> -		 * POSIX namespace). If the comparison matches, and the name is
-> -		 * in the WIN32 namespace, we cache the filename in *res so
-> -		 * that the caller, ntfs_lookup(), can work on it. If the
-> -		 * comparison matches, and the name is in the DOS namespace, we
-> -		 * only cache the mft reference and the file name type (we set
-> -		 * the name length to zero for simplicity).
-> +		 * insensitive comparison. DOS names are matched this way even
-> +		 * on a case sensitive mount. If the comparison matches and no
-> +		 * candidate is cached, we cache the filename in *res for
-> +		 * ntfs_lookup(). For a DOS name, we only cache the mft reference
-> +		 * and the file name type (we set the name length to zero).
->   		 */
->   		if ((!NVolCaseSensitive(vol) ||
->   		     ie->key.file_name.file_name_type == FILE_NAME_DOS) &&
-> @@ -466,30 +466,33 @@ u64 ntfs_lookup_inode_by_name(struct ntfs_inode *dir_ni, const __le16 *uname,
->   			u8 type = ie->key.file_name.file_name_type;
->   			u8 len = ie->key.file_name.file_name_length;
->   
-> -			/* Only one case insensitive matching name allowed. */
-> -			if (name) {
-> +			/* Only one imperfect non-POSIX match is allowed. */
-> +			if (type != FILE_NAME_POSIX && seen_nonposix) {
->   				ntfs_error(sb,
->   					"Found already allocated name in phase 2. Please run chkdsk");
->   				kfree(kaddr);
->   				goto dir_err_out;
->   			}
-> -
-> -			if (type != FILE_NAME_DOS)
-> -				name_size += len * sizeof(__le16);
-> -			name = kmalloc(name_size, GFP_NOFS);
-> +			if (type != FILE_NAME_POSIX)
-> +				seen_nonposix = true;
->   			if (!name) {
-> -				err = -ENOMEM;
-> -				goto unm_err_out;
-> +				if (type != FILE_NAME_DOS)
-> +					name_size += len * sizeof(__le16);
-> +				name = kmalloc(name_size, GFP_NOFS);
-> +				if (!name) {
-> +					err = -ENOMEM;
-> +					goto unm_err_out;
-> +				}
-> +				name->mref = le64_to_cpu(ie->data.dir.indexed_file);
-> +				name->type = type;
-> +				if (type != FILE_NAME_DOS) {
-> +					name->len = len;
-> +					memcpy(name->name, ie->key.file_name.file_name,
-> +							len * sizeof(__le16));
-> +				} else
-> +					name->len = 0;
-> +				*res = name;
->   			}
-> -			name->mref = le64_to_cpu(ie->data.dir.indexed_file);
-> -			name->type = type;
-> -			if (type != FILE_NAME_DOS) {
-> -				name->len = len;
-> -				memcpy(name->name, ie->key.file_name.file_name,
-> -						len * sizeof(__le16));
-> -			} else
-> -				name->len = 0;
-> -			*res = name;
->   		}
->   		/*
->   		 * Not a perfect match, need to do full blown collation so we
-> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-> index 39ff56cecf62..a87b47adb28d 100644
-> --- a/fs/ntfs/super.c
-> +++ b/fs/ntfs/super.c
-> @@ -1380,6 +1380,10 @@ static int check_windows_hibernation_status(struct ntfs_volume *vol)
->   	mref = ntfs_lookup_inode_by_name(NTFS_I(vol->root_ino), hiberfil, 12,
->   			&name);
->   	inode_unlock(vol->root_ino);
-> +	if (!IS_ERR_MREF(mref) && name) {
-> +		kfree(name);
-> +		return 0;
-> +	}
+ovl_do_notify_change
+->notify_change_internal(...)
+     ->do_notify_change(..., true)
+          ->security_inode_setattr
+              if (!internal)
+                  security_path_setattr
 
-Hi Hyunchul,
-    Could we remove the four lines above and keep the hibernation check?
-name can also be set when the lookup finds a WIN32 filename that differs 
-only in case.
-   For example, with -o nocase, looking up hiberfil.sys can find a WIN32 
-entry named HIBERFIL.SYS and return a non-NULL name.
-    This early return would skip the file size and header checks and
-treat the volume as not hibernated, even if the header contains the hibr 
-signature.
-    That could allow a read-write mount instead of applying the existing
-read-only protection.
+But this leads me to possibly needing to split the inode LSM hooks and 
+the path
+LSM hooks.
 
-   With those four lines removed, the rest looks good to me.
-
-Thanks,
-Baolin.
-
->   	kfree(name);
->   	if (IS_ERR_MREF(mref)) {
->   		ret = MREF_ERR(mref);
-
-
-
+On 11/19/2026 1:23 PM, Al Viro wrote:
+> On Wed, Nov 18, 2026 at 05:13:31PM +0800, Cai Xinchen wrote:
+>> On whether we want the mount references at all: they are not for NTFS.
+>> The path-based LSM hooks need them - Landlock's check walks the hierarchy
+>> up from the object with path->mnt->mnt_root and follow_up(), for every
+>> layer, and the idmap we pass has to be the one of the mount the path was
+>> checked in.
+> Then it won't be happy with overlayfs ones:
+>          upper_mnt = clone_private_mount(upperpath);
+> ...
+>          upper_layer->mnt = upper_mnt;
+> in ovl_get_upper(),
+>                  err = ovl_get_upper(sb, ofs, &layers[0], &ctx->upper);
+> in ovl_fill_super_creds()
+> combined with
+> static inline struct vfsmount *ovl_upper_mnt(struct ovl_fs *ofs)
+> {
+>          return ofs->layers[0].mnt;
+> }
+>
+> mean that the mount you get won't be attached to anything.  How (un)happy
+> would landlock be with that?
