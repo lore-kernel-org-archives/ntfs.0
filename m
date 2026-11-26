@@ -1,63 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.9
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.5
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795674917;
-	b=n3d5r0DBlOkfz8tJIcbDRxUL65yGZ9ms7N6zQPzq6syOrNMSntcO2jjrRAomydsUHmaD
-	 NhXfui/5g7Q475O2PgI/hjmjhD99tyH/RdKJEf9ZSj41nYzIokZmtz/+MDRRO+IuprLxe
-	 49ezK1Ts5hXUJm55U4OTFeyMMLBtb5Ekwb5kTRirFmWU8FmL3X704pkb9Y+D5nCZIM2Wn
-	 s4TS50G4j2ifOkbE5preI726LrP2ScfGNNSi3pUWll5l5nUVocpUNeGjXCQgcaQDgeYpv
-	 WPdRHDa9aaUi6daaic4zBFuO5M8wf6bDpq8IAVQTDyZOF8a6pl/ZPFOMKPq1a5bzyZQ==
+	t=1795675142;
+	b=p0mQzvIxfG7O1dta32rKRnjplP5bNhnvyvoOyIhb2Xad+0CmzcqrUYRoGIf3YT3oIsba
+	 hbqMQkj8Zgjp1fWtz3JwPcDtuqjXDTmErdSEFPLGv18XQIN10DPRZmbOomxmkecOG1D/a
+	 sKlTJ5I1EwLgP0WvwvKT+FRACccqkI4uoiU439QTA7xaGne1m92CA3xqDZhtxnnuJmX2M
+	 xCnRNZhg5RWl3P1GSWYvHwOvrMYCYmhSDB+d5rCKr7ZpVID7c1rUQOJfh1MYh1XsRjF6m
+	 m9WUuJyPx4vDjWU12Mk+fkWWswua2FtSgPfj7GRvpN09hFyGOPm86ARntgETxxnEQNQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795674917;
-	h=DMARC-Filter:DKIM-Signature:Date:From:To:Cc:Subject:X-Priority:
-	 X-Mailer:In-Reply-To:References:X-NTES-SC:Content-Transfer-Encoding:
-	 Content-Type:MIME-Version:Message-ID:X-Coremail-Locale:X-CM-TRANSID:
-	 X-CM-SenderInfo:X-Coremail-Antispam;
-	bh=mPO0k9Um6B0EKx6Q6FI4sbj2CUg2TOA35nvg0waKMjM=;
-	b=w5fRAsBzjzWOu1eSFssRRzdZ+BJOFolpHCEB8hum/VljKUXPGlUdsoddrdITdSADx2Sq
-	 JM5utxwqWk70qt4S4ePqq/hItJ+/ZVhmjVIz/0M1KDI2GVC17j/l7EPqymKjPux12NYDo
-	 z9kwIdL83XvznFwAK3j3jlQQ8T2gHedOx9dBiL6iLKgX07/L8MfVDp1P7RHxGLtv8Cw6f
-	 FQQV10Rsa88hbZipDD/qA1RLHfoFlryq2SU51X+2ImFCua3EFsc1bZ9SBPBu3Ut+lep8x
-	 Sjr2Fq+pWBjqp2ordR+U+B1/fqn5wx9kOqHXJtILRetxLbeixY8UkF4N0IazrKVlypw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795675142;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=VoIVUCNtcY4UeRVmlU1KIubXSUlqBqHw4QhOLZwzs4I=;
+	b=lKjBOlE1JQamXLAYWJuPxAedpw215oRGO5I6EQ5R5JTttXIhLYwh1Q3Rl0ds2+P89Zq1
+	 Yx+KUJ3ba8dqJgbwxcUFNXGg60eVnAMg/aUZJfqgXzyfXb3UJeI1vbMkhyhO63OfPmSr4
+	 LcG1AVTCrAJOJx84WnCUW2Btrv8JfuXS64y47bt3s8XweGoweV1ESyCK8sfoxqCmGdvD3
+	 bXb840Vuvw8pioS84ZE+vW7P23Y9TuRTDxh1Uup1FsLpX6vWOaQl6TMueCdQXvMdZzvDl
+	 4OtZZCrTxMqISP7gXAsEormNTAzMLLHaIllC7IuRBoE35cTABVypLAYUELt1OOCTpIA==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=126.com;
-	spf=pass smtp.mailfrom=126.com;
-	dkim=pass header.d=126.com header.i=@126.com header.a=rsa-sha256 header.s=s110527 header.b=N0YwHkvf;
-	arc=none smtp.remote-ip=117.135.210.9
-Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.9])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b="YI9/QJh+";
+	arc=none smtp.remote-ip=117.135.210.5
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D6D606A31C
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 06:35:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org B4D6D606A31C
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7563A606A31C
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 06:38:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 7563A606A31C
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.a=rsa-sha256 header.s=s110527 header.b=N0YwHkvf
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=mPO0k9Um6B0EKx6Q6FI4sbj2CUg2TOA35nvg0waKMjM=; b=N
-	0YwHkvf/BLmOmqoLdRVP3qmj0B5FGAzuexlbzN1+8i2QCkFwZQ6ktIUAcvDdDv3W
-	B3NHGVHSrIQ/A+qlU4P6Cg4m1ewj6QNp79N6AHYkgF9JCOr5nP9egvtx92UxvCCw
-	wvDDxOc8z3TPp2MSnLRxWRC39NM7YOAsZLkXb7qGg8=
-Date: Thu, 26 Nov 2026 14:34:46 +0800 (CST)
-From: dd  <zhongling0719@126.com>
-To: liubaolin <liubaolin12138@163.com>
-Cc: "Hongling Zeng" <zenghongling@kylinos.cn>, linkinjeon@kernel.org,
-	hyc.lee@gmail.com, ntfs@lists.linux.dev,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re:Re: [PATCH 2/6] ntfs: roll back the size update when the
- attribute lookup fails
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
- 20260511(2e539873) Copyright (c) 2002-2026 www.mailtech.cn 126com
-In-Reply-To: <89ca24c7-1ba8-41e1-81ef-1b60b7cc64bd@163.com>
-References: <20261125073547.154150-1-zenghongling@kylinos.cn>
- <20261125073547.154150-3-zenghongling@kylinos.cn>
- <89ca24c7-1ba8-41e1-81ef-1b60b7cc64bd@163.com>
-X-NTES-SC: AL_Qu2SB/qcu0Aj4CCZYukfmUoQhu82WMW3uvog3I9UP514jAvj+BsGdFRZMlTSwMGzKieyiCCWSRNg7vxLXq1cXaYxeh7kbZxyVojwlIcfxq7RWw==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=GBK
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=YI9/QJh+
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=VoIVUCNtcY4UeRVmlU1KIubXSUlqBqHw4QhOLZwzs4I=;
+	b=YI9/QJh+7SkOcJdGlqQFNd/0hgK51yYj1ILQfceGQ+qRYLFpFCeTdimeral/AK
+	RztZ7y6lMwqI0ZfpCFRABKmY8jrKr98TqKqn/WiS3u93LLhJybNR+joA/9TPZ73o
+	eEIdrNB9bLRXqI0KAJ0QN2p6jEBnHrdF6/YSSdEExHY9Y=
+Received: from [IPV6:2409:8900:1fda:c14d:fe4b:463:9ed6:5819] (unknown [])
+	by gzsmtp5 (Coremail) with SMTP id QCgvCgBX5Jfr0wdrS4fUIA--.30970S2;
+	Thu, 26 Nov 2026 14:38:36 +0800 (CST)
+Message-ID: <8e55e631-96e0-464d-b29b-0db2f56c2911@163.com>
+Date: Thu, 26 Nov 2026 14:38:35 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -67,97 +54,154 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-Message-ID: <28017ef0.440e.1a216904f88.Coremail.zhongling0719@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:cikvCgD3HxEG0wdrnFZoAA--.45027W
-X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBoAaSY2sH0waxwwAA3c
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] generic: test a short copy into a hole of reused
+ blocks
+To: ernest.borowski.git@proton.me, fstests@vger.kernel.org,
+ Zorro Lang <zlang@kernel.org>
+Cc: ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>,
+ Hyunchul Lee <hyc.lee@gmail.com>, Zhan Xusheng <zhanxusheng1024@gmail.com>
+References: <20261125-ntfs-reproducers-v1-0-0cc67533d803@proton.me>
+ <20261125-ntfs-reproducers-v1-4-0cc67533d803@proton.me>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261125-ntfs-reproducers-v1-4-0cc67533d803@proton.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:QCgvCgBX5Jfr0wdrS4fUIA--.30970S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3WFy7ZFyxZryruFy5uF4kZwb_yoW7XrWxpF
+	yrta45trs7K347u34fuF17Jr9Ykws3uFWa9ryIqrykuFZ8Wr4IvFyYqryqvF4Utr1fWr4j
+	vrsYk3yfWr1DZrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UatCcUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6QzMl2sH0+zUJQAA3c
 
-CgoKCkF0IDIwMjYtMTEtMjUgMjI6MDU6NTAsICJsaXViYW9saW4iIDxsaXViYW9saW4xMjEzOEAx
-NjMuY29tPiB3cm90ZToKPgo+Cj7U2iAyMDI2LzExLzI1IDE1OjM1LCBIb25nbGluZyBaZW5nINC0
-tcA6Cj4+IG50ZnNfZW5sYXJnZV9hdHRyaWJ1dGUoKSB0cnVuY2F0ZXMgdGhlIGF0dHJpYnV0ZSB0
-byB0aGUgZW5kIG9mIHRoZQo+PiB3cml0ZSBiZWZvcmUgbG9va2luZyBpdCB1cCBhZ2FpbiwgYmVj
-YXVzZSB0aGUgdHJ1bmNhdGlvbiBjYW4gbW92ZSB0aGUKPj4gYXR0cmlidXRlIHRvIGEgZGlmZmVy
-ZW50IG1mdCByZWNvcmQuIElmIHRoYXQgbG9va3VwIGZhaWxzLCB0aGUgZXJyb3IKPj4gaXMgcmV0
-dXJuZWQgYnV0IHRoZSBhdHRyaWJ1dGUgc3RheXMgYXQgdGhlIGV4dGVuZGVkIHNpemUsIHNvIGEg
-ZmFpbGVkCj4+IHdyaXRlIGV4dGVuZHMgdGhlIGZpbGUuCj4+IAo+PiBVbmRvIHRoZSB0cnVuY2F0
-aW9uIGJlZm9yZSByZXR1cm5pbmcgdGhlIGVycm9yLiBJZiB0aGUgcm9sbGJhY2sgZmFpbHMKPj4g
-YXMgd2VsbCwgbWFyayB0aGUgdm9sdW1lIGFzIGhhdmluZyBlcnJvcnMgYW5kIHN5bmNocm9uaXpl
-IGlfc2l6ZSB3aXRoCj4+IHRoZSBjdXJyZW50IGRhdGFfc2l6ZSBpbnN0ZWFkIG9mIHRoZSBvbGQg
-c25hcHNob3QuCj4+IAo+PiBGaXhlczogYWYwZGI1N2Q0MjkzICgibnRmczogdXBkYXRlIGlub2Rl
-IG9wZXJhdGlvbnMiKQo+PiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwo+PiBTaWduZWQtb2Zm
-LWJ5OiBIb25nbGluZyBaZW5nIDx6ZW5naG9uZ2xpbmdAa3lsaW5vcy5jbj4KPj4gLS0tCj4+ICAg
-ZnMvbnRmcy9pbm9kZS5jIHwgNDggKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKy0tCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDQ2IGluc2VydGlvbnMoKyksIDIgZGVs
-ZXRpb25zKC0pCj4+IAo+PiBkaWZmIC0tZ2l0IGEvZnMvbnRmcy9pbm9kZS5jIGIvZnMvbnRmcy9p
-bm9kZS5jCj4+IGluZGV4IDRmYmRjZDQ1OTY1Mi4uN2Q3YmI3NDE0NTVlIDEwMDY0NAo+PiAtLS0g
-YS9mcy9udGZzL2lub2RlLmMKPj4gKysrIGIvZnMvbnRmcy9pbm9kZS5jCj4+IEBAIC0zODQyLDgg
-KzM4NDIsMTkgQEAgc3RhdGljIGlubGluZSBpbnQgbnRmc19lbmxhcmdlX2F0dHJpYnV0ZShzdHJ1
-Y3QgaW5vZGUgKnZpLCBzNjQgcG9zLCBzNjQgY291bnQsCj4+ICAgewo+PiAgIAlzdHJ1Y3QgbnRm
-c19pbm9kZSAqbmkgPSBOVEZTX0kodmkpOwo+PiAgIAlzdHJ1Y3Qgc3VwZXJfYmxvY2sgKnNiID0g
-dmktPmlfc2I7Cj4+ICsJdW5zaWduZWQgbG9uZyBmbGFnczsKPj4gKwlzNjQgb2xkX2RhdGFfc2l6
-ZTsKPj4gICAJaW50IHJldDsKPj4gICAKPj4gKwkvKgo+PiArCSAqIFNuYXBzaG90IHRoZSBvbGQg
-ZGF0YV9zaXplIHVuZGVyIHNpemVfbG9jazogaXQgaXMgdGhlIHJvbGxiYWNrCj4+ICsJICogdGFy
-Z2V0LCB0aGUgb3RoZXIgc2l6ZXMgYXJlIHVwZGF0ZWQgYnkgbnRmc19hdHRyX3RydW5jYXRlKCkK
-Pj4gKwkgKiBpdHNlbGYKPj4gKwkgKi8KPj4gKwlyZWFkX2xvY2tfaXJxc2F2ZSgmbmktPnNpemVf
-bG9jaywgZmxhZ3MpOwo+PiArCW9sZF9kYXRhX3NpemUgPSBuaS0+ZGF0YV9zaXplOwo+PiArCXJl
-YWRfdW5sb2NrX2lycXJlc3RvcmUoJm5pLT5zaXplX2xvY2ssIGZsYWdzKTsKPj4gKwo+PiAgIAlp
-ZiAocG9zICsgY291bnQgPD0gbmktPmluaXRpYWxpemVkX3NpemUpCj4+ICAgCQlyZXR1cm4gMDsK
-Pj4gICAKPj4gQEAgLTM4NTMsNyArMzg2NCw3IEBAIHN0YXRpYyBpbmxpbmUgaW50IG50ZnNfZW5s
-YXJnZV9hdHRyaWJ1dGUoc3RydWN0IGlub2RlICp2aSwgczY0IHBvcywgczY0IGNvdW50LAo+PiAg
-IAlpZiAoTklub0NvbXByZXNzZWQobmkpKQo+PiAgIAkJcmV0dXJuIC1FT1BOT1RTVVBQOwo+PiAg
-IAo+PiAtCWlmIChwb3MgKyBjb3VudCA+IG5pLT5kYXRhX3NpemUpIHsKPj4gKwlpZiAocG9zICsg
-Y291bnQgPiBvbGRfZGF0YV9zaXplKSB7Cj4+ICAgCQlyZXQgPSBudGZzX2F0dHJfdHJ1bmNhdGUo
-bmksIHBvcyArIGNvdW50KTsKPj4gICAJCWlmIChyZXQpIHsKPj4gICAJCQludGZzX2RlYnVnKCJG
-YWlsZWQgdG8gdHJ1bmNhdGUgYXR0cmlidXRlIik7Cj4+IEBAIC0zODY1LDcgKzM4NzYsNDAgQEAg
-c3RhdGljIGlubGluZSBpbnQgbnRmc19lbmxhcmdlX2F0dHJpYnV0ZShzdHJ1Y3QgaW5vZGUgKnZp
-LCBzNjQgcG9zLCBzNjQgY291bnQsCj4+ICAgCQkJCSAgICAgICBDQVNFX1NFTlNJVElWRSwKPj4g
-ICAJCQkJICAgICAgIDAsIE5VTEwsIDAsIGN0eCk7Cj4+ICAgCQlpZiAocmV0KSB7Cj4+IC0JCQlu
-dGZzX2Vycm9yKHNiLCAiRmFpbGVkIHRvIGxvb2sgdXAgYXR0ciAlI3giLCBuaS0+dHlwZSk7Cj4+
-ICsJCQlpbnQgcm9sbGJhY2tfZXJyOwo+PiArCj4+ICsJCQkvKgo+PiArCQkJICogVGhlIHRydW5j
-YXRpb24gYWxyZWFkeSBoYXBwZW5lZCwgc28gdW5kbyBpdAo+PiArCQkJICogYmVmb3JlIHJldHVy
-bmluZyB0aGUgZXJyb3IKPj4gKwkJCSAqLwo+PiArCQkJcm9sbGJhY2tfZXJyID0gbnRmc19hdHRy
-X3RydW5jYXRlKG5pLCBvbGRfZGF0YV9zaXplKTsKPgo+SGkgSG9uZ2xpbmcsCj4gICAgVGhhbmtz
-IGZvciBzZW5kaW5nIHRoaXMgcGF0Y2ggc2VyaWVzLgo+Cj4gICAgQ291bGQgdGhpcyByb2xsYmFj
-ayBkZWFkbG9jayB3aXRoIHdyaXRlYmFjaz8KPiAgICBudGZzX2lub2RlX2F0dHJfcHdyaXRlKCkg
-aG9sZHMgbXJlY19uaS0+bXJlY19sb2NrIHdoZW4gY2FsbGluZwo+bnRmc19lbmxhcmdlX2F0dHJp
-YnV0ZSgpLiBGb3IgYSBub24tcmVzaWRlbnQgYXR0cmlidXRlLCB0aGUgcm9sbGJhY2sKPmNhbiBy
-ZWFjaCBudGZzX25vbl9yZXNpZGVudF9hdHRyX3NocmluaygpIGFuZCB0cnVuY2F0ZV9pbm9kZV9w
-YWdlcygpLAo+d2hpY2ggbWF5IHdhaXQgZm9yIGEgZm9saW8gbG9jay4KPiAgICBNZWFud2hpbGUs
-IGlvbWFwIHdyaXRlYmFjayBjYW4gaG9sZCB0aGF0IGZvbGlvIGxvY2sgYW5kIHdhaXQgZm9yIHRo
-ZQo+c2FtZSBtcmVjX2xvY2sgaW4gbnRmc193cml0ZV9pb21hcF9iZWdpbl9ub25fcmVzaWRlbnQo
-KToKPiAgIHJvbGxiYWNrOiAgbXJlY19sb2NrIC0+IGZvbGlvIGxvY2sKPiAgIHdyaXRlYmFjazog
-Zm9saW8gbG9jayAtPiBtcmVjX2xvY2sKPgo+ICAgIFRoZSBmb2xpbyBjb250YWluaW5nIHRoZSBv
-bGQgRU9GIG1heSBhbHJlYWR5IGJlIGRpcnR5IGZyb20gYW4gZWFybGllcgo+d3JpdGUsIHNvIHRo
-aXMgZG9lcyBub3QgcmVxdWlyZSB0aGUgZmFpbGVkIHdyaXRlIHRvIGhhdmUgY29waWVkIGFueQo+
-ZGF0YS4KPiAgICBDb3VsZCB3ZSBhdm9pZCB3YWl0aW5nIGZvciBmb2xpb3Mgd2hpbGUgaG9sZGlu
-ZyBtcmVjX2xvY2ssIHdpdGhvdXQKPmFsbG93aW5nIGNvbmN1cnJlbnQgd3JpdGVzIHRvIGludGVy
-ZmVyZSB3aXRoIHRoZSByb2xsYmFjaz8KPgo+VGhhbmtzLAo+QmFvbGluLgo+Cj4KClllcywgdGhh
-dCBpcyBhIHJlYWwgZGVhZGxvY2ssIHRoYW5rcyBmb3IgY2F0Y2hpbmcgaXQuCgpJIGNvbnNpZGVy
-ZWQgZHJvcHBpbmcgdGhlIGZvbGlvcyB1bmRlciBtcmVjX2xvY2sgd2l0aG91dCB3YWl0aW5nLCBi
-dXQKSSBkbyBub3Qgc2VlIGhvdyB0byBtYWtlIHRoYXQgd29yazogbWFwcGluZ19ldmljdF9mb2xp
-bygpIHJlZnVzZXMgdGhlCmRpcnR5IGFuZCB3cml0ZWJhY2sgZm9saW9zIHRoZSByb2xsYmFjayBt
-dXN0IGRyb3AsIHRoZSBwYXJ0aWFsIGZvbGlvCmF0IHRoZSBvbGQgRU9GIG5lZWRzIHNsZWVwaW5n
-IHRydW5jYXRlIHNlbWFudGljcywgYW5kIGJhaWxpbmcgb3V0CndvdWxkIHNldCB0aGUgc3RpY2t5
-IHZvbHVtZSBlcnJvciBmb3IgYSByb3V0aW5lIGZhaWx1cmUuCgpTbyB2MiBkZWZlcnMgYSBub24t
-cmVzaWRlbnQgcm9sbGJhY2sgdG8gbnRmc19pbm9kZV9hdHRyX3B3cml0ZSgpCmFmdGVyIGl0IHJl
-bGVhc2VzIG1yZWNfbG9jaywgcmV1c2luZyB0aGUgVkZTIHRydW5jYXRlIHBhdHRlcm4KKG50ZnNf
-c2V0YXR0cl9zaXplKCkpOiB0cnVuY2F0ZV9zZXRzaXplKCkgb3V0c2lkZSB0aGUgbG9jaywKX19u
-dGZzX2F0dHJfdHJ1bmNhdGVfdmZzKCkgdW5kZXIgaXQgYWZ0ZXIgcmUtY2hlY2tpbmcgdGhlIHNp
-emUuClJlc2lkZW50IGF0dHJpYnV0ZXMgc3RpbGwgcm9sbCBiYWNrIGlubGluZS4KClRoYW5rcyBh
-Z2FpbiBmb3IgdGhlIHJldmlldy4KCgo+PiArCQkJaWYgKHJvbGxiYWNrX2Vycikgewo+PiArCQkJ
-CXM2NCBjdXJyZW50X2RhdGFfc2l6ZTsKPj4gKwo+PiArCQkJCS8qCj4+ICsJCQkJICogUm9sbGJh
-Y2sgZmFpbGVkLCB0aGUgc2l6ZXMgbWF5IGJlCj4+ICsJCQkJICogaW5jb25zaXN0ZW50LiBNYXJr
-IHRoZSB2b2x1bWUgYXMgaGF2aW5nCj4+ICsJCQkJICogZXJyb3JzIGFuZCBzeW5jIGlfc2l6ZSB3
-aXRoIHRoZSBjdXJyZW50Cj4+ICsJCQkJICogZGF0YV9zaXplCj4+ICsJCQkJICovCj4+ICsJCQkJ
-cmVhZF9sb2NrX2lycXNhdmUoJm5pLT5zaXplX2xvY2ssIGZsYWdzKTsKPj4gKwkJCQljdXJyZW50
-X2RhdGFfc2l6ZSA9IG5pLT5kYXRhX3NpemU7Cj4+ICsJCQkJcmVhZF91bmxvY2tfaXJxcmVzdG9y
-ZSgmbmktPnNpemVfbG9jaywgZmxhZ3MpOwo+PiArCj4+ICsJCQkJaV9zaXplX3dyaXRlKHZpLCBj
-dXJyZW50X2RhdGFfc2l6ZSk7Cj4+ICsJCQkJTlZvbFNldEVycm9ycyhuaS0+dm9sKTsKPj4gKwkJ
-CQludGZzX2Vycm9yKHNiLAo+PiArCQkJCQkiRmFpbGVkIHRvIGxvb2sgdXAgYXR0ciAlI3ggYW5k
-ICIKPj4gKwkJCQkJInJvbGwgYmFjayB0aGUgc2l6ZSB1cGRhdGU6ICVkIiwKPj4gKwkJCQkJbmkt
-PnR5cGUsIHJvbGxiYWNrX2Vycik7Cj4+ICsJCQl9IGVsc2Ugewo+PiArCQkJCS8qCj4+ICsJCQkJ
-ICogUm9sbGJhY2sgc3VjY2VlZGVkLCB0aGUgc2l6ZXMgd2VyZSB1cGRhdGVkCj4+ICsJCQkJICog
-YnkgbnRmc19hdHRyX3RydW5jYXRlKCkgaXRzZWxmCj4+ICsJCQkJICovCj4+ICsJCQkJbnRmc19l
-cnJvcihzYiwgIkZhaWxlZCB0byBsb29rIHVwIGF0dHIgJSN4IiwKPj4gKwkJCQkJbmktPnR5cGUp
-Owo+PiArCQkJfQo+PiAgIAkJCXJldHVybiByZXQ7Cj4+ICAgCQl9Cj4+ICAgCX0K
+
+
+在 2026/11/26 03:03, Ernest Borowski via B4 Relay 写道:
+> From: Ernest Borowski <ernest.borowski.git@proton.me>
+> 
+> When a buffered write into a hole stops part way through a block because
+> its source buffer runs into an unreadable page, only the bytes copied are
+> dirty. A filesystem that allocates in units larger than the blocks it
+> tracks as dirty, as ntfs does, has to zero the rest of the allocation, or
+> reads return what the reused clusters held before. On ntfs the rest of the
+> cluster read back the old file contents after an fsync and a remount, with
+> 4 KiB and with 64 KiB clusters; the fix is "ntfs: zero the rest of a new
+> cluster after a short buffered write" from the ntfs delayed allocation
+> series, not merged yet. Free the blocks of a filled file by truncating it
+> to zero and back, write its last byte, write two and a half blocks into the
+> hole from a buffer that is readable for 1000, 5096 or 12800 bytes, and
+> compare the file with the expected contents after a remount.
+> 
+> Link: https://lore.kernel.org/all/20261124-b4-ntfs-delalloc-fixes-v2-0-f394c800ec03@proton.me/
+> Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
+> ---
+>   tests/generic/818     | 58 +++++++++++++++++++++++++++++++++++++++++++++++++++
+>   tests/generic/818.out |  2 ++
+>   2 files changed, 60 insertions(+)
+> 
+> diff --git a/tests/generic/818 b/tests/generic/818
+> new file mode 100755
+> index 00000000..97c30767
+> --- /dev/null
+> +++ b/tests/generic/818
+> @@ -0,0 +1,58 @@
+> +#! /bin/bash
+> +# SPDX-License-Identifier: GPL-2.0
+> +# Copyright (c) 2026 Ernest Borowski <ernest.borowski.git@proton.me>.  All Rights Reserved.
+> +#
+> +# FS QA Test No. 818
+> +#
+> +# A buffered write into a hole whose copy from user space stops part way
+> +# through a block, because the source buffer runs into an unreadable page,
+> +# must leave everything it did not write reading as zeroes once the data is on
+> +# the disk.  The blocks the hole gets may have held data before, so a block
+> +# that is allocated but only partly written would expose that old data.
+> +#
+> +# Fill a file and fsync it, truncate it to zero and back to its size so that
+> +# its old blocks are free again, write its last byte, then write two and a
+> +# half blocks at a block boundary from a buffer with only part of it readable.
+> +# After an fsync and a remount the file must hold the bytes the write returned
+> +# and zeroes around them.
+> +#
+> +. ./common/preamble
+> +_begin_fstest auto quick rw
+> +
+> +_fixed_by_fs_commit ntfs xxxxxxxxxxxx \
+> +	"ntfs: zero the rest of a new cluster after a short buffered write"
+> +
+> +_require_scratch
+> +_require_test_program "pwrite-short-copy"
+> +
+> +_scratch_mkfs >> $seqres.full 2>&1
+> +_scratch_mount
+> +
+> +blksz=$(_get_file_block_size $SCRATCH_MNT)
+> +size=$((32 * blksz))
+> +off=$((8 * blksz))
+> +len=$((2 * blksz + blksz / 2))
+> +file=$SCRATCH_MNT/file
+> +
+> +# _scratch_cycle_mount sets $ret, so the write's result is kept in $written.
+> +# Short copies that end in the first, second and third block of the write.
+> +for copy in $((blksz / 4)) $((blksz + blksz / 4)) $((2 * blksz + blksz / 8)); do
+> +	$XFS_IO_PROG -f -c "pwrite -q -S 0xab 0 $size" -c fsync \
+> +		-c "truncate 0" -c "truncate $size" \
+> +		-c "pwrite -q -S 0x01 $((size - 1)) 1" $file
+
+Hi Ernest,
+    The later write may get different blocks from the ones filled with 
+0xab.
+    There is also the discard case: if freeing the old blocks causes them
+to read back as zeroes, the test may no longer detect the missing zeroing.
+    Would it make sense to exclude discard configurations that clear the
+freed data, and make reuse of the patterned blocks more reliable?
+That would help avoid a pass simply because the newly allocated blocks 
+already contain zeroes.
+
+Thanks,
+Baolin.
+
+> +	written=$($here/src/pwrite-short-copy $file $off $len $copy)
+
+Hi Ernest,
+    Could we check the result here before continuing?
+    The helper exits with status zero even when pwrite() fails; it
+reports the negative errno on stdout. If it prints -EIO, -EFAULT, or
+zero and the file is unchanged, the expected file still matches and the
+test can pass without exercising a short write.
+
+    Checking the helper's exit status and requiring 0 < written <= copy
+and written < len should catch this. Unexpected errors should fail the
+test.
+    If we cannot get a positive short write with this setup, retrying or
+skipping would be better than reporting a pass.
+
+Thanks,
+Baolin.
+
+> +	echo "copy $copy: write of $len bytes at $off returned $written" >> $seqres.full
+> +	$XFS_IO_PROG -c fsync $file
+> +	_scratch_cycle_mount
+> +
+> +	rm -f $tmp.expected
+> +	$XFS_IO_PROG -f -c "truncate $size" \
+> +		-c "pwrite -q -S 0x01 $((size - 1)) 1" $tmp.expected
+> +	[ "$written" -gt 0 ] && \
+> +		$XFS_IO_PROG -c "pwrite -q -S 0x5c $off $written" $tmp.expected
+> +	cmp -s $file $tmp.expected || \
+> +		echo "copy $copy: file contents differ after a short copy"
+> +done
+> +
+> +echo "Silence is golden"
+> +_exit 0
+> diff --git a/tests/generic/818.out b/tests/generic/818.out
+> new file mode 100644
+> index 00000000..cb099786
+> --- /dev/null
+> +++ b/tests/generic/818.out
+> @@ -0,0 +1,2 @@
+> +QA output created by 818
+> +Silence is golden
+> 
+
