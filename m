@@ -1,83 +1,83 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.221.52
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795710711;
-	b=4Zy8DWq/y8Xkj2m1nmv6pkzdYT+4mn5tvghECiZLBUYCwaKid1FA8GDkXbTdwS6PeSTi
-	 2XSJiqCcOIwsUz9cVLUrPCzb/8cFmPY04aAWOD9OnXnZ6VhXg1pG3iZTAidk+SciL1K2j
-	 ZaXWN7lWmeQusGhWd1Xr0qvAAinlbjxH9CtcmmRvcIZPgBH2xOmRl9vzqyB+2Nmd9FRnV
-	 buGyeTFTX14nnfFEpw121ykqLfFAenFufZfWKF+8rT79DrVQXQwcRGZZ995DMscXgV6Nb
-	 44uror2CTFTvncHMt3ooMinB0/JDiQvrbfpeuo1CM2QbSC/YzPHdDtbVJtxNnGR7Igw==
+	t=1795710713;
+	b=B5o2qnwW7Zf95jzQ5WHbQ8WwPCwuKF0ng1hW0LIltPozIATa1qO0jGOMpKhZsJw6vF2o
+	 wci4OviTf2dX2SBroYCM4vXLSwFkzfZ18yV+gtpy8TMCAQMO8lmc4PRUWLuwNR7V27ijb
+	 /nYY18mLZsPsmEOuymEDNOc1tMh/v0W0zc3AU5I0jaPeS2cgrjF9velA0iELZ/g9ovcFt
+	 UbXa7UFRqHe+IB0o+yy1O5W8P8pr9Y6CKOMvEihFDkCc9W0uFi7u+qGiIm/Ogi2SqxFGU
+	 cvcCqbOuvBMumYnrCIHB966OrFKhMFG6Z37wy5o+pXANw7rwngMvKI9FTcFBS3tmQVw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795710711;
+	a=rsa-sha256; c=relaxed/relaxed; t=1795710713;
 	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
 	 From:To:Cc:Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding;
-	bh=6DGKGHZD1sWqO2WRSY4U0udOhpGKQXiV3WJqb4Fx1ZI=;
-	b=uJDrTHUU6074Cah/pZvxNAh2jFIyzFtjbql6Cez4feOnSzprQVe0l8vYKwNiWVGoR7Ok
-	 6ymKAXMJfzMk0xOoVsU8sbTkIEPQig0FjTYiAEI+p1Y2cd0pmCg8WEX1AZd7MlxJcL1to
-	 lm7OSHw56ky63mOuam5o6W2oKZvdaj6pEuwVZ0YoAQ0Ih4NLos00lao94jGt0u4NVmRui
-	 2DUoYU4LnSlo2Xto0WOoxegKMcrUmZYG825pg4JIPskbwKPAvgDjWScDGz06Q4Jzh1Hjd
-	 iRi8k5ThuWQcvxLHDIMwKnI5xUHwkXex6q1m15xTNhXem3Zfw+ougEY5pKZfScJQ6dw==
+	bh=KGzjwHEAZHgGuNvnkGGQc49B5rmUiNP/GYLMXhn4QoU=;
+	b=brTsrK1JmUdwJgsrR7ha1JtJtg8uw/nr1f03hmUl9BHHXkanRVtaIab1dYxPV6jhMDRP
+	 TLp17LOZcq7829seKJ8m2c+dxJ3mx3hMeW54ws/16VTNKq7sv7njX98Ax/toSpnHzU7vk
+	 7tOkm55RO4LI0qABhtwm3HMiAtr2zzGawZXePreLcDBlpBjMAYDI+G2LbsExunTJSj3mT
+	 vJExwtcE+NdYw6F3QK1Rk41YClRkkE6zFfBfzhPEWYK/YxXLSW9BGTFx2v78h+9quQB1X
+	 HBHzGV0WqylQN/tv1lg8AzhYltGwS/57Nsv2Mg2PmCr7PWskrwql0JCNI/EWng0Vttw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
 	dmarc=pass header.from=gmail.com;
 	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QPECzVYF;
-	arc=none smtp.remote-ip=209.85.128.44
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=BeEW1Eui;
+	arc=none smtp.remote-ip=209.85.221.52
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6CE606A6A8
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 16:31:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 0E6CE606A6A8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB0F60A2614
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 16:31:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org DEB0F60A2614
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QPECzVYF
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4bb72b44a97so61873985e9.0
-        for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 08:31:49 -0800 (PST)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=BeEW1Eui
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-4aa5833c263so6958085f8f.2
+        for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 08:31:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795710708; x=1796315508; darn=lists.linux.dev;
+        d=gmail.com; s=20260707; t=1795710710; x=1796315510; darn=lists.linux.dev;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=6DGKGHZD1sWqO2WRSY4U0udOhpGKQXiV3WJqb4Fx1ZI=;
-        b=QPECzVYFV7qXfs6Bn/et9VVldI3KFPkmjyku/eqt0CS3GKYdu+g0KngiYEsKf9Va8l
-         SRVns/+uiB4Zi1SsTZSLOLLwdCAk5ZezVmAxpYgTpC4JVy+9CdZmJMNt2YWvozmSpQa/
-         LzirHUM2qvWe16C7udM0bhUf3fOKrH8q3T8+wwoU/GX05J8WZfbvWDGpWHkLhLnBvkSo
-         HyO6/frDY7r48k7NjW+h6po6y5P/rWBMbA/rY4tkWfo8GiBFdW9r/O/EqX2/KV+wrC3Q
-         0jl/zHaIRBn6fRCK96G3PxsgXn+9JqKtFPthGw4oeKyf6CWaXO143sXJOPXJ0l3ioC0z
-         vg7g==
+        bh=KGzjwHEAZHgGuNvnkGGQc49B5rmUiNP/GYLMXhn4QoU=;
+        b=BeEW1EuiVZyD86iY+Tp0CtUoXQcE7ZIPRdE9BUdrQcgnh6ndBOoHRts7iht7j3qQCp
+         y6d5K960QOKpjpOoMUFyN7PNTsIKNzyoYLukAm2Ae5UBJI6ai4unidvtZzZ8pQUnNzRr
+         JuyQxXX5GcU2DedjoboHTp8BYsL1EaiB2SvPiT/BVy5sgtQl68bcVIow51mAelozXqYQ
+         lsciExaDIZwrZNS4T6VbaDndfmjlHLOXquG4WrnIcz8jSrCUtIM0Yp3bwNa3HYqMF8eH
+         ReRSVvvF33hwcBervmEt+0uF/Gsq5KgqKoS+f018MVQAovwtDZkIZt7LruOnH5Oo2wSx
+         eFfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795710708; x=1796315508;
+        d=1e100.net; s=20260707; t=1795710710; x=1796315510;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=6DGKGHZD1sWqO2WRSY4U0udOhpGKQXiV3WJqb4Fx1ZI=;
-        b=waivGqz4S4McyMudPYdLBB5DORkqHkBFNZRaGK6gxpbooCeV383irt1IhcYRqYzRPm
-         tCiOl24OpS/aW+ZvZReke8AsNTUPry5OKmwRBrLGr+AECHOYLgt11DewVJHrsK3X5CWO
-         dzVK2CYkvFC7ZjEFR8m97p8HO/3dBrZIwTmoEcfuHoOI83DYXLCVn7cVImx8RPmyyZVi
-         OMvtdINkKt7nCEt1428l0rFU44WxOhYrmNQrCL44dOOrSXwt3FyTvtSX/bhfXiw5iUX5
-         ZcCMFBu3eEXUVY/UsJGVfxyqujWWHvvef056Tpvb2Dp6nnc3TQYf3c/oyZJ6AaS+73nv
-         k0SA==
-X-Forwarded-Encrypted: i=1; AL+hErH1+sPFC1SpqpnWqZ24/XJHK5nUlOzdtWgreCjSqJd8JGsauIN26FNyDsSKPtMYAoeAWJNv@lists.linux.dev
-X-Gm-Message-State: APuU4Z+Hx+VYEgWEtdbtxU9D17A5PJ+kXvznmwFsYHHgbch08qwahRfW
-	N/1wvTCDXtg9Qo9XiZ6mj/VYkO2yp7vgEAYtAGUAGJFAtqqaYTm+O02A
-X-Gm-Gg: AZFdTZf6pbTxHC364cvuXpX6zsom+9aq6y7/I0zcYMLjOMed5tikiLRDHYdZndcR/y9
-	tMSCgu40JM8EptHWsD/Echt5YlceTQv9P1q+s4EZ9IlrJqxSg47Ll8YrS0c3xr17+iE8ixA1exI
-	TVTOzZRJD5udVrmFqgkmu+PXkWl/PLfkSLgQhimWWPWbme6TlnBpMxPpemXZ2deuZtTEtTiO4BE
-	CqEPouEGRbMPlYYDLg6r9m9QUhuZwASnRoT4ealWaZLgriUi51CILaoEtUx6dP45oRD2Lf4W+Hl
-	1rcNzi6ZVIJrgj+FdEK1cRed6UT3hA3TURx9jJ4iPWhM+P7h90rpusGWm5WOaNp3CL2qR01aMWW
-	nDNt3rv8Vrra67f8oj7d39SMV89Nxuhmd5r5pe22PgaBQDPREInHUOl3eJDxonlPxohCYGKaR58
-	Hp723YcsvxOeSnBLBI7fjNMWjqf09wtKYmB5POPoWsusdgE/NWeKOKxy7hukPilJD+HJMAYuSxZ
-	aAQukDIPsWY4eWA5RYrzXP+X9lJ+/V1mWsPhg6ukdeKoiYAmGx34GhGI5ZiZ0TMC9h3thGDmxsw
-	d4kqGlssEgR+K/xDh6GsMDw1
-X-Received: by 2002:a05:600c:3b83:b0:4b7:6b96:e431 with SMTP id 5b1f17b1804b1-4bb88822242mr502582645e9.28.1795710708243;
-        Thu, 26 Nov 2026 08:31:48 -0800 (PST)
+        bh=KGzjwHEAZHgGuNvnkGGQc49B5rmUiNP/GYLMXhn4QoU=;
+        b=ut19NTIjl2MoephFrKxRpkouVstrFx31nAwqEYJRTwkzxQ4Cyn2S34BfnSsK2Q/nBy
+         bh9DimHH3iS2bL3Ccqp3+G/4CPekgVi3IMuI86DPBL/0GBADrxW5F6TNjEKVjUwHvmGE
+         bceIQO2a9dbNfH4xaC8j80pLB8cg0rcIz6XkHmCjrs95CSZeu70eomvcvphDhqQVNh5m
+         SU2lp0v4ewfpYnD8ZiFo/DlfyGGnbS8vSeG6X0nDjzIUyZFfYJi8FJq8OQuGBMt+jbcq
+         mPce04t7tTEAPaaZ1PAqD8aKFthYj/qTIlKaj0ZJ1aWuTeRK9CLOkObi5rOausVzyI/B
+         B69w==
+X-Forwarded-Encrypted: i=1; AL+hErHEX97hFTQ5NlDgDo7LcM4yzpms62b/2vyH+lqcH6p8CSxy9+yzL0HDw2KMiJt1s1kXvmIE@lists.linux.dev
+X-Gm-Message-State: APuU4Z/6dZOex+T2VB0LZMZ01IuGdMEhYBYjLYIbv9NeexRZ4LQK69M/
+	Qoxn79mMT3jPmu27Q4XbGYE3Fcu8un2llv+Vjh6WoCUtXapCISiv1cYS
+X-Gm-Gg: AZFdTZfRAs/fY4UjESNmt72gS/bc3KYiyyAZpdN/DTbWDY9xrCF81cbRj+qI4Wvu1vA
+	Vzx/aFShityQQCd1jcaDEgrJulmfomsPVrYONgc4TK+xNWIc/qcSSCI9gsFlKHQXVCIiYyvhT+f
+	n2iLjlspv7vh8+C35K0bWq28tBVtfzW4v945L1xwTe0FNryRmvn//Gz9kwlvoT2k+NUOU4lQCU0
+	Or2lIRcFTd8WXNsK1wNhb46+UsVN0ijZjhz4L4QjziZLeV5w1EqxYf4OGAqkDmU8nLplW6sK9ee
+	JSnazdzo5RLB915nfMTNHbu4xImvxj+IGuKS4l34iKQhzHclewmhqMQ8i1wtTEhsSRb1+5CKhyO
+	dLZGgQkxfLDGZhCnk7sW9dxUk9RuahgLATYbIo+5GkhpBnqPnp02UfbqKrbzTBC/id2gEp3Zlih
+	+d7o1MXoDhuSJmm6cFjuTfGds4uG0HBTrXuQwr1Br8VrmrJzA6vrR8xVIFEE8ZH1Qr5a/GXbI5L
+	KUALLdDIJUdon8cw+gxtLISp6OJppv00jU2FrOQBwgkISx0/uS9Jv6Q2vLyLHnKrrfVwh89qCXh
+	zd++x33J5qmRDWLtwSAFbEnOTQ==
+X-Received: by 2002:a05:600c:a087:b0:4a2:5267:3cd4 with SMTP id 5b1f17b1804b1-4bb887c9fbamr459441665e9.3.1795710710022;
+        Thu, 26 Nov 2026 08:31:50 -0800 (PST)
 Received: from infinity ([2001:b07:5d26:7a6a:365a:60ff:fe0d:cfc6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a9846sm721964995e9.11.2026.11.26.08.31.46
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a9846sm721964995e9.11.2026.11.26.08.31.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 08:31:47 -0800 (PST)
+        Thu, 26 Nov 2026 08:31:49 -0800 (PST)
 From: koraynilay <koray.fra@gmail.com>
 To: Namjae Jeon <linkinjeon@kernel.org>,
 	Hyunchul Lee <hyc.lee@gmail.com>,
@@ -105,9 +105,9 @@ Cc: Chuck Lever <cel@kernel.org>,
 	linux-nfs@vger.kernel.org,
 	linux-api@vger.kernel.org,
 	koraynilay <koray.fra@gmail.com>
-Subject: [PATCH v2 2/4] fscrypt: update fscrypt_prepare_setflags() to use xflags
-Date: Thu, 26 Nov 2026 17:31:12 +0100
-Message-ID: <20261126163114.403846-3-koray.fra@gmail.com>
+Subject: [PATCH v2 3/4] vfs: add xflags mask to fileattr API
+Date: Thu, 26 Nov 2026 17:31:13 +0100
+Message-ID: <20261126163114.403846-4-koray.fra@gmail.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261126163114.403846-1-koray.fra@gmail.com>
 References: <20261126163114.403846-1-koray.fra@gmail.com>
@@ -122,89 +122,614 @@ Precedence: list
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Update fscrypt_prepare_setflags() to use FS_XFLAG_* xflags instead of
-legacy FS_*_FL flags.
+Add fa_xflags_rw_mask and fa_xflags_ro_mask to struct file_attr, both
+__u64 to match fa_xflags' size, and bump FILE_ATTR_SIZE_LATEST to
+FILE_ATTR_SIZE_VER1, which is now 40 bytes.
 
+Add equivalent masks and a has_masks selector to struct file_kattr, so
+we can know when a user of this API (userspace or filesystem) supports
+them.
+
+This lets filesystems advertise their support for specific xflags, like
+statx.stx_attributes_mask does, and userspace can specify only which
+xflags it wants to change without needing a RMW cycle.
+
+These masks have the following semantics:
+- fsx_xflags_rw_mask:
+  * for filesystems: advertise which xflags they support changing
+  * for userspace:   specify which xflags it wants to modify
+- fsx_xflags_ro_mask:
+  * for filesystems: advertise which xflags they support only reading
+  * for userspace:   ignored
+
+And they should be filled according to the following:
+- GET:
+  each filesystem that wants to implement this new API fills the masks
+  according to its supported read-write and read-only xflags,
+  then:
+  * for boolean xflags: it fills fsx_xflags with the current on-disk value;
+  * for value xflags: it sets the xflag bit to 1 in fsx_xflags and the
+    xflag value in the struct field;
+- SET:
+  userspace fills the rw_mask with the bits of the xflags it wants to
+  change, then:
+  * for boolean xflags: it provides the xflag value as a bit in fa_xflags;
+  * for value xflags: it sets the xflag bit to 1 in fa_xflags and then
+    provides the value in the struct field; if the xflag bit is set to 0
+    instead, this informs the kernel to unset/clear that value.
+
+Add AT_FILE_ATTR_MASKS at_flags option that userspace needs to pass
+(with usize >= FILE_ATTR_SIZE_VER1) in order to be able to use masks,
+otherwise legacy RMW semantics are used.
+
+If AT_FILE_ATTR_MASKS is not specified:
+- on GET, zero fa_xflags_rw_mask and fa_xflags_ro_mask and strip new
+  xflags added in or after VER1, so older programs doing RMW don't pass
+  them back;
+- on SET, reject non-zero fa_xflags_{rw,ro}_mask with -EINVAL.
+
+If AT_FILE_ATTR_MASKS is specified on SET with fa_xflags_rw_mask = 0,
+return early as a no-op after permission and support checks.
+
+To make both legacy and new programs interact correctly with both legacy
+and new/upgraded filesystems, add:
+- xflags_to_flags() / flags_to_xflags(): use fileattr_fill_*() to
+  convert xflags to their flags counterpart and vice-versa;
+- fileattr_set_mask_to_legacy() / fileattr_set_legacy_to_mask(): convert
+  between legacy read-modify-write API and modern rw_mask/ro_mask API.
+
+Also add the missing FS_XFLAG_PROJID xflag, to allow userspace to set
+the projid using file_[gs]etattr() by leveraging the new masks.
+In order to prevent the legacy FS_IOC_FSSETXATTR from accepting
+FS_XFLAG_PROJID, add a FS_FILE_ATTR_XFLAGS_MASK to support new xflags
+and use it to validate/clamp both the _xflags fields and the masks.
+
+Assisted-by: Gemini:3.8-flash-high antigravity-cli-1.5.11
 Signed-off-by: koraynilay <koray.fra@gmail.com>
 ---
- fs/crypto/hooks.c       | 10 +++++-----
- fs/file_attr.c          |  2 +-
- include/linux/fscrypt.h |  6 +++---
- 3 files changed, 9 insertions(+), 9 deletions(-)
+ fs/file_attr.c             | 332 +++++++++++++++++++++++++++++++++----
+ include/linux/fileattr.h   |   7 +
+ include/uapi/linux/fcntl.h |   6 +
+ include/uapi/linux/fs.h    |   7 +-
+ 4 files changed, 320 insertions(+), 32 deletions(-)
 
-diff --git a/fs/crypto/hooks.c b/fs/crypto/hooks.c
-index 149498bdab94..52d6a33fc9e9 100644
---- a/fs/crypto/hooks.c
-+++ b/fs/crypto/hooks.c
-@@ -182,10 +182,10 @@ int __fscrypt_prepare_setattr(struct dentry *dentry, struct iattr *attr)
- EXPORT_SYMBOL_GPL(__fscrypt_prepare_setattr);
- 
- /**
-- * fscrypt_prepare_setflags() - prepare to change flags with FS_IOC_SETFLAGS
-+ * fscrypt_prepare_setflags() - prepare to change xflags
-  * @inode: the inode on which flags are being changed
-- * @oldflags: the old flags
-- * @flags: the new flags
-+ * @oldxflags: the old xflags
-+ * @xflags: the new xflags
-  *
-  * The caller should be holding i_rwsem for write.
-  *
-@@ -193,7 +193,7 @@ EXPORT_SYMBOL_GPL(__fscrypt_prepare_setattr);
-  *	   another error occurs.
-  */
- int fscrypt_prepare_setflags(struct inode *inode,
--			     unsigned int oldflags, unsigned int flags)
-+			     unsigned int oldxflags, unsigned int xflags)
- {
- 	struct fscrypt_inode_info *ci;
- 	struct fscrypt_master_key *mk;
-@@ -204,7 +204,7 @@ int fscrypt_prepare_setflags(struct inode *inode,
- 	 * derive the secret key needed for the dirhash.  This is only possible
- 	 * if the directory uses a v2 encryption policy.
- 	 */
--	if (IS_ENCRYPTED(inode) && (flags & ~oldflags & FS_CASEFOLD_FL)) {
-+	if (IS_ENCRYPTED(inode) && (xflags & ~oldxflags & FS_XFLAG_CASEFOLD)) {
- 		err = fscrypt_require_key(inode);
- 		if (err)
- 			return err;
 diff --git a/fs/file_attr.c b/fs/file_attr.c
-index 40d6518f1d8e..1687891c526c 100644
+index 1687891c526c..35bc2ded2ff8 100644
 --- a/fs/file_attr.c
 +++ b/fs/file_attr.c
-@@ -195,7 +195,7 @@ static int fileattr_set_prepare(struct inode *inode,
+@@ -74,6 +74,22 @@ void fileattr_fill_flags(struct file_kattr *fa, u32 flags)
+ }
+ EXPORT_SYMBOL(fileattr_fill_flags);
+ 
++static u32 flags_to_xflags(u32 flags)
++{
++	struct file_kattr tmp = {};
++
++	fileattr_fill_flags(&tmp, flags);
++	return tmp.fsx_xflags;
++}
++
++static u32 xflags_to_flags(u32 xflags)
++{
++	struct file_kattr tmp = {};
++
++	fileattr_fill_xflags(&tmp, xflags);
++	return tmp.flags;
++}
++
+ /**
+  * vfs_fileattr_get - retrieve miscellaneous file attributes
+  * @dentry:	the object to retrieve from
+@@ -102,13 +118,20 @@ EXPORT_SYMBOL(vfs_fileattr_get);
+ static void fileattr_to_file_attr(const struct file_kattr *fa,
+ 				  struct file_attr *fattr)
+ {
+-	__u32 mask = FS_XFLAGS_MASK;
+-
+ 	memset(fattr, 0, sizeof(struct file_attr));
+-	fattr->fa_xflags = fa->fsx_xflags & mask;
++	/* Pass the masks to userspace if underlying fs uses them. */
++	if (fa->has_masks) {
++		fattr->fa_xflags_rw_mask = fa->fsx_xflags_rw_mask &
++					   FS_FILE_ATTR_XFLAGS_MASK;
++		fattr->fa_xflags_ro_mask = fa->fsx_xflags_ro_mask &
++					   FS_FILE_ATTR_XFLAGS_MASK;
++	}
++	fattr->fa_xflags = fa->fsx_xflags & FS_FILE_ATTR_XFLAGS_MASK;
+ 	fattr->fa_extsize = fa->fsx_extsize;
+ 	fattr->fa_nextents = fa->fsx_nextents;
+ 	fattr->fa_projid = fa->fsx_projid;
++	if (fa->fsx_projid)
++		fattr->fa_xflags |= FS_XFLAG_PROJID;
+ 	fattr->fa_cowextsize = fa->fsx_cowextsize;
+ }
+ 
+@@ -141,15 +164,47 @@ EXPORT_SYMBOL(copy_fsxattr_to_user);
+ static int file_attr_to_fileattr(const struct file_attr *fattr,
+ 				 struct file_kattr *fa)
+ {
+-	__u64 mask = FS_XFLAGS_MASK;
++	u64 mask = fa->has_masks ? FS_FILE_ATTR_XFLAGS_MASK : FS_XFLAGS_MASK;
+ 
+ 	if (fattr->fa_xflags & ~mask)
+ 		return -EINVAL;
+ 
+-	fileattr_fill_xflags(fa, fattr->fa_xflags & ~FS_XFLAG_RDONLY_MASK);
+-	fa->fsx_extsize = fattr->fa_extsize;
+-	fa->fsx_projid = fattr->fa_projid;
+-	fa->fsx_cowextsize = fattr->fa_cowextsize;
++	if (fa->has_masks) {
++		u64 rw_user_mask = fattr->fa_xflags_rw_mask;
++
++		if (rw_user_mask & ~FS_FILE_ATTR_XFLAGS_MASK)
++			return -EINVAL;
++
++		/*
++		 * Pass xflags clamped to the rw_mask, so the rest of the code
++		 * can assume that if a flag is not in fsx_xflags, it isn't
++		 * being changed.
++		 */
++		fileattr_fill_xflags(fa, fattr->fa_xflags & rw_user_mask);
++		fa->fsx_xflags_rw_mask = rw_user_mask;
++
++		/* Like stated in the comment above, no need to rw_mask check. */
++		if (fa->fsx_xflags & (FS_XFLAG_EXTSIZE | FS_XFLAG_EXTSZINHERIT))
++			fa->fsx_extsize = fattr->fa_extsize;
++		else
++			fa->fsx_extsize = 0;
++
++		if (fa->fsx_xflags & FS_XFLAG_PROJID)
++			fa->fsx_projid = fattr->fa_projid;
++		else
++			fa->fsx_projid = 0;
++
++		if (fa->fsx_xflags & FS_XFLAG_COWEXTSIZE)
++			fa->fsx_cowextsize = fattr->fa_cowextsize;
++		else
++			fa->fsx_cowextsize = 0;
++	} else {
++		fileattr_fill_xflags(fa,
++				     fattr->fa_xflags & ~FS_XFLAG_RDONLY_MASK);
++		fa->fsx_extsize = fattr->fa_extsize;
++		fa->fsx_projid = fattr->fa_projid;
++		fa->fsx_cowextsize = fattr->fa_cowextsize;
++	}
+ 
+ 	return 0;
+ }
+@@ -185,13 +240,23 @@ static int fileattr_set_prepare(struct inode *inode,
+ 			      const struct file_kattr *old_ma,
+ 			      struct file_kattr *fa)
+ {
++	u32 rw_user_mask = fa->has_masks ?
++			   fa->fsx_xflags_rw_mask : FS_FILE_ATTR_XFLAGS_MASK;
++	u32 changed = 0;
+ 	int err;
+ 
++	/* Make sure that no filesystem ro flags have been passed as rw */
++	if (fa->has_masks && (rw_user_mask & ~old_ma->fsx_xflags_rw_mask))
++		return -EOPNOTSUPP;
++
++	/* Use the changed flags, clamped to only the requested ones. */
++	changed = (fa->fsx_xflags ^ old_ma->fsx_xflags) & rw_user_mask;
++
+ 	/*
+ 	 * The IMMUTABLE and APPEND_ONLY flags can only be changed by
+ 	 * the relevant capability.
+ 	 */
+-	if ((fa->flags ^ old_ma->flags) & (FS_APPEND_FL | FS_IMMUTABLE_FL) &&
++	if (changed & (FS_XFLAG_APPEND | FS_XFLAG_IMMUTABLE) &&
  	    !capable(CAP_LINUX_IMMUTABLE))
  		return -EPERM;
  
--	err = fscrypt_prepare_setflags(inode, old_ma->flags, fa->flags);
-+	err = fscrypt_prepare_setflags(inode, old_ma->fsx_xflags, fa->fsx_xflags);
- 	if (err)
- 		return err;
+@@ -204,21 +269,21 @@ static int fileattr_set_prepare(struct inode *inode,
+ 	 * namespace. Enforce that restriction only if we are trying to change
+ 	 * the quota ID state. Everything else is allowed in user namespaces.
+ 	 */
+-	if (current_user_ns() != &init_user_ns) {
+-		if (old_ma->fsx_projid != fa->fsx_projid)
+-			return -EINVAL;
+-		if ((old_ma->fsx_xflags ^ fa->fsx_xflags) &
+-				FS_XFLAG_PROJINHERIT)
++	if ((rw_user_mask & FS_XFLAG_PROJID) &&
++	    old_ma->fsx_projid != fa->fsx_projid) {
++		/* Caller is not allowed to change the project ID. */
++		if (current_user_ns() != &init_user_ns)
+ 			return -EINVAL;
+-	} else {
+ 		/*
+ 		 * Caller is allowed to change the project ID. If it is being
+ 		 * changed, make sure that the new value is valid.
+ 		 */
+-		if (old_ma->fsx_projid != fa->fsx_projid &&
+-		    !projid_valid(make_kprojid(&init_user_ns, fa->fsx_projid)))
++		if (!projid_valid(make_kprojid(&init_user_ns, fa->fsx_projid)))
+ 			return -EINVAL;
+ 	}
++	if ((changed & FS_XFLAG_PROJINHERIT) &&
++	    current_user_ns() != &init_user_ns)
++		return -EINVAL;
  
-diff --git a/include/linux/fscrypt.h b/include/linux/fscrypt.h
-index 28f2108e29f3..68d0983385d0 100644
---- a/include/linux/fscrypt.h
-+++ b/include/linux/fscrypt.h
-@@ -461,7 +461,7 @@ int fscrypt_prepare_lookup_partial(struct inode *dir, struct dentry *dentry);
- int __fscrypt_prepare_readdir(struct inode *dir);
- int __fscrypt_prepare_setattr(struct dentry *dentry, struct iattr *attr);
- int fscrypt_prepare_setflags(struct inode *inode,
--			     unsigned int oldflags, unsigned int flags);
-+			     unsigned int oldxflags, unsigned int xflags);
- int fscrypt_prepare_symlink(struct inode *dir, const char *target,
- 			    unsigned int len, unsigned int max_len,
- 			    struct fscrypt_str *disk_link);
-@@ -784,8 +784,8 @@ static inline int __fscrypt_prepare_setattr(struct dentry *dentry,
- }
+ 	/* Check extent size hints. */
+ 	if ((fa->fsx_xflags & FS_XFLAG_EXTSIZE) && !S_ISREG(inode->i_mode))
+@@ -250,6 +315,143 @@ static int fileattr_set_prepare(struct inode *inode,
+ 		fa->fsx_xflags &= ~(FS_XFLAG_EXTSIZE | FS_XFLAG_EXTSZINHERIT);
+ 	if (fa->fsx_cowextsize == 0)
+ 		fa->fsx_xflags &= ~FS_XFLAG_COWEXTSIZE;
++	/*
++	 * No need for projid here, because
++	 *  (xflags & PROJID) && (rw_user_mask & PROJID) && fsx_projid == 0
++	 * gives the same result as
++	 * !(xflags & PROJID) && (rw_user_mask & PROJID) && fsx_projid >= 0.
++	 */
++
++	return 0;
++}
++
++/*
++ * Convert legacy RMW input format without masks, coming from userspace, to new
++ * input format with masks, for filesystems that already support masks.
++ */
++static int fileattr_set_legacy_to_mask(struct file_kattr *fa,
++				       struct file_kattr *old_ma)
++{
++	u32 changed = 0;
++	u32 new_rw_mask = 0;
++	u32 new_xflags = 0;
++
++	if (fa->flags_valid) {
++		/*
++		 * Assume that if the filesystem supports masks it supports its
++		 * writable FS_*_FL flags via FS_XFLAG_* and fsx_xflags_rw_mask.
++		 */
++		changed = fa->flags ^ old_ma->flags;
++		if (changed & ~xflags_to_flags(old_ma->fsx_xflags_rw_mask))
++			return -EOPNOTSUPP;
++
++		changed = flags_to_xflags(changed);
++	} else { /* if (fa->fsx_valid) */
++		changed = fa->fsx_xflags ^ old_ma->fsx_xflags;
++		changed &= FS_XFLAGS_MASK & ~FS_XFLAG_RDONLY_MASK;
++	}
++
++	new_xflags = fa->fsx_xflags;
++
++	new_rw_mask = changed;
++
++	if (fa->fsx_valid) {
++		if (fa->fsx_extsize != old_ma->fsx_extsize)
++			new_rw_mask |= new_xflags &
++				(FS_XFLAG_EXTSIZE | FS_XFLAG_EXTSZINHERIT);
++
++		if (fa->fsx_projid != old_ma->fsx_projid) {
++			new_rw_mask |= FS_XFLAG_PROJID;
++			if (fa->fsx_projid > 0)
++				new_xflags |= FS_XFLAG_PROJID;
++		}
++
++		if ((new_xflags & FS_XFLAG_COWEXTSIZE) &&
++		    (fa->fsx_cowextsize != old_ma->fsx_cowextsize))
++			new_rw_mask |= FS_XFLAG_COWEXTSIZE;
++	}
++
++	/* Make sure we're only setting the wanted bits. */
++	new_xflags &= new_rw_mask;
++
++	/* Mask aware filesystems shouldn't use fa->flags, but just to be sure. */
++	fa->flags = xflags_to_flags(new_xflags);
++
++	fa->fsx_xflags = new_xflags;
++	fa->fsx_xflags_rw_mask = new_rw_mask;
++	fa->has_masks = true;
++
++	fa->fsx_valid = true;
++	fa->flags_valid = false;
++
++	return 0;
++}
++
++/*
++ * Convert new input format with masks, coming from userspace, to legacy RMW
++ * input format without masks, for filesystems that don't support masks yet.
++ */
++static int fileattr_set_mask_to_legacy(struct file_kattr *fa,
++				       struct file_kattr *old_ma)
++{
++	u32 rw_user_mask = fa->fsx_xflags_rw_mask;
++	u32 new_xflags = fa->fsx_xflags;
++	u32 new_flags = 0;
++	u32 tmp_xflag = 0;
++
++	if (rw_user_mask &
++	    ~((FS_XFLAGS_MASK & ~FS_XFLAG_RDONLY_MASK) | FS_XFLAG_PROJID))
++		return -EOPNOTSUPP;
++
++	/* Do RMW */
++	new_xflags |= old_ma->fsx_xflags & ~rw_user_mask;
++
++	/* RMW filesystems expect to not have any globally read-only flag */
++	new_xflags &= ~FS_XFLAG_RDONLY_MASK;
++
++	new_flags = xflags_to_flags(new_xflags);
++	new_flags |= old_ma->flags & ~FS_COMMON_FL;
++
++	tmp_xflag = FS_XFLAG_EXTSIZE | FS_XFLAG_EXTSZINHERIT;
++	/* User didn't turn on any flag for this field. */
++	if (!(fa->fsx_xflags & tmp_xflag)) {
++		if ((rw_user_mask & tmp_xflag) && !(new_xflags & tmp_xflag)) {
++			/*
++			 * If the user wants to clear one of them and neither
++			 * is set after the RMW above, clear fsx_extsize.
++			 */
++			fa->fsx_extsize = 0;
++		} else {
++			/*
++			 * If the user doesn't want to clear either of them OR
++			 * the other flag is still set after RMW, preserve the
++			 * old value.
++			 */
++			fa->fsx_extsize = old_ma->fsx_extsize;
++		}
++	}
++
++	tmp_xflag = FS_XFLAG_PROJID;
++	if (!(rw_user_mask & tmp_xflag))
++		fa->fsx_projid = old_ma->fsx_projid;
++	else if (!(fa->fsx_xflags & tmp_xflag))
++		fa->fsx_projid = 0;
++	/* Strip projid now that we've used it, old format doesn't have it. */
++	new_xflags &= ~FS_XFLAG_PROJID;
++
++	tmp_xflag = FS_XFLAG_COWEXTSIZE;
++	if (!(rw_user_mask & tmp_xflag))
++		fa->fsx_cowextsize = old_ma->fsx_cowextsize;
++	else if (!(new_xflags & tmp_xflag))
++		fa->fsx_cowextsize = 0;
++
++	fa->flags = new_flags;
++	fa->fsx_xflags = new_xflags;
++	fa->fsx_xflags_rw_mask = 0;
++	fa->has_masks = false;
++
++	fa->fsx_valid = true;
++	fa->flags_valid = false;
  
- static inline int fscrypt_prepare_setflags(struct inode *inode,
--					   unsigned int oldflags,
--					   unsigned int flags)
-+					   unsigned int oldxflags,
-+					   unsigned int xflags)
- {
  	return 0;
  }
+@@ -283,20 +485,62 @@ int vfs_fileattr_set(const struct mnt_idmap *idmap, struct dentry *dentry,
+ 	if (!inode_owner_or_capable(idmap, inode))
+ 		return -EPERM;
+ 
++	if (fa->has_masks && !fa->fsx_xflags_rw_mask)
++		return 0;
++
+ 	inode_lock(inode);
+ 	err = vfs_fileattr_get(dentry, &old_ma);
+ 	if (err)
+ 		goto out;
+ 
+-	/* initialize missing bits from old_ma */
++	if (old_ma.has_masks) {
++		old_ma.fsx_xflags_rw_mask &= FS_FILE_ATTR_XFLAGS_MASK;
++		old_ma.fsx_xflags_ro_mask &= FS_FILE_ATTR_XFLAGS_MASK;
++	}
++	old_ma.fsx_xflags &= FS_FILE_ATTR_XFLAGS_MASK;
++
++	/* Convert between formats and initialize missing bits from old_ma */
+ 	if (fa->flags_valid) {
+-		fa->fsx_xflags |= old_ma.fsx_xflags & ~FS_XFLAG_COMMON;
+-		fa->fsx_extsize = old_ma.fsx_extsize;
+-		fa->fsx_nextents = old_ma.fsx_nextents;
+-		fa->fsx_projid = old_ma.fsx_projid;
+-		fa->fsx_cowextsize = old_ma.fsx_cowextsize;
++		if (!old_ma.has_masks) {
++			/* FS_IOC_SETFLAGS */
++			fa->fsx_xflags_rw_mask = 0;
++			fa->fsx_xflags |= old_ma.fsx_xflags & ~FS_XFLAG_COMMON;
++			fa->fsx_extsize = old_ma.fsx_extsize;
++			fa->fsx_nextents = old_ma.fsx_nextents;
++			fa->fsx_projid = old_ma.fsx_projid;
++			fa->fsx_cowextsize = old_ma.fsx_cowextsize;
++		} else {
++			err = fileattr_set_legacy_to_mask(fa, &old_ma);
++			if (err)
++				goto out;
++		}
++	} else if (!fa->has_masks) {
++		if (!old_ma.has_masks) {
++			/* FS_IOC_FSSETXATTR / file_attr VER0 */
++			fa->flags |= old_ma.flags & ~FS_COMMON_FL;
++		} else {
++			err = fileattr_set_legacy_to_mask(fa, &old_ma);
++			if (err)
++				goto out;
++		}
+ 	} else {
+-		fa->flags |= old_ma.flags & ~FS_COMMON_FL;
++		/* file_attr VER1 */
++		if (old_ma.has_masks) {
++			/*
++			 * Don't preserve non-common flags since filesystems
++			 * with masks only use xflags
++			 */
++		} else {
++			/*
++			 * Filesystem doesn't support _mask API yet, switch to
++			 * old rmw format.
++			 * PROJID is supported like the legacy masks, but will
++			 * be stripped during conversion.
++			 */
++			err = fileattr_set_mask_to_legacy(fa, &old_ma);
++			if (err)
++				goto out;
++		}
+ 	}
+ 
+ 	err = fileattr_set_prepare(inode, &old_ma, fa);
+@@ -390,7 +634,8 @@ SYSCALL_DEFINE5(file_getattr, int, dfd, const char __user *, filename,
+ 	BUILD_BUG_ON(sizeof(struct file_attr) < FILE_ATTR_SIZE_VER0);
+ 	BUILD_BUG_ON(sizeof(struct file_attr) != FILE_ATTR_SIZE_LATEST);
+ 
+-	if ((at_flags & ~(AT_SYMLINK_NOFOLLOW | AT_EMPTY_PATH)) != 0)
++	if ((at_flags &
++	     ~(AT_SYMLINK_NOFOLLOW | AT_EMPTY_PATH | AT_FILE_ATTR_MASKS)) != 0)
+ 		return -EINVAL;
+ 
+ 	if (!(at_flags & AT_SYMLINK_NOFOLLOW))
+@@ -399,7 +644,10 @@ SYSCALL_DEFINE5(file_getattr, int, dfd, const char __user *, filename,
+ 	if (usize > PAGE_SIZE)
+ 		return -E2BIG;
+ 
+-	if (usize < FILE_ATTR_SIZE_VER0)
++	if (usize != FILE_ATTR_SIZE_VER0 && usize < FILE_ATTR_SIZE_VER1)
++		return -EINVAL;
++
++	if ((at_flags & AT_FILE_ATTR_MASKS) && usize < FILE_ATTR_SIZE_VER1)
+ 		return -EINVAL;
+ 
+ 	CLASS(filename_maybe_null, name)(filename, at_flags);
+@@ -424,6 +672,17 @@ SYSCALL_DEFINE5(file_getattr, int, dfd, const char __user *, filename,
+ 		return error;
+ 
+ 	fileattr_to_file_attr(&fa, &fattr);
++	/*
++	 * Caller doesn't know about masks, so it also doesn't know about
++	 * xflags added in or after VER1.
++	 * Zero out the masks and strip VER1+ xflags.
++	 */
++	if (!(at_flags & AT_FILE_ATTR_MASKS)) {
++		fattr.fa_xflags &= FS_XFLAGS_MASK;
++		fattr.fa_xflags_rw_mask = 0;
++		fattr.fa_xflags_ro_mask = 0;
++	}
++
+ 	error = copy_struct_to_user(ufattr, usize, &fattr,
+ 				    sizeof(struct file_attr), NULL);
+ 
+@@ -443,7 +702,8 @@ SYSCALL_DEFINE5(file_setattr, int, dfd, const char __user *, filename,
+ 	BUILD_BUG_ON(sizeof(struct file_attr) < FILE_ATTR_SIZE_VER0);
+ 	BUILD_BUG_ON(sizeof(struct file_attr) != FILE_ATTR_SIZE_LATEST);
+ 
+-	if ((at_flags & ~(AT_SYMLINK_NOFOLLOW | AT_EMPTY_PATH)) != 0)
++	if ((at_flags &
++	     ~(AT_SYMLINK_NOFOLLOW | AT_EMPTY_PATH | AT_FILE_ATTR_MASKS)) != 0)
+ 		return -EINVAL;
+ 
+ 	if (!(at_flags & AT_SYMLINK_NOFOLLOW))
+@@ -452,7 +712,10 @@ SYSCALL_DEFINE5(file_setattr, int, dfd, const char __user *, filename,
+ 	if (usize > PAGE_SIZE)
+ 		return -E2BIG;
+ 
+-	if (usize < FILE_ATTR_SIZE_VER0)
++	if (usize != FILE_ATTR_SIZE_VER0 && usize < FILE_ATTR_SIZE_VER1)
++		return -EINVAL;
++
++	if ((at_flags & AT_FILE_ATTR_MASKS) && usize < FILE_ATTR_SIZE_VER1)
+ 		return -EINVAL;
+ 
+ 	error = copy_struct_from_user(&fattr, sizeof(struct file_attr), ufattr,
+@@ -460,9 +723,9 @@ SYSCALL_DEFINE5(file_setattr, int, dfd, const char __user *, filename,
+ 	if (error)
+ 		return error;
+ 
+-	error = file_attr_to_fileattr(&fattr, &fa);
+-	if (error)
+-		return error;
++	if (!(at_flags & AT_FILE_ATTR_MASKS) &&
++	    (fattr.fa_xflags_rw_mask || fattr.fa_xflags_ro_mask))
++		return -EINVAL;
+ 
+ 	CLASS(filename_maybe_null, name)(filename, at_flags);
+ 	if (!name && dfd >= 0) {
+@@ -479,6 +742,13 @@ SYSCALL_DEFINE5(file_setattr, int, dfd, const char __user *, filename,
+ 			return error;
+ 	}
+ 
++	if (at_flags & AT_FILE_ATTR_MASKS)
++		fa.has_masks = true;
++
++	error = file_attr_to_fileattr(&fattr, &fa);
++	if (error)
++		return error;
++
+ 	error = mnt_want_write(filepath.mnt);
+ 	if (!error) {
+ 		error = vfs_fileattr_set(mnt_idmap(filepath.mnt),
+diff --git a/include/linux/fileattr.h b/include/linux/fileattr.h
+index 09e32b84e02a..725efac15e76 100644
+--- a/include/linux/fileattr.h
++++ b/include/linux/fileattr.h
+@@ -35,6 +35,10 @@
+ 	(FS_XFLAG_COMMON | FS_XFLAG_RDONLY_MASK | FS_XFLAG_VALUES_MASK | \
+ 	 FS_XFLAG_DIRONLY_MASK | FS_XFLAG_MISC_MASK)
+ 
++/* Flags only for fa_ fields */
++#define FS_FILE_ATTR_XFLAGS_MASK \
++	(FS_XFLAGS_MASK | FS_XFLAG_PROJID)
++
+ /*
+  * Merged interface for miscellaneous file attributes.  'flags' originates from
+  * ext* and 'fsx_flags' from xfs.  There's some overlap between the two, which
+@@ -45,6 +49,8 @@ struct file_kattr {
+ 	u32	flags;		/* flags (FS_IOC_GETFLAGS/FS_IOC_SETFLAGS) */
+ 	/* struct fsxattr: */
+ 	u32	fsx_xflags;	/* xflags field value (get/set) */
++	u32	fsx_xflags_rw_mask; /* supported writeable xflags (get) / flags to set (set) */
++	u32	fsx_xflags_ro_mask; /* supported read-only xflags (get) */
+ 	u32	fsx_extsize;	/* extsize field value (get/set)*/
+ 	u32	fsx_nextents;	/* nextents field value (get)	*/
+ 	u32	fsx_projid;	/* project identifier (get/set) */
+@@ -52,6 +58,7 @@ struct file_kattr {
+ 	/* selectors: */
+ 	bool	flags_valid:1;
+ 	bool	fsx_valid:1;
++	bool	has_masks:1;
+ };
+ 
+ int copy_fsxattr_to_user(const struct file_kattr *fa, struct fsxattr __user *ufa);
+diff --git a/include/uapi/linux/fcntl.h b/include/uapi/linux/fcntl.h
+index e43e3de3e9ee..a6ecca6f5e63 100644
+--- a/include/uapi/linux/fcntl.h
++++ b/include/uapi/linux/fcntl.h
+@@ -191,4 +191,10 @@ struct delegation {
+ #define AT_EXECVE_CHECK		0x10000	/* Only perform a check if execution
+ 					   would be allowed. */
+ 
++/* Flags for file_getattr(2) / file_setattr(2). */
++#define AT_FILE_ATTR_MASKS	0x001	/* Advertise knowing and being able to
++					   handle the struct file_attr fields
++					   fa_xflags_rw_mask and
++					   fa_xflags_ro_mask */
++
+ #endif /* _UAPI_LINUX_FCNTL_H */
+diff --git a/include/uapi/linux/fs.h b/include/uapi/linux/fs.h
+index a13c7b32a1bd..63d88ebe3420 100644
+--- a/include/uapi/linux/fs.h
++++ b/include/uapi/linux/fs.h
+@@ -238,10 +238,13 @@ struct file_attr {
+ 	__u32 fa_nextents;	/* nextents field value (get)   */
+ 	__u32 fa_projid;	/* project identifier (get/set) */
+ 	__u32 fa_cowextsize;	/* CoW extsize field value (get/set) */
++	__u64 fa_xflags_rw_mask;/* supported writeable xflags (get) / flags to set (set) */
++	__u64 fa_xflags_ro_mask;/* supported read-only xflags (get) */
+ };
+ 
+ #define FILE_ATTR_SIZE_VER0 24
+-#define FILE_ATTR_SIZE_LATEST FILE_ATTR_SIZE_VER0
++#define FILE_ATTR_SIZE_VER1 40
++#define FILE_ATTR_SIZE_LATEST FILE_ATTR_SIZE_VER1
+ 
+ /*
+  * Flags for the fsx_xflags field
+@@ -270,6 +273,8 @@ struct file_attr {
+  */
+ #define FS_XFLAG_CASEFOLD	0x00040000	/* case-insensitive lookups */
+ #define FS_XFLAG_CASENONPRESERVING 0x00080000	/* case not preserved */
++#define FS_XFLAG_PROJID		0x00100000	/* project ID */
++
+ #define FS_XFLAG_HASATTR	0x80000000	/* no DIFLAG for this	*/
+ 
+ /* the read-only stuff doesn't really belong here, but any other place is
 -- 
 2.56.0
 
