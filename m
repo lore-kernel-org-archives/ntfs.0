@@ -1,55 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.3
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795669760;
-	b=Db3GGlgOGM1WEDqqvnf0MK0NuMtuPy0W4kVpvej4ZSZT1WCgCdDvW+E9wtwFcX4PMRV0
-	 bZtKRloF0PS59lLhhEgk7CNKCLcntnDWk2klemfrcHbwmpTCsLiimh6eD9cGcan32P6r7
-	 ROFhHslBFvzmldfIsLRkS2jd+vjqIGTRdteCfjXPbpYzfYZgC1VSYpPUO6kQ1TletW3yV
-	 F3S+f3Dp8hL0+/FCakJA7DqznMqyz9brPM8pP11d97mOkiziI/UvqX9/AnPMNDt/62sGO
-	 rKzivHvB+AY58En9w85Jldl5xNebHTarnhzWGYA73EnuVBx48NfzK081xh9HCbZOIXA==
+	t=1795674433;
+	b=IfwzlXyOA2KbwuPVS0fC+S6OwLYMtJfB4NU7cZORdFhWRBmrqaUfOKbsF2/b3qCVZ1RI
+	 kXctPkVEvb/nW8XUcTBrMLN/YJ53V72/uMjJrSO3U8RX7E8L3JSb3sNwDu89jXOvFuEIF
+	 dnISVSiyaDdr6qd6LzaraLuhblHsQ9cIrh2FRm3SlSedicECCZh57+UhTElP44F89zNqn
+	 ZZdSyZE6OMaFeQIpBxxcjtNVL2Q8Z61RVLvPE/03Y5LFtcvCbKuRiAXwC9KULaBVE0zCw
+	 hiPBpvY0L8Rrs9Y+2cFpjadg6pOYJbbHJeaXOv73jcR3ph0rvljgDzuSON4iO99JBtw==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795669760;
-	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
-	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
-	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
-	bh=S1HSSshjmPkqz79dXnEgGWEjXTt5qVtgnEZaDetyRsA=;
-	b=WFaTeN39mMhkzuZ4OVOL1pGzDQmq5TNg3+nUu56wzc5G/Dk+f5y5SWENxgrhIieBX1go
-	 jEmeGK5+cqUrcyE/mNlyC81iAiS8HdXNoJCFmrdzZGerKp3wtevzw5elp2+SCk+r0E7JM
-	 d2tvEXWyf0/2TlVHctbyYUAIMAVVvzK5KkjU7WQiR/p3iv2jxtI8buAch0SYlt3DzmCyH
-	 L3K89AyWI+4PbpTzcC/QZH7GHFCi5MAHoMDKtc6xGUyufwFUhjJ+swrKKNXmJikqRz/ud
-	 sXiTMeUXW0DAs/wsqOUjNbXMKCsbhaRniPx8BS29baKQWzFB9ucA8X67KGCJIYMdD3g==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795674433;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=IEYkJEow+ORSt39vLPUHZNqoyYPqxadJuAtprzzE5qQ=;
+	b=d+0tiaDK+QfA3umkzkGDn+BL6JbBrFjHBC7A28NGl3ICr4/bq/gX5WrDwLSI9YaWXNg+
+	 5Jcdyvezlnb6jna8oIz39ccveHb0cSY2EyjX+Mu576MzJz3IVwOU9gK91iqwjU1mnp/CI
+	 bdDVlQWrWFqV0R+4mqzEaxW3wPAMGpKD4LAMECvkZpMJmrd8CWZnHF5/zCLiBBxAIuRou
+	 JRBnBdKLnxcsL2Pjb0uQGTWo37p7t0b8lHN4WDtEId9lpHhr2z+nX10UCCjGNuSATaWhH
+	 yS2bBxcDb4uNuvEImPthuyf9/fnRw067jZMFId/NqfCX7nZtkydi5xqX2utF7G3/B1A==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Bb+z+LpN;
-	arc=none smtp.remote-ip=100.103.45.18
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=G2FYGLOK;
+	arc=none smtp.remote-ip=117.135.210.3
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1))
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6057A606A321
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 05:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8BB606A331
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 06:27:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org CF8BB606A331
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Bb+z+LpN
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22FC31F000E1
-	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 05:09:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795669760;
-	bh=S1HSSshjmPkqz79dXnEgGWEjXTt5qVtgnEZaDetyRsA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=Bb+z+LpN1m27T8MR72joD+HGa4Q+jBUOTHmH8z0FiHZ2plcdtAvq4oDaYD48fyriM
-	 W0XttaR9sDljd8yEXHQZzL8apNhfitdq0KBIwa8pjDHxRDKAZ3RKKvdFJwCyGHaXl+
-	 q+6YgtTP97rG+8sNHZC+LxJmvOoRIO17kTl6jCntTS4ONfAAYkWmbMrXQO/Mn7HUVu
-	 YbHCW8mtPleTNktXBiM+sNmyiPEOM863HMrO3QMZQFNgP/Yo/XyXorFk5oqd3I4cIJ
-	 tCmB07tTJV/SSfVA5MxWD1QrrwGyGp4fZmu9HFTpeH3jAhd7MAOz6gD8O3dkQtKNcs
-	 UX+eL2XJzd7zg==
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-c4d581da0aaso914630466b.2
-        for <ntfs@lists.linux.dev>; Wed, 25 Nov 2026 21:09:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHVusViUApNbNtXeZCDZGcLCcWh5aSLRCZ0d+lzB6RwYJWdsqs1eQ51+JrprmhTwElTTZC7@lists.linux.dev
-X-Gm-Message-State: APuU4Z8gQoNfMLHVpI6EiKGVeNV41EMiH0S3hTL3uuYyvw3qM0n5vy/Y
-	LC8GJwRfBUa3+VAyHLVMrkq+es1g5vm+j6eT//EslxRH2kj0/dw4hvD9s9iNKdH4H8c5g0PvIpZ
-	zjXy3rl+NaXIzSWkD6A8jx3tyRkXXzJ0=
-X-Received: by 2002:a17:907:96a0:b0:c51:3cf8:7d07 with SMTP id
- a640c23a62f3a-c513cf87f18mr1544835066b.29.1795669758768; Wed, 25 Nov 2026
- 21:09:18 -0800 (PST)
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=G2FYGLOK
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=IEYkJEow+ORSt39vLPUHZNqoyYPqxadJuAtprzzE5qQ=;
+	b=G2FYGLOKo4qdGEvdLtSHC9B/tBMXcAxRXfSqbD00aNEE8Xsj8CjuU7onaHH0fe
+	IbjHsPDSCGwqYeipicQwRP1jzW8fTApoHixPXNg1RKhOFaBtAbJruMczlyS4kOjX
+	WtI4R/PrHxfPzax1AAetx2MiKRBWx1L7yzINRJikIjsek=
+Received: from [IPV6:2409:8900:1fda:c14d:fe4b:463:9ed6:5819] (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wDXn9Mo0QdrqPtLKA--.14715S2;
+	Thu, 26 Nov 2026 14:26:50 +0800 (CST)
+Message-ID: <d485f4ea-89ca-432d-a6aa-de39ee968d81@163.com>
+Date: Thu, 26 Nov 2026 14:26:43 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -59,36 +54,142 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-References: <179558384099.146091.12975349907127521352@163.com> <20261125085004.1816027-1-shawnq1@163.com>
-In-Reply-To: <20261125085004.1816027-1-shawnq1@163.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Thu, 26 Nov 2026 14:09:06 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd_6+H28_KNgw3c1P3GL+OnsGuKhSidLQkcrsqFA17cxxA@mail.gmail.com>
-X-Gm-Features: Aa3M54q9iicmQhqC8G7jUu05Bg8W7c8Nzhmo24E5ctERleic9K339gXMJgXzZTw
-Message-ID: <CAKYAXd_6+H28_KNgw3c1P3GL+OnsGuKhSidLQkcrsqFA17cxxA@mail.gmail.com>
-Subject: Re: [PATCH v2] ntfs: guard the final LZNT1 sub-block header read
-To: shaos <shawnq1@163.com>
-Cc: hyc.lee@gmail.com, ntfs@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] generic: check the size after a buffered write runs
+ out of space
+To: ernest.borowski.git@proton.me, fstests@vger.kernel.org,
+ Zorro Lang <zlang@kernel.org>
+Cc: ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>,
+ Hyunchul Lee <hyc.lee@gmail.com>, Zhan Xusheng <zhanxusheng1024@gmail.com>
+References: <20261125-ntfs-reproducers-v1-0-0cc67533d803@proton.me>
+ <20261125-ntfs-reproducers-v1-2-0cc67533d803@proton.me>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261125-ntfs-reproducers-v1-2-0cc67533d803@proton.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXn9Mo0QdrqPtLKA--.14715S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGFW3ZF1DGF4rtFyUWFykKrg_yoWrCF4xpa
+	4FkF98trW8K3W7GrySkF1Yyr95Crs3ZFWakryI9a4kZrWDWr1xuFWagryqqrWDAr1fWr4Y
+	yan5Ka4xKr1UXrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UWKZAUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6gob5WsH0Sp65gAA3V
 
-On Wed, Nov 25, 2026 at 5:50=E2=80=AFPM shaos <shawnq1@163.com> wrote:
->
-> The legacy NTFS LZNT1 decompressor reads a 16-bit sub-block header
-> before checking that the full header remains in the compression
-> buffer. If only one byte remains, the read crosses the end of the
-> 64 KiB buffer.
->
-> Return -EOVERFLOW for an incomplete header while preserving successful
-> termination when the buffer is exactly exhausted. Validate phrase-token
-> length against the sub-block boundary before reading it.
->
-> Tested on x86-64 with QEMU. The original header-boundary reproducer
-> and a phrase-token boundary reproducer no longer fault; both malformed
-> streams are rejected with -EOVERFLOW. The one-byte control still
-> returns byte 'A'.
->
-> Fixes: 1e9ea7e04472 ("Revert "fs: Remove NTFS classic"")
-> Signed-off-by: shaos <shawnq1@163.com>
-Please tell me your real name so I can use it in the Signed-off-by line.
-Thanks.
+
+
+在 2026/11/26 03:03, Ernest Borowski via B4 Relay 写道:
+> From: Ernest Borowski <ernest.borowski.git@proton.me>
+> 
+> A buffered write that runs out of free space part way returns a short
+> count, and the file size has to end at the last byte it wrote. ntfs raises
+> the size to the end of the whole request before it copies anything and
+> keeps it after the copy stops early, so the file grows by a tail of zeroes
+> that the caller never wrote; "ntfs: trim the sizes after a short write" by
+> Zhan Xusheng, under review on the ntfs list, fixes that. Fill a 512 MiB
+> filesystem, free 256 KiB or more again, append eight times as much to a
+> file in one write(2), and check the size before and after a remount and the
+> contents of the file. generic/275 also runs a filesystem out of space with
+> writes, but only checks that some data was written.
+> 
+> Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
+> ---
+>   tests/generic/816     | 67 +++++++++++++++++++++++++++++++++++++++++++++++++++
+>   tests/generic/816.out |  2 ++
+>   2 files changed, 69 insertions(+)
+> 
+> diff --git a/tests/generic/816 b/tests/generic/816
+> new file mode 100755
+> index 00000000..14432f13
+> --- /dev/null
+> +++ b/tests/generic/816
+> @@ -0,0 +1,67 @@
+> +#! /bin/bash
+> +# SPDX-License-Identifier: GPL-2.0
+> +# Copyright (c) 2026 Ernest Borowski <ernest.borowski.git@proton.me>.  All Rights Reserved.
+> +#
+> +# FS QA Test No. 816
+> +#
+> +# A buffered write that runs out of space part way must leave the file size
+> +# at the end of the bytes it wrote.  Fill a small filesystem, free a little
+> +# space again, append more than that to a file in one write(2), and check that
+> +# the size is the old size plus the count the write returned, before and after
+> +# a remount, and that the file holds the old data followed by the bytes
+> +# written.
+> +#
+> +. ./common/preamble
+> +_begin_fstest auto quick rw enospc
+> +
+> +. ./common/populate
+> +
+> +_fixed_by_fs_commit ntfs xxxxxxxxxxxx \
+> +	"ntfs: trim the sizes after a short write"
+> +
+> +_require_scratch
+> +_require_no_compress
+> +
+> +_scratch_mkfs_sized $((512 * 1024 * 1024)) >> $seqres.full 2>&1
+> +_scratch_mount
+> +
+> +blksz=$(_get_file_block_size $SCRATCH_MNT)
+> +unit=$((blksz > 65536 ? blksz : 65536))
+> +old=$((4 * unit))
+> +len=$((32 * unit))
+> +file=$SCRATCH_MNT/file
+> +
+> +$XFS_IO_PROG -f -c "pwrite -q -S 0x11 0 $old" -c fsync $file
+> +$XFS_IO_PROG -f -c "pwrite -q -S 0x33 0 $old" -c fsync $SCRATCH_MNT/spare
+> +_fill_fs $((64 * 1024 * 1024)) $SCRATCH_MNT/fill $blksz 0 >> $seqres.full 2>&1
+> +rm -f $SCRATCH_MNT/spare
+> +_scratch_sync
+> +$DF_PROG $SCRATCH_MNT >> $seqres.full
+> +
+> +# One write(2) of $len bytes at the end of the file.  xfs_io prints the count
+> +# the write returned, or an error and no count when it wrote nothing.
+> +$XFS_IO_PROG -c "pwrite -S 0x22 -b $len $old $len" $file > $tmp.write 2>&1
+> +cat $tmp.write >> $seqres.full
+> +written=$(sed -n -e 's/^wrote \([0-9]*\)\/.*/\1/p' $tmp.write)
+> +written=${written:-0}
+> +[ $written -lt $len ] || _notrun "could not run the filesystem out of space"
+
+Hi Ernest,
+    Could we avoid treating every missing byte count as zero here?
+    For example, if xfs_io reports pwrite: Input/output error and leaves
+the file unchanged, written becomes zero and both the size and content
+checks pass. The error only appears in $seqres.full.
+    I think unexpected errors should fail the test, with ENOSPC handled
+separately. It would also be good to check that we actually get a
+positive short write. A zero-byte ENOSPC result is worth checking too.
+
+Thanks,
+Baolin.
+
+> +
+> +check_size()
+> +{
+> +	local size=$(_get_filesize $file)
+> +
+> +	[ $size -eq $((old + written)) ] || \
+> +		echo "$1: size $size after writing $written bytes at $old"
+> +}
+> +
+> +check_size "after the write"
+> +_scratch_cycle_mount
+> +check_size "after remount"
+> +
+> +$XFS_IO_PROG -f -c "pwrite -q -S 0x11 0 $old" $tmp.expected
+> +[ $written -gt 0 ] && \
+> +	$XFS_IO_PROG -c "pwrite -q -S 0x22 $old $written" $tmp.expected
+> +cmp -s $file $tmp.expected || echo "file contents differ"
+> +
+> +echo "Silence is golden"
+> +_exit 0
+> diff --git a/tests/generic/816.out b/tests/generic/816.out
+> new file mode 100644
+> index 00000000..a9d8f943
+> --- /dev/null
+> +++ b/tests/generic/816.out
+> @@ -0,0 +1,2 @@
+> +QA output created by 816
+> +Silence is golden
+> 
+
