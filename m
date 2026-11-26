@@ -1,58 +1,45 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=113.46.200.217
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=182.48.54.220
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795699673;
-	b=2X04IhJrH97GtabZdIcf4pK1Lg1Ds9F8woD3NL7Xzah6ouHC2g6Fm6zSjh4qP6EZrt0V
-	 uozVlvoXmSu6z0wFdXdKGfjIep5wiKT06twU58RIEca9iarlgZ3Hz7bIzTjPLgu2I0FLA
-	 iMOCqzCOx8zD5orm75B28JgtRwGgr1/rg4MR5Q9naeEI7OJ4abxnvF4XJ8YJjEbYawT30
-	 HezqOWi4IB0uo0EPWLhojjlpwDCalY81Vl7LFhmHdzfFFX5ci8GuCh72HfUkFtJiW6Nbo
-	 cZ3l0KUoEb/ArqP1z09pNADhhaHh3E25Co8dyIo7Q1WKSh1YQ9cQINkSdhyvP6OY1eA==
+	t=1795708234;
+	b=4Xi9j+pjylQmzZDFYNpI2HTtgz1GUa4osTFb/iy4tJmK1p3ogpave32/Pu9NuJbx2EZE
+	 Cn8+dlJY2R4ej/alMhAkeWFQZkuIU6BuXmTVHEcnMS6fbjfuschD+H34l67sdph0Jst/k
+	 t9KZPu1vgWMrRcnZDUVqqq5EHS7xHFuledsAFsB9vvR/pD9jH7y4WSObvbTf3oQZK/mW3
+	 VqTP1SFpe583AJ2jNAMw4BxcyVgxy+ONSNJaWJ+WbfX5WfX7zYGlbynRKtSlWEuHzQ10+
+	 c4lhYa0kg3mXwo9zLSMZqYid9jlEhgA+TWWtjsdYtFUuEIsePfGM95wD3qDNvmPgoVg==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795699673;
-	h=DMARC-Filter:dkim-signature:Received:Received:Received:Message-ID:
-	 Date:MIME-Version:User-Agent:Subject:To:CC:References:
-	 Content-Language:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-	bh=gzzgXOgo3+SNm0ByCjOvIm/1n5ybZt8er0jBZ3680yc=;
-	b=SfjGnqwaypiY+fmjdfrci+Hu0WfYZlzrVMiA63qNUi66tqdG/rZLOHiVD8CCn7BisUa4
-	 KV7gX41HHYpnJLI+u/lUZehAYK+O994MpMn0fBrrxkghQWdSIFVFAJwichKirhjrabM9q
-	 ErHeyVvF4+l0lZFDG11Jxg7AbhHp+zxcNVeJh0jA9z5jLqbJUgilC2vkgUBLYBIY+zARR
-	 d7BYNKmwIGHGm7dYUJD0pFNCRk/xQxGSxpKY0eIRQu8yls+HgpiCLhpudREEAnJssNQvs
-	 EPTUj8F+qZfJGdepOdMrqXJ88A7AXSmcCzLum5b9s/oCAposEbtAw6cNW0sGrEySg+w==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795708234;
+	h=DMARC-Filter:Received:From:To:Cc:Subject:Message-ID:In-Reply-To:
+	 References:Date;
+	bh=Ldk9f4ENy6ZI26hgamdhXAYUlh4Ac8KnZ+Q2k4rh0WU=;
+	b=RO39YCnHDl1kNUOqiryv7EwkOBH2LOLVBioP9UGCEDJlOb/YBN6rzD5R6UJazd1ruw0z
+	 cMP7xoKl8fpcUL9ngT7lZRJeruUdOnUmIxoCWCt3jrnWHPVqB+okHNRor7h3P5NN99LJb
+	 1Rn2MiO9Z8cDDuDR5liEGngUpZ7wG04yKS9D4gEwC7H+NZc2Ul9xokWD1KqXlnrCCUD2w
+	 JpgWw5ijFfEx5nY6dRZBDbBsBx8pTEMjwIdOodPyahosailEnChSiVag3Y0kTgy+IZTOa
+	 39EOQ4zFZOlIiuaqyVC1ZJFC+JB7hqmg9TyONgZBY5LCHR6v1LjviRlErIvY4Z93IYg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=huawei.com;
-	spf=pass smtp.mailfrom=huawei.com;
-	dkim=pass header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=11fuKA0Q;
-	arc=none smtp.remote-ip=113.46.200.217
-Received: from canpmsgout02.his.huawei.com (canpmsgout02.his.huawei.com [113.46.200.217])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A81B606A31E;
-	Thu, 26 Nov 2026 13:27:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 4A81B606A31E
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=11fuKA0Q
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=gzzgXOgo3+SNm0ByCjOvIm/1n5ybZt8er0jBZ3680yc=;
-	b=11fuKA0QNmqBcJC+Z7+EDBDEdopqwlPjiHPaNdUAff+L4Rfg5ecopOB7c41g4dYkKVWnsOz+7
-	diR70qy0hMLD9NrzKzTwcexrrEJpSqnu718+skXXx/Va432+IohJ+HmaImsfXw3HGXjPhG8bwg/
-	N0Q+ahJUMGyTnAubGLSqDU0=
-Received: from mail.maildlp.com (unknown [172.19.163.104])
-	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4jZy4b4Qsbzcb4D;
-	Thu, 26 Nov 2026 21:26:39 +0800 (CST)
-Received: from whupemk100010.china.huawei.com (unknown [7.152.184.41])
-	by mail.maildlp.com (Postfix) with ESMTPS id 2EF9B4058C;
-	Thu, 26 Nov 2026 21:27:47 +0800 (CST)
-Received: from [10.67.110.140] (10.67.110.140) by
- whupemk100010.china.huawei.com (7.152.184.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 26 Nov 2026 21:27:38 +0800
-Message-ID: <2e7397bb-14fa-4d29-bfb5-620495a40245@huawei.com>
-Date: Thu, 26 Nov 2026 21:27:37 +0800
+	dmarc=none header.from=snowrabbit.org;
+	spf=pass smtp.mailfrom=snowrabbit.org;
+	arc=none smtp.remote-ip=182.48.54.220
+Received: from bambi.snowrabbit.org (bambi.snowrabbit.org [182.48.54.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D531606A321
+	for <ntfs@lists.linux.dev>; Thu, 26 Nov 2026 15:50:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 1D531606A321
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=snowrabbit.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=snowrabbit.org
+Received: by bambi.snowrabbit.org (Postfix, from userid 3001)
+	id D36B0C92FC; Fri, 27 Nov 2026 00:50:25 +0900 (JST)
+From: Showta Ishizaki <zakinko@snowrabbit.org>
+To: Namjae Jeon <linkinjeon@kernel.org>,
+    Hyunchul Lee <hyc.lee@gmail.com>
+Cc: ntfs@lists.linux.dev,
+    linux-fsdevel@vger.kernel.org,
+    linux-kernel@vger.kernel.org,
+    Showta Ishizaki <zakinko@snowrabbit.org>
+Subject: [PATCH v2] ntfs: keep i_size of a directory equal to its index root
+Message-ID: <20261127-ntfs-01-v2@snowrabbit.org>
+In-Reply-To: <awePnaRhBQLahPpz@hyunchul-PC02>
+References: <20261125-ntfs-01-v1@snowrabbit.org>
+Date: Fri, 27 Nov 2026 00:50:25 +0900 (JST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -61,94 +48,65 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH -next -v4 01/17] fs: pass struct path to notify_change()
-To: Al Viro <viro@zeniv.linux.org.uk>
-CC: <mic@digikod.net>, <gnoack@google.com>, <paul@paul-moore.com>,
-	<brauner@kernel.org>, <jack@suse.cz>, <amir73il@gmail.com>,
-	<andrii@kernel.org>, <apparmor@lists.ubuntu.com>, <ast@kernel.org>,
-	<axboe@kernel.dk>, <bpf@vger.kernel.org>, <casey@schaufler-ca.com>,
-	<cel@kernel.org>, <cem@kernel.org>, <chenxiaosong@chenxiaosong.com>,
-	<code@tyhicks.com>, <corbet@lwn.net>, <Dai.Ngo@oracle.com>,
-	<dakr@kernel.org>, <daniel@iogearbox.net>, <dhowells@redhat.com>,
-	<dlemoal@kernel.org>, <dmitry.kasatkin@gmail.com>,
-	<driver-core@lists.linux.dev>, <dsterba@suse.com>,
-	<ecryptfs@vger.kernel.org>, <eddyz87@gmail.com>, <emil@etsalapatis.com>,
-	<eric.snowberg@oracle.com>, <exfat@lists.linux.dev>,
-	<georgia.garcia@canonical.com>, <gregkh@linuxfoundation.org>, <hch@lst.de>,
-	<hirofumi@mail.parknet.co.jp>, <hyc.lee@gmail.com>,
-	<ihor.solodrai@linux.dev>, <jlayton@kernel.org>, <jmorris@namei.org>,
-	<johan@kernel.org>, <john.fastabend@gmail.com>,
-	<john.johansen@canonical.com>, <jolsa@kernel.org>, <kpsingh@kernel.org>,
-	<linkinjeon@kernel.org>, <linux-api@vger.kernel.org>,
-	<linux-block@vger.kernel.org>, <linux-btrfs@vger.kernel.org>,
-	<linux-cifs@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-fsdevel@vger.kernel.org>, <linux-integrity@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
-	<linux-nfs@vger.kernel.org>, <linux-security-module@vger.kernel.org>,
-	<linux-trace-kernel@vger.kernel.org>, <linux-unionfs@vger.kernel.org>,
-	<linux-xfs@vger.kernel.org>, <liubaolin12138@163.com>,
-	<martin.lau@linux.dev>, <mason@kernel.org>, <mathieu.desnoyers@efficios.com>,
-	<matt@bobrowski.net>, <memxor@gmail.com>, <mhiramat@kernel.org>,
-	<miklos@szeredi.hu>, <neil@brown.name>, <netfs@lists.linux.dev>,
-	<ntfs@lists.linux.dev>, <okorniev@redhat.com>, <omosnacek@gmail.com>,
-	<penguin-kernel@i-love.sakura.ne.jp>, <rafael@kernel.org>,
-	<rdunlap@infradead.org>, <roberto.sassu@huawei.com>, <rostedt@goodmis.org>,
-	<selinux@vger.kernel.org>, <senozhatsky@chromium.org>, <serge@hallyn.com>,
-	<sj1557.seo@samsung.com>, <skhan@linuxfoundation.org>, <song@kernel.org>,
-	<stephen.smalley.work@gmail.com>, <takedakn@nttdata.co.jp>, <tom@talpey.com>,
-	<yonghong.song@linux.dev>, <yuezhang.mo@sony.com>, <zohar@linux.ibm.com>,
-	<utilityemal77@gmail.com>, <lujialin4@huawei.com>
-References: <20261117150542.1169451-1-caixinchen1@huawei.com>
- <20261117150542.1169451-2-caixinchen1@huawei.com>
- <20261117183059.GP989762@ZenIV>
- <32b8d9c9-27d2-4da9-8618-ccfc44dee7a3@huawei.com>
- <20261119052339.GT989762@ZenIV>
-Content-Language: en-US
-From: Cai Xinchen <caixinchen1@huawei.com>
-In-Reply-To: <20261119052339.GT989762@ZenIV>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
- whupemk100010.china.huawei.com (7.152.184.41)
 
-oh, I get it.
+After mkdir, stat() gives a size of 0 for the directory until it is read
+back from disk, where it gives the length of $INDEX_ROOT.
+__ntfs_create() opens the index root but does not set i_size from it.
 
-I think it would be better to use a new function, such as 
-notify_change_internal，
-to bypass this upperpath check, while retaining the inode check.
+When the index root is moved out to an index block,
+ntfs_ir_reparent() updates data_size but not i_size, which keeps the
+length the root had before.
 
-ovl_do_notify_change
-->notify_change_internal(...)
-     ->do_notify_change(..., true)
-          ->security_inode_setattr
-              if (!internal)
-                  security_path_setattr
+Set i_size in both, as ntfs_ir_truncate() does.
 
-But this leads me to possibly needing to split the inode LSM hooks and 
-the path
-LSM hooks.
+Without the patch a new directory was 0 bytes and became 48 after a
+remount, and one with 300 files was 248 and became 56.  With it the sizes
+are the same before and after.
 
-On 11/19/2026 1:23 PM, Al Viro wrote:
-> On Wed, Nov 18, 2026 at 05:13:31PM +0800, Cai Xinchen wrote:
->> On whether we want the mount references at all: they are not for NTFS.
->> The path-based LSM hooks need them - Landlock's check walks the hierarchy
->> up from the object with path->mnt->mnt_root and follow_up(), for every
->> layer, and the idmap we pass has to be the one of the mount the path was
->> checked in.
-> Then it won't be happy with overlayfs ones:
->          upper_mnt = clone_private_mount(upperpath);
-> ...
->          upper_layer->mnt = upper_mnt;
-> in ovl_get_upper(),
->                  err = ovl_get_upper(sb, ofs, &layers[0], &ctx->upper);
-> in ovl_fill_super_creds()
-> combined with
-> static inline struct vfsmount *ovl_upper_mnt(struct ovl_fs *ofs)
-> {
->          return ofs->layers[0].mnt;
-> }
->
-> mean that the mount you get won't be attached to anything.  How (un)happy
-> would landlock be with that?
+Fixes: af0db57d4293 ("ntfs: update inode operations")
+Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+Reviewed-by: Hyunchul Lee <hyc.lee@gmail.com>
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
+Signed-off-by: Showta Ishizaki <zakinko@snowrabbit.org>
+---
+v2: removed the two comments, as Hyunchul Lee asked.
+
+ fs/ntfs/index.c | 2 ++
+ fs/ntfs/namei.c | 1 +
+ 2 files changed, 3 insertions(+)
+
+diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+index fe2a79b..73c8e6f 100644
+--- a/fs/ntfs/index.c
++++ b/fs/ntfs/index.c
+@@ -1434,6 +1434,7 @@ retry:
+ 		icx->idx_ni->data_size = ix_root_size;
+ 		icx->idx_ni->initialized_size = ix_root_size;
+ 		icx->idx_ni->allocated_size = (ix_root_size + 7) & ~7;
++		i_size_write(VFS_I(icx->idx_ni), ix_root_size);
+ 	}
+ 
+ 	ntfs_ir_nill(ir);
+@@ -1455,6 +1456,7 @@ retry:
+ 		icx->idx_ni->data_size = ix_root_size;
+ 		icx->idx_ni->initialized_size = ix_root_size;
+ 		icx->idx_ni->allocated_size = (ix_root_size + 7) & ~7;
++		i_size_write(VFS_I(icx->idx_ni), ix_root_size);
+ 	}
+ 	ntfs_ie_set_vcn(ie, new_ib_vcn);
+ 	goto err_out;
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index 29f1bf5..e4b0fc4 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -611,6 +611,7 @@ static struct ntfs_inode *__ntfs_create(const struct mnt_idmap *idmap, struct in
+ 		err = ntfs_attr_open(ni, AT_INDEX_ROOT, I30, 4);
+ 		if (err)
+ 			goto err_out;
++		i_size_write(vi, ni->data_size);
+ 	} else {
+ 		/* Add DATA attribute to inode. */
+ 		err = ntfs_attr_add(ni, AT_DATA, AT_UNNAMED, 0, NULL, 0);
+-- 
+2.54.0 (Apple Git-157)
+
