@@ -1,50 +1,55 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=100.103.45.18
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795779830;
-	b=Gvc2NYLNNdNyUa1vrqrVAI54p9ZWKYVxJo1soS3q7nkxLZhPA1jlFtZh9PQ6gvoR+QWe
-	 magDla8aOzsQ3UwkaLhyaylfalAw00N6lx/vFml35IqJ8Y0GLX8ln6r6EN09p07G57xyc
-	 9ZUmNtMzoqldFSzuYMd3e48tXBRmwlp4CHwvFnNc0jg/n5NplK7psWYHLojMqby20CTTM
-	 lmTYRrXgcRGRxRBO8bSuxVnoKZKEd4f19VsiD8Knt52os+bSQyIoote1+vl+deOSKv8l+
-	 EpyH41shKz3YpZbUcn9LBQfzP0uZrrUU4TU6cNrxv/yH2bYaPNM8IRG7+JaNA93UA0A==
+	t=1795780255;
+	b=gg0vMu4SPCy8F6fuXFhK5P11DMFqrV07hz0Yxq7/WmoQgnkdXCqbOUj9q+QxHGF+uDi7
+	 quM/jkTVRa1JRjEkgrgs/+dX80a8i+yQ58iMf+KQ5cEK7xislcf9TwRIo20BmslqFoDn6
+	 UbmapMlva1fa9HRADZQM4aHNrfwEXG8WOus0keggmThJedEZWMwEigI6UtOrCs7PCZSxP
+	 Vrm4GnQGkxl82KjQFUN11owegq9bxa78+lF/iDovC5RWne09+517LLP1n9KEfW6ZdFlVN
+	 4EUZmdjfZcnsurS9CCh4edAkCOryBRtvXFXjL27vV6qoUQ4/9KFmyQ064z1GOoIkaqQ==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795779830;
-	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
-	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
-	bh=F2BophWJFZfec9hYrNMl4Cd6X5M7MOVj0pUhzlX87LY=;
-	b=NRF6NNKsao2FCPsLzdacAYuuGwFbukqka7SP25xYLPwhHU7QFmyFeUDfsch3UUnBhm2R
-	 cILBO2IkQ6DB5ErjbdRgD3eaoi2zVZR6Af7RzTLrtUmTTMO9g43lMCAnKgVqkCOrLKOCZ
-	 Gc2YwXjq44z4CNsuj2ZHUtlpOUC7SWX/WZUBhmLGdKmnA26PnXmkaRuLUTW77Hurww4fM
-	 ucjMTWyxJKt83q2fDbDWK3Z17RHwMLeP6+9yvkTeGA0YrreP47vcfMPKnseTfEtAmHKye
-	 iOmIBZnwv7qY1LMzYwxRQfijdbp60u/qQMj4M76IRsmZvlqMHwcNHJCxAQ9fUcwgZzg==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795780255;
+	h=Received:DKIM-Signature:Received:X-Forwarded-Encrypted:
+	 X-Gm-Message-State:X-Received:MIME-Version:References:In-Reply-To:
+	 From:Date:X-Gmail-Original-Message-ID:X-Gm-Features:Message-ID:
+	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding;
+	bh=lN2obwQ9zT6PeSWONEr+vd1G6rQvxvgPzKXPWi3zu7o=;
+	b=I1nIopqMg64IuO+1NDkFV5BSF5qZGWZB4E0FhX+Yww5H3+VOxrJyyXUrarzbo6waqnHr
+	 DnTbaC8FGhh3fqu+cZ98ONga6udo+UnbB+XAyt5ys2tcfaGTGmrajL94DhUx/Xuwii0mm
+	 TfmaFb5+BMN/rzbqLZR4JUEMsdDokOq4xESBauZIRil/S5XDlp/C6JOy8zmqI3bNTPCvY
+	 k+bJpLtLldjEwqNxC9gYWurP+3IAsPN/mmTFIvs164xv0q1r1JLY5DxrzWTrNRaQsNwaL
+	 CCIBmlwS2J2PV7wODIyYog0Yu++zGg+e43RGo6X3bLAKqla9iESD3rfkKRyWulmsA/Q==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=163.com;
-	spf=pass smtp.mailfrom=163.com;
-	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=hJYMARPK;
-	arc=none smtp.remote-ip=117.135.210.2
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	dkim=pass header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V4kk2ZOY;
+	arc=none smtp.remote-ip=100.103.45.18
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	 key-exchange X25519 server-signature ECDSA (prime256v1))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DF8606A326
-	for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 11:43:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org B1DF8606A326
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A997A606A31F
+	for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 11:50:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=hJYMARPK
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=F2BophWJFZfec9hYrNMl4Cd6X5M7MOVj0pUhzlX87LY=;
-	b=hJYMARPKIJrFgoVVhX3+g50vVxxmy7YlSvAHcpigTrMnnmSXm5Ke7FJPom26DM
-	hpWbdnBR/KCgnsWz020/dCFKp52cg8Rqk2XO/8hs7P7OEzU0+01UK5FvIm8IXn8k
-	oRi0CNrHJx5Nr7P70Bu1QxWmzFL1tV5TaytoCzrqE5puk=
-Received: from [IPV6:2409:8900:1fda:c14d:49cd:379b:bab1:5955] (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id PCgvCgBX3uXbbAlr5ohfHg--.10556S2;
-	Fri, 27 Nov 2026 19:43:25 +0800 (CST)
-Message-ID: <9c2b4abe-8150-4b90-ac31-c3c3de90034e@163.com>
-Date: Fri, 27 Nov 2026 19:43:23 +0800
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V4kk2ZOY
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 504A21F00893
+	for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 11:50:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795780255;
+	bh=lN2obwQ9zT6PeSWONEr+vd1G6rQvxvgPzKXPWi3zu7o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=V4kk2ZOYx0FmjDQKZxvg2MjvcL3mx37xpUpi2SHiRS4er1KXFPT7G4a+WWQn1eLSE
+	 XvwmM7nlK3sVAu9jclAP7Q5DYyJmvwWIFmYCa/Hi78pU0DWRrgoN/ydNVzvf5zIMsy
+	 Qsobc46rJDIJ4HICsq8/Oo4bmKEmC2ay0/JH3XpdIyQPy7ISxa8yOpF4njgKhtxdPv
+	 w6lD3hGbD7LscYV3Y4wzmIdE0i8m1UKjHYDL1NUZ2IGP90s682lywAb25QKkS3OwFk
+	 sifnU2qJEl3KoQLHHlcjz2T1gYdw28sPMead3i+hk8/PoKDGQ8ia4bZljkHd928bRV
+	 z2UPb/tRBtnpg==
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-c4395d31228so1367144366b.1
+        for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 03:50:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErEbZS2/dcjI97G+xiAWYZkjDdUPEQfj9Hn/j26izNGZBgDZbF29I4WBjyGNDk/0dwYjZmaZ@lists.linux.dev
+X-Gm-Message-State: APuU4Z+7ftzCC1gaTre6gZoCCXqDIqjjSnIzxqK4cHwqdY0cZuJKrLA0
+	DGh2/Pej46bHwN9LPMNYZILvms17sEdN72DrHcY84V2Cl4uqPRPmXa9JNhCkazxA+tpUZo5sJbg
+	NXwhwSYgKwmHAEWAwHJAo8QswkZWIjL8=
+X-Received: by 2002:a17:906:a256:b0:c3f:c878:7c1d with SMTP id
+ a640c23a62f3a-c513a5e1bc6mr1669269466b.9.1795780254004; Fri, 27 Nov 2026
+ 03:50:54 -0800 (PST)
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -54,186 +59,35 @@ List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] generic: test a short copy into a hole of reused
- blocks
-To: ernest.borowski.git@proton.me, fstests@vger.kernel.org,
- Zorro Lang <zlang@kernel.org>
-Cc: ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>,
- Hyunchul Lee <hyc.lee@gmail.com>, Zhan Xusheng <zhanxusheng1024@gmail.com>
-References: <20261126-ntfs-reproducers-v2-0-7d5fa5a688b9@proton.me>
- <20261126-ntfs-reproducers-v2-4-7d5fa5a688b9@proton.me>
-Content-Language: en-US
-From: liubaolin <liubaolin12138@163.com>
-In-Reply-To: <20261126-ntfs-reproducers-v2-4-7d5fa5a688b9@proton.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PCgvCgBX3uXbbAlr5ohfHg--.10556S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3WFyxCr4DCF45Aw18uFyDKFg_yoWxZrW7pF
-	WrtF15trs2g3y7u34fuF1UJFyrCw4fZF429ryIgFykZrZ8Wr4fKFWaqr1jqFWUtr13Gw4q
-	vwsY934fWr1DZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07USLvNUUUUU=
-X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6R9vOmsJbN-QYQAA3D
+References: <20261126233846.540372-1-hyc.lee@gmail.com>
+In-Reply-To: <20261126233846.540372-1-hyc.lee@gmail.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Fri, 27 Nov 2026 20:50:40 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd_cu1j6bOKGSFoAOjBn07sedSd=VHqnavaGKdYUG_Ov_w@mail.gmail.com>
+X-Gm-Features: Aa3M54oCVqSuAd-DDTVso8BY51r1xSVdKBckKFtNVzvv3ddPHXbcBzW0t2eXp_4
+Message-ID: <CAKYAXd_cu1j6bOKGSFoAOjBn07sedSd=VHqnavaGKdYUG_Ov_w@mail.gmail.com>
+Subject: Re: [PATCH v2] ntfs: fix false directory corruption on
+ case-insensitive lookup of POSIX names
+To: Hyunchul Lee <hyc.lee@gmail.com>
+Cc: Baolin Liu <liubaolin@kylinos.cn>, ntfs@lists.linux.dev, 
+	Sazpaimon <sazpaimon@cultnet.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-在 2026/11/27 04:29, Ernest Borowski via B4 Relay 写道:
-> From: Ernest Borowski <ernest.borowski.git@proton.me>
-> 
-> When a buffered write into a hole stops part way through a block because
-> its source buffer runs into an unreadable page, only the bytes copied are
-> dirty. A filesystem that allocates in units larger than the blocks it
-> tracks as dirty, as ntfs does, has to zero the rest of the allocation, or
-> reads return what the reused clusters held before. On ntfs the rest of the
-> cluster read back the old file contents after an fsync and a remount, with
-> 4 KiB and with 64 KiB clusters; the fix is "ntfs: zero the rest of a new
-> cluster after a short buffered write" from the ntfs delayed allocation
-> series, not merged yet. Fill a 512 MiB filesystem with data, so that the
-> blocks the hole gets held data before, free the blocks of a filled file by
-> truncating it to zero and back, write its last byte, write two and a half
-> blocks into the hole from a buffer whose readable part ends in the first,
-> second or third block, and compare the file with the expected contents
-> after a remount. The write has to return a count between one and the
-> readable length. The test does not run with the discard mount option,
-> which may zero the freed blocks.
-> 
-> Link: https://lore.kernel.org/all/20261124-b4-ntfs-delalloc-fixes-v2-0-f394c800ec03@proton.me/
-> Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
-> ---
->   tests/generic/818     | 88 +++++++++++++++++++++++++++++++++++++++++++++++++++
->   tests/generic/818.out |  2 ++
->   2 files changed, 90 insertions(+)
-> 
-> diff --git a/tests/generic/818 b/tests/generic/818
-> new file mode 100755
-> index 00000000..ae669fac
-> --- /dev/null
-> +++ b/tests/generic/818
-> @@ -0,0 +1,88 @@
-> +#! /bin/bash
-> +# SPDX-License-Identifier: GPL-2.0
-> +# Copyright (c) 2026 Ernest Borowski <ernest.borowski.git@proton.me>.  All Rights Reserved.
-> +#
-> +# FS QA Test No. 818
-> +#
-> +# A buffered write into a hole whose copy from user space stops part way
-> +# through a block, because the source buffer runs into an unreadable page,
-> +# must leave everything it did not write reading as zeroes once the data is on
-> +# the disk.  The blocks the hole gets may have held data before, so a block
-> +# that is allocated but only partly written would expose that old data.
-> +#
-> +# Fill a small filesystem with data, so that every block the hole can get held
-> +# data before.  Then fill a file and fsync it, truncate it to zero and back to
-> +# its size so that its old blocks are free again, write its last byte, and
-> +# write two and a half blocks at a block boundary from a buffer with only part
-> +# of it readable.  After an fsync and a remount the file must hold the bytes
-> +# the write returned and zeroes around them.
-> +#
-> +. ./common/preamble
-> +_begin_fstest auto quick rw
-> +
-> +_fixed_by_fs_commit ntfs xxxxxxxxxxxx \
-> +	"ntfs: zero the rest of a new cluster after a short buffered write"
-> +
-> +_require_scratch
-> +# Compressed data would not fill the filesystem.
-> +_require_no_compress
-> +_require_test_program "pwrite-short-copy"
-> +# Online discard can make freed blocks read back as zeroes, which hides the
-> +# missing zeroing.
-> +_exclude_scratch_mount_option "discard"
-
-Hi Ernest,
-    This helper checks MOUNT_OPTIONS using a substring match, so it also
-matches "nodiscard" and skips the test when discard is explicitly disabled.
-    It also misses discard enabled by default.
-In that case, discarding the freed blocks could erase the old data that
-  this test relies on.
-    Could we check the effective mount options after _scratch_mount instead,
-matching "discard" or "discard=..." as a complete option so that 
-"nodiscard" is not excluded?
-
-Thanks,
-Baolin.
-
-> +
-> +_scratch_mkfs_sized $((512 * 1024 * 1024)) >> "$seqres.full" 2>&1
-> +_scratch_mount
-> +
-> +blksz=$(_get_file_block_size "$SCRATCH_MNT")
-> +size=$((32 * blksz))
-> +off=$((8 * blksz))
-> +len=$((2 * blksz + blksz / 2))
-> +file=$SCRATCH_MNT/file
-> +
-> +# Write until ENOSPC, in large and then in single blocks, so that the only free
-> +# space left is what the file and the spare file free again.  _fill_fs is not
-> +# used, as it may preallocate, which writes no data.  The syncs let delayed
-> +# allocation give back what it reserved, so that the next pass writes it.
-> +$XFS_IO_PROG -f -c "pwrite -q -S 0xab 0 $size" -c fsync "$file"
-> +$XFS_IO_PROG -f -c "pwrite -q -S 0x33 0 $((2 * size))" -c fsync \
-> +	"$SCRATCH_MNT/spare"
-> +$XFS_IO_PROG -f -c "pwrite -S 0xcd -b 1m 0 512m" "$SCRATCH_MNT/fill1" \
-> +	>> "$seqres.full" 2>&1
-> +_scratch_sync
-> +$XFS_IO_PROG -f -c "pwrite -S 0xcd -b $blksz 0 512m" "$SCRATCH_MNT/fill2" \
-> +	>> "$seqres.full" 2>&1
-> +_scratch_sync
-
-Hi Ernest,
-    Could we check the results of these fill writes and fail on errors
-other than the expected ENOSPC? The _scratch_sync results should also be 
-checked.
-   Currently, the fill writes can fail with EIO, with the errors only 
-recorded in seqres.full, and the test still proceeds to the short-copy
-  checks.
-    Those checks can pass even though the filesystem was not filled,
-so we have not established that the newly allocated blocks previously
-  contained nonzero data.
-
-Thanks,
-Baolin.
-
-> +rm -f "$SCRATCH_MNT/spare"
-> +_scratch_sync
-> +$DF_PROG "$SCRATCH_MNT" >> "$seqres.full"
-> +
-> +# _scratch_cycle_mount sets $ret, so the write's result is kept in $written.
-> +# Short copies that end in the first, second and third block of the write.
-> +for copy in $((blksz / 4)) $((blksz + blksz / 4)) $((2 * blksz + blksz / 8)); do
-> +	$XFS_IO_PROG -f -c "pwrite -q -S 0xab 0 $size" -c fsync \
-> +		-c "truncate 0" -c "truncate $size" \
-> +		-c "pwrite -q -S 0x01 $((size - 1)) 1" "$file"
-> +	written=$("$here/src/pwrite-short-copy" "$file" "$off" "$len" "$copy") || \
-> +		_fail "pwrite-short-copy failed"
-> +	echo "copy $copy: write of $len bytes at $off returned $written" >> "$seqres.full"
-> +	# The first $copy bytes of the buffer are readable, so the write must
-> +	# store some of them and stop at the first unreadable byte.
-> +	if [ "$written" -le 0 ] || [ "$written" -gt "$copy" ]; then
-> +		echo "copy $copy: write of $len bytes at $off returned $written"
-> +		continue
-> +	fi
-> +	$XFS_IO_PROG -c fsync "$file"
-> +	# shellcheck disable=SC2119 # the mount options argument is optional
-> +	_scratch_cycle_mount
-> +
-> +	rm -f "$tmp.expected"
-> +	$XFS_IO_PROG -f -c "truncate $size" \
-> +		-c "pwrite -q -S 0x01 $((size - 1)) 1" \
-> +		-c "pwrite -q -S 0x5c $off $written" "$tmp.expected"
-> +	cmp -s "$file" "$tmp.expected" || \
-> +		echo "copy $copy: file contents differ after a short copy"
-> +done
-> +
-> +echo "Silence is golden"
-> +_exit 0
-> diff --git a/tests/generic/818.out b/tests/generic/818.out
-> new file mode 100644
-> index 00000000..cb099786
-> --- /dev/null
-> +++ b/tests/generic/818.out
-> @@ -0,0 +1,2 @@
-> +QA output created by 818
-> +Silence is golden
-> 
-
+On Fri, Nov 27, 2026 at 8:39=E2=80=AFAM Hyunchul Lee <hyc.lee@gmail.com> wr=
+ote:
+>
+> On a case-insensitive mount, a directory index may legitimately contain
+> two POSIX-namespace names that differ only by letter case. During
+> a lookup, ntfs_lookup_inode_by_name() treated any second case-insensitive
+> match as directory corruption, failed the lookup with EIO.
+>
+> Keep the first case-insensitive candidate and continue the collation and
+> B+tree traversal so an exact match is still found.
+>
+> Fixes: 0a8ac0c1fa0b ("ntfs: update directory operations")
+> Reported-by: Sazpaimon <sazpaimon@cultnet.net>
+> Link: https://github.com/namjaejeon/linux-ntfs/issues/99
+> Signed-off-by: Hyunchul Lee <hyc.lee@gmail.com>
+Applied it to #ntfs-next.
+Thanks!
