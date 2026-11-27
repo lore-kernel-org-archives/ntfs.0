@@ -1,83 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.2
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795779540;
-	b=Xvg8BY/nus0UcMa6Esba3vYV+KkbO6onVj9bLPZrHRmZ617YdxVmNnXkC3V+FA0Ozf/P
-	 vU8aS2w83jVrNWa2jIQgBS19yah7JSGTcVtyux3Iix6Ad9dhD1+LqQ0cDObLusc6lkpBf
-	 +p5qJnlKfTYEfT6206TfJpx4Bb4kbIScPb4eM0ry2+j5YJC+nf1gWc3ti9ORfl3cGPtFL
-	 MxJqCgbtFecK1bod66FnWYDqi0zqyD8QmY8MhsnYkbxN+hf0b+PX4xx1YwGqUY7Dljg1z
-	 fHm1hEii3vHw6Lo5YyBCNHPajqioQBTW5Z+0VvHjrcvCDZaaNpAR1qdzt4UBs/nW/8Q==
+	t=1795779830;
+	b=Gvc2NYLNNdNyUa1vrqrVAI54p9ZWKYVxJo1soS3q7nkxLZhPA1jlFtZh9PQ6gvoR+QWe
+	 magDla8aOzsQ3UwkaLhyaylfalAw00N6lx/vFml35IqJ8Y0GLX8ln6r6EN09p07G57xyc
+	 9ZUmNtMzoqldFSzuYMd3e48tXBRmwlp4CHwvFnNc0jg/n5NplK7psWYHLojMqby20CTTM
+	 lmTYRrXgcRGRxRBO8bSuxVnoKZKEd4f19VsiD8Knt52os+bSQyIoote1+vl+deOSKv8l+
+	 EpyH41shKz3YpZbUcn9LBQfzP0uZrrUU4TU6cNrxv/yH2bYaPNM8IRG7+JaNA93UA0A==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795779540;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:X-Mailer:
-	 References:In-Reply-To;
-	bh=c9ZC6MWzu3Bp3v+qDNZq5DpuS0weGkOl2JzPS3hazF4=;
-	b=a/uWGIz+oOyFwfRPgkM44BMJOeeClqKAf5b0H8d1/3/4IFe3rGIDmdmuAnjQWzv8Mq04
-	 SwQ8GUn2gkzH+ggXBHYvKmct1pEiV8+w3Nw+uAKVdsH6Gtn7WyQGqmF8LdE3Sc/ai40Pu
-	 qUgr08gsnxFzbV226Bfv/C+o0IJS4I7MI5JTPJ+omNX9/DKVxL9qRQWbY7RNcixPsKk7m
-	 Aw+TPFTIkzOXryF75FNuKLBRag5WDlLhW3Xa+qo3nPp8V/dHqxhnCzy/T9IslAY7DZEPh
-	 evGpPoig4AqWlvMgyPO3rqV9hUY/svVBuQFY6RV/42hJDEzU+iufhpRoU7jF2tiyTkw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795779830;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=F2BophWJFZfec9hYrNMl4Cd6X5M7MOVj0pUhzlX87LY=;
+	b=NRF6NNKsao2FCPsLzdacAYuuGwFbukqka7SP25xYLPwhHU7QFmyFeUDfsch3UUnBhm2R
+	 cILBO2IkQ6DB5ErjbdRgD3eaoi2zVZR6Af7RzTLrtUmTTMO9g43lMCAnKgVqkCOrLKOCZ
+	 Gc2YwXjq44z4CNsuj2ZHUtlpOUC7SWX/WZUBhmLGdKmnA26PnXmkaRuLUTW77Hurww4fM
+	 ucjMTWyxJKt83q2fDbDWK3Z17RHwMLeP6+9yvkTeGA0YrreP47vcfMPKnseTfEtAmHKye
+	 iOmIBZnwv7qY1LMzYwxRQfijdbp60u/qQMj4M76IRsmZvlqMHwcNHJCxAQ9fUcwgZzg==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=SiDIZLis;
-	arc=none smtp.remote-ip=209.85.221.51
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=hJYMARPK;
+	arc=none smtp.remote-ip=117.135.210.2
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1A6606A321
-	for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 11:38:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org CB1A6606A321
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DF8606A326
+	for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 11:43:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org B1DF8606A326
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=SiDIZLis
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-49a92144733so4015073f8f.0
-        for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 03:38:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795779538; x=1796384338; darn=lists.linux.dev;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:mime-version:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=c9ZC6MWzu3Bp3v+qDNZq5DpuS0weGkOl2JzPS3hazF4=;
-        b=SiDIZLisjqQbuiLngTgEoOuVf45UKN8wmtj8dAVJw1fePZfqkzmJC5ybd51dX9cBS5
-         Qujc4DFmNOwBZyNWYG0l853AydB2SG3FzNzHkhDpAkdk8P9JsCGMJjF2m99Pc2wJTZs1
-         scXKzR5iaSDM6B/iu03wAcMJprkYYI/2eMwvEKEuHB8FZqn7xSPXMZAwzK1H3+WQZZMe
-         8CjQd3CG1NaHq5Y3wUMcMC0jbHawx2Z05BZbZ5vS8i5HnuVfeo8JUVQvbko+Gy2/m83l
-         kDgi7vw+GBTjVXsFUmncSk0Mi90C14PHa0Wbda93x5/RRgHihivwx3B6c7rBXetXoFV0
-         Pvcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795779538; x=1796384338;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=c9ZC6MWzu3Bp3v+qDNZq5DpuS0weGkOl2JzPS3hazF4=;
-        b=aSLK1tKzWTI3rbe2Q6ZvMcoMjJPi+cpqzTEiQF5Yl6Tvq8XJJzwmnr7drMBRFf/7pu
-         lmttiKWXMPydYDjIvV7Wn81PIGRaBHRRMXL4qGfdLFj5bzb7X7ErrMX48nO7q0/0biEt
-         fsxQWYp6QO0txeSq++Y8UL1vPb9YjoqkNDm8Ljvxsyf7RMO0JyeiiTFxgqIY+hioDlBL
-         2wpS1Wz/0awOEE5KHvy8vh5R1PopiBqSl7IO/FS6+nJmQWn4/mvbFXAOqh3qFctBxDhA
-         6s2cD8/87LDXHdtzONNK1bLOEVTrK2dj6+xIQCM+0ys7IUaxzockiQR2QZEpDN+4H51B
-         5lxg==
-X-Forwarded-Encrypted: i=1; AL+hErGB9oWVI9oGpeW0KXKNCdqFFl7BIFgpr2KBH1MyRUDLqUuHuTUVRKlVY7NkMsSGMNQN/1Lg@lists.linux.dev
-X-Gm-Message-State: APuU4Z9/Jgzc1KjvM3sEdLo0iO/ORaUP9lyhVY3DbvUIkmmYmvk5Gc+3
-	jdIVGT6mdHNzN/lwwgw9/cHuOEhElz9osZjAfLONC29gmjzZnbMzOB5f
-X-Gm-Gg: AZFdTZeDmHmGgpQKKmNhONmTYD5qfkD6n78pD3krU/2fgK+MBJr+pRSTIqS9pAKsUrT
-	zVV3HAafq7NI+XezWbVISB7mHu0cgkyYoc8BwTXr7Bi61s/bYdQJWrBwaYbcdZw1KKISX+5B1Ku
-	o1+huQH2ihxNJULMh4hbDNlgJK/RifSWakIkfEPhwFIGemYiiu8ekbarNW+QlSkNUQDKKPxUZk6
-	xXpTjmA1WzIuLW9cB4ukvgzRohUDVkprJAgg+otciS51/haHur4fmXgE21KEM60SHCE13eWc1fu
-	re7621aCCitmCa/zGvz1jS9HFLhB3u3JXso1ioHppf6H959AYcGwn6jxow97biyrrGJnwk10V0h
-	wuUEWInxZltUoMwsTMSVcPRfeS9mNWo+A0MG8rvSSqGz9ZVYv6oVi0DlHmnoZfFqIQU5dthj2AJ
-	6XcCVpNPW7vtMcNUk/4V02PJZrs1akw4wbP7qULrVULayxqL6f1v3bGuZXW6DIFtXkoedRxqZ3b
-	m3hIvc7fJOvdck5ipKfP2BlLenpDzcdObZjpnVmaUEjsIZIzZTNwx8P6Qn+FwAzncJ2zpD+WNaf
-	em2cs4+sEJ4GNyVBEsfJfT554j4CkBwvgp1l6EBJ5QFuqxkJ
-X-Received: by 2002:a5d:5888:0:b0:492:5ef7:5d98 with SMTP id ffacd0b85a97d-4abb6651686mr44136319f8f.38.1795779537909;
-        Fri, 27 Nov 2026 03:38:57 -0800 (PST)
-Received: from localhost ([130.192.98.149])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6a67fec7sm44099896f8f.26.2026.11.27.03.38.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2026 03:38:57 -0800 (PST)
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=hJYMARPK
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=F2BophWJFZfec9hYrNMl4Cd6X5M7MOVj0pUhzlX87LY=;
+	b=hJYMARPKIJrFgoVVhX3+g50vVxxmy7YlSvAHcpigTrMnnmSXm5Ke7FJPom26DM
+	hpWbdnBR/KCgnsWz020/dCFKp52cg8Rqk2XO/8hs7P7OEzU0+01UK5FvIm8IXn8k
+	oRi0CNrHJx5Nr7P70Bu1QxWmzFL1tV5TaytoCzrqE5puk=
+Received: from [IPV6:2409:8900:1fda:c14d:49cd:379b:bab1:5955] (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id PCgvCgBX3uXbbAlr5ohfHg--.10556S2;
+	Fri, 27 Nov 2026 19:43:25 +0800 (CST)
+Message-ID: <9c2b4abe-8150-4b90-ac31-c3c3de90034e@163.com>
+Date: Fri, 27 Nov 2026 19:43:23 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -86,117 +53,187 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=9ee92098a335c2a68fb67c27de6debd3005add5d1428b82089d4d2e1ae1e;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Fri, 27 Nov 2026 12:38:49 +0100
-Message-Id: <DN5YPR39J7QI.1S1LCFLNUCZNL@gmail.com>
-Cc: "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul Lee"
- <hyc.lee@gmail.com>, "Eric Biggers" <ebiggers@kernel.org>, "Theodore Y .
- Ts'o" <tytso@mit.edu>, "Jaegeuk Kim" <jaegeuk@kernel.org>, "Alexander Viro"
- <viro@zeniv.linux.org.uk>, "Christian Brauner" <brauner@kernel.org>, "Chuck
- Lever" <cel@kernel.org>, "Jeff Layton" <jlayton@kernel.org>, "Jan Kara"
- <jack@suse.cz>, "Alexander Aring" <alex.aring@gmail.com>, "Darrick J .
- Wong" <djwong@kernel.org>, "Andrey Albershteyn" <aalbersh@kernel.org>,
- =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>, "Lauri Gates"
- <lauri.gates@gmail.com>, "Christoph Hellwig" <hch@infradead.org>, "Dave
- Chinner" <dgc@kernel.org>, <linux-btrfs@vger.kernel.org>,
- <linux-xfs@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-fsdevel@vger.kernel.org>, <ntfs@lists.linux.dev>,
- <linux-nfs@vger.kernel.org>, <linux-api@vger.kernel.org>
-Subject: Re: [PATCH v2 2/4] fscrypt: update fscrypt_prepare_setflags() to
- use xflags
-From: "koraynilay" <koray.fra@gmail.com>
-To: "Amir Goldstein" <amir73il@gmail.com>, "koraynilay"
- <koray.fra@gmail.com>
-X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
-References: <20261126163114.403846-1-koray.fra@gmail.com>
- <20261126163114.403846-3-koray.fra@gmail.com>
- <CAOQ4uxjGLfuZMFABCwMvdXwnU+P24G_aTJLudWbjeSmWwyDF6Q@mail.gmail.com>
-In-Reply-To: <CAOQ4uxjGLfuZMFABCwMvdXwnU+P24G_aTJLudWbjeSmWwyDF6Q@mail.gmail.com>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] generic: test a short copy into a hole of reused
+ blocks
+To: ernest.borowski.git@proton.me, fstests@vger.kernel.org,
+ Zorro Lang <zlang@kernel.org>
+Cc: ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>,
+ Hyunchul Lee <hyc.lee@gmail.com>, Zhan Xusheng <zhanxusheng1024@gmail.com>
+References: <20261126-ntfs-reproducers-v2-0-7d5fa5a688b9@proton.me>
+ <20261126-ntfs-reproducers-v2-4-7d5fa5a688b9@proton.me>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261126-ntfs-reproducers-v2-4-7d5fa5a688b9@proton.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PCgvCgBX3uXbbAlr5ohfHg--.10556S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3WFyxCr4DCF45Aw18uFyDKFg_yoWxZrW7pF
+	WrtF15trs2g3y7u34fuF1UJFyrCw4fZF429ryIgFykZrZ8Wr4fKFWaqr1jqFWUtr13Gw4q
+	vwsY934fWr1DZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07USLvNUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6R9vOmsJbN-QYQAA3D
 
---9ee92098a335c2a68fb67c27de6debd3005add5d1428b82089d4d2e1ae1e
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-On Fri Nov 27, 2026 at 12:35 PM CET, Amir Goldstein wrote:
-> On Thu, Nov 26, 2026 at 5:31=E2=80=AFPM koraynilay <koray.fra@gmail.com> =
-wrote:
->>
->> Update fscrypt_prepare_setflags() to use FS_XFLAG_* xflags instead of
->> legacy FS_*_FL flags.
->>
->> Signed-off-by: koraynilay <koray.fra@gmail.com>
->> ---
->>  fs/crypto/hooks.c       | 10 +++++-----
->>  fs/file_attr.c          |  2 +-
->>  include/linux/fscrypt.h |  6 +++---
->>  3 files changed, 9 insertions(+), 9 deletions(-)
->>
->> diff --git a/fs/crypto/hooks.c b/fs/crypto/hooks.c
->> index 149498bdab94..52d6a33fc9e9 100644
->> --- a/fs/crypto/hooks.c
->> +++ b/fs/crypto/hooks.c
->> @@ -182,10 +182,10 @@ int __fscrypt_prepare_setattr(struct dentry *dentr=
-y, struct iattr *attr)
->>  EXPORT_SYMBOL_GPL(__fscrypt_prepare_setattr);
->>
->>  /**
->> - * fscrypt_prepare_setflags() - prepare to change flags with FS_IOC_SET=
-FLAGS
->> + * fscrypt_prepare_setflags() - prepare to change xflags
->
-> prepare to change the file attributes with file_setattr() or one of
-> the legacy ioctls
 
-Ah yes.
+在 2026/11/27 04:29, Ernest Borowski via B4 Relay 写道:
+> From: Ernest Borowski <ernest.borowski.git@proton.me>
+> 
+> When a buffered write into a hole stops part way through a block because
+> its source buffer runs into an unreadable page, only the bytes copied are
+> dirty. A filesystem that allocates in units larger than the blocks it
+> tracks as dirty, as ntfs does, has to zero the rest of the allocation, or
+> reads return what the reused clusters held before. On ntfs the rest of the
+> cluster read back the old file contents after an fsync and a remount, with
+> 4 KiB and with 64 KiB clusters; the fix is "ntfs: zero the rest of a new
+> cluster after a short buffered write" from the ntfs delayed allocation
+> series, not merged yet. Fill a 512 MiB filesystem with data, so that the
+> blocks the hole gets held data before, free the blocks of a filled file by
+> truncating it to zero and back, write its last byte, write two and a half
+> blocks into the hole from a buffer whose readable part ends in the first,
+> second or third block, and compare the file with the expected contents
+> after a remount. The write has to return a count between one and the
+> readable length. The test does not run with the discard mount option,
+> which may zero the freed blocks.
+> 
+> Link: https://lore.kernel.org/all/20261124-b4-ntfs-delalloc-fixes-v2-0-f394c800ec03@proton.me/
+> Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
+> ---
+>   tests/generic/818     | 88 +++++++++++++++++++++++++++++++++++++++++++++++++++
+>   tests/generic/818.out |  2 ++
+>   2 files changed, 90 insertions(+)
+> 
+> diff --git a/tests/generic/818 b/tests/generic/818
+> new file mode 100755
+> index 00000000..ae669fac
+> --- /dev/null
+> +++ b/tests/generic/818
+> @@ -0,0 +1,88 @@
+> +#! /bin/bash
+> +# SPDX-License-Identifier: GPL-2.0
+> +# Copyright (c) 2026 Ernest Borowski <ernest.borowski.git@proton.me>.  All Rights Reserved.
+> +#
+> +# FS QA Test No. 818
+> +#
+> +# A buffered write into a hole whose copy from user space stops part way
+> +# through a block, because the source buffer runs into an unreadable page,
+> +# must leave everything it did not write reading as zeroes once the data is on
+> +# the disk.  The blocks the hole gets may have held data before, so a block
+> +# that is allocated but only partly written would expose that old data.
+> +#
+> +# Fill a small filesystem with data, so that every block the hole can get held
+> +# data before.  Then fill a file and fsync it, truncate it to zero and back to
+> +# its size so that its old blocks are free again, write its last byte, and
+> +# write two and a half blocks at a block boundary from a buffer with only part
+> +# of it readable.  After an fsync and a remount the file must hold the bytes
+> +# the write returned and zeroes around them.
+> +#
+> +. ./common/preamble
+> +_begin_fstest auto quick rw
+> +
+> +_fixed_by_fs_commit ntfs xxxxxxxxxxxx \
+> +	"ntfs: zero the rest of a new cluster after a short buffered write"
+> +
+> +_require_scratch
+> +# Compressed data would not fill the filesystem.
+> +_require_no_compress
+> +_require_test_program "pwrite-short-copy"
+> +# Online discard can make freed blocks read back as zeroes, which hides the
+> +# missing zeroing.
+> +_exclude_scratch_mount_option "discard"
 
->>   * @inode: the inode on which flags are being changed
->> - * @oldflags: the old flags
->> - * @flags: the new flags
->> + * @oldxflags: the old xflags
->> + * @xflags: the new xflags
->>   *
->>   * The caller should be holding i_rwsem for write.
->>   *
->> @@ -193,7 +193,7 @@ EXPORT_SYMBOL_GPL(__fscrypt_prepare_setattr);
->>   *        another error occurs.
->>   */
->>  int fscrypt_prepare_setflags(struct inode *inode,
->> -                            unsigned int oldflags, unsigned int flags)
->> +                            unsigned int oldxflags, unsigned int xflags=
-)
->
-> This here is a backporting landmine -
->
-> Changing the semantics drastically without changing the helper name
-> or signature.
->
-> Please rename the helper something like fscrypt_prepare_fileattr_set()
-> so that backporting mistakes will be caught at build time.
-
-Yes, though, would it maybe be better to just use xflags_to_flags() in
-the vfs patch instead of changing the fscrypt function at all?
-(Also to avoid maybe having regressions, I forgot to test fscrypt)
+Hi Ernest,
+    This helper checks MOUNT_OPTIONS using a substring match, so it also
+matches "nodiscard" and skips the test when discard is explicitly disabled.
+    It also misses discard enabled by default.
+In that case, discarding the freed blocks could erase the old data that
+  this test relies on.
+    Could we check the effective mount options after _scratch_mount instead,
+matching "discard" or "discard=..." as a complete option so that 
+"nodiscard" is not excluded?
 
 Thanks,
-koraynilay
+Baolin.
 
-> Thanks,
-> Amir.
+> +
+> +_scratch_mkfs_sized $((512 * 1024 * 1024)) >> "$seqres.full" 2>&1
+> +_scratch_mount
+> +
+> +blksz=$(_get_file_block_size "$SCRATCH_MNT")
+> +size=$((32 * blksz))
+> +off=$((8 * blksz))
+> +len=$((2 * blksz + blksz / 2))
+> +file=$SCRATCH_MNT/file
+> +
+> +# Write until ENOSPC, in large and then in single blocks, so that the only free
+> +# space left is what the file and the spare file free again.  _fill_fs is not
+> +# used, as it may preallocate, which writes no data.  The syncs let delayed
+> +# allocation give back what it reserved, so that the next pass writes it.
+> +$XFS_IO_PROG -f -c "pwrite -q -S 0xab 0 $size" -c fsync "$file"
+> +$XFS_IO_PROG -f -c "pwrite -q -S 0x33 0 $((2 * size))" -c fsync \
+> +	"$SCRATCH_MNT/spare"
+> +$XFS_IO_PROG -f -c "pwrite -S 0xcd -b 1m 0 512m" "$SCRATCH_MNT/fill1" \
+> +	>> "$seqres.full" 2>&1
+> +_scratch_sync
+> +$XFS_IO_PROG -f -c "pwrite -S 0xcd -b $blksz 0 512m" "$SCRATCH_MNT/fill2" \
+> +	>> "$seqres.full" 2>&1
+> +_scratch_sync
 
+Hi Ernest,
+    Could we check the results of these fill writes and fail on errors
+other than the expected ENOSPC? The _scratch_sync results should also be 
+checked.
+   Currently, the fill writes can fail with EIO, with the errors only 
+recorded in seqres.full, and the test still proceeds to the short-copy
+  checks.
+    Those checks can pass even though the filesystem was not filled,
+so we have not established that the newly allocated blocks previously
+  contained nonzero data.
 
+Thanks,
+Baolin.
 
---9ee92098a335c2a68fb67c27de6debd3005add5d1428b82089d4d2e1ae1e
-Content-Type: application/pgp-signature; name="signature.asc"
+> +rm -f "$SCRATCH_MNT/spare"
+> +_scratch_sync
+> +$DF_PROG "$SCRATCH_MNT" >> "$seqres.full"
+> +
+> +# _scratch_cycle_mount sets $ret, so the write's result is kept in $written.
+> +# Short copies that end in the first, second and third block of the write.
+> +for copy in $((blksz / 4)) $((blksz + blksz / 4)) $((2 * blksz + blksz / 8)); do
+> +	$XFS_IO_PROG -f -c "pwrite -q -S 0xab 0 $size" -c fsync \
+> +		-c "truncate 0" -c "truncate $size" \
+> +		-c "pwrite -q -S 0x01 $((size - 1)) 1" "$file"
+> +	written=$("$here/src/pwrite-short-copy" "$file" "$off" "$len" "$copy") || \
+> +		_fail "pwrite-short-copy failed"
+> +	echo "copy $copy: write of $len bytes at $off returned $written" >> "$seqres.full"
+> +	# The first $copy bytes of the buffer are readable, so the write must
+> +	# store some of them and stop at the first unreadable byte.
+> +	if [ "$written" -le 0 ] || [ "$written" -gt "$copy" ]; then
+> +		echo "copy $copy: write of $len bytes at $off returned $written"
+> +		continue
+> +	fi
+> +	$XFS_IO_PROG -c fsync "$file"
+> +	# shellcheck disable=SC2119 # the mount options argument is optional
+> +	_scratch_cycle_mount
+> +
+> +	rm -f "$tmp.expected"
+> +	$XFS_IO_PROG -f -c "truncate $size" \
+> +		-c "pwrite -q -S 0x01 $((size - 1)) 1" \
+> +		-c "pwrite -q -S 0x5c $off $written" "$tmp.expected"
+> +	cmp -s "$file" "$tmp.expected" || \
+> +		echo "copy $copy: file contents differ after a short copy"
+> +done
+> +
+> +echo "Silence is golden"
+> +_exit 0
+> diff --git a/tests/generic/818.out b/tests/generic/818.out
+> new file mode 100644
+> index 00000000..cb099786
+> --- /dev/null
+> +++ b/tests/generic/818.out
+> @@ -0,0 +1,2 @@
+> +QA output created by 818
+> +Silence is golden
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRJ2XvJtXGwULYEerQ0bnTtJTDoOAUCawlryQAKCRA0bnTtJTDo
-OAscAQCnLyzS8zZ9SFk9wktpq3tvXIGHHr6PhrHJzvvIIX5a3QD/d7iHp6UzpXcB
-1oYG2CGEhM4jPCS3n/9+H/haKMzfdwI=
-=mdIi
------END PGP SIGNATURE-----
-
---9ee92098a335c2a68fb67c27de6debd3005add5d1428b82089d4d2e1ae1e--
