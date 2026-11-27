@@ -1,83 +1,50 @@
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.remote-ip=117.135.210.2
 ARC-Seal: i=1; d=subspace.kernel.org; s=arc20261015; a=rsa-sha256; cv=none;
-	t=1795769326;
-	b=FogRFg8VZ6BLoyAyIVGFkMzgcZsaB7inAZl6ta9rDfvcUgp5IcEkn/SbYUEdy4ibAVnx
-	 SA8s4UV3tPFr2BW6VdwyfsPd8IS5VHoLtOEUgPuwd18jXAm3q2olbTg9Ex4MRS0gr8Adg
-	 nYsu8vzRIlpPk3IYE3O8zgNL4Ff3/GMhtqDEdPx/UoKkWrAeKAHKD1/qZhS1WPMVBBg4F
-	 F4jdBsCIvPZ/dLs9DUe8ZCzUxSjN17+JnOT8YtMroHPZ3RUX12xlF1o/svPCADg6pIyGG
-	 EA8vNdsEe1zwwJBWZnLkEiEbdzqBVphjFl3ycwzlkGAr0a+0bNXpFgCVmFJ4RpaD8Og==
+	t=1795778754;
+	b=ATlKvDHpz4zC8dgDt9xiQGUSR0PWRzOZbEaG3tUdfGRJYqmR9G3r6Jm5FoVhWkku/89z
+	 PcgSoooSTuzo0Xw+AkLno1oYEqv5V0RrLqmtBuBCaGVt0l4dEWiHR0G3L7h/Ken4K7cMB
+	 5gVndEqPxXAEKQP08n8cIPDk/m5DVhNWGgha1rrXoWofmOYmj3DW4BdU6OGP7FlTeJNNT
+	 Pu9CFQOi4e1NkGReiOUO635ZOxo1WM00mh91Hde3JSPqXszbg9qnftEucWIXAmFu+ZZTA
+	 xQe8F8bbEKrPQX5eN6RN/w6LXLXrRq97whFrugXARbokYAtFys7DEpRLvOYwww+Px8Q==
 ARC-Message-Signature: i=1; d=subspace.kernel.org; s=arc20261015;
-	a=rsa-sha256; c=relaxed/relaxed; t=1795769326;
-	h=DMARC-Filter:Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Forwarded-Encrypted:X-Gm-Message-State:X-Gm-Gg:X-Received:Received:
-	 Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:X-Mailer:
-	 References:In-Reply-To;
-	bh=IDez9NqT7Tj1QDvV6FYEN7zWNFn2T031QM3aseBOhj8=;
-	b=SHGtiBTJoXqrICmQCj6lIUbM37YGekT61Dt7tHXDhfIN8/U4T0SDY8/WHuBBD8OHNWLr
-	 FsQ4MwHFAwgfp96zVtXjrUyKFq2EPpsgfc6s7kC/Yl9PwsSbt32/aKbkaOD708r6HOYdn
-	 pP3kdcdPM+tK7SDeUBU5MXXHsJKtt6dlkRFDg1YR7NbCuagnepodUShS/4zNiznlH3PBW
-	 S7BtdGIrUeWbo4xrX3j9cyE7TGjoTviibqEH1RSYQtZ55y3w8oQmUEjt7B0t8sc1u+2hd
-	 wmEJJqzmM/MbL10XhUHPN7vwg5/utn4NX1y/fJ8VgKmag2HEe6wOc7T8+6oP9xUJICw==
+	a=rsa-sha256; c=relaxed/relaxed; t=1795778754;
+	h=DMARC-Filter:DKIM-Signature:Received:Message-ID:Date:MIME-Version:
+	 User-Agent:Subject:To:Cc:References:Content-Language:From:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-CM-TRANSID:
+	 X-Coremail-Antispam:X-Originating-IP:X-CM-SenderInfo;
+	bh=YW06WKoK89TiwPlf+zCnKNWkno6f1puL10q0E/OW7l8=;
+	b=S6SoIwJsF5Tr+g1HsjqANh8VZgygwKA/k5wteQ1IkbbUbZ5AgnJGKkURzs3tIp3knbFW
+	 zWd37Ygy2rWFMUt5n97EV8O2UaRovOfbLyNdrqOIk7GLkxApUL696gRnfR+68Vilfl9Yu
+	 17m0CDR3HSlSOFum1KUKkIbC8ryh8bZ281+hUEQXPTeeaelYQW8B4mPweuZpdpYI/gE8C
+	 aap9UP0LHiGEW/39S2L0Bu0KszVKLLxXfx6GC87FimkO/oT93O0FPa+DitJ1lb3dTffS6
+	 njWWYg7OeaH1zB8uDv6tCxy5w7k/zb/yEjV4DrML8kvYXuiHUysNEb0EirpKKU+wmsw==
 ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; 
-	dmarc=pass header.from=gmail.com;
-	spf=pass smtp.mailfrom=gmail.com;
-	dkim=pass header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qwPQbZbP;
-	arc=none smtp.remote-ip=209.85.128.41
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	dmarc=pass header.from=163.com;
+	spf=pass smtp.mailfrom=163.com;
+	dkim=pass header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Z0H15JT4;
+	arc=none smtp.remote-ip=117.135.210.2
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A06D606A327
-	for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 08:48:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 9A06D606A327
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0051E606A6A6
+	for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 11:25:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.2 smtp.subspace.kernel.org 0051E606A6A6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qwPQbZbP
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4bb666304fdso76852795e9.0
-        for <ntfs@lists.linux.dev>; Fri, 27 Nov 2026 00:48:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795769324; x=1796374124; darn=lists.linux.dev;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:mime-version:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=IDez9NqT7Tj1QDvV6FYEN7zWNFn2T031QM3aseBOhj8=;
-        b=qwPQbZbPqileIpzDaA3aOtFzVwzrUUk4ex1/sjqp0r5R7WsAA0284Vydn1g+00mB1k
-         1PB7UEADjbsgcdHUwgJB17JYvBq7jz9Dm1Jh0LGLdiUBLUi9ONB6xKZPcgFGfUi/tDdP
-         vtBvgZgt+p+1gnWtFyu4QDymNxH9OJhGdj9+rp3kNhZ4plZ8bUbILLxWbQx2yAwZu6wQ
-         SWIBUtLosQYruNFlIT+91euB0kny5QhWvAHSuol+NJIXsTJRK0QWJVEsQUATNE+OFnmA
-         QZ9nO8JF6yaX9WBpLmnitet0ZxMq5ugL0204u8w5URCfqqSkYdbwH04IHbq9ZXBLe8Eu
-         AYDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795769324; x=1796374124;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=IDez9NqT7Tj1QDvV6FYEN7zWNFn2T031QM3aseBOhj8=;
-        b=cq9oM0rnqFHmlmB4F5meo32bw8f3QJE7jfc3kGDbQVy6csd0kFaUZA2VFXhJMLLV3n
-         CCzl2aIY0CYhPdapT5z0rFRLVECpx4xEg1jpU07Y7kuAmRfgciGRzWIhp3xgkURYgOvB
-         FBVaLnkN4nAZgFysySU7mVt1JfAW6W6P5B59oDE+hNvN6aEmmwpXxWl/8gVrvfR963Qh
-         TR8SIU2UHS8rTOYgRHNIKXrGWUPa7ltd/F6nR0cgl29tE1T4v/KuW3rM45jR6beWyjvT
-         iNjnJN5v3NF8zL1VKiyXXgCvy8HZNKd+bA+CFIQ/kB9V4kGXR8asrHlSbrQdk/VlY3+a
-         3NIQ==
-X-Forwarded-Encrypted: i=1; AL+hErGO2braVHoZwcQYdkwd5/wY2Z9ROSWz6wOcfaBqcY5TFOfpLFj1ecRmNvcNEWL7KYNXnssO@lists.linux.dev
-X-Gm-Message-State: APuU4Z9SrjbrZHnUxbEK5D+r5WdPrsewrVTN5Jb8O67a74H5qsieDXYf
-	Agoun0CcgPTW4L4vaBmLGQuM+oSo09VMC6SldCR6UWOI37fmLRI/mgh8
-X-Gm-Gg: AZFdTZe7W8+BxGQ/RBh2ULhXCEuMtgG/CXkVqiPI2WuCedwTQP+v++B1oevfhSqYDmw
-	XHFY8nPS1iqqkd0zGT59cj+hQo830xd3tTVuuVgdtNtd4caGkshzh73J3QXDbkQsU7GLkupMTvP
-	sQyfSLzOlP7jX78xTM4CuoFnEDnEwvqW73CqOI/pIKLh8LAYR0RielsA5mhkAfweSTIAo/B91DU
-	YmkwG7kukfX8/pczKvSxITzWrjdJuSJCrLVppMmr0zkR6dkn8KYuNHPeygAINArEqSFjYRL2wSn
-	dzEACJQuf7blaZ2tGWtgqJvhE/Djny2JrBNNlnsZURvF4lQ/W0gGA8q9dEl4wGzrUTyERfCth8a
-	zvbVen4fk8RDzYMxzJUKLuaXiWF5mwM9jpFDdLUEybB48D1ccAxaG774WyjnMefezO6ewfqHth3
-	dWF21hQ+co3EpBvT2PbyTyoxe2DjtY23tQ1B9k9aMFI9EgkHEwhRRSZpHOdUlMVFpG9acZgm8eL
-	pUHOw3y+yDGTuzi/GqViEaDspKAlQmOMvKiFQwQdl5GDSHXxsoTwNYDqJZzCZJ6o7i8sqslw+4/
-	MkKjmkt0o8pPOd4Zv7Xmwy9axyNT4CeNsMG+AFJdnFMjN5xi2eUIXpeJsru0KbyeEQabKA==
-X-Received: by 2002:a05:600c:4f81:b0:4bb:5e8c:13bc with SMTP id 5b1f17b1804b1-4bb88805902mr454676765e9.7.1795769323802;
-        Fri, 27 Nov 2026 00:48:43 -0800 (PST)
-Received: from localhost ([130.192.98.149])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906635c7sm426511305e9.2.2026.11.27.00.48.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2026 00:48:43 -0800 (PST)
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Z0H15JT4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=YW06WKoK89TiwPlf+zCnKNWkno6f1puL10q0E/OW7l8=;
+	b=Z0H15JT4yhqMDIe7P8mAijNuwmMBz8BDhswKGihmbvoFC1VO0aJNDh0nOU6up9
+	MlyGnj9ewFzXKOBki4J6JpM9OkdALqsGqxz+c2cFpXE40pmriVycj5Drpbf4AVVn
+	J7vk/iGBzKaLkNmHAaH3Zuyqw5lYZbBtcZBkbDtHAG9BY=
+Received: from [IPV6:2409:8900:1fda:c14d:49cd:379b:bab1:5955] (unknown [])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3f+KXaAlraN7eLQ--.13998S2;
+	Fri, 27 Nov 2026 19:25:14 +0800 (CST)
+Message-ID: <99f7fc52-f97d-44a7-82cd-2ba60f7d28e6@163.com>
+Date: Fri, 27 Nov 2026 19:25:11 +0800
 X-Mailing-List: ntfs@lists.linux.dev
 List-Id: <ntfs.lists.linux.dev>
 List-Post: <mailto:ntfs@lists.linux.dev>
@@ -86,75 +53,207 @@ List-Subscribe: <mailto:ntfs+subscribe@lists.linux.dev>
 List-Unsubscribe: <mailto:ntfs+unsubscribe@lists.linux.dev>
 List-Owner: <mailto:ntfs+owner@lists.linux.dev>
 Precedence: list
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=c6f8ca06bd0087fb130def184d18448cb7c766d554c063c5f32d1cf88680;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Fri, 27 Nov 2026 09:48:36 +0100
-Message-Id: <DN5V3F9BWZNC.ZIJY7Q6XMDOM@gmail.com>
-Cc: "Namjae Jeon" <linkinjeon@kernel.org>, "Hyunchul Lee"
- <hyc.lee@gmail.com>, "Eric Biggers" <ebiggers@kernel.org>, "Theodore Y .
- Ts'o" <tytso@mit.edu>, "Jaegeuk Kim" <jaegeuk@kernel.org>, "Alexander Viro"
- <viro@zeniv.linux.org.uk>, "Christian Brauner" <brauner@kernel.org>, "Chuck
- Lever" <cel@kernel.org>, "Jeff Layton" <jlayton@kernel.org>, "Jan Kara"
- <jack@suse.cz>, "Alexander Aring" <alex.aring@gmail.com>, "Darrick J .
- Wong" <djwong@kernel.org>, "Andrey Albershteyn" <aalbersh@kernel.org>,
- "Amir Goldstein" <amir73il@gmail.com>, =?utf-8?q?Pali_Roh=C3=A1r?=
- <pali@kernel.org>, "Lauri Gates" <lauri.gates@gmail.com>, "Christoph
- Hellwig" <hch@infradead.org>, "Dave Chinner" <dgc@kernel.org>,
- <linux-btrfs@vger.kernel.org>, <linux-xfs@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
- <ntfs@lists.linux.dev>, <linux-nfs@vger.kernel.org>,
- <linux-api@vger.kernel.org>
-Subject: Re: [PATCH v2 1/4] vfs: use goto out on error in vfs_fileattr_set()
-From: "koraynilay" <koray.fra@gmail.com>
-To: "Greg KH" <gregkh@linuxfoundation.org>, "koraynilay"
- <koray.fra@gmail.com>
-X-Mailer: aerc 0.22.0-0-gc2f86b7abde3
-References: <20261126163114.403846-1-koray.fra@gmail.com>
- <20261126163114.403846-2-koray.fra@gmail.com>
- <2026112647-earful-frosted-6ef3@gregkh>
-In-Reply-To: <2026112647-earful-frosted-6ef3@gregkh>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] common: add support for the ntfs driver
+To: ernest.borowski.git@proton.me, fstests@vger.kernel.org,
+ Zorro Lang <zlang@kernel.org>
+Cc: ntfs@lists.linux.dev, Namjae Jeon <linkinjeon@kernel.org>,
+ Hyunchul Lee <hyc.lee@gmail.com>, Zhan Xusheng <zhanxusheng1024@gmail.com>
+References: <20261126-ntfs-reproducers-v2-0-7d5fa5a688b9@proton.me>
+ <20261126-ntfs-reproducers-v2-1-7d5fa5a688b9@proton.me>
+Content-Language: en-US
+From: liubaolin <liubaolin12138@163.com>
+In-Reply-To: <20261126-ntfs-reproducers-v2-1-7d5fa5a688b9@proton.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3f+KXaAlraN7eLQ--.13998S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxKFyxWry5uF1xKw15JF4kCrg_yoWxCr4DpF
+	yfCa43KrW8GrnrX3s3ta13Xa45Cwn3tF1jgr17Ww12grZ5trn7JF42qF1F9F4jgrZ8Zr4F
+	9w1kW3s7WasIyr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTCJQUUUUU=
+X-CM-SenderInfo: xolxutxrol0iasrtmqqrwthudrp/xtbC6RtdKGsJaJs-pAAA3N
 
---c6f8ca06bd0087fb130def184d18448cb7c766d554c063c5f32d1cf88680
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-On Thu Nov 26, 2026 at 8:05 PM CET, Greg KH wrote:
-> On Thu, Nov 26, 2026 at 05:31:11PM +0100, koraynilay wrote:
->> Switch from using if (!err) { ... } to the cleaner if (err) goto out;
->> in the main body of vfs_fileattr_set().
->>=20
->> Signed-off-by: koraynilay <koray.fra@gmail.com>
->
-> Real name please.
 
-Hello, this is the handle I use for everything online, thus my "known
-identity", and even Linus himself in Commit d4563201f33a
-("Documentation: simplify and clarify DCO contribution example
-language") said
-> And despite the language, we've always accepted nicknames and
-> that language was never meant to be any kind of exclusionary wording.
+在 2026/11/27 04:29, Ernest Borowski via B4 Relay 写道:
+> From: Ernest Borowski <ernest.borowski.git@proton.me>
+> 
+> Volumes for the ntfs driver (fs/ntfs) are made and checked with mkfs.ntfs
+> and fsck.ntfs from ntfsprogs-plus, but FSTYP=ntfs only gets the generic
+> fallbacks today. mkfs.ntfs zeroes the whole device unless it is given
+> --quick and refuses a device that is not a partition unless it is given
+> --force, _scratch_mkfs_sized and _scratch_mkfs_blocksized skip every test
+> that calls them, and the tests that require metadata journaling run
+> although the driver only checks and empties $LogFile at mount and never
+> logs a change. Call mkfs.ntfs directly with --quick and --force and filter
+> its warnings about the device geometry, pass the size to mkfs.ntfs in
+> sectors of the size -s gives, or else of the device's, and the block size
+> as the cluster size unless MKFS_OPTIONS sets one (mkfs.ntfs refuses a
+> second -c), check that mkfs.ntfs and fsck.ntfs are installed, and list ntfs
+> among the filesystems without metadata journaling.
+> Pass -i in _mount() when FSTYP, or the base filesystem under overlayfs,
+> is ntfs, so that every mount and remount uses the kernel driver and never
+> a mount.ntfs helper, whatever the mount options are.
+> The check keeps the generic "fsck -t ntfs -n" path, which runs ntfsck.
+> 
+> Signed-off-by: Ernest Borowski <ernest.borowski.git@proton.me>
+> ---
+>   common/config |  9 +++++++++
+>   common/rc     | 52 +++++++++++++++++++++++++++++++++++++++++++++++++---
+>   2 files changed, 58 insertions(+), 3 deletions(-)
+> 
+> diff --git a/common/config b/common/config
+> index 69e5d833..8d5c7178 100644
+> --- a/common/config
+> +++ b/common/config
+> @@ -335,6 +335,8 @@ export MKFS_AFS_PROG="false"
+>   export MKFS_CIFS_PROG="false"
+>   export MKFS_OVERLAY_PROG="false"
+>   export MKFS_REISER4_PROG=$(type -P mkfs.reiser4)
+> +# shellcheck disable=SC2155 # written like the other _PROG lines
+> +export MKFS_NTFS_PROG=$(type -P mkfs.ntfs)
+>   export E2FSCK_PROG=$(type -P e2fsck)
+>   export TUNE2FS_PROG=$(type -P tune2fs)
+>   export FSCK_OVERLAY_PROG=$(type -P fsck.overlay)
+> @@ -409,6 +411,9 @@ _common_mount_opts()
+>   	ubifs)
+>   		echo $UBIFS_MOUNT_OPTIONS
+>   		;;
+> +	ntfs)
+> +		echo "$NTFS_MOUNT_OPTIONS"
+> +		;;
+>   	*)
+>   		;;
+>   	esac
+> @@ -550,6 +555,10 @@ _source_specific_fs()
+>   		;;
+>   	pvfs2)
+>   		;;
+> +	ntfs)
+> +		[ "$MKFS_NTFS_PROG" = "" ] && _fatal "mkfs.ntfs not found"
+> +		type -P fsck.ntfs >/dev/null || _fatal "fsck.ntfs not found"
+> +		;;
+>   	ubifs)
+>   		[ "$UBIUPDATEVOL_PROG" = "" ] && _fatal "ubiupdatevol not found"
+>   		. ./common/ubifs
+> diff --git a/common/rc b/common/rc
+> index 750a8d83..891ca779 100644
+> --- a/common/rc
+> +++ b/common/rc
+> @@ -310,10 +310,16 @@ _has_dmesg_since_option()
+>   
+>   _mount()
+>   {
+> -	$MOUNT_PROG "$@"
+> +	local opts=()
+> +
+> +	# mount(8) hands an ntfs mount to a mount.ntfs helper when one is
+> +	# installed; -i keeps every mount and remount on the kernel driver,
+> +	# including the base filesystem under overlayfs
+> +	[ "$FSTYP" = "ntfs" ] || [ "$OVL_BASE_FSTYP" = "ntfs" ] && opts=(-i)
+> +	$MOUNT_PROG "${opts[@]}" "$@"
+>   	ret=$?
+>   	if [ "$ret" -ne 0 ]; then
+> -		echo "\"$MOUNT_PROG $*\" failed at $(date)" >> "$seqres.mountfail?"
+> +		echo "\"$MOUNT_PROG ${opts[*]} $*\" failed at $(date)" >> "$seqres.mountfail?"
+>   		if _has_dmesg_since_option; then
+>   			dmesg --since '30s ago' >> "$seqres.mountfail?"
+>   		else
+> @@ -904,6 +910,10 @@ _test_mkfs()
+>       btrfs)
+>           $MKFS_BTRFS_PROG $MKFS_OPTIONS $* $TEST_DEV > /dev/null
+>   	;;
+> +    ntfs)
+> +	# shellcheck disable=SC2048,SC2086 # one word may hold several options
+> +	$MKFS_NTFS_PROG --quick --force $MKFS_OPTIONS $* "$TEST_DEV" > /dev/null
+> +	;;
+>       ext2|ext3|ext4)
+>   	$MKFS_PROG -t $FSTYP -- -F $MKFS_OPTIONS $* $TEST_DEV
+>   	;;
+> @@ -953,6 +963,10 @@ _try_mkfs_dev()
+>       btrfs)
+>           $MKFS_BTRFS_PROG $MKFS_OPTIONS $*
+>   	;;
+> +    ntfs)
+> +	# shellcheck disable=SC2048,SC2086 # one word may hold several options
+> +	$MKFS_NTFS_PROG --quick --force $MKFS_OPTIONS $*
+> +	;;
+>       ext2|ext3|ext4)
+>   	$MKFS_PROG -t $FSTYP -- -F $MKFS_OPTIONS $*
+>   	;;
+> @@ -1069,6 +1083,15 @@ _scratch_mkfs()
+>   		mkfs_cmd="$MKFS_BCACHEFS_PROG"
+>   		mkfs_filter="cat"
+>   		;;
+> +	ntfs)
+> +		# --quick skips zeroing the whole device, --force formats a
+> +		# device that is not a partition; drop the warnings about that
+> +		# and about the boot geometry of such a device
+> +		mkfs_cmd="$MKFS_NTFS_PROG --quick --force"
+> +		mkfs_filter="grep -v -e \"is entire device\" -e \"forced anyway\""
+> +		mkfs_filter+=" -e \"could not be obtained automatically\""
+> +		mkfs_filter+=" -e \"boot from\""
+> +		;;
+>   	*)
+>   		mkfs_cmd="yes | $MKFS_PROG -t $FSTYP --"
+>   		mkfs_filter="cat"
+> @@ -1313,6 +1336,9 @@ _try_scratch_mkfs_sized()
+>   		# If no block size is given by local.confg or parameter, blocksize_opt is empty.
+>   		# Let MKFS_BCACHEFS_PROG decide block size on its own.
+>   		;;
+> +	ntfs)
+> +		def_blksz=$(echo "$MKFS_OPTIONS" | sed -rn 's/(.* )?(-c|--cluster-size)[ =]?([0-9]+).*/\3/p')
+> +		;;
+>   	esac
+>   
+>   	[ -n "$def_blksz" ] && blocksize=$def_blksz
+> @@ -1425,6 +1451,19 @@ _try_scratch_mkfs_sized()
+>   	bcachefs)
+>   		$MKFS_BCACHEFS_PROG $MKFS_OPTIONS --fs_size=$fssize $blocksize_opt "$@" $SCRATCH_DEV
+>   		;;
+> +	ntfs)
+> +		# mkfs.ntfs refuses a second -c, and takes the size after the
+> +		# device, in sectors of the size -s gives or else of the device's
+> +		local cluster_opt=(-c "$blocksize")
+> +		local sector_size
+> +
+> +		sector_size=$(echo "$MKFS_OPTIONS" | sed -rn 's/(.* )?(-s|--sector-size)[ =]?([0-9]+).*/\3/p')
+> +		[ -n "$sector_size" ] || sector_size=$(blockdev --getss "$SCRATCH_DEV")
+> +		[ -n "$def_blksz" ] && cluster_opt=()
+> +		# shellcheck disable=SC2086 # MKFS_OPTIONS holds several options
+> +		$MKFS_NTFS_PROG --quick --force $MKFS_OPTIONS "${cluster_opt[@]}" "$@" \
+> +			"$SCRATCH_DEV" $((fssize / sector_size))
+> +		;;
+>   	*)
+>   		_notrun "Filesystem $FSTYP not supported in _scratch_mkfs_sized"
+>   		;;
+> @@ -1517,6 +1556,13 @@ _scratch_mkfs_blocksized()
+>   	udf)
+>   		_scratch_mkfs -b $blocksize
+>   		;;
+> +	ntfs)
+> +		# mkfs.ntfs refuses a second -c, so the size asked for here
+> +		# replaces one in MKFS_OPTIONS
+> +		MKFS_OPTIONS=$(echo "$MKFS_OPTIONS" | \
+> +			sed -E 's/(^| )(-c|--cluster-size)[ =]?[0-9]+//') \
+> +			_scratch_mkfs -c "$blocksize"
+> +		;;
+>   	*)
+>   		_notrun "Filesystem $FSTYP not supported in _scratch_mkfs_blocksized"
+>   		;;
+> @@ -4386,7 +4432,7 @@ _has_metadata_journaling()
+>   	fi
+>   
+>   	case "$FSTYP" in
+> -	ext2|vfat|msdos|udf|exfat|tmpfs|hfs|hfsplus)
+> +	ext2|vfat|msdos|udf|exfat|ntfs|tmpfs|hfs|hfsplus)
+>   		echo "$FSTYP does not support metadata journaling"
+>   		return 1
+>   		;;
+> 
 
-Also, I already have a few accepted commits (here[1] and elsewhere[2])
-with this DCO, so it shuold stay like this.
+Looks good to me.
 
-Thanks,
-koraynilay
+Reviewed-by: Baolin Liu <liubaolin@kylinos.cn>
 
-[1]: https://lore.kernel.org/linux-cifs/?q=3Dkoraynilay+%22Applied+it%22+f%=
-3Ajeon
-[2]: https://sourceware.org/git/?p=3Dglibc.git;a=3Dcommit;h=3D29803ed3ce
-
---c6f8ca06bd0087fb130def184d18448cb7c766d554c063c5f32d1cf88680
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRJ2XvJtXGwULYEerQ0bnTtJTDoOAUCawlD5AAKCRA0bnTtJTDo
-OA8rAQDeEx1D2WxXRvyGunXEuOW+Cj+dElpy7MJchlEm/WMNBwD+JvucXkEupO3z
-6yiHSY99QVuCP3aqlN/orccezZlLGQ4=
-=mM8H
------END PGP SIGNATURE-----
-
---c6f8ca06bd0087fb130def184d18448cb7c766d554c063c5f32d1cf88680--
